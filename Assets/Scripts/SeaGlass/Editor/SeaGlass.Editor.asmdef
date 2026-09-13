@@ -1,0 +1,1 @@
+{"name":"SeaGlass.Editor","references":["SeaGlass.Runtime","Unity.ProBuilder"],"includePlatforms":["Editor"]}
