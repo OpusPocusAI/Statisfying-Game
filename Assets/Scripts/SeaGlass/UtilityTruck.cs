@@ -16,7 +16,7 @@ namespace SeaGlass
         public void Enter()
         {
             var p=S.player;driving=true;departure=transform.position;arrivalTimer=0;p.mode=PlayerMode.Driving;p.GetComponent<CharacterController>().enabled=false;
-            p.transform.SetParent(seat);p.transform.localPosition=new Vector3(0,-1.6f,0);p.transform.localRotation=Quaternion.identity;p.view.transform.localRotation=Quaternion.identity;p.interactOverride=Exit;S.Notify("W/S accelerate & reverse · A/D steer · Space brake · E exit · R recover");
+            p.transform.SetParent(seat);p.transform.localPosition=new Vector3(0,-1.6f,0);p.transform.localRotation=Quaternion.identity;p.SetLookRotation(Quaternion.identity);p.interactOverride=Exit;S.Notify("W/S accelerate & reverse · A/D steer · Space brake · E exit · R recover");
         }
         public void Exit()
         {
@@ -25,7 +25,7 @@ namespace SeaGlass
             Vector3 exit=transform.position-transform.right*2.4f+Vector3.up*.3f;
             if(Physics.CheckCapsule(exit+Vector3.up*.4f,exit+Vector3.up*1.5f,.28f))exit=transform.position+transform.right*2.4f+Vector3.up*.3f;
             if(Physics.CheckCapsule(exit+Vector3.up*.4f,exit+Vector3.up*1.5f,.28f))exit=new Vector3(9,.4f,Mathf.Clamp(transform.position.z,-15,180));
-            p.Teleport(exit,transform.rotation);p.safePosition=exit;S.Save();
+            p.Teleport(exit,transform.rotation);p.SetLookRotation(p.view.transform.localRotation);p.safePosition=exit;S.Save();
         }
         public bool Load(bool glass)
         {

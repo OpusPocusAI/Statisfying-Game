@@ -36,6 +36,7 @@ namespace SeaGlass
             menu=false;paused=false;Time.timeScale=1;player.mode=PlayerMode.Walking;player.interactOverride=null;player.transform.SetParent(null);player.blocked=false;
             player.Teleport(new Vector3(0,.2f,0),Quaternion.identity);player.SetCursor(true);
             if(load&&progress.returnToStudio){truck.transform.position=new Vector3(15,.3f,150);truck.ResetVehicle();player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);}
+            player.SetLookRotation(Quaternion.identity);player.safePosition=player.transform.position;
             Synchronize();Notify(load?"Welcome back. Your studio is just up the coast.":"WASD to walk · mouse to look. Find the little sand mounds.");
         }
         public void Tutorial(int step){if(progress.tutorial<step){progress.tutorial=step;}}

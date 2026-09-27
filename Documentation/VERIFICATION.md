@@ -8,7 +8,7 @@ This is a playable V1 candidate, not a claim of perfection or measured 30–45-m
 | --- | --- |
 | Editor compilation | Clean after importing the final assembly references. Active scene is `Assets/Scenes/SeaGlassStudio.unity`. |
 | EditMode | 5/5 passed. Progress defaults, IDs, JSON round-trip, section unlocks, catalogue and economy constraints. |
-| PlayMode | 4/4 passed after the coastal art pass. Complete manual truck drive through Input System events; collection, loading, recycling, cleaning, sorting, all 30 placements, all five upgrades, restoration, save/load and recovery. Additional regressions cover cargo proportions, continuous grime, visible sorted inventory and malformed saves. Latest detailed output: `TestResults/PlayMode-current.json`. |
+| PlayMode | 8/8 passed in 54.32 seconds after interaction fixes. Complete manual truck drive through Input System events; collection, loading, recycling, cleaning, sorting, all 30 placements, all five upgrades, restoration, save/load and recovery. Additional regressions cover cargo proportions, continuous grime, visible sorted inventory and malformed saves. New mouse/keyboard checks cover tool-dependent digging, ray-based collection/station entry, pausing washing, restoring the entry view, all six trays with and without the magnet, and resetting driver/new-visit camera state and recovery position. Fixtures teleport between stations; most of the full journey still calls gameplay methods directly. Latest detailed output: `TestResults/PlayMode-current.json`. |
 | Rendering references | Live scene scan found zero missing scripts, broken materials or shader compiler errors. |
 | Live visual checks | Shoreline, water, dirty/half-clean glass, studio, UI and completed triptych inspected in Play Mode using isolated in-memory progress. Live UI captures are under ignored `Captures/Polish`. |
 | Standalone | Explicit `--verify-seaglass` check exercises production systems and captures eight views. It verifies all 30 placements, the ending state, three reflected-light meshes, supported material shaders and no captured game exceptions. Latest result: `TestResults/Standalone.json`. |
@@ -19,15 +19,19 @@ The standalone command is `SeaGlassStudio.exe --verify-seaglass -batchmode -scre
 
 ## Performance observations
 
-On the supplied AMD Ryzen 5 7500F / Radeon RX 7600 XT machine, the 1080p standalone offscreen sample averaged approximately 11.1 ms across 300 restored-studio frames. This is capped by the game's frame target and is not a presented-window FPS benchmark, worst-case profile, or low-spec guarantee. A live Editor sample reported approximately 17 ms CPU and 4.2 ms GPU; another sample was slower. The studio view reported about 18,333 triangles, 260 batches and 526 draw calls. These observations do not justify switching engines or aggressive geometry reduction. A broader foreground performance pass remains useful.
+On the supplied AMD Ryzen 5 7500F / Radeon RX 7600 XT machine, the latest 1080p standalone offscreen sample averaged 19.32 ms across 300 restored-studio frames, with a 40.98 ms 95th percentile. The earlier sample averaged approximately 11.1 ms. These runs were not controlled comparisons and do not establish the cause of the variation. The game targets 90 frames per second; this hidden-player check is not a presented-window FPS benchmark, worst-case profile, or low-spec guarantee. A live Editor sample reported approximately 17 ms CPU and 4.2 ms GPU; another sample was slower. The studio view reported about 18,333 triangles, 260 batches and 526 draw calls. A foreground performance pass is still needed before claiming consistent smoothness.
 
 ## Verification issues encountered
 
+- Live interaction testing found that stations failed to restore the entry pitch and truck entry retained stored pitch. Both are fixed. Beginning a new visit also resets its recovery point.
+- The first input-based sorting regression failed for Emerald: the wide assist cast hit Cobalt first despite precise aim at Emerald. Exact reticle hits now take priority; all twelve normal/magnet tray checks pass.
+- Test cleanup removed the original preloaded input-action asset from Player Settings. Its original reference was restored after testing; this is not an intended configuration change.
 - Unity Test Framework interrupted one PlayMode run with an internal `PlayModeRunTask` null-reference exception. The orphan job was cleared after the Editor was confirmed idle; the complete rerun passed. No package source was edited.
 - The original screenshot helper caused recursive PlayerLoop errors. Reading the existing Game-view buffer avoided that route.
 - A hidden standalone window returned black swapchain captures and then stalled on `WaitForEndOfFrame`. The explicit URP render-request path avoids that dependency and has a 120-second timeout.
 - The first standalone harness selected rubbish from a locked cove. Restricting its fixture to Shell Cove corrected the test setup.
 - An intermediate build was started before all imports settled. The final delivery build was started only after compilation and domain reload finished.
+- The interaction-fix rebuild logged a build-worker pipe interruption, then recovered without a retry and succeeded in 177.43 seconds with zero build errors or warnings.
 - Unity emits `1 URP assets included in build` as a Console warning. This is an inventory message, not a missing renderer. Restricted-network player logs also contain Unity telemetry connection failures; no online service is part of the game loop.
 
 ## Remaining acceptance work and limitations

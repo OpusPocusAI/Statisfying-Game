@@ -37,6 +37,9 @@ namespace SeaGlass
             if(tool){tool.gameObject.SetActive(mode==PlayerMode.Walking&&equippedTool==0);tool.localRotation=Quaternion.Euler(Mouse.current.leftButton.isPressed?Mathf.Sin(Time.time*17)*15:0,0,-15);}
         }
         public void Teleport(Vector3 position,Quaternion rotation) {body.enabled=false;transform.SetPositionAndRotation(position,rotation);body.enabled=true;fall=0;}
+        // Keep the controller's stored angles in sync when a station or vehicle changes the view.
+        public void SetLookRotation(Quaternion localRotation)
+        {pitch=Mathf.Clamp(Mathf.DeltaAngle(0,localRotation.eulerAngles.x),-78,78);driverYaw=mode==PlayerMode.Driving?Mathf.Clamp(Mathf.DeltaAngle(0,localRotation.eulerAngles.y),-65,65):0;view.transform.localRotation=Quaternion.Euler(pitch,driverYaw,0);}
         public void LookAt(Vector3 target){var local=Quaternion.Inverse(transform.rotation)*(target-view.transform.position);pitch=-Mathf.Atan2(local.y,new Vector2(local.x,local.z).magnitude)*Mathf.Rad2Deg;driverYaw=0;view.transform.localRotation=Quaternion.Euler(pitch,0,0);}
         public void SetCursor(bool locked) { Cursor.lockState=locked?CursorLockMode.Locked:CursorLockMode.None;Cursor.visible=!locked; }
     }

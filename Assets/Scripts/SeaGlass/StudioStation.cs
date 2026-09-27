@@ -7,7 +7,7 @@ namespace SeaGlass
     public class StudioStation : Interactable
     {
         public StationKind kind; public Transform workingGlass; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
-        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation;float processing;public bool Processing=>processing>0;
+        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView;float processing;public bool Processing=>processing>0;
         GameSession S=>GameSession.Instance;
         public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
         void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;workingGlass.gameObject.SetActive(false);}}
@@ -20,7 +20,7 @@ namespace SeaGlass
             if(kind==StationKind.Clean&&S.truck.AtStudio)
             {foreach(var r in S.progress.items)if(r.stage==ItemStage.Truck&&r.id.StartsWith("glass-"))r.stage=ItemStage.Studio;S.truck.RefreshCargo();}
             if(!SelectNext()){S.Notify(kind==StationKind.Clean?"Park the truck by the studio and bring cloudy glass.":"Wash a glass piece at the basin first.");return;}
-            returnPosition=S.player.transform.position;returnRotation=S.player.transform.rotation;active=true;S.player.mode=PlayerMode.Workstation;
+            returnPosition=S.player.transform.position;returnRotation=S.player.transform.rotation;returnView=S.player.view.transform.localRotation;active=true;S.player.mode=PlayerMode.Workstation;
             S.player.Teleport(transform.position-transform.forward*1.75f+Vector3.up*.12f,transform.rotation);S.player.interactOverride=Leave;
             S.player.LookAt(transform.position+Vector3.up*1.15f);
             S.Notify(kind==StationKind.Clean?"Hold LMB to brush away the salt. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
@@ -63,7 +63,7 @@ namespace SeaGlass
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.mesh)filter.sharedMesh=def.mesh;
             workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.42f:.75f)/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y));
         }
-        public void Leave(){active=false;if(workingGlass)workingGlass.localPosition=glassHome;S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.Save();}
+        public void Leave(){active=false;if(workingGlass)workingGlass.localPosition=glassHome;S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
             if(!S||S.menu||S.paused)return;
@@ -71,7 +71,20 @@ namespace SeaGlass
             if(!active)return;
             if(kind==StationKind.Clean&&Mouse.current!=null&&Mouse.current.leftButton.isPressed)Clean(Time.deltaTime);
             if(kind==StationKind.Sort&&Mouse.current!=null&&Mouse.current.leftButton.wasPressedThisFrame)
-            {var ray=S.player.view.ViewportPointToRay(new Vector3(.5f,.5f));var hits=Physics.SphereCastAll(ray,S.progress.upgrades.Contains("magnet")?.5f:.16f,4);var tray=hits.OrderBy(x=>x.distance).Select(x=>x.collider.GetComponent<SortingTray>()).FirstOrDefault(x=>x);if(tray)Sort(tray.color);}
+            {
+                var ray=S.player.view.ViewportPointToRay(new Vector3(.5f,.5f));
+                // A broad assist cast can touch a neighbouring tray before the one under the reticle.
+                // Honour precise aim first, then help with near misses.
+                SortingTray tray=null;
+                if(Physics.Raycast(ray,out var direct,4))tray=direct.collider.GetComponent<SortingTray>();
+                if(!tray)
+                {
+                    var hits=Physics.SphereCastAll(ray,S.progress.upgrades.Contains("magnet")?.5f:.16f,4);
+                    tray=hits.Select(x=>x.collider.GetComponent<SortingTray>()).Where(x=>x)
+                        .OrderBy(x=>Vector3.Angle(ray.direction,x.transform.position-ray.origin)).FirstOrDefault();
+                }
+                if(tray)Sort(tray.color);
+            }
             if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.25f;
         }
     }
