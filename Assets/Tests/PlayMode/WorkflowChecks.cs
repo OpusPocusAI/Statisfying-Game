@@ -14,7 +14,7 @@ namespace SeaGlass.Editor
             var recycle=UnityEngine.Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(x=>x.kind==StationKind.Recycle);
             var clean=UnityEngine.Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(x=>x.kind==StationKind.Clean);
             var sort=UnityEngine.Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(x=>x.kind==StationKind.Sort);
-            var panel=UnityEngine.Object.FindFirstObjectByType<MosaicPanel>();
+            var panel=UnityEngine.Object.FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None).First(x=>x.index==0);
             foreach(var item in all.Where(x=>x.section==0).OrderBy(x=>x.id))
             {
                 if(s.BucketCount>=s.progress.BucketCapacity){s.truck.Load(true);s.truck.Load(false);}

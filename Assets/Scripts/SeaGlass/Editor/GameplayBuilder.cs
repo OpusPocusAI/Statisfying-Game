@@ -20,7 +20,7 @@ namespace SeaGlass.Editor
             int[][] colors={new[]{2,2,0,0,4,2,0,0,4,0},new[]{2,4,3,4,2,0,4,3,4,0},new[]{5,3,3,3,5,2,0,3,0,2}};
             c.glass=Enumerable.Range(0,30).Select(i=>new GlassDefinition{id="glass-"+i.ToString("D2"),color=(GlassColor)colors[i/10][i%10],shape=i%5,section=i/10,panel=i/10,socket=new Vector2((i%5-2)*.69f,(i%10<5?.5f:-.35f))}).ToArray();
             c.upgrades=new[]{new UpgradeDefinition{id="scoop",title="Sieve scoop",description="Uncover and collect neighbouring finds in a wide circle.",level=2,cost=35},new UpgradeDefinition{id="bucket",title="Canvas collection sack",description="Carry 14 finds. Fewer trips across the sand.",level=2,cost=40},new UpgradeDefinition{id="truck",title="Tall cargo dividers",description="Forty secure cargo spaces for longer beach visits.",level=3,cost=65},new UpgradeDefinition{id="washer",title="Hand sprayer",description="A visible spray wand cleans glass in three seconds.",level=2,cost=50},new UpgradeDefinition{id="magnet",title="Sorting magnet & light table",description="Wide tray targeting and bright, generous mosaic guidance.",level=3,cost=55}};
-            EditorUtility.SetDirty(c);return c;
+            TriptychArt.Author(c);EditorUtility.SetDirty(c);return c;
         }
         [MenuItem("Sea Glass/Populate Gameplay")]
         public static void Populate()
@@ -41,7 +41,10 @@ namespace SeaGlass.Editor
             MakeStation("WASH & REVEAL",StationKind.Clean,new Vector3(-.5f,0,159));
             MakeStation("SORT BY COLOUR",StationKind.Sort,new Vector3(-9,0,160));
             MakeStation("EQUIPMENT",StationKind.Upgrade,new Vector3(5,0,170));
-            CreatePanels(1,session.catalog);
+            foreach(var item in Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None).Where(i=>i.glass))
+            {var def=session.catalog.glass.First(d=>d.id==item.id);item.visual.GetComponent<MeshFilter>().sharedMesh=def.mesh;item.visual.localScale=Vector3.one*(.55f/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y));}
+            foreach(var mat in glass)mat.shader=Shader.Find("Sea Glass/Frosted Glass");
+            CreatePanels(3,session.catalog);
             PlayerSettings.runInBackground=true;
             EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());AssetDatabase.SaveAssets();
         }
@@ -90,7 +93,8 @@ namespace SeaGlass.Editor
             truck.glassCargo=gc.ToArray();truck.rubbishCargo=rc.ToArray();
             var skip=B("Optional skip-drive plate",P(0,.71f,-2.14f),new Vector3(.7f,.3f,.09f),cream,body);var si=skip.AddComponent<TruckCompartment>();si.truck=truck;si.skip=true;CoastBuilder.Label("SKIP",P(0,.73f,-2.21f),.4f,null,body);
             foreach(var col in go.GetComponentsInChildren<Collider>())if(col!=cc&&!col.GetComponent<TruckCompartment>())Object.DestroyImmediate(col);
-            var door=go.AddComponent<BoxCollider>();door.center=new Vector3(0,1.5f,.5f);door.size=new Vector3(2,1,1.5f);
+            var door=go.AddComponent<BoxCollider>();door.center=new Vector3(0,1.5f,.5f);door.size=new Vector3(2,1,1.5f);door.isTrigger=true;
+            foreach(var col in go.GetComponentsInChildren<Collider>())if(col!=cc)col.isTrigger=true;
         }
         static void MakeStation(string title,StationKind kind,Vector3 p)
         {
@@ -124,8 +128,8 @@ namespace SeaGlass.Editor
                 CoastBuilder.Label("0"+(i+1)+" / "+catalog.panelNames[i].ToUpperInvariant(),p+new Vector3(0,-2.28f,-.15f),.72f,null,g.transform);
                 var sockets=new System.Collections.Generic.List<MosaicSocket>();foreach(var d in catalog.glass.Where(x=>x.panel==i))
                 {
-                    var at=p+new Vector3(d.socket.x*1.15f,d.socket.y*1.3f,-.27f);var socket=B("Socket "+d.id,at,new Vector3(.78f,.98f,.06f),dark,g.transform);var s=socket.AddComponent<MosaicSocket>();s.glassId=d.id;s.panel=panel;s.color=GameCatalog.Palette[(int)d.color];
-                    var piece=new GameObject(d.id+" · installed glass");piece.transform.SetParent(socket.transform,false);piece.transform.localPosition=new Vector3(0,0,-.8f);piece.transform.localScale=new Vector3(.93f,.91f,1);piece.AddComponent<MeshFilter>().sharedMesh=Shard(d.shape);s.surface=piece.AddComponent<MeshRenderer>();s.surface.sharedMaterial=glass[(int)d.color];s.piece=piece;piece.SetActive(false);sockets.Add(s);
+                    var at=p+new Vector3(d.socket.x,d.socket.y,-.27f);var socket=new GameObject("Socket "+d.id);socket.transform.SetParent(g.transform);socket.transform.position=at;socket.AddComponent<MeshFilter>().sharedMesh=d.mesh;socket.AddComponent<MeshRenderer>().sharedMaterial=dark;socket.AddComponent<BoxCollider>().size=new Vector3(d.mesh.bounds.size.x,d.mesh.bounds.size.y,.15f);var s=socket.AddComponent<MosaicSocket>();s.glassId=d.id;s.panel=panel;s.color=GameCatalog.Palette[(int)d.color];
+                    var piece=new GameObject(d.id+" · installed glass");piece.transform.SetParent(socket.transform,false);piece.transform.localPosition=new Vector3(0,0,-.07f);piece.transform.localScale=Vector3.one;piece.AddComponent<MeshFilter>().sharedMesh=d.mesh;s.surface=piece.AddComponent<MeshRenderer>();s.surface.sharedMaterial=glass[(int)d.color];s.piece=piece;piece.SetActive(false);sockets.Add(s);
                 }
                 panel.sockets=sockets.ToArray();var light=new GameObject("Transmitted "+catalog.panelNames[i]+" light");light.transform.SetParent(g.transform);light.transform.position=p+new Vector3(0,0,-1);panel.glow=light.AddComponent<Light>();panel.glow.type=LightType.Point;panel.glow.range=10;panel.glow.color=GameCatalog.Palette[i==0?0:i==1?4:3];panel.glow.intensity=0;
             }

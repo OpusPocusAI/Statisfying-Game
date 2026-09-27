@@ -9,19 +9,24 @@ namespace SeaGlass
         GameSession S=>GameSession.Instance;
         string[] tutorial={"WASD to walk · Mouse to look. Follow the sand mounds.","Hold LMB on a mound to use your toy shovel.","Press E on uncovered rubbish and sea glass.","Fill your bucket, then find the truck beside the road.","E at each rear crate loads glass and rubbish separately.","E at the cab. Drive north along the road to your studio.","Park beside the studio. E at the recycling press earns caps.","E at the basin. Hold LMB to reveal the colour of your glass.","E at the sorting table. Aim at the matching tray and click.","E at the Ocean Wave sockets places your sorted glass.","Visit the equipment catalogue for your first upgrade.","Explore the unlocked coves. Complete all three panels."};
         void Awake(){Instance=this;}
+        public void CloseShop(){shop=false;S.player.blocked=false;S.player.SetCursor(true);}
         void Start(){S.player.sensitivity=PlayerPrefs.GetFloat("sensitivity",.12f);S.player.invertY=PlayerPrefs.GetInt("invert",0)==1;Feedback.Instance.musicVolume=PlayerPrefs.GetFloat("music",.25f);Feedback.Instance.effectsVolume=PlayerPrefs.GetFloat("effects",.65f);}
-        Texture2D Tex(Color c){var t=new Texture2D(1,1);t.SetPixel(0,0,c);t.Apply();return t;}
+        Texture2D Tex(Color c)
+        {
+            var t=new Texture2D(32,32);t.wrapMode=TextureWrapMode.Clamp;
+            for(int y=0;y<32;y++)for(int x=0;x<32;x++){var p=new Vector2(Mathf.Max(7-x,x-24),Mathf.Max(7-y,y-24));var a=c;a.a*=1-Mathf.Clamp01(new Vector2(Mathf.Max(0,p.x),Mathf.Max(0,p.y)).magnitude-6);t.SetPixel(x,y,a);}t.Apply();return t;
+        }
         void Styles()
         {
             cream=Tex(new Color(.98f,.91f,.76f,.96f));teal=Tex(new Color(.035f,.18f,.19f,.92f));coral=Tex(new Color(.92f,.37f,.23f));
             title=new GUIStyle(GUI.skin.label){fontSize=54,fontStyle=FontStyle.Bold,wordWrap=true};title.normal.textColor=new Color(.05f,.25f,.26f);
             heading=new GUIStyle(title){fontSize=24};body=new GUIStyle(heading){fontSize=17,fontStyle=FontStyle.Normal};small=new GUIStyle(body){fontSize=13};
             button=new GUIStyle(GUI.skin.button){fontSize=17,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(18,12,8,8)};button.normal.background=teal;button.normal.textColor=Color.white;button.hover.background=coral;button.hover.textColor=Color.white;button.active.background=coral;
-            panel=new GUIStyle(GUI.skin.box){padding=new RectOffset(24,24,20,20)};panel.normal.background=cream;
+            button.border=new RectOffset(8,8,8,8);panel=new GUIStyle(GUI.skin.box){padding=new RectOffset(24,24,20,20),border=new RectOffset(8,8,8,8)};panel.normal.background=cream;
         }
         void OnGUI()
         {
-            if(!S)return;if(title==null)Styles();GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(Screen.width/1440f,Screen.height/900f,1));
+            if(!S)return;if(title==null)Styles();float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1440*scale)*.5f,0,0),Quaternion.identity,new Vector3(scale,scale,1));
             if(S.menu){Menu();return;}
             GUI.Box(new Rect(28,25,330,113),GUIContent.none,panel);GUI.Label(new Rect(47,37,290,28),"SEA GLASS / STUDIO",heading);
             GUI.Label(new Rect(47,71,290,27),"LEVEL "+S.progress.Level+"    ·    "+S.progress.xp+" XP    ·    "+S.progress.caps+" CAPS",small);
@@ -32,9 +37,9 @@ namespace SeaGlass
             var f=S.player.focus;
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
             if(f){GUI.Box(new Rect(440,550,560,48),GUIContent.none,panel);GUI.Label(new Rect(457,559,530,30),f.Prompt,body);}
-            GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),tutorial[Mathf.Clamp(S.progress.tutorial,0,11)],body);
-            GUI.Label(new Rect(47,845,620,23),"H dismiss guidance    F reveal glass    R recover truck    Esc pause",small);
-            GUI.Label(new Rect(1080,827,340,28),S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings",small);
+            if(!S.progress.tutorialDismissed){GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),tutorial[Mathf.Clamp(S.progress.tutorial,0,11)],body);}
+            GUI.Label(new Rect(47,845,620,23),"H guidance    F reveal glass    R recover truck    Esc pause",small);
+            GUI.Label(new Rect(1080,827,340,48),S.player.equippedTool==1?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
             if(Time.unscaledTime<S.messageUntil){GUI.Box(new Rect(375,160,690,68),GUIContent.none,panel);GUI.Label(new Rect(395,176,650,48),S.message,body);}
             var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;GUI.Box(new Rect(540,670,360,60),GUIContent.none,panel);GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
@@ -44,7 +49,7 @@ namespace SeaGlass
         {
             GUI.Box(new Rect(70,95,555,710),GUIContent.none,panel);GUI.Label(new Rect(110,125,440,30),"A SMALL COASTAL RESTORATION",small);
             GUI.Label(new Rect(105,177,460,140),"Sea Glass\nStudio",title);GUI.Label(new Rect(110,339,430,80),"Bring the shore back to life.\nTurn small discoveries into something luminous.",body);
-            if(Button("Continue your studio",110,455,440)){S.Begin(true);}
+            GUI.enabled=File.Exists(S.SavePath);if(Button("Continue your studio",110,455,440)){S.Begin(true);}GUI.enabled=true;
             if(!File.Exists(S.SavePath))GUI.Label(new Rect(110,427,440,20),"No saved studio yet — begin a new visit below.",small);
             if(Button("Begin a new visit",110,515,440)){if(File.Exists(S.SavePath))confirmReset=true;else S.Begin(false);}
             if(Button("Settings",110,575,440))settings=!settings;
@@ -91,7 +96,7 @@ namespace SeaGlass
         void Ending()
         {
             GUI.Box(new Rect(385,265,670,300),GUIContent.none,panel);GUI.Label(new Rect(425,298,590,65),"Three shores. One home.",heading);GUI.Label(new Rect(425,365,590,100),"Thirty small discoveries now hold the afternoon light.\nThe studio is yours again.\nThank you for leaving the coast a little better.",body);
-            if(Button("Stay a little longer",525,492,390))ending=false;
+            if(Button("Stay a little longer",525,492,390)){ending=false;S.player.blocked=false;S.player.SetCursor(true);}
         }
         void OnDestroy(){if(cream)Destroy(cream);if(teal)Destroy(teal);if(coral)Destroy(coral);if(Instance==this)Instance=null;}
     }

@@ -1,0 +1,1 @@
+{"name":"SeaGlass.Tests","references":["SeaGlass.Runtime","SeaGlass.Editor","Unity.InputSystem"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}

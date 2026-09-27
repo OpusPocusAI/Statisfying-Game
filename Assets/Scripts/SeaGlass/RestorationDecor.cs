@@ -6,6 +6,7 @@ namespace SeaGlass {
         public Light lamp;public Renderer surface;public Color restored=new Color(.96f,.75f,.4f);
         void Start(){if(GameSession.Instance.progress.completed.All(x=>x))Restore();}
         public void Restore(){if(lamp)lamp.intensity=2;if(surface){var b=new MaterialPropertyBlock();b.SetColor("_BaseColor",restored);surface.SetPropertyBlock(b);}}
+        public void SetRestored(bool on){if(on){Restore();return;}if(lamp)lamp.intensity=0;if(surface)surface.SetPropertyBlock(null);}
     }
 }
 

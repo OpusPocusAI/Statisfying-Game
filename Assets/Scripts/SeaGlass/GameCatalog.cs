@@ -6,7 +6,7 @@ namespace SeaGlass
     public enum GlassColor { Aqua, Emerald, Cobalt, Amber, Pearl, Violet }
     public enum ItemStage { Buried, Shore, Bucket, Truck, Studio, Clean, Sorted, Placed, Recycled }
     public enum PlayerMode { Walking, Driving, Workstation }
-    [Serializable] public class GlassDefinition { public string id; public GlassColor color; public int shape; public int section; public int panel; public Vector2 socket; }
+    [Serializable] public class GlassDefinition { public string id; public GlassColor color; public int shape; public int section; public int panel; public Vector2 socket; public Mesh mesh; }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject
@@ -20,6 +20,7 @@ namespace SeaGlass
     [Serializable] public class Progress
     {
         public int version=1; public int xp; public int caps; public int tutorial; public bool skipDrive;
+        public bool returnToStudio, tutorialDismissed;
         public bool[] completed = new bool[3];
         public System.Collections.Generic.List<string> upgrades = new();
         public System.Collections.Generic.List<ItemRecord> items = new();

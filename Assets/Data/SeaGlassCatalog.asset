@@ -18,181 +18,211 @@ MonoBehaviour:
     shape: 0
     section: 0
     panel: 0
-    socket: {x: -1.38, y: 0.5}
+    socket: {x: 0, y: -1.19}
+    mesh: {fileID: 4300000, guid: 6643590049f8b684681e924f29d6f2c0, type: 2}
   - id: glass-01
-    color: 2
+    color: 0
     shape: 1
     section: 0
     panel: 0
-    socket: {x: -0.69, y: 0.5}
+    socket: {x: 0.17500001, y: -0.615}
+    mesh: {fileID: 4300000, guid: 4928208c06de13f438f86889981f0335, type: 2}
   - id: glass-02
-    color: 0
+    color: 2
     shape: 2
     section: 0
     panel: 0
-    socket: {x: 0, y: 0.5}
+    socket: {x: -1.375, y: -0.2025}
+    mesh: {fileID: 4300000, guid: c3559aea8a256994a9370abc0a336e65, type: 2}
   - id: glass-03
     color: 0
     shape: 3
     section: 0
     panel: 0
-    socket: {x: 0.69, y: 0.5}
+    socket: {x: 0.29, y: 0.3025}
+    mesh: {fileID: 4300000, guid: 787befa66c7a44f4784d77dfe32c71ff, type: 2}
   - id: glass-04
     color: 4
     shape: 4
     section: 0
     panel: 0
-    socket: {x: 1.38, y: 0.5}
+    socket: {x: 0.4375, y: 1.1175001}
+    mesh: {fileID: 4300000, guid: 685f21ed4724a634eb4faebc277dfced, type: 2}
   - id: glass-05
     color: 2
     shape: 0
     section: 0
     panel: 0
-    socket: {x: -1.38, y: -0.35}
+    socket: {x: 1.2, y: 0.31}
+    mesh: {fileID: 4300000, guid: 317f32963c6c44e43a07e6f523308446, type: 2}
   - id: glass-06
-    color: 0
+    color: 4
     shape: 1
     section: 0
     panel: 0
-    socket: {x: -0.69, y: -0.35}
+    socket: {x: 1.4760001, y: 0.71999997}
+    mesh: {fileID: 4300000, guid: 9801388c81bb544468e3119f39849db2, type: 2}
   - id: glass-07
     color: 0
     shape: 2
     section: 0
     panel: 0
-    socket: {x: 0, y: -0.35}
+    socket: {x: -1.2019999, y: 0.93999994}
+    mesh: {fileID: 4300000, guid: fae65a4498a8ec64e830d8f20e81a6ce, type: 2}
   - id: glass-08
-    color: 4
+    color: 3
     shape: 3
     section: 0
     panel: 0
-    socket: {x: 0.69, y: -0.35}
+    socket: {x: 1.834, y: 1.04}
+    mesh: {fileID: 4300000, guid: 70c4e8486443a7d469118eba85731f32, type: 2}
   - id: glass-09
-    color: 0
+    color: 2
     shape: 4
     section: 0
     panel: 0
-    socket: {x: 1.38, y: -0.35}
+    socket: {x: 1.7199999, y: -0.126}
+    mesh: {fileID: 4300000, guid: fdfd935ac8e8b2d49995ab69264e3983, type: 2}
   - id: glass-10
     color: 2
     shape: 0
     section: 1
     panel: 1
-    socket: {x: -1.38, y: 0.5}
+    socket: {x: 0, y: -1.2}
+    mesh: {fileID: 4300000, guid: 864ae762bf4e06e48accc9e6f01cea0f, type: 2}
   - id: glass-11
-    color: 4
+    color: 1
     shape: 1
     section: 1
     panel: 1
-    socket: {x: -0.69, y: 0.5}
+    socket: {x: 0, y: -0.675}
+    mesh: {fileID: 4300000, guid: b903f2d4650023a45aa693db63746ab0, type: 2}
   - id: glass-12
-    color: 3
+    color: 4
     shape: 2
     section: 1
     panel: 1
-    socket: {x: 0, y: 0.5}
+    socket: {x: 0, y: 0.23500001}
+    mesh: {fileID: 4300000, guid: 3548b10a4f5b00944978695d6877c100, type: 2}
   - id: glass-13
-    color: 4
+    color: 3
     shape: 3
     section: 1
     panel: 1
-    socket: {x: 0.69, y: 0.5}
+    socket: {x: 0, y: 1.0999999}
+    mesh: {fileID: 4300000, guid: a0795f3e823510549814584d58c5318b, type: 2}
   - id: glass-14
-    color: 2
+    color: 3
     shape: 4
     section: 1
     panel: 1
-    socket: {x: 1.38, y: 0.5}
+    socket: {x: 0, y: 1.4233333}
+    mesh: {fileID: 4300000, guid: 6117886758984bc41865b1e0c7ec1bd0, type: 2}
   - id: glass-15
-    color: 0
+    color: 4
     shape: 0
     section: 1
     panel: 1
-    socket: {x: -1.38, y: -0.35}
+    socket: {x: -1.2, y: 1.03}
+    mesh: {fileID: 4300000, guid: b5214dac32eb92442bde4c592c44ed88, type: 2}
   - id: glass-16
     color: 4
     shape: 1
     section: 1
     panel: 1
-    socket: {x: -0.69, y: -0.35}
+    socket: {x: 1.2, y: 1.03}
+    mesh: {fileID: 4300000, guid: 03d0a163c9a064b4ba8c81e3c0eabcdd, type: 2}
   - id: glass-17
-    color: 3
+    color: 0
     shape: 2
     section: 1
     panel: 1
-    socket: {x: 0, y: -0.35}
+    socket: {x: -1.25, y: 0.10999999}
+    mesh: {fileID: 4300000, guid: 800e4f10eec36324fba23c536398c3a2, type: 2}
   - id: glass-18
-    color: 4
+    color: 0
     shape: 3
     section: 1
     panel: 1
-    socket: {x: 0.69, y: -0.35}
+    socket: {x: 1.25, y: 0.10999999}
+    mesh: {fileID: 4300000, guid: c7cb824450511434489df56cbdfc4cf2, type: 2}
   - id: glass-19
-    color: 0
+    color: 5
     shape: 4
     section: 1
     panel: 1
-    socket: {x: 1.38, y: -0.35}
+    socket: {x: 0, y: -0.19}
+    mesh: {fileID: 4300000, guid: 6fc8a74b60cb0394d9ebfe1a203cfef7, type: 2}
   - id: glass-20
     color: 5
     shape: 0
     section: 2
     panel: 2
-    socket: {x: -1.38, y: 0.5}
+    socket: {x: -1.084, y: 0.98600006}
+    mesh: {fileID: 4300000, guid: 5fa438de1fe84a443a11e275c158154c, type: 2}
   - id: glass-21
-    color: 3
+    color: 5
     shape: 1
     section: 2
     panel: 2
-    socket: {x: -0.69, y: 0.5}
+    socket: {x: 1.084, y: 0.98599994}
+    mesh: {fileID: 4300000, guid: 92d41d3f6194d9c488ec204811a5f99b, type: 2}
   - id: glass-22
     color: 3
     shape: 2
     section: 2
     panel: 2
-    socket: {x: 0, y: 0.5}
+    socket: {x: -0.354, y: 0.82600003}
+    mesh: {fileID: 4300000, guid: 70e18863989965142a955866901bb5dd, type: 2}
   - id: glass-23
     color: 3
     shape: 3
     section: 2
     panel: 2
-    socket: {x: 0.69, y: 0.5}
+    socket: {x: 0.354, y: 0.82600003}
+    mesh: {fileID: 4300000, guid: cadd0f64de9ab494a8bdcc413904cc28, type: 2}
   - id: glass-24
-    color: 5
+    color: 0
     shape: 4
     section: 2
     panel: 2
-    socket: {x: 1.38, y: 0.5}
+    socket: {x: 0, y: 0.14499998}
+    mesh: {fileID: 4300000, guid: 67d9e6f1e9945c44bbb00feead739f86, type: 2}
   - id: glass-25
     color: 2
     shape: 0
     section: 2
     panel: 2
-    socket: {x: -1.38, y: -0.35}
+    socket: {x: -1.1775, y: -0.31}
+    mesh: {fileID: 4300000, guid: 5b5fe4803c73d2b49982dec3733bf98d, type: 2}
   - id: glass-26
-    color: 0
+    color: 2
     shape: 1
     section: 2
     panel: 2
-    socket: {x: -0.69, y: -0.35}
+    socket: {x: 1.1774999, y: -0.31}
+    mesh: {fileID: 4300000, guid: d4aac3231c1e0f147abf4f223fb46a87, type: 2}
   - id: glass-27
     color: 3
     shape: 2
     section: 2
     panel: 2
-    socket: {x: 0, y: -0.35}
+    socket: {x: 0, y: -0.31}
+    mesh: {fileID: 4300000, guid: 51e625a0ada59f24d8d9a101d6ae3dcb, type: 2}
   - id: glass-28
-    color: 0
+    color: 1
     shape: 3
     section: 2
     panel: 2
-    socket: {x: 0.69, y: -0.35}
+    socket: {x: -1.1875, y: -1.015}
+    mesh: {fileID: 4300000, guid: 51ef23200f63a064fb5b4deb1fff7efd, type: 2}
   - id: glass-29
     color: 2
     shape: 4
     section: 2
     panel: 2
-    socket: {x: 1.38, y: -0.35}
+    socket: {x: 0.8525, y: -1.015}
+    mesh: {fileID: 4300000, guid: 5485a89f40a30e64db62d04c6cac9e2d, type: 2}
   upgrades:
   - id: scoop
     title: Sieve scoop

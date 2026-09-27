@@ -6,11 +6,12 @@ namespace SeaGlass
     public class UtilityTruck : Interactable
     {
         public Transform seat,body; public Transform[] glassCargo,rubbishCargo; public Transform[] wheels;
-        float speed; CharacterController controller; float arrivalTimer; Vector3 departure; public bool driving;
+        float speed; CharacterController controller; float arrivalTimer; Vector3 departure; public bool driving;public string lastObstacle;public float Speed=>speed;
+        void OnControllerColliderHit(ControllerColliderHit hit){if(hit.normal.y<.5f)lastObstacle=hit.collider.name;}
         GameSession S=>GameSession.Instance;
         public bool AtStudio=>transform.position.z>145;
         public override string Prompt=>"E · drive utility truck";
-        void Awake(){controller=GetComponent<CharacterController>();}
+        void Awake(){controller=GetComponent<CharacterController>();foreach(var col in GetComponentsInChildren<Collider>())if(col!=controller)col.isTrigger=true;}
         public override void Interact(){if(driving)Exit();else Enter();}
         public void Enter()
         {
@@ -40,8 +41,8 @@ namespace SeaGlass
             for(int i=0;i<rubbishCargo.Length;i++)rubbishCargo[i].gameObject.SetActive(i<rc);
             if(body)body.localPosition=new Vector3(0,-S.CargoCount*.0025f,0);
         }
-        public void ResetVehicle()
-        { speed=0;controller.enabled=false;transform.SetPositionAndRotation(new Vector3(15,.3f,AtStudio?150:8),AtStudio?Quaternion.Euler(0,180,0):Quaternion.identity);controller.enabled=true;S.Notify("Truck recovered safely beside the road."); }
+        public void ResetVehicle(bool useCurrentRegion=true)
+        { bool studio=useCurrentRegion&&AtStudio;speed=0;controller.enabled=false;transform.SetPositionAndRotation(new Vector3(15,.3f,studio?150:8),studio?Quaternion.Euler(0,180,0):Quaternion.identity);controller.enabled=true;S.Notify("Truck recovered safely beside the road."); }
         public void SkipDrive()
         {
             if(!S.progress.skipDrive){S.Notify("Complete one manual drive to the studio first.");return;}

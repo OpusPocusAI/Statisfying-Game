@@ -4,7 +4,7 @@ namespace SeaGlass
 {
     public class Feedback : MonoBehaviour
     {
-        public static Feedback Instance; public float effectsVolume=.65f,musicVolume=.25f;
+        public static Feedback Instance; public float effectsVolume=.65f,musicVolume=.25f; public Material particleMaterial;
         AudioSource effects,engine,music; readonly Dictionary<string,AudioClip> clips=new(); ParticleSystem[] pool;int cursor;float nextAction;
         void Awake()
         {
@@ -15,7 +15,7 @@ namespace SeaGlass
             music.clip=MakeMusic();music.loop=true;music.volume=musicVolume;music.Play();
             pool=new ParticleSystem[6];for(int i=0;i<pool.Length;i++)
             {var g=new GameObject("Pooled foam and sparkle");g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();var main=ps.main;main.playOnAwake=false;main.startLifetime=.7f;main.startSpeed=1.3f;main.startSize=.07f;main.gravityModifier=.2f;main.maxParticles=60;var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.12f;
-                var mat=new Material(Shader.Find("Universal Render Pipeline/Particles/Unlit"));ps.GetComponent<ParticleSystemRenderer>().material=mat;pool[i]=ps;}
+                ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;pool[i]=ps;}
         }
         static AudioClip Tone(string name,int index)
         {
@@ -37,6 +37,16 @@ namespace SeaGlass
         public void LoopAction(string sound){if(Time.time<nextAction)return;nextAction=Time.time+.16f;Play(sound,Random.Range(.9f,1.1f));}
         public void Engine(float throttle){engine.volume=effectsVolume*.18f;engine.pitch=.6f+throttle*.8f;if(throttle>.2f)LoopAction("metal");}
         public void Burst(Vector3 at,Color color,int count=12){var p=pool[cursor++%pool.Length];p.transform.position=at;var main=p.main;main.startColor=color;p.Emit(count);}
+        public void Fly(Mesh mesh,Material material,Color color,Vector3 from,Vector3 to,Vector3 scale,Quaternion rotation)
+        {if(mesh&&material)StartCoroutine(Flight(mesh,material,color,from,to,scale,rotation));}
+        System.Collections.IEnumerator Flight(Mesh mesh,Material material,Color color,Vector3 from,Vector3 to,Vector3 scale,Quaternion rotation)
+        {
+            var go=new GameObject("Glass transfer");go.transform.SetParent(transform);go.AddComponent<MeshFilter>().sharedMesh=mesh;
+            var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;var b=new MaterialPropertyBlock();b.SetColor("_BaseColor",color);renderer.SetPropertyBlock(b);
+            go.transform.rotation=rotation;
+            for(float t=0;t<1;t+=Time.deltaTime/.38f){float ease=1-Mathf.Pow(1-t,3);go.transform.position=Vector3.Lerp(from,to,ease)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;go.transform.localScale=scale*Mathf.Lerp(1,.6f,ease);yield return null;}
+            Destroy(go);
+        }
         void Update(){music.volume=musicVolume;if(!GameSession.Instance||!GameSession.Instance.truck.driving)engine.volume=0;}
         void OnDestroy(){foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
     }
