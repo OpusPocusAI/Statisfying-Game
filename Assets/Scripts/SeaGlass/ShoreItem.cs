@@ -7,7 +7,7 @@ namespace SeaGlass
         public Vector3 home; public float dig; Renderer surface; MaterialPropertyBlock block; float highlightUntil;Vector3 moundSize;
         GameSession S=>GameSession.Instance;
         public ItemRecord Record=>S.progress.Item(id);
-        public override string Prompt=> !S.progress.SectionOpen(section)?"This cove opens at level "+(section+1):Record.stage==ItemStage.Buried?"Hold LMB · scoop sand":"E · collect "+(glass?"cloudy "+((GlassColor)colorIndex)+" glass":"shoreline rubbish");
+        public override string Prompt=> !S.progress.SectionOpen(section)?"This cove opens at level "+(section+1):Record.stage==ItemStage.Buried?(S.player.equippedTool==0?"Hold LMB · scoop sand":"1 · equip shovel, then hold LMB to scoop"):"E · collect "+(glass?"cloudy "+((GlassColor)colorIndex)+" glass":"shoreline rubbish");
         void Awake(){home=transform.position;surface=visual?visual.GetComponent<Renderer>():GetComponent<Renderer>();block=new MaterialPropertyBlock();if(mound)moundSize=mound.localScale;}
         public void Refresh()
         {
@@ -31,7 +31,7 @@ namespace SeaGlass
         public override void Interact()
         {
             if(!S.progress.SectionOpen(section)){S.Notify("Restore glass and recycle rubbish to unlock this cove.");return;}
-            if(Record.stage==ItemStage.Buried){S.Notify("Hold the left mouse button to uncover this find.");return;}
+            if(Record.stage==ItemStage.Buried){S.Notify(S.player.equippedTool==0?"Hold the left mouse button to uncover this find.":"Press 1 to equip the shovel, then hold the left mouse button.");return;}
             Collect();
             if(S.progress.upgrades.Contains("scoop"))foreach(var c in Physics.OverlapSphere(transform.position,2.4f)){var i=c.GetComponentInParent<ShoreItem>();if(i&&i!=this&&i.Record.stage==ItemStage.Shore&&S.progress.SectionOpen(i.section))i.Collect();}
         }

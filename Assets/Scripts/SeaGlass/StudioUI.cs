@@ -7,7 +7,6 @@ namespace SeaGlass
     {
         public static StudioUI Instance; public bool shop,ending;bool settings,confirmReset;GUIStyle title,heading,body,small,button,panel;Texture2D cream,teal,coral;
         GameSession S=>GameSession.Instance;
-        string[] tutorial={"WASD to walk · Mouse to look. Follow the sand mounds.","Hold LMB on a mound to use your toy shovel.","Press E on uncovered rubbish and sea glass.","Fill your bucket, then find the truck beside the road.","E at each rear crate loads glass and rubbish separately.","E at the cab. Drive north along the road to your studio.","Park beside the studio. E at the recycling press earns caps.","E at the basin. Hold LMB to reveal the colour of your glass.","E at the sorting table. Aim at the matching tray and click.","E at the Ocean Wave sockets places your sorted glass.","Visit the equipment catalogue for your first upgrade.","Explore the unlocked coves. Complete all three panels."};
         void Awake(){Instance=this;}
         public void CloseShop(){shop=false;S.RefreshControlState();}
         public void CloseEnding(){ending=false;S.RefreshControlState();}
@@ -38,11 +37,11 @@ namespace SeaGlass
             var f=S.player.focus;
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
             if(f){GUI.Box(new Rect(440,550,560,48),GUIContent.none,panel);GUI.Label(new Rect(457,559,530,30),f.Prompt,body);}
-            if(!S.progress.tutorialDismissed){GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),tutorial[Mathf.Clamp(S.progress.tutorial,0,11)],body);}
+            var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
+            if(!S.progress.tutorialDismissed){GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),TutorialGuidance.Get(S,station),body);}
             GUI.Label(new Rect(47,845,620,23),"H guidance    F reveal glass    R recover truck    Esc pause",small);
             GUI.Label(new Rect(1080,827,340,48),S.player.equippedTool==1?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
             if(Time.unscaledTime<S.messageUntil){GUI.Box(new Rect(375,160,690,68),GUIContent.none,panel);GUI.Label(new Rect(395,176,650,48),S.message,body);}
-            var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;GUI.Box(new Rect(540,670,360,60),GUIContent.none,panel);GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }
         bool Button(string label,float x,float y,float w=340)=>GUI.Button(new Rect(x,y,w,46),label,button);

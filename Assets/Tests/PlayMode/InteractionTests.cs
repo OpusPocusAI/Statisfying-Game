@@ -48,6 +48,7 @@ namespace SeaGlass.Tests
             Aim(item.transform.position+Vector3.up*.15f);yield return null;
             Assert.AreSame(item,session.player.focus);yield return KeyPress(Key.Digit2);yield return HoldMouse(.25f);
             Assert.AreEqual(0,item.dig,"The carrying container must not dig.");
+            StringAssert.Contains("equip shovel",item.Prompt,"A selected bucket must not show an unusable dig instruction.");
             yield return KeyPress(Key.Digit1);yield return HoldMouse(1.9f);Assert.AreEqual(ItemStage.Shore,item.Record.stage);
             yield return KeyPress(Key.E);Assert.AreEqual(ItemStage.Bucket,item.Record.stage);Assert.AreEqual(1,session.BucketCount);
         }
@@ -129,6 +130,42 @@ namespace SeaGlass.Tests
                 session.player.Teleport(destination+Vector3.down*10,Quaternion.identity);yield return null;yield return null;
                 Assert.Less(Vector3.Distance(destination,session.player.transform.position),.3f,"Recovery must stay at the destination after either direction of Skip Drive.");
             }
+        }
+        [UnityTest] public IEnumerator MixedCargoGuidanceWaitsForBothCrates()
+        {
+            var items=Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None);
+            foreach(var item in new[]{items.First(x=>x.id=="glass-03"),items.First(x=>x.section==0&&!x.glass)})
+            {item.Use(2);Assert.IsTrue(item.Collect());}
+            Assert.IsTrue(session.truck.Load(true));Assert.AreEqual(1,session.BucketCount);
+            StringAssert.Contains("rubbish crate",TutorialGuidance.Get(session));
+            Assert.IsTrue(session.truck.Load(false));
+            StringAssert.Contains("Drive your haul",TutorialGuidance.Get(session));
+            yield return KeyPress(Key.H);Assert.IsTrue(session.progress.tutorialDismissed);
+            yield return KeyPress(Key.H);Assert.IsFalse(session.progress.tutorialDismissed);
+        }
+        [UnityTest] public IEnumerator RubbishOnlyHaulDoesNotRequestMissingGlass()
+        {
+            var rubbish=Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None).First(x=>x.section==0&&!x.glass);
+            rubbish.Use(2);Assert.IsTrue(rubbish.Collect());Assert.IsTrue(session.truck.Load(false));
+            session.truck.transform.position=new Vector3(15,.3f,150);session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);
+            StringAssert.Contains("recycling press",TutorialGuidance.Get(session));
+            Assert.IsTrue(Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(s=>s.kind==StationKind.Recycle).Recycle());
+            StringAssert.Contains("Return to the shore",TutorialGuidance.Get(session));yield return null;
+        }
+        [UnityTest] public IEnumerator GuidanceFollowsProcessingAfterAnEarlyUpgrade()
+        {
+            session.progress.tutorial=11;session.progress.upgrades.Add("bucket");
+            session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);
+            var glass=session.catalog.glass.First(g=>g.panel==2);var record=session.progress.Item(glass.id);record.stage=ItemStage.Studio;
+            StringAssert.Contains("basin",TutorialGuidance.Get(session));
+            var stations=Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None);
+            var clean=stations.First(s=>s.kind==StationKind.Clean);clean.Interact();clean.Clean(10);
+            StringAssert.Contains("E to leave",TutorialGuidance.Get(session,clean));clean.Leave();
+            StringAssert.Contains("sorting table",TutorialGuidance.Get(session));
+            var sort=stations.First(s=>s.kind==StationKind.Sort);sort.Interact();
+            StringAssert.Contains(glass.color+" tray",TutorialGuidance.Get(session,sort));Assert.IsTrue(sort.Sort(glass.color));
+            StringAssert.Contains("E to leave",TutorialGuidance.Get(session,sort));sort.Leave();
+            StringAssert.Contains("Coastal Sunset",TutorialGuidance.Get(session));yield return null;
         }
     }
 }
