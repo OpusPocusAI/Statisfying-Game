@@ -47,11 +47,12 @@ namespace SeaGlass
         {
             if(!S.progress.skipDrive){S.Notify("Complete one manual drive to the studio first.");return;}
             bool studio=AtStudio;controller.enabled=false;transform.SetPositionAndRotation(new Vector3(15,.3f,studio?8:150),studio?Quaternion.identity:Quaternion.Euler(0,180,0));controller.enabled=true;
-            if(!driving)S.player.Teleport(new Vector3(10,.3f,studio?8:150),Quaternion.identity);speed=0;S.Save();S.Notify(studio?"Back at Shell Cove.":"Welcome to your seaside studio.");
+            var arrival=new Vector3(10,.3f,studio?8:150);
+            if(!driving)S.player.Teleport(arrival,Quaternion.identity);S.player.safePosition=arrival;speed=0;S.Save();S.Notify(studio?"Back at Shell Cove.":"Welcome to your seaside studio.");
         }
         void Update()
         {
-            if(!S||S.menu||S.paused)return;
+            if(!S||S.ControlsBlocked)return;
             if(transform.position.y < -3 || Mathf.Abs(transform.position.x)>31){ResetVehicle();return;}
             if(!driving){speed=Mathf.MoveTowards(speed,0,Time.deltaTime*8);return;}
             var k=Keyboard.current;if(k==null)return;

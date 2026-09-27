@@ -35,12 +35,14 @@ namespace SeaGlass
         IEnumerator Completion()
         {
             var player=S.player;bool emphasize=!S.testMode&&player.mode==PlayerMode.Walking;Quaternion oldView=player.view.transform.rotation;
-            if(emphasize){player.blocked=true;player.view.transform.LookAt(transform.position);}
+            S.BeginPresentation();
+            if(emphasize)player.view.transform.LookAt(transform.position);
             S.Notify(S.catalog.panelNames[index]+" complete. Let the light come through.");Feedback.Instance.Play("complete");
             yield return new WaitForSeconds(.6f);
             for(float t=0;t<2;t+=Time.deltaTime){if(glow)glow.intensity=Mathf.SmoothStep(0,3,t/2);foreach(var s in sockets)s.SetGlow(t*.6f);yield return null;}
-            if(emphasize){player.view.transform.rotation=oldView;player.blocked=S.paused;}
-            if(S.progress.completed.All(x=>x)) {S.Notify("THREE SHORES. ONE HOME. Your studio is restored.");StudioUI.Instance.ending=true;player.blocked=true;player.SetCursor(false);foreach(var r in FindObjectsByType<RestorationDecor>(FindObjectsSortMode.None))r.Restore();Feedback.Instance.Play("complete",1.25f);}
+            if(emphasize)player.view.transform.rotation=oldView;
+            if(S.progress.completed.All(x=>x)) {S.Notify("THREE SHORES. ONE HOME. Your studio is restored.");StudioUI.Instance.ending=true;foreach(var r in FindObjectsByType<RestorationDecor>(FindObjectsSortMode.None))r.Restore();Feedback.Instance.Play("complete",1.25f);}
+            S.EndPresentation();
         }
     }
 }

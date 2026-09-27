@@ -47,7 +47,7 @@ namespace SeaGlass
             for(float t=0;t<1;t+=Time.deltaTime/.38f){float ease=1-Mathf.Pow(1-t,3);go.transform.position=Vector3.Lerp(from,to,ease)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;go.transform.localScale=scale*Mathf.Lerp(1,.6f,ease);yield return null;}
             Destroy(go);
         }
-        void Update(){music.volume=musicVolume;if(!GameSession.Instance||!GameSession.Instance.truck.driving)engine.volume=0;}
+        void Update(){music.volume=musicVolume;if(!GameSession.Instance||GameSession.Instance.ControlsBlocked||!GameSession.Instance.truck.driving)engine.volume=0;}
         void OnDestroy(){foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
     }
 }

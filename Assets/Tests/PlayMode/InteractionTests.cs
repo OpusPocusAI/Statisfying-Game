@@ -88,5 +88,47 @@ namespace SeaGlass.Tests
             Assert.Less(Quaternion.Angle(Quaternion.identity,session.player.view.transform.localRotation),.1f);
             Assert.Less(session.player.safePosition.z,10,"A new visit must not inherit the previous studio recovery point.");
         }
+        MosaicPanel CompletePanel(int index)
+        {
+            var panel=Object.FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None).First(p=>p.index==index);
+            foreach(var socket in panel.sockets)session.progress.Item(socket.glassId).stage=ItemStage.Placed;
+            var last=panel.sockets.Last().glassId;session.progress.Item(last).stage=ItemStage.Sorted;
+            Assert.IsTrue(panel.Place(last));return panel;
+        }
+        [UnityTest] public IEnumerator PauseAndMenuPreserveTheMosaicPresentationLock()
+        {
+            CompletePanel(0);Assert.IsTrue(session.player.blocked);
+            yield return KeyPress(Key.Escape);Assert.IsTrue(session.paused);
+            yield return KeyPress(Key.Escape);Assert.IsFalse(session.paused);
+            Assert.IsTrue(session.player.blocked,"Resuming must not unlock movement during the mosaic reveal.");
+            session.ReturnToMenu();yield return new WaitForSeconds(3);
+            Assert.IsTrue(session.menu);Assert.IsTrue(session.player.blocked,"Finishing a reveal must not unlock the main menu.");
+            session.Begin(false);yield return null;
+            Assert.IsFalse(session.ControlsBlocked,"A new visit must clear all old presentation locks.");
+        }
+        [UnityTest] public IEnumerator CompletionScreenKeepsControlUntilDismissed()
+        {
+            session.progress.completed[0]=true;session.progress.completed[1]=true;CompletePanel(2);
+            yield return new WaitForSeconds(3);Assert.IsTrue(StudioUI.Instance.ending);
+            yield return KeyPress(Key.Escape);yield return KeyPress(Key.Escape);
+            Assert.IsFalse(session.paused);Assert.IsTrue(session.player.blocked,"The completion screen still owns the controls after resuming.");
+            Assert.IsTrue(Cursor.visible,"The completion screen's button must remain usable.");
+            var before=session.player.transform.position;
+            yield return KeyPress(Key.W);Assert.Less(Vector3.Distance(before,session.player.transform.position),.001f);
+            session.truck.transform.position=new Vector3(15,.3f,25);yield return KeyPress(Key.R);
+            Assert.AreEqual(25,session.truck.transform.position.z,"Gameplay shortcuts must not run behind an open screen.");
+            StudioUI.Instance.CloseEnding();yield return null;Assert.IsFalse(session.player.blocked);
+        }
+        [UnityTest] public IEnumerator SkipDriveRecoveryStaysAtTheDestination()
+        {
+            session.progress.skipDrive=true;
+            for(int trip=0;trip<2;trip++)
+            {
+                session.truck.SkipDrive();var destination=session.player.transform.position;
+                Assert.AreEqual(destination,session.player.safePosition);
+                session.player.Teleport(destination+Vector3.down*10,Quaternion.identity);yield return null;yield return null;
+                Assert.Less(Vector3.Distance(destination,session.player.transform.position),.3f,"Recovery must stay at the destination after either direction of Skip Drive.");
+            }
+        }
     }
 }

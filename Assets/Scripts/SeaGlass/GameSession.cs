@@ -9,6 +9,14 @@ namespace SeaGlass
         public static GameSession Instance {get;private set;}
         public GameCatalog catalog; public CoastalPlayer player; public UtilityTruck truck; public Progress progress=new();
         public string message="Welcome to Shell Cove"; public float messageUntil; public bool menu=true,paused; public bool testMode;
+        int presentations;
+        bool ScreenOpen=>menu||paused||(StudioUI.Instance&&(StudioUI.Instance.shop||StudioUI.Instance.ending));
+        public bool ControlsBlocked=>ScreenOpen||presentations>0;
+        // Closing one overlay must not release another overlay's or presentation's input lock.
+        public void RefreshControlState(){player.blocked=ControlsBlocked;player.SetCursor(!ScreenOpen);}
+        public void SetPaused(bool value){paused=value;Time.timeScale=paused?0:1;RefreshControlState();if(paused)Save();}
+        public void BeginPresentation(){presentations++;RefreshControlState();}
+        public void EndPresentation(){presentations=Mathf.Max(0,presentations-1);RefreshControlState();}
         public event Action Changed;
         public string saveFileName="seaglass-v1.json";
         public string SavePath => Path.Combine(Application.persistentDataPath,saveFileName);
@@ -21,10 +29,11 @@ namespace SeaGlass
         {
             var k=UnityEngine.InputSystem.Keyboard.current;
             if(k==null)return;
-            if(k.escapeKey.wasPressedThisFrame && !menu){if(StudioUI.Instance.shop){StudioUI.Instance.CloseShop();return;}paused=!paused;Time.timeScale=paused?0:1;player.blocked=paused;player.SetCursor(!paused);if(paused)Save();}
-            if(!menu&&!paused && k.hKey.wasPressedThisFrame) {progress.tutorialDismissed=!progress.tutorialDismissed;Notify(progress.tutorialDismissed?"Guidance hidden. H brings it back.":"Guidance restored.");Save();}
-            if(!menu&&!paused && k.rKey.wasPressedThisFrame)truck.ResetVehicle();
-            if(!menu&&!paused && k.fKey.wasPressedThisFrame){foreach(var item in FindObjectsByType<ShoreItem>(FindObjectsInactive.Include,FindObjectsSortMode.None))item.Highlight();Notify("Remaining glass is glowing along the shore.");}
+            if(k.escapeKey.wasPressedThisFrame && !menu){if(StudioUI.Instance.shop){StudioUI.Instance.CloseShop();return;}SetPaused(!paused);}
+            if(ControlsBlocked)return;
+            if(k.hKey.wasPressedThisFrame) {progress.tutorialDismissed=!progress.tutorialDismissed;Notify(progress.tutorialDismissed?"Guidance hidden. H brings it back.":"Guidance restored.");Save();}
+            if(k.rKey.wasPressedThisFrame)truck.ResetVehicle();
+            if(k.fKey.wasPressedThisFrame){foreach(var item in FindObjectsByType<ShoreItem>(FindObjectsInactive.Include,FindObjectsSortMode.None))item.Highlight();Notify("Remaining glass is glowing along the shore.");}
         }
         public void Begin(bool load)
         {
@@ -32,6 +41,7 @@ namespace SeaGlass
             if(!load)progress=new Progress();
             foreach(var station in FindObjectsByType<StudioStation>(FindObjectsSortMode.None))station.ResetStation();
             foreach(var panel in FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None))panel.StopAllCoroutines();
+            presentations=0;
             truck.driving=false;truck.ResetVehicle(false);StudioUI.Instance.shop=false;StudioUI.Instance.ending=false;
             menu=false;paused=false;Time.timeScale=1;player.mode=PlayerMode.Walking;player.interactOverride=null;player.transform.SetParent(null);player.blocked=false;
             player.Teleport(new Vector3(0,.2f,0),Quaternion.identity);player.SetCursor(true);
@@ -73,7 +83,7 @@ namespace SeaGlass
             try {Directory.CreateDirectory(Application.persistentDataPath);string tmp=SavePath+".tmp";File.WriteAllText(tmp,JsonUtility.ToJson(progress,true));if(File.Exists(SavePath))File.Replace(tmp,SavePath,SavePath+".bak");else File.Move(tmp,SavePath);}
             catch(Exception ex){Notify("Save failed: "+ex.Message);Debug.LogWarning("Sea Glass save: "+ex.Message);}
         }
-        public void ReturnToMenu(){Save();menu=true;paused=false;Time.timeScale=1;player.blocked=true;player.SetCursor(false);}
+        public void ReturnToMenu(){Save();menu=true;paused=false;Time.timeScale=1;RefreshControlState();}
         public void ResetProgress(){if(File.Exists(SavePath))File.Delete(SavePath);if(File.Exists(SavePath+".bak"))File.Delete(SavePath+".bak");Begin(false);}
         void OnApplicationQuit(){Save();Time.timeScale=1;}
         void OnDestroy(){if(Instance==this)Instance=null;Time.timeScale=1;Cursor.lockState=CursorLockMode.None;}

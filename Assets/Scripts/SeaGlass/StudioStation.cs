@@ -15,7 +15,7 @@ namespace SeaGlass
         public override void Interact()
         {
             if(kind==StationKind.Recycle){Recycle();return;}
-            if(kind==StationKind.Upgrade){StudioUI.Instance.shop=!StudioUI.Instance.shop;S.player.blocked=StudioUI.Instance.shop;S.player.SetCursor(!StudioUI.Instance.shop);return;}
+            if(kind==StationKind.Upgrade){StudioUI.Instance.shop=!StudioUI.Instance.shop;S.RefreshControlState();return;}
             if(active){Leave();return;}
             if(kind==StationKind.Clean&&S.truck.AtStudio)
             {foreach(var r in S.progress.items)if(r.stage==ItemStage.Truck&&r.id.StartsWith("glass-"))r.stage=ItemStage.Studio;S.truck.RefreshCargo();}
@@ -66,7 +66,7 @@ namespace SeaGlass
         public void Leave(){active=false;if(workingGlass)workingGlass.localPosition=glassHome;S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
-            if(!S||S.menu||S.paused)return;
+            if(!S||S.ControlsBlocked)return;
             if(processing>0){processing-=Time.deltaTime;if(Random.value<.1f)Feedback.Instance.Burst(transform.position+Vector3.up*1.1f,GameCatalog.Palette[0],5);}
             if(!active)return;
             if(kind==StationKind.Clean&&Mouse.current!=null&&Mouse.current.leftButton.isPressed)Clean(Time.deltaTime);

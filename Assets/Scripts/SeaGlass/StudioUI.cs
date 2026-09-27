@@ -9,7 +9,8 @@ namespace SeaGlass
         GameSession S=>GameSession.Instance;
         string[] tutorial={"WASD to walk · Mouse to look. Follow the sand mounds.","Hold LMB on a mound to use your toy shovel.","Press E on uncovered rubbish and sea glass.","Fill your bucket, then find the truck beside the road.","E at each rear crate loads glass and rubbish separately.","E at the cab. Drive north along the road to your studio.","Park beside the studio. E at the recycling press earns caps.","E at the basin. Hold LMB to reveal the colour of your glass.","E at the sorting table. Aim at the matching tray and click.","E at the Ocean Wave sockets places your sorted glass.","Visit the equipment catalogue for your first upgrade.","Explore the unlocked coves. Complete all three panels."};
         void Awake(){Instance=this;}
-        public void CloseShop(){shop=false;S.player.blocked=false;S.player.SetCursor(true);}
+        public void CloseShop(){shop=false;S.RefreshControlState();}
+        public void CloseEnding(){ending=false;S.RefreshControlState();}
         void Start(){S.player.sensitivity=PlayerPrefs.GetFloat("sensitivity",.12f);S.player.invertY=PlayerPrefs.GetInt("invert",0)==1;Feedback.Instance.musicVolume=PlayerPrefs.GetFloat("music",.25f);Feedback.Instance.effectsVolume=PlayerPrefs.GetFloat("effects",.65f);}
         Texture2D Tex(Color c)
         {
@@ -60,7 +61,7 @@ namespace SeaGlass
         void Pause()
         {
             GUI.Box(new Rect(480,175,480,550),GUIContent.none,panel);GUI.Label(new Rect(525,208,390,55),"Take a breath",heading);
-            if(Button("Return to the coast",550,292)){S.paused=false;Time.timeScale=1;S.player.blocked=false;S.player.SetCursor(true);}
+            if(Button("Return to the coast",550,292))S.SetPaused(false);
             if(Button("Save studio",550,350)){S.Save();S.Notify("Studio saved.");}
             if(Button("Settings",550,408))settings=!settings;
             if(Button("Main menu",550,466))S.ReturnToMenu();
@@ -91,12 +92,12 @@ namespace SeaGlass
             GUI.Box(new Rect(285,140,870,610),GUIContent.none,panel);GUI.Label(new Rect(320,170,780,48),"TOOLS FOR A LITTLE MORE CARE",heading);int i=0;
             foreach(var u in S.catalog.upgrades)
             {float y=235+i++*83;bool owned=S.progress.upgrades.Contains(u.id);GUI.Label(new Rect(320,y,505,26),u.title+"   ·   LEVEL "+u.level,body);GUI.Label(new Rect(320,y+28,505,43),u.description,small);if(Button(owned?"Owned":u.cost+" caps",870,y,245)&&!owned)S.Buy(u.id);}
-            if(Button("Back to the studio",780,675,340)){shop=false;S.player.blocked=false;S.player.SetCursor(true);}
+            if(Button("Back to the studio",780,675,340))CloseShop();
         }
         void Ending()
         {
             GUI.Box(new Rect(385,265,670,300),GUIContent.none,panel);GUI.Label(new Rect(425,298,590,65),"Three shores. One home.",heading);GUI.Label(new Rect(425,365,590,100),"Thirty small discoveries now hold the afternoon light.\nThe studio is yours again.\nThank you for leaving the coast a little better.",body);
-            if(Button("Stay a little longer",525,492,390)){ending=false;S.player.blocked=false;S.player.SetCursor(true);}
+            if(Button("Stay a little longer",525,492,390))CloseEnding();
         }
         void OnDestroy(){if(cream)Destroy(cream);if(teal)Destroy(teal);if(coral)Destroy(coral);if(Instance==this)Instance=null;}
     }
