@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.5300309">
+  <test-suite type="TestSuite" id="1014" name="Sea Glass Studio" fullname="Sea Glass Studio" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.530031" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1022" name="SeaGlass.Tests.dll" fullname="C:/Users/Admin/UnityProjects/SeaGlassStudio/Library/ScriptAssemblies/SeaGlass.Tests.dll" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.434171" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32508" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1023" name="SeaGlass" fullname="SeaGlass" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.334172" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1024" name="Tests" fullname="SeaGlass.Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.231574" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1016" name="ProgressTests" fullname="SeaGlass.Tests.ProgressTests" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26 18:56:11Z" end-time="2026-09-26 18:56:12Z" duration="0.131869" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1021" name="CatalogHasThirtyUniqueAuthoredPiecesAndAffordableEquipment" fullname="SeaGlass.Tests.ProgressTests.CatalogHasThirtyUniqueAuthoredPiecesAndAffordableEquipment" methodname="CatalogHasThirtyUniqueAuthoredPiecesAndAffordableEquipment" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" seed="1171848545" result="Passed" start-time="2026-09-26 18:56:12Z" end-time="2026-09-26 18:56:12Z" duration="0.022025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="EveryProgressStageRoundTripsThroughJson" fullname="SeaGlass.Tests.ProgressTests.EveryProgressStageRoundTripsThroughJson" methodname="EveryProgressStageRoundTripsThroughJson" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" seed="1018067062" result="Passed" start-time="2026-09-26 18:56:12Z" end-time="2026-09-26 18:56:12Z" duration="0.003743" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="NewGameHasDeliberatelyLimitedEquipment" fullname="SeaGlass.Tests.ProgressTests.NewGameHasDeliberatelyLimitedEquipment" methodname="NewGameHasDeliberatelyLimitedEquipment" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" seed="79461972" result="Passed" start-time="2026-09-26 18:56:12Z" end-time="2026-09-26 18:56:12Z" duration="0.000439" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="SectionsUnlockMonotonically" fullname="SeaGlass.Tests.ProgressTests.SectionsUnlockMonotonically" methodname="SectionsUnlockMonotonically" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" seed="1703797391" result="Passed" start-time="2026-09-26 18:56:12Z" end-time="2026-09-26 18:56:12Z" duration="0.000264" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="StableIdsReturnSameRecord" fullname="SeaGlass.Tests.ProgressTests.StableIdsReturnSameRecord" methodname="StableIdsReturnSameRecord" classname="SeaGlass.Tests.ProgressTests" runstate="Runnable" seed="1989531193" result="Passed" start-time="2026-09-26 18:56:12Z" end-time="2026-09-26 18:56:12Z" duration="0.000218" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Admin/AppData/LocalLow/Sea Glass Studio/Sea Glass Studio\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
