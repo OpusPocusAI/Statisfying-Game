@@ -28,12 +28,18 @@ namespace SeaGlass
         {
             if(!S)return;if(title==null)Styles();float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1440*scale)*.5f,0,0),Quaternion.identity,new Vector3(scale,scale,1));
             if(S.menu){Menu();return;}
+            if(ending&&!S.paused&&!shop){Ending();return;}
+            if(S.PresentationActive&&!S.paused&&!shop)
+            {
+                GUI.Box(new Rect(420,782,600,84),GUIContent.none,panel);
+                GUI.Label(new Rect(445,797,550,56),S.message,body);return;
+            }
             GUI.Box(new Rect(28,25,330,113),GUIContent.none,panel);GUI.Label(new Rect(47,37,290,28),"SEA GLASS / STUDIO",heading);
             GUI.Label(new Rect(47,71,290,27),"LEVEL "+S.progress.Level+"    ·    "+S.progress.xp+" XP    ·    "+S.progress.caps+" CAPS",small);
             GUI.Label(new Rect(47,101,290,22),"BUCKET "+S.BucketCount+" / "+S.progress.BucketCapacity+"     TRUCK "+S.CargoCount+" / "+S.progress.TruckCapacity,small);
             GUI.Box(new Rect(1025,25,387,102),GUIContent.none,panel);GUI.Label(new Rect(1047,39,345,28),"THE SEASIDE TRIPTYCH",heading);
             GUI.Label(new Rect(1047,76,345,24),string.Join("    /    ",Enumerable.Range(0,3).Select(p=>S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p))+" of 10")),body);
-            if(S.paused){Pause();return;}if(shop){Shop();return;}if(ending){Ending();return;}
+            if(S.paused){Pause();return;}if(shop){Shop();return;}
             var f=S.player.focus;
             var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
@@ -95,8 +101,10 @@ namespace SeaGlass
         }
         void Ending()
         {
-            GUI.Box(new Rect(385,265,670,300),GUIContent.none,panel);GUI.Label(new Rect(425,298,590,65),"Three shores. One home.",heading);GUI.Label(new Rect(425,365,590,100),"Thirty small discoveries now hold the afternoon light.\nThe studio is yours again.\nThank you for leaving the coast a little better.",body);
-            if(Button("Stay a little longer",525,492,390))CloseEnding();
+            GUI.Box(new Rect(320,682,800,188),GUIContent.none,panel);
+            GUI.Label(new Rect(350,700,730,40),"Three shores. One home.",heading);
+            GUI.Label(new Rect(350,742,730,45),"Thirty small discoveries now hold the afternoon light. The studio is yours again.",body);
+            if(Button("Stay a little longer",760,804,330))CloseEnding();
         }
         void OnDestroy(){if(cream)Destroy(cream);if(teal)Destroy(teal);if(coral)Destroy(coral);if(Instance==this)Instance=null;}
     }

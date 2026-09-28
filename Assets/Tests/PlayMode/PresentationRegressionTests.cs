@@ -87,6 +87,43 @@ namespace SeaGlass.Tests
             Assert.AreEqual(xp+10,session.progress.xp);
         }
 
+        [UnityTest] public IEnumerator MosaicRevealPausesAndMatchesLoadedLighting()
+        {
+            var panel=Object.FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None).First(p=>p.index==0);
+            session.player.Teleport(panel.transform.position+new Vector3(0,-2.45f,-3.5f),Quaternion.identity);
+            session.player.SetLookRotation(Quaternion.Euler(12,0,0));var entry=session.player.view.transform.localRotation;
+            foreach(var slot in panel.sockets)session.progress.Item(slot.glassId).stage=ItemStage.Placed;
+            var last=panel.sockets.Last();session.progress.Item(last.glassId).stage=ItemStage.Sorted;
+            Assert.IsTrue(panel.Place(last.glassId));Assert.IsTrue(panel.IsRevealing);Assert.AreEqual(0,panel.Illumination);
+            yield return new WaitForSeconds(.8f);float during=panel.Illumination;
+            Assert.Greater(during,0);Assert.Less(during,1);
+            session.SetPaused(true);session.Synchronize();
+            yield return new WaitForSecondsRealtime(.25f);Assert.AreEqual(during,panel.Illumination,"Refresh and pause must not jump to the saved final lighting.");
+            session.SetPaused(false);yield return new WaitForSeconds(2.3f);
+            Assert.IsFalse(panel.IsRevealing);Assert.AreEqual(1,panel.Illumination);Assert.AreEqual(3,panel.glow.intensity);
+            Assert.Less(Quaternion.Angle(entry,session.player.view.transform.localRotation),.1f,"Emphasis must restore the controller's look state.");
+            var block=new MaterialPropertyBlock();last.surface.GetPropertyBlock(block);var emission=block.GetColor("_EmissionColor");
+            session.testMode=false;session.Save();session.testMode=true;session.progress=new Progress();
+            Assert.IsTrue(session.TryLoad());session.Synchronize();yield return null;
+            last.surface.GetPropertyBlock(block);Assert.AreEqual(emission,block.GetColor("_EmissionColor"));Assert.AreEqual(1,panel.Illumination);
+            var accent=Object.FindObjectsByType<MosaicAccent>(FindObjectsSortMode.None).First(a=>a.panel==panel);
+            Assert.AreEqual(1.4f,accent.lamp.intensity,.001f);
+        }
+
+        [UnityTest] public IEnumerator NewVisitCancelsMosaicSnapAndRevealPoses()
+        {
+            var panel=Object.FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None).First(p=>p.index==0);
+            var slot=panel.sockets[0];var home=slot.piece.transform.localPosition;
+            session.progress.Item(slot.glassId).stage=ItemStage.Sorted;Assert.IsTrue(panel.Place(slot.glassId));
+            Assert.AreNotEqual(home,slot.piece.transform.localPosition);session.Begin(false);
+            Assert.AreEqual(home,slot.piece.transform.localPosition);Assert.AreEqual(Vector3.one,slot.piece.transform.localScale);
+            foreach(var socket in panel.sockets)session.progress.Item(socket.glassId).stage=ItemStage.Placed;
+            session.progress.Item(slot.glassId).stage=ItemStage.Sorted;Assert.IsTrue(panel.Place(slot.glassId));
+            yield return new WaitForSeconds(.7f);session.Begin(false);yield return null;
+            Assert.IsFalse(panel.IsRevealing);Assert.IsFalse(session.PresentationActive);Assert.AreEqual(0,panel.Illumination);
+            Assert.IsFalse(slot.piece.activeSelf);Assert.AreEqual(home,slot.piece.transform.localPosition);
+        }
+
         [UnityTest] public IEnumerator InvalidSaveIsPreservedAndStudioResumeIsSafe()
         {
             session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);

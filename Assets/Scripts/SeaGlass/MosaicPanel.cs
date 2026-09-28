@@ -6,6 +6,9 @@ namespace SeaGlass
     public class MosaicPanel : Interactable
     {
         public int index; public MosaicSocket[] sockets; public Light glow; public Renderer backing;
+        public float Illumination {get;private set;}
+        public bool IsRevealing {get;private set;}
+        CoastalPlayer presentationPlayer;Quaternion entryView;bool emphasizing;
         GameSession S=>GameSession.Instance;
         public override string Prompt=>"E · fit a sorted piece into "+S.catalog.panelNames[index]+" ("+sockets.Count(x=>S.progress.Item(x.glassId).stage==ItemStage.Placed)+" / 10)";
         public override void Interact()
@@ -26,21 +29,45 @@ namespace SeaGlass
         {
             if(!S)return;
             foreach(var slot in sockets)slot.Refresh();
-            if(glow)glow.intensity=S.progress.completed[index]?3:0;
+            SetIllumination(IsRevealing?Illumination:S.progress.completed[index]?1:0);
+        }
+        void SetIllumination(float value)
+        {
+            Illumination=Mathf.Clamp01(value);if(glow)glow.intensity=Illumination*3;
+            foreach(var slot in sockets)slot.SetGlow(Mathf.Lerp(.12f,.65f,Illumination));
+        }
+        void RestoreView(){if(emphasizing&&presentationPlayer)presentationPlayer.SetLookRotation(entryView);emphasizing=false;}
+        public void ResetPresentation()
+        {
+            StopAllCoroutines();RestoreView();IsRevealing=false;
+            foreach(var slot in sockets)slot.ResetPose();
         }
         IEnumerator Snap(Transform piece)
         {
-            for(float t=0;t<1;t+=Time.deltaTime/.32f){piece.localScale=Vector3.one*(1+Mathf.Sin(t*Mathf.PI)*.065f);yield return null;}piece.localScale=Vector3.one;
+            var home=piece.localPosition;
+            for(float t=0;t<1;t+=Time.deltaTime/.32f)
+            {
+                float ease=1-Mathf.Pow(1-t,3);
+                piece.localPosition=home+Vector3.back*(.18f*(1-ease));
+                piece.localScale=Vector3.one*(1+Mathf.Sin(t*Mathf.PI)*.035f);yield return null;
+            }
+            piece.localPosition=home;piece.localScale=Vector3.one;
         }
         IEnumerator Completion()
         {
-            var player=S.player;bool emphasize=!S.testMode&&player.mode==PlayerMode.Walking;Quaternion oldView=player.view.transform.rotation;
+            var player=S.player;presentationPlayer=player;entryView=player.view.transform.localRotation;
+            emphasizing=player.mode==PlayerMode.Walking&&Vector3.Distance(player.view.transform.position,transform.position)<6;
+            Quaternion from=player.view.transform.rotation,to=Quaternion.LookRotation(transform.position-player.view.transform.position);
+            IsRevealing=true;SetIllumination(0);
             S.BeginPresentation();
-            if(emphasize)player.view.transform.LookAt(transform.position);
-            S.Notify(S.catalog.panelNames[index]+" complete. Let the light come through.");Feedback.Instance.Play("complete");
-            yield return new WaitForSeconds(.6f);
-            for(float t=0;t<2;t+=Time.deltaTime){if(glow)glow.intensity=Mathf.SmoothStep(0,3,t/2);foreach(var s in sockets)s.SetGlow(t*.6f);yield return null;}
-            if(emphasize)player.view.transform.rotation=oldView;
+            S.Notify(S.catalog.panelNames[index]+" complete. Let the light come through.");
+            // The snap lands first. A short breath separates placement from the harmonic/light resolution.
+            for(float t=0;t<.45f;t+=Time.deltaTime){if(emphasizing)player.view.transform.rotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t/.45f));yield return null;}
+            Feedback.Instance.Play("complete");
+            for(float t=0;t<1.9f;t+=Time.deltaTime){SetIllumination(Mathf.SmoothStep(0,1,t/1.9f));yield return null;}
+            SetIllumination(1);yield return new WaitForSeconds(.2f);
+            for(float t=0;t<.2f;t+=Time.deltaTime){if(emphasizing)player.view.transform.rotation=Quaternion.Slerp(to,from,Mathf.SmoothStep(0,1,t/.2f));yield return null;}
+            RestoreView();IsRevealing=false;
             if(S.progress.completed.All(x=>x)) {S.Notify("THREE SHORES. ONE HOME. Your studio is restored.");StudioUI.Instance.ending=true;foreach(var r in FindObjectsByType<RestorationDecor>(FindObjectsSortMode.None))r.Restore();Feedback.Instance.Play("complete",1.25f);}
             S.EndPresentation();
         }

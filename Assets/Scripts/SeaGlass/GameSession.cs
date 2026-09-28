@@ -10,12 +10,13 @@ namespace SeaGlass
         public GameCatalog catalog; public CoastalPlayer player; public UtilityTruck truck; public Progress progress=new();
         public string message="Welcome to Shell Cove"; public float messageUntil; public bool menu=true,paused; public bool testMode;
         int presentations;
+        public bool PresentationActive=>presentations>0;
         bool ScreenOpen=>menu||paused||(StudioUI.Instance&&(StudioUI.Instance.shop||StudioUI.Instance.ending));
         public bool ControlsBlocked=>ScreenOpen||presentations>0;
         // Closing one overlay must not release another overlay's or presentation's input lock.
         public void RefreshControlState(){player.blocked=ControlsBlocked;player.SetCursor(!ScreenOpen);}
         public void SetPaused(bool value){paused=value;Time.timeScale=paused?0:1;RefreshControlState();if(paused)Save();}
-        public void BeginPresentation(){presentations++;RefreshControlState();}
+        public void BeginPresentation(){presentations++;if(player.tool)player.tool.gameObject.SetActive(false);RefreshControlState();}
         public void EndPresentation(){presentations=Mathf.Max(0,presentations-1);RefreshControlState();}
         public event Action Changed;
         public string saveFileName="seaglass-v1.json";
@@ -40,7 +41,7 @@ namespace SeaGlass
             if(load&&!TryLoad())return;
             if(!load)progress=new Progress();
             foreach(var station in FindObjectsByType<StudioStation>(FindObjectsSortMode.None))station.ResetStation();
-            foreach(var panel in FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None))panel.StopAllCoroutines();
+            foreach(var panel in FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None))panel.ResetPresentation();
             presentations=0;
             truck.driving=false;truck.ResetVehicle(false);StudioUI.Instance.shop=false;StudioUI.Instance.ending=false;
             menu=false;paused=false;Time.timeScale=1;player.mode=PlayerMode.Walking;player.interactOverride=null;player.transform.SetParent(null);player.blocked=false;

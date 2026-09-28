@@ -9,7 +9,7 @@ namespace SeaGlass
         void LateUpdate()
         {
             if(!panel||!surface||!GameSession.Instance)return;
-            float strength=GameSession.Instance.progress.completed[panel.index]&&panel.glow?Mathf.Clamp01(panel.glow.intensity/3):0;
+            float strength=panel.Illumination;
             surface.enabled=strength>0;
             properties??=new MaterialPropertyBlock();properties.SetFloat("_Intensity",strength);surface.SetPropertyBlock(properties);
         }
