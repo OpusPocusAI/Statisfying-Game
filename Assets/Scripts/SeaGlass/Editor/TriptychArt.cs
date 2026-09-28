@@ -7,6 +7,31 @@ namespace SeaGlass.Editor
     {
         static Vector2[] P(params float[] xy)=>Enumerable.Range(0,xy.Length/2).Select(i=>new Vector2(xy[i*2],xy[i*2+1])).ToArray();
         static Vector2[] Rect(float x,float y,float w,float h)=>P(x,y,x+w,y,x+w,y+h,x,y+h);
+        static float Cross(Vector2 a,Vector2 b)=>a.x*b.y-a.y*b.x;
+        static float SignedArea(Vector2[] polygon)
+        {float area=0;for(int i=0;i<polygon.Length;i++)area+=Cross(polygon[i],polygon[(i+1)%polygon.Length]);return area*.5f;}
+        // A fan only works for convex outlines. Clip interior ears so curved wave/sun edges keep their authored gaps.
+        static int[] Triangulate(Vector2[] polygon)
+        {
+            var remaining=Enumerable.Range(0,polygon.Length).ToList();var triangles=new System.Collections.Generic.List<int>();
+            while(remaining.Count>3)
+            {
+                bool clipped=false;
+                for(int i=0;i<remaining.Count;i++)
+                {
+                    int a=remaining[(i+remaining.Count-1)%remaining.Count],b=remaining[i],c=remaining[(i+1)%remaining.Count];
+                    if(Cross(polygon[b]-polygon[a],polygon[c]-polygon[b])<=.000001f)continue;
+                    bool contains=remaining.Any(p=>p!=a&&p!=b&&p!=c&&
+                        Cross(polygon[b]-polygon[a],polygon[p]-polygon[a])>=-.000001f&&
+                        Cross(polygon[c]-polygon[b],polygon[p]-polygon[b])>=-.000001f&&
+                        Cross(polygon[a]-polygon[c],polygon[p]-polygon[c])>=-.000001f);
+                    if(contains)continue;
+                    triangles.AddRange(new[]{a,b,c});remaining.RemoveAt(i);clipped=true;break;
+                }
+                if(!clipped)throw new System.InvalidOperationException("Mosaic outline cannot be triangulated without overlap.");
+            }
+            triangles.AddRange(remaining);return triangles.ToArray();
+        }
         public static void Author(GameCatalog catalog)
         {
             Vector2[][][] polygons={
@@ -18,8 +43,13 @@ namespace SeaGlass.Editor
             for(int panel=0;panel<3;panel++)for(int j=0;j<10;j++)
             {
                 var d=catalog.glass[panel*10+j];var poly=polygons[panel][j];var center=poly.Aggregate(Vector2.zero,(a,b)=>a+b)/poly.Length;d.socket=center;d.color=(GlassColor)colors[panel][j];
+                // The lighthouse door is an intentional overlay, not a coplanar part of the tower.
+                d.depthOffset=panel==1&&j==9?-.02f:0;
+                if(SignedArea(poly)<0)System.Array.Reverse(poly);
                 var vertices=new Vector3[poly.Length*2];for(int i=0;i<poly.Length;i++){var v=(poly[i]-center)*.975f;vertices[i]=new Vector3(v.x,v.y,-.055f);vertices[i+poly.Length]=new Vector3(v.x,v.y,.055f);}
-                var triangles=new System.Collections.Generic.List<int>();for(int i=1;i<poly.Length-1;i++)triangles.AddRange(new[]{0,i+1,i,poly.Length,poly.Length+i,poly.Length+i+1});for(int i=0;i<poly.Length;i++){int next=(i+1)%poly.Length;triangles.AddRange(new[]{i,next,next+poly.Length,i,next+poly.Length,i+poly.Length});}
+                var triangles=new System.Collections.Generic.List<int>();var face=Triangulate(poly);
+                for(int i=0;i<face.Length;i+=3)triangles.AddRange(new[]{face[i],face[i+2],face[i+1],poly.Length+face[i],poly.Length+face[i+1],poly.Length+face[i+2]});
+                for(int i=0;i<poly.Length;i++){int next=(i+1)%poly.Length;triangles.AddRange(new[]{i,next,next+poly.Length,i,next+poly.Length,i+poly.Length});}
                 string path="Assets/Art/"+d.id+".asset";var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(path);if(!mesh){mesh=new Mesh();AssetDatabase.CreateAsset(mesh,path);}mesh.Clear();mesh.name=d.id+" original tumbled polygon";mesh.vertices=vertices;mesh.triangles=triangles.ToArray();mesh.RecalculateNormals();mesh.RecalculateBounds();d.mesh=mesh;EditorUtility.SetDirty(mesh);
             }
             EditorUtility.SetDirty(catalog);

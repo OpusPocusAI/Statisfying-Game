@@ -4675,8 +4675,8 @@ GameObject:
   - component: {fileID: 66635853}
   - component: {fileID: 66635852}
   - component: {fileID: 66635851}
-  - component: {fileID: 66635850}
   - component: {fileID: 66635849}
+  - component: {fileID: 66635854}
   m_Layer: 0
   m_Name: Socket glass-20
   m_TagString: Untagged
@@ -4701,27 +4701,6 @@ MonoBehaviour:
   piece: {fileID: 1212364592}
   surface: {fileID: 1212364593}
   color: {r: 0.65, g: 0.35, b: 0.83, a: 1}
---- !u!65 &66635850
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66635848}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.95, y: 1.0530001, z: 0.15}
-  m_Center: {x: 0.0819, y: -0.044850066, z: 0}
 --- !u!23 &66635851
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4788,13 +4767,35 @@ Transform:
   m_GameObject: {fileID: 66635848}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0840001, y: 0.98600006, z: -0.27000427}
+  m_LocalPosition: {x: -1.0840001, y: 0.98600006, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1212364595}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &66635854
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66635848}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5fa438de1fe84a443a11e275c158154c, type: 2}
 --- !u!1 &69740251
 GameObject:
   m_ObjectHideFlags: 0
@@ -14295,8 +14296,8 @@ GameObject:
   - component: {fileID: 201694513}
   - component: {fileID: 201694512}
   - component: {fileID: 201694511}
-  - component: {fileID: 201694510}
   - component: {fileID: 201694509}
+  - component: {fileID: 201694514}
   m_Layer: 0
   m_Name: Socket glass-04
   m_TagString: Untagged
@@ -14321,27 +14322,6 @@ MonoBehaviour:
   piece: {fileID: 604295767}
   surface: {fileID: 604295768}
   color: {r: 0.92, g: 0.94, b: 0.84, a: 1}
---- !u!65 &201694510
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201694508}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.10175, y: 0.741, z: 0.15}
-  m_Center: {x: -0.051187515, y: -0.017062545, z: 0}
 --- !u!23 &201694511
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14408,13 +14388,35 @@ Transform:
   m_GameObject: {fileID: 201694508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4375, y: 1.1175001, z: -0.27000427}
+  m_LocalPosition: {x: 0.4375, y: 1.1175001, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 604295770}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &201694514
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201694508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 685f21ed4724a634eb4faebc277dfced, type: 2}
 --- !u!1 &201980635
 GameObject:
   m_ObjectHideFlags: 0
@@ -37534,8 +37536,8 @@ GameObject:
   - component: {fileID: 586257995}
   - component: {fileID: 586257999}
   - component: {fileID: 586257998}
-  - component: {fileID: 586257997}
   - component: {fileID: 586257996}
+  - component: {fileID: 586258000}
   m_Layer: 0
   m_Name: Socket glass-09
   m_TagString: Untagged
@@ -37552,7 +37554,7 @@ Transform:
   m_GameObject: {fileID: 586257994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7200003, y: -0.12599993, z: -0.27000427}
+  m_LocalPosition: {x: 1.7200003, y: -0.12599993, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37576,27 +37578,6 @@ MonoBehaviour:
   piece: {fileID: 1125380500}
   surface: {fileID: 1125380502}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &586257997
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586257994}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.78, y: 1.3065001, z: 0.15}
-  m_Center: {x: -0.11699988, y: -0.052650034, z: 0}
 --- !u!23 &586257998
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37653,6 +37634,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586257994}
+  m_Mesh: {fileID: 4300000, guid: fdfd935ac8e8b2d49995ab69264e3983, type: 2}
+--- !u!64 &586258000
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586257994}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fdfd935ac8e8b2d49995ab69264e3983, type: 2}
 --- !u!1 &586375580
 GameObject:
@@ -38999,8 +39002,8 @@ GameObject:
   - component: {fileID: 595890962}
   - component: {fileID: 595890961}
   - component: {fileID: 595890960}
-  - component: {fileID: 595890959}
   - component: {fileID: 595890958}
+  - component: {fileID: 595890963}
   m_Layer: 0
   m_Name: Socket glass-07
   m_TagString: Untagged
@@ -39025,27 +39028,6 @@ MonoBehaviour:
   piece: {fileID: 2017859540}
   surface: {fileID: 2017859541}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &595890959
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595890957}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.638, y: 1.23825, z: 0.15}
-  m_Center: {x: 0.04094991, y: -0.12187491, z: 0}
 --- !u!23 &595890960
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39112,13 +39094,35 @@ Transform:
   m_GameObject: {fileID: 595890957}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2019997, y: 0.94000006, z: -0.27000427}
+  m_LocalPosition: {x: -1.2019997, y: 0.94000006, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2017859543}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &595890963
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595890957}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fae65a4498a8ec64e830d8f20e81a6ce, type: 2}
 --- !u!1 &598310536
 GameObject:
   m_ObjectHideFlags: 0
@@ -39220,8 +39224,8 @@ GameObject:
   - component: {fileID: 599015453}
   - component: {fileID: 599015452}
   - component: {fileID: 599015451}
-  - component: {fileID: 599015450}
   - component: {fileID: 599015449}
+  - component: {fileID: 599015454}
   m_Layer: 0
   m_Name: Socket glass-10
   m_TagString: Untagged
@@ -39246,27 +39250,6 @@ MonoBehaviour:
   piece: {fileID: 1493590437}
   surface: {fileID: 1493590438}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &599015450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599015448}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.9, y: 0.4875, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &599015451
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39333,13 +39316,35 @@ Transform:
   m_GameObject: {fileID: 599015448}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: -1.2, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1493590440}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &599015454
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599015448}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 864ae762bf4e06e48accc9e6f01cea0f, type: 2}
 --- !u!1 &600771267
 GameObject:
   m_ObjectHideFlags: 0
@@ -41385,8 +41390,8 @@ GameObject:
   - component: {fileID: 637106961}
   - component: {fileID: 637106960}
   - component: {fileID: 637106959}
-  - component: {fileID: 637106958}
   - component: {fileID: 637106957}
+  - component: {fileID: 637106962}
   m_Layer: 0
   m_Name: Socket glass-16
   m_TagString: Untagged
@@ -41411,27 +41416,6 @@ MonoBehaviour:
   piece: {fileID: 1994140317}
   surface: {fileID: 1994140318}
   color: {r: 0.92, g: 0.94, b: 0.84, a: 1}
---- !u!65 &637106958
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637106956}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5600001, y: 0.89699996, z: 0.15}
-  m_Center: {x: -0.000000059604645, y: -0.068249986, z: 0}
 --- !u!23 &637106959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41498,13 +41482,35 @@ Transform:
   m_GameObject: {fileID: 637106956}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 1.03, z: -0.27000427}
+  m_LocalPosition: {x: 1.2, y: 1.03, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1994140320}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &637106962
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637106956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 03d0a163c9a064b4ba8c81e3c0eabcdd, type: 2}
 --- !u!1 &637724311
 GameObject:
   m_ObjectHideFlags: 0
@@ -42214,8 +42220,8 @@ GameObject:
   - component: {fileID: 647727732}
   - component: {fileID: 647727731}
   - component: {fileID: 647727730}
-  - component: {fileID: 647727729}
   - component: {fileID: 647727728}
+  - component: {fileID: 647727733}
   m_Layer: 0
   m_Name: Socket glass-12
   m_TagString: Untagged
@@ -42240,27 +42246,6 @@ MonoBehaviour:
   piece: {fileID: 366957129}
   surface: {fileID: 366957130}
   color: {r: 0.92, g: 0.94, b: 0.84, a: 1}
---- !u!65 &647727729
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647727727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0725, y: 1.21875, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &647727730
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42327,13 +42312,35 @@ Transform:
   m_GameObject: {fileID: 647727727}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.23500013, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: 0.23500013, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 366957132}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &647727733
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647727727}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 3548b10a4f5b00944978695d6877c100, type: 2}
 --- !u!1 &650039766
 GameObject:
   m_ObjectHideFlags: 0
@@ -49178,8 +49185,8 @@ GameObject:
   - component: {fileID: 777161631}
   - component: {fileID: 777161630}
   - component: {fileID: 777161629}
-  - component: {fileID: 777161628}
   - component: {fileID: 777161627}
+  - component: {fileID: 777161632}
   m_Layer: 0
   m_Name: Socket glass-05
   m_TagString: Untagged
@@ -49204,27 +49211,6 @@ MonoBehaviour:
   piece: {fileID: 692676933}
   surface: {fileID: 692676934}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &777161628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777161626}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.73125005, y: 0.897, z: 0.15}
-  m_Center: {x: -0.053625062, y: -0.08774999, z: 0}
 --- !u!23 &777161629
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49291,13 +49277,35 @@ Transform:
   m_GameObject: {fileID: 777161626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1999998, y: 0.30999994, z: -0.27000427}
+  m_LocalPosition: {x: 1.1999998, y: 0.30999994, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 692676936}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &777161632
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777161626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 317f32963c6c44e43a07e6f523308446, type: 2}
 --- !u!1 &778612561
 GameObject:
   m_ObjectHideFlags: 0
@@ -49713,8 +49721,8 @@ GameObject:
   - component: {fileID: 783347542}
   - component: {fileID: 783347541}
   - component: {fileID: 783347540}
-  - component: {fileID: 783347539}
   - component: {fileID: 783347538}
+  - component: {fileID: 783347543}
   m_Layer: 0
   m_Name: Socket glass-00
   m_TagString: Untagged
@@ -49739,27 +49747,6 @@ MonoBehaviour:
   piece: {fileID: 458563475}
   surface: {fileID: 458563476}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &783347539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783347537}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.9, y: 0.50699997, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &783347540
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49826,13 +49813,35 @@ Transform:
   m_GameObject: {fileID: 783347537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.19, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: -1.19, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 458563478}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &783347543
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783347537}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6643590049f8b684681e924f29d6f2c0, type: 2}
 --- !u!1 &784816616
 GameObject:
   m_ObjectHideFlags: 0
@@ -51276,8 +51285,8 @@ GameObject:
   - component: {fileID: 813190497}
   - component: {fileID: 813190496}
   - component: {fileID: 813190495}
-  - component: {fileID: 813190494}
   - component: {fileID: 813190493}
+  - component: {fileID: 813190498}
   m_Layer: 0
   m_Name: Socket glass-17
   m_TagString: Untagged
@@ -51302,27 +51311,6 @@ MonoBehaviour:
   piece: {fileID: 1680970181}
   surface: {fileID: 1680970182}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &813190494
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813190492}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5795001, y: 1.1895, z: 0.15}
-  m_Center: {x: 0.058499992, y: 0.09750001, z: 0}
 --- !u!23 &813190495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51389,13 +51377,35 @@ Transform:
   m_GameObject: {fileID: 813190492}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0.109999895, z: -0.27000427}
+  m_LocalPosition: {x: -1.25, y: 0.109999895, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1680970184}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &813190498
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813190492}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 800e4f10eec36324fba23c536398c3a2, type: 2}
 --- !u!1 &814213173
 GameObject:
   m_ObjectHideFlags: 0
@@ -52641,8 +52651,8 @@ GameObject:
   - component: {fileID: 834404014}
   - component: {fileID: 834404013}
   - component: {fileID: 834404012}
-  - component: {fileID: 834404011}
   - component: {fileID: 834404010}
+  - component: {fileID: 834404015}
   m_Layer: 0
   m_Name: Socket glass-13
   m_TagString: Untagged
@@ -52667,27 +52677,6 @@ MonoBehaviour:
   piece: {fileID: 2017514541}
   surface: {fileID: 2017514542}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &834404011
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834404009}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.64350003, y: 0.35099995, z: 0.15}
-  m_Center: {x: 0, y: 0.00000008195639, z: 0}
 --- !u!23 &834404012
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52754,13 +52743,35 @@ Transform:
   m_GameObject: {fileID: 834404009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0999999, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: 1.0999999, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2017514544}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &834404015
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834404009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: a0795f3e823510549814584d58c5318b, type: 2}
 --- !u!1 &834768900
 GameObject:
   m_ObjectHideFlags: 0
@@ -57158,8 +57169,8 @@ GameObject:
   - component: {fileID: 901248704}
   - component: {fileID: 901248708}
   - component: {fileID: 901248707}
-  - component: {fileID: 901248706}
   - component: {fileID: 901248705}
+  - component: {fileID: 901248709}
   m_Layer: 0
   m_Name: Socket glass-29
   m_TagString: Untagged
@@ -57176,7 +57187,7 @@ Transform:
   m_GameObject: {fileID: 901248703}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.85249996, y: -1.015, z: -0.27000427}
+  m_LocalPosition: {x: 0.85249996, y: -1.015, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -57200,27 +57211,6 @@ MonoBehaviour:
   piece: {fileID: 621702174}
   surface: {fileID: 621702176}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &901248706
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901248703}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.40825, y: 0.8482501, z: 0.15}
-  m_Center: {x: -0.085312486, y: -0.000000029802322, z: 0}
 --- !u!23 &901248707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57277,6 +57267,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901248703}
+  m_Mesh: {fileID: 4300000, guid: 5485a89f40a30e64db62d04c6cac9e2d, type: 2}
+--- !u!64 &901248709
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901248703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5485a89f40a30e64db62d04c6cac9e2d, type: 2}
 --- !u!1 &902737464
 GameObject:
@@ -57935,8 +57947,8 @@ GameObject:
   - component: {fileID: 908337207}
   - component: {fileID: 908337206}
   - component: {fileID: 908337205}
-  - component: {fileID: 908337204}
   - component: {fileID: 908337203}
+  - component: {fileID: 908337208}
   m_Layer: 0
   m_Name: Socket glass-11
   m_TagString: Untagged
@@ -57961,27 +57973,6 @@ MonoBehaviour:
   piece: {fileID: 1476707117}
   surface: {fileID: 1476707118}
   color: {r: 0.16, g: 0.66, b: 0.42, a: 1}
---- !u!65 &908337204
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908337202}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.9, y: 0.43875, z: 0.15}
-  m_Center: {x: 0, y: 0.000000029802322, z: 0}
 --- !u!23 &908337205
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58048,13 +58039,35 @@ Transform:
   m_GameObject: {fileID: 908337202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.67499995, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: -0.67499995, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1476707120}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &908337208
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908337202}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b903f2d4650023a45aa693db63746ab0, type: 2}
 --- !u!1 &908829064
 GameObject:
   m_ObjectHideFlags: 0
@@ -60142,8 +60155,8 @@ GameObject:
   - component: {fileID: 931675812}
   - component: {fileID: 931675811}
   - component: {fileID: 931675810}
-  - component: {fileID: 931675809}
   - component: {fileID: 931675808}
+  - component: {fileID: 931675813}
   m_Layer: 0
   m_Name: Socket glass-23
   m_TagString: Untagged
@@ -60168,27 +60181,6 @@ MonoBehaviour:
   piece: {fileID: 1945481868}
   surface: {fileID: 1945481869}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &931675809
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931675807}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.74100006, y: 0.819, z: 0.15}
-  m_Center: {x: 0.064349994, y: -0.005850032, z: 0}
 --- !u!23 &931675810
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60255,13 +60247,35 @@ Transform:
   m_GameObject: {fileID: 931675807}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3540001, y: 0.826, z: -0.27000427}
+  m_LocalPosition: {x: 0.3540001, y: 0.826, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1945481871}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &931675813
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931675807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: cadd0f64de9ab494a8bdcc413904cc28, type: 2}
 --- !u!1 &937532748
 GameObject:
   m_ObjectHideFlags: 0
@@ -61846,8 +61860,8 @@ GameObject:
   - component: {fileID: 966553929}
   - component: {fileID: 966553933}
   - component: {fileID: 966553932}
-  - component: {fileID: 966553931}
   - component: {fileID: 966553930}
+  - component: {fileID: 966553934}
   m_Layer: 0
   m_Name: Socket glass-19
   m_TagString: Untagged
@@ -61864,7 +61878,7 @@ Transform:
   m_GameObject: {fileID: 966553928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.19000006, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: -0.19000006, z: -0.29000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61888,27 +61902,6 @@ MonoBehaviour:
   piece: {fileID: 1100962877}
   surface: {fileID: 1100962879}
   color: {r: 0.65, g: 0.35, b: 0.83, a: 1}
---- !u!65 &966553931
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966553928}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.19500001, y: 0.351, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &966553932
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61965,6 +61958,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966553928}
+  m_Mesh: {fileID: 4300000, guid: 6fc8a74b60cb0394d9ebfe1a203cfef7, type: 2}
+--- !u!64 &966553934
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966553928}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6fc8a74b60cb0394d9ebfe1a203cfef7, type: 2}
 --- !u!1 &966625652
 GameObject:
@@ -66745,8 +66760,8 @@ GameObject:
   - component: {fileID: 1048420728}
   - component: {fileID: 1048420727}
   - component: {fileID: 1048420726}
-  - component: {fileID: 1048420725}
   - component: {fileID: 1048420724}
+  - component: {fileID: 1048420729}
   m_Layer: 0
   m_Name: Socket glass-18
   m_TagString: Untagged
@@ -66771,27 +66786,6 @@ MonoBehaviour:
   piece: {fileID: 87587677}
   surface: {fileID: 87587678}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &1048420725
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048420723}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5795001, y: 1.1895, z: 0.15}
-  m_Center: {x: -0.058499992, y: 0.09750001, z: 0}
 --- !u!23 &1048420726
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66858,13 +66852,35 @@ Transform:
   m_GameObject: {fileID: 1048420723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.109999895, z: -0.27000427}
+  m_LocalPosition: {x: 1.25, y: 0.109999895, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 87587680}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1048420729
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048420723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c7cb824450511434489df56cbdfc4cf2, type: 2}
 --- !u!1 &1049694031
 GameObject:
   m_ObjectHideFlags: 0
@@ -67908,8 +67924,8 @@ GameObject:
   - component: {fileID: 1062129568}
   - component: {fileID: 1062129567}
   - component: {fileID: 1062129566}
-  - component: {fileID: 1062129565}
   - component: {fileID: 1062129564}
+  - component: {fileID: 1062129569}
   m_Layer: 0
   m_Name: Socket glass-15
   m_TagString: Untagged
@@ -67934,27 +67950,6 @@ MonoBehaviour:
   piece: {fileID: 1294887375}
   surface: {fileID: 1294887376}
   color: {r: 0.92, g: 0.94, b: 0.84, a: 1}
---- !u!65 &1062129565
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062129563}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5600001, y: 0.89699996, z: 0.15}
-  m_Center: {x: 0.000000059604645, y: -0.068249986, z: 0}
 --- !u!23 &1062129566
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68021,13 +68016,35 @@ Transform:
   m_GameObject: {fileID: 1062129563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1999998, y: 1.03, z: -0.27000427}
+  m_LocalPosition: {x: -1.1999998, y: 1.03, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1294887378}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1062129569
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062129563}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b5214dac32eb92442bde4c592c44ed88, type: 2}
 --- !u!1 &1062938127
 GameObject:
   m_ObjectHideFlags: 0
@@ -76451,8 +76468,8 @@ GameObject:
   - component: {fileID: 1184808229}
   - component: {fileID: 1184808228}
   - component: {fileID: 1184808227}
-  - component: {fileID: 1184808226}
   - component: {fileID: 1184808225}
+  - component: {fileID: 1184808230}
   m_Layer: 0
   m_Name: Socket glass-14
   m_TagString: Untagged
@@ -76477,27 +76494,6 @@ MonoBehaviour:
   piece: {fileID: 684823085}
   surface: {fileID: 684823086}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &1184808226
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184808224}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.95550007, y: 0.30224997, z: 0.15}
-  m_Center: {x: 0, y: 0.050375067, z: 0}
 --- !u!23 &1184808227
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76564,13 +76560,35 @@ Transform:
   m_GameObject: {fileID: 1184808224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4233332, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: 1.4233332, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 684823088}
   m_Father: {fileID: 537143153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1184808230
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184808224}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6117886758984bc41865b1e0c7ec1bd0, type: 2}
 --- !u!1 &1186415175
 GameObject:
   m_ObjectHideFlags: 0
@@ -79613,8 +79631,8 @@ GameObject:
   - component: {fileID: 1242275553}
   - component: {fileID: 1242275552}
   - component: {fileID: 1242275551}
-  - component: {fileID: 1242275550}
   - component: {fileID: 1242275549}
+  - component: {fileID: 1242275554}
   m_Layer: 0
   m_Name: Socket glass-27
   m_TagString: Untagged
@@ -79639,27 +79657,6 @@ MonoBehaviour:
   piece: {fileID: 1560904954}
   surface: {fileID: 1560904955}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &1242275550
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242275548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.8385, y: 0.39, z: 0.15}
-  m_Center: {x: 0, y: 0.000000007450581, z: 0}
 --- !u!23 &1242275551
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79726,13 +79723,35 @@ Transform:
   m_GameObject: {fileID: 1242275548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.30999994, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: -0.30999994, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1560904957}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1242275554
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242275548}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 51e625a0ada59f24d8d9a101d6ae3dcb, type: 2}
 --- !u!1 &1243747881
 GameObject:
   m_ObjectHideFlags: 0
@@ -90161,8 +90180,8 @@ GameObject:
   - component: {fileID: 1422952106}
   - component: {fileID: 1422952105}
   - component: {fileID: 1422952104}
-  - component: {fileID: 1422952103}
   - component: {fileID: 1422952102}
+  - component: {fileID: 1422952107}
   m_Layer: 0
   m_Name: Socket glass-03
   m_TagString: Untagged
@@ -90187,27 +90206,6 @@ MonoBehaviour:
   piece: {fileID: 1852100264}
   surface: {fileID: 1852100265}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &1422952103
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422952101}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5405002, y: 1.53075, z: 0.15}
-  m_Center: {x: 0.048750013, y: 0.10968754, z: 0}
 --- !u!23 &1422952104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90274,13 +90272,35 @@ Transform:
   m_GameObject: {fileID: 1422952101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28999996, y: 0.3025, z: -0.27000427}
+  m_LocalPosition: {x: 0.28999996, y: 0.3025, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1852100267}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1422952107
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422952101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 787befa66c7a44f4784d77dfe32c71ff, type: 2}
 --- !u!1 &1426509314
 GameObject:
   m_ObjectHideFlags: 0
@@ -91492,8 +91512,8 @@ GameObject:
   - component: {fileID: 1447278203}
   - component: {fileID: 1447278202}
   - component: {fileID: 1447278201}
-  - component: {fileID: 1447278200}
   - component: {fileID: 1447278199}
+  - component: {fileID: 1447278204}
   m_Layer: 0
   m_Name: Socket glass-22
   m_TagString: Untagged
@@ -91518,27 +91538,6 @@ MonoBehaviour:
   piece: {fileID: 1539160007}
   surface: {fileID: 1539160008}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &1447278200
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447278198}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.74100006, y: 0.819, z: 0.15}
-  m_Center: {x: -0.064349994, y: -0.005850032, z: 0}
 --- !u!23 &1447278201
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91605,13 +91604,35 @@ Transform:
   m_GameObject: {fileID: 1447278198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3540001, y: 0.826, z: -0.27000427}
+  m_LocalPosition: {x: -0.3540001, y: 0.826, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1539160010}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1447278204
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447278198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 70e18863989965142a955866901bb5dd, type: 2}
 --- !u!1 &1447325698
 GameObject:
   m_ObjectHideFlags: 0
@@ -91879,8 +91900,8 @@ GameObject:
   - component: {fileID: 1454082194}
   - component: {fileID: 1454082193}
   - component: {fileID: 1454082192}
-  - component: {fileID: 1454082191}
   - component: {fileID: 1454082190}
+  - component: {fileID: 1454082195}
   m_Layer: 0
   m_Name: Socket glass-08
   m_TagString: Untagged
@@ -91905,27 +91926,6 @@ MonoBehaviour:
   piece: {fileID: 174610181}
   surface: {fileID: 174610182}
   color: {r: 1, g: 0.58, b: 0.16, a: 1}
---- !u!65 &1454082191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454082189}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36075002, y: 0.86775005, z: 0.15}
-  m_Center: {x: -0.018524997, y: -0.03412494, z: 0}
 --- !u!23 &1454082192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91992,13 +91992,35 @@ Transform:
   m_GameObject: {fileID: 1454082189}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8339996, y: 1.04, z: -0.27000427}
+  m_LocalPosition: {x: 1.8339996, y: 1.04, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 174610184}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1454082195
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454082189}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 70c4e8486443a7d469118eba85731f32, type: 2}
 --- !u!1 &1459720875
 GameObject:
   m_ObjectHideFlags: 0
@@ -92010,8 +92032,8 @@ GameObject:
   - component: {fileID: 1459720880}
   - component: {fileID: 1459720879}
   - component: {fileID: 1459720878}
-  - component: {fileID: 1459720877}
   - component: {fileID: 1459720876}
+  - component: {fileID: 1459720881}
   m_Layer: 0
   m_Name: Socket glass-28
   m_TagString: Untagged
@@ -92036,27 +92058,6 @@ MonoBehaviour:
   piece: {fileID: 28925982}
   surface: {fileID: 28925983}
   color: {r: 0.16, g: 0.66, b: 0.42, a: 1}
---- !u!65 &1459720877
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459720875}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7550001, y: 0.8482501, z: 0.15}
-  m_Center: {x: 0.085312515, y: -0.000000029802322, z: 0}
 --- !u!23 &1459720878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92123,13 +92124,35 @@ Transform:
   m_GameObject: {fileID: 1459720875}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1875, y: -1.015, z: -0.27000427}
+  m_LocalPosition: {x: -1.1875, y: -1.015, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 28925985}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1459720881
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459720875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 51ef23200f63a064fb5b4deb1fff7efd, type: 2}
 --- !u!1 &1461706122
 GameObject:
   m_ObjectHideFlags: 0
@@ -96681,8 +96704,8 @@ GameObject:
   - component: {fileID: 1530392706}
   - component: {fileID: 1530392705}
   - component: {fileID: 1530392704}
-  - component: {fileID: 1530392703}
   - component: {fileID: 1530392702}
+  - component: {fileID: 1530392707}
   m_Layer: 0
   m_Name: Socket glass-26
   m_TagString: Untagged
@@ -96707,27 +96730,6 @@ MonoBehaviour:
   piece: {fileID: 7912979}
   surface: {fileID: 7912980}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &1530392703
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530392701}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7355001, y: 0.39, z: 0.15}
-  m_Center: {x: -0.06581238, y: 0.000000007450581, z: 0}
 --- !u!23 &1530392704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96794,13 +96796,35 @@ Transform:
   m_GameObject: {fileID: 1530392701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1774998, y: -0.30999994, z: -0.27000427}
+  m_LocalPosition: {x: 1.1774998, y: -0.30999994, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7912982}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1530392707
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530392701}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d4aac3231c1e0f147abf4f223fb46a87, type: 2}
 --- !u!1 &1530873327
 GameObject:
   m_ObjectHideFlags: 0
@@ -98120,8 +98144,8 @@ GameObject:
   - component: {fileID: 1549998923}
   - component: {fileID: 1549998922}
   - component: {fileID: 1549998921}
-  - component: {fileID: 1549998920}
   - component: {fileID: 1549998919}
+  - component: {fileID: 1549998924}
   m_Layer: 0
   m_Name: Socket glass-25
   m_TagString: Untagged
@@ -98146,27 +98170,6 @@ MonoBehaviour:
   piece: {fileID: 1250460085}
   surface: {fileID: 1250460086}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &1549998920
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549998918}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7355001, y: 0.39, z: 0.15}
-  m_Center: {x: 0.0658125, y: 0.000000007450581, z: 0}
 --- !u!23 &1549998921
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98233,13 +98236,35 @@ Transform:
   m_GameObject: {fileID: 1549998918}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1775, y: -0.30999994, z: -0.27000427}
+  m_LocalPosition: {x: -1.1775, y: -0.30999994, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1250460088}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1549998924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549998918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5b5fe4803c73d2b49982dec3733bf98d, type: 2}
 --- !u!1 &1551102153
 GameObject:
   m_ObjectHideFlags: 0
@@ -103769,8 +103794,8 @@ GameObject:
   - component: {fileID: 1643719198}
   - component: {fileID: 1643719197}
   - component: {fileID: 1643719196}
-  - component: {fileID: 1643719195}
   - component: {fileID: 1643719194}
+  - component: {fileID: 1643719199}
   m_Layer: 0
   m_Name: Socket glass-06
   m_TagString: Untagged
@@ -103795,27 +103820,6 @@ MonoBehaviour:
   piece: {fileID: 1805400071}
   surface: {fileID: 1805400072}
   color: {r: 0.92, g: 0.94, b: 0.84, a: 1}
---- !u!65 &1643719195
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643719193}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.81900007, y: 0.87750006, z: 0.15}
-  m_Center: {x: -0.06435004, y: -0.04874997, z: 0}
 --- !u!23 &1643719196
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -103882,13 +103886,35 @@ Transform:
   m_GameObject: {fileID: 1643719193}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4759998, y: 0.72, z: -0.27000427}
+  m_LocalPosition: {x: 1.4759998, y: 0.72, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1805400074}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1643719199
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643719193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9801388c81bb544468e3119f39849db2, type: 2}
 --- !u!1 &1643987759
 GameObject:
   m_ObjectHideFlags: 0
@@ -118022,8 +118048,8 @@ GameObject:
   - component: {fileID: 1860478514}
   - component: {fileID: 1860478513}
   - component: {fileID: 1860478512}
-  - component: {fileID: 1860478511}
   - component: {fileID: 1860478510}
+  - component: {fileID: 1860478515}
   m_Layer: 0
   m_Name: Socket glass-01
   m_TagString: Untagged
@@ -118048,27 +118074,6 @@ MonoBehaviour:
   piece: {fileID: 1053944572}
   surface: {fileID: 1053944573}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &1860478511
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860478509}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.9, y: 0.5655, z: 0.15}
-  m_Center: {x: -0.17062497, y: 0.024375007, z: 0}
 --- !u!23 &1860478512
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118135,13 +118140,35 @@ Transform:
   m_GameObject: {fileID: 1860478509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17500019, y: -0.615, z: -0.27000427}
+  m_LocalPosition: {x: 0.17500019, y: -0.615, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1053944575}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1860478515
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860478509}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 4928208c06de13f438f86889981f0335, type: 2}
 --- !u!1 &1862466504
 GameObject:
   m_ObjectHideFlags: 0
@@ -124347,8 +124374,8 @@ GameObject:
   - component: {fileID: 1980263200}
   - component: {fileID: 1980263199}
   - component: {fileID: 1980263198}
-  - component: {fileID: 1980263197}
   - component: {fileID: 1980263196}
+  - component: {fileID: 1980263201}
   m_Layer: 0
   m_Name: Socket glass-02
   m_TagString: Untagged
@@ -124373,27 +124400,6 @@ MonoBehaviour:
   piece: {fileID: 1447325698}
   surface: {fileID: 1447325699}
   color: {r: 0.17, g: 0.34, b: 0.85, a: 1}
---- !u!65 &1980263197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980263195}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4625001, y: 1.10175, z: 0.15}
-  m_Center: {x: 0.12187502, y: -0.06093751, z: 0}
 --- !u!23 &1980263198
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124460,13 +124466,35 @@ Transform:
   m_GameObject: {fileID: 1980263195}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.375, y: -0.2025001, z: -0.27000427}
+  m_LocalPosition: {x: -1.375, y: -0.2025001, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1447325701}
   m_Father: {fileID: 1728269030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1980263201
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980263195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c3559aea8a256994a9370abc0a336e65, type: 2}
 --- !u!1 &1980397587
 GameObject:
   m_ObjectHideFlags: 0
@@ -131926,8 +131954,8 @@ GameObject:
   - component: {fileID: 2113802676}
   - component: {fileID: 2113802675}
   - component: {fileID: 2113802674}
-  - component: {fileID: 2113802673}
   - component: {fileID: 2113802672}
+  - component: {fileID: 2113802677}
   m_Layer: 0
   m_Name: Socket glass-24
   m_TagString: Untagged
@@ -131952,27 +131980,6 @@ MonoBehaviour:
   piece: {fileID: 430878463}
   surface: {fileID: 430878464}
   color: {r: 0.16, g: 0.85, b: 0.79, a: 1}
---- !u!65 &2113802673
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113802671}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.9, y: 0.38024998, z: 0.15}
-  m_Center: {x: 0, y: 0.000000007450581, z: 0}
 --- !u!23 &2113802674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132039,13 +132046,35 @@ Transform:
   m_GameObject: {fileID: 2113802671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.14499998, z: -0.27000427}
+  m_LocalPosition: {x: 0, y: 0.14499998, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 430878466}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2113802677
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113802671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 67d9e6f1e9945c44bbb00feead739f86, type: 2}
 --- !u!1 &2116180235
 GameObject:
   m_ObjectHideFlags: 0
@@ -132259,8 +132288,8 @@ GameObject:
   - component: {fileID: 2121708731}
   - component: {fileID: 2121708730}
   - component: {fileID: 2121708729}
-  - component: {fileID: 2121708728}
   - component: {fileID: 2121708727}
+  - component: {fileID: 2121708732}
   m_Layer: 0
   m_Name: Socket glass-21
   m_TagString: Untagged
@@ -132285,27 +132314,6 @@ MonoBehaviour:
   piece: {fileID: 142348256}
   surface: {fileID: 142348257}
   color: {r: 0.65, g: 0.35, b: 0.83, a: 1}
---- !u!65 &2121708728
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121708726}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.95, y: 1.0530001, z: 0.15}
-  m_Center: {x: -0.0819, y: -0.044849947, z: 0}
 --- !u!23 &2121708729
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132372,13 +132380,35 @@ Transform:
   m_GameObject: {fileID: 2121708726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0840001, y: 0.98600006, z: -0.27000427}
+  m_LocalPosition: {x: 1.0840001, y: 0.98600006, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 142348259}
   m_Father: {fileID: 1906329487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2121708732
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121708726}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 92d41d3f6194d9c488ec204811a5f99b, type: 2}
 --- !u!1 &2125547496
 GameObject:
   m_ObjectHideFlags: 0

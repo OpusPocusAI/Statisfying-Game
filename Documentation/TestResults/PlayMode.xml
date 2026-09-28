@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="14" result="Passed" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:50:08Z" duration="64.7863455">
-  <test-suite type="TestSuite" id="1024" name="Sea Glass Studio" fullname="Sea Glass Studio" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:50:08Z" duration="64.786346" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="16" result="Passed" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:47Z" duration="78.3550705">
+  <test-suite type="TestSuite" id="1026" name="Sea Glass Studio" fullname="Sea Glass Studio" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:47Z" duration="78.355071" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="PlayMode" />
     </properties>
-    <test-suite type="Assembly" id="1018" name="SeaGlass.PlayModeTests.dll" fullname="C:/Users/Admin/UnityProjects/SeaGlassStudio/Library/ScriptAssemblies/SeaGlass.PlayModeTests.dll" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:50:08Z" duration="64.779136" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1020" name="SeaGlass.PlayModeTests.dll" fullname="C:/Users/Admin/UnityProjects/SeaGlassStudio/Library/ScriptAssemblies/SeaGlass.PlayModeTests.dll" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:47Z" duration="78.343926" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
         <property name="_PID" value="32508" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="PlayMode" />
         <property name="EditorOnly" value="False" />
       </properties>
-      <test-suite type="TestSuite" id="1019" name="SeaGlass" fullname="SeaGlass" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:50:08Z" duration="64.770129" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1021" name="SeaGlass" fullname="SeaGlass" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:47Z" duration="78.340784" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1020" name="Tests" fullname="SeaGlass.Tests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:50:08Z" duration="64.759110" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1022" name="Tests" fullname="SeaGlass.Tests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:47Z" duration="78.330582" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestFixture" id="1001" name="FullJourneyTests" fullname="SeaGlass.Tests.FullJourneyTests" classname="SeaGlass.Tests.FullJourneyTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:49:51Z" duration="48.031558" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1001" name="FullJourneyTests" fullname="SeaGlass.Tests.FullJourneyTests" classname="SeaGlass.Tests.FullJourneyTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:17Z" duration="48.569811" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1002" name="FullJourneyAndRecovery" fullname="SeaGlass.Tests.FullJourneyTests.FullJourneyAndRecovery" methodname="FullJourneyAndRecovery" classname="SeaGlass.Tests.FullJourneyTests" runstate="Runnable" seed="73143902" result="Passed" start-time="2026-09-27 16:49:03Z" end-time="2026-09-27 16:49:51Z" duration="48.014567" asserts="0">
+            <test-case id="1002" name="FullJourneyAndRecovery" fullname="SeaGlass.Tests.FullJourneyTests.FullJourneyAndRecovery" methodname="FullJourneyAndRecovery" classname="SeaGlass.Tests.FullJourneyTests" runstate="Runnable" seed="1066552180" result="Passed" start-time="2026-09-28 07:55:28Z" end-time="2026-09-28 07:56:17Z" duration="48.551480" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
@@ -25,72 +25,86 @@
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1003" name="InteractionTests" fullname="SeaGlass.Tests.InteractionTests" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-27 16:49:51Z" end-time="2026-09-27 16:50:06Z" duration="15.364144" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1003" name="InteractionTests" fullname="SeaGlass.Tests.InteractionTests" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-28 07:56:17Z" end-time="2026-09-28 07:56:45Z" duration="27.974689" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1009" name="CompletionScreenKeepsControlUntilDismissed" fullname="SeaGlass.Tests.InteractionTests.CompletionScreenKeepsControlUntilDismissed" methodname="CompletionScreenKeepsControlUntilDismissed" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1632316055" result="Passed" start-time="2026-09-27 16:49:51Z" end-time="2026-09-27 16:49:55Z" duration="3.589489" asserts="0">
+            <test-case id="1009" name="CompletionScreenKeepsControlUntilDismissed" fullname="SeaGlass.Tests.InteractionTests.CompletionScreenKeepsControlUntilDismissed" methodname="CompletionScreenKeepsControlUntilDismissed" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="2106581039" result="Passed" start-time="2026-09-28 07:56:17Z" end-time="2026-09-28 07:56:21Z" duration="3.714845" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1004" name="DiggingRequiresShovelAndCollectionUsesInteractionRay" fullname="SeaGlass.Tests.InteractionTests.DiggingRequiresShovelAndCollectionUsesInteractionRay" methodname="DiggingRequiresShovelAndCollectionUsesInteractionRay" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="584797684" result="Passed" start-time="2026-09-27 16:49:55Z" end-time="2026-09-27 16:49:57Z" duration="2.716601" asserts="0">
+            <test-case id="1004" name="DiggingRequiresShovelAndCollectionUsesInteractionRay" fullname="SeaGlass.Tests.InteractionTests.DiggingRequiresShovelAndCollectionUsesInteractionRay" methodname="DiggingRequiresShovelAndCollectionUsesInteractionRay" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1897754772" result="Passed" start-time="2026-09-28 07:56:21Z" end-time="2026-09-28 07:56:23Z" duration="2.871829" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1007" name="DriverAndNewVisitResetStoredLookAndRecoveryPoint" fullname="SeaGlass.Tests.InteractionTests.DriverAndNewVisitResetStoredLookAndRecoveryPoint" methodname="DriverAndNewVisitResetStoredLookAndRecoveryPoint" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1631436326" result="Passed" start-time="2026-09-27 16:49:57Z" end-time="2026-09-27 16:49:58Z" duration="0.479903" asserts="0">
+            <test-case id="1007" name="DriverAndNewVisitResetStoredLookAndRecoveryPoint" fullname="SeaGlass.Tests.InteractionTests.DriverAndNewVisitResetStoredLookAndRecoveryPoint" methodname="DriverAndNewVisitResetStoredLookAndRecoveryPoint" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="579432238" result="Passed" start-time="2026-09-28 07:56:23Z" end-time="2026-09-28 07:56:24Z" duration="0.602225" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1006" name="EveryColourTrayCanBeSortedWithMouseAim" fullname="SeaGlass.Tests.InteractionTests.EveryColourTrayCanBeSortedWithMouseAim" methodname="EveryColourTrayCanBeSortedWithMouseAim" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="740804495" result="Passed" start-time="2026-09-27 16:49:58Z" end-time="2026-09-27 16:50:00Z" duration="1.929152" asserts="0">
+            <test-case id="1006" name="EveryColourTrayCanBeSortedWithMouseAim" fullname="SeaGlass.Tests.InteractionTests.EveryColourTrayCanBeSortedWithMouseAim" methodname="EveryColourTrayCanBeSortedWithMouseAim" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="131752706" result="Passed" start-time="2026-09-28 07:56:24Z" end-time="2026-09-28 07:56:26Z" duration="2.047085" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1013" name="GuidanceFollowsProcessingAfterAnEarlyUpgrade" fullname="SeaGlass.Tests.InteractionTests.GuidanceFollowsProcessingAfterAnEarlyUpgrade" methodname="GuidanceFollowsProcessingAfterAnEarlyUpgrade" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="363817132" result="Passed" start-time="2026-09-27 16:50:00Z" end-time="2026-09-27 16:50:00Z" duration="0.451738" asserts="0">
+            <test-case id="1014" name="EveryMosaicSocketCanBeTargetedAndPlacedPrecisely" fullname="SeaGlass.Tests.InteractionTests.EveryMosaicSocketCanBeTargetedAndPlacedPrecisely" methodname="EveryMosaicSocketCanBeTargetedAndPlacedPrecisely" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1327955111" result="Passed" start-time="2026-09-28 07:56:26Z" end-time="2026-09-28 07:56:37Z" duration="10.600738" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1011" name="MixedCargoGuidanceWaitsForBothCrates" fullname="SeaGlass.Tests.InteractionTests.MixedCargoGuidanceWaitsForBothCrates" methodname="MixedCargoGuidanceWaitsForBothCrates" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1815681295" result="Passed" start-time="2026-09-27 16:50:00Z" end-time="2026-09-27 16:50:01Z" duration="0.488721" asserts="0">
+            <test-case id="1013" name="GuidanceFollowsProcessingAfterAnEarlyUpgrade" fullname="SeaGlass.Tests.InteractionTests.GuidanceFollowsProcessingAfterAnEarlyUpgrade" methodname="GuidanceFollowsProcessingAfterAnEarlyUpgrade" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1014421057" result="Passed" start-time="2026-09-28 07:56:37Z" end-time="2026-09-28 07:56:37Z" duration="0.617615" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1008" name="PauseAndMenuPreserveTheMosaicPresentationLock" fullname="SeaGlass.Tests.InteractionTests.PauseAndMenuPreserveTheMosaicPresentationLock" methodname="PauseAndMenuPreserveTheMosaicPresentationLock" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="160103542" result="Passed" start-time="2026-09-27 16:50:01Z" end-time="2026-09-27 16:50:04Z" duration="3.513234" asserts="0">
+            <test-case id="1011" name="MixedCargoGuidanceWaitsForBothCrates" fullname="SeaGlass.Tests.InteractionTests.MixedCargoGuidanceWaitsForBothCrates" methodname="MixedCargoGuidanceWaitsForBothCrates" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1381968056" result="Passed" start-time="2026-09-28 07:56:37Z" end-time="2026-09-28 07:56:38Z" duration="0.628194" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1012" name="RubbishOnlyHaulDoesNotRequestMissingGlass" fullname="SeaGlass.Tests.InteractionTests.RubbishOnlyHaulDoesNotRequestMissingGlass" methodname="RubbishOnlyHaulDoesNotRequestMissingGlass" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1407098224" result="Passed" start-time="2026-09-27 16:50:04Z" end-time="2026-09-27 16:50:05Z" duration="0.448831" asserts="0">
+            <test-case id="1008" name="PauseAndMenuPreserveTheMosaicPresentationLock" fullname="SeaGlass.Tests.InteractionTests.PauseAndMenuPreserveTheMosaicPresentationLock" methodname="PauseAndMenuPreserveTheMosaicPresentationLock" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="466458229" result="Passed" start-time="2026-09-28 07:56:38Z" end-time="2026-09-28 07:56:42Z" duration="3.652597" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1010" name="SkipDriveRecoveryStaysAtTheDestination" fullname="SeaGlass.Tests.InteractionTests.SkipDriveRecoveryStaysAtTheDestination" methodname="SkipDriveRecoveryStaysAtTheDestination" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1887856762" result="Passed" start-time="2026-09-27 16:50:05Z" end-time="2026-09-27 16:50:05Z" duration="0.491356" asserts="0">
+            <test-case id="1015" name="RearCratesLoadSeparatelyThroughTheInteractionRay" fullname="SeaGlass.Tests.InteractionTests.RearCratesLoadSeparatelyThroughTheInteractionRay" methodname="RearCratesLoadSeparatelyThroughTheInteractionRay" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="618168546" result="Passed" start-time="2026-09-28 07:56:42Z" end-time="2026-09-28 07:56:42Z" duration="0.639132" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1005" name="WashingPausesAndRestoresTheEntryView" fullname="SeaGlass.Tests.InteractionTests.WashingPausesAndRestoresTheEntryView" methodname="WashingPausesAndRestoresTheEntryView" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1654514031" result="Passed" start-time="2026-09-27 16:50:05Z" end-time="2026-09-27 16:50:06Z" duration="1.248441" asserts="0">
+            <test-case id="1012" name="RubbishOnlyHaulDoesNotRequestMissingGlass" fullname="SeaGlass.Tests.InteractionTests.RubbishOnlyHaulDoesNotRequestMissingGlass" methodname="RubbishOnlyHaulDoesNotRequestMissingGlass" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="139580355" result="Passed" start-time="2026-09-28 07:56:42Z" end-time="2026-09-28 07:56:43Z" duration="0.579625" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="SkipDriveRecoveryStaysAtTheDestination" fullname="SeaGlass.Tests.InteractionTests.SkipDriveRecoveryStaysAtTheDestination" methodname="SkipDriveRecoveryStaysAtTheDestination" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="579553199" result="Passed" start-time="2026-09-28 07:56:43Z" end-time="2026-09-28 07:56:43Z" duration="0.630466" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="WashingPausesAndRestoresTheEntryView" fullname="SeaGlass.Tests.InteractionTests.WashingPausesAndRestoresTheEntryView" methodname="WashingPausesAndRestoresTheEntryView" classname="SeaGlass.Tests.InteractionTests" runstate="Runnable" seed="1016438615" result="Passed" start-time="2026-09-28 07:56:43Z" end-time="2026-09-28 07:56:45Z" duration="1.379603" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
@@ -98,23 +112,23 @@
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1014" name="PresentationRegressionTests" fullname="SeaGlass.Tests.PresentationRegressionTests" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 16:50:06Z" end-time="2026-09-27 16:50:08Z" duration="1.351116" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1016" name="PresentationRegressionTests" fullname="SeaGlass.Tests.PresentationRegressionTests" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 07:56:45Z" end-time="2026-09-28 07:56:47Z" duration="1.769581" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1015" name="CargoUpgradePreservesRailWidthAndDepth" fullname="SeaGlass.Tests.PresentationRegressionTests.CargoUpgradePreservesRailWidthAndDepth" methodname="CargoUpgradePreservesRailWidthAndDepth" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="1526017292" result="Passed" start-time="2026-09-27 16:50:06Z" end-time="2026-09-27 16:50:07Z" duration="0.433083" asserts="0">
+            <test-case id="1017" name="CargoUpgradePreservesRailWidthAndDepth" fullname="SeaGlass.Tests.PresentationRegressionTests.CargoUpgradePreservesRailWidthAndDepth" methodname="CargoUpgradePreservesRailWidthAndDepth" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="408848120" result="Passed" start-time="2026-09-28 07:56:45Z" end-time="2026-09-28 07:56:45Z" duration="0.579085" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1016" name="CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" fullname="SeaGlass.Tests.PresentationRegressionTests.CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" methodname="CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="1683939707" result="Passed" start-time="2026-09-27 16:50:07Z" end-time="2026-09-27 16:50:07Z" duration="0.450903" asserts="0">
+            <test-case id="1018" name="CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" fullname="SeaGlass.Tests.PresentationRegressionTests.CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" methodname="CleaningChangesGrimeContinuouslyAndSortingPersistsInTray" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="13562294" result="Passed" start-time="2026-09-28 07:56:45Z" end-time="2026-09-28 07:56:46Z" duration="0.575542" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1017" name="InvalidSaveIsPreservedAndStudioResumeIsSafe" fullname="SeaGlass.Tests.PresentationRegressionTests.InvalidSaveIsPreservedAndStudioResumeIsSafe" methodname="InvalidSaveIsPreservedAndStudioResumeIsSafe" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="396639436" result="Passed" start-time="2026-09-27 16:50:07Z" end-time="2026-09-27 16:50:08Z" duration="0.455825" asserts="0">
+            <test-case id="1019" name="InvalidSaveIsPreservedAndStudioResumeIsSafe" fullname="SeaGlass.Tests.PresentationRegressionTests.InvalidSaveIsPreservedAndStudioResumeIsSafe" methodname="InvalidSaveIsPreservedAndStudioResumeIsSafe" classname="SeaGlass.Tests.PresentationRegressionTests" runstate="Runnable" seed="1845338066" result="Passed" start-time="2026-09-28 07:56:46Z" end-time="2026-09-28 07:56:47Z" duration="0.603709" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />

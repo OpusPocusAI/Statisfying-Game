@@ -167,5 +167,31 @@ namespace SeaGlass.Tests
             StringAssert.Contains("E to leave",TutorialGuidance.Get(session,sort));sort.Leave();
             StringAssert.Contains("Coastal Sunset",TutorialGuidance.Get(session));yield return null;
         }
+        [UnityTest] public IEnumerator EveryMosaicSocketCanBeTargetedAndPlacedPrecisely()
+        {
+            foreach(var socket in Object.FindObjectsByType<MosaicSocket>(FindObjectsSortMode.None).OrderBy(s=>s.glassId))
+            {
+                session.progress.Item(socket.glassId).stage=ItemStage.Sorted;
+                session.player.Teleport(new Vector3(socket.transform.position.x,.3f,173.2f),Quaternion.identity);
+                Aim(socket.transform.position);yield return null;
+                Assert.AreSame(socket,session.player.focus,"Aiming at "+socket.glassId+" must not select a neighbouring outline or the backing.");
+                yield return KeyPress(Key.E);Assert.AreEqual(ItemStage.Placed,session.progress.Item(socket.glassId).stage);
+                if(session.progress.completed[socket.panel.index])yield return new WaitForSeconds(3);
+            }
+            Assert.AreEqual(30,session.Count(ItemStage.Placed,true));Assert.IsTrue(StudioUI.Instance.ending);
+        }
+        [UnityTest] public IEnumerator RearCratesLoadSeparatelyThroughTheInteractionRay()
+        {
+            session.progress.Item("glass-03").stage=ItemStage.Bucket;session.progress.Item("rubbish-00").stage=ItemStage.Bucket;
+            foreach(var crate in Object.FindObjectsByType<TruckCompartment>(FindObjectsSortMode.None).Where(c=>!c.skip).OrderByDescending(c=>c.glass))
+            {
+                session.player.Teleport(new Vector3(crate.transform.position.x,.3f,3.8f),Quaternion.identity);
+                Aim(crate.transform.position);yield return null;Assert.AreSame(crate,session.player.focus);
+                yield return KeyPress(Key.E);
+                Assert.AreEqual(1,session.Count(ItemStage.Truck,crate.glass));
+                if(crate.glass)Assert.AreEqual(ItemStage.Bucket,session.progress.Item("rubbish-00").stage);
+            }
+            Assert.AreEqual(0,session.BucketCount);Assert.AreEqual(2,session.CargoCount);
+        }
     }
 }
