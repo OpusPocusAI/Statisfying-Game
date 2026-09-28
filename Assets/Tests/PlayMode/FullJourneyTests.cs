@@ -11,6 +11,27 @@ namespace SeaGlass.Tests
 {
     public class FullJourneyTests
     {
+        InputSettings.BackgroundBehavior previousBackground;
+#if UNITY_EDITOR
+        InputSettings.EditorInputBehaviorInPlayMode previousEditorInput;
+#endif
+        [SetUp] public void RouteTestInput()
+        {
+            previousBackground=InputSystem.settings.backgroundBehavior;
+            InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
+#if UNITY_EDITOR
+            previousEditorInput=InputSystem.settings.editorInputBehaviorInPlayMode;
+            InputSystem.settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+#endif
+        }
+        [TearDown] public void RestoreInputRouting()
+        {
+            if(Keyboard.current!=null)InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());
+            InputSystem.settings.backgroundBehavior=previousBackground;
+#if UNITY_EDITOR
+            InputSystem.settings.editorInputBehaviorInPlayMode=previousEditorInput;
+#endif
+        }
         static IEnumerator Brake(GameSession session,Keyboard keyboard)
         {
             float deadline=Time.time+5;
@@ -54,7 +75,7 @@ namespace SeaGlass.Tests
                     item.Use(2);Assert.IsTrue(item.Collect(),item.id);
                 }
                 s.truck.Load(true);s.truck.Load(false);s.truck.transform.position=new Vector3(15,.3f,150);recycle.Recycle();yield return new WaitForSeconds(1.6f);
-                clean.Interact();for(int i=0;i<10;i++)clean.Clean(10);clean.Leave();sort.Interact();
+                clean.Interact();for(int i=0;i<10;i++){clean.Clean(10);yield return new WaitForSeconds(1.15f);}clean.Leave();sort.Interact();
                 for(int i=0;i<10;i++){var def=s.catalog.glass.First(x=>x.id==sort.selectedId);Assert.IsTrue(sort.Sort(def.color));}sort.Leave();
                 var panel=panels.First(x=>x.index==section);foreach(var def in s.catalog.glass.Where(x=>x.panel==section))Assert.IsTrue(panel.Place(def.id));yield return new WaitForSeconds(3);
             }

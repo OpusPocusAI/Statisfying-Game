@@ -4,19 +4,19 @@
     "message": "Test job status retrieved.",
     "error": null,
     "data": {
-      "job_id": "54a72a797d494bbaa74dbe5409dd3cc4",
+      "job_id": "0e88f0d8186c41eb85c07cbf017f3f60",
       "status": "succeeded",
       "mode": "PlayMode",
-      "started_unix_ms": 1790582122841,
-      "finished_unix_ms": 1790582207145,
-      "last_update_unix_ms": 1790582207145,
+      "started_unix_ms": 1790600913611,
+      "finished_unix_ms": 1790601021118,
+      "last_update_unix_ms": 1790601021118,
       "progress": {
-        "completed": 16,
-        "total": 16,
+        "completed": 17,
+        "total": 17,
         "current_test_full_name": null,
-        "current_test_started_unix_ms": 1790582206498,
+        "current_test_started_unix_ms": 1790601020574,
         "last_finished_test_full_name": "SeaGlass.Tests.PresentationRegressionTests.InvalidSaveIsPreservedAndStudioResumeIsSafe",
-        "last_finished_unix_ms": 1790582207102,
+        "last_finished_unix_ms": 1790601021082,
         "stuck_suspected": false,
         "editor_is_focused": true,
         "blocked_reason": null,
@@ -27,11 +27,11 @@
       "result": {
         "mode": "PlayMode",
         "summary": {
-          "total": 16,
-          "passed": 16,
+          "total": 17,
+          "passed": 17,
           "failed": 0,
           "skipped": 0,
-          "durationSeconds": 78.3550705,
+          "durationSeconds": 102.7515418,
           "resultState": "Passed"
         },
         "results": [
@@ -39,7 +39,7 @@
             "name": "FullJourneyAndRecovery",
             "fullName": "SeaGlass.Tests.FullJourneyTests.FullJourneyAndRecovery",
             "state": "Passed",
-            "durationSeconds": 48.5514798,
+            "durationSeconds": 71.2325376,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -48,7 +48,7 @@
             "name": "CompletionScreenKeepsControlUntilDismissed",
             "fullName": "SeaGlass.Tests.InteractionTests.CompletionScreenKeepsControlUntilDismissed",
             "state": "Passed",
-            "durationSeconds": 3.7148451,
+            "durationSeconds": 3.612226,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -57,7 +57,7 @@
             "name": "DiggingRequiresShovelAndCollectionUsesInteractionRay",
             "fullName": "SeaGlass.Tests.InteractionTests.DiggingRequiresShovelAndCollectionUsesInteractionRay",
             "state": "Passed",
-            "durationSeconds": 2.8718285,
+            "durationSeconds": 2.7508409,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -66,7 +66,7 @@
             "name": "DriverAndNewVisitResetStoredLookAndRecoveryPoint",
             "fullName": "SeaGlass.Tests.InteractionTests.DriverAndNewVisitResetStoredLookAndRecoveryPoint",
             "state": "Passed",
-            "durationSeconds": 0.602225,
+            "durationSeconds": 0.5121461,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -75,7 +75,7 @@
             "name": "EveryColourTrayCanBeSortedWithMouseAim",
             "fullName": "SeaGlass.Tests.InteractionTests.EveryColourTrayCanBeSortedWithMouseAim",
             "state": "Passed",
-            "durationSeconds": 2.0470845,
+            "durationSeconds": 1.9487507,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -84,7 +84,7 @@
             "name": "EveryMosaicSocketCanBeTargetedAndPlacedPrecisely",
             "fullName": "SeaGlass.Tests.InteractionTests.EveryMosaicSocketCanBeTargetedAndPlacedPrecisely",
             "state": "Passed",
-            "durationSeconds": 10.6007382,
+            "durationSeconds": 10.504111,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -93,7 +93,7 @@
             "name": "GuidanceFollowsProcessingAfterAnEarlyUpgrade",
             "fullName": "SeaGlass.Tests.InteractionTests.GuidanceFollowsProcessingAfterAnEarlyUpgrade",
             "state": "Passed",
-            "durationSeconds": 0.6176147,
+            "durationSeconds": 0.4966853,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -102,7 +102,7 @@
             "name": "MixedCargoGuidanceWaitsForBothCrates",
             "fullName": "SeaGlass.Tests.InteractionTests.MixedCargoGuidanceWaitsForBothCrates",
             "state": "Passed",
-            "durationSeconds": 0.6281938,
+            "durationSeconds": 0.5197639,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -111,7 +111,7 @@
             "name": "PauseAndMenuPreserveTheMosaicPresentationLock",
             "fullName": "SeaGlass.Tests.InteractionTests.PauseAndMenuPreserveTheMosaicPresentationLock",
             "state": "Passed",
-            "durationSeconds": 3.6525972,
+            "durationSeconds": 3.5751916,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -120,7 +120,7 @@
             "name": "RearCratesLoadSeparatelyThroughTheInteractionRay",
             "fullName": "SeaGlass.Tests.InteractionTests.RearCratesLoadSeparatelyThroughTheInteractionRay",
             "state": "Passed",
-            "durationSeconds": 0.639132,
+            "durationSeconds": 0.547093,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -129,7 +129,7 @@
             "name": "RubbishOnlyHaulDoesNotRequestMissingGlass",
             "fullName": "SeaGlass.Tests.InteractionTests.RubbishOnlyHaulDoesNotRequestMissingGlass",
             "state": "Passed",
-            "durationSeconds": 0.579625,
+            "durationSeconds": 0.5074363,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -138,7 +138,7 @@
             "name": "SkipDriveRecoveryStaysAtTheDestination",
             "fullName": "SeaGlass.Tests.InteractionTests.SkipDriveRecoveryStaysAtTheDestination",
             "state": "Passed",
-            "durationSeconds": 0.6304659,
+            "durationSeconds": 0.533434,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -147,7 +147,7 @@
             "name": "WashingPausesAndRestoresTheEntryView",
             "fullName": "SeaGlass.Tests.InteractionTests.WashingPausesAndRestoresTheEntryView",
             "state": "Passed",
-            "durationSeconds": 1.379603,
+            "durationSeconds": 1.3271323,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -156,7 +156,7 @@
             "name": "CargoUpgradePreservesRailWidthAndDepth",
             "fullName": "SeaGlass.Tests.PresentationRegressionTests.CargoUpgradePreservesRailWidthAndDepth",
             "state": "Passed",
-            "durationSeconds": 0.5790848,
+            "durationSeconds": 0.4758663,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -165,7 +165,16 @@
             "name": "CleaningChangesGrimeContinuouslyAndSortingPersistsInTray",
             "fullName": "SeaGlass.Tests.PresentationRegressionTests.CleaningChangesGrimeContinuouslyAndSortingPersistsInTray",
             "state": "Passed",
-            "durationSeconds": 0.5755423,
+            "durationSeconds": 0.493632,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CleanRevealPausesAndCanBeLeftWithoutLosingTheNextPiece",
+            "fullName": "SeaGlass.Tests.PresentationRegressionTests.CleanRevealPausesAndCanBeLeftWithoutLosingTheNextPiece",
+            "state": "Passed",
+            "durationSeconds": 3.1345175,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -174,7 +183,7 @@
             "name": "InvalidSaveIsPreservedAndStudioResumeIsSafe",
             "fullName": "SeaGlass.Tests.PresentationRegressionTests.InvalidSaveIsPreservedAndStudioResumeIsSafe",
             "state": "Passed",
-            "durationSeconds": 0.603709,
+            "durationSeconds": 0.5081303,
             "message": null,
             "stackTrace": null,
             "output": ""

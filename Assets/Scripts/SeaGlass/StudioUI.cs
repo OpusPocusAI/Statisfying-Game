@@ -35,12 +35,12 @@ namespace SeaGlass
             GUI.Label(new Rect(1047,76,345,24),string.Join("    /    ",Enumerable.Range(0,3).Select(p=>S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p))+" of 10")),body);
             if(S.paused){Pause();return;}if(shop){Shop();return;}if(ending){Ending();return;}
             var f=S.player.focus;
-            GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
-            if(f){GUI.Box(new Rect(440,550,560,48),GUIContent.none,panel);GUI.Label(new Rect(457,559,530,30),f.Prompt,body);}
             var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
+            GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
+            if(f&&!station){GUI.Box(new Rect(440,550,560,48),GUIContent.none,panel);GUI.Label(new Rect(457,559,530,30),f.Prompt,body);}
             if(!S.progress.tutorialDismissed){GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),TutorialGuidance.Get(S,station),body);}
             GUI.Label(new Rect(47,845,620,23),"H guidance    F reveal glass    R recover truck    Esc pause",small);
-            GUI.Label(new Rect(1080,827,340,48),S.player.equippedTool==1?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
+            if(!station)GUI.Label(new Rect(1080,827,340,48),S.player.equippedTool==1?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
             if(Time.unscaledTime<S.messageUntil){GUI.Box(new Rect(375,160,690,68),GUIContent.none,panel);GUI.Label(new Rect(395,176,650,48),S.message,body);}
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;GUI.Box(new Rect(540,670,360,60),GUIContent.none,panel);GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }

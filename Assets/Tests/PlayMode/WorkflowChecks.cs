@@ -29,7 +29,8 @@ namespace SeaGlass.Editor
             // Recycle press cooldown is respected by normal play; process remaining cargo after clearing its visual timer for this synchronous harness.
             typeof(StudioStation).GetField("processing",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).SetValue(recycle,0f);recycle.Recycle();
             clean.Interact();Check(clean.active,"Cleaning station entered");
-            for(int i=0;i<10;i++)clean.Clean(10);clean.Leave();Check(s.Count(ItemStage.Clean,true)==10,"Ten pieces washed");
+            // This synchronous fixture skips the reveal; timed presentation is covered in PlayMode.
+            for(int i=0;i<10;i++){clean.Clean(10);clean.SelectNext();}clean.Leave();Check(s.Count(ItemStage.Clean,true)==10,"Ten pieces washed");
             sort.Interact();Check(sort.active,"Sorting entered");
             var first=s.catalog.glass.First(x=>x.id==sort.selectedId);Check(!sort.Sort((GlassColor)(((int)first.color+1)%6)),"Incorrect tray is forgiving");
             for(int i=0;i<10;i++){var d=s.catalog.glass.First(x=>x.id==sort.selectedId);Check(sort.Sort(d.color),"Correct sorting");}sort.Leave();

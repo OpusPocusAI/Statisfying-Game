@@ -7,11 +7,13 @@ namespace SeaGlass
     public class StudioStation : Interactable
     {
         public StationKind kind; public Transform workingGlass; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
-        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView;float processing;public bool Processing=>processing>0;
+        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam;public bool Processing=>processing>0;
+        public bool RevealingCleanGlass=>reveal>0;
         GameSession S=>GameSession.Instance;
         public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
-        void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;workingGlass.gameObject.SetActive(false);}}
-        public void ResetStation(){active=false;selectedId=null;processing=0;if(workingGlass){workingGlass.localPosition=glassHome;workingGlass.gameObject.SetActive(false);}}
+        void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;glassRotation=workingGlass.localRotation;workingGlass.gameObject.SetActive(false);}}
+        void RestoreGlassPose(){if(workingGlass){workingGlass.localPosition=glassHome;workingGlass.localRotation=glassRotation;}}
+        public void ResetStation(){active=false;selectedId=null;processing=0;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);}
         public override void Interact()
         {
             if(kind==StationKind.Recycle){Recycle();return;}
@@ -21,8 +23,9 @@ namespace SeaGlass
             {foreach(var r in S.progress.items)if(r.stage==ItemStage.Truck&&r.id.StartsWith("glass-"))r.stage=ItemStage.Studio;S.truck.RefreshCargo();}
             if(!SelectNext()){S.Notify(kind==StationKind.Clean?"Park the truck by the studio and bring cloudy glass.":"Wash a glass piece at the basin first.");return;}
             returnPosition=S.player.transform.position;returnRotation=S.player.transform.rotation;returnView=S.player.view.transform.localRotation;active=true;S.player.mode=PlayerMode.Workstation;
-            S.player.Teleport(transform.position-transform.forward*1.75f+Vector3.up*.12f,transform.rotation);S.player.interactOverride=Leave;
-            S.player.LookAt(transform.position+Vector3.up*1.15f);
+            bool cleaning=kind==StationKind.Clean;
+            S.player.Teleport(transform.position-transform.forward*(cleaning?1.45f:1.75f)+Vector3.up*(cleaning?.42f:.12f),transform.rotation);S.player.interactOverride=Leave;
+            S.player.LookAt(cleaning?workingGlass.position:transform.position+Vector3.up*1.15f);
             S.Notify(kind==StationKind.Clean?"Hold LMB to brush away the salt. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
         }
         public bool Recycle()
@@ -35,6 +38,7 @@ namespace SeaGlass
         }
         public bool SelectNext()
         {
+            reveal=0;RestoreGlassPose();
             var r=S.progress.items.FirstOrDefault(i=>i.id.StartsWith("glass-")&&i.stage==(kind==StationKind.Clean?ItemStage.Studio:ItemStage.Clean));selectedId=r?.id;
             if(workingGlass)workingGlass.gameObject.SetActive(r!=null);
             if(r!=null)UpdateGlass();return r!=null;
@@ -43,8 +47,15 @@ namespace SeaGlass
         {
             if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
             r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Random.value<.25f)Feedback.Instance.Burst(workingGlass.position,Color.white,2);
-            if(r.grime<=.001f){r.grime=0;r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");S.Save();S.Notify("Colour revealed. Take this piece to the sorting trays.");SelectNext();}
+            if(Time.time>=nextFoam){nextFoam=Time.time+.12f;Feedback.Instance.Burst(workingGlass.position,Color.white,2);}
+            if(r.grime<=.001f)
+            {
+                r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");S.Save();
+                S.Notify("Colour revealed. Take this piece to the sorting trays.");
+                // Progress commits immediately; the presentation gives the finished piece a moment
+                // in the light. Leaving or loading can cancel this without losing/duplicating it.
+                selectedId=null;reveal=1.1f;
+            }
         }
         public bool Sort(GlassColor color)
         {
@@ -61,14 +72,23 @@ namespace SeaGlass
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
             block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.mesh)filter.sharedMesh=def.mesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.42f:.75f)/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.75f)/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y));
         }
-        public void Leave(){active=false;if(workingGlass)workingGlass.localPosition=glassHome;S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
+        public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
             if(!S||S.ControlsBlocked)return;
             if(processing>0){processing-=Time.deltaTime;if(Random.value<.1f)Feedback.Instance.Burst(transform.position+Vector3.up*1.1f,GameCatalog.Palette[0],5);}
             if(!active)return;
+            if(reveal>0)
+            {
+                reveal=Mathf.Max(0,reveal-Time.deltaTime);float t=1-reveal/1.1f;
+                float lift=Mathf.Sin(t*Mathf.PI);
+                workingGlass.localPosition=glassHome+Vector3.up*(lift*.16f);
+                workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
+                if(reveal<=0)SelectNext();
+                return;
+            }
             if(kind==StationKind.Clean&&Mouse.current!=null&&Mouse.current.leftButton.isPressed)Clean(Time.deltaTime);
             if(kind==StationKind.Sort&&Mouse.current!=null&&Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -85,7 +105,7 @@ namespace SeaGlass
                 }
                 if(tray)Sort(tray.color);
             }
-            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.25f;
+            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.13f+S.player.view.transform.right*.12f;
         }
     }
 }

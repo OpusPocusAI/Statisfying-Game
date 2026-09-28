@@ -13,17 +13,31 @@ namespace SeaGlass.Tests
     {
         GameSession session;Keyboard keyboard;Mouse mouse;
         InputSettings.BackgroundBehavior previousBackground;
+#if UNITY_EDITOR
+        InputSettings.EditorInputBehaviorInPlayMode previousEditorInput;
+#endif
         [UnitySetUp] public IEnumerator SetUp()
         {
             previousBackground=InputSystem.settings.backgroundBehavior;
             InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
+#if UNITY_EDITOR
+            // Background-device handling alone does not route keyboard events away from Scene view.
+            previousEditorInput=InputSystem.settings.editorInputBehaviorInPlayMode;
+            InputSystem.settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+#endif
             yield return SceneManager.LoadSceneAsync("SeaGlassStudio");yield return null;
             keyboard=Keyboard.current??InputSystem.AddDevice<Keyboard>();mouse=Mouse.current??InputSystem.AddDevice<Mouse>();
             Neutral();session=GameSession.Instance;session.testMode=true;session.Begin(false);session.player.SetCursor(false);yield return null;
         }
         void Neutral(){if(keyboard!=null)InputSystem.QueueStateEvent(keyboard,new KeyboardState());if(mouse!=null)InputSystem.QueueStateEvent(mouse,new MouseState());}
         [UnityTearDown] public IEnumerator TearDown()
-        {Neutral();if(session){session.testMode=true;session.player.blocked=true;}Time.timeScale=1;InputSystem.settings.backgroundBehavior=previousBackground;yield return null;}
+        {
+            Neutral();if(session){session.testMode=true;session.player.blocked=true;}Time.timeScale=1;InputSystem.settings.backgroundBehavior=previousBackground;
+#if UNITY_EDITOR
+            InputSystem.settings.editorInputBehaviorInPlayMode=previousEditorInput;
+#endif
+            yield return null;
+        }
         IEnumerator KeyPress(Key key)
         {InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
         void Aim(Vector3 target)

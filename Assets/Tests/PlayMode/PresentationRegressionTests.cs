@@ -63,6 +63,30 @@ namespace SeaGlass.Tests
             yield return null;Assert.IsFalse(display.activeSelf,"Placed pieces must disappear from their tray.");
         }
 
+        [UnityTest] public IEnumerator CleanRevealPausesAndCanBeLeftWithoutLosingTheNextPiece()
+        {
+            var clean=Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(s=>s.kind==StationKind.Clean);
+            var first=session.progress.Item("glass-03");var next=session.progress.Item("glass-04");
+            first.stage=ItemStage.Studio;next.stage=ItemStage.Studio;
+            clean.Interact();
+            // Inventory order follows discovery; do not assume the lower catalogue ID is selected first.
+            first=session.progress.Item(clean.selectedId);next=session.progress.Item(first.id=="glass-03"?"glass-04":"glass-03");
+            clean.Clean(10);int xp=session.progress.xp;
+            Assert.IsTrue(clean.RevealingCleanGlass);Assert.IsTrue(clean.workingGlass.gameObject.activeSelf);
+            Assert.AreEqual(ItemStage.Clean,first.stage);Assert.AreEqual(ItemStage.Studio,next.stage);
+            yield return new WaitForSeconds(.2f);session.SetPaused(true);var pose=clean.workingGlass.localPosition;
+            yield return new WaitForSecondsRealtime(1.2f);
+            Assert.IsTrue(clean.RevealingCleanGlass);Assert.AreEqual(pose,clean.workingGlass.localPosition);
+            session.SetPaused(false);session.player.blocked=true;
+            yield return new WaitForSeconds(1.2f);
+            Assert.AreEqual(next.id,clean.selectedId);Assert.IsFalse(clean.RevealingCleanGlass);
+            clean.Clean(10);Assert.IsTrue(clean.RevealingCleanGlass);clean.Leave();
+            Assert.IsFalse(clean.RevealingCleanGlass);Assert.IsFalse(clean.workingGlass.gameObject.activeSelf);
+            Assert.AreEqual(ItemStage.Clean,next.stage);Assert.AreEqual(xp+10,session.progress.xp);
+            clean.Interact();Assert.IsFalse(clean.active,"A finished batch must not be washed twice.");
+            Assert.AreEqual(xp+10,session.progress.xp);
+        }
+
         [UnityTest] public IEnumerator InvalidSaveIsPreservedAndStudioResumeIsSafe()
         {
             session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);

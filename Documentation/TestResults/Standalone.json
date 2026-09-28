@@ -5,9 +5,9 @@
     "cpu": "AMD Ryzen 5 7500F 6-Core Processor ",
     "resolution": "1920x1080",
     "performanceMode": "Hidden player, explicit URP camera rendering; not a presented-window FPS benchmark",
-    "averageFrameMs": 11.131272315979004,
-    "p95FrameMs": 11.146605491638184,
-    "managedBytes": 11403264,
+    "averageFrameMs": 11.113786697387696,
+    "p95FrameMs": 11.111804962158204,
+    "managedBytes": 11300864,
     "errors": [],
     "placed": 30,
     "lightSpills": 3

@@ -13,7 +13,8 @@ namespace SeaGlass
             if(station&&station.active)
             {
                 if(station.kind==StationKind.Clean)
-                    return station.selectedId!=null?"Hold LMB to wash the glass. E returns you to the studio.":"This batch is washed. E to leave, then visit the sorting trays.";
+                    return station.selectedId!=null?"Hold LMB to wash the glass. E returns you to the studio.":
+                        station.RevealingCleanGlass&&session.Count(ItemStage.Studio,true)>0?"Colour revealed. The next piece is coming up; E to leave.":"This batch is washed. E to leave, then visit the sorting trays.";
                 if(station.kind==StationKind.Sort)
                 {
                     var piece=session.catalog.glass.FirstOrDefault(x=>x.id==station.selectedId);
