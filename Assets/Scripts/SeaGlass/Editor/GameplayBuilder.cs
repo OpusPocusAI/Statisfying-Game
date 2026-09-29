@@ -68,7 +68,7 @@ namespace SeaGlass.Editor
         static void CreateTruck(GameSession s)
         {
             var go=new GameObject("TIDELINE • utility truck");go.transform.SetParent(root);go.transform.position=new Vector3(15,.3f,8);var truck=go.AddComponent<UtilityTruck>();s.truck=truck;
-            var cc=go.GetComponent<CharacterController>();cc.center=new Vector3(0,.85f,0);cc.radius=1;cc.height=1.8f;cc.stepOffset=.3f;
+            var cc=go.GetComponent<CharacterController>();cc.center=new Vector3(0,1.1f,0);cc.radius=1;cc.height=1.8f;cc.stepOffset=.3f;
             var body=new GameObject("Sprung body").transform;body.SetParent(go.transform,false);truck.body=body;
             Vector3 P(float x,float y,float z)=>go.transform.position+new Vector3(x,y,z);
             B("Painted chassis",P(0,.65f,0),new Vector3(2,.4f,4.2f),teal,body);

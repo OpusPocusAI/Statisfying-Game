@@ -50,10 +50,18 @@ namespace SeaGlass.Tests
             // Drive through the actual update loop with Input System keyboard events.
             InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
             var keyboard=Keyboard.current??InputSystem.AddDevice<Keyboard>();
+            yield return new WaitForSeconds(.3f);
+            Assert.IsTrue(s.truck.GetComponent<CharacterController>().isGrounded,"An idle truck must settle onto the road before entering it.");
+            foreach(var wheel in s.truck.wheels)
+            {
+                Assert.IsTrue(Physics.Raycast(wheel.position+Vector3.up*2,Vector3.down,out var road,4,~0,QueryTriggerInteraction.Ignore));
+                Assert.Less(Mathf.Abs(wheel.GetComponent<Renderer>().bounds.min.y-road.point.y),.04f,"Grounded tyres must visually meet the road.");
+            }
             s.truck.Enter();Vector3 start=s.truck.transform.position;
             float until=Time.time+2;while(Time.time<until){InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.W));yield return null;}
             yield return Brake(s,keyboard);
             Assert.Greater(s.truck.transform.position.z,start.z+1,"Manual acceleration moves the truck; obstacle="+s.truck.lastObstacle+" speed="+s.truck.Speed+" driving="+s.truck.driving+" menu="+s.menu);
+            foreach(var wheel in s.truck.wheels)Assert.Greater(Mathf.Abs(Vector3.Dot(wheel.up,s.truck.body.right)),.999f,"Wheel rotation must preserve its axle alignment.");
             until=Time.time+40;while(!s.progress.skipDrive&&Time.time<until){InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.W));yield return null;}
             Assert.IsTrue(s.progress.skipDrive,"Complete manual road journey unlocks skip");
             yield return Brake(s,keyboard);

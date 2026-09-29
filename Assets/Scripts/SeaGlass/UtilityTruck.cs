@@ -54,12 +54,13 @@ namespace SeaGlass
         {
             if(!S||S.ControlsBlocked)return;
             if(transform.position.y < -3 || Mathf.Abs(transform.position.x)>31){ResetVehicle();return;}
-            if(!driving){speed=Mathf.MoveTowards(speed,0,Time.deltaTime*8);return;}
+            if(!driving){speed=Mathf.MoveTowards(speed,0,Time.deltaTime*8);controller.Move(Vector3.down*3*Time.deltaTime);return;}
             var k=Keyboard.current;if(k==null)return;
             float throttle=(k.wKey.isPressed?1:0)-(k.sKey.isPressed?1:0),steer=(k.dKey.isPressed?1:0)-(k.aKey.isPressed?1:0);
             speed=Mathf.MoveTowards(speed,throttle*(throttle<0?2.5f:5f),Time.deltaTime*(k.spaceKey.isPressed?14:2.8f));if(k.spaceKey.isPressed)speed=Mathf.MoveTowards(speed,0,Time.deltaTime*25);
             transform.Rotate(0,steer*speed*16*Time.deltaTime,0);var collision=controller.Move((transform.forward*speed+Vector3.down*3)*Time.deltaTime);if((collision&CollisionFlags.Sides)!=0)speed*=.85f;
-            foreach(var w in wheels)w.Rotate(speed*Time.deltaTime*100,0,0,Space.Self);
+            // Cylinder wheels use local Y as their axle, including the attached hub artwork.
+            foreach(var w in wheels)w.Rotate(0,-speed*Time.deltaTime*100,0,Space.Self);
             if(body)body.localRotation=Quaternion.Euler(Mathf.Sin(Time.time*8)*Mathf.Abs(speed)*.2f,0,-steer*speed*.6f);
             Feedback.Instance?.Engine(Mathf.Abs(speed)/5);
             if(AtStudio&&departure.z<100){arrivalTimer+=Time.deltaTime;if(arrivalTimer>1&&!S.progress.skipDrive){S.progress.skipDrive=true;S.Tutorial(6);S.Save();S.Notify("Studio reached. Optional Skip Drive is now available at the tailgate.");}}
