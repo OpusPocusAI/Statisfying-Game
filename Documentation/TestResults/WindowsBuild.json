@@ -2,14 +2,14 @@
   "success": true,
   "message": "Build Succeeded.",
   "data": {
-    "job_id": "build-d0928fb03c",
+    "job_id": "build-b81132df31",
     "result": "succeeded",
     "platform": "StandaloneWindows64",
     "output_path": "Builds/Windows/SeaGlassStudio.exe",
-    "started_at": "2026-09-29T06:28:29.5176773Z",
-    "duration_seconds": 13.965748999999999,
-    "completed_at": "2026-09-29T06:28:43.4834263Z",
-    "total_size_mb": 102.75,
+    "started_at": "2026-09-29T11:32:41.4302523Z",
+    "duration_seconds": 21.2898758,
+    "completed_at": "2026-09-29T11:33:02.7201281Z",
+    "total_size_mb": 102.86,
     "errors": 0,
     "warnings": 0
   }

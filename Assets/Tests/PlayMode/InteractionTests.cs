@@ -66,6 +66,25 @@ namespace SeaGlass.Tests
             yield return KeyPress(Key.Digit1);yield return HoldMouse(1.9f);Assert.AreEqual(ItemStage.Shore,item.Record.stage);
             yield return KeyPress(Key.E);Assert.AreEqual(ItemStage.Bucket,item.Record.stage);Assert.AreEqual(1,session.BucketCount);
         }
+        [UnityTest] public IEnumerator GatheringPosePausesAndCarriedFillTracksLoading()
+        {
+            var item=Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None).First(i=>i.id=="glass-03");
+            var equipment=Object.FindFirstObjectByType<EquipmentVisuals>();var tool=session.player.tool;var home=tool.localPosition;
+            session.player.Teleport(item.transform.position+new Vector3(0,.25f,-1.8f),Quaternion.identity);Aim(item.transform.position+Vector3.up*.15f);yield return null;
+            yield return HoldMouse(.23f);Assert.Greater(Vector3.Distance(home,tool.localPosition),.005f,"A valid dig should move the visible tool.");
+            session.SetPaused(true);var paused=tool.localPosition;var rotation=tool.localRotation;float dig=item.dig;
+            yield return HoldMouse(.25f);Assert.AreEqual(paused,tool.localPosition);Assert.Less(Quaternion.Angle(rotation,tool.localRotation),.01f);Assert.AreEqual(dig,item.dig);
+            session.SetPaused(false);yield return HoldMouse(1.9f);yield return new WaitForSeconds(.25f);
+            Assert.AreEqual(ItemStage.Shore,item.Record.stage);Assert.Less(Vector3.Distance(home,tool.localPosition),.001f,"The tool should settle after the find is revealed.");
+            yield return KeyPress(Key.Digit2);Assert.IsTrue(equipment.bucket.activeSelf);Assert.IsFalse(equipment.bucketFill.gameObject.activeSelf);
+            yield return KeyPress(Key.E);Assert.AreEqual(1,session.BucketCount);Assert.IsTrue(equipment.bucketFill.gameObject.activeSelf);
+            session.progress.upgrades.Add("bucket");session.Synchronize();yield return null;
+            Assert.IsFalse(equipment.bucket.activeSelf);Assert.IsTrue(equipment.sack.activeSelf);Assert.IsTrue(equipment.sackFill.gameObject.activeSelf);
+            Assert.IsTrue(session.truck.Load(true));yield return null;Assert.AreEqual(0,session.BucketCount);
+            Assert.IsFalse(equipment.bucketFill.gameObject.activeSelf);Assert.IsFalse(equipment.sackFill.gameObject.activeSelf);
+            yield return KeyPress(Key.Digit1);session.progress.upgrades.Add("scoop");session.Synchronize();yield return null;
+            Assert.IsTrue(equipment.scoop.activeSelf);Assert.IsFalse(equipment.GetComponent<GatheringPresentation>().toyBlade.activeSelf);
+        }
         [UnityTest] public IEnumerator WashingPausesAndRestoresTheEntryView()
         {
             var clean=Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(s=>s.kind==StationKind.Clean);

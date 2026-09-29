@@ -34,7 +34,7 @@ namespace SeaGlass
             if(Physics.Raycast(view.ViewportPointToRay(new Vector3(.5f,.5f)),out var hit,4.2f))focus=hit.collider.GetComponentInParent<Interactable>();
             if(Keyboard.current.eKey.wasPressedThisFrame) { if(interactOverride!=null)interactOverride(); else if(focus)focus.Interact(); }
             if(Mouse.current.leftButton.isPressed && focus && equippedTool==0)focus.Use(Time.deltaTime);
-            if(tool){tool.gameObject.SetActive(mode==PlayerMode.Walking&&equippedTool==0);tool.localRotation=Quaternion.Euler(Mouse.current.leftButton.isPressed?Mathf.Sin(Time.time*17)*15:0,0,-15);}
+            if(tool)tool.gameObject.SetActive(mode==PlayerMode.Walking&&equippedTool==0);
         }
         public void Teleport(Vector3 position,Quaternion rotation) {body.enabled=false;transform.SetPositionAndRotation(position,rotation);body.enabled=true;fall=0;}
         // Keep the controller's stored angles in sync when a station or vehicle changes the view.

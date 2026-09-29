@@ -3,7 +3,7 @@ namespace SeaGlass
 {
     public class EquipmentVisuals : MonoBehaviour
     {
-        public GameObject bucket,sack,scoop,brush,sprayer;public Transform bucketFill;public Transform[] dividers;
+        public GameObject bucket,sack,scoop,brush,sprayer;public Transform bucketFill,sackFill;public Transform[] dividers;
         Vector3[] dividerScales; Vector3 brushHome,sprayerHome; StudioStation cleaning;
         void Awake()
         {
@@ -30,7 +30,10 @@ namespace SeaGlass
                 if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.28f,-.05f)+stroke*.15f;sprayer.transform.rotation=Quaternion.Euler(35,-45,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}
-            if(bucketFill)bucketFill.localScale=new Vector3(.9f,Mathf.Max(.03f,s.BucketCount/(float)s.progress.BucketCapacity),.9f);
+            float fill=s.BucketCount/(float)s.progress.BucketCapacity;
+            RefreshFill(bucketFill,fill);RefreshFill(sackFill,fill);
         }
+        static void RefreshFill(Transform contents,float amount)
+        {if(!contents)return;contents.gameObject.SetActive(amount>0);contents.localScale=new Vector3(.9f,Mathf.Max(.03f,amount),.9f);}
     }
 }
