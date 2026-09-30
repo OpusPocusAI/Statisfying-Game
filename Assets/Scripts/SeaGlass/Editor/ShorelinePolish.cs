@@ -101,17 +101,46 @@ namespace SeaGlass.Editor
         }
         static Mesh Parasol()
         {
-            var f=new Form();int n=12;
+            var f=new Form();const int n=48;
+            // A thin closed shell avoids coincident front/back fabric. Four samples per
+            // stripe soften the hem without changing the familiar twelve-panel silhouette.
+            float[] radii={0,.5f,1f,1.5f,1.8f,1.8f,1.782f,1.782f,1.492f,.995f,.498f,0};
+            float[] heights={.58f,.51f,.36f,.14f,0,-.08f,-.08f,-.018f,.122f,.342f,.492f,.562f};
+            System.Func<int,int,Vector3> point=(row,segment)=>
+            {
+                float angle=segment*Mathf.PI*2/n;
+                float hem=row==5||row==6?-.09f*Mathf.Sin((segment%4)*Mathf.PI/4):0;
+                return new Vector3(Mathf.Cos(angle)*radii[row],heights[row]+hem,Mathf.Sin(angle)*radii[row]);
+            };
             for(int i=0;i<n;i++)
             {
-                float a=i*Mathf.PI*2/n,b=(i+1)*Mathf.PI*2/n;
-                var u=new Vector3(Mathf.Cos(a)*1.8f,0,Mathf.Sin(a)*1.8f);var v=new Vector3(Mathf.Cos(b)*1.8f,0,Mathf.Sin(b)*1.8f);
-                var ridgeU=u*.48f+Vector3.up*.32f;var ridgeV=v*.48f+Vector3.up*.32f;var top=Vector3.up*.55f;
-                f.Face(i%2,Vector3.up,top,ridgeU,ridgeV);f.Face(i%2,Vector3.up,ridgeU,u,v,ridgeV);
-                f.Face(i%2,Vector3.down,top,ridgeU,ridgeV);f.Face(i%2,Vector3.down,ridgeU,u,v,ridgeV);
-                var scallop=(u+v)*.5f-Vector3.up*.16f;f.Face(i%2,u+v,u,scallop,v);f.Face(i%2,-u-v,u,scallop,v);
+                float angle=(i+.5f)*Mathf.PI*2/n;var radial=new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle));
+                for(int row=0;row<radii.Length-1;row++)
+                {
+                    var normal=radial*(heights[row]-heights[row+1])+Vector3.up*(radii[row+1]-radii[row]);
+                    var a=point(row,i);var b=point(row+1,i);var c=point(row+1,i+1);var d=point(row,i+1);
+                    if(radii[row]==0)f.Face(i/4%2,normal,a,b,c);
+                    else if(radii[row+1]==0)f.Face(i/4%2,normal,a,b,d);
+                    else f.Face(i/4%2,normal,a,b,c,d);
+                }
+            }
+            // Slim underside ribs follow the canopy curve and connect visually to the pole.
+            for(int i=0;i<12;i++)for(int row=0;row<4;row++)
+            {
+                var a=point(row,i*4)-Vector3.up*.04f;var b=point(row+1,i*4)-Vector3.up*.04f;
+                var side=Vector3.Cross(b-a,Vector3.up).normalized*.012f;var down=Vector3.down*.025f;
+                f.Face(2,Vector3.down,a-side+down,b-side+down,b+side+down,a+side+down);
+                f.Face(2,side,a+side,b+side,b+side+down,a+side+down);
+                f.Face(2,-side,a-side+down,b-side+down,b-side,a-side);
+                f.Face(2,Vector3.up,a-side,a+side,b+side,b-side);
             }
             return f.Save("Striped scalloped parasol");
+        }
+        [MenuItem("Sea Glass/Polish/Refine canopy fabric")]
+        public static void RefineCanopies()
+        {
+            if(EditorApplication.isPlaying)throw new System.InvalidOperationException("Leave Play Mode first.");
+            Parasol(); // Shared saved mesh updates the three existing canopies without rebuilding the scene.
         }
         static Mesh Rubbish(int kind,bool grounded=true)
         {
