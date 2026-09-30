@@ -46,8 +46,16 @@ namespace SeaGlass.Tests
             session.player.transform.rotation=Quaternion.Euler(0,Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg,0);
             session.player.LookAt(target);Physics.SyncTransforms();
         }
-        IEnumerator HoldMouse(float seconds)
-        {float until=Time.unscaledTime+seconds;while(Time.unscaledTime<until){InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Left));yield return null;}InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;}
+        IEnumerator HoldMouse(float seconds,bool gameplayTime=false)
+        {
+            float elapsed=0,deadline=Time.realtimeSinceStartup+seconds+10;
+            // Digging advances in game time, which Unity caps during slow Editor frames.
+            // Pause checks deliberately use unscaled time; a real-time deadline catches stalls.
+            while(elapsed<seconds&&Time.realtimeSinceStartup<deadline)
+            {InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Left));yield return null;elapsed+=gameplayTime?Time.deltaTime:Time.unscaledDeltaTime;}
+            InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;
+            Assert.GreaterOrEqual(elapsed,seconds,"The input hold timed out before the requested duration elapsed.");
+        }
         IEnumerator Enter(StudioStation station)
         {
             session.player.Teleport(station.transform.position+new Vector3(0,.2f,-2.8f),Quaternion.identity);
@@ -63,7 +71,7 @@ namespace SeaGlass.Tests
             Assert.AreSame(item,session.player.focus);yield return KeyPress(Key.Digit2);yield return HoldMouse(.25f);
             Assert.AreEqual(0,item.dig,"The carrying container must not dig.");
             StringAssert.Contains("equip shovel",item.Prompt,"A selected bucket must not show an unusable dig instruction.");
-            yield return KeyPress(Key.Digit1);yield return HoldMouse(1.9f);Assert.AreEqual(ItemStage.Shore,item.Record.stage);
+            yield return KeyPress(Key.Digit1);yield return HoldMouse(1.9f,true);Assert.AreEqual(ItemStage.Shore,item.Record.stage);
             yield return KeyPress(Key.E);Assert.AreEqual(ItemStage.Bucket,item.Record.stage);Assert.AreEqual(1,session.BucketCount);
         }
         [UnityTest] public IEnumerator GatheringPosePausesAndCarriedFillTracksLoading()
@@ -74,7 +82,7 @@ namespace SeaGlass.Tests
             yield return HoldMouse(.23f);Assert.Greater(Vector3.Distance(home,tool.localPosition),.005f,"A valid dig should move the visible tool.");
             session.SetPaused(true);var paused=tool.localPosition;var rotation=tool.localRotation;float dig=item.dig;
             yield return HoldMouse(.25f);Assert.AreEqual(paused,tool.localPosition);Assert.Less(Quaternion.Angle(rotation,tool.localRotation),.01f);Assert.AreEqual(dig,item.dig);
-            session.SetPaused(false);yield return HoldMouse(1.9f);yield return new WaitForSeconds(.25f);
+            session.SetPaused(false);yield return HoldMouse(1.9f,true);yield return new WaitForSeconds(.25f);
             Assert.AreEqual(ItemStage.Shore,item.Record.stage);Assert.Less(Vector3.Distance(home,tool.localPosition),.001f,"The tool should settle after the find is revealed.");
             yield return KeyPress(Key.Digit2);Assert.IsTrue(equipment.bucket.activeSelf);Assert.IsFalse(equipment.bucketFill.gameObject.activeSelf);
             yield return KeyPress(Key.E);Assert.AreEqual(1,session.BucketCount);Assert.IsTrue(equipment.bucketFill.gameObject.activeSelf);

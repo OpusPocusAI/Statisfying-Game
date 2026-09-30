@@ -30,6 +30,25 @@ namespace SeaGlass.Tests
             yield return null;
         }
 
+        [UnityTest] public IEnumerator StudioPendantsFollowRestorationAndNewVisit()
+        {
+            var pendants=Object.FindObjectsByType<RestorationDecor>(FindObjectsSortMode.None).Where(r=>r.lamp&&r.name=="Warm pendant").ToArray();
+            Assert.AreEqual(4,pendants.Length);var block=new MaterialPropertyBlock();
+            foreach(var lamp in pendants){Assert.IsNotNull(lamp.surface);Assert.AreEqual(0,lamp.lamp.intensity);}
+            session.progress.completed[0]=true;session.Synchronize();yield return null;
+            foreach(var lamp in pendants)Assert.AreEqual(0,lamp.lamp.intensity,"The room should retain its final-restoration reward.");
+            for(int i=0;i<3;i++)session.progress.completed[i]=true;
+            session.Synchronize();yield return null;
+            foreach(var lamp in pendants)
+            {
+                Assert.AreEqual(2,lamp.lamp.intensity);lamp.surface.GetPropertyBlock(block);
+                Assert.Less(Vector4.Distance(lamp.restored,block.GetColor("_BaseColor")),.0001f,"Loading completed progress must restore the new diffuser too.");
+            }
+            session.Begin(false);yield return null;
+            foreach(var lamp in pendants)
+            {Assert.AreEqual(0,lamp.lamp.intensity);lamp.surface.GetPropertyBlock(block);Assert.IsTrue(block.isEmpty,"A new visit must remove the restored tint.");}
+        }
+
         [UnityTest] public IEnumerator CargoUpgradePreservesRailWidthAndDepth()
         {
             var rails=Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Where(t=>t.name=="Cargo rail").ToArray();

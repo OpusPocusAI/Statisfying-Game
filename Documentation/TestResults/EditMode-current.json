@@ -4,19 +4,19 @@
     "message": "Test job status retrieved.",
     "error": null,
     "data": {
-      "job_id": "0028b9703a1440ff962718357f246207",
+      "job_id": "ffcb354cd2ce45c7bf26a6b082c3d7a9",
       "status": "succeeded",
       "mode": "EditMode",
-      "started_unix_ms": 1790723522932,
-      "finished_unix_ms": 1790723525359,
-      "last_update_unix_ms": 1790723525359,
+      "started_unix_ms": 1790758237434,
+      "finished_unix_ms": 1790758241947,
+      "last_update_unix_ms": 1790758241947,
       "progress": {
         "completed": 6,
         "total": 6,
         "current_test_full_name": null,
-        "current_test_started_unix_ms": 1790723525227,
+        "current_test_started_unix_ms": 1790758241745,
         "last_finished_test_full_name": "SeaGlass.Tests.ProgressTests.StableIdsReturnSameRecord",
-        "last_finished_unix_ms": 1790723525228,
+        "last_finished_unix_ms": 1790758241745,
         "stuck_suspected": false,
         "editor_is_focused": false,
         "blocked_reason": null,
@@ -31,7 +31,7 @@
           "passed": 6,
           "failed": 0,
           "skipped": 0,
-          "durationSeconds": 0.7699607,
+          "durationSeconds": 0.5057842,
           "resultState": "Passed"
         },
         "results": [
@@ -39,7 +39,7 @@
             "name": "AuthoredGlassFacesHaveOutwardWindingAndNoExcessTriangleArea",
             "fullName": "SeaGlass.Tests.ProgressTests.AuthoredGlassFacesHaveOutwardWindingAndNoExcessTriangleArea",
             "state": "Passed",
-            "durationSeconds": 0.2577013,
+            "durationSeconds": 0.0027661,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -48,7 +48,7 @@
             "name": "CatalogHasThirtyUniqueAuthoredPiecesAndAffordableEquipment",
             "fullName": "SeaGlass.Tests.ProgressTests.CatalogHasThirtyUniqueAuthoredPiecesAndAffordableEquipment",
             "state": "Passed",
-            "durationSeconds": 0.0058694,
+            "durationSeconds": 0.0030818,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -57,7 +57,7 @@
             "name": "EveryProgressStageRoundTripsThroughJson",
             "fullName": "SeaGlass.Tests.ProgressTests.EveryProgressStageRoundTripsThroughJson",
             "state": "Passed",
-            "durationSeconds": 0.001513,
+            "durationSeconds": 0.0004701,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -66,7 +66,7 @@
             "name": "NewGameHasDeliberatelyLimitedEquipment",
             "fullName": "SeaGlass.Tests.ProgressTests.NewGameHasDeliberatelyLimitedEquipment",
             "state": "Passed",
-            "durationSeconds": 0.000346,
+            "durationSeconds": 0.0001348,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -75,7 +75,7 @@
             "name": "SectionsUnlockMonotonically",
             "fullName": "SeaGlass.Tests.ProgressTests.SectionsUnlockMonotonically",
             "state": "Passed",
-            "durationSeconds": 0.0001868,
+            "durationSeconds": 0.0000811,
             "message": null,
             "stackTrace": null,
             "output": ""
@@ -84,7 +84,7 @@
             "name": "StableIdsReturnSameRecord",
             "fullName": "SeaGlass.Tests.ProgressTests.StableIdsReturnSameRecord",
             "state": "Passed",
-            "durationSeconds": 0.0007472,
+            "durationSeconds": 0.0000976,
             "message": null,
             "stackTrace": null,
             "output": ""
