@@ -78,6 +78,8 @@ namespace SeaGlass.Editor
             Rock(root,"Sunset Point sea stack",new Vector3(-44,-1.5f,108),new Vector3(2.5f,7.5f,3.1f),-12,c,warm);
             Rock(root,"Sunset Point companion",new Vector3(-40,-1.4f,112),new Vector3(2.0f,4.0f,2.2f),52,b,warm);
             Rock(root,"Sunset Point fallen shoulder",new Vector3(-44,-1.4f,103),new Vector3(2.9f,2.1f,2.0f),-35,a,warm);
+            // Existing surf must follow newly generated stone contours.
+            if(GameObject.Find("ART • rock contact surf"))RockSurfPolish.Apply();
             EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);
         }
     }
