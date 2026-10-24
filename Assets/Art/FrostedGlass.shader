@@ -14,6 +14,7 @@ Shader "Sea Glass/Frosted Glass"
         _Frost("Frost colour", Color) = (.9, .9, .86, 1)
         [NoScaleOffset] _CleanMask("Brushed mask (set at runtime)", 2D) = "black" {}
         _MaskRect("Mask rect (min xy, size xy)", Vector) = (0, 0, 1, 1)
+        _Facets("Stained-glass fragments (mosaic)", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -53,7 +54,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect;
+                float4 _MaskRect; float _Facets;
             CBUFFER_END
 
             float Hash(float3 p) { p = frac(p * .3183099 + .1); p *= 17.0; return frac(p.x * p.y * p.z * (p.x + p.y + p.z)); }
@@ -87,6 +88,23 @@ Shader "Sea Glass/Frosted Glass"
                 tint *= .84 + streak * .3;
                 float seeds = step(.985, Noise(i.local * 38.0 + 9.3));
                 tint = lerp(tint, tint * 1.6 + .08, seeds * .5);
+                // Mosaic pieces read as several smaller fragments (Glass Masquerade): Voronoi cells in object
+                // space, each with its own shade of the colour, separated by fine lead lines.
+                float lead = 0;
+                if (_Facets > 0)
+                {
+                    float2 g = i.local.xy * 2.6; float2 cell = floor(g); float f1 = 9, f2 = 9; float2 id = 0;
+                    for (int oy = -1; oy <= 1; oy++) for (int ox = -1; ox <= 1; ox++)
+                    {
+                        float2 cc = cell + float2(ox, oy); float2 jit = float2(Hash(float3(cc, 1)), Hash(float3(cc, 7)));
+                        float d = length(g - cc - jit);
+                        if (d < f1) { f2 = f1; f1 = d; id = cc; } else if (d < f2) f2 = d;
+                    }
+                    float shade = Hash(float3(id, 3));
+                    tint = lerp(tint, tint * lerp(.72, 1.3, shade) + (shade - .5) * .06, _Facets);
+                    float w = fwidth(f2 - f1) * 1.0 + .022;
+                    lead = (1 - smoothstep(w, w + .03, f2 - f1)) * _Facets;
+                }
                 float nv = saturate(dot(n, v));
                 float fresnel = pow(1 - nv, 3);
 
@@ -155,6 +173,7 @@ Shader "Sea Glass/Frosted Glass"
                 c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
 
                 c += _EmissionColor.rgb;
+                c = lerp(c, half3(.012, .012, .016) + spec * .05, lead);   // linear: near-black came
                 c = MixFog(c, i.fog);
                 return half4(c, 1);
             }
@@ -177,7 +196,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect;
+                float4 _MaskRect; float _Facets;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION
