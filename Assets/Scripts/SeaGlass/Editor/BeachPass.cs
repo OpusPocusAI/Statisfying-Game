@@ -224,7 +224,7 @@ namespace SeaGlass.Editor
             int placed = 0;
             void Place(int kind, float x, float z)
             {
-                var p = new Vector3(x, SandTop + .005f, z);
+                var p = new Vector3(x, CoastShape.ShoulderY(x, z) + .005f, z);
                 if (avoid.Any(a => (new Vector2(a.x, a.z) - new Vector2(x, z)).sqrMagnitude < 1.4f)) return;
                 if (z > 146 && x > -16) return;   // keep the studio forecourt tidy
                 var (mesh, mats, scale) = kinds[kind];
@@ -242,7 +242,7 @@ namespace SeaGlass.Editor
             // Tide line: kelp, shells and the odd starfish along the wet edge.
             for (int i = 0; i < 170; i++)
             {
-                float z = R(-34, 192), x = R(-31.9f, -29.6f);
+                float z = R(-34, 192), x = Mathf.Max(CoastShape.ShoreX(z) + R(.5f, 2.6f), CoastShape.ShoreX(z) + .5f);
                 float pick = R(0, 1);
                 Place(pick < .22f ? 4 : pick < .55f ? 0 : pick < .76f ? 1 : pick < .9f ? 3 : 2, x, z);
             }
@@ -297,15 +297,18 @@ namespace SeaGlass.Editor
             var landmarks = Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None).Where(r => r.transform.root.name.Contains("cove landmarks")).Select(r => r.bounds.center.z).ToList();
             var rng = new System.Random(5);
             float R(float a, float b) => a + (float)rng.NextDouble() * (b - a);
-            foreach (float z in new[] { 6f, 44f, 86f, 128f, 170f })
+            // Each headland ends in a spine of boulders running from the dry sand out into the sea.
+            foreach (float z in CoastShape.Headlands)
             {
-                if (landmarks.Any(l => Mathf.Abs(l - z) < 9)) continue;
-                int count = rng.Next(3, 6);
+                float shore = CoastShape.ShoreX(z);
+                int count = rng.Next(5, 8);
                 for (int i = 0; i < count; i++)
                 {
                     float t = i / (float)(count - 1);
-                    var s = new Vector3(R(2.2f, 3.6f), R(1.4f, 2.4f), R(2.2f, 3.4f)) * Mathf.Lerp(1.15f, .6f, t);
-                    var p = new Vector3(Mathf.Lerp(-33.8f, -38.5f, t) + R(-.5f, .5f), waterY + s.y * R(.1f, .25f), z + R(-2.5f, 2.5f));
+                    var s = new Vector3(R(2.2f, 3.6f), R(1.4f, 2.6f), R(2.2f, 3.4f)) * Mathf.Lerp(1.2f, .55f, t);
+                    float x = Mathf.Lerp(shore + 1.6f, shore - 6.5f, t) + R(-.5f, .5f);
+                    float ground = Mathf.Max(CoastShape.ShoulderY(x, z), waterY - .4f);
+                    var p = new Vector3(x, ground + s.y * R(.3f, .42f), z + R(-2.5f, 2.5f) + (t - .5f) * R(-3, 3));
                     var go = new GameObject("Shore boulder");
                     go.transform.SetParent(root.transform);
                     go.transform.SetPositionAndRotation(p, Quaternion.Euler(R(-8, 8), R(0, 360), R(-8, 8)));

@@ -26,10 +26,20 @@ Shader "Sea Glass/Tidal Water"
   return lerp(lerp(Hash(cell),Hash(cell+float2(1,0)),f.x),
               lerp(Hash(cell+float2(0,1)),Hash(cell+1),f.x),f.y);
  }
+ // Authored coastline (bays and headlands). Keep in sync with Editor/CoastShape.cs.
+ static const float2 SHORE[13]={float2(-45,-35.0),float2(-20,-37.6),float2(0,-34.4),float2(18,-33.9),float2(33,-33.6),float2(48,-38.2),float2(63,-33.8),float2(85,-38.4),float2(105,-33.8),float2(127,-37.4),float2(150,-35.0),float2(174,-37.8),float2(205,-35.0)};
+ float ShoreX(float z)
+ {
+  if(z<=SHORE[0].x)return SHORE[0].y;if(z>=SHORE[12].x)return SHORE[12].y;
+  int i=0;[unroll]for(int k=0;k<12;k++)if(z>SHORE[k+1].x)i=k+1;
+  float p0=SHORE[max(i-1,0)].y,p1=SHORE[i].y,p2=SHORE[i+1].y,p3=SHORE[min(i+2,12)].y;
+  float t=(z-SHORE[i].x)/(SHORE[i+1].x-SHORE[i].x);
+  return .5*(2*p1+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t*t+(-p0+3*p1-3*p2+p3)*t*t*t);
+ }
  half4 frag(V i):SV_Target
  {
   float2 p=i.world.xz;float t=_Time.y;
-  float shore=-34.5+sin(p.y*.07)*1.1+sin(p.y*.19)*.3;
+  float shore=ShoreX(p.y);
   float depth=max(0,shore-p.x);
   float broad=BrushNoise(p*.065+float2(t*.006,-t*.004));
   float drift=BrushNoise(p*float2(.17,.31)+float2(-t*.018,t*.024));

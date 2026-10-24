@@ -23,7 +23,7 @@ namespace SeaGlass.Editor
             {
                 float z=-39+i;
                 // Match the ocean's existing coastline. No wider beach or new playable land.
-                float shore=-34.5f+Mathf.Sin(z*.07f)*1.1f+Mathf.Sin(z*.19f)*.3f;
+                float shore=CoastShape.ShoreX(z);
                 float start=-30.65f+Mathf.Sin(z*.15f)*.22f+Mathf.Sin(z*.37f)*.07f;
                 float[] x={start,-31.45f,-32.10f,Mathf.Lerp(-32.10f,shore,.28f),Mathf.Lerp(-32.10f,shore,.65f),shore,shore-2};
                 float[] y={-.088f,-.088f,-.089f,-.23f,-.54f,-.85f,-1.3f};
