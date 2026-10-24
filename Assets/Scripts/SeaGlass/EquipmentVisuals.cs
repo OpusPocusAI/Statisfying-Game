@@ -25,9 +25,10 @@ namespace SeaGlass
             if(washing&&!s.ControlsBlocked)
             {
                 // Keep the brush at the glass, rather than waving an unrelated block at the edge of the camera.
-                Vector3 stroke=brushing?new Vector3(Mathf.Sin(Time.time*12)*.19f,.11f,Mathf.Cos(Time.time*12)*.07f):new Vector3(.35f,.12f,.1f);
+                // The modelled brush pivots at its bristle tips, so .05 rests it on the domed glass.
+                Vector3 stroke=brushing?new Vector3(Mathf.Sin(Time.time*12)*.19f,.05f,Mathf.Cos(Time.time*12)*.07f):new Vector3(.35f,.09f,.1f);
                 if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25,0);}
-                if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.28f,-.05f)+stroke*.15f;sprayer.transform.rotation=Quaternion.Euler(35,-45,0);}
+                if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}
             float fill=s.BucketCount/(float)s.progress.BucketCapacity;

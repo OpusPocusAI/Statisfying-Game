@@ -22,9 +22,9 @@ namespace SeaGlass
                 // Use world dimensions: trays themselves have non-uniform transform scales.
                 go.transform.position=tray.transform.position+new Vector3((index%2-.5f)*.26f,.12f+(index/6)*.07f,(index/2%3-1)*.3f);
                 go.transform.rotation=Quaternion.Euler(90,index*29,0);
-                float size=.27f/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y);
+                float size=.27f/Mathf.Max(def.VisualMesh.bounds.size.x,def.VisualMesh.bounds.size.y);
                 go.transform.localScale=Vector3.one*size;
-                go.AddComponent<MeshFilter>().sharedMesh=def.mesh;
+                go.AddComponent<MeshFilter>().sharedMesh=def.VisualMesh;
                 go.AddComponent<MeshRenderer>().sharedMaterial=sockets.First(s=>s.glassId==def.id).surface.sharedMaterial;
                 pieces.Add(def.id,go);
             }

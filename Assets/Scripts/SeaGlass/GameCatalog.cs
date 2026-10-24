@@ -6,7 +6,9 @@ namespace SeaGlass
     public enum GlassColor { Aqua, Emerald, Cobalt, Amber, Pearl, Violet }
     public enum ItemStage { Buried, Shore, Bucket, Truck, Studio, Clean, Sorted, Placed, Recycled }
     public enum PlayerMode { Walking, Driving, Workstation }
-    [Serializable] public class GlassDefinition { public string id; public GlassColor color; public int shape; public int section; public int panel; public Vector2 socket; public float depthOffset; public Mesh mesh; }
+    [Serializable] public class GlassDefinition { public string id; public GlassColor color; public int shape; public int section; public int panel; public Vector2 socket; public float depthOffset; public Mesh mesh;
+        // Rounded, tumbled display mesh with the same outline as the authored polygon (mesh stays the gameplay/test source).
+        public Mesh visualMesh; public Mesh VisualMesh=>visualMesh?visualMesh:mesh; }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject

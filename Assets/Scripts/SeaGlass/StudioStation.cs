@@ -64,15 +64,15 @@ namespace SeaGlass
             if(def.color!=color){S.Notify("A gentle nudge: this piece belongs in the "+def.color+" tray.");return false;}
             r.stage=ItemStage.Sorted;S.Award(8);S.Tutorial(9);Feedback.Instance.Play("sort",1+(int)color*.09f);
             var tray=FindObjectsByType<SortingTray>(FindObjectsSortMode.None).FirstOrDefault(t=>t.color==color);
-            if(tray)Feedback.Instance.Fly(def.mesh,glassRenderer.sharedMaterial,GameCatalog.Palette[(int)color],workingGlass.position,tray.transform.position+Vector3.up*.15f,workingGlass.lossyScale,Quaternion.Euler(90,0,0));
+            if(tray)Feedback.Instance.Fly(def.VisualMesh,glassRenderer.sharedMaterial,GameCatalog.Palette[(int)color],workingGlass.position,tray.transform.position+Vector3.up*.15f,workingGlass.lossyScale,Quaternion.Euler(90,0,0));
             Feedback.Instance.Burst(tray?tray.transform.position+Vector3.up*.2f:workingGlass.position,GameCatalog.Palette[(int)color]);S.Save();SelectNext();return true;
         }
         void UpdateGlass()
         {
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
             block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);glassRenderer.SetPropertyBlock(block);
-            var filter=workingGlass.GetComponent<MeshFilter>();if(def.mesh)filter.sharedMesh=def.mesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.75f)/Mathf.Max(def.mesh.bounds.size.x,def.mesh.bounds.size.y));
+            var filter=workingGlass.GetComponent<MeshFilter>();if(def.VisualMesh)filter.sharedMesh=def.VisualMesh;
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.75f)/Mathf.Max(def.VisualMesh.bounds.size.x,def.VisualMesh.bounds.size.y));
         }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()

@@ -29,7 +29,9 @@ namespace SeaGlass.Editor
             var vertices=new List<Vector3>();var colors=new List<Color>();var triangles=new List<int>();var p=panel.transform.position;
             foreach(var slot in panel.sockets)
             {
-                var filter=slot.piece.GetComponent<MeshFilter>();var mesh=filter.sharedMesh;int n=mesh.vertexCount/2,start=vertices.Count;
+                // Use the authored flat polygon: the installed piece may show the rounded display mesh.
+                var filter=slot.piece.GetComponent<MeshFilter>();var catalog=AssetDatabase.LoadAssetAtPath<GameCatalog>("Assets/Data/SeaGlassCatalog.asset");
+                var mesh=catalog.glass.First(g=>g.id==slot.glassId).mesh;int n=mesh.vertexCount/2,start=vertices.Count;
                 var outline=new Vector2[n];
                 for(int i=0;i<n;i++)
                 {
