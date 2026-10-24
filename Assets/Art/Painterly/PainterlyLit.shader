@@ -16,6 +16,7 @@ Shader "Sea Glass/Painterly Lit"
         _Rim("Rim light", Range(0, 2)) = 1
         _WorldMapping("World-space texture (0 off, 1 ground, 2 walls)", Float) = 0
         _WorldTile("World tile size (m)", Float) = 7
+        _GroundPatches("Broad ground patches", Range(0, 0.4)) = 0
         [HideInInspector] _Cutoff("Alpha cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _SpecColor("Spec", Color) = (0, 0, 0, 0)

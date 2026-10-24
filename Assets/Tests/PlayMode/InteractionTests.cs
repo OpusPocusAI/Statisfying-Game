@@ -151,7 +151,9 @@ namespace SeaGlass.Tests
         [UnityTest] public IEnumerator CompletionScreenKeepsControlUntilDismissed()
         {
             session.progress.completed[0]=true;session.progress.completed[1]=true;CompletePanel(2);
-            yield return new WaitForSeconds(3);Assert.IsTrue(StudioUI.Instance.ending);
+            // The reveal runs ~2.75 s of frame-stepped loops; poll so slow editor frames don't overshoot a fixed wait.
+            for(float t=0;t<6&&!StudioUI.Instance.ending;t+=Time.deltaTime)yield return null;
+            Assert.IsTrue(StudioUI.Instance.ending);
             yield return KeyPress(Key.Escape);yield return KeyPress(Key.Escape);
             Assert.IsFalse(session.paused);Assert.IsTrue(session.player.blocked,"The completion screen still owns the controls after resuming.");
             Assert.IsTrue(Cursor.visible,"The completion screen's button must remain usable.");

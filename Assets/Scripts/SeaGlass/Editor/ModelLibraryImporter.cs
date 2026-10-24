@@ -10,6 +10,7 @@ namespace SeaGlass.Editor
     {
         public const string SourceFolder = "ArtSource/blender/out";
         public const string TargetFolder = "Assets/Art/Models";
+        static readonly string[] PlanarUV = { "picture_frame", "chalkboard" };
 
         [System.Serializable] class Submesh { public int[] indices; }
         [System.Serializable] class ModelData { public string name; public string[] materials; public float[] positions; public float[] normals; public Submesh[] submeshes; }
@@ -55,6 +56,14 @@ namespace SeaGlass.Editor
                 mesh.SetTriangles(tris, s);
             }
             mesh.RecalculateBounds();
+            // Models that show a texture (paintings, chalkboard) get planar UVs here, so re-importing
+            // never strips them: local X/Y normalised to the bounds (the picture faces -Z).
+            if (System.Array.IndexOf(PlanarUV, data.name) >= 0)
+            {
+                var b = mesh.bounds; var uv = new Vector2[n];
+                for (int i = 0; i < n; i++) uv[i] = new Vector2((vertices[i].x - b.min.x) / b.size.x, (vertices[i].y - b.min.y) / b.size.y);
+                mesh.uv = uv;
+            }
             mesh.RecalculateTangents();
             EditorUtility.SetDirty(mesh);
             return mesh;

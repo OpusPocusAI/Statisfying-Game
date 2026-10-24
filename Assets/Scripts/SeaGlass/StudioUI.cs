@@ -5,7 +5,7 @@ namespace SeaGlass
 {
     public class StudioUI : MonoBehaviour
     {
-        public static StudioUI Instance; public bool shop,ending;bool settings,confirmReset;GUIStyle title,heading,body,small,button,panel;Texture2D cream,teal,coral;
+        public static StudioUI Instance; public bool shop,ending;bool settings,confirmReset;[System.NonSerialized] GUIStyle title,heading,body,small,button,panel;[System.NonSerialized] Texture2D cream,teal,coral;
         GameSession S=>GameSession.Instance;
         void Awake(){Instance=this;}
         public void CloseShop(){shop=false;S.RefreshControlState();}
@@ -35,7 +35,7 @@ namespace SeaGlass
             }
             t.Apply();return t;
         }
-        Texture2D tape;Font friendly;
+        [System.NonSerialized] Texture2D tape;[System.NonSerialized] Font friendly;
         void Panel(Rect r){GUI.Box(r,GUIContent.none,panel);GUI.color=new Color(1,1,1,.85f);GUI.DrawTexture(new Rect(r.x+18,r.y-8,64,20),tape);GUI.color=Color.white;}
         void Styles()
         {

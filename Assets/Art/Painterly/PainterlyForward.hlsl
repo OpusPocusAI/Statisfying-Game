@@ -105,6 +105,16 @@ half4 PainterlyFragment(Varyings input) : SV_Target
     albedo = lerp(albedo, albedo * half3(1.06, 0.98, 0.9), saturate(paint * _SG_Paint.y * 4.0));
     albedo = lerp(albedo, albedo * half3(0.92, 0.97, 1.06), saturate(-paint * _SG_Paint.y * 4.0));
 
+    // Broad ground patches (round 3): 10-15 m areas of lighter golden and darker rosy sand, so open
+    // beach never reads as one flat colour (A Short Hike, Tchia).
+    if (_GroundPatches > 0.001)
+    {
+        float big = SG_ValueNoise(input.positionWS.xz * 0.07 + 3.0) * 0.6 + SG_ValueNoise(input.positionWS.xz * 0.21 + 11.0) * 0.4 - 0.5;
+        albedo *= 1.0 + big * _GroundPatches * 1.8;
+        albedo = lerp(albedo, albedo * half3(0.97, 0.9, 0.9), saturate(-big * 4.0) * _GroundPatches * 2.4);
+        albedo = lerp(albedo, albedo * half3(1.04, 1.01, 0.9), saturate(big * 4.0) * _GroundPatches * 2.4);
+    }
+
     // Height gradient: darker, cooler base and a sunlit crown.
     float height = saturate(input.positionWS.y / max(_GradientHeight, 0.05));
     albedo *= lerp(1.0 - _GradientStrength, 1.0 + _GradientStrength * 0.3, smoothstep(0.0, 1.0, height));

@@ -23,6 +23,7 @@ CBUFFER_START(UnityPerMaterial)
     half _Rim;
     half _WorldMapping;
     half _WorldTile;
+    half _GroundPatches;
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

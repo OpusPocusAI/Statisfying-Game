@@ -110,12 +110,12 @@ Each area has a current state, a V1 bar (all items must be true to call the area
 
 Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 3 = coherent but plain, 5 = matches the references. V1 ships when every area is at least 4.
 
-### 5.1 Lighting, sky and atmosphere (Oct 24: 2 → 4/5)
+### 5.1 Lighting, sky and atmosphere (Oct 24: 2 → 3 → 4/5 after side-by-side round 3)
 
 **Now:** washed-out peach haze over everything, low contrast, grey shadows. The sun and clouds are blurry smudges.
 
 **V1 bar:**
-- [ ] Sky has a visible gradient from peach at the top to pale yellow at the horizon.
+- [ ] Sky grades from a cool blue-lilac zenith through a peach band to a pale yellow horizon (corrected after the side-by-side with Tchia: an all-peach sky flattened every view).
 - [ ] Shadows are visibly purple-tinted in every review view.
 - [ ] Light side versus shadow side of objects is clearly different (not just slightly darker).
 - [ ] Far hills fade to the haze colour; near objects are crisp and saturated.
@@ -124,7 +124,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `01-lighting`. **Never:** neutral grey shadows, full-screen haze that flattens near objects.
 
-### 5.2 Water and shoreline (Oct 24: 3 → 4/5)
+### 5.2 Water and shoreline (Oct 24: 3 → 4/5, confirmed by side-by-side round 2)
 
 **Now:** turquoise water with brush-mark ripples, broken shore crests and rock surf. The October 24 blend removed the hard seam. The coast is still a long straight strip.
 
@@ -136,7 +136,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`. **Never:** visible seams between water and sand meshes, uniform water colour from shore to horizon.
 
-### 5.3 Sand and terrain (Oct 24: 1 → 4/5)
+### 5.3 Sand and terrain (Oct 24: 1 → 3 → 4/5 after side-by-side round 3)
 
 **Now:** flat, single-colour sand covers most of the frame. Dig piles are repeated cone shapes. The inland rock wall is grey boxes.
 
@@ -148,7 +148,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`, `08-props-tools`. **Never:** a single flat colour filling more than a third of the screen.
 
-### 5.4 Beach props and vegetation (Oct 24: 2 → 4/5)
+### 5.4 Beach props and vegetation (Oct 24: 2 → 3 → 4/5 after side-by-side round 3)
 
 **Now:** parasols and benches have had a polish pass, but the bench is three logs and grass is sparse spikes. Trees are low-poly blobs with flat colour.
 
@@ -172,7 +172,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`. **Never:** rubbish that looks like generic coloured capsules.
 
-### 5.6 Sea glass pieces (Oct 24: 1 → 4/5) — highest priority
+### 5.6 Sea glass pieces (Oct 24: 1 → 3 → 4/5 after side-by-side round 2) — highest priority
 
 **Now:** flat polygon tiles with uniform colour. Cloudy glass reads as white plastic; clean glass reads as cyan acrylic.
 
@@ -185,7 +185,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `03-sea-glass`. **Never:** flat slabs, uniform opaque colour, glass that looks like plastic.
 
-### 5.7 Cleaning station (Oct 24: 1 → 4/5)
+### 5.7 Cleaning station (Oct 24: 1 → 2 → 4/5 after side-by-side round 2)
 
 **Now:** a flat teal basin with ripple rings. The brush is a box and the tap is two boxes. Bubbles are plain white spheres. The grime fades in patches.
 
@@ -210,7 +210,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `05-sorting`. **Never:** dark empty slabs, unreadable labels.
 
-### 5.9 Mosaic panels and reveal (Oct 24: 3 → 4/5)
+### 5.9 Mosaic panels and reveal (Oct 24: 3 → 4/5 after side-by-side round 2)
 
 **Now:** the best visual moment in the game; coloured light on the floor works. Panels are about 10 large flat pieces each and look like vector clip art. Empty sockets are dark grey shapes.
 
@@ -223,7 +223,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `06-mosaic`. **Never:** flat vector shapes with no came or texture.
 
-### 5.10 Studio interior (Oct 24: 2 → 4/5)
+### 5.10 Studio interior (Oct 24: 2 → 3/5 — not yet at the bar)
 
 **Now:** coherent palette (teal walls, cream, burnt-orange beams), curtains, pendants and pottery. Flat shading, large empty floor areas, tables are slabs on blocks.
 
@@ -247,7 +247,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `09-truck-road`. **Never:** flat uniform grey road.
 
-### 5.12 First-person tools (Oct 24: 2 → 4/5)
+### 5.12 First-person tools (Oct 24: 2 → 3 → 4/5 after side-by-side round 2)
 
 **Now:** the shovel is a hexagon on a stick. The bucket, sack and sieve have been reshaped and read better.
 
@@ -269,7 +269,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `04-cleaning`, `05-sorting`. **Never:** default particle sprites, plain spheres.
 
-### 5.14 UI and HUD (Oct 24: 3 → 4/5)
+### 5.14 UI and HUD (Oct 24: 3 → 4/5 after side-by-side round 2)
 
 **Now:** cream panels with dark teal text match the brief. There are no icons, and in-world labels are low contrast and sometimes unreadable.
 
@@ -364,9 +364,32 @@ Passes `Sea Glass/Art Direction/7`–`11` (pass 10 is runtime code). Twelve of f
 
 ### October 24 — passes 12 and 13
 
-Every area now scores at least 4/5 against its bar. That meets this document's V1 art threshold as judged from the fixed review captures and comparison with the reference screenshots; it is not a human play-test sign-off.
+**Correction (later on October 24):** this claim did not hold. These scores were self-assessed from our own captures, without opening each reference screenshot next to the matching game view. The side-by-side rounds below re-scored ten of fourteen areas at 2–3.
 
 | Area | Change | Still open |
 | --- | --- | --- |
 | 5.3 Sand (3 → 4) | The blocky inland rock row is one continuous sculpted dune ridge with wind-cut crests, grass on the high ground and a few outcrops; 48 broad, walkable beach swells keep 1.2 m clear of every collectible; the lighting shader now grades light within the lit side so gentle slopes read as form | Swells are simple smooth domes; no footprints |
 | 5.12 Tools (3 → 4) | Modelled enamel bucket (band, rolled rim, bail handle, wooden grip) and soft canvas sack (rope drawstring, straps, patch); contents show sand, coloured glass, a can, a cap and a bottle | No hand model; contents are a representative heap, not the exact finds |
+
+### October 24 — side-by-side comparison, rounds 1 to 3 (passes 1b and 14 to 17)
+
+Method: each official Steam screenshot of the reference games was opened full width in a browser (viewed, not downloaded) and compared against a game capture taken from a fixed position with the matching subject. Notes were written after each pair. The full notes and the per-round tables are in `ArtReference/comparison.md` (local, git-ignored). Game captures: `Captures/Compare/current` (round 1), `round2`, `round3`.
+
+| Area | Round 1 | Round 2 | Round 3 | Main change / what still differs |
+| --- | --- | --- | --- | --- |
+| 5.1 Lighting | 3 | 3 | **4** | Cool blue-lilac zenith, lit cumulus, deeper violet shadows (pass 1b); zenith lowered so eye-level views show blue (round 3). No light shafts. |
+| 5.2 Water | 3 | **4** | 4 | See-through shallows over sand, sun-glint path, saturated deep colour. |
+| 5.3 Sand/terrain | 3 | 3 | **4** | Layered headland rocks (14); layered sea stacks, cliff-and-hill far islands, broad sand colour patches, pebbles/shells/tufts and a tide line (17). From low angles the beach is still a broad warm plane. |
+| 5.4 Props/vegetation | 3 | 3 | **4** | Flower clumps (14); dark shrub groups and a picnic scene under each parasol (17). |
+| 5.5 Rubbish | 4 | 4 | 4 | — |
+| 5.6 Sea glass | 3 | **4** | 4 | Working piece at a believable 42 cm. |
+| 5.7 Cleaning | 2 | **4** | 4 | Salt clears under the brush with a crisp stroke edge; foam at the contact point. |
+| 5.8 Sorting | 4 | 4 | 4 | — |
+| 5.9 Mosaic | 3 | **4** | 4 | Stained-glass fragments with near-black lead inside each piece (FrostedGlass shader). |
+| 5.10 Studio | 3 | 3 | **3** | Wall textures, nets, paintings, chalkboard (15); plants, baskets, crate shelf, hanging planters, rugs, bench-end jars and tools (17). Still a long bare walkway down the hall next to Unpacking's density. |
+| 5.11 Truck | 4 | 4 | 4 | — |
+| 5.12 Tools | 3 | **4** | 4 | Gloved hands grip each tool (16). Bucket forearm angle is acceptable, not natural. |
+| 5.13 Effects | 4 | 4 | 4 | Not compared in motion. |
+| 5.14 UI | 3 | **4** | 4 | Paper-card panels with tape and a rounded system face (Candara where installed). |
+
+V1 is **not** met: the studio interior (5.10) is still at 3. Next for the studio: a central work island or shelving that divides the hall (needs collision, so it changes player movement and needs checking against the tests), every bench top dressed, and more on the gallery wall. No human play-test has been done; scores are judged from fixed captures, not from play.
