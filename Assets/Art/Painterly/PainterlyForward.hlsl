@@ -83,9 +83,19 @@ half4 PainterlyFragment(Varyings input) : SV_Target
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
     // Ground surfaces can map their texture in world space so it tiles seamlessly across meshes.
-    float2 uv = _WorldMapping > 0.5 ? input.positionWS.xz / max(_WorldTile, 0.01) : input.uv;
-    half3 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv).rgb * _BaseColor.rgb;
+    // Mode 1: ground (xz). Mode 2: walls and roofs, picking the world plane the surface faces
+    // (texture v runs up the wall, so boards and courses stay horizontal).
     float3 normalWS = normalize(input.normalWS);
+    float2 uv = input.uv;
+    float tile = max(_WorldTile, 0.01);
+    if (_WorldMapping > 1.5)
+    {
+        float3 an = abs(normalWS);
+        uv = an.y > max(an.x, an.z) ? input.positionWS.xz / tile
+           : an.x > an.z ? input.positionWS.zy / tile : input.positionWS.xy / tile;
+    }
+    else if (_WorldMapping > 0.5) uv = input.positionWS.xz / tile;
+    half3 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv).rgb * _BaseColor.rgb;
     float3 viewWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
     float2 screenUV = GetNormalizedScreenSpaceUV(input.positionCS);
 

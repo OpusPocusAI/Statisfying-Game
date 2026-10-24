@@ -14,7 +14,7 @@ Shader "Sea Glass/Painterly Lit"
         _GradientHeight("Gradient height (m)", Float) = 2
         _Variation("Painted variation", Range(0, 0.3)) = 0.07
         _Rim("Rim light", Range(0, 2)) = 1
-        [Toggle] _WorldMapping("World-space texture (ground)", Float) = 0
+        _WorldMapping("World-space texture (0 off, 1 ground, 2 walls)", Float) = 0
         _WorldTile("World tile size (m)", Float) = 7
         [HideInInspector] _Cutoff("Alpha cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
