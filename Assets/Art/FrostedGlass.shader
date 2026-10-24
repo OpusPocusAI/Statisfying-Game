@@ -78,6 +78,11 @@ Shader "Sea Glass/Frosted Glass"
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 float3 l = sun.direction;
                 half3 tint = _BaseColor.rgb;
+                // Hand-made glass is never one flat colour: soft density streaks and a few tiny seeds.
+                float streak = Noise(i.local * float3(2.2, 7.5, 2.2) + 4.1);
+                tint *= .84 + streak * .3;
+                float seeds = step(.985, Noise(i.local * 38.0 + 9.3));
+                tint = lerp(tint, tint * 1.6 + .08, seeds * .5);
                 float nv = saturate(dot(n, v));
                 float fresnel = pow(1 - nv, 3);
 
