@@ -16,10 +16,20 @@ namespace SeaGlass
             pool=new ParticleSystem[6];for(int i=0;i<pool.Length;i++)
             {var g=new GameObject("Pooled foam and sparkle");g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();var main=ps.main;main.playOnAwake=false;main.startLifetime=.7f;main.startSpeed=1.3f;main.startSize=.07f;main.gravityModifier=.2f;main.maxParticles=60;var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.12f;
                 ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;pool[i]=ps;}
+            // Reward bursts: sparkle-shaped, rising softly, shrinking and fading out.
+            if(particleMaterial){sparkle=new Material(particleMaterial){name="Reward sparkle"};sparkle.SetFloat("_Glint",1);}
+            foreach(var ps in pool)
+            {
+                var main=ps.main;main.startSize=new ParticleSystem.MinMaxCurve(.07f,.16f);main.gravityModifier=-.05f;main.startLifetime=new ParticleSystem.MinMaxCurve(.6f,1.1f);
+                var size=ps.sizeOverLifetime;size.enabled=true;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.4f),new Keyframe(.15f,1),new Keyframe(1,0)));
+                var fade=ps.colorOverLifetime;fade.enabled=true;var g=new Gradient();g.SetKeys(new[]{new GradientColorKey(Color.white,0),new GradientColorKey(Color.white,1)},new[]{new GradientAlphaKey(1,0),new GradientAlphaKey(.9f,.5f),new GradientAlphaKey(0,1)});fade.color=g;
+                var drag=ps.limitVelocityOverLifetime;drag.enabled=true;drag.drag=2.5f;
+                if(sparkle)ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;
+            }
             foam=Emitter("Soap foam",1.3f,.12f,.022f,.05f,-.04f,120,.08f);
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
         }
-        ParticleSystem foam,dust;float nextDust;
+        ParticleSystem foam,dust;float nextDust;Material sparkle;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
         ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
         {
@@ -75,6 +85,6 @@ namespace SeaGlass
             Destroy(go);
         }
         void Update(){music.volume=musicVolume;if(!GameSession.Instance||GameSession.Instance.ControlsBlocked||!GameSession.Instance.truck.driving)engine.volume=0;}
-        void OnDestroy(){foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
+        void OnDestroy(){if(sparkle)Destroy(sparkle);foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
     }
 }

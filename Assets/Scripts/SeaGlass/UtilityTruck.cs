@@ -32,7 +32,7 @@ namespace SeaGlass
             int count=0;
             foreach(var r in S.progress.items)if(r.stage==ItemStage.Bucket&&r.id.StartsWith(glass?"glass-":"rubbish-")&&S.CargoCount<S.progress.TruckCapacity){r.stage=ItemStage.Truck;count++;}
             if(count==0){S.Notify("No "+(glass?"glass":"rubbish")+" to load, or the truck is full.");return false;}
-            S.Tutorial(5);RefreshCargo();S.Save();Feedback.Instance?.Play(glass?"glass":"metal");Feedback.Instance?.Burst(transform.position-transform.forward*1.5f+Vector3.up,glass?GameCatalog.Palette[0]:Color.gray,12);S.Notify(count+" pieces loaded into the "+(glass?"glass":"recycling")+" crate.");return true;
+            S.Tutorial(5);RefreshCargo();S.Save();Feedback.Instance?.Play(glass?"glass":"metal");Feedback.Instance?.Burst(transform.position-transform.forward*1.5f+Vector3.up,glass?GameCatalog.Palette[0]:new Color(1f,.84f,.55f),12);S.Notify(count+" pieces loaded into the "+(glass?"glass":"recycling")+" crate.");return true;
         }
         public void RefreshCargo()
         {
