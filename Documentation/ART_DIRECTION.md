@@ -110,7 +110,7 @@ Each area has a current state, a V1 bar (all items must be true to call the area
 
 Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 3 = coherent but plain, 5 = matches the references. V1 ships when every area is at least 4.
 
-### 5.1 Lighting, sky and atmosphere (current: 2/5)
+### 5.1 Lighting, sky and atmosphere (Oct 24: 2 → 4/5)
 
 **Now:** washed-out peach haze over everything, low contrast, grey shadows. The sun and clouds are blurry smudges.
 
@@ -124,7 +124,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `01-lighting`. **Never:** neutral grey shadows, full-screen haze that flattens near objects.
 
-### 5.2 Water and shoreline (current: 3/5)
+### 5.2 Water and shoreline (Oct 24: 3 → 3/5)
 
 **Now:** turquoise water with brush-mark ripples, broken shore crests and rock surf. The October 24 blend removed the hard seam. The coast is still a long straight strip.
 
@@ -136,7 +136,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`. **Never:** visible seams between water and sand meshes, uniform water colour from shore to horizon.
 
-### 5.3 Sand and terrain (current: 1/5)
+### 5.3 Sand and terrain (Oct 24: 1 → 3/5)
 
 **Now:** flat, single-colour sand covers most of the frame. Dig piles are repeated cone shapes. The inland rock wall is grey boxes.
 
@@ -148,7 +148,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`, `08-props-tools`. **Never:** a single flat colour filling more than a third of the screen.
 
-### 5.4 Beach props and vegetation (current: 2/5)
+### 5.4 Beach props and vegetation (Oct 24: 2 → 2/5)
 
 **Now:** parasols and benches have had a polish pass, but the bench is three logs and grass is sparse spikes. Trees are low-poly blobs with flat colour.
 
@@ -160,7 +160,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`, `11-composition`. **Never:** single primitives standing in for props.
 
-### 5.5 Rubbish and collectibles (current: 2/5)
+### 5.5 Rubbish and collectibles (Oct 24: 2 → 2/5)
 
 **Now:** bottles and cans read at close range but are small, flat-coloured and simple.
 
@@ -172,7 +172,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`. **Never:** rubbish that looks like generic coloured capsules.
 
-### 5.6 Sea glass pieces (current: 1/5) — highest priority
+### 5.6 Sea glass pieces (Oct 24: 1 → 4/5) — highest priority
 
 **Now:** flat polygon tiles with uniform colour. Cloudy glass reads as white plastic; clean glass reads as cyan acrylic.
 
@@ -185,7 +185,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `03-sea-glass`. **Never:** flat slabs, uniform opaque colour, glass that looks like plastic.
 
-### 5.7 Cleaning station (current: 1/5)
+### 5.7 Cleaning station (Oct 24: 1 → 4/5)
 
 **Now:** a flat teal basin with ripple rings. The brush is a box and the tap is two boxes. Bubbles are plain white spheres. The grime fades in patches.
 
@@ -198,7 +198,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `04-cleaning`. **Never:** white spheres as bubbles, primitive tools.
 
-### 5.8 Sorting station (current: 1/5)
+### 5.8 Sorting station (Oct 24: 1 → 4/5)
 
 **Now:** dark empty tray slabs with one small coloured rectangle each. Labels are low-contrast teal on beige.
 
@@ -210,7 +210,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `05-sorting`. **Never:** dark empty slabs, unreadable labels.
 
-### 5.9 Mosaic panels and reveal (current: 3/5)
+### 5.9 Mosaic panels and reveal (Oct 24: 3 → 4/5)
 
 **Now:** the best visual moment in the game; coloured light on the floor works. Panels are about 10 large flat pieces each and look like vector clip art. Empty sockets are dark grey shapes.
 
@@ -223,7 +223,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `06-mosaic`. **Never:** flat vector shapes with no came or texture.
 
-### 5.10 Studio interior (current: 2/5)
+### 5.10 Studio interior (Oct 24: 2 → 3/5)
 
 **Now:** coherent palette (teal walls, cream, burnt-orange beams), curtains, pendants and pottery. Flat shading, large empty floor areas, tables are slabs on blocks.
 
@@ -235,7 +235,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `07-studio`. **Never:** slab tables, large empty floor planes.
 
-### 5.11 Truck and road (current: 3/5)
+### 5.11 Truck and road (Oct 24: 3 → 3/5)
 
 **Now:** the truck is charming and recognisable, with colour blocking, but boxy. The road is a flat grey plane with dashes.
 
@@ -247,7 +247,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `09-truck-road`. **Never:** flat uniform grey road.
 
-### 5.12 First-person tools (current: 2/5)
+### 5.12 First-person tools (Oct 24: 2 → 3/5)
 
 **Now:** the shovel is a hexagon on a stick. The bucket, sack and sieve have been reshaped and read better.
 
@@ -258,7 +258,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`. **Never:** flat-shaded polygons on a stick.
 
-### 5.13 Effects and feedback (current: 1/5)
+### 5.13 Effects and feedback (Oct 24: 1 → 3/5)
 
 **Now:** plain white sphere bubbles; little visible effect on digging, loading or recycling.
 
@@ -269,7 +269,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `04-cleaning`, `05-sorting`. **Never:** default particle sprites, plain spheres.
 
-### 5.14 UI and HUD (current: 3/5)
+### 5.14 UI and HUD (Oct 24: 3 → 4/5)
 
 **Now:** cream panels with dark teal text match the brief. There are no icons, and in-world labels are low contrast and sometimes unreadable.
 
@@ -319,3 +319,30 @@ These need a decision from the project owner before the larger passes:
 - **Asset source.** Current art is generated by editor scripts. That approach has reached its limit for hero objects (glass, tools, stations). Options: hand-model in Blender, buy a stylized asset pack that matches this direction and adapt it, or a mix (bought environment, hand-made hero objects).
 - **Paint-overs.** Whether to commission or make paint-overs of the review views as exact targets.
 - **Shader approach.** Whether to build a custom stylized lighting shader (gradient ramps, purple shadow tint) for all materials, or keep URP Lit materials and rely on lighting and post-processing.
+
+## 9. Progress log
+
+### October 24 — passes 1 to 6
+
+Six repeatable passes (menu `Sea Glass/Art Direction/1`–`5`; pass 6 is runtime code) were applied and compared against official Steam screenshots of the reference games (notes in `ArtReference/notes.md`). New models are built by Blender scripts in `ArtSource/blender` and imported by `ModelLibraryImporter`. Matched before/after captures of ten fixed views are in `Captures/ArtPass/baseline` and `Captures/ArtPass/after` (positions in `IMPLEMENTATION.md`).
+
+Six areas now meet 4/5. V1 is **not** yet met: eight areas are still at 2–3.
+
+| Area | Bar items met | Still open |
+| --- | --- | --- |
+| 5.1 Lighting (4) | Graded sky, purple-tinted shadows, clear light/shadow split, crisp sun, distance haze, visible AO | Clouds are better shaped but still soft-edged in places |
+| 5.2 Water (3) | Colour bands, animated foam line on sand and rocks, wet-sand sheen, no seam | Coastline is still a long straight strip apart from rocky points |
+| 5.3 Sand (3) | Painted ripples and patches, soft dig mounds, shells/pebbles/kelp, no flat single colour | Little height variation on the open beach; inland rock hills still very faceted |
+| 5.4 Props (2) | Faceted rocks | Trees, grass, benches and parasols not reworked; no cove focal landmarks added |
+| 5.5 Rubbish (2) | — | Not reworked |
+| 5.6 Sea glass (4) | Rounded pebbles, frosted/stained dirty state, refracting clean glass with rim colour and backlight glow, inner streaks | Rare red is not visibly special |
+| 5.7 Cleaning (4) | Modelled basin, tap, brush and sprayer; clear water; foam and droplets; brush-streak reveal; colour sparkle when clean | Grime clears by a global value, not under the actual brush position |
+| 5.8 Sorting (4) | Lined trays readable across the room, legible labels, pieces visibly fill trays | — |
+| 5.9 Mosaic (4) | Raised lead came, glass streaks and seeds, empty panels show the picture outline, floor light spill | Panels are still about 10 large pieces each |
+| 5.10 Studio (3) | Modelled workbenches, rug, bench, easel, stools, crates, jars; window light shapes | No neglected → restored change beyond the lights; walls and ceiling still plain |
+| 5.11 Truck/road (3) | Sand drifts break the road edges | Truck bodywork unchanged |
+| 5.12 Tools (3) | Designed toy spade and round sieve | Bucket and sack unchanged; no hand model |
+| 5.13 Effects (3) | Foam, droplets, sand puffs, clean sparkle | Loading, recycling and placing still lack their own effects |
+| 5.14 UI (4) | Drawn icons, HUD steps aside at stations, legible signs | — |
+
+Highest-value next work: coastline shaping and cove landmarks (5.2, 5.4), rubbish models (5.5), the neglected-to-restored studio change (5.10), and effects for loading, recycling and placing (5.13).
