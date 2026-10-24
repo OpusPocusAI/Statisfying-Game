@@ -21,7 +21,7 @@ namespace SeaGlass
         {
             if(!S.progress.SectionOpen(section)||Record.stage!=ItemStage.Buried)return;
             dig+=delta*(S.progress.upgrades.Contains("scoop")?2.7f:1);
-            Feedback.Instance?.LoopAction("sand");
+            Feedback.Instance?.LoopAction("sand");Feedback.Instance?.Dust(transform.position);
             if(mound)mound.localScale=moundSize*Mathf.Lerp(1,.05f,dig/1.7f);
             if(dig<1.7f)return;
             Record.stage=ItemStage.Shore;S.Tutorial(2);Refresh();Feedback.Instance?.Burst(transform.position,GameCatalog.Palette[colorIndex],8);

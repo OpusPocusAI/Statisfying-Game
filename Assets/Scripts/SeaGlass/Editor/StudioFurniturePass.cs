@@ -73,6 +73,9 @@ namespace SeaGlass.Editor
                 spade.AddComponent<MeshFilter>().sharedMesh = ModelLibraryImporter.Load("toy_spade");
                 var r = spade.AddComponent<MeshRenderer>(); r.sharedMaterials = new[] { coral, handle };
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                // GatheringPresentation hides the starter blade once the sieve upgrade is owned.
+                var presentation = Object.FindFirstObjectByType<GatheringPresentation>();
+                if (presentation) { presentation.toyBlade = spade; EditorUtility.SetDirty(presentation); }
             }
             var basket = GameObject.Find("ART • sieve basket")?.transform;
             if (basket)

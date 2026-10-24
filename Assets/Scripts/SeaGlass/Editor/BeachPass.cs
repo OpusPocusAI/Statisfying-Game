@@ -69,7 +69,7 @@ namespace SeaGlass.Editor
                         f.transform.localPosition -= new Vector3(0, .46f * s.y, 0);
                         f.transform.localScale = new Vector3(s.x * 1.1f, s.y * .92f, s.z * 1.1f);
                     }
-                    f.sharedMesh = mounds[index++ % 4]; r.sharedMaterial = groundSandMaterial; EditorUtility.SetDirty(f); continue;
+                    f.sharedMesh = mounds[index++ % 4]; r.sharedMaterials = new[] { groundSandMaterial }; EditorUtility.SetDirty(f); continue;
                 }
                 if (m != stone) continue;     // distant green hills keep their shape
                 f.sharedMesh = rocks[index++ % 4]; EditorUtility.SetDirty(f);
@@ -96,12 +96,13 @@ namespace SeaGlass.Editor
                     f.transform.localScale = new Vector3(s.x * 1.1f, s.y * .92f, s.z * 1.1f);
                 }
                 f.sharedMesh = mounds[index++ % 4];
-                f.GetComponent<Renderer>().sharedMaterial = groundSand;
+                f.GetComponent<Renderer>().sharedMaterials = new[] { groundSand };   // one submesh, one material
                 EditorUtility.SetDirty(f);
             }
 
             Details();
             RockyPoints(rocks);
+            RoadDrifts(mounds);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -253,6 +254,35 @@ namespace SeaGlass.Editor
                 for (int i = 0; i < n; i++) Place(R(0, 1) < .5f ? 3 : R(0, 1) < .6f ? 0 : 1, cx + R(-.6f, .6f), cz + R(-.6f, .6f));
             }
             Debug.Log("Beach details placed: " + placed);
+        }
+
+        // ------------------------------------------------------------------ road drifts
+        // Thin, wind-blown sand tongues creep over both road edges and break the ruler-straight line.
+        // Visual only: no colliders, and at most 4 cm high so the truck drives straight through.
+        static void RoadDrifts(Mesh[] mounds)
+        {
+            var old = GameObject.Find("ART • road sand drifts"); if (old) Object.DestroyImmediate(old);
+            var road = GameObject.Find("Coast road"); if (!road) return;
+            var b = road.GetComponent<Renderer>().bounds;
+            var root = new GameObject("ART • road sand drifts");
+            var sand = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/SeaGlass/Apricot sand.mat");
+            var rng = new System.Random(23);
+            float R(float a, float c) => a + (float)rng.NextDouble() * (c - a);
+            for (float z = b.min.z + 4; z < b.max.z - 6; z += R(3.5f, 8f))
+                foreach (int side in new[] { -1, 1 })
+                {
+                    if (rng.NextDouble() < .3) continue;
+                    float edge = side < 0 ? b.min.x : b.max.x;
+                    var go = new GameObject("Sand drift");
+                    go.transform.SetParent(root.transform);
+                    go.transform.position = new Vector3(edge + side * R(-.6f, .3f), b.max.y - .015f, z);
+                    go.transform.rotation = Quaternion.Euler(0, R(-25, 25) + (side < 0 ? 0 : 180), 0);
+                    go.transform.localScale = new Vector3(R(.9f, 1.8f), R(.025f, .045f), R(1.6f, 3.2f));
+                    go.AddComponent<MeshFilter>().sharedMesh = mounds[rng.Next(0, 4)];
+                    var r = go.AddComponent<MeshRenderer>(); r.sharedMaterial = sand;
+                    r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
+                }
         }
 
         // ------------------------------------------------------------------ rocky points

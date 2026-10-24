@@ -16,6 +16,33 @@ namespace SeaGlass
             pool=new ParticleSystem[6];for(int i=0;i<pool.Length;i++)
             {var g=new GameObject("Pooled foam and sparkle");g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();var main=ps.main;main.playOnAwake=false;main.startLifetime=.7f;main.startSpeed=1.3f;main.startSize=.07f;main.gravityModifier=.2f;main.maxParticles=60;var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.12f;
                 ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;pool[i]=ps;}
+            foam=Emitter("Soap foam",1.3f,.12f,.022f,.05f,-.04f,120,.08f);
+            dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
+        }
+        ParticleSystem foam,dust;float nextDust;
+        // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
+        ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
+        {
+            var g=new GameObject(name);g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();
+            var main=ps.main;main.playOnAwake=false;main.startLifetime=new ParticleSystem.MinMaxCurve(life*.6f,life);main.startSpeed=new ParticleSystem.MinMaxCurve(speed*.3f,speed);
+            main.startSize=new ParticleSystem.MinMaxCurve(minSize,maxSize);main.gravityModifier=gravity;main.maxParticles=max;main.simulationSpace=ParticleSystemSimulationSpace.World;
+            var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Hemisphere;shape.radius=radius;
+            var size=ps.sizeOverLifetime;size.enabled=true;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.6f),new Keyframe(.2f,1),new Keyframe(1,.2f)));
+            var fade=ps.colorOverLifetime;fade.enabled=true;var gradient=new Gradient();gradient.SetKeys(new[]{new GradientColorKey(Color.white,0),new GradientColorKey(Color.white,1)},new[]{new GradientAlphaKey(.9f,0),new GradientAlphaKey(.8f,.6f),new GradientAlphaKey(0,1)});fade.color=gradient;
+            ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;return ps;
+        }
+        // Brushing: small soap bubbles where the bristles meet the glass, plus the odd droplet.
+        public void Foam(Vector3 at,float spread)
+        {
+            if(!foam)return;var p=new ParticleSystem.EmitParams();
+            for(int i=0;i<4;i++){p.position=at+new Vector3(Random.Range(-spread,spread),.02f,Random.Range(-spread,spread)*.6f);p.startColor=new Color(.94f,.98f,1f,.9f);foam.Emit(p,1);}
+            if(Random.value<.35f){p.position=at+Vector3.up*.05f;p.velocity=new Vector3(Random.Range(-.6f,.6f),Random.Range(.8f,1.4f),Random.Range(-.4f,.4f));p.startSize=.025f;p.startColor=new Color(.7f,.88f,.9f,.8f);foam.Emit(p,1);}
+        }
+        // Digging: puffs of sand kicked up from the mound.
+        public void Dust(Vector3 at)
+        {
+            if(!dust||Time.time<nextDust)return;nextDust=Time.time+.14f;var p=new ParticleSystem.EmitParams();
+            for(int i=0;i<5;i++){p.position=at+new Vector3(Random.Range(-.15f,.15f),.08f,Random.Range(-.15f,.15f));p.velocity=new Vector3(Random.Range(-.5f,.5f),Random.Range(.7f,1.4f),Random.Range(-.5f,.5f));p.startColor=new Color(1f,.95f,.84f,.75f);dust.Emit(p,1);}
         }
         static AudioClip Tone(string name,int index)
         {

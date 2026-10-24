@@ -47,10 +47,10 @@ namespace SeaGlass
         {
             if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
             r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Time.time>=nextFoam){nextFoam=Time.time+.12f;Feedback.Instance.Burst(workingGlass.position,Color.white,2);}
+            if(Time.time>=nextFoam){nextFoam=Time.time+.08f;Feedback.Instance.Foam(workingGlass.position,.18f);}
             if(r.grime<=.001f)
             {
-                r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");S.Save();
+                r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");Feedback.Instance.Burst(workingGlass.position+Vector3.up*.05f,GameCatalog.Palette[(int)S.catalog.glass.First(g=>g.id==r.id).color]*1.4f,18);S.Save();
                 S.Notify("Colour revealed. Take this piece to the sorting trays.");
                 // Progress commits immediately; the presentation gives the finished piece a moment
                 // in the light. Leaving or loading can cancel this without losing/duplicating it.

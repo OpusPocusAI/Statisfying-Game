@@ -34,23 +34,38 @@ namespace SeaGlass
                 GUI.Box(new Rect(420,782,600,84),GUIContent.none,panel);
                 GUI.Label(new Rect(445,797,550,56),S.message,body);return;
             }
-            GUI.Box(new Rect(28,25,330,113),GUIContent.none,panel);GUI.Label(new Rect(47,37,290,28),"SEA GLASS / STUDIO",heading);
-            GUI.Label(new Rect(47,71,290,27),"LEVEL "+S.progress.Level+"    ·    "+S.progress.xp+" XP    ·    "+S.progress.caps+" CAPS",small);
-            GUI.Label(new Rect(47,101,290,22),"BUCKET "+S.BucketCount+" / "+S.progress.BucketCapacity+"     TRUCK "+S.CargoCount+" / "+S.progress.TruckCapacity,small);
-            GUI.Box(new Rect(1025,25,387,102),GUIContent.none,panel);GUI.Label(new Rect(1047,39,345,28),"THE SEASIDE TRIPTYCH",heading);
-            GUI.Label(new Rect(1047,76,345,24),string.Join("    /    ",Enumerable.Range(0,3).Select(p=>S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p))+" of 10")),body);
-            if(S.paused){Pause();return;}if(shop){Shop();return;}
             var f=S.player.focus;
             var station=FindObjectsByType<StudioStation>(FindObjectsSortMode.None).FirstOrDefault(s=>s.active);
+            // Status panels step aside while the player works at a station, so the glass stays the focus.
+            if(!station||S.paused||shop)
+            {
+                GUI.Box(new Rect(28,25,360,113),GUIContent.none,panel);GUI.Label(new Rect(47,35,300,28),"SEA GLASS / STUDIO",heading);
+                Stat("xp",47,71,"LEVEL "+S.progress.Level+"  ·  "+S.progress.xp+" XP");Stat("caps",255,71,S.progress.caps.ToString());
+                Stat("bucket",47,101,S.BucketCount+" / "+S.progress.BucketCapacity);Stat("truck",155,101,S.CargoCount+" / "+S.progress.TruckCapacity);
+                GUI.Box(new Rect(1025,25,387,102),GUIContent.none,panel);GUI.Label(new Rect(1047,37,345,28),"THE SEASIDE TRIPTYCH",heading);
+                for(int p=0;p<3;p++)
+                {
+                    int placed=S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p));
+                    GUI.color=GameCatalog.Palette[new[]{0,2,5}[p]];GUI.DrawTexture(new Rect(1047+p*118,77,22,22),HudIcons.Get("gem"));GUI.color=Color.white;
+                    GUI.Label(new Rect(1075+p*118,76,90,24),placed+" / 10",body);
+                }
+            }
+            if(S.paused){Pause();return;}if(shop){Shop();return;}
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
             if(f&&!station){GUI.Box(new Rect(440,550,560,48),GUIContent.none,panel);GUI.Label(new Rect(457,559,530,30),f.Prompt,body);}
             if(!S.progress.tutorialDismissed){GUI.Box(new Rect(28,770,640,104),GUIContent.none,panel);GUI.Label(new Rect(47,784,600,55),TutorialGuidance.Get(S,station),body);}
             bool driving=S.player.mode==PlayerMode.Driving;
             GUI.Label(new Rect(47,845,620,23),driving?"W/S drive    A/D steer    Space brake    E exit    R recover":"H guidance    F reveal glass    R recover truck    Esc pause",small);
-            if(!station&&!driving)GUI.Label(new Rect(1080,827,340,48),S.player.equippedTool==1?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
+            if(!station&&!driving)
+            {
+                bool carrying=S.player.equippedTool==1;string icon=carrying?(S.progress.upgrades.Contains("bucket")?"sack":"bucket"):(S.progress.upgrades.Contains("scoop")?"sieve":"spade");
+                GUI.DrawTexture(new Rect(1040,827,34,34),HudIcons.Get(icon));
+                GUI.Label(new Rect(1082,827,340,48),carrying?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
+            }
             if(Time.unscaledTime<S.messageUntil){GUI.Box(new Rect(375,160,690,68),GUIContent.none,panel);GUI.Label(new Rect(395,176,650,48),S.message,body);}
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;GUI.Box(new Rect(540,670,360,60),GUIContent.none,panel);GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }
+        void Stat(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+28,y,190,26),value,body);}
         bool Button(string label,float x,float y,float w=340)=>GUI.Button(new Rect(x,y,w,46),label,button);
         void Menu()
         {
