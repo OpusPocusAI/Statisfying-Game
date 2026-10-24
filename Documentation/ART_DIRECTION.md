@@ -124,7 +124,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `01-lighting`. **Never:** neutral grey shadows, full-screen haze that flattens near objects.
 
-### 5.2 Water and shoreline (Oct 24: 3 → 3/5)
+### 5.2 Water and shoreline (Oct 24: 3 → 4/5)
 
 **Now:** turquoise water with brush-mark ripples, broken shore crests and rock surf. The October 24 blend removed the hard seam. The coast is still a long straight strip.
 
@@ -148,7 +148,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`, `08-props-tools`. **Never:** a single flat colour filling more than a third of the screen.
 
-### 5.4 Beach props and vegetation (Oct 24: 2 → 2/5)
+### 5.4 Beach props and vegetation (Oct 24: 2 → 4/5)
 
 **Now:** parasols and benches have had a polish pass, but the bench is three logs and grass is sparse spikes. Trees are low-poly blobs with flat colour.
 
@@ -160,7 +160,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`, `11-composition`. **Never:** single primitives standing in for props.
 
-### 5.5 Rubbish and collectibles (Oct 24: 2 → 2/5)
+### 5.5 Rubbish and collectibles (Oct 24: 2 → 4/5)
 
 **Now:** bottles and cans read at close range but are small, flat-coloured and simple.
 
@@ -223,7 +223,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `06-mosaic`. **Never:** flat vector shapes with no came or texture.
 
-### 5.10 Studio interior (Oct 24: 2 → 3/5)
+### 5.10 Studio interior (Oct 24: 2 → 4/5)
 
 **Now:** coherent palette (teal walls, cream, burnt-orange beams), curtains, pendants and pottery. Flat shading, large empty floor areas, tables are slabs on blocks.
 
@@ -235,7 +235,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `07-studio`. **Never:** slab tables, large empty floor planes.
 
-### 5.11 Truck and road (Oct 24: 3 → 3/5)
+### 5.11 Truck and road (Oct 24: 3 → 4/5)
 
 **Now:** the truck is charming and recognisable, with colour blocking, but boxy. The road is a flat grey plane with dashes.
 
@@ -258,7 +258,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `08-props-tools`. **Never:** flat-shaded polygons on a stick.
 
-### 5.13 Effects and feedback (Oct 24: 1 → 3/5)
+### 5.13 Effects and feedback (Oct 24: 1 → 4/5)
 
 **Now:** plain white sphere bubbles; little visible effect on digging, loading or recycling.
 
@@ -346,3 +346,18 @@ Six areas now meet 4/5. V1 is **not** yet met: eight areas are still at 2–3.
 | 5.14 UI (4) | Drawn icons, HUD steps aside at stations, legible signs | — |
 
 Highest-value next work: coastline shaping and cove landmarks (5.2, 5.4), rubbish models (5.5), the neglected-to-restored studio change (5.10), and effects for loading, recycling and placing (5.13).
+
+### October 24 — passes 7 to 11
+
+Passes `Sea Glass/Art Direction/7`–`11` (pass 10 is runtime code). Twelve of fourteen areas now meet 4/5. V1 is still **not** met: sand and terrain (5.3) and first-person tools (5.12) remain at 3.
+
+| Area | Change | Still open |
+| --- | --- | --- |
+| 5.2 Water (3 → 4) | `CoastShape` authors five headlands and four bays; the water shader, wet-sand shoulder and tide-line details share it; boulder spines end each headland | — |
+| 5.4 Props (2 → 4) | Windswept umbrella pines with layered faceted canopies replace box-and-blob trees; 98 two-tone grass tufts; headlands act as cove focal points | Benches and parasols are the earlier polish models |
+| 5.5 Rubbish (2 → 4) | Labelled can, ribbed blue bottle with cap, crushed can, crimped cap and branching driftwood, readable at standing distance | No light wear on labels; no pre-dig glint |
+| 5.10 Studio (3 → 4) | Neglected → restored: wilted planters green up, flowers open and festoon lights come on one third per completed panel | Walls and ceiling still plain |
+| 5.11 Truck (3 → 4) | Rounded chassis, cargo tubs and cushions; cargo shows real glass pebbles and rubbish | — |
+| 5.13 Effects (3 → 4) | Reward bursts are coloured four-point sparkles that rise and fade | — |
+| 5.3 Sand (3) | — | Open beach has little height variation; inland hills are still large faceted masses |
+| 5.12 Tools (3) | — | Bucket and sack unchanged; contents are a neutral grey pile; no hand model |

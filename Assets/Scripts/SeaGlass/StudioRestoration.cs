@@ -13,14 +13,16 @@ namespace SeaGlass
         public Renderer[] bulbs;             // bulbs[i] lights once panel count > (i % 3)
         public float flowerSize = 1.2f;      // authored open size (flowers are saved closed)
         public Color wilted = new(.56f, .46f, .3f), healthy = new(.12f, .36f, .3f), bulbGlow = new(1f, .72f, .38f);
-        float shown;
+        float shown; bool started;
         MaterialPropertyBlock block;
 
         void Update()
         {
             var s = GameSession.Instance;
             float target = s ? s.progress.completed.Count(c => c) : 0;
-            shown = Mathf.MoveTowards(shown, target, Time.deltaTime * .6f);
+            // Snap on the first frame (a loaded save shows its state at once); ease each later step.
+            shown = started ? Mathf.MoveTowards(shown, target, Time.deltaTime * 1.5f) : target;
+            started = true;
             Apply(shown);
         }
 
