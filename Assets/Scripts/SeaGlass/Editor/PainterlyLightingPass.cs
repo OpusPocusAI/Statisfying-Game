@@ -147,8 +147,8 @@ namespace SeaGlass.Editor
             sky.SetColor("_SunGlow", new Color(1f, .62f, .32f));
             sky.SetColor("_CloudLit", new Color(1f, .89f, .74f));
             sky.SetColor("_CloudShade", new Color(.74f, .57f, .67f));
-            sky.SetFloat("_CloudCover", .4f);
-            sky.SetFloat("_CloudScale", 1.1f);
+            sky.SetFloat("_CloudCover", .52f);
+            sky.SetFloat("_CloudScale", .75f);
             EditorUtility.SetDirty(sky);
         }
 

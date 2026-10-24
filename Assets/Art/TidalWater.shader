@@ -1,17 +1,19 @@
 Shader "Sea Glass/Tidal Water"
 {
  Properties { _BaseColor("Lagoon",Color)=(.12,.69,.68,1) _DeepColor("Deep teal",Color)=(.035,.3,.4,1) }
- SubShader { Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" }
+ SubShader { Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Transparent-50" }
  Pass {
+ ZWrite On
  HLSLPROGRAM
  #pragma vertex vert
  #pragma fragment frag
  #pragma multi_compile_fog
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
- struct A{float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 world:TEXCOORD0;float fog:TEXCOORD1;};
+ #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+ struct A{float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 world:TEXCOORD0;float fog:TEXCOORD1;float eye:TEXCOORD2;};
  CBUFFER_START(UnityPerMaterial) half4 _BaseColor,_DeepColor; CBUFFER_END
- V vert(A i){V o;o.world=TransformObjectToWorld(i.p.xyz);o.p=TransformWorldToHClip(o.world);o.fog=ComputeFogFactor(o.p.z);return o;}
+ V vert(A i){V o;o.world=TransformObjectToWorld(i.p.xyz);o.p=TransformWorldToHClip(o.world);o.fog=ComputeFogFactor(o.p.z);o.eye=-TransformWorldToView(o.world).z;return o;}
  float Hash(float2 p)
  {
   float3 q=frac(float3(p.x,p.y,p.x)*.1031);
@@ -59,6 +61,23 @@ Shader "Sea Glass/Tidal Water"
   foam*=smoothstep(.30,.64,BrushNoise(p*float2(.55,.85)+float2(t*.04,-t*.055)));
   foam*=(1-smoothstep(.2,4.8,depth))*detail;
   c=lerp(c,half3(.87,.96,.84),foam*.58);
+
+  // True water depth from the scene depth buffer: bright turquoise shallows over sand,
+  // and a soft, lapping foam line wherever the water touches the beach or a rock.
+  float2 suv=GetNormalizedScreenSpaceUV(i.p);
+  float sceneEye=LinearEyeDepth(SampleSceneDepth(suv),_ZBufferParams);
+  float vdepth=max(0,(sceneEye-i.eye)*abs(view.y));
+  half3 shallowTint=half3(.42,.9,.8);
+  c=lerp(shallowTint*(.85+.15*sun.color),c,smoothstep(.0,1.1,vdepth));
+  float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
+  // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
+  float edgeAA=clamp(fwidth(vdepth),.01,.04);
+  float contact=1-smoothstep(lap-edgeAA,lap+.04+edgeAA,vdepth);
+  float trail=smoothstep(lap+.05,lap+.09,vdepth)*(1-smoothstep(lap+.11,lap+.2,vdepth));
+  float breakup=smoothstep(.25,.6,BrushNoise(p*float2(1.6,.9)+float2(t*.15,t*.05)));
+  float shoreFoam=saturate(contact*.95+trail*breakup*.6);
+  half3 foamColour=half3(.99,.96,.9)*(.75+.35*sun.color);
+  c=lerp(c,foamColour,shoreFoam*.92);
   return half4(MixFog(c,i.fog),1);
  }
  ENDHLSL

@@ -21,6 +21,8 @@ CBUFFER_START(UnityPerMaterial)
     half _GradientHeight;
     half _Variation;
     half _Rim;
+    half _WorldMapping;
+    half _WorldTile;
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

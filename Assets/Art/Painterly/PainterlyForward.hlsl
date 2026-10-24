@@ -82,7 +82,9 @@ half4 PainterlyFragment(Varyings input) : SV_Target
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-    half3 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv).rgb * _BaseColor.rgb;
+    // Ground surfaces can map their texture in world space so it tiles seamlessly across meshes.
+    float2 uv = _WorldMapping > 0.5 ? input.positionWS.xz / max(_WorldTile, 0.01) : input.uv;
+    half3 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv).rgb * _BaseColor.rgb;
     float3 normalWS = normalize(input.normalWS);
     float3 viewWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
     float2 screenUV = GetNormalizedScreenSpaceUV(input.positionCS);
