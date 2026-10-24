@@ -136,7 +136,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `02-shoreline`. **Never:** visible seams between water and sand meshes, uniform water colour from shore to horizon.
 
-### 5.3 Sand and terrain (Oct 24: 1 → 3/5)
+### 5.3 Sand and terrain (Oct 24: 1 → 4/5)
 
 **Now:** flat, single-colour sand covers most of the frame. Dig piles are repeated cone shapes. The inland rock wall is grey boxes.
 
@@ -247,7 +247,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `09-truck-road`. **Never:** flat uniform grey road.
 
-### 5.12 First-person tools (Oct 24: 2 → 3/5)
+### 5.12 First-person tools (Oct 24: 2 → 4/5)
 
 **Now:** the shovel is a hexagon on a stick. The bucket, sack and sieve have been reshaped and read better.
 
@@ -361,3 +361,12 @@ Passes `Sea Glass/Art Direction/7`–`11` (pass 10 is runtime code). Twelve of f
 | 5.13 Effects (3 → 4) | Reward bursts are coloured four-point sparkles that rise and fade | — |
 | 5.3 Sand (3) | — | Open beach has little height variation; inland hills are still large faceted masses |
 | 5.12 Tools (3) | — | Bucket and sack unchanged; contents are a neutral grey pile; no hand model |
+
+### October 24 — passes 12 and 13
+
+Every area now scores at least 4/5 against its bar. That meets this document's V1 art threshold as judged from the fixed review captures and comparison with the reference screenshots; it is not a human play-test sign-off.
+
+| Area | Change | Still open |
+| --- | --- | --- |
+| 5.3 Sand (3 → 4) | The blocky inland rock row is one continuous sculpted dune ridge with wind-cut crests, grass on the high ground and a few outcrops; 48 broad, walkable beach swells keep 1.2 m clear of every collectible; the lighting shader now grades light within the lit side so gentle slopes read as form | Swells are simple smooth domes; no footprints |
+| 5.12 Tools (3 → 4) | Modelled enamel bucket (band, rolled rim, bail handle, wooden grip) and soft canvas sack (rope drawstring, straps, patch); contents show sand, coloured glass, a can, a cap and a bottle | No hand model; contents are a representative heap, not the exact finds |
