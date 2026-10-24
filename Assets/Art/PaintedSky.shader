@@ -1,26 +1,116 @@
+// Golden-hour painted sky: graded dome, crisp sun and sculpted clouds lit from the sun side.
+// The sun direction comes from PainterlyLook (_SG_SunDir) so sky and lighting always agree.
 Shader "Sea Glass/Painted Sky"
 {
- Properties { _Horizon("Peach horizon",Color)=(1,.79,.6,1) _Zenith("Soft blue sky",Color)=(.3,.56,.66,1) }
- SubShader { Tags { "Queue"="Background" "RenderType"="Background" "PreviewType"="Skybox" } Cull Off ZWrite Off
- Pass { HLSLPROGRAM
- #pragma vertex vert
- #pragma fragment frag
- #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
- struct A {float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 dir:TEXCOORD0;};
- CBUFFER_START(UnityPerMaterial) half4 _Horizon,_Zenith; CBUFFER_END
- V vert(A i){V o;o.p=TransformObjectToHClip(i.p.xyz);o.dir=i.p.xyz;return o;}
- half4 frag(V i):SV_Target
- {
-  float3 d=normalize(i.dir);float height=saturate(d.y);
-  half3 c=lerp(_Horizon.rgb,_Zenith.rgb,smoothstep(0,.72,height));
-  float sun=saturate(dot(d,normalize(float3(-.8,.35,.3))));
-  c+=half3(1,.5,.19)*pow(sun,12)*.22;
-  c=lerp(c,half3(1,.93,.74),smoothstep(.998,.9991,sun));
-  float cloud=sin(d.x*16+d.z*7)+sin(d.x*31-d.z*12)*.28;
-  float cloudBand=smoothstep(.17,.23,height)*(1-smoothstep(.27,.34,height));
-  c=lerp(c,half3(1,.88,.76),smoothstep(.65,1.2,cloud)*cloudBand*.28);
-  return half4(c,1);
- }
- ENDHLSL }
- }
+    Properties
+    {
+        _Horizon("Horizon (pale yellow)", Color) = (0.98, 0.86, 0.66, 1)
+        _MidSky("Mid sky (peach)", Color) = (0.96, 0.68, 0.53, 1)
+        _Zenith("Zenith (dusty lavender)", Color) = (0.62, 0.55, 0.72, 1)
+        _SunColour("Sun", Color) = (1, 0.93, 0.74, 1)
+        _SunGlow("Sun glow", Color) = (1, 0.62, 0.32, 1)
+        _CloudLit("Cloud lit side", Color) = (1, 0.88, 0.72, 1)
+        _CloudShade("Cloud shadow side", Color) = (0.72, 0.56, 0.68, 1)
+        _CloudCover("Cloud cover", Range(0, 1)) = 0.46
+        _CloudScale("Cloud scale", Float) = 1.6
+    }
+    SubShader
+    {
+        Tags { "Queue" = "Background" "RenderType" = "Background" "PreviewType" = "Skybox" }
+        Cull Off ZWrite Off
+        Pass
+        {
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            struct A { float4 p : POSITION; };
+            struct V { float4 p : SV_POSITION; float3 dir : TEXCOORD0; };
+
+            CBUFFER_START(UnityPerMaterial)
+                half4 _Horizon, _MidSky, _Zenith, _SunColour, _SunGlow, _CloudLit, _CloudShade;
+                half _CloudCover, _CloudScale;
+            CBUFFER_END
+            float4 _SG_SunDir;
+
+            float Hash(float2 p) { p = frac(p * float2(123.34, 456.21)); p += dot(p, p + 45.32); return frac(p.x * p.y); }
+            float Noise(float2 p)
+            {
+                float2 i = floor(p), f = frac(p); f = f * f * (3 - 2 * f);
+                return lerp(lerp(Hash(i), Hash(i + float2(1, 0)), f.x), lerp(Hash(i + float2(0, 1)), Hash(i + 1), f.x), f.y);
+            }
+            float Noise3(float3 p)
+            {
+                float3 i = floor(p), f = frac(p); f = f * f * (3 - 2 * f);
+                float n = i.x + i.y * 57.0 + i.z * 113.0;
+                float4 h0 = frac(sin(float4(n, n + 1, n + 57, n + 58)) * 43758.5453);
+                float4 h1 = frac(sin(float4(n + 113, n + 114, n + 170, n + 171)) * 43758.5453);
+                float4 h = lerp(h0, h1, f.z);
+                return lerp(lerp(h.x, h.y, f.x), lerp(h.z, h.w, f.x), f.y);
+            }
+            float Fbm3(float3 p)
+            {
+                float v = 0, a = 0.62;
+                for (int k = 0; k < 3; k++) { v += Noise3(p) * a; p = p * 2.1 + 11.7; a *= 0.38; }
+                return v;
+            }
+            float Fbm(float2 p)
+            {
+                // Few octaves: big sculpted masses with gentle edge breakup, not smoke.
+                float v = 0, a = 0.62;
+                for (int k = 0; k < 3; k++) { v += Noise(p) * a; p = p * 2.1 + 11.7; a *= 0.38; }
+                return v;
+            }
+
+            V vert(A i) { V o; o.p = TransformObjectToHClip(i.p.xyz); o.dir = i.p.xyz; return o; }
+
+            half4 frag(V i) : SV_Target
+            {
+                float3 d = normalize(i.dir);
+                float3 sunDir = normalize(dot(_SG_SunDir.xyz, _SG_SunDir.xyz) > 0.01 ? _SG_SunDir.xyz : float3(-0.8, 0.35, 0.3));
+                float h = d.y;
+
+                // Graded dome: pale yellow horizon, peach band, dusty lavender overhead.
+                half3 c = lerp(_Horizon.rgb, _MidSky.rgb, smoothstep(0.02, 0.3, h));
+                c = lerp(c, _Zenith.rgb, smoothstep(0.25, 0.9, h));
+                float sunAlign = saturate(dot(d, sunDir));
+                // Warmer, brighter sky around the sun; cooler sky opposite it.
+                c = lerp(c, c * half3(0.9, 0.93, 1.05), (1 - sunAlign) * 0.35);
+                c += _SunGlow.rgb * pow(sunAlign, 6) * 0.35 + _SunGlow.rgb * pow(sunAlign, 60) * 0.5;
+                // Below the horizon fades to the haze colour so the sea edge stays soft.
+                c = lerp(c, _Horizon.rgb * 0.95, smoothstep(0.0, -0.08, h));
+
+                // Sun: crisp disc, never pure white.
+                float disc = smoothstep(0.99935, 0.99965, sunAlign);
+                c = lerp(c, _SunColour.rgb * 1.6, disc);
+
+                // Clouds on a flattened dome; thicker near the horizon, clear overhead.
+                // Wrap the cloud field around the horizon (no stretching, no seam):
+                // banks of cumulus sitting above the sea, flattened bases, taller tops.
+                float2 ring = normalize(d.xz + 1e-5);
+                float3 cp = float3(ring * 3.2 * _CloudScale, h * 5.5 * _CloudScale);
+                float band = smoothstep(0.035, 0.08, h) * (1 - smoothstep(0.16, 0.34, h));
+                float density = Fbm3(cp + float3(3.1, 7.4, 1.3));
+                // The band erodes the noise rather than masking it, so edges stay organic.
+                float cloudField = density - (1 - band) * 0.7 + 0.05;
+                float shape = smoothstep(1 - _CloudCover, 1 - _CloudCover + 0.035, cloudField);
+                // Self-shadowing: sample towards the sun and upwards; denser there means this side faces away.
+                float3 toSun = float3(normalize(sunDir.xz + 1e-4) * 0.16, 0.22);
+                float towardSun = Fbm3(cp + toSun + float3(3.1, 7.4, 1.3));
+                float lit = saturate(0.5 + (density - towardSun) * 6.0 + (h - 0.1) * 1.5);
+                // Paint the light in three flat-ish bands, like a hand-painted backdrop.
+                lit = (floor(lit * 3.0) + smoothstep(0.35, 0.65, frac(lit * 3.0))) / 3.0;
+                half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
+                // Bright silver rim on cloud edges near the sun.
+                float edge = shape * (1 - smoothstep(1 - _CloudCover + 0.02, 1 - _CloudCover + 0.2, cloudField));
+                cloud += _SunGlow.rgb * edge * pow(sunAlign, 3) * 0.9;
+                cloud = lerp(cloud, c, smoothstep(0.08, 0.0, h) * 0.6);
+                c = lerp(c, cloud, shape * 0.95);
+
+                return half4(c, 1);
+            }
+            ENDHLSL
+        }
+    }
 }
