@@ -36,7 +36,7 @@ Shader "Sea Glass/Basin Water"
                 half3 light = sun.color * lerp(.55, 1, sun.shadowAttenuation) * .5 + SampleSH(half3(0, 1, 0)) * .55;
                 half3 c = lerp(_BaseColor.rgb, _Deep.rgb, edge * .8) * light;
                 c += caustic * half3(.9, 1, .95) * .05 * (1 - edge);
-                c += pow(saturate(ripple), 18) * .05;
+                c += pow(saturate(ripple), 18) * .012;   // round 2: faint, not a target
                 return half4(MixFog(c, i.fog), 1);
             }
             ENDHLSL

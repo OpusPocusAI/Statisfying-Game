@@ -12,6 +12,8 @@ Shader "Sea Glass/Frosted Glass"
         _Grime("Salt and sand", Range(0, 1)) = 0
         _Refraction("Refraction", Range(0, .2)) = .06
         _Frost("Frost colour", Color) = (.9, .9, .86, 1)
+        [NoScaleOffset] _CleanMask("Brushed mask (set at runtime)", 2D) = "black" {}
+        _MaskRect("Mask rect (min xy, size xy)", Vector) = (0, 0, 1, 1)
     }
     SubShader
     {
@@ -38,6 +40,7 @@ Shader "Sea Glass/Frosted Glass"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
+            TEXTURE2D(_CleanMask); SAMPLER(sampler_CleanMask);
 
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             struct V
@@ -50,6 +53,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
+                float4 _MaskRect;
             CBUFFER_END
 
             float Hash(float3 p) { p = frac(p * .3183099 + .1); p *= 17.0; return frac(p.x * p.y * p.z * (p.x + p.y + p.z)); }
@@ -94,8 +98,11 @@ Shader "Sea Glass/Frosted Glass"
                 float fromEdge = saturate((abs(i.local.z) - .014) / .07);   // 0 at the rim, 1 in the thick middle
                 float order = saturate(islands * .45 + streaks * .2 + (1 - fromEdge) * .45 - .05);
                 // Each spot goes sandy dirt -> salt frost -> clear glass as grime falls past it.
-                float grime = smoothstep(order - .1, order + .1, _Grime);
-                float dirt = smoothstep(order + .18, order + .4, _Grime);
+                // Where the brush has passed, grime drops sharply (PowerWash-style visible strokes).
+                float brushed = SAMPLE_TEXTURE2D(_CleanMask, sampler_CleanMask, (i.local.xy - _MaskRect.xy) / _MaskRect.zw).r;
+                float localGrime = _Grime * (1 - smoothstep(.15, .7, brushed) * .9);
+                float grime = smoothstep(order - .1, order + .1, localGrime);
+                float dirt = smoothstep(order + .18, order + .4, localGrime);
 
                 // ---- Clean glass: refracted, tinted background plus body colour.
                 float2 screenUV = GetNormalizedScreenSpaceUV(i.p);
@@ -170,6 +177,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
+                float4 _MaskRect;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION

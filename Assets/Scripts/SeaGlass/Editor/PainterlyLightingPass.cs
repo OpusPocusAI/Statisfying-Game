@@ -40,16 +40,31 @@ namespace SeaGlass.Editor
                 throw new System.InvalidOperationException("Open SeaGlassStudio in Edit Mode first.");
 
             ConvertMaterials();
+            ApplyLook();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+        }
+
+        // Lighting, sky and grading only (no material conversion), so later passes' material tuning survives.
+        [MenuItem("Sea Glass/Art Direction/1b Re-apply lighting and grading")]
+        public static void ApplyLookOnly()
+        {
+            var scene = EditorSceneManager.GetActiveScene();
+            ApplyLook();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+        }
+
+        static void ApplyLook()
+        {
             var look = EnsureLook();
             ConfigureSunAndAmbient();
             ConfigureSky();
             ConfigurePost();
             ConfigureOcclusion();
             look.Apply();
-
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene);
-            AssetDatabase.SaveAssets();
         }
 
         public static int ConvertMaterials()
@@ -95,9 +110,9 @@ namespace SeaGlass.Editor
         {
             var look = Object.FindFirstObjectByType<PainterlyLook>();
             if (!look) look = new GameObject("Painterly look").AddComponent<PainterlyLook>();
-            look.shadowTint = new Color(.46f, .36f, .6f);
-            look.shadowBrightness = .62f;
-            look.skyFill = .32f;
+            look.shadowTint = new Color(.34f, .3f, .62f);   // round 2: deeper blue-violet shadows (LMD, Firewatch)
+            look.shadowBrightness = .44f;
+            look.skyFill = .26f;
             look.terminator = .02f;
             look.terminatorSoftness = .12f;
             look.sunStrength = 1.18f;   // compensates the graded lit-side falloff on flat ground
@@ -126,13 +141,13 @@ namespace SeaGlass.Editor
                 EditorUtility.SetDirty(sun);
             }
             RenderSettings.ambientMode = AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = new Color(.58f, .6f, .86f);
+            RenderSettings.ambientSkyColor = new Color(.5f, .58f, .9f);
             RenderSettings.ambientEquatorColor = new Color(.86f, .64f, .58f);
             RenderSettings.ambientGroundColor = new Color(.36f, .28f, .4f);
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
             RenderSettings.fogColor = new Color(.94f, .74f, .64f);
-            RenderSettings.fogDensity = .0042f;
+            RenderSettings.fogDensity = .0024f;   // round 2: less haze over near objects
         }
 
         static void ConfigureSky()
@@ -140,15 +155,15 @@ namespace SeaGlass.Editor
             var sky = RenderSettings.skybox;
             if (!sky) return;
             sky.shader = Shader.Find("Sea Glass/Painted Sky");
-            sky.SetColor("_Horizon", new Color(.99f, .87f, .66f));
-            sky.SetColor("_MidSky", new Color(.95f, .67f, .52f));
-            sky.SetColor("_Zenith", new Color(.6f, .54f, .72f));
+            sky.SetColor("_Horizon", new Color(1f, .84f, .62f));
+            sky.SetColor("_MidSky", new Color(.98f, .62f, .5f));
+            sky.SetColor("_Zenith", new Color(.36f, .5f, .84f));   // round 2: cool overhead sky (Tchia)
             sky.SetColor("_SunColour", new Color(1f, .93f, .74f));
             sky.SetColor("_SunGlow", new Color(1f, .62f, .32f));
-            sky.SetColor("_CloudLit", new Color(1f, .89f, .74f));
-            sky.SetColor("_CloudShade", new Color(.74f, .57f, .67f));
-            sky.SetFloat("_CloudCover", .52f);
-            sky.SetFloat("_CloudScale", .75f);
+            sky.SetColor("_CloudLit", new Color(1f, .94f, .84f));
+            sky.SetColor("_CloudShade", new Color(.6f, .52f, .74f));
+            sky.SetFloat("_CloudCover", .5f);
+            sky.SetFloat("_CloudScale", 1.5f);   // round 2: scattered cumulus (Tchia)
             EditorUtility.SetDirty(sky);
         }
 
@@ -164,10 +179,10 @@ namespace SeaGlass.Editor
             var profile = AssetDatabase.LoadAssetAtPath<VolumeProfile>("Assets/Data/GoldenHourVolume.asset");
             var tone = Effect<Tonemapping>(profile); tone.mode.Override(TonemappingMode.Neutral);
             var colours = Effect<ColorAdjustments>(profile);
-            colours.postExposure.Override(-.1f); colours.contrast.Override(18); colours.saturation.Override(6);
+            colours.postExposure.Override(-.05f); colours.contrast.Override(30); colours.saturation.Override(22);   // round 2: full value range
             colours.colorFilter.Override(Color.white);
             var smh = Effect<ShadowsMidtonesHighlights>(profile);
-            smh.shadows.Override(new Vector4(.95f, .9f, 1.12f, -.04f));
+            smh.shadows.Override(new Vector4(.88f, .92f, 1.18f, -.1f));
             smh.midtones.Override(new Vector4(1f, .98f, .97f, 0));
             smh.highlights.Override(new Vector4(1.05f, 1f, .9f, .02f));
             var bloom = Effect<Bloom>(profile); bloom.threshold.Override(1f); bloom.intensity.Override(.45f); bloom.scatter.Override(.68f);

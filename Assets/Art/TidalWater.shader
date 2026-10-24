@@ -11,6 +11,7 @@ Shader "Sea Glass/Tidal Water"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+ #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
  struct A{float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 world:TEXCOORD0;float fog:TEXCOORD1;float eye:TEXCOORD2;};
  CBUFFER_START(UnityPerMaterial) half4 _BaseColor,_DeepColor; CBUFFER_END
  V vert(A i){V o;o.world=TransformObjectToWorld(i.p.xyz);o.p=TransformWorldToHClip(o.world);o.fog=ComputeFogFactor(o.p.z);o.eye=-TransformWorldToView(o.world).z;return o;}
@@ -77,8 +78,17 @@ Shader "Sea Glass/Tidal Water"
   float2 suv=GetNormalizedScreenSpaceUV(i.p);
   float sceneEye=LinearEyeDepth(SampleSceneDepth(suv),_ZBufferParams);
   float vdepth=max(0,(sceneEye-i.eye)*abs(view.y));
-  half3 shallowTint=half3(.42,.9,.8);
-  c=lerp(shallowTint*(.85+.15*sun.color),c,smoothstep(.0,1.1,vdepth));
+  // See-through shallows (Tchia): the sand bed shows through, tinted turquoise, fading with depth.
+  float2 refractUV=suv+float2(cos(phase),cos(crossing))*.004*saturate(vdepth);
+  half3 bed=SampleSceneColor(refractUV);
+  half3 transmit=exp(-vdepth*half3(1.6,.55,.5));
+  half3 seen=bed*transmit*half3(.85,1.05,1.0)+half3(.16,.62,.6)*(1-transmit)*.9;
+  c=lerp(seen,c,smoothstep(.15,2.6,vdepth));
+  // Sun path: broken glints where ripple normals catch the low sun.
+  float3 rip=normalize(float3((BrushNoise(p*1.7+float2(t*.6,0))-.5)*.5+cos(phase)*.12,1,(BrushNoise(p*1.9+float2(0,-t*.5))-.5)*.5+cos(crossing)*.1));
+  float glint=pow(saturate(dot(reflect(-view,rip),sun.direction)),220);
+  float glintAA=1-smoothstep(.4,1.6,length(fwidth(p*1.7)));
+  c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA);
   float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
   // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
   float edgeAA=clamp(fwidth(vdepth),.01,.04);

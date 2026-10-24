@@ -72,8 +72,8 @@ Shader "Sea Glass/Painted Sky"
                 float h = d.y;
 
                 // Graded dome: pale yellow horizon, peach band, dusty lavender overhead.
-                half3 c = lerp(_Horizon.rgb, _MidSky.rgb, smoothstep(0.02, 0.3, h));
-                c = lerp(c, _Zenith.rgb, smoothstep(0.25, 0.9, h));
+                half3 c = lerp(_Horizon.rgb, _MidSky.rgb, smoothstep(0.0, 0.12, h));
+                c = lerp(c, _Zenith.rgb, smoothstep(0.1, 0.5, h));
                 float sunAlign = saturate(dot(d, sunDir));
                 // Warmer, brighter sky around the sun; cooler sky opposite it.
                 c = lerp(c, c * half3(0.9, 0.93, 1.05), (1 - sunAlign) * 0.35);

@@ -24,7 +24,7 @@ namespace SeaGlass
             if(!SelectNext()){S.Notify(kind==StationKind.Clean?"Park the truck by the studio and bring cloudy glass.":"Wash a glass piece at the basin first.");return;}
             returnPosition=S.player.transform.position;returnRotation=S.player.transform.rotation;returnView=S.player.view.transform.localRotation;active=true;S.player.mode=PlayerMode.Workstation;
             bool cleaning=kind==StationKind.Clean;
-            S.player.Teleport(transform.position-transform.forward*(cleaning?1.45f:1.75f)+Vector3.up*(cleaning?.42f:.12f),transform.rotation);S.player.interactOverride=Leave;
+            S.player.Teleport(transform.position-transform.forward*(cleaning?.82f:1.75f)+Vector3.up*(cleaning?.36f:.12f),transform.rotation);S.player.interactOverride=Leave;
             S.player.LookAt(cleaning?workingGlass.position:transform.position+Vector3.up*1.15f);
             S.Notify(kind==StationKind.Clean?"Hold LMB to brush away the salt. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
         }
@@ -46,8 +46,12 @@ namespace SeaGlass
         public void Clean(float delta)
         {
             if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
-            r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Time.time>=nextFoam){nextFoam=Time.time+.08f;Feedback.Instance.Foam(workingGlass.position,.18f);}
+            r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));
+            // The salt comes off where the brush (or spray) actually touches the glass.
+            var contact=workingGlass.position+EquipmentVisuals.Stroke(true,Time.time);
+            StampClean(contact,S.progress.upgrades.Contains("washer")?.13f:.09f);
+            UpdateGlass();Feedback.Instance.LoopAction("water");
+            if(Time.time>=nextFoam){nextFoam=Time.time+.08f;Feedback.Instance.Foam(contact,.06f);}
             if(r.grime<=.001f)
             {
                 r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");Feedback.Instance.Burst(workingGlass.position+Vector3.up*.05f,GameCatalog.Palette[(int)S.catalog.glass.First(g=>g.id==r.id).color]*1.4f,18);S.Save();
@@ -67,12 +71,37 @@ namespace SeaGlass
             if(tray)Feedback.Instance.Fly(def.VisualMesh,glassRenderer.sharedMaterial,GameCatalog.Palette[(int)color],workingGlass.position,tray.transform.position+Vector3.up*.15f,workingGlass.lossyScale,Quaternion.Euler(90,0,0));
             Feedback.Instance.Burst(tray?tray.transform.position+Vector3.up*.2f:workingGlass.position,GameCatalog.Palette[(int)color]);S.Save();SelectNext();return true;
         }
+        // Per-piece mask of where the glass has been scrubbed (white = brushed). Presentation only:
+        // completion still follows the record's grime value.
+        Texture2D cleanMask;string maskFor;Color32[] maskPixels;const int MaskSize=64;
+        static readonly int MaskId=Shader.PropertyToID("_CleanMask"),MaskRectId=Shader.PropertyToID("_MaskRect");
+        void EnsureMask()
+        {
+            if(!cleanMask){cleanMask=new Texture2D(MaskSize,MaskSize,TextureFormat.R8,false){wrapMode=TextureWrapMode.Clamp,name="Clean mask"};maskPixels=new Color32[MaskSize*MaskSize];}
+            if(maskFor!=selectedId){maskFor=selectedId;System.Array.Clear(maskPixels,0,maskPixels.Length);cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);}
+        }
+        void StampClean(Vector3 world,float radius)
+        {
+            var mesh=S.catalog.glass.First(g=>g.id==selectedId).VisualMesh;if(!mesh)return;EnsureMask();
+            var b=mesh.bounds;var local=workingGlass.InverseTransformPoint(world);
+            float u=(local.x-b.min.x)/b.size.x,v=(local.y-b.min.y)/b.size.y,ru=radius/(workingGlass.lossyScale.x*b.size.x),rv=radius/(workingGlass.lossyScale.y*b.size.y);
+            int x0=Mathf.FloorToInt((u-ru)*MaskSize),x1=Mathf.CeilToInt((u+ru)*MaskSize),y0=Mathf.FloorToInt((v-rv)*MaskSize),y1=Mathf.CeilToInt((v+rv)*MaskSize);
+            for(int y=Mathf.Max(0,y0);y<=Mathf.Min(MaskSize-1,y1);y++)for(int x=Mathf.Max(0,x0);x<=Mathf.Min(MaskSize-1,x1);x++)
+            {
+                float dx=((x+.5f)/MaskSize-u)/ru,dy=((y+.5f)/MaskSize-v)/rv,d=dx*dx+dy*dy;if(d>1)continue;
+                int i=y*MaskSize+x;byte add=(byte)(Mathf.SmoothStep(1,0,d)*70);maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+add);
+            }
+            cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);
+        }
+        void OnDestroy(){if(cleanMask)Destroy(cleanMask);}
         void UpdateGlass()
         {
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
-            block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);glassRenderer.SetPropertyBlock(block);
+            block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);
+            if(kind==StationKind.Clean){EnsureMask();var mb=def.VisualMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));}
+            glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.VisualMesh)filter.sharedMesh=def.VisualMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.75f)/Mathf.Max(def.VisualMesh.bounds.size.x,def.VisualMesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.42f)/Mathf.Max(def.VisualMesh.bounds.size.x,def.VisualMesh.bounds.size.y));
         }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
