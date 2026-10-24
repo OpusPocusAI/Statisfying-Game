@@ -109,7 +109,9 @@ half4 PainterlyFragment(Varyings input) : SV_Target
 
     half3 sky = SampleSH(normalWS);
     half3 shadowSide = albedo * (_SG_ShadowTint.rgb * _SG_ShadowTint.a + sky * _SG_Terminator.w);
-    half3 litSide = albedo * (mainLight.color * _SG_Terminator.z + sky * _SG_Terminator.w * 0.5);
+    // Graded light within the lit side so gentle slopes (dunes, swells) still read as form.
+    half form = 0.55 + 0.45 * saturate(nDotL / 0.5);
+    half3 litSide = albedo * (mainLight.color * _SG_Terminator.z * form + sky * _SG_Terminator.w * 0.5);
     half3 colour = lerp(shadowSide, litSide, lightAmount);
 
     // Ambient occlusion pools into the shadow colour instead of grey.

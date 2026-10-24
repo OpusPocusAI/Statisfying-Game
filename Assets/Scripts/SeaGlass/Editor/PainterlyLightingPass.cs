@@ -100,7 +100,7 @@ namespace SeaGlass.Editor
             look.skyFill = .32f;
             look.terminator = .02f;
             look.terminatorSoftness = .12f;
-            look.sunStrength = 1.05f;
+            look.sunStrength = 1.18f;   // compensates the graded lit-side falloff on flat ground
             look.rimColour = new Color(1f, .74f, .48f);
             look.rimStrength = .35f;
             look.variationScale = .35f;
