@@ -35,14 +35,14 @@ namespace SeaGlass
             }
             t.Apply();return t;
         }
-        [System.NonSerialized] Texture2D tape;[System.NonSerialized] Font friendly;
+        [System.NonSerialized] Texture2D tape;[System.NonSerialized] Font friendly;public Font uiFont;   // bundled Fredoka (OFL, Assets/Art/Fonts); OS fallback only if unset
         void Panel(Rect r){GUI.Box(r,GUIContent.none,panel);GUI.color=new Color(1,1,1,.85f);GUI.DrawTexture(new Rect(r.x+18,r.y-8,64,20),tape);GUI.color=Color.white;}
         void Styles()
         {
             cream=Paper();teal=Tex(new Color(.035f,.18f,.19f,.92f));coral=Tex(new Color(.92f,.37f,.23f));
             tape=Tex(new Color(.95f,.55f,.42f,.75f));
-            // The player's own Candara (rounded humanist face) if installed; nothing is bundled.
-            friendly=Font.CreateDynamicFontFromOSFont(new[]{"Candara","Corbel","Segoe UI"},24);
+            // Bundled Fredoka (SIL OFL); the OS fallback is only used if the field is unset.
+            friendly=uiFont?uiFont:Font.CreateDynamicFontFromOSFont(new[]{"Candara","Corbel","Segoe UI"},24);
             title=new GUIStyle(GUI.skin.label){fontSize=54,fontStyle=FontStyle.Bold,wordWrap=true,font=friendly};title.normal.textColor=new Color(.05f,.25f,.26f);
             heading=new GUIStyle(title){fontSize=24};body=new GUIStyle(heading){fontSize=17,fontStyle=FontStyle.Normal};small=new GUIStyle(body){fontSize=13};
             button=new GUIStyle(GUI.skin.button){font=friendly,fontSize=18,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(18,12,8,8)};button.normal.background=teal;button.normal.textColor=Color.white;button.hover.background=coral;button.hover.textColor=Color.white;button.active.background=coral;

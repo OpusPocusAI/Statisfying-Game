@@ -81,7 +81,8 @@ namespace SeaGlass
             clean.Clean(5);clean.Leave();sort.Interact();yield return Shot("06-clean-glass");
             Require(sort.Sort(session.catalog.glass.First(d=>d.id==glass.id).color),"Correct sorting");sort.Leave();
             {var sortedTray=FindObjectsByType<SortingTray>(FindObjectsSortMode.None).First(t=>t.color==session.catalog.glass.First(d=>d.id==glass.id).color).transform.position;
-            View(new Vector3(sortedTray.x,.3f,sortedTray.z-2.1f),0,sortedTray);}yield return Shot("07-sorted-tray");   // frame the tray that just received the piece
+            View(new Vector3(sortedTray.x,.3f,sortedTray.z-2.1f),0,sortedTray);}yield return new WaitForSeconds(1.2f);yield return Shot("07-sorted-tray");   // frame the tray that just received the piece, after the transfer lands
+            View(new Vector3(-3,.3f,165),0,new Vector3(-3,1.5f,176));yield return Shot("07b-empty-mosaics");   // the mosaic wall before any placement
             foreach(var p in FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None))foreach(var socket in p.sockets)
             {session.progress.Item(socket.glassId).stage=ItemStage.Sorted;Require(p.Place(socket.glassId),"Placement "+socket.glassId);}
             View(new Vector3(-3,.3f,165),0,new Vector3(-3,1.5f,176));yield return new WaitForSeconds(3);

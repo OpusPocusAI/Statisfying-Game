@@ -88,7 +88,7 @@ Shader "Sea Glass/Tidal Water"
   float3 rip=normalize(float3((BrushNoise(p*1.7+float2(t*.6,0))-.5)*.5+cos(phase)*.12,1,(BrushNoise(p*1.9+float2(0,-t*.5))-.5)*.5+cos(crossing)*.1));
   float glint=pow(saturate(dot(reflect(-view,rip),sun.direction)),220);
   float glintAA=1-smoothstep(.4,1.6,length(fwidth(p*1.7)));
-  c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA);
+  c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA)*smoothstep(3.,12.,i.eye);   // round 6: no huge glint shapes right at the camera
   float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
   // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
   float edgeAA=clamp(fwidth(vdepth),.01,.04);

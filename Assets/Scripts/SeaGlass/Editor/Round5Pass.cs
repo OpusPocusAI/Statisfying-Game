@@ -102,7 +102,7 @@ namespace SeaGlass.Editor
             Transform T(string name, string parent = null) => all.FirstOrDefault(t => t.name == name && (parent == null || (t.parent && t.parent.name == parent)));
             void Set(Transform t, Vector3? pos, float? scale) { if (!t) return; if (pos.HasValue) t.position = pos.Value; if (scale.HasValue) t.localScale = Vector3.one * scale.Value; EditorUtility.SetDirty(t); }
             Set(T("SEA GLASS  /  STUDIO"), new Vector3(-4, 4.82f, 154.27f), .72f);
-            Set(T("a little care. a little colour."), new Vector3(-4, 4.11f, 154.25f), .7f);
+            Set(T("a little care. a little colour."), new Vector3(-4, 4.06f, 154.25f), 1.05f);
             Set(T("FEED THE FUTURE", "RECYCLING"), null, .62f);
             foreach (var n in new[] { "RECYCLING sign", "RECYCLING" })
             {

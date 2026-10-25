@@ -27,8 +27,8 @@ def slab(cx, cy, z, sx, sy, h, seed, material, jitter=.06, cuts=2):
     # random tilt, so each slab reads as broken rock (LMD) rather than a bevelled box.
     for v in o.data.vertices:
         q = Vector((v.co.x / max(sx, .3), v.co.y / max(sy, .3), v.co.z / max(h, .1)))
-        v.co.x += noise.noise(q * 1.7 + s) * jitter * 2.6 * sx
-        v.co.y += noise.noise(q * 1.9 - s) * jitter * 2.6 * sy
+        v.co.x += noise.noise(q * 1.7 + s) * jitter * 1.7 * sx
+        v.co.y += noise.noise(q * 1.9 - s) * jitter * 1.7 * sy
         v.co.z += noise.noise(q * 2.3 + s * .5) * h * .28
     dec = o.modifiers.new("d", "DECIMATE"); dec.ratio = .35
     bpy.ops.object.modifier_apply(modifier="d")

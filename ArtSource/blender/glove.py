@@ -23,8 +23,20 @@ parts.append(tube_along("thumb", [(-.05, -.06, -.03), (-.055, -.02, -.035), (-.0
 cuff = cylinder("cuff", .045, .05, (0, -.095, -.045), rotation=(math.radians(82), 0, 0), vertices=20, material="cuff")
 bevel(cuff, .008, 2, 40); parts.append(cuff)
 # Forearm runs back and up toward the shoulder, long enough to leave the frame.
-sleeve = cylinder("sleeve", .05, .62, (0, -.42, 0), rotation=(math.radians(82), 0, 0), vertices=20, material="sleeve", radius2=.068)
+sleeve = cylinder("sleeve", .052, .62, (0, -.42, 0), rotation=(math.radians(82), 0, 0), vertices=20, material="sleeve", radius2=.085)
 parts.append(sleeve)
+# Round 6: fabric folds and a rolled-up edge so the forearm reads as a sleeve, not a smooth tube.
+axis_dir = Vector((0, -math.cos(math.radians(8)), math.sin(math.radians(8))))   # sleeve axis (82 deg about X from +Z)
+start = Vector((0, -.42, 0)) - axis_dir * .31
+for k, t in enumerate((.06, .2, .33, .45)):
+    c = start + axis_dir * t
+    r = .052 + (.085 - .052) * (t / .62)
+    bpy.ops.mesh.primitive_torus_add(major_radius=r + .002, minor_radius=.007 + .003 * (k == 0), major_segments=20, minor_segments=6,
+                                     location=(c.x + (.004 if k % 2 else -.004), c.y, c.z), rotation=(math.radians(82 + (5 if k % 2 else -4)), 0, 0))
+    fold = bpy.context.active_object; assign(fold, "sleeve"); parts.append(fold)
+rolled = start + axis_dir * .02
+bpy.ops.mesh.primitive_torus_add(major_radius=.057, minor_radius=.014, major_segments=20, minor_segments=8, location=tuple(rolled), rotation=(math.radians(82), 0, 0))
+roll = bpy.context.active_object; assign(roll, "cuff"); parts.append(roll)
 g = join(parts, "Glove")
 shade_auto(g, 50)
 export(g, "garden_glove", ["glove", "cuff", "sleeve"])
