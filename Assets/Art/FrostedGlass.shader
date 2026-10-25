@@ -86,8 +86,8 @@ Shader "Sea Glass/Frosted Glass"
                 // Hand-made glass is never one flat colour: soft density streaks and a few tiny seeds.
                 float streak = Noise(i.local * float3(2.2, 7.5, 2.2) + 4.1);
                 tint *= .84 + streak * .3;
-                float seeds = step(.985, Noise(i.local * 38.0 + 9.3));
-                tint = lerp(tint, tint * 1.6 + .08, seeds * .5);
+                float seeds = step(.982, Noise(i.local * 34.0 + 9.3));
+                tint = lerp(tint, tint * 1.7 + .12, seeds * .6);   // tiny trapped bubbles
                 // Mosaic pieces read as several smaller fragments (Glass Masquerade): Voronoi cells in object
                 // space, each with its own shade of the colour, separated by fine lead lines.
                 float lead = 0;
@@ -139,16 +139,24 @@ Shader "Sea Glass/Frosted Glass"
                 half back = pow(saturate(dot(-v, l)), 3) * .8 + pow(saturate(dot(-v, l)), 24) * 1.3;
                 half3 glow = tint * sun.color * back * sun.shadowAttenuation;
                 half3 clean = transmitted * .92 + body + glow;
+                // Round 5: a deep, saturated core where the piece is thick, paler and clearer toward the thin
+                // rounded rim (real glass), instead of one even candy colour.
+                float thick = saturate((abs(i.local.z) - .02) / .06);
+                clean = lerp(clean * lerp(1.12, .78, thick), tint * tint * .9 + tint * .05, thick * .35);
                 // Edges seen at a glancing angle hold deeper colour (light travels further inside)...
-                clean = lerp(clean, tint * tint * .7 + tint * .15, saturate(fresnel * 1.4) * .7);
+                clean = lerp(clean, tint * tint * .7 + tint * .15, saturate(fresnel * 1.4) * .6);
                 // ...with a thin bright rim where the rounded edge catches the light.
                 clean += lerp(tint, half3(1, 1, 1), .6) * pow(fresnel, 5) * 1.2;
+                // Round 5b: light gathered inside the piece; a soft inner glow so clean glass reads as lit
+                // through, not as an opaque jelly.
+                clean += tint * (.16 + .2 * (1 - thick)) * (1 - fresnel) * (sun.color * .6 + sky * .4);
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);
                 half3 lightOnFrost = sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation);
-                // Milky, translucent glass between patches of chalky salt crust.
-                half3 milky = lerp(tint, _Frost.rgb, .45);
+                // Milky, translucent glass between patches of chalky salt crust: the colour stays readable
+                // under a fine white haze (real frosted sea glass), never an opaque tan.
+                half3 milky = lerp(tint * 1.05, _Frost.rgb, .5);
                 // Even, fine-grained frost with a few soft, broad salt patches.
                 float crust = smoothstep(.5, .75, Noise(q * .9 + 3.3));
                 float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
@@ -159,17 +167,20 @@ Shader "Sea Glass/Frosted Glass"
                 float sparkle = step(.975, Noise(i.local * 70)) * pow(wrap, 3);
                 frosted += sparkle * sun.color * .4;
                 // Sandy staining on top of the frost; it washes off first.
-                half3 sandStain = half3(.74, .6, .44) * lightOnFrost * (.8 + grain * .35);
-                float stainPatch = smoothstep(.35, .6, Noise(q * 1.6 + 11.0) * .7 + grain * .3);
-                frosted = lerp(frosted, sandStain, dirt * lerp(.45, .9, stainPatch));
+                // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
+                // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against
+                // the vivid clean glass), broad and soft rather than speckled; it washes off first.
+                half3 sandStain = half3(.4, .35, .24) * lightOnFrost * (.85 + grain * .3);
+                float stainPatch = smoothstep(.15, .55, Noise(q * 1.1 + 11.0) * .8 + grain * .2);
+                frosted = lerp(frosted, sandStain, dirt * lerp(.55, .85, stainPatch));
 
                 half3 c = lerp(clean, frosted, grime);
 
                 // Crisp highlights only on clean, polished glass.
                 float3 h = normalize(l + v);
-                half spec = pow(saturate(dot(n, h)), lerp(60, 400, _Smoothness)) * lerp(1.2, 4.0, _Smoothness);
+                half spec = pow(saturate(dot(n, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
-                half window = smoothstep(.55, .6, r.y) * (1 - smoothstep(.78, .83, r.y)) * .35;   // a soft sky band
+                half window = smoothstep(.62, .65, r.y) * (1 - smoothstep(.7, .73, r.y)) * .22;   // a thin sky line, not a broad band
                 c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
 
                 c += _EmissionColor.rgb;

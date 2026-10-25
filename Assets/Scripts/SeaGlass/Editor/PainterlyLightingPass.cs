@@ -147,7 +147,7 @@ namespace SeaGlass.Editor
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
             RenderSettings.fogColor = new Color(.94f, .74f, .64f);
-            RenderSettings.fogDensity = .0024f;   // round 2: less haze over near objects
+            RenderSettings.fogDensity = .0042f;   // round 2: less haze over near objects; round 5: islands fade into the haze (Tchia)
         }
 
         static void ConfigureSky()
@@ -157,7 +157,7 @@ namespace SeaGlass.Editor
             sky.shader = Shader.Find("Sea Glass/Painted Sky");
             sky.SetColor("_Horizon", new Color(1f, .84f, .62f));
             sky.SetColor("_MidSky", new Color(.98f, .62f, .5f));
-            sky.SetColor("_Zenith", new Color(.36f, .5f, .84f));   // round 2: cool overhead sky (Tchia)
+            sky.SetColor("_Zenith", new Color(.54f, .56f, .78f));   // round 2: cool overhead sky (Tchia); round 5: less saturated
             sky.SetColor("_SunColour", new Color(1f, .93f, .74f));
             sky.SetColor("_SunGlow", new Color(1f, .62f, .32f));
             sky.SetColor("_CloudLit", new Color(1f, .94f, .84f));

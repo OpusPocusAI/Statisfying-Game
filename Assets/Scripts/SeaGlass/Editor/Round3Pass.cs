@@ -291,7 +291,7 @@ namespace SeaGlass.Editor
                 var pot = Place(root, "Hanging planter", plant, plantMats, new Vector3(p.x, 3.35f, p.z), p.z * 13, Vector3.one * .6f, true);
                 var c = GameObject.CreatePrimitive(PrimitiveType.Cylinder); Object.DestroyImmediate(c.GetComponent<Collider>());
                 c.name = "Planter cord"; c.transform.SetParent(pot.transform, true);
-                c.transform.position = new Vector3(p.x, 4.42f, p.z); c.transform.localScale = new Vector3(.012f, 1.75f, .012f) / .6f;
+                c.transform.position = new Vector3(p.x, 4.5f, p.z); c.transform.localScale = new Vector3(.012f, .925f, .012f) / .6f;   // from the pot rim (3.57) to the ceiling (5.42); was 3.5 m long and ran through the pot
                 c.GetComponent<MeshRenderer>().sharedMaterial = cordMat;
             }
 

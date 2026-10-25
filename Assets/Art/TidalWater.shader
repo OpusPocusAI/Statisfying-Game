@@ -92,12 +92,17 @@ Shader "Sea Glass/Tidal Water"
   float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
   // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
   float edgeAA=clamp(fwidth(vdepth),.01,.04);
+  // Round 5 (independent review: "a constant-width plastic tube"): only a thin line right at the
+  // water's edge is solid; behind it the foam is lace with holes that drift, so its width varies.
+  float edgeLine=1-smoothstep(.012,.03+edgeAA,vdepth);
   float contact=1-smoothstep(lap-edgeAA,lap+.04+edgeAA,vdepth);
+  float lace=BrushNoise(p*3.4+float2(t*.12,-t*.08))*.6+BrushNoise(p*7.7-float2(t*.07,t*.1))*.4;
+  float laceMask=smoothstep(.42,.58,lace);
   float trail=smoothstep(lap+.05,lap+.09,vdepth)*(1-smoothstep(lap+.11,lap+.2,vdepth));
   float breakup=smoothstep(.25,.6,BrushNoise(p*float2(1.6,.9)+float2(t*.15,t*.05)));
-  float shoreFoam=saturate(contact*.95+trail*breakup*.6);
+  float shoreFoam=saturate(edgeLine*.9+contact*laceMask*.85+trail*breakup*laceMask*.55);
   half3 foamColour=half3(.99,.96,.9)*(.75+.35*sun.color);
-  c=lerp(c,foamColour,shoreFoam*.92);
+  c=lerp(c,foamColour,shoreFoam*.88);
   return half4(MixFog(c,i.fog),1);
  }
  ENDHLSL

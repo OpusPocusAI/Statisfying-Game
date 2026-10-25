@@ -142,7 +142,7 @@ The earlier "every area at 4/5" result (passes 1–13) was self-assessed and did
 - Mosaic: `FrostedGlass.shader` `_Facets` Voronoi fragments with near-black lead, set by `MosaicSocket.SetGlow`.
 - Passes 14 (rock stacks, flowers), 15 (studio wall textures and clutter), 16 (gloved hands on tools) and 17 `Round3Pass` (sea stacks, far islands, shrubs, tide line, sand scatter, picnic groups, studio plants/baskets/crates/rugs/hanging planters/bench-end tools). Models: `ArtSource/blender/rock_stacks.py`, `wall_clutter.py`, `glove.py`, `round3.py`. Every pass is safe to re-run.
 - `PainterlyLit` gained `_GroundPatches` (broad golden/rosy sand patches, used only by the two sand materials).
-- `StudioUI`: paper-card panels; cached styles, textures and the OS font are `[NonSerialized]`, which stopped the repeated "Deleting invalid font reference" Editor message after script reloads.
+- `StudioUI`: paper-card panels; cached styles, textures and the OS font are `[NonSerialized]`. (Correction, October 25: the "Deleting invalid font reference" Editor message still appears after Play Mode sessions; it comes from the OS dynamic font and is Editor-only.)
 
 Still open after round 3: the studio interior at 3/5 (fixed in round 4, below); no light shafts; no human play-test.
 

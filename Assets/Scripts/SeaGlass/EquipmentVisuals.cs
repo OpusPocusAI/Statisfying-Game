@@ -14,7 +14,7 @@ namespace SeaGlass
         }
         void Update()
         {
-            var s=GameSession.Instance;if(!s)return;bool walking=s.player.mode==PlayerMode.Walking&&!s.menu&&!s.PresentationActive;
+            var s=GameSession.Instance;if(!s)return;bool walking=s.player.mode==PlayerMode.Walking&&!s.menu&&!s.PresentationActive&&!s.player.IsIndoors;
             if(bucket)bucket.SetActive(walking&&s.player.equippedTool==1&&!s.progress.upgrades.Contains("bucket"));
             if(sack)sack.SetActive(walking&&s.player.equippedTool==1&&s.progress.upgrades.Contains("bucket"));
             if(scoop)scoop.SetActive(walking&&s.player.equippedTool==0&&s.progress.upgrades.Contains("scoop"));

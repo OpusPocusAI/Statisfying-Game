@@ -21,14 +21,18 @@ def slab(cx, cy, z, sx, sy, h, seed, material, jitter=.06, cuts=2):
     bpy.ops.mesh.primitive_cube_add(size=1, location=(cx, cy, z + h / 2))
     o = bpy.context.active_object
     o.scale = (sx, sy, h); bpy.ops.object.transform_apply(scale=True)
-    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=cuts); bpy.ops.object.mode_set(mode="OBJECT")
+    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=max(cuts, 3)); bpy.ops.object.mode_set(mode="OBJECT")
     s = Vector((seed * 1.3, seed * .7, seed * 2.1))
+    # Round 5b: fractured, not boxy. Strong low-frequency push on every axis, a chiselled top, and a
+    # random tilt, so each slab reads as broken rock (LMD) rather than a bevelled box.
     for v in o.data.vertices:
-        v.co.x += noise.noise(v.co * 3.1 / max(sx, 1) + s) * jitter * sx
-        v.co.y += noise.noise(v.co * 2.7 / max(sy, 1) - s) * jitter * sy
-    dec = o.modifiers.new("d", "DECIMATE"); dec.ratio = .55
+        q = Vector((v.co.x / max(sx, .3), v.co.y / max(sy, .3), v.co.z / max(h, .1)))
+        v.co.x += noise.noise(q * 1.7 + s) * jitter * 2.6 * sx
+        v.co.y += noise.noise(q * 1.9 - s) * jitter * 2.6 * sy
+        v.co.z += noise.noise(q * 2.3 + s * .5) * h * .28
+    dec = o.modifiers.new("d", "DECIMATE"); dec.ratio = .35
     bpy.ops.object.modifier_apply(modifier="d")
-    o.rotation_euler = (0, 0, random.uniform(-.3, .3)); bpy.ops.object.transform_apply(rotation=True)
+    o.rotation_euler = (random.uniform(-.12, .12), random.uniform(-.12, .12), random.uniform(-.5, .5)); bpy.ops.object.transform_apply(rotation=True)
     assign(o, material); facet(o)
     return o
 

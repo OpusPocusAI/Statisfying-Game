@@ -103,7 +103,7 @@ namespace SeaGlass.Editor
             foreach(float x in new[]{-1.15f,1.15f})B("Bench leg",p+new Vector3(x,.45f,0),new Vector3(.18f,.9f,1.3f),teal,go.transform);
             var sign=B(title+" sign",p+new Vector3(0,2.2f,.85f),new Vector3(kind==StationKind.Sort?5.8f:3.1f,.65f,.12f),cream,go.transform);
             CoastBuilder.Label(title,p+new Vector3(0,2.2f,.77f),.65f,null,go.transform);
-            if(kind==StationKind.Recycle){B("Recycling press",p+new Vector3(0,1.4f,.3f),new Vector3(1.7f,.7f,1),coral,go.transform);CoastBuilder.Label("FEED THE FUTURE",p+new Vector3(0,1.5f,-.22f),.42f,null,go.transform);}
+            if(kind==StationKind.Recycle){B("Recycling press",p+new Vector3(0,1.4f,.3f),new Vector3(1.7f,.7f,1),coral,go.transform);CoastBuilder.Label("FEED THE FUTURE",p+new Vector3(0,1.5f,-.22f),.26f,null,go.transform);}
             if(kind==StationKind.Clean)
             {
                 B("Enamel basin",p+new Vector3(0,1.12f,0),new Vector3(2,.2f,1.3f),cream,go.transform);

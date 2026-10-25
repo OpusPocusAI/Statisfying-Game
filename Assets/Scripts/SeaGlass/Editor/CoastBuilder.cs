@@ -64,8 +64,8 @@ namespace SeaGlass.Editor
             Box("Studio canopy",new Vector3(-4,5.7f,166),new Vector3(27,.35f,25),coral,null,true);
             foreach(float x in new[]{-15.5f,7.5f})foreach(float z in new[]{155.5f,176f})Box("Canopy post",new Vector3(x,2.8f,z),new Vector3(.3f,5.6f,.3f),wood);
             Box("Studio fascia",new Vector3(-4,4.6f,154.5f),new Vector3(25,1.4f,.35f),cream);
-            Label("SEA GLASS  /  STUDIO",new Vector3(-4,4.65f,154.27f),1.9f);
-            Label("a little care. a little colour.",new Vector3(-4,3.8f,154.25f),.75f);
+            Label("SEA GLASS  /  STUDIO",new Vector3(-4,4.82f,154.27f),1.37f);
+            Label("a little care. a little colour.",new Vector3(-4,4.11f,154.25f),.52f);   // fits on the fascia board
             for(int i=0;i<3;i++)
             {
                 float z=4+i*37;

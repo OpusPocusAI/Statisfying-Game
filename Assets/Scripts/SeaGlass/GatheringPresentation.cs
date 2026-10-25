@@ -14,7 +14,7 @@ namespace SeaGlass
             var s=GameSession.Instance;if(!s)return;
             if(visit!=s.progress){visit=s.progress;phase=0;weight=0;}
             bool screen=StudioUI.Instance&&(StudioUI.Instance.ending||StudioUI.Instance.shop);
-            bool visible=player.mode==PlayerMode.Walking&&!s.menu&&!s.PresentationActive&&!screen&&player.equippedTool==0;
+            bool visible=player.mode==PlayerMode.Walking&&!s.menu&&!s.PresentationActive&&!screen&&player.equippedTool==0&&!player.IsIndoors;
             player.tool.gameObject.SetActive(visible);
             if(toyBlade)toyBlade.SetActive(!s.progress.upgrades.Contains("scoop"));
             if(!visible){phase=0;weight=0;player.tool.localPosition=home;player.tool.localRotation=Quaternion.Euler(0,0,-15);return;}

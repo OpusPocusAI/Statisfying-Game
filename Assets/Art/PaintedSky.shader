@@ -92,17 +92,21 @@ Shader "Sea Glass/Painted Sky"
                 // banks of cumulus sitting above the sea, flattened bases, taller tops.
                 float2 ring = normalize(d.xz + 1e-5);
                 float3 cp = float3(ring * 3.2 * _CloudScale, h * 5.5 * _CloudScale);
-                float band = smoothstep(0.035, 0.08, h) * (1 - smoothstep(0.16, 0.34, h));
+                float band = smoothstep(0.065, 0.11, h) * (1 - smoothstep(0.19, 0.36, h));   // round 5: lifted clear of the dune crests
                 float density = Fbm3(cp + float3(3.1, 7.4, 1.3));
                 // The band erodes the noise rather than masking it, so edges stay organic.
                 float cloudField = density - (1 - band) * 0.7 + 0.05;
-                float shape = smoothstep(1 - _CloudCover, 1 - _CloudCover + 0.035, cloudField);
+                // Round 5: crisp, graphic silhouettes (Firewatch) — the edge is about one pixel wide,
+                // instead of a fixed noise range that read as blurred, melting blobs.
+                float fw = max(fwidth(cloudField) * 1.2, 0.002);
+                float shape = smoothstep(1 - _CloudCover - fw, 1 - _CloudCover + fw, cloudField);
                 // Self-shadowing: sample towards the sun and upwards; denser there means this side faces away.
                 float3 toSun = float3(normalize(sunDir.xz + 1e-4) * 0.16, 0.22);
                 float towardSun = Fbm3(cp + toSun + float3(3.1, 7.4, 1.3));
                 float lit = saturate(0.5 + (density - towardSun) * 6.0 + (h - 0.1) * 1.5);
                 // Paint the light in three flat-ish bands, like a hand-painted backdrop.
-                lit = (floor(lit * 3.0) + smoothstep(0.35, 0.65, frac(lit * 3.0))) / 3.0;
+                float lfw = max(fwidth(lit * 3.0), 0.02);
+                lit = (floor(lit * 3.0) + smoothstep(0.5 - lfw, 0.5 + lfw, frac(lit * 3.0))) / 3.0;
                 half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
                 // Bright silver rim on cloud edges near the sun.
                 float edge = shape * (1 - smoothstep(1 - _CloudCover + 0.02, 1 - _CloudCover + 0.2, cloudField));

@@ -2,7 +2,7 @@ Shader "Sea Glass/World Lettering"
 {
  Properties { _MainTex("Font atlas",2D)="white" {} }
  SubShader { Tags { "RenderPipeline"="UniversalPipeline" "Queue"="Transparent" "RenderType"="Transparent" }
- Pass { Blend SrcAlpha OneMinusSrcAlpha ZWrite Off ZTest LEqual Cull Off
+ Pass { Blend SrcAlpha OneMinusSrcAlpha ZWrite Off ZTest LEqual Cull Back
  HLSLPROGRAM
  #pragma vertex vert
  #pragma fragment frag

@@ -8,6 +8,9 @@ namespace SeaGlass
         public Camera view; public PlayerMode mode; public bool blocked=true; public float sensitivity=.12f; public bool invertY;
         public Interactable focus; public Transform tool; public System.Action interactOverride;
         CharacterController body; float pitch,fall,driverYaw; public int equippedTool; public Vector3 safePosition=new(0,2,6);
+        // Inside the studio the beach tools are holstered: they would cover the stations and mosaics.
+        public static bool Indoors(Vector3 p)=>p.x>-16.6f&&p.x<8.6f&&p.z>154.4f&&p.z<177.6f&&p.y<6;
+        public bool IsIndoors=>Indoors(transform.position);
         void Awake() {body=GetComponent<CharacterController>();}
         void Update()
         {
@@ -34,7 +37,7 @@ namespace SeaGlass
             if(Physics.Raycast(view.ViewportPointToRay(new Vector3(.5f,.5f)),out var hit,4.2f))focus=hit.collider.GetComponentInParent<Interactable>();
             if(Keyboard.current.eKey.wasPressedThisFrame) { if(interactOverride!=null)interactOverride(); else if(focus)focus.Interact(); }
             if(Mouse.current.leftButton.isPressed && focus && equippedTool==0)focus.Use(Time.deltaTime);
-            if(tool)tool.gameObject.SetActive(mode==PlayerMode.Walking&&equippedTool==0);
+            if(tool)tool.gameObject.SetActive(mode==PlayerMode.Walking&&equippedTool==0&&!IsIndoors);
         }
         public void Teleport(Vector3 position,Quaternion rotation) {body.enabled=false;transform.SetPositionAndRotation(position,rotation);body.enabled=true;fall=0;}
         // Keep the controller's stored angles in sync when a station or vehicle changes the view.

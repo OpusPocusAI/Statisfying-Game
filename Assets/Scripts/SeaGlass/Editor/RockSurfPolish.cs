@@ -45,7 +45,8 @@ namespace SeaGlass.Editor
             var vertices=new List<Vector3>();var uv=new List<Vector2>();var indices=new List<int>();
             foreach(var rock in landmarks.GetComponentsInChildren<MeshFilter>())
             {
-                var hull=Waterline(rock,level);var center=hull.Aggregate(Vector2.zero,(sum,p)=>sum+p)/hull.Count;
+                List<Vector2> hull;try{hull=Waterline(rock,level);}catch(System.InvalidOperationException){continue;}   // fully submerged or fully above: no contact line
+                var center=hull.Aggregate(Vector2.zero,(sum,p)=>sum+p)/hull.Count;
                 var path=new List<Vector2>();
                 for(int i=0;i<hull.Count;i++)
                 {

@@ -17,9 +17,9 @@ namespace SeaGlass.Editor
 
         // Profile in the authored polygon's units (pieces are roughly 0.5–2 units across).
         const float EdgeHalf = .014f;     // half thickness at the very edge
-        const float CentreHalf = .062f;   // half thickness once past the rounded edge
-        const float RoundRadius = .11f;   // width of the rounded edge
-        const float Dome = .03f;          // extra swell towards the middle
+        const float CentreHalf = .1f;     // half thickness once past the rounded edge (round 5: chunkier, less slab-like)
+        const float RoundRadius = .22f;   // width of the rounded edge
+        const float Dome = .07f;          // extra swell towards the middle
         const int Levels = 3;             // cap subdivision (8 segments per outline edge)
 
         [MenuItem("Sea Glass/Art Direction/2a Tumbled sea-glass pieces")]
@@ -73,7 +73,17 @@ namespace SeaGlass.Editor
 
             // Tumbling softens every corner. The rounded outline stays inside the socket shape;
             // the small corner gaps read as lead came once installed.
-            var outline = RoundCorners(authored, .14f, 4);
+            var outline = RoundCorners(authored, .32f, 6);   // round 5: well-tumbled corners, pebble-like
+            // Round 5: tumbled rims are never ruler-straight. Nudge each outline point inward by a little
+            // noise (never outward, so the piece still sits inside its mosaic socket).
+            {
+                Vector2 c0 = outline.Aggregate(Vector2.zero, (s, p) => s + p) / outline.Length;
+                for (int i = 0; i < outline.Length; i++)
+                {
+                    float w = Mathf.PerlinNoise(outline[i].x * 3.1f + seed * 1.7f, outline[i].y * 3.1f - seed) * .028f;
+                    outline[i] += (c0 - outline[i]).normalized * w;
+                }
+            }
             int n = outline.Length;
             var tris = EarClip(outline);
             // Match the authored front-face orientation.
@@ -122,7 +132,9 @@ namespace SeaGlass.Editor
                 float h = EdgeHalf + (CentreHalf - EdgeHalf) * round + Dome * dome * side;
                 // Tumbled pieces are never perfectly even.
                 float wobble = Mathf.PerlinNoise(pts[i].x * 1.7f + seed, pts[i].y * 1.7f - seed) - .5f;
-                return h * (1 + wobble * .28f * round);
+                // Broad, gentle undulation over the face (worn hollows and swells), not a flat plate.
+                float swell = Mathf.PerlinNoise(pts[i].x * 3.3f - seed * .7f, pts[i].y * 3.3f + seed * .4f) - .5f;
+                return h * (1 + wobble * .4f * round) + swell * .03f * round * side;
             }
 
             int count = pts.Count;
@@ -181,7 +193,7 @@ namespace SeaGlass.Editor
             {
                 Vector2 prev = poly[(i + n - 1) % n], p = poly[i], next = poly[(i + 1) % n];
                 Vector2 toPrev = prev - p, toNext = next - p;
-                float r = Mathf.Min(radius, toPrev.magnitude * .3f, toNext.magnitude * .3f);
+                float r = Mathf.Min(radius, toPrev.magnitude * .42f, toNext.magnitude * .42f);
                 Vector2 a = p + toPrev.normalized * r, b = p + toNext.normalized * r;
                 // Quadratic Bezier through the corner: a smooth, inset curve that never crosses the outline.
                 for (int s = 0; s <= segments; s++)

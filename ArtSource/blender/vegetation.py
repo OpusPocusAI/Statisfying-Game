@@ -34,7 +34,7 @@ for k in range(3):
     lean = random.uniform(.35, .7)          # windswept towards +X (inland)
     h = random.uniform(4.6, 5.6)
     pts = [(0, 0, 0), (lean * .2, 0, h * .35), (lean * .65, random.uniform(-.2, .2), h * .7), (lean, 0, h * .92)]
-    trunk = tube_along("trunk", pts, .17, "bark", resolution=10, bevel_resolution=3)
+    trunk = tube_along("trunk", pts, .24, "bark", resolution=10, bevel_resolution=3)   # round 5: sturdier (read as acacia when thin)
     for v in trunk.data.vertices:
         t = v.co.z / h
         c = Vector((0, 0, v.co.z))
@@ -47,11 +47,12 @@ for k in range(3):
         parts.append(tube_along("branch", [pts[2], (lean * .65 + sgn * 1.1, sgn * .5, h * .9)], .08, "bark", resolution=6, bevel_resolution=2))
     # Crown: a broad, flat umbrella of 4-6 pads.
     top = Vector(pts[3])
-    pads = [(top + Vector((0, 0, .35)), 2.3, .75)]
-    for i in range(random.randint(3, 5)):
+    # Round 5: a fuller, two-tier crown (Mediterranean stone pine), not a single flat acacia plate.
+    pads = [(top + Vector((0, 0, .45)), 2.2, 1.0), (top + Vector((.2, 0, 1.15)), 1.5, .8)]
+    for i in range(random.randint(5, 7)):
         a = i / 4 * math.tau + random.uniform(-.4, .4)
-        r = random.uniform(1.2, 1.9)
-        pads.append((top + Vector((math.cos(a) * r + .3, math.sin(a) * r, random.uniform(-.3, .2))), random.uniform(1.1, 1.6), random.uniform(.45, .65)))
+        r = random.uniform(1.1, 1.8)
+        pads.append((top + Vector((math.cos(a) * r + .3, math.sin(a) * r, random.uniform(-.45, .5))), random.uniform(1.1, 1.6), random.uniform(.6, .9)))
     for i, (c, r, hh) in enumerate(pads):
         parts.append(canopy_pad("pad", c, r, hh, k * 10 + i))
     tree = join(parts, "CoastalPine")

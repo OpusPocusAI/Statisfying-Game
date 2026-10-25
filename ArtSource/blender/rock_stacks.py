@@ -13,17 +13,18 @@ def slab(cx, cy, z, sx, sy, h, seed):
     bpy.ops.mesh.primitive_cube_add(size=1, location=(cx, cy, z + h / 2))
     o = bpy.context.active_object
     o.scale = (sx, sy, h); bpy.ops.object.transform_apply(scale=True)
-    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=2); bpy.ops.object.mode_set(mode="OBJECT")
+    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=3); bpy.ops.object.mode_set(mode="OBJECT")
     s = Vector((seed * 1.3, seed * .7, seed * 2.1))
+    # Round 5b: fractured rather than boxy (see round3.py).
     for v in o.data.vertices:
-        n = noise.noise(v.co * 3.1 + s)
-        v.co.x += n * .06; v.co.y += noise.noise(v.co * 2.7 - s) * .06
-        if v.co.z > z + h * .9: v.co.z += noise.noise(v.co * 4 + s) * .04          # uneven top
+        v.co.x += noise.noise(v.co * 1.9 + s) * .15
+        v.co.y += noise.noise(v.co * 2.1 - s) * .15
+        v.co.z += noise.noise(v.co * 2.6 + s * .5) * h * .3
     md = o.modifiers.new("b", "BEVEL"); md.width = .035; md.segments = 1; md.limit_method = "ANGLE"; md.angle_limit = math.radians(40)
     bpy.ops.object.modifier_apply(modifier="b")
-    dec = o.modifiers.new("d", "DECIMATE"); dec.ratio = .5
+    dec = o.modifiers.new("d", "DECIMATE"); dec.ratio = .38
     bpy.ops.object.modifier_apply(modifier="d")
-    o.rotation_euler = (random.uniform(-.06, .06), random.uniform(-.06, .06), random.uniform(-.5, .5))
+    o.rotation_euler = (random.uniform(-.13, .13), random.uniform(-.13, .13), random.uniform(-.5, .5))
     bpy.ops.object.transform_apply(rotation=True)
     assign(o, "rock")
     for p in o.data.polygons: p.use_smooth = False
