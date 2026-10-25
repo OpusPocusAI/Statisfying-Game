@@ -41,6 +41,9 @@ Shader "Sea Glass/Tidal Water"
  }
  half4 frag(V i):SV_Target
  {
+  // Round 9: fog per pixel. The sea is one large box, so fog interpolated from its far corners hazed
+  // the whole surface.
+  i.fog=ComputeFogFactor(TransformWorldToHClip(i.world).z);
   float2 p=i.world.xz;float t=_Time.y;
   float shore=ShoreX(p.y);
   float depth=max(0,shore-p.x);

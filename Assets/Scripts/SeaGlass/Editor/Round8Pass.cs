@@ -37,6 +37,24 @@ namespace SeaGlass.Editor
                 go.GetComponent<MeshRenderer>().sharedMaterial = sand;
             }
 
+            // Round 9: extending the sea box past the horizon made the whole surface render as fog in high views
+            // (cause not established), so it keeps its authored size; the horizon gap shows only from high above.
+            var sea = GameObject.Find("Open turquoise water");
+            if (sea) { sea.transform.position = new Vector3(-88, -1, 75); sea.transform.localScale = new Vector3(120, .3f, 360); EditorUtility.SetDirty(sea.transform); }
+
+            // Beach zone boards read grey-on-taupe against the low sun: painted teal boards with cream lettering.
+            var signTeal = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Round6/Sign teal.mat");
+            if (!signTeal) { signTeal = new Material(Shader.Find("Sea Glass/Painterly Lit")); AssetDatabase.CreateAsset(signTeal, "Assets/Art/Round6/Sign teal.mat"); }
+            signTeal.SetColor("_BaseColor", new Color(.13f, .38f, .42f)); signTeal.SetFloat("_GradientStrength", 0); EditorUtility.SetDirty(signTeal);
+            foreach (var r in Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None))
+                if (r.name == "Beach section sign") { r.sharedMaterial = signTeal; EditorUtility.SetDirty(r); }
+            foreach (var t in Object.FindObjectsByType<TextMesh>(FindObjectsSortMode.None))
+                if (t.transform.position.x > 0 && t.transform.position.z < 150 && t.text.Contains("  /  ")) { t.color = new Color(.99f, .95f, .85f); EditorUtility.SetDirty(t); }
+
+            // Tree canopies: lighter and graded from a cool underside to a sunlit top.
+            var pine = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Vegetation/Pine foliage.mat");
+            if (pine) { pine.SetColor("_BaseColor", new Color(.27f, .5f, .37f)); pine.SetFloat("_GradientStrength", .55f); pine.SetFloat("_GradientHeight", 7); EditorUtility.SetDirty(pine); }
+
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();

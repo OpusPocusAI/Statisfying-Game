@@ -403,3 +403,28 @@ Pass `Sea Glass/Art Direction/18` (`StudioLayoutPass`, models `ArtSource/blender
 | 5.10 Studio | 3 | **4** | The walkway now ends at the island and the hall reads as zones; shelf density is close to Unpacking's bookshelves. Still short of Unpacking: a large pale ceiling, open floor between zones and the open road side. Weakest 4 with 5.3. |
 
 All fourteen areas now score at least 4/5 in side-by-side comparison with the reference screenshots, which meets this document's V1 art threshold as judged from fixed captures. This is not a human play-test sign-off, and effects were not compared in motion.
+
+### October 25 — independent blind reviews, rounds 5 to 9 (passes 19 to 22)
+
+**Correction to the round 4 entry above.** "All fourteen areas at 4/5" was again my own judgement of my own work. From round 5 on, every score comes from a fresh independent reviewer (a separate agent) that sees only this document's sections 1–5, the current captures and the reference games' Steam screenshots, never earlier scores. Its findings drove each round's fixes. Captures: `Captures/Review/r5-before` … `r9`; notes in `ArtReference/comparison.md`.
+
+| Area | Review 1 | Review 2 | Review 3 | Review 4 | Review 5 | Review 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 3 | 3 | 4 | 4 | 4 | 4 |
+| 5.2 Water | 3 | 3 | 4 | 4 | 3 | 4 |
+| 5.3 Sand/terrain | 2 | 2 | 3 | 3 | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3 | 4 | 3 |
+| 5.5 Rubbish | – | – | – | 3 | 3 | ~3 |
+| 5.6 Sea glass | 2 | 2 | 2 | 3 | 3 | 3 |
+| 5.7 Cleaning | 2 | 2 | 2 | 3 | 3 | 3 |
+| 5.8 Sorting | 2 | 3 | 3 | 4 | 4 | 4 |
+| 5.9 Mosaic | 3 | 3 | 4 | 4 | 4 | 4 |
+| 5.10 Studio | 3 | 3 | 3 | 3 | 4 | 3 (close to 4) |
+| 5.11 Truck/road | 2 | 2 | 2–3 | 3 | 3 | 3 |
+| 5.12 Tools | 2 | 3 | 3 | 3 | 4 | 4 |
+| 5.13 Effects | – | – | – | – | – | – |
+| 5.14 UI / signs | – | – | – | – | – | 4 (signs) |
+
+(– = not judgeable from stills.) Reviews 1–3 were before or between rounds 5–6, review 4 after round 6, review 5 after round 7, review 6 after round 8; round 9's changes (clouds, zone signs, canopy grading, glass thickness, per-pixel water fog) have not been reviewed yet.
+
+**V1 is not met.** No area is at 2 any more and six reach 4, but sand/terrain, props, sea glass, cleaning, studio and truck/road remain at 3. Reviewers also disagree near the line (one called the glass too puffy, the next too thin), so single scores near 3/4 are not precise. The largest remaining gaps need new modelling rather than tuning: a rounded truck body, a second tree species with layered canopies, a dusty-to-restored studio state, see-through basin water with the glass sitting in it, and denser near-field sand detail.

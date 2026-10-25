@@ -106,7 +106,9 @@ Shader "Sea Glass/Painted Sky"
                 float lit = saturate(0.5 + (density - towardSun) * 6.0 + (h - 0.1) * 1.5);
                 // Paint the light in three flat-ish bands, like a hand-painted backdrop.
                 float lfw = max(fwidth(lit * 3.0), 0.02);
-                lit = (floor(lit * 3.0) + smoothstep(0.5 - lfw, 0.5 + lfw, frac(lit * 3.0))) / 3.0;
+                // Round 9: two broad value bands (lit top, shaded underside) instead of three, which broke the
+                // clouds into camouflage-like inner blotches.
+                lit = smoothstep(0.42 - lfw, 0.58 + lfw, lit) * 0.75 + saturate(lit) * 0.25;
                 half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
                 // Bright silver rim on cloud edges near the sun.
                 float edge = shape * (1 - smoothstep(1 - _CloudCover + 0.02, 1 - _CloudCover + 0.2, cloudField));

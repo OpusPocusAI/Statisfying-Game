@@ -163,7 +163,7 @@ Shader "Sea Glass/Frosted Glass"
                 half3 lightOnFrost = sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation);
                 // Milky, translucent glass between patches of chalky salt crust: the colour stays readable
                 // under a fine white haze (real frosted sea glass), never an opaque tan.
-                half3 milky = lerp(tint * 1.15, _Frost.rgb, .36);   // round 6: the hue stays clearly readable under the frost
+                half3 milky = lerp(tint * 1.25, _Frost.rgb, .26);   // round 6: the hue stays clearly readable under the frost
                 // Even, fine-grained frost with a few soft, broad salt patches.
                 float crust = smoothstep(.5, .75, Noise(q * .9 + 3.3));
                 float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
