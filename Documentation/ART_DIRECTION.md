@@ -478,3 +478,25 @@ Five areas at 4 again. Several areas now move between 3 and 4 from one reviewer 
 **Bug found by review 8 and fixed:** the placement helper used for all scatter since round 3 (shrubs, pebbles, shells, footprints, grass drifts) took the first collider hit, which could be an invisible boundary wall or a dune's box collider taller than the visible mound, so some dressing floated 1–2 m above the sand (it read as "grass growing out of the sea" along the horizon). It now only accepts visible, non-sea surfaces within the object's visible height; all dressing was re-seated (0 items left floating). Earlier reviews saw builds with this bug.
 
 Remaining work named by review 8: one shared rounded-pebble mesh family for every colour (pieces currently follow their mosaic socket outlines), clearly transparent basin water with a rounded enamel bowl and higher-contrast grime, storytelling clusters instead of repeated filler in the studio and a stronger neglected state, clustered grass on dune crests with open sand between, a domed truck bonnet with badge and wear, faceted stratified sea stacks, larger mosaic nameplates.
+
+### October 26 — round 12 and review 9 (pass 25)
+
+Round 12: one shared family of five tumbled pebble meshes for held, sorted, found and carried glass (mosaic pieces keep their socket-fitting shapes); an oval enamel bowl with a blue rolled rim and see-through water; dark, hard-edged grime patches with crisp brush-stroke edges.
+
+| Area | Review 8 | Review 9 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 4 |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 3 | 4 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 (limited evidence) |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 4 |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 4 | 4 |
+| 5.14 Signs | 3 | 3 |
+
+The shape problem is solved (the reviewer calls the glass "pebble-like" now), but the targeted areas stayed at 3 on material and presentation. Clean glass reads as an evenly coloured "jelly lozenge" without inner glow, and cloudy glass as "brown speckle on teal", a dirty stone rather than pale frost. The bowl reads as "a dinner plate": its white enamel floor shows through the clear water, so the water has no visible depth, and the piece is small inside it. Next for these two: a pale frost layer instead of brown speckle when cloudy; thickness-graded colour, inner glow and a bright rim when clean; a darker teal depth tint and a visible waterline in the bowl; and a smaller bowl or larger piece (about 40% of the bowl).
