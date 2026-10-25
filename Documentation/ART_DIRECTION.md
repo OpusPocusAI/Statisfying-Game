@@ -428,3 +428,27 @@ All fourteen areas now score at least 4/5 in side-by-side comparison with the re
 (– = not judgeable from stills.) Reviews 1–3 were before or between rounds 5–6, review 4 after round 6, review 5 after round 7, review 6 after round 8; round 9's changes (clouds, zone signs, canopy grading, glass thickness, per-pixel water fog) have not been reviewed yet.
 
 **V1 is not met.** No area is at 2 any more and six reach 4, but sand/terrain, props, sea glass, cleaning, studio and truck/road remain at 3. Reviewers also disagree near the line (one called the glass too puffy, the next too thin), so single scores near 3/4 are not precise. The largest remaining gaps need new modelling rather than tuning: a rounded truck body, a second tree species with layered canopies, a dusty-to-restored studio state, see-through basin water with the glass sitting in it, and denser near-field sand detail.
+
+### October 25 — round 10 and review 7 (pass 23)
+
+Round 10 did the bigger modelling work: truck canopy and tube rails, palms as a second tree species, see-through basin water, a dusty-to-restored studio, and near-field sand detail (ripples, footprints, shell drifts).
+
+| Area | Review 6 | Review 7 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 4 |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 3 | **4** |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | ~3 | – |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 3 |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | **4** |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 4 | 3 |
+| 5.14 UI / signs | 4 | – |
+
+Review 7 judged a build in which the new studio dust also greyed the first-person sleeve and the basin; that made the sleeve read as "a grey drainpipe" and the water as milky, and likely cost 5.12 and 5.7 points. Dust no longer applies within 3.5 m of the camera (fixed after the review, not re-reviewed). Sorting dropped from 4 to 3 on the thin tray pebbles; reviewers keep disagreeing on glass thickness.
+
+**V1 is not met.** Five areas at 4 (lighting, water, sand, mosaic, studio), six at 3 (props, glass, cleaning, sorting, truck, tools). Remaining work named by review 7: chunkier tray and cloudy pieces with a visible rim and contact shadow; clearer basin water with a visible enamel wall; a rounded truck bonnet and fenders plus visibly heaped cargo; grass in drifts with 3–4 shapes; shaped cooler, log and towel; a larger brush head.

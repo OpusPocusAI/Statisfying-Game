@@ -136,6 +136,8 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     {
         float2 q = input.positionWS.xz;
         float inside = step(_SG_DustBox.x, q.x) * step(q.x, _SG_DustBox.z) * step(_SG_DustBox.y, q.y) * step(q.y, _SG_DustBox.w) * step(input.positionWS.y, 6.0);
+        // Nothing within arm's reach is dusted: held tools, the hands and the station in use keep their colour.
+        inside *= smoothstep(2.2, 3.5, distance(input.positionWS, _WorldSpaceCameraPos));
         float grime = SG_ValueNoise(q * 3.1) * 0.5 + SG_ValueNoise(q * 11.0) * 0.5;
         half lumA = dot(albedo, half3(0.3, 0.55, 0.15));
         half3 dusty = lerp(albedo, lumA * half3(0.86, 0.82, 0.78) + 0.05, 0.62) * (0.84 + grime * 0.12);
