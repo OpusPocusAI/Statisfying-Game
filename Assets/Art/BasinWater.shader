@@ -42,8 +42,8 @@ Shader "Sea Glass/Basin Water"
             half4 frag(V i) : SV_Target
             {
                 float2 p = i.local;
-                float rim = max(abs(p.x), abs(p.y));
-                float edge = smoothstep(.2, .5, rim);
+                float rim = length(p);   // round 12: oval bowl (unit disc); was a rounded square
+                float edge = smoothstep(.28, .5, rim);
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 half shade = lerp(.42, 1, sun.shadowAttenuation);          // the glass shades the floor below it
                 half3 light = max(sun.color * shade * .55 + SampleSH(half3(0, 1, 0)) * .5, half3(.62, .6, .58));   // round 6: never a grey fog indoors (round 8: not milky either)
@@ -69,7 +69,7 @@ Shader "Sea Glass/Basin Water"
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
                 // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
-                half alpha = lerp(.5, .88, edge) + caustic * .1;
+                half alpha = lerp(.3, .8, edge) + caustic * .08;   // round 12: clearly see-through in the middle
                 return half4(MixFog(c, i.fog), saturate(alpha));
             }
             ENDHLSL

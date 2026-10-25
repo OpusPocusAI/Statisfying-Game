@@ -79,9 +79,9 @@ namespace SeaGlass.Editor
                     var p = new Vector3(top.center.x + ((float)rng.NextDouble() - .5f) * top.size.x * .55f, top.min.y + .085f + (i % 4) * .016f, top.max.z - .28f - (float)rng.NextDouble() * .3f);
                     go.transform.position = p;
                     go.transform.rotation = Quaternion.Euler(90 + ((float)rng.NextDouble() - .5f) * 30, (float)rng.NextDouble() * 360, 0);
-                    float size = (.1f + (float)rng.NextDouble() * .05f) / Mathf.Max(def.VisualMesh.bounds.size.x, def.VisualMesh.bounds.size.y);
+                    float size = (.1f + (float)rng.NextDouble() * .05f) / Mathf.Max(def.HeldMesh.bounds.size.x, def.HeldMesh.bounds.size.y);
                     go.transform.localScale = Vector3.one * size;
-                    go.AddComponent<MeshFilter>().sharedMesh = def.VisualMesh;
+                    go.AddComponent<MeshFilter>().sharedMesh = def.HeldMesh;
                     var r = go.AddComponent<MeshRenderer>(); r.sharedMaterial = mat; r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
             }

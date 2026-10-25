@@ -118,7 +118,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Each spot goes sandy dirt -> salt frost -> clear glass as grime falls past it.
                 // Where the brush has passed, grime drops sharply (PowerWash-style visible strokes).
                 float brushed = SAMPLE_TEXTURE2D(_CleanMask, sampler_CleanMask, (i.local.xy - _MaskRect.xy) / _MaskRect.zw).r;
-                float localGrime = _Grime * (1 - smoothstep(.15, .7, brushed) * .9);
+                float localGrime = _Grime * (1 - smoothstep(.35, .45, brushed) * .92);   // round 12: crisp brush-stroke edges
                 float grime = smoothstep(order - .1, order + .1, localGrime);
                 float dirt = smoothstep(order + .18, order + .4, localGrime);
 
@@ -181,9 +181,9 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
                 // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
-                half3 sandStain = half3(.4, .35, .24) * lightOnFrost * (.85 + grain * .3);
-                float stainPatch = smoothstep(.15, .55, Noise(q * 1.1 + 11.0) * .8 + grain * .2);
-                frosted = lerp(frosted, sandStain, dirt * lerp(.22, .42, stainPatch));   // round 6: a thinner film, so the glass colour still shows under it
+                half3 sandStain = half3(.3, .25, .16) * lightOnFrost * (.85 + grain * .3);
+                float stainPatch = smoothstep(.44, .5, Noise(q * 1.1 + 11.0) * .8 + grain * .2);   // round 12: hard-edged grime patches
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .88);   // round 12: dark patches over the frost (PowerWash contrast); frost between them keeps the colour
 
                 half3 c = lerp(clean, frosted, grime);
 
@@ -191,7 +191,7 @@ Shader "Sea Glass/Frosted Glass"
                 float3 h = normalize(l + v);
                 half spec = pow(saturate(dot(n, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
-                half window = smoothstep(.62, .65, r.y) * (1 - smoothstep(.7, .73, r.y)) * .22;   // a thin sky line, not a broad band
+                half window = 0;   // round 12: a sky band drew a bullseye ring on domed pebbles; specular only
                 c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
 
                 c += _EmissionColor.rgb;

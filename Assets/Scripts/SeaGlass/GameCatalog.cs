@@ -8,7 +8,10 @@ namespace SeaGlass
     public enum PlayerMode { Walking, Driving, Workstation }
     [Serializable] public class GlassDefinition { public string id; public GlassColor color; public int shape; public int section; public int panel; public Vector2 socket; public float depthOffset; public Mesh mesh;
         // Rounded, tumbled display mesh with the same outline as the authored polygon (mesh stays the gameplay/test source).
-        public Mesh visualMesh; public Mesh VisualMesh=>visualMesh?visualMesh:mesh; }
+        public Mesh visualMesh; public Mesh VisualMesh=>visualMesh?visualMesh:mesh;
+        // Round 12: one shared family of tumbled pebbles for everything held, sorted, found or carried; the mosaic
+        // keeps VisualMesh so installed pieces still fit their sockets.
+        public Mesh pebbleMesh; public Mesh HeldMesh=>pebbleMesh?pebbleMesh:VisualMesh; }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject

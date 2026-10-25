@@ -33,7 +33,7 @@ namespace SeaGlass.Editor
             for (int i = 0; i < truck.glassCargo.Length; i++)
             {
                 var t = truck.glassCargo[i]; var def = catalog.glass[(i * 7) % catalog.glass.Length];
-                Cargo(t, def.VisualMesh, .3f, Quaternion.Euler(80 + i * 13 % 20, i * 53, i * 17 % 30));
+                Cargo(t, def.HeldMesh, .3f, Quaternion.Euler(80 + i * 13 % 20, i * 53, i * 17 % 30));
             }
             string[] rubbish = { "rubbish_can", "rubbish_bottle", "rubbish_crushed", "rubbish_driftwood", "rubbish_can" };
             var metal = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/ShorelinePolish/Dulled aluminium.mat");
