@@ -223,7 +223,7 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **References:** `06-mosaic`. **Never:** flat vector shapes with no came or texture.
 
-### 5.10 Studio interior (Oct 24: 2 → 3/5 — not yet at the bar)
+### 5.10 Studio interior (Oct 24: 2 → 3 → 4/5 after side-by-side round 4)
 
 **Now:** coherent palette (teal walls, cream, burnt-orange beams), curtains, pendants and pottery. Flat shading, large empty floor areas, tables are slabs on blocks.
 
@@ -392,4 +392,14 @@ Method: each official Steam screenshot of the reference games was opened full wi
 | 5.13 Effects | 4 | 4 | 4 | Not compared in motion. |
 | 5.14 UI | 3 | **4** | 4 | Paper-card panels with tape and a rounded system face (Candara where installed). |
 
-V1 is **not** met: the studio interior (5.10) is still at 3. Next for the studio: a central work island or shelving that divides the hall (needs collision, so it changes player movement and needs checking against the tests), every bench top dressed, and more on the gallery wall. No human play-test has been done; scores are judged from fixed captures, not from play.
+After round 3, V1 was **not** met: the studio interior (5.10) was still at 3.
+
+### October 24 — studio round 4 (pass 18)
+
+Pass `Sea Glass/Art Direction/18` (`StudioLayoutPass`, models `ArtSource/blender/studio_island.py`) answers the Unpacking side-by-side: a work island across the central walkway, a second table on the sorting rug, a 4 m open shelving divider filled with books, jars of glass, bottles, pottery and baskets, and desk sets on the island, table and equipment bench. Furniture has colliders. Every walking gap is at least 2.2 m for the 1 m player capsule, checked with capsule overlaps along the routes. The mosaic band stays clear.
+
+| Area | Round 3 | Round 4 | Verdict |
+| --- | --- | --- | --- |
+| 5.10 Studio | 3 | **4** | The walkway now ends at the island and the hall reads as zones; shelf density is close to Unpacking's bookshelves. Still short of Unpacking: a large pale ceiling, open floor between zones and the open road side. Weakest 4 with 5.3. |
+
+All fourteen areas now score at least 4/5 in side-by-side comparison with the reference screenshots, which meets this document's V1 art threshold as judged from fixed captures. This is not a human play-test sign-off, and effects were not compared in motion.

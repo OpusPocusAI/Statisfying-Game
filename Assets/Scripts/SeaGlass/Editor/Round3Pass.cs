@@ -253,7 +253,7 @@ namespace SeaGlass.Editor
                 Floor(root, "Sorting rug", rug, rug2, new Vector3(-9.5f, .027f, 166.2f), 90, .62f);
                 // Runners break up the long central walkway (Unpacking never shows a bare floor run).
                 Floor(root, "Walkway runner", rug, rugMats, new Vector3(-4f, .029f, 161.6f), 90, .5f);
-                Floor(root, "Walkway runner", rug, rug2, new Vector3(2.4f, .029f, 164.8f), 0, .45f);
+                Floor(root, "Walkway runner", rug, rug2, new Vector3(3.6f, .029f, 167.3f), 0, .42f);
             }
             BenchTops(root, crate, crateMats, plant, plantMats);
             // A seating corner around the gallery bench: plants and baskets either side (Unpacking's lived-in rooms).
@@ -261,9 +261,9 @@ namespace SeaGlass.Editor
             Floor(root, "Potted plant", plant, plantMats, new Vector3(-12.2f, 0, 155.4f), 110, 1.5f);
             Floor(root, "Potted plant", plant, plantMats, new Vector3(4.2f, 0, 155.4f), 290, 1.45f);
             Floor(root, "Wicker basket", basket, basketMats, new Vector3(-11.3f, 0, 155.6f), 20, 1f);
-            Floor(root, "Potted plant", plant, plantMats, new Vector3(1.3f, 0, 168.6f), 200, 1.1f);
+            Floor(root, "Potted plant", plant, plantMats, new Vector3(6.9f, 0, 165.7f), 200, 1.1f);
             Floor(root, "Wicker basket", basket, basketMats, new Vector3(-6.4f, 0, 167.2f), 70, 1f);
-            Floor(root, "Wicker basket", basket, basketMats, new Vector3(.6f, 0, 167.0f), 150, .9f);
+            Floor(root, "Wicker basket", basket, basketMats, new Vector3(1.9f, 0, 165.4f), 150, .9f);
         }
 
         // Bench ends, hanging planters and a crate shelf: Unpacking fills surfaces, not just floors.
@@ -283,9 +283,10 @@ namespace SeaGlass.Editor
             On("Bench jar", jar, jarMats, 3.8f, 158.5f, 0, .9f); On("Bench jar", jar, jarMats, 3.75f, 159.55f, 140, 1);
             On("Bench sprayer", sprayer, sprayMats, 6.2f, 159.55f, 200, 1); On("Bench brush", brush, brushMats, 6.25f, 158.55f, 75, 1);
 
-            // Hanging planters from the ceiling boards, with a cord up to the ceiling.
+            // Hanging planters from the ceiling boards, with a cord up to the ceiling. The back-wall pair hangs
+            // in the gaps between the mosaic panels (x -6.5 and 0.5) so it never covers the glass.
             var cordMat = Mat("Planter cord", new Color(.45f, .32f, .22f), 0, 1);
-            foreach (var p in new[] { new Vector3(-13.6f, 0, 158.2f), new Vector3(-13.6f, 0, 164.2f), new Vector3(-13.6f, 0, 170.2f), new Vector3(6.8f, 0, 163.2f), new Vector3(-8.6f, 0, 174.6f), new Vector3(-.4f, 0, 174.6f) })
+            foreach (var p in new[] { new Vector3(-13.6f, 0, 158.2f), new Vector3(-13.6f, 0, 164.2f), new Vector3(-13.6f, 0, 170.2f), new Vector3(6.8f, 0, 163.2f), new Vector3(-6.5f, 0, 174.6f), new Vector3(.5f, 0, 174.6f) })
             {
                 var pot = Place(root, "Hanging planter", plant, plantMats, new Vector3(p.x, 3.35f, p.z), p.z * 13, Vector3.one * .6f, true);
                 var c = GameObject.CreatePrimitive(PrimitiveType.Cylinder); Object.DestroyImmediate(c.GetComponent<Collider>());

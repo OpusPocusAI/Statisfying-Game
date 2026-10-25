@@ -144,4 +144,10 @@ The earlier "every area at 4/5" result (passes 1–13) was self-assessed and did
 - `PainterlyLit` gained `_GroundPatches` (broad golden/rosy sand patches, used only by the two sand materials).
 - `StudioUI`: paper-card panels; cached styles, textures and the OS font are `[NonSerialized]`, which stopped the repeated "Deleting invalid font reference" Editor message after script reloads.
 
-Still open: the studio interior is at 3/5 (long bare walkway); no light shafts; no human play-test.
+Still open after round 3: the studio interior at 3/5 (fixed in round 4, below); no light shafts; no human play-test.
+
+### Studio round 4 — October 24
+
+Pass 18 `StudioLayoutPass` adds the work island, a second table, an open shelving divider and desk sets (`ArtSource/blender/studio_island.py`). Furniture uses box colliders sized to the mesh bounds; clutter has none, so it never blocks the interaction reticle. Walking gaps are at least 2.2 m because the player's CharacterController radius is 1 m. Pass 17 now places three decor pieces clear of the new corridor. Studio interior: 3 → 4/5.
+
+The restored-studio check frame showed a round 3 hanging planter in front of the Ocean Wave panel. The two back-wall planters now hang in the gaps between the panels (x -6.5 and 0.5).
