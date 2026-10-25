@@ -69,7 +69,7 @@ Shader "Sea Glass/Basin Water"
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
                 // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
-                half alpha = lerp(.42, .86, edge) + caustic * .1;
+                half alpha = lerp(.5, .88, edge) + caustic * .1;
                 return half4(MixFog(c, i.fog), saturate(alpha));
             }
             ENDHLSL

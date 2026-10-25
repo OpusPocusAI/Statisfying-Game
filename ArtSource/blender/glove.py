@@ -28,10 +28,10 @@ parts.append(sleeve)
 # Round 6: fabric folds and a rolled-up edge so the forearm reads as a sleeve, not a smooth tube.
 axis_dir = Vector((0, -math.cos(math.radians(8)), math.sin(math.radians(8))))   # sleeve axis (82 deg about X from +Z)
 start = Vector((0, -.42, 0)) - axis_dir * .31
-for k, t in enumerate((.06, .2, .33, .45)):
+for k, t in enumerate((.12, .34)):   # round 11: two soft folds (four read as a segmented pipe)
     c = start + axis_dir * t
     r = .052 + (.085 - .052) * (t / .62)
-    bpy.ops.mesh.primitive_torus_add(major_radius=r + .002, minor_radius=.007 + .003 * (k == 0), major_segments=20, minor_segments=6,
+    bpy.ops.mesh.primitive_torus_add(major_radius=r - .002, minor_radius=.005, major_segments=20, minor_segments=6,
                                      location=(c.x + (.004 if k % 2 else -.004), c.y, c.z), rotation=(math.radians(82 + (5 if k % 2 else -4)), 0, 0))
     fold = bpy.context.active_object; assign(fold, "sleeve"); parts.append(fold)
 rolled = start + axis_dir * .02

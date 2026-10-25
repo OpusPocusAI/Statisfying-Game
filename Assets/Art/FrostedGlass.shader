@@ -173,6 +173,10 @@ Shader "Sea Glass/Frosted Glass"
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .55);
                 float sparkle = step(.975, Noise(i.local * 70)) * pow(wrap, 3);
                 frosted += sparkle * sun.color * .4;
+                // Round 11: even frosted glass shows its volume: a bright rounded rim and a slightly deeper,
+                // more saturated edge band, so a cloudy piece never reads as a flat decal.
+                frosted = lerp(frosted, tint * lightOnFrost * .8, saturate(fresnel * 1.6) * .45);
+                frosted += lerp(tint, half3(1, 1, 1), .5) * pow(fresnel, 4) * .9 * (sky * .5 + sun.color * .5);
                 // Sandy staining on top of the frost; it washes off first.
                 // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
                 // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against

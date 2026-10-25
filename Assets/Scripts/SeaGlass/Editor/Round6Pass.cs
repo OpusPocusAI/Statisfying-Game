@@ -70,16 +70,16 @@ namespace SeaGlass.Editor
                 if (!mat) continue;
                 var rng = new System.Random((int)t.color * 97 + 13);
                 var top = t.GetComponent<Renderer>().bounds;
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 12; i++)   // round 11: a fuller pile
                 {
                     var def = defs[rng.Next(defs.Length)];
                     var go = new GameObject("Spare " + t.color + " glass"); go.transform.SetParent(root);
                     // Back corner of the tray, clear of where sorted pieces are shown (StudioPresentation lays those out
                     // from the tray centre forward).
-                    var p = new Vector3(top.center.x + ((float)rng.NextDouble() - .5f) * top.size.x * .55f, top.min.y + .085f + i * .012f, top.max.z - .32f - (float)rng.NextDouble() * .14f);
+                    var p = new Vector3(top.center.x + ((float)rng.NextDouble() - .5f) * top.size.x * .55f, top.min.y + .085f + (i % 4) * .016f, top.max.z - .28f - (float)rng.NextDouble() * .3f);
                     go.transform.position = p;
                     go.transform.rotation = Quaternion.Euler(90 + ((float)rng.NextDouble() - .5f) * 30, (float)rng.NextDouble() * 360, 0);
-                    float size = .11f / Mathf.Max(def.VisualMesh.bounds.size.x, def.VisualMesh.bounds.size.y);
+                    float size = (.1f + (float)rng.NextDouble() * .05f) / Mathf.Max(def.VisualMesh.bounds.size.x, def.VisualMesh.bounds.size.y);
                     go.transform.localScale = Vector3.one * size;
                     go.AddComponent<MeshFilter>().sharedMesh = def.VisualMesh;
                     var r = go.AddComponent<MeshRenderer>(); r.sharedMaterial = mat; r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
