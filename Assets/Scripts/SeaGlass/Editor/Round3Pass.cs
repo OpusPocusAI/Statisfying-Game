@@ -336,7 +336,7 @@ namespace SeaGlass.Editor
 
         static bool Near(List<Vector3> items, Vector3 p, float d) => items.Any(i => (new Vector2(i.x, i.z) - new Vector2(p.x, p.z)).sqrMagnitude < d * d);
 
-        static float Ground(Vector3 p)
+        internal static float Ground(Vector3 p)
         {
             var hits = Physics.RaycastAll(new Vector3(p.x, 30, p.z), Vector3.down, 60);
             var ok = hits.Where(h => !h.collider.isTrigger && h.collider.GetComponentInParent<ShoreItem>() == null).OrderBy(h => h.distance).ToArray();

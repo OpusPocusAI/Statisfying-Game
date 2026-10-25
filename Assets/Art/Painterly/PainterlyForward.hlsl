@@ -8,6 +8,8 @@ float4 _SG_ShadowTint;   // rgb: colour of the shadow side, a: its brightness
 float4 _SG_Terminator;   // x: light/shadow edge position, y: edge softness, z: sun strength, w: sky fill
 float4 _SG_Rim;          // rgb: warm rim colour, a: strength
 float4 _SG_Paint;        // x: variation scale (1/m), y: warm/cool hue drift, z: AO strength, w: specular strength
+float _SG_Dust;           // round 10: neglect inside the studio, 1 at the start, 0 when restored (StudioRestoration)
+float4 _SG_DustBox;       // xz min (xy) and xz max (zw) of the studio interior
 
 struct Attributes
 {
@@ -115,11 +117,30 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         albedo *= 1.0 + big * _GroundPatches * 1.8;
         albedo = lerp(albedo, albedo * half3(0.97, 0.9, 0.9), saturate(-big * 4.0) * _GroundPatches * 2.4);
         albedo = lerp(albedo, albedo * half3(1.04, 1.01, 0.9), saturate(big * 4.0) * _GroundPatches * 2.4);
+        // Round 10: wind ripples in the near field (fade out by ~25 m), lit crest and cooler trough, so the
+        // sand at the player's feet has detail without speckling the distance.
+        float2 wq = input.positionWS.xz;
+        float warp = SG_ValueNoise(wq * 0.35) * 5.0 + SG_ValueNoise(wq * 1.3) * 1.2;
+        float rip = sin(dot(wq, float2(0.93, 0.37)) * 7.5 + warp);
+        float near = 1.0 - smoothstep(6.0, 25.0, distance(input.positionWS, _WorldSpaceCameraPos));
+        albedo *= 1.0 + rip * 0.06 * near * (_GroundPatches / 0.4);
+        albedo = lerp(albedo, albedo * half3(0.93, 0.95, 1.04), saturate(-rip) * 0.35 * near * (_GroundPatches / 0.4));
     }
 
     // Height gradient: darker, cooler base and a sunlit crown.
     float height = saturate(input.positionWS.y / max(_GradientHeight, 0.05));
     albedo *= lerp(1.0 - _GradientStrength, 1.0 + _GradientStrength * 0.3, smoothstep(0.0, 1.0, height));
+
+    // Neglected studio (round 10): dusty, greyed and dimmer before restoration; clears panel by panel.
+    if (_SG_Dust > 0.001)
+    {
+        float2 q = input.positionWS.xz;
+        float inside = step(_SG_DustBox.x, q.x) * step(q.x, _SG_DustBox.z) * step(_SG_DustBox.y, q.y) * step(q.y, _SG_DustBox.w) * step(input.positionWS.y, 6.0);
+        float grime = SG_ValueNoise(q * 3.1) * 0.5 + SG_ValueNoise(q * 11.0) * 0.5;
+        half lumA = dot(albedo, half3(0.3, 0.55, 0.15));
+        half3 dusty = lerp(albedo, lumA * half3(0.86, 0.82, 0.78) + 0.05, 0.62) * (0.84 + grime * 0.12);
+        albedo = lerp(albedo, dusty, _SG_Dust * inside);
+    }
 
     float4 shadowCoord = TransformWorldToShadowCoord(input.positionWS);
     half4 shadowMask = half4(1, 1, 1, 1);

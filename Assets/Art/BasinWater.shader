@@ -10,10 +10,14 @@ Shader "Sea Glass/Basin Water"
     }
     SubShader
     {
-        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" }
+        // Round 10: see-through. Drawn after the glass (queue +50) so the submerged part of the piece shows
+        // tinted through the water while the part above the surface keeps its own depth.
+        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" "Queue" = "Transparent+50" }
         Pass
         {
             Tags { "LightMode" = "UniversalForward" }
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -64,7 +68,9 @@ Shader "Sea Glass/Basin Water"
                 float bubbles = step(.965, Noise(p * 55 + float2(0, _Time.y * .05))) * smoothstep(.38, .46, rim);
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
-                return half4(MixFog(c, i.fog), 1);
+                // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
+                half alpha = lerp(.42, .86, edge) + caustic * .1;
+                return half4(MixFog(c, i.fog), saturate(alpha));
             }
             ENDHLSL
         }
