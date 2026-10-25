@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 04c4fc2cad77be443bdcc4b4432f46ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -102,6 +102,7 @@ Material:
     - _GlossyReflections: 0
     - _GradientHeight: 2
     - _GradientStrength: 0
+    - _GroundPatches: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -114,8 +115,10 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Variation: 0.07
+    - _Variation: 0.14
     - _WorkflowMode: 1
+    - _WorldMapping: 1
+    - _WorldTile: 3.2
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:

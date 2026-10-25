@@ -128,7 +128,10 @@ Shader "Sea Glass/Frosted Glass"
                 float2 offset = viewN.xy * _Refraction * (.6 + fresnel);
                 half3 behind = SampleSceneColor(screenUV + offset);
                 // Thicker middle tints more strongly than the thin rounded rim.
-                half depthTint = lerp(.55, .9, nv);
+                // Round 7: thin rims and glancing edges let the background through almost untinted; only the
+                // thick core filters strongly, so clean glass reads as glass rather than opaque candy.
+                float thickT = saturate((abs(i.local.z) - .02) / .06);
+                half depthTint = lerp(.3, .85, nv) * lerp(.5, 1, thickT);
                 // Coloured filter: keep the background's brightness, take the glass's hue.
                 half lum = dot(behind, half3(.3, .55, .15));
                 half3 filtered = lerp(behind * tint * 1.6, lum * tint * 1.9, .55);
@@ -153,7 +156,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished
                 // piece, thickest at the thin rim, keeps it from reading as glossy jelly.
                 float satin = Noise(i.local * 55.0) * .5 + Noise(i.local * 120.0) * .5;
-                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.16 + .14 * (1 - thick)) * (.75 + satin * .5));
+                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.07 + .08 * (1 - thick)) * (.75 + satin * .5));
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);

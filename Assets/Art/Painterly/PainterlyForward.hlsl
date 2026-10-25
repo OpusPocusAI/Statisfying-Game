@@ -77,7 +77,7 @@ Varyings PainterlyVertex(Attributes input)
     return output;
 }
 
-half4 PainterlyFragment(Varyings input) : SV_Target
+half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANTIC) : SV_Target
 {
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
@@ -85,7 +85,9 @@ half4 PainterlyFragment(Varyings input) : SV_Target
     // Ground surfaces can map their texture in world space so it tiles seamlessly across meshes.
     // Mode 1: ground (xz). Mode 2: walls and roofs, picking the world plane the surface faces
     // (texture v runs up the wall, so boards and courses stay horizontal).
-    float3 normalWS = normalize(input.normalWS);
+    // Two-sided surfaces (grass blades, leaves, fabric) light their back faces with the flipped normal,
+    // so they are not rendered near-black from behind (round 7).
+    float3 normalWS = normalize(input.normalWS) * IS_FRONT_VFACE(face, 1.0, -1.0);
     float2 uv = input.uv;
     float tile = max(_WorldTile, 0.01);
     if (_WorldMapping > 1.5)
