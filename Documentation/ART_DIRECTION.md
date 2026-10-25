@@ -452,3 +452,29 @@ Round 10 did the bigger modelling work: truck canopy and tube rails, palms as a 
 Review 7 judged a build in which the new studio dust also greyed the first-person sleeve and the basin; that made the sleeve read as "a grey drainpipe" and the water as milky, and likely cost 5.12 and 5.7 points. Dust no longer applies within 3.5 m of the camera (fixed after the review, not re-reviewed). Sorting dropped from 4 to 3 on the thin tray pebbles; reviewers keep disagreeing on glass thickness.
 
 **V1 is not met.** Five areas at 4 (lighting, water, sand, mosaic, studio), six at 3 (props, glass, cleaning, sorting, truck, tools). Remaining work named by review 7: chunkier tray and cloudy pieces with a visible rim and contact shadow; clearer basin water with a visible enamel wall; a rounded truck bonnet and fenders plus visibly heaped cargo; grass in drifts with 3–4 shapes; shaped cooler, log and towel; a larger brush head.
+
+### October 25 — round 11 and review 8 (pass 24)
+
+Round 11: 12 chunky pebbles per tray, a rim on cloudy glass, a more teal basin, a larger brush with lighter sleeve folds, rounded truck fenders, a forked driftwood branch, and grass drifts.
+
+| Area | Review 7 | Review 8 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 4 |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 4 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | – | 3 (little evidence) |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 3 | **4** |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 4 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | **4** |
+| 5.14 Signs | – | 3 |
+
+Five areas at 4 again. Several areas now move between 3 and 4 from one reviewer to the next with little change in between (sand, studio, sorting, tools), so the scores have plateaued within reviewer noise; the remaining gaps need larger new work, not tuning.
+
+**Bug found by review 8 and fixed:** the placement helper used for all scatter since round 3 (shrubs, pebbles, shells, footprints, grass drifts) took the first collider hit, which could be an invisible boundary wall or a dune's box collider taller than the visible mound, so some dressing floated 1–2 m above the sand (it read as "grass growing out of the sea" along the horizon). It now only accepts visible, non-sea surfaces within the object's visible height; all dressing was re-seated (0 items left floating). Earlier reviews saw builds with this bug.
+
+Remaining work named by review 8: one shared rounded-pebble mesh family for every colour (pieces currently follow their mosaic socket outlines), clearly transparent basin water with a rounded enamel bowl and higher-contrast grime, storytelling clusters instead of repeated filler in the studio and a stronger neglected state, clustered grass on dune crests with open sand between, a domed truck bonnet with badge and wear, faceted stratified sea stacks, larger mosaic nameplates.

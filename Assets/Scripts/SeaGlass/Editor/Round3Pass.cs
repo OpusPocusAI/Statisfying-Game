@@ -339,7 +339,10 @@ namespace SeaGlass.Editor
         internal static float Ground(Vector3 p)
         {
             var hits = Physics.RaycastAll(new Vector3(p.x, 30, p.z), Vector3.down, 60);
-            var ok = hits.Where(h => !h.collider.isTrigger && h.collider.GetComponentInParent<ShoreItem>() == null).OrderBy(h => h.distance).ToArray();
+            // Only visible ground counts: invisible boundary walls and the sea have colliders too (round 11 fix).
+            var ok = hits.Where(h => !h.collider.isTrigger && h.collider.GetComponentInParent<ShoreItem>() == null
+                && h.collider.GetComponent<Renderer>() is Renderer gr && gr.enabled && gr.sharedMaterial && !gr.sharedMaterial.name.Contains("ocean") && h.point.y < 8
+                && h.point.y <= gr.bounds.max.y + .05f).OrderBy(h => h.distance).ToArray();   // box colliders taller than the visible mound do not count
             if (ok.Length > 0) return ok[0].point.y;
             // No collider: sample visible sand meshes.
             float best = -.1f;
