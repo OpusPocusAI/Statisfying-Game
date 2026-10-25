@@ -8,6 +8,8 @@ Shader "Sea Glass/Tidal Water"
  #pragma vertex vert
  #pragma fragment frag
  #pragma multi_compile_fog
+ #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+ #pragma multi_compile_fragment _ _SHADOWS_SOFT
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
  #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
@@ -61,7 +63,9 @@ Shader "Sea Glass/Tidal Water"
   // A small directional sheen follows the actual golden-hour sun. No reflection camera.
   float3 view=GetWorldSpaceNormalizeViewDir(i.world);
   float3 normal=normalize(float3(cos(phase)*.09,1,cos(crossing)*.07));
-  Light sun=GetMainLight();
+  // Round 8: the sea receives shadows, so rock and cliff shadows continue onto the water.
+  Light sun=GetMainLight(TransformWorldToShadowCoord(i.world));
+  c*=lerp(.66,1,sun.shadowAttenuation);
   float sheen=pow(saturate(dot(normal,normalize(sun.direction+view))),128);
   c+=sun.color*sheen*(.045+marks*.22);
 
@@ -82,13 +86,13 @@ Shader "Sea Glass/Tidal Water"
   float2 refractUV=suv+float2(cos(phase),cos(crossing))*.004*saturate(vdepth);
   half3 bed=SampleSceneColor(refractUV);
   half3 transmit=exp(-vdepth*half3(1.6,.55,.5));
-  half3 seen=bed*transmit*half3(.85,1.05,1.0)+half3(.16,.62,.6)*(1-transmit)*.9;
+  half3 seen=bed*transmit*half3(.95,1.0,.97)+half3(.16,.62,.6)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
   c=lerp(seen,c,smoothstep(.15,2.6,vdepth));
   // Sun path: broken glints where ripple normals catch the low sun.
   float3 rip=normalize(float3((BrushNoise(p*1.7+float2(t*.6,0))-.5)*.5+cos(phase)*.12,1,(BrushNoise(p*1.9+float2(0,-t*.5))-.5)*.5+cos(crossing)*.1));
   float glint=pow(saturate(dot(reflect(-view,rip),sun.direction)),220);
   float glintAA=1-smoothstep(.4,1.6,length(fwidth(p*1.7)));
-  c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA)*smoothstep(3.,12.,i.eye);   // round 6: no huge glint shapes right at the camera
+  c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA)*smoothstep(3.,12.,i.eye)*sun.shadowAttenuation;   // round 6: no huge glint shapes right at the camera
   float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
   // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
   float edgeAA=clamp(fwidth(vdepth),.01,.04);

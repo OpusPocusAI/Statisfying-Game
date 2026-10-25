@@ -66,25 +66,44 @@ for k in range(3):
     for t in range(random.randint(14, 20)):                     # tree clumps following the dome
         a = random.uniform(0, math.tau); r = random.uniform(.1, .85) * R
         top = z - .02 + H * .7 * math.sqrt(max(0, 1 - (r / R) ** 2))
-        parts.append(blob((ox + math.cos(a) * r, math.sin(a) * r * d / w, top), random.uniform(.045, .07), random.uniform(.06, .1), k * 50 + t, "trees", sub=1))
+        parts.append(blob((ox + math.cos(a) * r, math.sin(a) * r * d / w, top), random.uniform(.045, .07), random.uniform(.05, .08), k * 50 + t, "trees", sub=2))   # round 8: rounded clumps, not thorny cones
     isl = join(parts, "FarIsland")
     export(isl, "far_island_%d" % k, ["cliff", "cap", "trees"])
 
 # ---------------------------------------------------------------- tall sea stacks (nominal 1 wide, ~1.6 high)
+# Round 8: one sculpted mass per stack instead of stacked slabs (reviewers read slabs as boxes).
+# A tall faceted column that tapers upward, with soft terrace steps (strata), an uneven profile, a
+# wave-cut notch near the base and a flat-shaded, decimated surface (Lonely Mountains: Downhill / Tchia).
 for k in range(3):
     reset(); random.seed(400 + k)
-    parts = []
-    z, w, d, ox, oy = 0.0, 1.0, random.uniform(.8, .95), 0.0, 0.0
-    layers = random.randint(5, 7)
-    for i in range(layers):
-        h = random.uniform(.13, .38)
-        parts.append(slab(ox, oy, z, w, d, h, k * 13 + i, "rock", jitter=.09))
-        if i < layers - 1 and random.random() < .6:            # broken side column
-            parts.append(slab(ox + w * .42 * random.choice((-1, 1)), oy, z, w * .32, d * .45, h * random.uniform(1.2, 2.2), k * 13 + i + 70, "rock"))
-        z += h * .93
-        w *= random.uniform(.72, 1.04); d *= random.uniform(.74, 1.02)
-        ox += random.uniform(-.17, .17); oy += random.uniform(-.13, .13)
-    parts.append(blob((ox, oy, z), w * .42, .08, k * 3, "cap"))  # a tuft of green on top
+    H = random.uniform(1.5, 1.8)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=14, radius=.5, depth=H, location=(0, 0, H / 2))
+    st = bpy.context.active_object
+    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=10); bpy.ops.object.mode_set(mode="OBJECT")
+    s = Vector((k * 3.1, k * 1.7, k * .9))
+    steps = random.randint(4, 6)
+    for v in st.data.vertices:
+        t = v.co.z / H                                            # 0 base .. 1 top
+        r = math.hypot(v.co.x, v.co.y)
+        if r < 1e-4: continue
+        a = math.atan2(v.co.y, v.co.x)
+        # Taper and an irregular, lumpy plan.
+        rad = .5 * (1 - .38 * t) * (1 + noise.noise(Vector((math.cos(a) * 1.3, math.sin(a) * 1.3, t * 2.2)) + s) * .32)
+        # Terrace steps: radius pulls in just above each stratum line.
+        ts = t * steps; frac = ts - math.floor(ts)
+        rad *= 1 - .07 * (1 - min(1, frac * 4))
+        # Wave-cut notch around the waterline (~12% of the height).
+        rad *= 1 - .14 * math.exp(-((t - .12) / .05) ** 2)
+        v.co.x = math.cos(a) * rad + noise.noise(Vector((v.co.x, v.co.y, v.co.z)) * 2.4 + s) * .05
+        v.co.y = math.sin(a) * rad * random.uniform(.96, 1.0) + noise.noise(Vector((v.co.y, v.co.z, v.co.x)) * 2.4 - s) * .05
+        # Uneven, sloping top.
+        if t > .99: v.co.z += noise.noise(v.co * 3 + s) * .08 - .04
+    dec = st.modifiers.new("d", "DECIMATE"); dec.ratio = .22
+    bpy.ops.object.modifier_apply(modifier="d")
+    st.rotation_euler = (random.uniform(-.06, .06), random.uniform(-.06, .06), random.uniform(0, math.tau)); bpy.ops.object.transform_apply(rotation=True)
+    assign(st, "rock")
+    for p in st.data.polygons: p.use_smooth = False
+    parts = [st, blob((random.uniform(-.05, .05), 0, H * .99), .2, .07, k * 3, "cap")]   # a tuft of green on top
     st = join(parts, "SeaStack")
     export(st, "sea_stack_%d" % k, ["rock", "cap"])
 

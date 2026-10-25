@@ -156,7 +156,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished
                 // piece, thickest at the thin rim, keeps it from reading as glossy jelly.
                 float satin = Noise(i.local * 55.0) * .5 + Noise(i.local * 120.0) * .5;
-                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.07 + .08 * (1 - thick)) * (.75 + satin * .5));
+                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.13 + .1 * (1 - thick)) * (.75 + satin * .5));
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);

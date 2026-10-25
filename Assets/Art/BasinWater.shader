@@ -42,7 +42,7 @@ Shader "Sea Glass/Basin Water"
                 float edge = smoothstep(.2, .5, rim);
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 half shade = lerp(.42, 1, sun.shadowAttenuation);          // the glass shades the floor below it
-                half3 light = max(sun.color * shade * .55 + SampleSH(half3(0, 1, 0)) * .5, half3(.78, .76, .74));   // round 6: never a grey fog indoors
+                half3 light = max(sun.color * shade * .55 + SampleSH(half3(0, 1, 0)) * .5, half3(.62, .6, .58));   // round 6: never a grey fog indoors (round 8: not milky either)
 
                 // Enamel floor through clear water: bright in the middle, teal and deeper toward the rim.
                 half3 c = lerp(_BaseColor.rgb, _Deep.rgb, edge * .9) * light;

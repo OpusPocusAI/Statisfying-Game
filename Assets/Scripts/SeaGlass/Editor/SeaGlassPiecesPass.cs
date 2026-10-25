@@ -17,9 +17,9 @@ namespace SeaGlass.Editor
 
         // Profile in the authored polygon's units (pieces are roughly 0.5–2 units across).
         const float EdgeHalf = .014f;     // half thickness at the very edge
-        const float CentreHalf = .12f;    // half thickness once past the rounded edge (round 5: chunkier, less slab-like)
+        const float CentreHalf = .09f;    // half thickness once past the rounded edge (round 5: chunkier, less slab-like)
         const float RoundRadius = .22f;   // width of the rounded edge
-        const float Dome = .1f;           // extra swell towards the middle
+        const float Dome = .045f;         // extra swell towards the middle
         const int Levels = 3;             // cap subdivision (8 segments per outline edge)
 
         [MenuItem("Sea Glass/Art Direction/2a Tumbled sea-glass pieces")]

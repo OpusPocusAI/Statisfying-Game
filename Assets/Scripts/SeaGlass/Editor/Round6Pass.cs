@@ -157,7 +157,7 @@ namespace SeaGlass.Editor
                     px[y * S + x] = Color.Lerp(c, new Color(1.08f, 1.0f, .9f), dust * .5f);
                 }
             // Hairline cracks: short wandering dark lines.
-            for (int k = 0; k < 14; k++)
+            for (int k = 0; k < 6; k++)   // round 8: fewer, finer cracks
             {
                 float x = rng.Next(S), y = rng.Next(S), a = (float)rng.NextDouble() * Mathf.PI * 2;
                 int len = 30 + rng.Next(60);
@@ -165,7 +165,7 @@ namespace SeaGlass.Editor
                 {
                     a += ((float)rng.NextDouble() - .5f) * .6f; x += Mathf.Cos(a); y += Mathf.Sin(a);
                     int ix = (((int)x % S) + S) % S, iy = (((int)y % S) + S) % S;
-                    px[iy * S + ix] *= .72f;
+                    px[iy * S + ix] *= .86f;
                 }
             }
             var tex = new Texture2D(S, S, TextureFormat.RGB24, true); tex.SetPixels(px); tex.Apply();

@@ -94,8 +94,8 @@ namespace SeaGlass.Editor
         {
             foreach (var t in Object.FindObjectsByType<Transform>(FindObjectsSortMode.None).Where(t => t.name.StartsWith("Spare ") && t.name.EndsWith(" glass")))
             {
-                var s = t.localScale; float k = Mathf.Max(s.x, s.y); if (s.z > k * 1.5f) continue;   // already thickened
-                t.localScale = new Vector3(k, k, k * 2.2f); EditorUtility.SetDirty(t);
+                var s = t.localScale; float k = Mathf.Max(s.x, s.y); if (s.z > k * 1.2f) continue;   // already thickened
+                t.localScale = new Vector3(k, k, k * 1.5f); EditorUtility.SetDirty(t);
             }
         }
 
