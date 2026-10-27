@@ -71,7 +71,7 @@ namespace SeaGlass.Editor
             var wf = water.GetComponent<MeshFilter>();
             if (wf.sharedMesh != disc) { wf.sharedMesh = disc; EditorUtility.SetDirty(wf); }
             var w = water.GetComponent<MeshRenderer>().sharedMaterial;
-            w.SetColor("_BaseColor", new Color(.62f, .86f, .86f)); w.SetColor("_Deep", new Color(.14f, .45f, .52f)); EditorUtility.SetDirty(w);
+            w.SetColor("_BaseColor", new Color(.3f, .74f, .72f)); w.SetColor("_Deep", new Color(.1f, .5f, .54f)); EditorUtility.SetDirty(w);
         }
 
         static Material Paint(string name, Color c, float smooth)

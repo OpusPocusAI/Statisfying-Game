@@ -149,21 +149,21 @@ Shader "Sea Glass/Frosted Glass"
                 // Edges seen at a glancing angle hold deeper colour (light travels further inside)...
                 clean = lerp(clean, tint * tint * .7 + tint * .15, saturate(fresnel * 1.4) * .6);
                 // ...with a thin bright rim where the rounded edge catches the light.
-                clean += lerp(tint, half3(1, 1, 1), .6) * pow(fresnel, 5) * 1.2;
+                clean += lerp(tint, half3(1, 1, 1), .6) * pow(fresnel, 5) * 2.0;   // round 13: brighter rim
                 // Round 5b: light gathered inside the piece; a soft inner glow so clean glass reads as lit
                 // through, not as an opaque jelly.
-                clean += tint * (.16 + .2 * (1 - thick)) * (1 - fresnel) * (sun.color * .6 + sky * .4);
+                clean += tint * (.3 + .35 * (1 - thick)) * (1 - fresnel) * (sun.color * .6 + sky * .4);
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished
                 // piece, thickest at the thin rim, keeps it from reading as glossy jelly.
                 float satin = Noise(i.local * 55.0) * .5 + Noise(i.local * 120.0) * .5;
-                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.13 + .1 * (1 - thick)) * (.75 + satin * .5));
+                clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.06 + .06 * (1 - thick)) * (.75 + satin * .5));
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);
                 half3 lightOnFrost = sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation);
                 // Milky, translucent glass between patches of chalky salt crust: the colour stays readable
                 // under a fine white haze (real frosted sea glass), never an opaque tan.
-                half3 milky = lerp(tint * 1.25, _Frost.rgb, .26);   // round 6: the hue stays clearly readable under the frost
+                half3 milky = lerp(tint * 1.1, _Frost.rgb, .5);   // round 13: pale frost with a faint hue
                 // Even, fine-grained frost with a few soft, broad salt patches.
                 float crust = smoothstep(.5, .75, Noise(q * .9 + 3.3));
                 float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
@@ -181,9 +181,9 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
                 // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
-                half3 sandStain = half3(.3, .25, .16) * lightOnFrost * (.85 + grain * .3);
-                float stainPatch = smoothstep(.44, .5, Noise(q * 1.1 + 11.0) * .8 + grain * .2);   // round 12: hard-edged grime patches
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .88);   // round 12: dark patches over the frost (PowerWash contrast); frost between them keeps the colour
+                half3 sandStain = half3(.5, .43, .3) * lightOnFrost * (.92 + grain * .12);   // round 13: a soft dried-sand film, not dark speckle
+                float stainPatch = smoothstep(.5, .68, Noise(q * 1.1 + 11.0) * .94 + grain * .06);   // round 13: soft-edged patches
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .8);   // frost between the patches keeps the colour
 
                 half3 c = lerp(clean, frosted, grime);
 

@@ -101,7 +101,7 @@ namespace SeaGlass
             if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.42f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.64f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
         }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()

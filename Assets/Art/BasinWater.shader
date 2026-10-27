@@ -47,9 +47,12 @@ Shader "Sea Glass/Basin Water"
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 half shade = lerp(.42, 1, sun.shadowAttenuation);          // the glass shades the floor below it
                 half3 light = max(sun.color * shade * .55 + SampleSH(half3(0, 1, 0)) * .5, half3(.62, .6, .58));   // round 6: never a grey fog indoors (round 8: not milky either)
+                light = max(dot(light, half3(.3, .4, .3)), .9).xxx;   // round 13: neutral brightness, so the warm studio light does not grey the teal
 
                 // Enamel floor through clear water: bright in the middle, teal and deeper toward the rim.
-                half3 c = lerp(_BaseColor.rgb, _Deep.rgb, edge * .9) * light;
+                // Round 13: the bowl is deepest at its centre, so the enamel floor sinks into teal there too.
+                float centre = 1 - smoothstep(0, .42, rim);
+                half3 c = lerp(_BaseColor.rgb, _Deep.rgb, saturate(edge * .6 + centre * .35)) * light;
 
                 // Caustic network on the enamel, only where the sun reaches.
                 float2 w = p * 8 + float2(_Time.y * .22, -_Time.y * .16);
@@ -60,6 +63,12 @@ Shader "Sea Glass/Basin Water"
                 // Faint ripples and a soft sky reflection band.
                 float ripple = sin(length(p * float2(1.6, 1)) * 48 - _Time.y * 2 + sin(p.x * 17) * .35);
                 c += pow(saturate(ripple), 18) * .012;
+                // Round 13: a soft sky reflection band and a thin bright waterline against the enamel, so it
+                // reads as a water surface with depth beneath, not a plate.
+                float band = smoothstep(.1, 0, abs(p.x * .6 + p.y * .8 - .12 + sin(p.y * 9 + _Time.y * .5) * .015));
+                c += band * half3(.85, .95, 1) * .14;
+                float waterline = smoothstep(.455, .475, rim) * (1 - smoothstep(.485, .5, rim));
+                c = lerp(c, half3(.92, .98, .98) * light * 1.1, waterline * .7);
 
                 // A few drifting soap bubbles near the rim (foam and lace terms kept for tuning; unused).
                 float lace = Noise(p * 38 + _Time.y * .15) * .6 + Noise(p * 90 - _Time.y * .1) * .4;
@@ -69,8 +78,8 @@ Shader "Sea Glass/Basin Water"
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
                 // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
-                half alpha = lerp(.3, .8, edge) + caustic * .08;   // round 12: clearly see-through in the middle
-                return half4(MixFog(c, i.fog), saturate(alpha));
+                half alpha = lerp(.6, .86, edge) + centre * .25 + band * .1 + waterline * .3 + caustic * .08;   // round 13: teal body, deeper centre
+                return half4(c, saturate(alpha));   // round 13: no fog; the bowl is always within arm's reach
             }
             ENDHLSL
         }
