@@ -26,7 +26,7 @@ namespace SeaGlass
                 var drag=ps.limitVelocityOverLifetime;drag.enabled=true;drag.drag=2.5f;
                 if(sparkle)ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;
             }
-            foam=Emitter("Soap foam",1.3f,.12f,.022f,.05f,-.04f,120,.08f);
+            foam=Emitter("Soap foam",2.6f,.05f,.03f,.075f,0,320,.06f);   // round 13: lasting clumps of suds, not specks
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
         }
         ParticleSystem foam,dust;float nextDust;Material sparkle;
@@ -45,7 +45,10 @@ namespace SeaGlass
         public void Foam(Vector3 at,float spread)
         {
             if(!foam)return;var p=new ParticleSystem.EmitParams();
-            for(int i=0;i<4;i++){p.position=at+new Vector3(Random.Range(-spread,spread),.02f,Random.Range(-spread,spread)*.6f);p.startColor=new Color(.94f,.98f,1f,.9f);foam.Emit(p,1);}
+            // A clump of suds: one larger head with smaller bubbles packed around it, drifting slowly outward.
+            var centre=at+new Vector3(Random.Range(-spread,spread),.015f,Random.Range(-spread,spread)*.7f);
+            for(int i=0;i<5;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.035f,.035f),Random.Range(-.008f,.012f),Random.Range(-.03f,.03f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.06f,.09f):Random.Range(.03f,.05f);p.startLifetime=Random.Range(1.8f,2.8f);p.startColor=new Color(.97f,.99f,1f,.95f);foam.Emit(p,1);}
+            p=new ParticleSystem.EmitParams();
             if(Random.value<.35f){p.position=at+Vector3.up*.05f;p.velocity=new Vector3(Random.Range(-.6f,.6f),Random.Range(.8f,1.4f),Random.Range(-.4f,.4f));p.startSize=.025f;p.startColor=new Color(.7f,.88f,.9f,.8f);foam.Emit(p,1);}
         }
         // Digging: puffs of sand kicked up from the mound.
@@ -81,7 +84,7 @@ namespace SeaGlass
             var go=new GameObject("Glass transfer");go.transform.SetParent(transform);go.AddComponent<MeshFilter>().sharedMesh=mesh;
             var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;var b=new MaterialPropertyBlock();b.SetColor("_BaseColor",color);renderer.SetPropertyBlock(b);
             go.transform.rotation=rotation;
-            for(float t=0;t<1;t+=Time.deltaTime/.38f){float ease=1-Mathf.Pow(1-t,3);go.transform.position=Vector3.Lerp(from,to,ease)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;go.transform.localScale=scale*Mathf.Lerp(1,.6f,ease);yield return null;}
+            for(float t=0;t<1;t+=Time.deltaTime/.38f){float ease=1-Mathf.Pow(1-t,3);go.transform.position=Vector3.Lerp(from,to,ease)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.18f;go.transform.localScale=scale*Mathf.Lerp(1,.4f,ease);yield return null;}
             Destroy(go);
         }
         void Update(){music.volume=musicVolume;if(!GameSession.Instance||GameSession.Instance.ControlsBlocked||!GameSession.Instance.truck.driving)engine.volume=0;}

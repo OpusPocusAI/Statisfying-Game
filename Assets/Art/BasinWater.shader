@@ -29,6 +29,7 @@ Shader "Sea Glass/Basin Water"
             struct A { float4 p : POSITION; };
             struct V { float4 p : SV_POSITION; float2 local : TEXCOORD0; float fog : TEXCOORD1; float3 world : TEXCOORD2; };
             CBUFFER_START(UnityPerMaterial) half4 _BaseColor, _Deep; CBUFFER_END
+            float4 _SG_BrushRipple;   // round 13: brush contact (world x, z), seconds since it last touched, active
 
             float Hash(float2 p) { p = frac(p * float2(.1031, .1030)); p += dot(p, p.yx + 33.33); return frac((p.x + p.y) * p.x); }
             float Noise(float2 x)
@@ -69,6 +70,11 @@ Shader "Sea Glass/Basin Water"
                 c += band * half3(.85, .95, 1) * .14;
                 float waterline = smoothstep(.455, .475, rim) * (1 - smoothstep(.485, .5, rim));
                 c = lerp(c, half3(.92, .98, .98) * light * 1.1, waterline * .7);
+                // Round 13: rings spreading from where the brush works, fading soon after it stops.
+                float rd = length(i.world.xz - _SG_BrushRipple.xy);
+                float stir = saturate(1 - _SG_BrushRipple.z * 1.2) * _SG_BrushRipple.w;
+                float rings = pow(saturate(sin(rd * 75 - _Time.y * 13)), 6) * exp(-rd * 4.5) * smoothstep(.05, .12, rd) * stir;
+                c += rings * half3(.9, 1, 1) * .45 * light;
 
                 // A few drifting soap bubbles near the rim (foam and lace terms kept for tuning; unused).
                 float lace = Noise(p * 38 + _Time.y * .15) * .6 + Noise(p * 90 - _Time.y * .1) * .4;
@@ -78,7 +84,7 @@ Shader "Sea Glass/Basin Water"
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
                 // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
-                half alpha = lerp(.6, .86, edge) + centre * .25 + band * .1 + waterline * .3 + caustic * .08;   // round 13: teal body, deeper centre
+                half alpha = lerp(.6, .86, edge) + centre * .25 + band * .1 + waterline * .3 + caustic * .08 + rings * .3;   // round 13: teal body, deeper centre
                 return half4(c, saturate(alpha));   // round 13: no fog; the bowl is always within arm's reach
             }
             ENDHLSL

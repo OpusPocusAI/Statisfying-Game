@@ -49,6 +49,8 @@ namespace SeaGlass
             }
         }
         void Require(bool value,string reason){if(!value)throw new InvalidOperationException(reason);}
+        // Keeps the brush moving while a frame is captured (the record barely changes).
+        IEnumerator KeepBrushing(StudioStation station,float seconds){for(float t=0;t<seconds;t+=Time.deltaTime){station.Clean(Time.deltaTime*.01f);yield return null;}}
         IEnumerator Shot(string name)
         {
             yield return new WaitForSeconds(.25f);yield return null;
@@ -77,7 +79,11 @@ namespace SeaGlass
             var stations=FindObjectsByType<StudioStation>(FindObjectsSortMode.None);
             var clean=stations.First(s=>s.kind==StationKind.Clean);var sort=stations.First(s=>s.kind==StationKind.Sort);
             Require(stations.First(s=>s.kind==StationKind.Recycle).Recycle(),"Recycling");
-            clean.Interact();yield return Shot("04-cloudy-glass");clean.Clean(4.5f);yield return Shot("05-half-clean");
+            clean.Interact();yield return Shot("04-cloudy-glass");
+            // Brush for real (round 13): strokes clear along the brush path, with foam and ripples, so the
+            // half-clean frame shows the cleaning as it plays. 2.5 s at 1.8x the record rate = half the grime.
+            for(float t=0;t<2.5f;t+=Time.deltaTime){clean.Clean(Time.deltaTime*1.8f);yield return null;}
+            StartCoroutine(KeepBrushing(clean,.4f));yield return Shot("05-half-clean");
             clean.Clean(5);clean.Leave();sort.Interact();yield return Shot("06-clean-glass");
             Require(sort.Sort(session.catalog.glass.First(d=>d.id==glass.id).color),"Correct sorting");sort.Leave();
             {var sortedTray=FindObjectsByType<SortingTray>(FindObjectsSortMode.None).First(t=>t.color==session.catalog.glass.First(d=>d.id==glass.id).color).transform.position;

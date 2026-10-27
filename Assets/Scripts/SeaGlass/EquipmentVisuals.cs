@@ -21,7 +21,7 @@ namespace SeaGlass
             for(int i=0;i<dividers.Length;i++)if(dividers[i])dividers[i].localScale=Vector3.Scale(dividerScales[i],new Vector3(1,s.progress.upgrades.Contains("truck")?1.8f:1,1));
             bool washing=cleaning&&cleaning.active&&cleaning.selectedId!=null&&!s.menu;
             if(brush)brush.SetActive(washing&&!s.progress.upgrades.Contains("washer"));if(sprayer)sprayer.SetActive(washing&&s.progress.upgrades.Contains("washer"));
-            bool brushing=washing&&!s.ControlsBlocked&&UnityEngine.InputSystem.Mouse.current!=null&&UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;
+            bool brushing=washing&&!s.ControlsBlocked&&(cleaning.BrushingNow||UnityEngine.InputSystem.Mouse.current!=null&&UnityEngine.InputSystem.Mouse.current.leftButton.isPressed);
             if(washing&&!s.ControlsBlocked)
             {
                 // Keep the brush at the glass, rather than waving an unrelated block at the edge of the camera.
@@ -36,7 +36,7 @@ namespace SeaGlass
         }
         // Where the bristles meet the glass. A scrubbing path that sweeps the whole piece (StudioStation
         // cleans exactly here, so the reveal follows the brush).
-        public static Vector3 Stroke(bool brushing,float t)=>brushing?new Vector3(Mathf.Sin(t*7)*.17f,.05f,Mathf.Sin(t*2.3f)*.11f):new Vector3(.3f,.09f,.1f);
+        public static Vector3 Stroke(bool brushing,float t)=>brushing?new Vector3(Mathf.Sin(t*7)*StudioStation.Reach.x,StudioStation.Reach.y*(1-Mathf.Sin(t*7)*Mathf.Sin(t*7)*.25f),Mathf.Sin(t*2.3f)*StudioStation.Reach.z):new Vector3(StudioStation.Reach.x+.12f,StudioStation.Reach.y+.04f,.1f);   // round 13: sweeps the whole piece
         static void RefreshFill(Transform contents,float amount)
         {if(!contents)return;contents.gameObject.SetActive(amount>0);contents.localScale=new Vector3(.9f,Mathf.Max(.03f,amount),.9f);}
     }

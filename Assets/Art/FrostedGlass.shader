@@ -15,6 +15,7 @@ Shader "Sea Glass/Frosted Glass"
         [NoScaleOffset] _CleanMask("Brushed mask (set at runtime)", 2D) = "black" {}
         _MaskRect("Mask rect (min xy, size xy)", Vector) = (0, 0, 1, 1)
         _Facets("Stained-glass fragments (mosaic)", Range(0, 1)) = 0
+        _MaskOn("Brush mask drives the layers (set at runtime)", Float) = 0
     }
     SubShader
     {
@@ -54,7 +55,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets;
+                float4 _MaskRect; float _Facets, _MaskOn;
             CBUFFER_END
 
             float Hash(float3 p) { p = frac(p * .3183099 + .1); p *= 17.0; return frac(p.x * p.y * p.z * (p.x + p.y + p.z)); }
@@ -121,6 +122,16 @@ Shader "Sea Glass/Frosted Glass"
                 float localGrime = _Grime * (1 - smoothstep(.35, .45, brushed) * .92);   // round 12: crisp brush-stroke edges
                 float grime = smoothstep(order - .1, order + .1, localGrime);
                 float dirt = smoothstep(order + .18, order + .4, localGrime);
+                if (_MaskOn > .5)
+                {
+                    // Round 13, at the wash bowl: the brush path alone decides what is clean. The first pass
+                    // takes the sand crust off, the next one the frost; both edges are hard (PowerWash).
+                    // Anything the brush missed fades only over the last quarter of the clean.
+                    float aa = max(fwidth(brushed) * .75, .015);
+                    float rest = saturate(_Grime * 4);
+                    dirt = (1 - smoothstep(.3 - aa, .3 + aa, brushed)) * rest;
+                    grime = (1 - smoothstep(.68 - aa, .68 + aa, brushed)) * rest;
+                }
 
                 // ---- Clean glass: refracted, tinted background plus body colour.
                 float2 screenUV = GetNormalizedScreenSpaceUV(i.p);
@@ -160,17 +171,20 @@ Shader "Sea Glass/Frosted Glass"
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);
-                half3 lightOnFrost = sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation);
-                // Milky, translucent glass between patches of chalky salt crust: the colour stays readable
-                // under a fine white haze (real frosted sea glass), never an opaque tan.
-                half3 milky = lerp(tint * 1.1, _Frost.rgb, .5);   // round 13: pale frost with a faint hue
-                // Even, fine-grained frost with a few soft, broad salt patches.
+                // Round 13: a floor on the light, so the crust reads white indoors rather than grey dough.
+                half3 lightOnFrost = max(sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation), half3(.74, .73, .71));
                 float crust = smoothstep(.5, .75, Noise(q * .9 + 3.3));
                 float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
-                half3 frostedGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .7), milky * lightOnFrost, .78);
-                frostedGlass *= .94 + grain * .12;
-                half3 saltCrust = _Frost.rgb * lightOnFrost * (.95 + grain * .1);
-                half3 frosted = lerp(frostedGlass, saltCrust, crust * .55);
+                // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
+                // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
+                half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .75), tint * lightOnFrost * 1.15, .55);
+                half3 crustColour = lerp(_Frost.rgb, tint * .6 + _Frost.rgb * .55, .16) * lightOnFrost * (.93 + grain * .1);
+                float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
+                crustColour *= 1 - pits;
+                float crustCover = lerp(.42, .94, thick);
+                half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
+                half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
+                half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
                 float sparkle = step(.975, Noise(i.local * 70)) * pow(wrap, 3);
                 frosted += sparkle * sun.color * .4;
                 // Round 11: even frosted glass shows its volume: a bright rounded rim and a slightly deeper,
@@ -181,9 +195,11 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
                 // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
-                half3 sandStain = half3(.5, .43, .3) * lightOnFrost * (.92 + grain * .12);   // round 13: a soft dried-sand film, not dark speckle
-                float stainPatch = smoothstep(.5, .68, Noise(q * 1.1 + 11.0) * .94 + grain * .06);   // round 13: soft-edged patches
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .8);   // frost between the patches keeps the colour
+                // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
+                // solid, not speckled, with a faint sandy grain.
+                half3 sandStain = half3(.31, .25, .16) * lightOnFrost * (.9 + grain * .16);
+                float stainPatch = smoothstep(.5, .55, Noise(q * 1.1 + 11.0) * .9 + grain * .1);   // about half the piece
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .92);   // white frost between the patches
 
                 half3 c = lerp(clean, frosted, grime);
 
@@ -193,6 +209,14 @@ Shader "Sea Glass/Frosted Glass"
                 float3 r = reflect(-v, n);
                 half window = 0;   // round 12: a sky band drew a bullseye ring on domed pebbles; specular only
                 c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
+                // Round 13: a studio key light from over the viewer's shoulder, so every clean piece shows one
+                // crisp white glint and a soft sheen wherever it is seen from, plus tiny facets that flash.
+                float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.45, .55, .7)));
+                half nk = saturate(dot(n, normalize(keyL + v)));
+                half glint = pow(nk, 700) * 4.0 + pow(nk, 80) * .3;
+                float facet = Hash(floor(i.local * 70.0) + 17.0);
+                half flash = step(.985, facet) * pow(saturate(sin(_Time.y * 4.0 + facet * 60.0 + dot(v, float3(13, 7, 11)) * 3.0)), 6);
+                c += (glint * lerp(half3(1, 1, 1), sun.color, .25) + flash * 2.5 * (1 - _Facets)) * (1 - grime) * (1 - _Facets * .85);
 
                 c += _EmissionColor.rgb;
                 c = lerp(c, half3(.012, .012, .016) + spec * .05, lead);   // linear: near-black came
@@ -218,7 +242,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets;
+                float4 _MaskRect; float _Facets, _MaskOn;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION

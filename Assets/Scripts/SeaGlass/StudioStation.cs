@@ -9,6 +9,11 @@ namespace SeaGlass
         public StationKind kind; public Transform workingGlass; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
         MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam;public bool Processing=>processing>0;
         public bool RevealingCleanGlass=>reveal>0;
+        float lastBrush=-9;Vector3 lastContact;static readonly int RippleId=Shader.PropertyToID("_SG_BrushRipple");
+        // True while the glass is being brushed (by the mouse or by the verification run); drives the brush animation.
+        public bool BrushingNow=>active&&Time.time-lastBrush<.15f;
+        // Half-extents (world x, z) the brush stroke sweeps over and the height it rests at, so it covers the whole piece.
+        public static Vector3 Reach=new Vector3(.17f,.05f,.11f);
         GameSession S=>GameSession.Instance;
         public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
         void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;glassRotation=workingGlass.localRotation;workingGlass.gameObject.SetActive(false);}}
@@ -49,9 +54,12 @@ namespace SeaGlass
             r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));
             // The salt comes off where the brush (or spray) actually touches the glass.
             var contact=workingGlass.position+EquipmentVisuals.Stroke(true,Time.time);
-            StampClean(contact,S.progress.upgrades.Contains("washer")?.13f:.09f);
+            // Round 13: the brush sweeps a hard-edged path from where it was last frame, so the grime clears in
+            // visible strokes (PowerWash), and the water ripples from the contact point.
+            bool continuing=Time.time-lastBrush<.15f;StampClean(continuing?lastContact:contact,contact,S.progress.upgrades.Contains("washer")?.085f:.06f);
+            lastBrush=Time.time;lastContact=contact;
             UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Time.time>=nextFoam){nextFoam=Time.time+.08f;Feedback.Instance.Foam(contact,.06f);}
+            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);}
             if(r.grime<=.001f)
             {
                 r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");Feedback.Instance.Burst(workingGlass.position+Vector3.up*.05f,GameCatalog.Palette[(int)S.catalog.glass.First(g=>g.id==r.id).color]*1.4f,18);S.Save();
@@ -73,23 +81,35 @@ namespace SeaGlass
         }
         // Per-piece mask of where the glass has been scrubbed (white = brushed). Presentation only:
         // completion still follows the record's grime value.
-        Texture2D cleanMask;string maskFor;Color32[] maskPixels;const int MaskSize=64;
-        static readonly int MaskId=Shader.PropertyToID("_CleanMask"),MaskRectId=Shader.PropertyToID("_MaskRect");
+        // Round 13: two passes over a spot take the sand crust off, a third reveals the clear glass; the
+        // shader draws each threshold as a hard edge.
+        Texture2D cleanMask;string maskFor;Color32[] maskPixels;const int MaskSize=128;
+        static readonly int MaskId=Shader.PropertyToID("_CleanMask"),MaskRectId=Shader.PropertyToID("_MaskRect"),MaskOnId=Shader.PropertyToID("_MaskOn");
         void EnsureMask()
         {
             if(!cleanMask){cleanMask=new Texture2D(MaskSize,MaskSize,TextureFormat.R8,false){wrapMode=TextureWrapMode.Clamp,name="Clean mask"};maskPixels=new Color32[MaskSize*MaskSize];}
             if(maskFor!=selectedId){maskFor=selectedId;System.Array.Clear(maskPixels,0,maskPixels.Length);cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);}
         }
-        void StampClean(Vector3 world,float radius)
+        // Sweeps the brush head from one contact point to the next (a capsule in mask space), adding a fixed
+        // amount once per sweep so overlapping strokes build up pass by pass.
+        void StampClean(Vector3 fromWorld,Vector3 toWorld,float radius)
         {
             var mesh=S.catalog.glass.First(g=>g.id==selectedId).HeldMesh;if(!mesh)return;EnsureMask();
-            var b=mesh.bounds;var local=workingGlass.InverseTransformPoint(world);
-            float u=(local.x-b.min.x)/b.size.x,v=(local.y-b.min.y)/b.size.y,ru=radius/(workingGlass.lossyScale.x*b.size.x),rv=radius/(workingGlass.lossyScale.y*b.size.y);
-            int x0=Mathf.FloorToInt((u-ru)*MaskSize),x1=Mathf.CeilToInt((u+ru)*MaskSize),y0=Mathf.FloorToInt((v-rv)*MaskSize),y1=Mathf.CeilToInt((v+rv)*MaskSize);
+            var b=mesh.bounds;
+            Vector2 UV(Vector3 w){var l=workingGlass.InverseTransformPoint(w);return new Vector2((l.x-b.min.x)/b.size.x,(l.y-b.min.y)/b.size.y);}
+            Vector2 a=UV(fromWorld),c=UV(toWorld);
+            float ru=radius/(workingGlass.lossyScale.x*b.size.x),rv=radius/(workingGlass.lossyScale.y*b.size.y);
+            int x0=Mathf.FloorToInt((Mathf.Min(a.x,c.x)-ru)*MaskSize),x1=Mathf.CeilToInt((Mathf.Max(a.x,c.x)+ru)*MaskSize);
+            int y0=Mathf.FloorToInt((Mathf.Min(a.y,c.y)-rv)*MaskSize),y1=Mathf.CeilToInt((Mathf.Max(a.y,c.y)+rv)*MaskSize);
+            // Work in brush-radius units so the head stays round on a non-square piece.
+            Vector2 A=new Vector2(a.x/ru,a.y/rv),C=new Vector2(c.x/ru,c.y/rv),AC=C-A;float len2=Mathf.Max(1e-6f,AC.sqrMagnitude);
+            // Time-based, so the strokes build up at the same rate at any frame rate.
+            byte add=(byte)Mathf.Clamp(Time.deltaTime*1700f,4,60);
             for(int y=Mathf.Max(0,y0);y<=Mathf.Min(MaskSize-1,y1);y++)for(int x=Mathf.Max(0,x0);x<=Mathf.Min(MaskSize-1,x1);x++)
             {
-                float dx=((x+.5f)/MaskSize-u)/ru,dy=((y+.5f)/MaskSize-v)/rv,d=dx*dx+dy*dy;if(d>1)continue;
-                int i=y*MaskSize+x;byte add=(byte)(Mathf.SmoothStep(1,0,d)*70);maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+add);
+                var P=new Vector2((x+.5f)/MaskSize/ru,(y+.5f)/MaskSize/rv);float t=Mathf.Clamp01(Vector2.Dot(P-A,AC)/len2);
+                if((P-(A+AC*t)).sqrMagnitude>1)continue;
+                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+add);
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);
         }
@@ -98,14 +118,17 @@ namespace SeaGlass
         {
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
             block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);
-            if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));}
+            if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.64f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.52f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            if(kind==StationKind.Clean){var wb=glassRenderer.bounds.extents;Reach=new Vector3(wb.x*.78f,wb.y*.85f,wb.z*.72f);}
         }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
+            // Round 13: where the brush last touched and how long ago, for the ripple rings in the bowl water.
+            if(kind==StationKind.Clean)Shader.SetGlobalVector(RippleId,new Vector4(lastContact.x,lastContact.z,Time.time-lastBrush,active?1:0));
             if(!S||S.ControlsBlocked)return;
             if(processing>0){processing-=Time.deltaTime;if(Random.value<.1f)Feedback.Instance.Burst(transform.position+Vector3.up*1.1f,GameCatalog.Palette[0],5);}
             if(!active)return;
