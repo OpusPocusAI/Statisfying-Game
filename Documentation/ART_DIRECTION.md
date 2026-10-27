@@ -536,3 +536,49 @@ New issues review 10 raised:
 - Truck cargo does not visibly fill.
 - Bright cross-shaped streaks appear in the shallows.
 - The world edge is visible from the high coast view.
+
+### October 27 — round 13b and review 11 (pass 26)
+
+Round 13b: new cleaning and glass work, not tuning.
+- Grime clears along the brush path with hard edges: the first pass lifts a dark sand crust, the next reveals the clear glass.
+- Cloudy glass is a matte white crust with pits and solid dark sand patches; its colour shows at the thin rim.
+- Clean glass has a crisp key-light glint, a soft sheen and flashing facets.
+- Brushing leaves lasting clumps of suds and ripple rings in the bowl water.
+- A new bristle-tuft scrub brush (`ArtSource/blender/round13.py`, menu pass 26).
+- Sorted tray pieces now match the spare pebbles around them; they were about 3× larger.
+- The verification run now brushes for 2.5 s, so frame 05 shows real strokes, foam and a moving brush.
+
+| Area | Review 10 | Review 11 |
+| --- | --- | --- |
+| 5.1 Lighting | 3 | 3 ("3.5") |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 (barely judgeable) | 2.5 (little visible) |
+| 5.6 Sea glass | 2 | 2 |
+| 5.7 Cleaning | 2 | **3** |
+| 5.8 Sorting | 3 | **4** |
+| 5.9 Mosaic | 4 | 3 ("3.5") |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | 3 |
+| 5.13 Effects | – | 2.5 (stills only) |
+| 5.14 Signs | – | – |
+
+The brush-path cleaning registered: review 11 confirms that "grime does come off in strokes". Cleaning rose to 3, and sorting returned to 4 with the matched tray pieces.
+
+Review 11's verdicts:
+- **Glass** stays at 2. The reviewer reads clean pieces as glossy jelly beans and wants a satin, lower-gloss finish with a rim glow. That contradicts reviews 9 and 10, which asked for sharper glints.
+- **Piece size:** the reviewer wants the held piece about 40% smaller. Review 9 asked for it larger.
+- **Cloudy glass:** "a potato or stone". The reviewer wants the glass hue tinting the frost and mottled two-tone grime.
+- **Brush:** it reads as a shoe or clog. The reviewer wants a long, slim head with a handle.
+- **Sleeve:** the arm is a rigid tube.
+- **Foam:** two foam droplets float in mid-air above the floor.
+
+New in review 11:
+- Idle mosaics read as three black slabs.
+- The mosaic came is thick and flat.
+- Frames 08 and 09 look identical.
+- The restored studio barely changes.
+
+Glass has now been judged 2–3 by four reviewers with opposing fixes (glossier vs satin, larger vs smaller). Its remaining gap is less a single fix than a consistent target, which this log does not yet define.
