@@ -500,3 +500,39 @@ Round 12: one shared family of five tumbled pebble meshes for held, sorted, foun
 | 5.14 Signs | 3 | 3 |
 
 The shape problem is solved (the reviewer calls the glass "pebble-like" now), but the targeted areas stayed at 3 on material and presentation. Clean glass reads as an evenly coloured "jelly lozenge" without inner glow, and cloudy glass as "brown speckle on teal", a dirty stone rather than pale frost. The bowl reads as "a dinner plate": its white enamel floor shows through the clear water, so the water has no visible depth, and the piece is small inside it. Next for these two: a pale frost layer instead of brown speckle when cloudy; thickness-graded colour, inner glow and a bright rim when clean; a darker teal depth tint and a visible waterline in the bowl; and a smaller bowl or larger piece (about 40% of the bowl).
+
+### October 27 — round 13 and review 10 (follow-up to pass 25)
+
+Round 13 (shader and size only): cloudy glass is a pale frost with soft sandy patches instead of dark brown speckle; clean glass has a stronger inner glow and rim with less satin haze; the bowl water uses neutral lighting so its teal holds under the warm studio light, with a deeper centre, a reflection band and a bright waterline (before this, the water's colour was being greyed out by the warm light and read as bare enamel); the piece at the cleaning bowl is about 50% larger.
+
+| Area | Review 9 | Review 10 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 3 |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 4 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 (limited evidence) | 3 (barely judgeable) |
+| 5.6 Sea glass | 3 | **2** |
+| 5.7 Cleaning | 3 | **2** |
+| 5.8 Sorting | 4 | 3 |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 4 | 3 |
+| 5.14 Signs | 3 | – (plaques low-contrast) |
+
+The round did not raise the targeted areas; review 10 scored glass and cleaning lower. Review 9 asked for a larger piece in the bowl; review 10 calls the larger piece an "oversized jelly blob" and asks for pieces at tray scale. Review 10 also still reads the cloudy piece as "grey dough or stone" and the water as a "pale flat disc", and finds no foam, splash or brush-path cleaning. It is the strictest reviewer so far: four areas outside glass and cleaning dropped from 4 to 3 with no changes to them. Only water and mosaic are at 4.
+
+Taken together, reviews 8 to 10 show that tuning the glass shader and bowl does not move these areas. What all three ask for is new work, not tuning:
+- Clean glass: crisp specular glints and sparkle.
+- Cloudy glass: a matte white crust with the colour showing only at thin edges.
+- Cleaning: grime removed along the brush path with hard edges, foam clumps and ripples where the brush touches, and a bristle-tuft brush.
+- Tray pieces: varied silhouettes, thickness and tilt.
+
+New issues review 10 raised:
+- Clouds are flat cutouts with stain-like blotches.
+- The open studio side reads as a stage set.
+- Mosaics have a uniform Voronoi "crackle".
+- Truck cargo does not visibly fill.
+- Bright cross-shaped streaks appear in the shallows.
+- The world edge is visible from the high coast view.
