@@ -584,3 +584,49 @@ New in review 11:
 - The restored studio barely changes.
 
 Glass has now been judged 2–3 by four reviewers with opposing fixes (glossier vs satin, larger vs smaller). Its remaining gap is less a single fix than a consistent target, which this log does not yet define.
+
+### October 29 — round 13c and review 12
+
+The owner fixed the clean-glass target as glossy at the current bowl size (5.6), after a side-by-side render of glossy and satin finishes and of two bowl sizes.
+
+Round 13c:
+- The scrub brush is now a flat, rectangular wooden block with a tall bristle block and an arched grip; review 11 read the old rounded back as "a clog".
+- Cloudy glass shows more of its hue through the frost and at the thin rim.
+- Splash droplets are low and short-lived. They used to hang in mid-air because the foam emitter has no gravity.
+- Review captures apply the idle tint the game gives empty mosaic sockets at runtime, so the empty wall no longer renders as black slabs that no player sees.
+- Verification frame 09 shows the whole restored room instead of repeating frame 08.
+
+| Area | Review 11 | Review 12 |
+| --- | --- | --- |
+| 5.1 Lighting | 3 | 3 |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 2.5 | 3 (partly judgeable) |
+| 5.6 Sea glass | 2 | **3** |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 4 |
+| 5.9 Mosaic | 3 | **4** |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | **4** |
+| 5.13 Effects | 2.5 | – |
+| 5.14 Signs | – | – |
+
+Four areas are at 4: water, sorting, mosaic and tools. The brush now reads as "designed, toy-like" and the glove and spade pass.
+
+What review 12 still asks for:
+- **Glass**, judged against the glossy target:
+  - thickness-based colour (a darker, saturated centre and a bright thin rim);
+  - one or two large crisp highlights instead of glitter-like specks;
+  - more varied tray silhouettes and sizes;
+  - grime as thin streaks over frost rather than a solid coat.
+- **Cleaning:** a deeper bowl with a visible inner wall and a stronger depth tint, and a tap whose spout arcs over the bowl (from the player's view it reads as a coat stand).
+- **Unchanged from earlier reviews:**
+  - flat clouds;
+  - one grass tuft type with near-black bases;
+  - an empty studio floor with flat rugs;
+  - a box-built truck with near-empty cargo;
+  - flat rock faces.
+
+**Capture artefact found by review 12 and fixed:** both stations' working-glass pieces were saved as visible in the scene. The game hides them on start, but every editor review capture since round 10 showed a large clean piece floating over the trays (s10) and resting in the bowl (s11). They are now saved hidden.
