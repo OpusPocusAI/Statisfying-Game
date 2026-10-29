@@ -1189,3 +1189,45 @@ Round 26 changes:
   - shadow wedges on the shallow water around the sea stacks (b8);
   - the cloud seam (b2, b7);
   - mirrored sign text seen from behind.
+
+### October 30 — round 27 and review 26 (three reviewers, averaged)
+
+Round 27 changes (menu pass 38):
+- **Glass shape:** the glass slabs are lenses: thick middle, rolled rims, no broken straight edge.
+- **Frosted glass:** shows its own colour through the frost, with sand in patches.
+- **Island grass:** painted per pixel by a new Painterly top colour, on a dedicated island rock material.
+- **Sea:** softer shadows on the water.
+
+| Area | A | B | C | Average | Review 25 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 4 | 3 | – | 3.5 (stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- Two of three reviewers say cloudy glass meets the bar: "frosted, with the colour showing through".
+- No reviewer mentions blocky island grass or water wedges any more.
+
+**Still open, named by all three:**
+- **Held clean piece (06):** reads as candy because one large highlight blob clips to white and covers about a quarter of the face, and the star glints look like stickers.
+- **Tray glass:** almost every piece is now the same almond lens. Reviewers want five or more outlines (triangle, D-shape, chunky nugget, sliver) and one red piece.
+- **Bowl water:** still "milky, flat"; there are no drips or splashes.
+- **Studio:** empty floor in front of the mosaics, a repeated sack prop, flat rugs, a white box bookcase, and a dusty state that is only a colour grade.
+- **Truck/road:** box panels, cylinder posts, straight road edges.
+- **Sand:** coin footprints, a repeated pebble triplet.
+- **Bugs:**
+  - off-centre tray labels;
+  - a dotted shadow pattern on the studio floor (s8);
+  - the cloud crease;
+  - grass tufts standing in the sea (b1, b5).
