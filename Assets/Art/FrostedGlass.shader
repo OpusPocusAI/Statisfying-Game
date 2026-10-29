@@ -209,8 +209,9 @@ Shader "Sea Glass/Frosted Glass"
                 // not a solid coat.
                 float streakN = Noise(float3(q.x * .45 + q.z * .3, q.y * 5.5, q.z * .45) + 11.0);
                 float grimeStreaks = smoothstep(.6, .63, streakN) * (1 - smoothstep(.7, .73, streakN));
-                float spots = smoothstep(.78, .81, Noise(q * 3.2 + 2.0));
-                float stainPatch = saturate(grimeStreaks + spots) * smoothstep(.25, .45, Noise(q * .8 + 4.0));
+                // Round 16 (review 14: round spots read as "chocolate chips"): silt gathers at the edges instead.
+                float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
+                float stainPatch = saturate(grimeStreaks + edgeSilt * .9) * smoothstep(.25, .45, Noise(q * .8 + 4.0));
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .92);   // white frost between the patches
 
                 half3 c = lerp(clean, frosted, grime);
@@ -230,6 +231,15 @@ Shader "Sea Glass/Frosted Glass"
                 half aaK = max(fwidth(nk) * 1.5, .0008);
                 half glint = smoothstep(.984 - aaK, .984 + aaK, nk) * 1.1 + pow(nk, 700) * 2.5 + pow(nk, 80) * .25;   // one highlight shape only: a second one beside it read as a pair of eyes
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
+                // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
+                // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
+                // removed the earlier speckle; these are fewer, larger and sharper).
+                float3 fc = i.local * 17.0; float3 fcell = floor(fc); float fh = Hash(fcell + 31.0);
+                float3 fd = abs(frac(fc) - .5);
+                half diamond = 1 - smoothstep(.2, .24, fd.x + fd.y + fd.z * .3);
+                half wink = .45 + .55 * pow(saturate(sin(_Time.y * 2.5 + fh * 40.0 + dot(v, float3(9, 5, 7)) * 4.0)), 4);
+                half facets = step(.9, fh) * diamond * wink * smoothstep(.45, .85, nk) * (1 - _Facets);
+                c += facets * 2.2 * (1 - grime);
 
                 c += _EmissionColor.rgb;
                 c = lerp(c, half3(.012, .012, .016) + spec * .05, lead);   // linear: near-black came

@@ -42,7 +42,7 @@ Material:
     - _WorldMapping: 1
     - _WorldTile: 0.35
     m_Colors:
-    - _BaseColor: {r: 0.5, g: 0.58, b: 0.92, a: 1}
+    - _BaseColor: {r: 0.7948, g: 0.78, b: 0.7708, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

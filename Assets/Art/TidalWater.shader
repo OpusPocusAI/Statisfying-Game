@@ -56,11 +56,14 @@ Shader "Sea Glass/Tidal Water"
   half3 c=lerp(_DeepColor.rgb,_BaseColor.rgb,saturate(shallows*.8+.12+waves*.07+(broad-.5)*.12));
 
   // Irregular elongated brush marks replace the uniform lattice of bright specks.
-  float2 brushUV=p*float2(.38,1.25)+float2(-t*.07,t*.035)+float2(broad*1.7,drift*.7);
+  // Round 16: rotated and warped by a second noise, so the strokes curve; axis-aligned stretched noise drew
+  // straight-edged rectangles that the sun sheen lit up as bright bars (reported by four reviews).
+  float2 pr=mul(float2x2(.86,-.5,.5,.86),p);
+  float2 brushUV=pr*float2(.38,1.0)+float2(-t*.07,t*.035)+float2(broad*1.7,drift*.7)+float2(BrushNoise(p*.21+3.1),BrushNoise(p*.23+7.7))*float2(2.4,1.2);
   float brush=BrushNoise(brushUV);
   float brushAA=max(.035,fwidth(brush));
   float detail=1-smoothstep(.25,1.2,length(fwidth(brushUV)));
-  float marks=smoothstep(.72-brushAA,.82+brushAA,brush)*detail;
+  float marks=smoothstep(.7-brushAA,.88+brushAA,brush)*detail;
   c+=half3(.42,.64,.59)*marks*.13;
 
   // A small directional sheen follows the actual golden-hour sun. No reflection camera.
@@ -70,7 +73,7 @@ Shader "Sea Glass/Tidal Water"
   Light sun=GetMainLight(TransformWorldToShadowCoord(i.world));
   c*=lerp(.66,1,sun.shadowAttenuation);
   float sheen=pow(saturate(dot(normal,normalize(sun.direction+view))),128);
-  c+=sun.color*sheen*(.045+marks*.22);
+  c+=sun.color*sheen*(.045+marks*.07);
 
   // Broken crests roll toward the sloping beach; their width is filtered at distance.
   float foamPhase=depth*2.1+t*.8+BrushNoise(float2(p.y*.23,t*.025))*2.2;
@@ -92,9 +95,12 @@ Shader "Sea Glass/Tidal Water"
   half3 seen=bed*transmit*half3(.95,1.0,.97)+half3(.16,.62,.6)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
   c=lerp(seen,c,smoothstep(.15,2.6,vdepth));
   // Sun path: broken glints where ripple normals catch the low sun.
-  float3 rip=normalize(float3((BrushNoise(p*1.7+float2(t*.6,0))-.5)*.5+cos(phase)*.12,1,(BrushNoise(p*1.9+float2(0,-t*.5))-.5)*.5+cos(crossing)*.1));
+  // Round 16: two rotated, finer octaves; one grid-aligned octave drew the glints as straight-edged bars.
+  float2 g1=mul(float2x2(.8,-.6,.6,.8),p)*3.1,g2=mul(float2x2(.28,-.96,.96,.28),p)*5.3;
+  float rx=(BrushNoise(g1+float2(t*.6,0))*.6+BrushNoise(g2-float2(t*.4,t*.2))*.4)-.5,rz=(BrushNoise(g1.yx+float2(0,-t*.5))*.6+BrushNoise(g2.yx+float2(t*.3,0))*.4)-.5;
+  float3 rip=normalize(float3(rx*.55+cos(phase)*.12,1,rz*.55+cos(crossing)*.1));
   float glint=pow(saturate(dot(reflect(-view,rip),sun.direction)),220);
-  float glintAA=1-smoothstep(.4,1.6,length(fwidth(p*1.7)));
+  float glintAA=1-smoothstep(.4,1.6,length(fwidth(g2)));
   c+=sun.color*smoothstep(.15,.6,glint)*2.2*lerp(.35,1,glintAA)*smoothstep(3.,12.,i.eye)*sun.shadowAttenuation;   // round 6: no huge glint shapes right at the camera
   float lap=.07+.06*sin(t*.7+p.y*.11+BrushNoise(float2(p.y*.15,t*.05))*2.0);
   // Clamp: across underwater silhouettes the depth jumps, and an unclamped fwidth paints false foam.
