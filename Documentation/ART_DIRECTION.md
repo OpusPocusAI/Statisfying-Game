@@ -1231,3 +1231,49 @@ Round 27 changes (menu pass 38):
   - a dotted shadow pattern on the studio floor (s8);
   - the cloud crease;
   - grass tufts standing in the sea (b1, b5).
+
+### October 30 — round 28 and review 27 (three reviewers, averaged)
+
+Round 28 changes (menu pass 39):
+- **Clean glass:** a small sharp glint replaces the blown-out highlight blob, and star flashes are fewer and dimmer.
+- **Glass shapes:** six distinct slab shapes (oval, triangle, D-chip, sliver, nugget, shard).
+- **Planting:** 20 tufts and flowers left hanging above swapped rocks were set down.
+
+Frame time on a quiet machine: 11.1 ms. The 14–16 ms readings in round 27 came from other programs running at the same time.
+
+| Area | A | B | C | Average | Review 26 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | – | 3 | 3 | 3.0 (stills only) | 3.5 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- The tray shapes now vary ("varied shapes, close to the owner's target").
+- Grass in the sea and the off-centre labels are no longer reported, except one reviewer who still finds the labels off.
+
+**Still open:**
+- **Held clean piece (all three):** the outline is "lumpy or wobbly", from the outline noise on a strongly domed lens. It is still "jelly or candy", and nothing visibly passes through it.
+- **Sharp shapes:** the sharper triangle and shard pieces read as "jagged star shards", which breaks the rounded-pebble rule.
+- **Cloudy piece:** reads as "mint soap", and the grime boundary is a straight vertical wipe line.
+- **Rare red:** never seen in any frame.
+- **Cleaning:** weak contrast between dirty and clean; no splashes or drips; the tap is a bare hose arc.
+- **Unchanged areas:**
+  - truck boxes and the road edge;
+  - bush clumps, the cooler and slab signs;
+  - rubbish unreadable at 5 m;
+  - empty studio floor and repeated sacks;
+  - pale mosaic floor light;
+  - unreadable mosaic plaques.
+
+**Where things stand:** five areas hold at 4.0. Sea glass has now sat at 3.0 for fourteen reviews (since review 13) through many material and shape changes. At this point, more glass tuning gives reviewers a new complaint each round rather than a higher score.
