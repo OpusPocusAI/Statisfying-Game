@@ -16,7 +16,9 @@ Shader "Sea Glass/Basin Water"
         Pass
         {
             Tags { "LightMode" = "UniversalForward" }
-            Blend SrcAlpha OneMinusSrcAlpha
+            // Round 25 (review 23: "a milky disc"): a 2x multiply. The water filters whatever lies beneath it (enamel,
+            // the glass piece) instead of covering it with a pale colour; highlights brighten what is below.
+            Blend DstColor SrcColor
             ZWrite Off
             HLSLPROGRAM
             #pragma vertex vert
@@ -93,8 +95,19 @@ Shader "Sea Glass/Basin Water"
                 half fres = .06 + .7 * pow(1 - saturate(dot(wv, wn)), 4);
                 half3 refl = GlossyEnvironmentReflection(reflect(-wv, wn), .08, 1);
                 c = lerp(c, refl * 1.1, saturate(fres * .5));
-                half alpha = lerp(.5, .86, edge) + centre * .1 + band * .1 + waterline * .3 + caustic * .08 + rings * .3 + fres * .35;   // round 21: the enamel floor shows through the middle again; the deep teal colour keeps the pale piece visible
-                return half4(c, saturate(alpha));   // round 13: no fog; the bowl is always within arm's reach
+                // Round 25: everything above is kept for reference; the output is now a filter over what lies beneath.
+                // Clear teal near the rim, deeper toward the middle where the bowl is deepest.
+                half depthF = saturate(edge * .3 + centre * .6);
+                half3 filterC = lerp(half3(.6, .92, .9), half3(.22, .6, .64), depthF);   // water absorbs red first: teal over the warm enamel, not grey
+                // A curved reflection of the window along the far rim, following the bowl's shape (it was a straight
+                // stripe across the whole disc).
+                float2 pd = p / max(rim, 1e-4);
+                half crescent = exp(-pow((rim - .4) / .045, 2)) * smoothstep(.1, .85, dot(pd, normalize(float2(-.55, .83))));
+                half3 lift = caustic * half3(1, .97, .86) * .22 * sun.shadowAttenuation * (1 - edge * .7)
+                           + crescent * half3(1, .96, .88) * .55
+                           + waterline * .45 + rings * .4 + bubbles * .3
+                           + refl * fres * .45;
+                return half4((filterC + lift) * .5, 1);   // 2x multiply: 0.5 leaves the floor unchanged
             }
             ENDHLSL
         }

@@ -139,7 +139,7 @@ Shader "Sea Glass/Frosted Glass"
                     dirt = (1 - smoothstep(.3 - aa, .3 + aa, brushed)) * rest;
                     grime = (1 - smoothstep(.68 - aa, .68 + aa, brushed)) * rest;
                     // Lifted grime gathers in a thin darker rim along the edge of each stroke.
-                    dirtRim = (1 - smoothstep(0, .07, abs(brushed - .3))) * rest * .7;
+                    dirtRim = 0;   // round 25: the lifted-grime line traced every stroke edge (reviews: "contour rings")
                 }
 
                 // ---- Clean glass: refracted, tinted background plus body colour.
@@ -187,6 +187,29 @@ Shader "Sea Glass/Frosted Glass"
                 // piece, thickest at the thin rim, keeps it from reading as glossy jelly.
                 float satin = Noise(i.local * 55.0) * .5 + Noise(i.local * 120.0) * .5;
                 clean = lerp(clean, lerp(tint, _Frost.rgb, .55) * (sky * .5 + sun.color * .45), (.06 + .06 * (1 - thick)) * (.75 + satin * .5));
+
+                // Round 25 (review 23, all three: "gummy sweets", "light does not pass through", "no darker thick
+                // core, no lighter thin rim"): loose pebbles get a physically based look instead of the layered
+                // glows above, which mostly added light and read as pastel candy. The mosaic keeps its own path.
+                if (_Facets < .5)
+                {
+                    // Path length through the piece: long through the domed middle, short at the tapered edge.
+                    half path = lerp(.25, 1.0, smoothstep(.2, .92, nv)) * lerp(.75, 1.15, thickT);
+                    // A gentler bend, so what lies behind stays legible (an edge, the felt, the bench).
+                    half3 seen = SampleSceneColor(screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2));
+                    // Beer-Lambert absorption: the hue of the glass, normalised so it keeps its brightness.
+                    half3 hue = tint / max(max(tint.r, tint.g), max(tint.b, .05));
+                    half3 absorbed = seen * pow(saturate(hue), 2.6 * path) * 1.08;
+                    // A little scattered light inside, so the core glows its colour rather than going muddy.
+                    half3 scatter = tint * (sky * .16 + sun.color * .1 * saturate(dot(n, l) * .5 + .5)) * path;
+                    half3 glass = absorbed + scatter + glow * .6;
+                    // Thin edges: bright and pale, catching the light that skims through the taper.
+                    half thinRim = smoothstep(.5, .86, 1 - nv);
+                    glass = lerp(glass, lerp(tint, half3(1, 1, 1), .55) * (sky * .45 + sun.color * .55 + .2), thinRim * .55);
+                    // Reflection of the room at grazing angles.
+                    glass += sky * fresnel * .35;
+                    clean = glass;
+                }
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
                 half wrap = saturate(dot(n, l) * .5 + .5);
@@ -253,7 +276,8 @@ Shader "Sea Glass/Frosted Glass"
                 // removed the earlier speckle; these are fewer, larger and sharper).
                 float3 fc = i.local * 17.0; float3 fcell = floor(fc); float fh = Hash(fcell + 31.0);
                 float3 fd = abs(frac(fc) - .5);
-                half diamond = 1 - smoothstep(.2, .24, fd.x + fd.y + fd.z * .3);
+                // Round 25 (reviews: "hard white squares"): a four-point star glint, thin arms and a hot centre.
+                half diamond = saturate(1 - fd.x * fd.y * 110 - (fd.x + fd.y) * 1.9 - fd.z * .6);
                 half wink = .45 + .55 * pow(saturate(sin(_Time.y * 2.5 + fh * 40.0 + dot(v, float3(9, 5, 7)) * 4.0)), 4);
                 half facets = step(.9, fh) * diamond * wink * smoothstep(.45, .85, nk) * (1 - _Facets);
                 c += facets * 2.2 * (1 - grime);
