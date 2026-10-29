@@ -1097,3 +1097,49 @@ The reference screenshots loaded properly this time (36–43 viewed per reviewer
   - parasol canopies cast no shadow.
 
 **Where things stand:** water drops to 3.7 and effects to 3.0. With references visible this time, these scores are probably more reliable than review 22's rather than a sign of real regression. Four areas hold at 4.0.
+
+### October 29 — round 25 and review 24 (three reviewers, averaged)
+
+Round 25 changes (menu pass 37):
+- **Islands:** sculpted as one heightfield, with a rock apron and talus at the waterline, tapering cliffs with ledges, grass on the ledges (by slope) and a hill with tree groves.
+- **Clean glass:** absorbs light through its body, with a deep core, pale thin edges, gentler refraction and four-point star glints.
+- **Tray glass:** each clean piece in the trays casts a pool of its colour onto the felt.
+- **Bowl water:** a 2x-multiply teal filter replaces the pale disc and straight stripe.
+- **Brush strokes:** no longer leave a dark outline.
+
+| Area | A | B | C | Average | Review 23 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.13 Effects | 3 | 4 | 4 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- Tray glass now reads as glass at 2 m ("saturated, rounded and read as glass"), and the coloured pools on the felt are noticed.
+- The "layer cake" lids on the islands are gone.
+- No contour rings are reported for the grime.
+
+**Still open, named by all three:**
+- **Held clean piece (06):** still reads as an opaque gummy block. At hand size you can't see through it, it has a dark top band, and the star glints look stuck on.
+- **Bowl water:** still "milky dishwater" in the built frames; the teal filter is too pale over the bright enamel.
+- **Islands:** the ledges now repeat as evenly spaced green stripes on every tier. Reviewers want varied spacing, gullies, and grass on only some ledges.
+- **Sand:** big plain foregrounds, coin-like footprints.
+- **Truck:** boxy body; straight road edges with no sand drift.
+- **Clouds:** a vertical seam (b2, b7).
+
+**New notes:**
+- Shadow wedges on the shallow water around the sea stacks (b4, b8).
+- The floor light under the mosaics is pale.
+- The tray glow sometimes reads as "neon puddles".
+
+**Where things stand:** water is back at 4.0, and studio and effects rose to 3.7; mosaic dipped to 3.7. Four areas are at 4.0. Sea glass stays at 3.0, because the held hero piece still reads as candy even though the tray pieces now pass.
