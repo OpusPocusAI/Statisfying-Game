@@ -995,3 +995,53 @@ Six averages rose and none fell. Mosaic now meets the bar for all three reviewer
 - The truck's text plates read like UI.
 - The world edge of the sea shows in b4.
 - Stray dot clouds.
+
+### October 29 — round 23 and review 22 (three reviewers, averaged)
+
+Round 23 changes:
+- **Glass:** domed glass with tapered edges.
+- **Grime:** a sandy grime film instead of dark bands.
+- **Sand:** dig mounds a third wider and lower.
+- **Studio:** no loose jars in the floor clusters.
+- **Sea:** the open-water plane now runs past the horizon, so its edge no longer shows.
+- **Sky:** fewer stray dot clouds.
+
+| Area | A | B | C | Average | Review 21 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.13 Effects | 4 | 4 | – | 4.0 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**Caveat: the reviewers could barely see the reference games.** The browser pane was hidden, so screenshots timed out. Each reviewer saw only one or two Steam sheets and judged the rest from memory. This review is not directly comparable with review 21.
+
+**What landed:**
+- The sea edge is no longer reported.
+- The sandy film on the cloudy piece reads as a film for one reviewer ("good").
+
+**Still open, named by all three:**
+- **Glass** still reads as candy: nothing shows through the clean pieces and they cast no coloured light.
+- **Cleaning:**
+  - the grime now clears in "round blobs with contour-line rings" (the soft brush stamp's outline);
+  - the wash water is a milky disc with a straight highlight band.
+- **Sand and props:**
+  - flat inland dunes;
+  - evenly spaced grass and roadside planting;
+  - box-like shore rocks and island strata.
+- **Truck:** still box-built, with a flat cargo fill.
+- **Small fixes:**
+  - the edge-on zone sign in b2;
+  - a seam in one long cloud;
+  - the shovel's large shadow in 02.
+
+**Where things stand:** four areas have held at 4.0 for two reviews, and the other nine sit between 3.0 and 3.3. The remaining gap is modelling scale: rocks and islands, the truck body, real glass refraction and denser planting. That is larger work than these tuning rounds.
