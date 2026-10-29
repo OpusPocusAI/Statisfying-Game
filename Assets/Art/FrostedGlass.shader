@@ -276,18 +276,18 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
-                half glint = smoothstep(.984 - aaK, .984 + aaK, nk) * 1.1 + pow(nk, 700) * 2.5 + pow(nk, 80) * .25;   // one highlight shape only: a second one beside it read as a pair of eyes
+                half glint = smoothstep(.9965 - aaK, .9965 + aaK, nk) * .9 + pow(nk, 1800) * 1.4 + pow(nk, 140) * .16;   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
                 // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
                 // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
                 // removed the earlier speckle; these are fewer, larger and sharper).
-                float3 fc = i.local * 17.0; float3 fcell = floor(fc); float fh = Hash(fcell + 31.0);
+                float3 fc = i.local * 26.0; float3 fcell = floor(fc); float fh = Hash(fcell + 31.0);
                 float3 fd = abs(frac(fc) - .5);
                 // Round 25 (reviews: "hard white squares"): a four-point star glint, thin arms and a hot centre.
                 half diamond = saturate(1 - fd.x * fd.y * 110 - (fd.x + fd.y) * 1.9 - fd.z * .6);
                 half wink = .45 + .55 * pow(saturate(sin(_Time.y * 2.5 + fh * 40.0 + dot(v, float3(9, 5, 7)) * 4.0)), 4);
-                half facets = step(.94, fh) * diamond * wink * smoothstep(.45, .85, nk) * (1 - _Facets);
-                c += facets * 1.3 * (1 - grime);   // round 26: fewer, softer stars (reviews: "stuck on")
+                half facets = step(.965, fh) * diamond * wink * smoothstep(.7, .95, nk) * (1 - _Facets);
+                c += facets * .75 * (1 - grime);   // round 28: smaller, rarer, dimmer, only near the glint (reviews: "stickers")
 
                 c += _EmissionColor.rgb;
                 c = lerp(c, half3(.02, .018, .022) + spec * .05, lead);   // linear: near-black came

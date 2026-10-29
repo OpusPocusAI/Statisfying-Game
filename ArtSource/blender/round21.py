@@ -11,8 +11,10 @@ from sg_export import *
 from mathutils import noise
 
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
-shapes = [(0, 1, 1.0, .72, .2, .06, 0.0), (3, .6, 1.0, .88, .22, .05, .0), (4, .55, 1.0, .7, .18, .08, .32),
-          (0, 1, 1.0, .5, .2, .04, .0), (5, .5, .9, .8, .24, .06, .28), (3, .45, 1.0, .82, .19, .07, .0)]
+# Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
+# triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
+shapes = [(0, 1, 1.0, .72, .2, .06, 0.0), (3, .22, 1.0, .92, .22, .05, .0), (4, .28, 1.0, .66, .15, .08, .0),
+          (0, 1, 1.0, .36, .11, .03, .0), (5, .3, .88, .82, .38, .04, .0), (3, .3, 1.0, .55, .17, .06, .0)]
 
 
 def outline_r(a, sides, rk):
@@ -41,7 +43,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # Round 27 (review 25: "a sand biscuit", "uniform-thickness slab with a hard cut edge"): a lens, not a bent
         # plate. Both faces bulge outwards and the piece thins towards a rolled rim, so the middle is about twice
         # as thick as the edge; no straight broken edge.
-        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - .45 * rr * rr)
+        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - (.2 if th > .3 else .45) * rr * rr)   # the nugget keeps its bulk
         dome = max(curve, .1) * .85 * (1 - rr * rr)
         ys += dome * (1 if yn > 0 else -.6)
         if False and cut > 0:
