@@ -122,7 +122,13 @@ namespace SeaGlass
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
             workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.36f:.52f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
-            if(kind==StationKind.Clean){var wb=glassRenderer.bounds.extents;Reach=new Vector3(wb.x*.78f,wb.y*.85f,wb.z*.72f);}
+            if(kind==StationKind.Clean)
+            {
+                // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank
+                // out of sight in the deeper bowl). The reveal lift and pose resets use this as home.
+                if(waterSurface){var p=workingGlass.position;workingGlass.position=new Vector3(p.x,waterSurface.bounds.center.y+glassRenderer.bounds.extents.y*.55f,p.z);glassHome=workingGlass.localPosition;}
+                var wb=glassRenderer.bounds.extents;Reach=new Vector3(wb.x*.78f,wb.y*.85f,wb.z*.72f);
+            }
         }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
