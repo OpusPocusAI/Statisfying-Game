@@ -1045,3 +1045,55 @@ Round 23 changes:
   - the shovel's large shadow in 02.
 
 **Where things stand:** four areas have held at 4.0 for two reviews, and the other nine sit between 3.0 and 3.3. The remaining gap is modelling scale: rocks and islands, the truck body, real glass refraction and denser planting. That is larger work than these tuning rounds.
+
+### October 29 — round 24 and review 23 (three reviewers, averaged)
+
+Round 24 changes (menu pass 36):
+- **Shore rocks:** weathered boulder groups replace the stacked slabs, including the low cove shelves.
+- **Islands:** one fluted cliff under a grassy cap with tree groves, instead of strata layers.
+- **Dunes:** the inland ridge is rebuilt with lit backs and steep, shaded slip faces.
+- **Planting:**
+  - beach grass and flowers gather into 34 clumps;
+  - ridge grass grows in clumps behind the crests, with shrubs in the hollows;
+  - roadside trees stand in groups.
+- **Signs:** the section signs face the beach.
+
+The reference screenshots loaded properly this time (36–43 viewed per reviewer).
+
+| Area | A | B | C | Average | Review 22 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- No reviewer named the shore rocks, flat dunes, edge-on sign or slab strata any more.
+- One reviewer called the boulders "close to Lonely Mountains".
+
+**Still open:**
+- **Islands (all three):** the new islands read as "layer cakes": vertical walls under a cap that overhangs like a lid. The fixes asked for are tapered walls with ledges, a slumped base, and grass blending down into the rock. Two reviewers also saw bright vertical streaks on the cliff walls.
+- **Sand:** large plain sand foregrounds (b1, s6), footprints that look like flat discs, and a repeated pebble triplet.
+- **Glass (all three):** reads as candy, with no see-through, no bright thin rim and no coloured light.
+- **Cleaning:**
+  - milky basin water with a straight highlight stripe;
+  - grime clearing in contour rings.
+- **Truck:** box panels, with only one item per cargo bin.
+- **Studio:** an empty floor in front of the mosaics, a repeated sack prop, and no railing on the open side.
+- **Small fixes:**
+  - vertical seams in the long clouds (b2, b7);
+  - dash-like streaks in the shore foam;
+  - grey-on-grey mosaic nameplates;
+  - parasol canopies cast no shadow.
+
+**Where things stand:** water drops to 3.7 and effects to 3.0. With references visible this time, these scores are probably more reliable than review 22's rather than a sign of real regression. Four areas hold at 4.0.
