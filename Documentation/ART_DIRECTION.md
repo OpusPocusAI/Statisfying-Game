@@ -784,3 +784,41 @@ Round 17:
 **Notes on two other findings.**
 - The pieces in the "idle" tray captures are the trays' standing dressing. They are not a capture error.
 - The doc's reference table lists Dorfromantik, while the review prompt names Glass Masquerade and Lil Gator Game.
+
+### October 29 — round 18 and review 17 (pass 31)
+
+Round 18 changes:
+- The bowl water is a deeper teal again, so the cloudy piece stands out. I checked this in an editor test and in frame 04 before the review.
+- The cloudy crust is denser and has a soft dark edge.
+- Clean glass has a deeper, more saturated colour.
+- The clouds are shaded by a clean ramp with no noise blotches, and their band sits higher, clear of the dune crests.
+
+| Area | Review 16 | Review 17 |
+| --- | --- | --- |
+| 5.1 Lighting | 3 | **4** |
+| 5.2 Water | 4 | 4 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 4 |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | **4** |
+| 5.13 Effects | – | 2 (stills: flat foam circles) |
+| 5.14 Signs | – | – |
+
+**Five areas are at 4, the most so far:** lighting, water, sorting, mosaic and tools.
+
+**Glass and cleaning stay at 3.**
+- The reviewer still reads clean glass as opaque candy with "nothing behind showing through". That conflicts with frame 06, where the tray rim and its band are visibly bent through the held piece. The effect is likely too subtle at review scale.
+- The cloudy piece now reads as "a white plaster disc".
+- The bowl water still has no depth gradient or reflection streak.
+
+**New and concrete:**
+- Studio furniture has no contact shadows or AO, so it looks pasted on.
+- The brushing foam reads as flat circle sprites; this is why 5.13 scored 2.
+- The floor texture shows blurry dark smudges, and the s8 floor has a seam.
+- A black slab sits above the truck cab.
