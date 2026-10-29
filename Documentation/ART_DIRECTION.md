@@ -909,3 +909,48 @@ The three reviewers agree on 10 of the 13 scored areas, so this is a much firmer
 - The floor colour spill is a blurred smear.
 - Some studio clutter is copy-pasted.
 - The built studio frames look greyer than the editor captures (that is the intended neglected state).
+
+### October 29 — round 21 and review 20 (three reviewers, averaged)
+
+Round 21:
+- **Glass shape.** Six worn slab shapes with flat faces, rounded edges and some broken edges replace the puffy pebbles.
+- **Clean glass colour.** No dark core; the edges are deeper and more saturated.
+- **Brushing.** A soft round brush stamp with a thin rim of lifted grime along each stroke.
+- **Wash water.** Clearer in the middle.
+- **Grass.** Three colour variants. Two-sided foliage now lets the low sun through, so backlit grass glows instead of going near-black.
+
+| Area | A | B | C | Average | Review 19 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.10 Studio | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.13 Effects | – | 3 | – | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+Mosaics went up a little and studio and tools went down a little; the rest is unchanged. The changes did land: the grass now reads with "a good base-to-tip gradient", and the cloudy piece reads as "properly frosted" for one reviewer. They did not move the glass or cleaning scores.
+
+**What all three now say about the glass and cleaning:**
+- Clean glass is "thick, flat-topped, opaque, pastel". The slab shapes made it read as soap or "a guitar pick" rather than candy, but still not as glass.
+- All three ask for the felt to show through the piece and for a bright thin rim.
+- The grime streaks on the cloudy piece read as "brown bands like burn marks or shadows". That pattern comes from the round 14 streak noise and should be replaced.
+- The wash water still reads as "a milky grey disc with one hard streak".
+
+**Other issues raised again:**
+- the uniform Voronoi crackle in the mosaics;
+- the blurry floor light under the mosaics;
+- empty studio floor and paper-thin rugs;
+- faceted, rock-like bushes;
+- the boxy truck;
+- the visible edge of the sea plane in b4;
+- stray tiny clouds.
+
+Across reviews 19 and 20, ten of the thirteen areas sit at the same average. Further tuning of the same materials is unlikely to move them; glass and cleaning need a different approach.
