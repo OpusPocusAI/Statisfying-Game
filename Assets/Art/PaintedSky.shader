@@ -92,7 +92,7 @@ Shader "Sea Glass/Painted Sky"
                 // banks of cumulus sitting above the sea, flattened bases, taller tops.
                 float2 ring = normalize(d.xz + 1e-5);
                 float3 cp = float3(ring * 3.2 * _CloudScale, h * 5.5 * _CloudScale);
-                float band = smoothstep(0.065, 0.11, h) * (1 - smoothstep(0.19, 0.36, h));   // round 5: lifted clear of the dune crests
+                float band = smoothstep(0.095, 0.145, h) * (1 - smoothstep(0.22, 0.4, h));   // round 18: higher still; low banks sat on dune ridges like snow
                 float density = Fbm3(cp + float3(3.1, 7.4, 1.3));
                 // The band erodes the noise rather than masking it, so edges stay organic.
                 float cloudField = density - (1 - band) * 0.7 + 0.05;
@@ -103,12 +103,13 @@ Shader "Sea Glass/Painted Sky"
                 // Self-shadowing: sample towards the sun and upwards; denser there means this side faces away.
                 float3 toSun = float3(normalize(sunDir.xz + 1e-4) * 0.16, 0.22);
                 float towardSun = Fbm3(cp + toSun + float3(3.1, 7.4, 1.3));
-                float lit = saturate(0.5 + (density - towardSun) * 6.0 + (h - 0.1) * 1.5);
-                // Paint the light in three flat-ish bands, like a hand-painted backdrop.
-                float lfw = max(fwidth(lit * 3.0), 0.02);
-                // Round 9: two broad value bands (lit top, shaded underside) instead of three, which broke the
-                // clouds into camouflage-like inner blotches.
-                lit = smoothstep(0.42 - lfw, 0.58 + lfw, lit) * 0.75 + saturate(lit) * 0.25;
+                // Round 18 (reviews: "smeared purple stains inside"): the light no longer comes from a noise
+                // difference, which scattered shaded blotches through every cloud. Instead a clean ramp: a flat
+                // lilac base and lilac edges, warm cream higher in the body, with a gentle bias to the sun side.
+                float depthIn = cloudField - (1 - _CloudCover);                   // 0 at the silhouette, growing inwards
+                float ramp = (h - 0.12) * 6.0 + depthIn * 2.2 + (density - towardSun) * 1.2;
+                float lfw = max(fwidth(ramp), 0.02);
+                float lit = smoothstep(0.32 - lfw, 0.48 + lfw, ramp) * 0.85 + saturate(ramp) * 0.15;
                 half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
                 // Bright silver rim on cloud edges near the sun.
                 float edge = shape * (1 - smoothstep(1 - _CloudCover + 0.02, 1 - _CloudCover + 0.2, cloudField));

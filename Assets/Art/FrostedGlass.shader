@@ -145,7 +145,10 @@ Shader "Sea Glass/Frosted Glass"
                 half depthTint = lerp(.3, .85, nv) * lerp(.5, 1, thickT);
                 // Coloured filter: keep the background's brightness, take the glass's hue.
                 half lum = dot(behind, half3(.3, .55, .15));
-                half3 filtered = lerp(behind * tint * 1.6, lum * tint * 1.9, .55);
+                // Round 18 (review 16: "milky pastel"): a deeper, more saturated filter colour; the background still
+                // shows through, now strongly tinted.
+                half3 deep = tint * tint * 1.35 + tint * .18;
+                half3 filtered = lerp(behind * deep * 1.7, lum * deep * 2.1, .6);
                 half3 transmitted = lerp(behind, filtered, depthTint);
                 half3 sky = SampleSH(n);
                 half3 body = tint * (sky * .18 + sun.color * .1 * saturate(dot(n, l) * .5 + .5));
@@ -168,7 +171,7 @@ Shader "Sea Glass/Frosted Glass"
                 // crosses the most glass there) and a bright, thin transmitting band just inside the silhouette.
                 // Based on the view angle, so it works for every pebble whatever its thickness in object units.
                 float coreT = smoothstep(.35, .95, nv) * (1 - _Facets * .7);
-                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .14);   // round 17 (review 15: "opaque, no transmission")
+                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .24);   // round 17 (review 15: "opaque, no transmission")
                 float rimBand = smoothstep(.6, .82, 1 - nv) * (1 - _Facets);
                 clean += lerp(tint, half3(1, 1, 1), .55) * rimBand * .9 * (sky * .4 + sun.color * .6 + .25);
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished
@@ -188,7 +191,7 @@ Shader "Sea Glass/Frosted Glass"
                 half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .18) * lightOnFrost * (.93 + grain * .1);
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.3, .9, smoothstep(.15, .7, nv));   // view-based (round 14), so thin pieces are crusted too; hue shows at the edges
+                float crustCover = lerp(.5, .95, smoothstep(.15, .7, nv));   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
@@ -205,6 +208,9 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
                 // solid, not speckled, with a faint sandy grain.
                 half3 sandStain = half3(.29, .23, .15) * lightOnFrost * (.9 + grain * .16);
+                // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
+                // pebble against pale water or felt.
+                frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
                 // Round 14 (review 12): thin brown streaks and a few small spots of dried sand over the frost,
                 // not a solid coat.
                 float streakN = Noise(float3(q.x * .45 + q.z * .3, q.y * 5.5, q.z * .45) + 11.0);
