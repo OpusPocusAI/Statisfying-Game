@@ -630,3 +630,45 @@ What review 12 still asks for:
   - flat rock faces.
 
 **Capture artefact found by review 12 and fixed:** both stations' working-glass pieces were saved as visible in the scene. The game hides them on start, but every editor review capture since round 10 showed a large clean piece floating over the trays (s10) and resting in the bowl (s11). They are now saved hidden.
+
+### October 29 — round 14 and review 13 (pass 27)
+
+Round 14 (glass and bowl, from review 12):
+- Clean glass has a view-based dark core with a thin bright rim and one large crisp highlight instead of glitter specks.
+- Cloudy glass is a whiter crust with thin brown streaks.
+- Four new silhouettes (shard, sliver, nugget, thin oval) join the catalog and the tray spares, with varied size and tilt.
+- The bowl is 60% deeper, with its inner wall showing above a lower water line.
+- Each piece floats at the waterline.
+- The gooseneck tap arcs over the back of the bowl.
+- A stray brass bar from an older tap is hidden.
+
+| Area | Review 12 | Review 13 |
+| --- | --- | --- |
+| 5.1 Lighting | 3 | **4** |
+| 5.2 Water | 4 | 3 ("3.5") |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 |
+| 5.6 Sea glass | 3 | 2 ("2.5") |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 3 ("3.5") |
+| 5.9 Mosaic | 4 | 3 ("3.5") |
+| 5.10 Studio | 3 | 3 ("3.5") |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 4 | 3 |
+| 5.13 Effects | – | 3 (stills only) |
+| 5.14 Signs | – | – |
+
+**The round made glass and sorting worse in this reviewer's eyes.** Two of the new shapes caused it:
+- **Bowl piece:** the piece used at the wash bowl in the verification run became the new thin flat oval. Floating at the waterline, it read as "a paper-thin disc lying flush on the water", "a pancake" and "a decal".
+- **Amber shards:** the new triangular shards in the amber tray read as "Cheetos".
+- **Trays:** piles still sit in "one thin strip under the label", so the trays look 80% empty.
+
+**Clean glass** still reads as candy. The reviewer asks for visible thickness and transmission (the tray felt seen through the piece), within the glossy target.
+
+**Untouched areas also moved.** Water, mosaic and tools each lost a point and lighting gained one, with no changes to any of them. Across reviews 9 to 13 most areas have moved between 3 and 4 from one reviewer to the next, so a single review cannot confirm a one-point change.
+
+**New issues:**
+- The equipment pegboard covers half of mosaic 3 in the restored-room view.
+- The cargo bins look closed, so loaded glass sits on the lid.
+- The glass jars glow like lamps.
