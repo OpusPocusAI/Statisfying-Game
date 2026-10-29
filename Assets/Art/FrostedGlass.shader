@@ -134,7 +134,7 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 13, at the wash bowl: the brush path alone decides what is clean. The first pass
                     // takes the sand crust off, the next one the frost; both edges are hard (PowerWash).
                     // Anything the brush missed fades only over the last quarter of the clean.
-                    float aa = max(fwidth(brushed) * .75, .04);   // round 21: soft brush-stroke edges (they read as hard blocks)
+                    float aa = max(fwidth(brushed) * 1.5, .08);   // round 27: softer (review 25: "dithered mask edge")   // round 21: soft brush-stroke edges (they read as hard blocks)
                     float rest = saturate(_Grime * 4);
                     dirt = (1 - smoothstep(.3 - aa, .3 + aa, brushed)) * rest;
                     grime = (1 - smoothstep(.68 - aa, .68 + aa, brushed)) * rest;
@@ -227,10 +227,10 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .75), tint * lightOnFrost * 1.15, .55);
-                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .18) * lightOnFrost * (.93 + grain * .1);
+                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .5) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.5, .95, smoothstep(.15, .7, nv));   // view-based; round 18: denser, so the cloudy piece stands out from the water
+                float crustCover = lerp(.35, .78, smoothstep(.15, .7, nv));   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
@@ -256,9 +256,9 @@ Shader "Sea Glass/Frosted Glass"
                 float grimeStreaks = smoothstep(.6, .63, streakN) * (1 - smoothstep(.7, .73, streakN));
                 // Round 16 (review 14: round spots read as "chocolate chips"): silt gathers at the edges instead.
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
-                float film = smoothstep(.3, .5, Noise(q * 1.3 + 7.0) * .75 + grain * .25);   // round 23: a broad mottled film with sandy speckle, over most of the piece
+                float film = smoothstep(.46, .6, Noise(q * 1.3 + 7.0) * .75 + grain * .25);   // round 27: patches, not a full coat   // round 23: a broad mottled film with sandy speckle, over most of the piece
                 float stainPatch = saturate(film * .9 + edgeSilt * .6);
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .85);   // white frost between the patches
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .72);   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);

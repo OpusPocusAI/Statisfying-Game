@@ -102,7 +102,7 @@ for k in range(3):
         top_area = u < .64
         # Round 26: grass on the hilltop always, but only on some ledges, in patches (not a stripe per tier).
         patch = noise.noise(Vector((c.x * 3.5, c.y * 3.5, c.z * 2)) + s) > -.3
-        p.material_index = 1 if p.normal.z > (.62 if top_area else .74) and (top_area or patch) else 0
+        p.material_index = 0   # round 27: one ground material; the Painterly shader paints grass on upward faces per pixel (_TopTint)
     shade_auto(isl, 34)
     parts = [isl]
 

@@ -127,6 +127,16 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         albedo = lerp(albedo, albedo * half3(0.93, 0.95, 1.04), saturate(-rip) * 0.35 * near * (_GroundPatches / 0.4));
     }
 
+    // Round 27 (review 25: island grass read as "blocky pixel camo"): grass or moss painted per pixel on faces
+    // that point up, with a soft, noisy edge, instead of a per-face material split.
+    if (_TopTint.a > 0.001)
+    {
+        float topN = SG_ValueNoise(input.positionWS.xz * 0.35) * 0.6 + SG_ValueNoise(input.positionWS.xz * 1.4 + 7.0) * 0.4;
+        half top = smoothstep(_TopStart - 0.06, _TopStart + 0.08, normalWS.y + (topN - 0.5) * 0.28);
+        half3 grass = _TopTint.rgb * (0.88 + SG_ValueNoise(input.positionWS.xz * 0.9 + 3.0) * 0.24);
+        albedo = lerp(albedo, grass, top * _TopTint.a);
+    }
+
     // Height gradient: darker, cooler base and a sunlit crown.
     float height = saturate(input.positionWS.y / max(_GradientHeight, 0.05));
     albedo *= lerp(1.0 - _GradientStrength, 1.0 + _GradientStrength * 0.3, smoothstep(0.0, 1.0, height));

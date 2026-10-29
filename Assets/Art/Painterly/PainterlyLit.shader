@@ -21,6 +21,8 @@ Shader "Sea Glass/Painterly Lit"
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _SpecColor("Spec", Color) = (0, 0, 0, 0)
         [HideInInspector] _Cull("Cull", Float) = 2
+        _TopTint("Top colour (moss on upward faces, a = amount)", Color) = (0.42, 0.55, 0.3, 0)
+        _TopStart("Top colour starts at normal.y", Range(0, 1)) = 0.7
     }
 
     SubShader

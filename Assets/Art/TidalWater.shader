@@ -71,7 +71,7 @@ Shader "Sea Glass/Tidal Water"
   float3 normal=normalize(float3(cos(phase)*.09,1,cos(crossing)*.07));
   // Round 8: the sea receives shadows, so rock and cliff shadows continue onto the water.
   Light sun=GetMainLight(TransformWorldToShadowCoord(i.world));
-  c*=lerp(.66,1,sun.shadowAttenuation);
+  c*=lerp(.85,1,sun.shadowAttenuation);   // round 27: softer; long low-sun stack shadows read as light-shaft wedges (review 25)
   float sheen=pow(saturate(dot(normal,normalize(sun.direction+view))),128);
   c+=sun.color*sheen*(.045+marks*.07);
 

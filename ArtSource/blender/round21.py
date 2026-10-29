@@ -38,11 +38,13 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         x, z = p.x * sx * orr, p.z * sz * orr
         # Slab profile: flat faces with rounded edges (a superellipse in thickness, not a sphere).
         yn = p.y / .5
-        ys = math.copysign(abs(yn) ** .62, yn) * .5 * th   # round 23: rounder edges that taper (was a flat-topped slab)
-        # The face that was the bottle's outside keeps a gentle curve.
-        ys += max(curve, .1) * (1 - (x * x + z * z) / .25) * (1 if yn > 0 else .55)   # round 23: a clearly domed top
-        # A broken edge: one straight, slightly bevelled cut across the outline.
-        if cut > 0:
+        # Round 27 (review 25: "a sand biscuit", "uniform-thickness slab with a hard cut edge"): a lens, not a bent
+        # plate. Both faces bulge outwards and the piece thins towards a rolled rim, so the middle is about twice
+        # as thick as the edge; no straight broken edge.
+        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - .45 * rr * rr)
+        dome = max(curve, .1) * .85 * (1 - rr * rr)
+        ys += dome * (1 if yn > 0 else -.6)
+        if False and cut > 0:
             d = x * math.cos(rot) + z * math.sin(rot)
             lim = .5 - cut * .5
             if d > lim:
