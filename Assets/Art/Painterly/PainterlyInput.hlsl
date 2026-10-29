@@ -24,6 +24,7 @@ CBUFFER_START(UnityPerMaterial)
     half _WorldMapping;
     half _WorldTile;
     half _GroundPatches;
+    half _Cull;            // round 21: 0 marks two-sided foliage and fabric, which lets light through
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

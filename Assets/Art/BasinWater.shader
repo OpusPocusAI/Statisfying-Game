@@ -93,7 +93,7 @@ Shader "Sea Glass/Basin Water"
                 half fres = .06 + .7 * pow(1 - saturate(dot(wv, wn)), 4);
                 half3 refl = GlossyEnvironmentReflection(reflect(-wv, wn), .08, 1);
                 c = lerp(c, refl * 1.1, saturate(fres * .5));
-                half alpha = lerp(.68, .88, edge) + centre * .14 + band * .1 + waterline * .3 + caustic * .08 + rings * .3 + fres * .35;   // round 18: a little denser again, so the pale cloudy piece stands out
+                half alpha = lerp(.5, .86, edge) + centre * .1 + band * .1 + waterline * .3 + caustic * .08 + rings * .3 + fres * .35;   // round 21: the enamel floor shows through the middle again; the deep teal colour keeps the pale piece visible
                 return half4(c, saturate(alpha));   // round 13: no fog; the bowl is always within arm's reach
             }
             ENDHLSL

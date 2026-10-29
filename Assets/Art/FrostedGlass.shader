@@ -128,16 +128,18 @@ Shader "Sea Glass/Frosted Glass"
                 float brushed = SAMPLE_TEXTURE2D(_CleanMask, sampler_CleanMask, (i.local.xy - _MaskRect.xy) / _MaskRect.zw).r;
                 float localGrime = _Grime * (1 - smoothstep(.35, .45, brushed) * .92);   // round 12: crisp brush-stroke edges
                 float grime = smoothstep(order - .1, order + .1, localGrime);
-                float dirt = smoothstep(order + .18, order + .4, localGrime);
+                float dirt = smoothstep(order + .18, order + .4, localGrime); float dirtRim = 0;
                 if (_MaskOn > .5)
                 {
                     // Round 13, at the wash bowl: the brush path alone decides what is clean. The first pass
                     // takes the sand crust off, the next one the frost; both edges are hard (PowerWash).
                     // Anything the brush missed fades only over the last quarter of the clean.
-                    float aa = max(fwidth(brushed) * .75, .015);
+                    float aa = max(fwidth(brushed) * .75, .04);   // round 21: soft brush-stroke edges (they read as hard blocks)
                     float rest = saturate(_Grime * 4);
                     dirt = (1 - smoothstep(.3 - aa, .3 + aa, brushed)) * rest;
                     grime = (1 - smoothstep(.68 - aa, .68 + aa, brushed)) * rest;
+                    // Lifted grime gathers in a thin darker rim along the edge of each stroke.
+                    dirtRim = (1 - smoothstep(0, .07, abs(brushed - .3))) * rest * .7;
                 }
 
                 // ---- Clean glass: refracted, tinted background plus body colour.
@@ -168,7 +170,7 @@ Shader "Sea Glass/Frosted Glass"
                 float thick = saturate((abs(i.local.z) - .02) / .06);
                 clean = lerp(clean * lerp(1.12, .9, thick), tint * tint * .9 + tint * .05, thick * .1);   // round 17: lighter, so the felt shows through
                 // Edges seen at a glancing angle hold deeper colour (light travels further inside)...
-                clean = lerp(clean, tint * tint * .7 + tint * .15, saturate(fresnel * 1.4) * .6);
+                clean = lerp(clean, tint * tint * .85 + tint * .05, saturate(fresnel * 1.8) * .75);   // round 21: deeper, more saturated edges (light travels further there)
                 // ...with a thin bright rim where the rounded edge catches the light.
                 clean += lerp(tint, half3(1, 1, 1), .6) * pow(fresnel, 5) * 2.0;   // round 13: brighter rim
                 // Round 5b: light gathered inside the piece; a soft inner glow so clean glass reads as lit
@@ -178,7 +180,7 @@ Shader "Sea Glass/Frosted Glass"
                 // crosses the most glass there) and a bright, thin transmitting band just inside the silhouette.
                 // Based on the view angle, so it works for every pebble whatever its thickness in object units.
                 float coreT = smoothstep(.35, .95, nv) * (1 - _Facets * .7);
-                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .24);   // round 17 (review 15: "opaque, no transmission")
+                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .0);   // round 21: no dark core; the centre stays the lightest, most see-through part   // round 17 (review 15: "opaque, no transmission")
                 float rimBand = smoothstep(.6, .82, 1 - nv) * (1 - _Facets);
                 clean += lerp(tint, half3(1, 1, 1), .55) * rimBand * .9 * (sky * .4 + sun.color * .6 + .25);
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished
@@ -226,6 +228,7 @@ Shader "Sea Glass/Frosted Glass"
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
                 float stainPatch = saturate(grimeStreaks + edgeSilt * .9) * smoothstep(.25, .45, Noise(q * .8 + 4.0));
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .92);   // white frost between the patches
+                frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);
 

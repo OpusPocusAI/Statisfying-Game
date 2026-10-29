@@ -108,8 +108,8 @@ namespace SeaGlass
             for(int y=Mathf.Max(0,y0);y<=Mathf.Min(MaskSize-1,y1);y++)for(int x=Mathf.Max(0,x0);x<=Mathf.Min(MaskSize-1,x1);x++)
             {
                 var P=new Vector2((x+.5f)/MaskSize/ru,(y+.5f)/MaskSize/rv);float t=Mathf.Clamp01(Vector2.Dot(P-A,AC)/len2);
-                if((P-(A+AC*t)).sqrMagnitude>1)continue;
-                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+add);
+                float dd=(P-(A+AC*t)).sqrMagnitude;if(dd>1)continue;
+                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)));   // round 21: a soft round brush head, strongest at its centre
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);
         }

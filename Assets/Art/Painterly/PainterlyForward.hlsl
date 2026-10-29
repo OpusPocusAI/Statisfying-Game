@@ -174,6 +174,14 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     half towardSun = saturate(dot(-viewWS, mainLight.direction)) * 0.7 + 0.3;
     colour += _SG_Rim.rgb * _SG_Rim.a * _Rim * fresnel * towardSun * (0.4 + 0.6 * lightAmount);
 
+    // Round 21 (reviews: grass "near-black spiky silhouettes"): thin two-sided foliage and fabric let the low sun
+    // through. Looking towards the sun, their shaded side glows warm instead of going dark (Tchia, LMD).
+    if (_Cull < 0.5)
+    {
+        half through = pow(saturate(dot(-viewWS, mainLight.direction)), 1.5);
+        colour += albedo * mainLight.color * (0.12 + 0.5 * through) * mainLight.shadowAttenuation * (1.0 - lightAmount * 0.6);
+    }
+
     #if defined(_ADDITIONAL_LIGHTS) || USE_CLUSTER_LIGHT_LOOP
     InputData inputData = (InputData)0;
     inputData.positionWS = input.positionWS;
