@@ -23,7 +23,7 @@ namespace SeaGlass.Editor
             var go=GameObject.CreatePrimitive(type);go.name=name;go.transform.SetParent(root);go.transform.position=position;go.transform.localScale=scale;
             go.GetComponent<Renderer>().sharedMaterial=material;Object.DestroyImmediate(go.GetComponent<Collider>());return go;
         }
-        static void FeatherLight(MosaicPanel panel)
+        internal static void FeatherLight(MosaicPanel panel)
         {
             var spill=Object.FindObjectsByType<MosaicLightSpill>(FindObjectsSortMode.None).First(s=>s.panel==panel);
             var vertices=new List<Vector3>();var colors=new List<Color>();var triangles=new List<int>();var p=panel.transform.position;
@@ -49,7 +49,7 @@ namespace SeaGlass.Editor
                 {
                     var incoming=(outline[i]-outline[(i+n-1)%n]).normalized;var outgoing=(outline[(i+1)%n]-outline[i]).normalized;
                     var a=new Vector2(incoming.y,-incoming.x)*winding;var b=new Vector2(outgoing.y,-outgoing.x)*winding;
-                    var normal=(a+b).normalized;float miter=.2f/Mathf.Max(.45f,Vector2.Dot(normal,b));var edge=outline[i]+normal*miter;
+                    var normal=(a+b).normalized;float miter=.05f/Mathf.Max(.45f,Vector2.Dot(normal,b));var edge=outline[i]+normal*miter;
                     vertices.Add(new Vector3(edge.x,.138f,edge.y));var c=slot.color;c.a=0;colors.Add(c);
                 }
                 // A transparent outer ring feathers only the silhouette, not the internal triangle edges.

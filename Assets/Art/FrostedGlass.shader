@@ -96,7 +96,7 @@ Shader "Sea Glass/Frosted Glass"
                 {
                     // Round 20 (reviews: "uniform crackle, no colour change per cell, flat lead"): larger cells with
                     // their own hue shift and streak direction, thinner came with a warm highlight along its crest.
-                    float2 g = i.local.xy * 1.7; float2 cell = floor(g); float f1 = 9, f2 = 9; float2 id = 0;
+                    float2 g = i.local.xy * .95; float2 cell = floor(g); float f1 = 9, f2 = 9; float2 id = 0;   // round 22: fewer, larger panes per region (reviews: "uniform crackle")
                     for (int oy = -1; oy <= 1; oy++) for (int ox = -1; ox <= 1; ox++)
                     {
                         float2 cc = cell + float2(ox, oy); float2 jit = float2(Hash(float3(cc, 1)), Hash(float3(cc, 7)));
