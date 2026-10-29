@@ -8,7 +8,8 @@ namespace SeaGlass.Editor
     // Round 22, broader content from the twentieth review (three reviewers averaged):
     // - Coastal shrubs read as "faceted green rocks": a layered, smooth-shaded leafy bush (round22.py) replaces them.
     // - The studio has "large empty floor planes": small storytelling clusters (crates of raw glass, baskets,
-    //   buckets, jars, a stool) in the bare zones, kept low and out of the sight lines to the mosaic sockets.
+    //   buckets, a stool) in the bare zones, kept low and out of the sight lines to the mosaic sockets (round 23:
+    //   no loose jars; they read as strays standing in the walkways).
     // - The truck's cargo bins read as closed boxes with one item: a straw packing bed in the glass bin and a
     //   crumpled sack in the rubbish bin, so they read as open, working bins.
     // - The mosaic floor light is rebuilt crisper (MosaicFinishPass.FeatherLight).
@@ -63,14 +64,14 @@ namespace SeaGlass.Editor
             var rng = new System.Random(2202);
 
             // Left wall, front: a stack of crates of raw glass beside a basket.
-            Cluster(root, new Vector3(-12.2f, floorY, 162.6f), 20, rng, slabs, glassMats, crate, crate, basket, jar);
+            Cluster(root, new Vector3(-12.2f, floorY, 162.6f), 20, rng, slabs, glassMats, crate, crate, basket, null);
             // Right middle, near the open side: a stool with a bucket and jars of sorted glass.
-            Cluster(root, new Vector3(3.6f, floorY, 162.4f), -35, rng, slabs, glassMats, stool, bucket, jar, crate);
+            Cluster(root, new Vector3(3.6f, floorY, 162.4f), -35, rng, slabs, glassMats, stool, bucket, basket, crate);
             // In front of the mosaic wall, between the panels, kept low: baskets of glass waiting to be placed.
-            Cluster(root, new Vector3(-6.6f, floorY, 171.2f), 10, rng, slabs, glassMats, basket, jar, null, null);
-            Cluster(root, new Vector3(.4f, floorY, 171.4f), -15, rng, slabs, glassMats, crate, jar, null, null);
+            Cluster(root, new Vector3(-6.6f, floorY, 171.2f), 10, rng, slabs, glassMats, basket, bucket, null, null);
+            Cluster(root, new Vector3(.4f, floorY, 171.4f), -15, rng, slabs, glassMats, crate, basket, null, null);
             // Back middle, between the work island and the gallery.
-            Cluster(root, new Vector3(-7.4f, floorY, 166.2f), 40, rng, slabs, glassMats, bucket, basket, jar, null);
+            Cluster(root, new Vector3(-7.4f, floorY, 166.2f), 40, rng, slabs, glassMats, bucket, basket, null, null);
         }
 
         // Up to four props around a point; crates and baskets get a small heap of glass slabs on top.

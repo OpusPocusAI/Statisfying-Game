@@ -216,7 +216,7 @@ Shader "Sea Glass/Frosted Glass"
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
                 // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
                 // solid, not speckled, with a faint sandy grain.
-                half3 sandStain = half3(.29, .23, .15) * lightOnFrost * (.9 + grain * .16);
+                half3 sandStain = half3(.58, .48, .33) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
                 // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
                 // pebble against pale water or felt.
                 frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
@@ -226,8 +226,9 @@ Shader "Sea Glass/Frosted Glass"
                 float grimeStreaks = smoothstep(.6, .63, streakN) * (1 - smoothstep(.7, .73, streakN));
                 // Round 16 (review 14: round spots read as "chocolate chips"): silt gathers at the edges instead.
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
-                float stainPatch = saturate(grimeStreaks + edgeSilt * .9) * smoothstep(.25, .45, Noise(q * .8 + 4.0));
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .92);   // white frost between the patches
+                float film = smoothstep(.3, .5, Noise(q * 1.3 + 7.0) * .75 + grain * .25);   // round 23: a broad mottled film with sandy speckle, over most of the piece
+                float stainPatch = saturate(film * .9 + edgeSilt * .6);
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .85);   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);

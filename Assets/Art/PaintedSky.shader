@@ -96,6 +96,9 @@ Shader "Sea Glass/Painted Sky"
                 float density = Fbm3(cp + float3(3.1, 7.4, 1.3));
                 // The band erodes the noise rather than masking it, so edges stay organic.
                 float cloudField = density - (1 - band) * 0.7 + 0.05;
+                // Round 23 (reviews: "stray dot clouds"): where the broad base octave is clear, push the field down so
+                // isolated specks from the fine octaves vanish; applied before the crisp edge, so outlines stay sharp.
+                cloudField -= (1 - smoothstep(.34, .46, Noise3(cp + float3(3.1, 7.4, 1.3)))) * .35;
                 // Round 5: crisp, graphic silhouettes (Firewatch) — the edge is about one pixel wide,
                 // instead of a fixed noise range that read as blurred, melting blobs.
                 float fw = max(fwidth(cloudField) * 1.2, 0.002);

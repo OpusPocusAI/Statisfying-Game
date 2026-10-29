@@ -38,9 +38,9 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         x, z = p.x * sx * orr, p.z * sz * orr
         # Slab profile: flat faces with rounded edges (a superellipse in thickness, not a sphere).
         yn = p.y / .5
-        ys = math.copysign(abs(yn) ** .35, yn) * .5 * th
+        ys = math.copysign(abs(yn) ** .62, yn) * .5 * th   # round 23: rounder edges that taper (was a flat-topped slab)
         # The face that was the bottle's outside keeps a gentle curve.
-        ys += curve * (1 - (x * x + z * z) / .25) * (1 if yn > 0 else .4)
+        ys += max(curve, .1) * (1 - (x * x + z * z) / .25) * (1 if yn > 0 else .55)   # round 23: a clearly domed top
         # A broken edge: one straight, slightly bevelled cut across the outline.
         if cut > 0:
             d = x * math.cos(rot) + z * math.sin(rot)
