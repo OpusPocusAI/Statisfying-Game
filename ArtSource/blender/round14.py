@@ -1,6 +1,6 @@
 """Round 14 models (after the twelfth independent review): four more tumbled sea-glass silhouettes, so the
 sorted trays are not rows of identical lentils.
-- glass_shape_0: a rounded triangular shard (the classic bottle-shoulder piece)
+- glass_shape_0: a softly rounded triangular shard (the classic bottle-shoulder piece; round 15: much rounder, the sharper version read as "Cheetos")
 - glass_shape_1: a long sliver
 - glass_shape_2: a thick, chunky nugget
 - glass_shape_3: a thin flat oval
@@ -24,7 +24,7 @@ def polygon_radius(a, sides, round_k):
 
 
 # (sides, roundness, stretch x, stretch z, thickness, flat back)
-shapes = [(3, .35, 1.0, .9, .3, .8), (0, 1, 1.0, .38, .26, .85), (5, .55, .82, .72, .4, .9), (0, 1, 1.0, .74, .16, .9)]
+shapes = [(3, .72, 1.0, .9, .34, .85), (0, 1, 1.0, .38, .26, .85), (5, .55, .82, .72, .4, .9), (0, 1, 1.0, .74, .16, .9)]
 for k, (sides, rk, sx, sz, th, back) in enumerate(shapes):
     reset(); random.seed(1400 + k)
     bpy.ops.mesh.primitive_uv_sphere_add(segments=32, ring_count=16, radius=.5)

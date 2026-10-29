@@ -23,7 +23,7 @@ namespace SeaGlass
                 var tray=trays.First(t=>t.color==def.color);int index=counts[(int)def.color]++;
                 var go=new GameObject("Sorted "+def.id);go.transform.SetParent(transform,false);
                 // Use world dimensions: trays themselves have non-uniform transform scales.
-                go.transform.position=tray.transform.position+new Vector3((index%2-.5f)*.26f,.12f+(index/6)*.07f,(index/2%3-1)*.3f);
+                go.transform.position=tray.transform.position+new Vector3((index%2-.5f)*.2f,.035f+(index/6)*.03f,(index/2%3-1)*.22f);   // round 15: resting on the felt among the heap (was 12 cm up)
                 go.transform.rotation=Quaternion.Euler(90+(index%3-1)*7,index*29,0);
                 float size=pieceSize/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y);
                 go.transform.localScale=Vector3.one*size;
