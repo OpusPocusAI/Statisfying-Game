@@ -91,20 +91,27 @@ Shader "Sea Glass/Frosted Glass"
                 tint = lerp(tint, tint * 1.7 + .12, seeds * .6);   // tiny trapped bubbles
                 // Mosaic pieces read as several smaller fragments (Glass Masquerade): Voronoi cells in object
                 // space, each with its own shade of the colour, separated by fine lead lines.
-                float lead = 0;
+                float lead = 0, leadHi = 0;
                 if (_Facets > 0)
                 {
-                    float2 g = i.local.xy * 2.6; float2 cell = floor(g); float f1 = 9, f2 = 9; float2 id = 0;
+                    // Round 20 (reviews: "uniform crackle, no colour change per cell, flat lead"): larger cells with
+                    // their own hue shift and streak direction, thinner came with a warm highlight along its crest.
+                    float2 g = i.local.xy * 1.7; float2 cell = floor(g); float f1 = 9, f2 = 9; float2 id = 0;
                     for (int oy = -1; oy <= 1; oy++) for (int ox = -1; ox <= 1; ox++)
                     {
                         float2 cc = cell + float2(ox, oy); float2 jit = float2(Hash(float3(cc, 1)), Hash(float3(cc, 7)));
                         float d = length(g - cc - jit);
                         if (d < f1) { f2 = f1; f1 = d; id = cc; } else if (d < f2) f2 = d;
                     }
-                    float shade = Hash(float3(id, 3));
-                    tint = lerp(tint, tint * lerp(.72, 1.3, shade) + (shade - .5) * .06, _Facets);
-                    float w = fwidth(f2 - f1) * 1.0 + .022;
-                    lead = (1 - smoothstep(w, w + .03, f2 - f1)) * _Facets;
+                    float shade = Hash(float3(id, 3)), hueK = Hash(float3(id, 5)) - .5, ang = Hash(float3(id, 9)) * 6.283;
+                    half3 cellTint = tint * lerp(.7, 1.3, shade);
+                    cellTint = lerp(cellTint, cellTint.gbr, abs(hueK) * .22 * step(0, hueK)) ; cellTint = lerp(cellTint, cellTint.brg, abs(hueK) * .22 * step(hueK, 0));
+                    float2 sd = float2(cos(ang), sin(ang)); float cs = Noise(float3(dot(i.local.xy, sd) * 22.0, dot(i.local.xy, sd.yx * float2(-1, 1)) * 2.0, shade * 9.0));
+                    cellTint *= .9 + cs * .2;   // streaky hand-rolled glass, a different direction per pane
+                    tint = lerp(tint, cellTint, _Facets);
+                    float e = f2 - f1, w = fwidth(e) * 1.0 + .014;
+                    lead = (1 - smoothstep(w, w + .022, e)) * _Facets;
+                    leadHi = (1 - smoothstep(0, w * .5 + .003, abs(e - w * .35))) * lead;
                 }
                 float nv = saturate(dot(n, v));
                 float fresnel = pow(1 - nv, 3);
@@ -248,7 +255,8 @@ Shader "Sea Glass/Frosted Glass"
                 c += facets * 2.2 * (1 - grime);
 
                 c += _EmissionColor.rgb;
-                c = lerp(c, half3(.012, .012, .016) + spec * .05, lead);   // linear: near-black came
+                c = lerp(c, half3(.02, .018, .022) + spec * .05, lead);   // linear: near-black came
+                c += half3(.42, .3, .18) * leadHi * (sky * .5 + sun.color * .5 + .2) * .22;   // round 20: a warm highlight on the came
                 c = MixFog(c, i.fog);
                 return half4(c, 1);
             }

@@ -66,10 +66,10 @@ Shader "Sea Glass/Basin Water"
                 c += pow(saturate(ripple), 18) * .012;
                 // Round 13: a soft sky reflection band and a thin bright waterline against the enamel, so it
                 // reads as a water surface with depth beneath, not a plate.
-                // Round 19: a crisp warm window reflection streak with a soft halo, instead of a faint wide band.
+                // Round 19/20: a soft warm window reflection streak.
                 float bandD = abs(p.x * .6 + p.y * .8 - .12 + sin(p.y * 9 + _Time.y * .5) * .012);
-                float band = smoothstep(.1, 0, bandD) * .35 + (1 - smoothstep(.018, .026, bandD)) * smoothstep(.46, .3, rim);
-                c += band * half3(1, .95, .84) * .42;
+                float band = smoothstep(.12, 0, bandD) * .45 + (1 - smoothstep(.0, .05, bandD)) * smoothstep(.46, .3, rim) * .5;   // round 20: soft-edged (the crisp line read as a crack)
+                c += band * half3(1, .95, .84) * .3;
                 float waterline = smoothstep(.455, .475, rim) * (1 - smoothstep(.485, .5, rim));
                 c = lerp(c, half3(.92, .98, .98) * light * 1.1, waterline * .7);
                 // Round 13: rings spreading from where the brush works, fading soon after it stops.
