@@ -1143,3 +1143,49 @@ Round 25 changes (menu pass 37):
 - The tray glow sometimes reads as "neon puddles".
 
 **Where things stand:** water is back at 4.0, and studio and effects rose to 3.7; mosaic dipped to 3.7. Four areas are at 4.0. Sea glass stays at 3.0, because the held hero piece still reads as candy even though the tray pieces now pass.
+
+### October 30 — round 26 and review 25 (three reviewers, averaged)
+
+Round 26 changes:
+- **Held glass:** clean glass absorbs through a softened hue, and the rim and grazing-reflection terms are limited to the true silhouette. An inner crescent of light was added. The tray rim and felt now read through a held piece.
+- **Glints:** fewer, softer star glints.
+- **Bowl water:** a deeper teal filter.
+- **Islands:** ledges with uneven spacing and sheer stretches, gullies, and grass in patches.
+- **Clouds:** cloud shading saturates with distance from the outline. This did not remove the seam.
+
+| Area | A | B | C | Average | Review 24 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.13 Effects | – | 4 | 4 | **4.0** (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- Six areas are at 4.0 for the first time: lighting, water, sorting, mosaic, tools and effects.
+- Tray glass reads as glass for all three reviewers.
+- The wash bowl now draws "pale and flat" rather than "milky dishwater".
+- Nobody reports even island stripes any more.
+
+**Still open:**
+- **Sea glass (all three):**
+  - the cloudy piece (04) reads as a "sand biscuit" or "toast": an opaque beige slab of even thickness with a hard cut edge and a dithered mask edge;
+  - the held clean piece (06) is a flat-topped slab with a grey opaque patch on top.
+- **Islands (all three):** the per-face grass mask reads as "blocky pixel camo". It needs smooth blended edges.
+- **Sand:** flat foregrounds (b1, s6), coin footprints, one repeated pebble triplet.
+- **Truck/road:** box panels, a floating seat back, straight road edges with no drift.
+- **Studio:** empty floor in front of the mosaics, smeared plank grain, flat rugs, a repeated sack prop.
+- **Rubbish:** unreadable at 5 m.
+- **Bugs:**
+  - shadow wedges on the shallow water around the sea stacks (b8);
+  - the cloud seam (b2, b7);
+  - mirrored sign text seen from behind.
