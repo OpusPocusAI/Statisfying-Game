@@ -183,6 +183,8 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 - [ ] Glass reads as glass from 2 m away without a label.
 - [ ] Rare red is visibly special.
 
+**Fixed target (owner's decision, October 29):** clean glass is **glossy**. It has a sharp white glint, small flashing facets, and clear, saturated colour. A satin, softly frosted finish was rendered side by side with it and rejected. The piece at the wash bowl stays at its current size (about a third of the bowl's width), so the brush strokes stay readable. Reviews judge clean glass against this target. "Too glossy" or "too large" is not a gap; how well the glossy glass reads as glass is.
+
 **References:** `03-sea-glass`. **Never:** flat slabs, uniform opaque colour, glass that looks like plastic.
 
 ### 5.7 Cleaning station (Oct 24: 1 → 2 → 4/5 after side-by-side round 2)
