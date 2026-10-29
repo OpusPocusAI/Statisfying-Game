@@ -748,3 +748,39 @@ Round 16:
 - The bowl water does not show from the far frame 09 view. It is likely hidden by the deeper rim from that angle; this is not checked.
 
 Areas at 4: lighting, sorting, mosaic. Water moved 4 → 3 with no change since round 16's glint fix.
+
+### October 29 — round 17 and review 16 (pass 30)
+
+Round 17:
+- Clean glass shows the background through it: a lighter core and stronger refraction.
+- The bowl water reflects the room and has a clearer middle.
+- Sun shadow strength drops from 1 to 0.75.
+
+| Area | Review 15 | Review 16 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 3 |
+| 5.2 Water | 3 | 4 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 (limited evidence) |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 4 |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | 3 |
+| 5.13 Effects | 3 | – (partly judgeable) |
+| 5.14 Signs | – | – |
+
+**Regression, confirmed by me in frame 04.** The lighter bowl water now matches the pale frosted piece, so the cloudy glass "barely shows up at all" ("a near-transparent flat pancake, almost the same colour as the water"). I checked only frames 05 and 06 before the review. Next time:
+- **Water:** darken it again, or tint it more strongly.
+- **Cloudy piece:** give it a more opaque, warmer crust and a dark contact edge.
+
+**Clean glass** stays at 3. Glint and facets meet the target. The lighter core now reads "milky pastel" (mint emerald, periwinkle cobalt), and this reviewer again asks for deeper, more saturated colour. Glass has gone back and forth between "too opaque" and "too pale" with each change.
+
+**Clouds** are this reviewer's top must-fix. Several reviews have named them, and lighting has moved between 3 and 4 accordingly.
+
+**Notes on two other findings.**
+- The pieces in the "idle" tray captures are the trays' standing dressing. They are not a capture error.
+- The doc's reference table lists Dorfromantik, while the review prompt names Glass Masquerade and Lil Gator Game.
