@@ -954,3 +954,44 @@ Mosaics went up a little and studio and tools went down a little; the rest is un
 - stray tiny clouds.
 
 Across reviews 19 and 20, ten of the thirteen areas sit at the same average. Further tuning of the same materials is unlikely to move them; glass and cleaning need a different approach.
+
+### October 29 — round 22 and review 21 (three reviewers, averaged)
+
+Round 22 was the first content round after the material rounds stalled:
+- Mosaic panes are about twice as large, and the floor light is crisper, with lead-line gaps.
+- A layered, leafy bush (`round22.py`) replaces the faceted shrub.
+- Five low clusters of crates, baskets of raw glass, buckets and jars fill the empty studio floor.
+- Straw and sack packing sit in the truck bins.
+
+| Area | A | B | C | Average | Review 20 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.10 Studio | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.13 Effects | 4 | 4 | 3 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+Six averages rose and none fell. Mosaic now meets the bar for all three reviewers, so four areas are at 4.0.
+
+**Glass and cleaning, from all three reviewers.**
+- The held and washed pieces are now "flat-topped wedges", which the 5.6 "never" list rules out. The slabs need domed tops and tapered edges.
+- The dark brown bands on the cloudy piece read as a shadow or stripe artifact. They should become a warm, mostly opaque sandy film that brushing cuts through to saturated glass.
+- No light passes through the glass, and it casts no coloured light onto the felt.
+
+**Other concrete items.**
+- Single jars stand in the middle of walkways; they come from the round 22 clusters' jar placements and should be grouped against legs and walls.
+- The shelf pottery repeats.
+- The neglected studio is only a desaturated version of the restored one.
+- Dig piles are pointed cones.
+- The truck's text plates read like UI.
+- The world edge of the sea shows in b4.
+- Stray dot clouds.
