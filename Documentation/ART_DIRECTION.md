@@ -863,3 +863,49 @@ Round 19:
 - Mosaic crackle with the same cell size everywhere and no per-cell colour.
 - The glint on clean glass reads as a flat sticker.
 - The cloudy piece reads as a flat plate.
+
+### October 29 — round 20 and review 19 (three independent reviewers, averaged)
+
+Round 20:
+- **Mosaics:** the cells are larger, and each pane gets its own hue shift and streak direction. The came is thinner, with a faint warm glint.
+- **Wash water:** the window streak is softer.
+- **Studio floor:** the under-floor slab is now a dark wood tone, and the plank texture uses anisotropic filtering. The distant seam dashes are not fixed; they come from the gaps between floor planks breaking up at a distance.
+
+From this round, each review uses three independent reviewers. Each one has its own reference-browser tab, and their scores are averaged. Single reviews had swung by about a point on unchanged areas.
+
+| Area | A | B | C | Average |
+| --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** |
+| 5.2 Water | 4 | 4 | 4 | **4.0** |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 (partly judgeable) |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** |
+| 5.9 Mosaic | 4 | 3 | 3 | 3.3 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 |
+| 5.13 Effects | – | 3 | 3 | 3.0 (stills only) |
+| 5.14 Signs | – | – | – | – |
+
+The three reviewers agree on 10 of the 13 scored areas, so this is a much firmer baseline than any single review.
+
+**Named by all three:**
+- Glass still reads as candy:
+  - every piece has the same lentil profile;
+  - the colour is flat, with no thickness change from core to rim;
+  - the cloudy piece reads as "a biscuit" or "a soap bar".
+- The wash water looks opaque, with a single straight streak.
+- The grime comes off in hard-edged blocks rather than brush-shaped strokes.
+- Grass tufts are near-black and all the same.
+- Large flat areas of foreground sand.
+- The truck is built from boxes.
+- Stray single-dot clouds.
+
+**Named by two of the three:**
+- The mosaic sub-came still reads as a uniform crackle.
+- The floor colour spill is a blurred smear.
+- Some studio clutter is copy-pasted.
+- The built studio frames look greyer than the editor captures (that is the intended neglected state).
