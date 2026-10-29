@@ -23,7 +23,17 @@ namespace SeaGlass.Editor
                 var rt = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 };
                 cam.targetTexture = rt;
                 cam.transform.SetPositionAndRotation(position, Quaternion.LookRotation(target - position));
+                // Empty mosaic sockets get their faint picture tint at runtime (MosaicSocket.Update); show the
+                // same here, or the idle panels render as black slabs that no player sees.
+                var sockets = Object.FindObjectsByType<MosaicSocket>(FindObjectsSortMode.None);
+                var block = new MaterialPropertyBlock();
+                foreach (var s in sockets)
+                {
+                    var r = s.GetComponent<Renderer>(); if (!r || (s.piece && s.piece.activeSelf)) continue;
+                    r.GetPropertyBlock(block); block.SetColor("_BaseColor", MosaicSocket.IdleTint(s.color)); r.SetPropertyBlock(block);
+                }
                 cam.Render();
+                foreach (var s in sockets) { var r = s.GetComponent<Renderer>(); if (r) r.SetPropertyBlock(null); }
                 RenderTexture.active = rt;
                 var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
                 tex.ReadPixels(new Rect(0, 0, width, height), 0, 0); tex.Apply();

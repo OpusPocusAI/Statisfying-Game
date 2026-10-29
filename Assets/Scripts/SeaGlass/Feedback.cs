@@ -49,7 +49,8 @@ namespace SeaGlass
             var centre=at+new Vector3(Random.Range(-spread,spread),.015f,Random.Range(-spread,spread)*.7f);
             for(int i=0;i<5;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.035f,.035f),Random.Range(-.008f,.012f),Random.Range(-.03f,.03f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.06f,.09f):Random.Range(.03f,.05f);p.startLifetime=Random.Range(1.8f,2.8f);p.startColor=new Color(.97f,.99f,1f,.95f);foam.Emit(p,1);}
             p=new ParticleSystem.EmitParams();
-            if(Random.value<.35f){p.position=at+Vector3.up*.05f;p.velocity=new Vector3(Random.Range(-.6f,.6f),Random.Range(.8f,1.4f),Random.Range(-.4f,.4f));p.startSize=.025f;p.startColor=new Color(.7f,.88f,.9f,.8f);foam.Emit(p,1);}
+            // Round 13: a low, short-lived splash; the foam emitter has no gravity, so tall droplets hung in mid-air.
+            if(Random.value<.35f){p.position=at+Vector3.up*.02f;p.velocity=new Vector3(Random.Range(-.25f,.25f),Random.Range(.12f,.25f),Random.Range(-.18f,.18f));p.startSize=.02f;p.startLifetime=Random.Range(.18f,.3f);p.startColor=new Color(.85f,.95f,.97f,.85f);foam.Emit(p,1);}
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)

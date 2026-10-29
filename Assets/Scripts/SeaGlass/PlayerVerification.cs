@@ -93,7 +93,8 @@ namespace SeaGlass
             {session.progress.Item(socket.glassId).stage=ItemStage.Sorted;Require(p.Place(socket.glassId),"Placement "+socket.glassId);}
             View(new Vector3(-3,.3f,165),0,new Vector3(-3,1.5f,176));yield return new WaitForSeconds(3);
             Require(StudioUI.Instance.ending,"Restoration ending");yield return Shot("08-ending");
-            StudioUI.Instance.ending=false;session.progress.tutorialDismissed=true;session.messageUntil=0;yield return Shot("09-restored-studio");
+            StudioUI.Instance.ending=false;session.progress.tutorialDismissed=true;session.messageUntil=0;
+            View(new Vector3(2.4f,.3f,155.4f),-35,new Vector3(-7,.9f,172));yield return new WaitForSeconds(.5f);yield return Shot("09-restored-studio");   // the whole restored room, not the wall again
             foreach(var r in FindObjectsByType<Renderer>(FindObjectsSortMode.None))foreach(var m in r.sharedMaterials)
                 Require(m&&m.shader&&m.shader.isSupported&&m.shader.name!="Hidden/InternalErrorShader","Material/shader on "+r.name);
             var samples=new List<float>();yield return new WaitForSeconds(1);

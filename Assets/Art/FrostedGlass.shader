@@ -178,10 +178,10 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .75), tint * lightOnFrost * 1.15, .55);
-                half3 crustColour = lerp(_Frost.rgb, tint * .6 + _Frost.rgb * .55, .16) * lightOnFrost * (.93 + grain * .1);
+                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .34) * lightOnFrost * (.93 + grain * .1);
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.42, .94, thick);
+                float crustCover = lerp(.3, .84, thick);   // review 11: let the hue show through the frost
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
