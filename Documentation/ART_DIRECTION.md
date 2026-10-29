@@ -672,3 +672,40 @@ Round 14 (glass and bowl, from review 12):
 - The equipment pegboard covers half of mosaic 3 in the restored-room view.
 - The cargo bins look closed, so loaded glass sits on the lid.
 - The glass jars glow like lamps.
+
+### October 29 — round 15 and review 14 (pass 28)
+
+Round 15 undid what backfired in round 14:
+- Held, washed, found and carried glass uses only chunky shapes (the five pebbles and the nugget); the thin oval is no longer used.
+- The shard is much rounder.
+- Tray glass spreads across the middle of each tray with a few strays; sorted pieces now rest on the felt (they sat 12 cm up).
+- The equipment pegboard and its tools are hidden. They covered half of the Coastal Sunset mosaic, and every review disliked them.
+
+| Area | Review 13 | Review 14 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 3 |
+| 5.2 Water | 3 | 4 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 (thin evidence) |
+| 5.6 Sea glass | 2 | 2 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 3 | 3 |
+| 5.9 Mosaic | 3 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | 3 |
+| 5.13 Effects | 3 | – |
+| 5.14 Signs | – | – |
+
+**Glass stays at 2.** Against the owner's glossy target, the reviewer still reads clean glass as candy:
+- "one round white blob of highlight, no small flashing facets".
+- The target in 5.6 names small flashing facets, and round 14 removed them on review 12's advice ("glitter specks"). They should come back, fewer and crisper.
+- The reviewer also asks for darker, saturated edges with a lighter centre. That is the opposite of review 12's "darker centre, bright rim", so thickness colouring keeps flipping between reviewers.
+- Cloudy glass reads as "a chocolate-chip cookie": the round spots should be streaks.
+
+**Sorting stays at 3.** New concrete point: the aqua, cobalt and violet linings match their glass, which kills contrast. Neutral linings with a coloured label band are suggested.
+
+**Lighting and mosaic swapped again** with no changes to either: lighting 4 → 3, mosaic 3 → 4, water 3 → 4.
+
+**Bright rectangular bars on the shallows (b3, b8)** have now been reported by four reviews and are still unfixed.
