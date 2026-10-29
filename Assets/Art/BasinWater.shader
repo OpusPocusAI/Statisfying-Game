@@ -98,7 +98,7 @@ Shader "Sea Glass/Basin Water"
                 // Round 25: everything above is kept for reference; the output is now a filter over what lies beneath.
                 // Clear teal near the rim, deeper toward the middle where the bowl is deepest.
                 half depthF = saturate(edge * .3 + centre * .6);
-                half3 filterC = lerp(half3(.6, .92, .9), half3(.22, .6, .64), depthF);   // water absorbs red first: teal over the warm enamel, not grey
+                half3 filterC = lerp(half3(.42, .82, .84), half3(.14, .5, .58), depthF);   // round 26: deeper (review 24: still "milky" against the bright enamel)   // water absorbs red first: teal over the warm enamel, not grey
                 // A curved reflection of the window along the far rim, following the bowl's shape (it was a straight
                 // stripe across the whole disc).
                 float2 pd = p / max(rim, 1e-4);

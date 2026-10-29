@@ -110,8 +110,8 @@ Shader "Sea Glass/Painted Sky"
                 // difference, which scattered shaded blotches through every cloud. Instead a clean ramp: a flat
                 // lilac base and lilac edges, warm cream higher in the body, with a gentle bias to the sun side.
                 float depthIn = cloudField - (1 - _CloudCover);                   // 0 at the silhouette, growing inwards
-                float ramp = (h - 0.12) * 6.0 + depthIn * 2.2 + (density - towardSun) * 1.2;
-                float lfw = max(fwidth(ramp), 0.02);
+                float ramp = (h - 0.12) * 6.0 + saturate(depthIn * 4.0) * .45 + (density - towardSun) * 1.2;   // round 26: saturated, so a thin neck in a cloud no longer draws a dark crease (reviews: "seam")
+                float lfw = max(fwidth(ramp), 0.04);
                 float lit = smoothstep(0.32 - lfw, 0.48 + lfw, ramp) * 0.85 + saturate(ramp) * 0.15;
                 half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
                 // Bright silver rim on cloud edges near the sun.

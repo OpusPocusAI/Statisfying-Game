@@ -37,6 +37,7 @@ for k in range(3):
     s = Vector((seed * .3, seed * .7, 0))
     hill = random.uniform(.08, .12)
     steps = random.choice([2, 3, 3])
+    gullies = [random.uniform(0, math.tau) for _ in range(random.randint(4, 6))]
 
     def ang_noise(a, off, f=1.1):
         return noise.noise(Vector((math.cos(a) * f, math.sin(a) * f, off)) + s)
@@ -49,11 +50,19 @@ for k in range(3):
             z = top + hill * (1 - (u / plateau) ** 2) ** .8
         elif u <= 1:
             x = (1 - u) / (1 - plateau)               # 0 at the cliff foot .. 1 at the plateau edge
+            # Round 26 (review 24: "evenly spaced green stripes on every tier"): uneven ledge spacing that
+            # changes around the island, so tiers bunch up, spread out and fade into a sheer face.
+            xw = x ** (.6 + .8 * (ang_noise(a, 7, 1.3) * .5 + .5))
             ph = .5 + .45 * ang_noise(a, 3, 1.7)      # the ledges wander up and down around the island
-            st = x * steps + ph
+            st = xw * steps + ph
             fl = math.floor(st); fr = st - fl
             y = (fl + smooth(.05, .42, fr) - ph) / steps   # steep risers, narrow sloping ledges
+            sheer = smooth(.15, .45, ang_noise(a, 11, 1.9) * .5 + .5)   # some stretches are one sheer face
+            y = y * (1 - sheer) + x * sheer
             y = max(0.0, min(1.0, y * .85 + x * .15))      # an overall batter, so the cliff tapers
+            # Vertical gullies cut down through the ledges.
+            g = max(math.exp(-((math.atan2(math.sin(a - ga), math.cos(a - ga))) / .045) ** 2) for ga in gullies)
+            y *= 1 - .4 * g * (1 - x * .5)
             z = foot + (top - foot) * y
         else:
             x = (u - 1) / (UMAX - 1)                  # slumped apron down under the water
@@ -89,7 +98,11 @@ for k in range(3):
     isl.data.materials.append(mat("cliff")); isl.data.materials.append(mat("cap")); isl.data.materials.append(mat("trees"))
     me.update()
     for p in me.polygons:
-        p.material_index = 1 if p.normal.z > .76 else 0
+        c = p.center; a = math.atan2(c.y / D, c.x); u = math.hypot(c.x, c.y / D) / (R * outline(a, seed))
+        top_area = u < .64
+        # Round 26: grass on the hilltop always, but only on some ledges, in patches (not a stripe per tier).
+        patch = noise.noise(Vector((c.x * 3.5, c.y * 3.5, c.z * 2)) + s) > -.3
+        p.material_index = 1 if p.normal.z > (.62 if top_area else .74) and (top_area or patch) else 0
     shade_auto(isl, 34)
     parts = [isl]
 
