@@ -136,7 +136,7 @@ Shader "Sea Glass/Frosted Glass"
                 // ---- Clean glass: refracted, tinted background plus body colour.
                 float2 screenUV = GetNormalizedScreenSpaceUV(i.p);
                 float3 viewN = mul((float3x3)UNITY_MATRIX_V, n);
-                float2 offset = viewN.xy * _Refraction * (.6 + fresnel);
+                float2 offset = viewN.xy * _Refraction * (1.5 + fresnel);   // round 17: the background visibly bends through the piece
                 half3 behind = SampleSceneColor(screenUV + offset);
                 // Thicker middle tints more strongly than the thin rounded rim.
                 // Round 7: thin rims and glancing edges let the background through almost untinted; only the
@@ -156,19 +156,19 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 5: a deep, saturated core where the piece is thick, paler and clearer toward the thin
                 // rounded rim (real glass), instead of one even candy colour.
                 float thick = saturate((abs(i.local.z) - .02) / .06);
-                clean = lerp(clean * lerp(1.12, .78, thick), tint * tint * .9 + tint * .05, thick * .35);
+                clean = lerp(clean * lerp(1.12, .9, thick), tint * tint * .9 + tint * .05, thick * .1);   // round 17: lighter, so the felt shows through
                 // Edges seen at a glancing angle hold deeper colour (light travels further inside)...
                 clean = lerp(clean, tint * tint * .7 + tint * .15, saturate(fresnel * 1.4) * .6);
                 // ...with a thin bright rim where the rounded edge catches the light.
                 clean += lerp(tint, half3(1, 1, 1), .6) * pow(fresnel, 5) * 2.0;   // round 13: brighter rim
                 // Round 5b: light gathered inside the piece; a soft inner glow so clean glass reads as lit
                 // through, not as an opaque jelly.
-                clean += tint * (.3 + .35 * (1 - thick)) * (1 - fresnel) * (sun.color * .6 + sky * .4);
+                clean += tint * (.12 + .14 * (1 - thick)) * (1 - fresnel) * (sun.color * .6 + sky * .4);   // round 17: weaker, it flattened the see-through core
                 // Round 14 (review 12): a darker, saturated core where the domed piece faces the viewer (light
                 // crosses the most glass there) and a bright, thin transmitting band just inside the silhouette.
                 // Based on the view angle, so it works for every pebble whatever its thickness in object units.
                 float coreT = smoothstep(.35, .95, nv) * (1 - _Facets * .7);
-                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .5);
+                clean = lerp(clean, tint * tint * .72 + tint * .05, coreT * .14);   // round 17 (review 15: "opaque, no transmission")
                 float rimBand = smoothstep(.6, .82, 1 - nv) * (1 - _Facets);
                 clean += lerp(tint, half3(1, 1, 1), .55) * rimBand * .9 * (sky * .4 + sun.color * .6 + .25);
                 // Round 6: sea glass is frosted even when clean. A light, fine satin haze over the polished

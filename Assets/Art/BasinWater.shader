@@ -84,7 +84,14 @@ Shader "Sea Glass/Basin Water"
                 c = lerp(c, lerp(c, half3(.97, .99, .98), .8), saturate(bubbles * .3));   // only a few small bubbles: a foam band read as blotches at basin scale
 
                 // Clear in the middle (the enamel floor and the glass show through), denser toward the rim.
-                half alpha = lerp(.6, .86, edge) + centre * .25 + band * .1 + waterline * .3 + caustic * .08 + rings * .3;   // round 13: teal body, deeper centre
+                // Round 17 (review 15: "no reflection, no visible bottom"): a fresnel reflection of the room from the
+                // reflection probe, rippled by the brush rings, and a clearer middle so the enamel floor shows.
+                float3 wv = GetWorldSpaceNormalizeViewDir(i.world);
+                float3 wn = normalize(float3((Noise(p * 9 + _Time.y * .3) - .5) * .06 + rings * .05, 1, (Noise(p * 9 - _Time.y * .25 + 4) - .5) * .06));
+                half fres = .06 + .7 * pow(1 - saturate(dot(wv, wn)), 4);
+                half3 refl = GlossyEnvironmentReflection(reflect(-wv, wn), .08, 1);
+                c = lerp(c, refl * 1.1, saturate(fres * .85));
+                half alpha = lerp(.42, .82, edge) + centre * .14 + band * .1 + waterline * .3 + caustic * .08 + rings * .3 + fres * .35;   // round 17: clearer middle
                 return half4(c, saturate(alpha));   // round 13: no fog; the bowl is always within arm's reach
             }
             ENDHLSL
