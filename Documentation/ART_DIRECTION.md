@@ -822,3 +822,44 @@ Round 18 changes:
 - The brushing foam reads as flat circle sprites; this is why 5.13 scored 2.
 - The floor texture shows blurry dark smudges, and the s8 floor has a seam.
 - A black slab sits above the truck cab.
+
+### October 29 — round 19 and review 18 (pass 32)
+
+Round 19:
+- Soft lilac contact-shadow blobs under 45 floor-standing studio pieces, and stronger SSAO.
+- Brushing foam is drawn as soap-bubble clumps with rims and highlights.
+- The wash water is deeper in the middle and has a crisp window reflection streak.
+- Clean glass refracts more strongly.
+
+| Area | Review 17 | Review 18 |
+| --- | --- | --- |
+| 5.1 Lighting | 4 | 4 |
+| 5.2 Water | 4 | 3 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 |
+| 5.6 Sea glass | 3 | 3 |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 4 | 4 |
+| 5.9 Mosaic | 4 | 3 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 4 | 3 |
+| 5.13 Effects | 2 | **3** (suds and ripples "good") |
+| 5.14 Signs | – | – |
+
+**The effects change landed.** The suds rose from 2 to 3 and are now called "good". The contact shadows were not mentioned as missing.
+
+**Three areas fell a point with no change to them:** water, mosaic and tools. Over reviews 9–18 every area except sorting has moved between 3 and 4 with unchanged art. A single reviewer's 3 or 4 is within noise; only several consecutive reviews show a trend.
+
+**New concrete items.**
+- **Bowl water:** the new streak reads as "a crack or tape stripe".
+- **Floor:** the nail-head grid aliases into a "perforated board" pattern.
+- **Shelf under the sorting table:** the slatted shelf shows moiré.
+- **Build vs editor:** the built studio frames are greyer than the editor captures, worth checking.
+- **Clouds:** stray single-dot clouds.
+
+**Recurring items, still open.**
+- Mosaic crackle with the same cell size everywhere and no per-cell colour.
+- The glint on clean glass reads as a flat sticker.
+- The cloudy piece reads as a flat plate.
