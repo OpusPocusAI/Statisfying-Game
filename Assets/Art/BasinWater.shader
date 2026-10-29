@@ -53,7 +53,7 @@ Shader "Sea Glass/Basin Water"
                 // Enamel floor through clear water: bright in the middle, teal and deeper toward the rim.
                 // Round 13: the bowl is deepest at its centre, so the enamel floor sinks into teal there too.
                 float centre = 1 - smoothstep(0, .42, rim);
-                half3 c = lerp(_BaseColor.rgb, _Deep.rgb, saturate(edge * .6 + centre * .35)) * light;
+                half3 c = lerp(_BaseColor.rgb, _Deep.rgb, saturate(edge * .45 + centre * .7)) * light;   // round 19: clearly deeper toward the middle
 
                 // Caustic network on the enamel, only where the sun reaches.
                 float2 w = p * 8 + float2(_Time.y * .22, -_Time.y * .16);
@@ -66,8 +66,10 @@ Shader "Sea Glass/Basin Water"
                 c += pow(saturate(ripple), 18) * .012;
                 // Round 13: a soft sky reflection band and a thin bright waterline against the enamel, so it
                 // reads as a water surface with depth beneath, not a plate.
-                float band = smoothstep(.1, 0, abs(p.x * .6 + p.y * .8 - .12 + sin(p.y * 9 + _Time.y * .5) * .015));
-                c += band * half3(.85, .95, 1) * .14;
+                // Round 19: a crisp warm window reflection streak with a soft halo, instead of a faint wide band.
+                float bandD = abs(p.x * .6 + p.y * .8 - .12 + sin(p.y * 9 + _Time.y * .5) * .012);
+                float band = smoothstep(.1, 0, bandD) * .35 + (1 - smoothstep(.018, .026, bandD)) * smoothstep(.46, .3, rim);
+                c += band * half3(1, .95, .84) * .42;
                 float waterline = smoothstep(.455, .475, rim) * (1 - smoothstep(.485, .5, rim));
                 c = lerp(c, half3(.92, .98, .98) * light * 1.1, waterline * .7);
                 // Round 13: rings spreading from where the brush works, fading soon after it stops.

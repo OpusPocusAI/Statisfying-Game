@@ -136,13 +136,13 @@ Shader "Sea Glass/Frosted Glass"
                 // ---- Clean glass: refracted, tinted background plus body colour.
                 float2 screenUV = GetNormalizedScreenSpaceUV(i.p);
                 float3 viewN = mul((float3x3)UNITY_MATRIX_V, n);
-                float2 offset = viewN.xy * _Refraction * (1.5 + fresnel);   // round 17: the background visibly bends through the piece
+                float2 offset = viewN.xy * _Refraction * (2.4 + fresnel * 1.5);   // round 19: stronger, so the bend reads at normal viewing size
                 half3 behind = SampleSceneColor(screenUV + offset);
                 // Thicker middle tints more strongly than the thin rounded rim.
                 // Round 7: thin rims and glancing edges let the background through almost untinted; only the
                 // thick core filters strongly, so clean glass reads as glass rather than opaque candy.
                 float thickT = saturate((abs(i.local.z) - .02) / .06);
-                half depthTint = lerp(.3, .85, nv) * lerp(.5, 1, thickT);
+                half depthTint = lerp(.3, .72, nv) * lerp(.5, 1, thickT);   // round 19: a little less face-on tint, so the bent background stays legible
                 // Coloured filter: keep the background's brightness, take the glass's hue.
                 half lum = dot(behind, half3(.3, .55, .15));
                 // Round 18 (review 16: "milky pastel"): a deeper, more saturated filter colour; the background still

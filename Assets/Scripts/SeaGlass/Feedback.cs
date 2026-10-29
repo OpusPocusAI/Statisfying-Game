@@ -27,9 +27,11 @@ namespace SeaGlass
                 if(sparkle)ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;
             }
             foam=Emitter("Soap foam",2.6f,.05f,.03f,.075f,0,320,.06f);   // round 13: lasting clumps of suds, not specks
+            // Round 19: each foam particle draws a clump of soap bubbles, turned at random (flat discs read as "flat white circles").
+            if(particleMaterial){suds=new Material(particleMaterial){name="Soap suds"};suds.SetFloat("_Suds",1);foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
         }
-        ParticleSystem foam,dust;float nextDust;Material sparkle;
+        ParticleSystem foam,dust;float nextDust;Material sparkle,suds;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
         ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
         {
@@ -89,6 +91,6 @@ namespace SeaGlass
             Destroy(go);
         }
         void Update(){music.volume=musicVolume;if(!GameSession.Instance||GameSession.Instance.ControlsBlocked||!GameSession.Instance.truck.driving)engine.volume=0;}
-        void OnDestroy(){if(sparkle)Destroy(sparkle);foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
+        void OnDestroy(){if(sparkle)Destroy(sparkle);if(suds)Destroy(suds);foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
     }
 }
