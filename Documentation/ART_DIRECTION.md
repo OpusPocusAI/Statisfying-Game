@@ -709,3 +709,42 @@ Round 15 undid what backfired in round 14:
 **Lighting and mosaic swapped again** with no changes to either: lighting 4 → 3, mosaic 3 → 4, water 3 → 4.
 
 **Bright rectangular bars on the shallows (b3, b8)** have now been reported by four reviews and are still unfixed.
+
+### October 29 — round 16 and review 15 (pass 29)
+
+Round 16:
+- **Facets back:** a few crisp, diamond-shaped facet flashes return near the highlight on clean glass. The 5.6 target names them; round 14 had removed them.
+- **Grime:** cloudy grime is streaks plus silt at the edges, not round spots.
+- **Tray linings:** neutral linen, with a band in the glass colour along each front rim.
+- **Sea:** the brush-mark pattern is rotated and warped, so the sun sheen no longer lights it up as straight-edged bars.
+
+| Area | Review 14 | Review 15 |
+| --- | --- | --- |
+| 5.1 Lighting | 3 | **4** |
+| 5.2 Water | 4 | 3 |
+| 5.3 Sand/terrain | 3 | 3 |
+| 5.4 Props/vegetation | 3 | 3 |
+| 5.5 Rubbish | 3 | 3 |
+| 5.6 Sea glass | 2 | **3** |
+| 5.7 Cleaning | 3 | 3 |
+| 5.8 Sorting | 3 | **4** |
+| 5.9 Mosaic | 4 | 4 |
+| 5.10 Studio | 3 | 3 |
+| 5.11 Truck/road | 3 | 3 |
+| 5.12 Tools | 3 | 3 |
+| 5.13 Effects | – | 3 (partly judgeable) |
+| 5.14 Signs | – | – |
+
+**Gains.** Glass returned to 3: "the glossy target is met in that pieces have a glint and saturated colour", and the cloudy state "reads acceptably as frosted". Sorting reached 4 with the neutral linings and colour bands. The glint bars are no longer reported.
+
+**Still missing.**
+- **Glass:** transmission. The pieces read as opaque, with no felt seen through them. Round 14's darker core probably works against that.
+- **Bowl water:** no reflection, and the floor of the bowl does not show through.
+
+**New this review.**
+- Beach shadows are too dense and too long.
+- Close-range foam is a blurry smear.
+- Possibly mirrored text on signs seen from behind.
+- The bowl water does not show from the far frame 09 view. It is likely hidden by the deeper rim from that angle; this is not checked.
+
+Areas at 4: lighting, sorting, mosaic. Water moved 4 → 3 with no change since round 16's glint fix.
