@@ -84,8 +84,9 @@ parts = []
 H = 0.42                                                   # riser height (was 0.2)
 flange = cylinder("flange", 0.055, 0.02, (0, 0, 0.01), vertices=32, material="brass"); parts.append(flange)
 parts.append(cylinder("riser", 0.02, H, (0, 0, H / 2), vertices=24, material="brass", radius2=0.018))
-parts.append(tube_along("neck", [(0, 0, H - .01), (0, 0, H + .1), (0, -0.07, H + .17), (0, -0.17, H + .15), (0, -0.21, H + .09)], 0.0165, "brass", resolution=16, bevel_resolution=4))
-mouth_at = Vector((0, -0.212, H + 0.075))
+# Round 38 (review 34: "the spout never reaches over the bowl"): a longer swan neck that reaches 0.31 out.
+parts.append(tube_along("neck", [(0, 0, H - .01), (0, 0, H + .1), (0, -0.09, H + .185), (0, -0.23, H + .17), (0, -0.305, H + .1)], 0.0165, "brass", resolution=16, bevel_resolution=4))
+mouth_at = Vector((0, -0.31, H + 0.08))
 parts.append(cylinder("mouth", 0.021, 0.03, tuple(mouth_at), vertices=24, material="brass"))
 hub_z = H - 0.08
 parts.append(cylinder("hub", 0.028, 0.034, (0, 0, hub_z), vertices=24, material="brass"))

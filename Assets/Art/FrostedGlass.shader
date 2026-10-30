@@ -166,7 +166,7 @@ Shader "Sea Glass/Frosted Glass"
                 half3 body = tint * (sky * .18 + sun.color * .1 * saturate(dot(n, l) * .5 + .5));
                 // Backlit glow: looking towards the sun through the glass.
                 half back = pow(saturate(dot(-v, l)), 3) * .8 + pow(saturate(dot(-v, l)), 24) * 1.3;
-                half3 glow = tint * sun.color * back * sun.shadowAttenuation;
+                half3 glow = tint * sun.color * back;   // round 38: no shadow term (its shadow-map steps drew a ragged edge on the held piece)
                 half3 clean = transmitted * .92 + body + glow;
                 // Round 5: a deep, saturated core where the piece is thick, paler and clearer toward the thin
                 // rounded rim (real glass), instead of one even candy colour.
@@ -203,16 +203,16 @@ Shader "Sea Glass/Frosted Glass"
                     // the tray edge behind read as a seam inside the glass. A soft five-tap blur keeps the colours of what
                     // lies behind but not its hard edges, as tumbled glass with a faint inner haze does.
                     float2 suv = screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2);
-                    float br = .012 + .01 * fresnel;
+                    float br = .006 + .006 * fresnel;   // round 38: a lighter blur, so the felt reads through the glass
                     half3 seen = SampleSceneColor(suv) * .28 + (SampleSceneColor(suv + float2(br, br * .6)) + SampleSceneColor(suv + float2(-br, br * .6))
                                + SampleSceneColor(suv + float2(br * .6, -br)) + SampleSceneColor(suv + float2(-br * .6, -br))) * .18;
                     // Beer-Lambert absorption: the hue of the glass, normalised so it keeps its brightness.
                     half3 hue = tint / max(max(tint.r, tint.g), max(tint.b, .05));
                     // Round 26 (review 24: the held piece "an opaque gummy block"): half the absorption, so the
                     // tray rim and felt stay legible through a piece held at arm's length.
-                    half3 absorbed = seen * pow(saturate(lerp(1, hue, .6)), 2.0 * path) * 1.06;   // a softened hue: pure aqua has almost no red and blacked the background out
+                    half3 absorbed = seen * pow(saturate(lerp(1, hue, .5)), 1.5 * path) * 1.08;   // round 38 (review 34: "cannot see through it"): clearer   // a softened hue: pure aqua has almost no red and blacked the background out
                     // A little scattered light inside, so the core glows its colour rather than going muddy.
-                    half3 scatter = tint * (sky * .16 + sun.color * .1 * saturate(dot(n, l) * .5 + .5)) * path;
+                    half3 scatter = tint * (sky * .11 + sun.color * .07 * saturate(dot(n, l) * .5 + .5)) * path;
                     half3 glass = absorbed + scatter + glow * .6;
                     // Thin edges: bright and pale, catching the light that skims through the taper.
                     half thinRim = smoothstep(.74, .95, 1 - nv);   // round 26: the true silhouette only (it covered most of a tilted piece)
@@ -236,10 +236,10 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .75), tint * lightOnFrost * 1.15, .55);
-                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .5) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
+                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .62) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.35, .78, smoothstep(.15, .7, nv));   // view-based; round 18: denser, so the cloudy piece stands out from the water
+                float crustCover = lerp(.22, .6, smoothstep(.15, .7, nv));   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
@@ -285,8 +285,16 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
-                half glint = smoothstep(.9965 - aaK, .9965 + aaK, nk) * .9 + pow(nk, 1800) * 1.4 + pow(nk, 140) * .16;   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
+                half glint = smoothstep(.9975 - aaK, .9975 + aaK, nk) * .75 + pow(nk, 2600) * 1.1 + pow(nk, 160) * .07;   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
+                // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
+                // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
+                float3 k2 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.78, -.2, .35)));
+                float3 k3 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.72, -.45, .4)));
+                half n2 = saturate(dot(n, normalize(k2 + v))), n3 = saturate(dot(n, normalize(k3 + v)));
+                half a2 = max(fwidth(n2) * 1.5, .0008), a3 = max(fwidth(n3) * 1.5, .0008);
+                half edgeG = (smoothstep(.994 - a2, .994 + a2, n2) + smoothstep(.994 - a3, .994 + a3, n3) * .8) * smoothstep(.35, .7, 1 - nv);
+                c += edgeG * .95 * (1 - grime) * (1 - _Facets);
                 // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
                 // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
                 // removed the earlier speckle; these are fewer, larger and sharper).

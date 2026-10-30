@@ -31,7 +31,7 @@ def outline_r(a, sides, rk):
 
 for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
     reset(); random.seed(2100 + k)
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=56, ring_count=24, radius=.5)   # round 31: smoother outline (reviews: "jagged right edge")
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=72, ring_count=28, radius=.5)   # round 31: smoother outline (reviews: "jagged right edge")
     o = bpy.context.active_object
     s = Vector((k * 1.9, k * .6, k * 2.7))
     rot = random.uniform(0, math.tau)
@@ -65,7 +65,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
             if d > lim:
                 x -= (d - lim) * math.cos(rot) * .92; z -= (d - lim) * math.sin(rot) * .92
         # Fine tumbled unevenness.
-        ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008
+        ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008 * (1 - rr ** 4)   # round 38: none at the thin rim, where it zigzagged the silhouette
         # Broad shallow dents (worn facets), strongest on the faces, none at the rim.
         ys += noise.noise(Vector((x, z, 1.7)) * 2.2 + s) * .022 * (1 - rr * rr) * (1 if yn > 0 else .6)
         v.co = Vector((x, ys, z))

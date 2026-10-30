@@ -37,8 +37,8 @@ Shader "Sea Glass/Soft Feedback"
     half inside=1-smoothstep(.9,1,d);
     half rim=smoothstep(.62,.9,d)*inside;
     half hi=1-smoothstep(.0,.28,length(o/r-float2(-.35,.38)));
-    half ba=inside*(.38+rim*.5)+hi*inside*.4;
-    half3 bc=lerp(half3(.94,.97,1),half3(.72,.82,.88),rim)+hi*.3;
+    half ba=inside*(.78+rim*.18)+hi*inside*.2;   // round 38 (review 34: "blue clover sprites"): dense white soap, not translucent rings
+    half3 bc=lerp(half3(1,.995,.98),half3(.86,.86,.84),rim*.7)+hi*.15;
     sc=lerp(sc,bc,step(sa,ba)); sa=max(sa,ba);
    }
    return half4(sc*i.color.rgb,i.color.a*sa);

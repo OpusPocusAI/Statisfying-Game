@@ -28,7 +28,8 @@ namespace SeaGlass
             }
             foam=Emitter("Soap foam",2.6f,.05f,.03f,.075f,0,320,.06f);   // round 13: lasting clumps of suds, not specks
             // Round 19: each foam particle draws a clump of soap bubbles, turned at random (flat discs read as "flat white circles").
-            if(particleMaterial){suds=new Material(particleMaterial){name="Soap suds"};suds.SetFloat("_Suds",1);foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
+            if(particleMaterial){suds=new Material(particleMaterial){name="Soap suds"};suds.SetFloat("_Suds",1);suds.renderQueue=3100;// round 38: after the basin water (Transparent+50), whose multiply tinted the white suds blue
+            foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
         }
         ParticleSystem foam,dust;float nextDust;Material sparkle,suds;
