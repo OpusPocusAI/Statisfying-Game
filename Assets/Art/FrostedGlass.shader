@@ -199,7 +199,13 @@ Shader "Sea Glass/Frosted Glass"
                     // Path length through the piece: long through the domed middle, short at the tapered edge.
                     half path = lerp(.25, 1.0, smoothstep(.2, .92, nv)) * lerp(.75, 1.15, thickT);
                     // A gentler bend, so what lies behind stays legible (an edge, the felt, the bench).
-                    half3 seen = SampleSceneColor(screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2));
+                    // Round 37 (review 33, all three: "a dark inner band / seam" through the held piece): the bent image of
+                    // the tray edge behind read as a seam inside the glass. A soft five-tap blur keeps the colours of what
+                    // lies behind but not its hard edges, as tumbled glass with a faint inner haze does.
+                    float2 suv = screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2);
+                    float br = .012 + .01 * fresnel;
+                    half3 seen = SampleSceneColor(suv) * .28 + (SampleSceneColor(suv + float2(br, br * .6)) + SampleSceneColor(suv + float2(-br, br * .6))
+                               + SampleSceneColor(suv + float2(br * .6, -br)) + SampleSceneColor(suv + float2(-br * .6, -br))) * .18;
                     // Beer-Lambert absorption: the hue of the glass, normalised so it keeps its brightness.
                     half3 hue = tint / max(max(tint.r, tint.g), max(tint.b, .05));
                     // Round 26 (review 24: the held piece "an opaque gummy block"): half the absorption, so the
@@ -249,7 +255,7 @@ Shader "Sea Glass/Frosted Glass"
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
                 // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
                 // solid, not speckled, with a faint sandy grain.
-                half3 sandStain = half3(.58, .48, .33) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
+                half3 sandStain = half3(.5, .4, .27) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
                 // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
                 // pebble against pale water or felt.
                 frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
@@ -261,7 +267,7 @@ Shader "Sea Glass/Frosted Glass"
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
                 float film = smoothstep(.46, .6, Noise(q * 1.3 + 7.0) * .75 + grain * .25);   // round 27: patches, not a full coat   // round 23: a broad mottled film with sandy speckle, over most of the piece
                 float stainPatch = saturate(film * .9 + edgeSilt * .6);
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .72);   // white frost between the patches
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .8);   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);

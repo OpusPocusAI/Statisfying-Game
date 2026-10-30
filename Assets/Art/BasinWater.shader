@@ -77,7 +77,8 @@ Shader "Sea Glass/Basin Water"
                 // Round 13: rings spreading from where the brush works, fading soon after it stops.
                 float rd = length(i.world.xz - _SG_BrushRipple.xy);
                 float stir = saturate(1 - _SG_BrushRipple.z * 1.2) * _SG_BrushRipple.w;
-                float rings = pow(saturate(sin(rd * 75 - _Time.y * 13)), 6) * exp(-rd * 4.5) * smoothstep(.05, .12, rd) * stir;
+                float rd2 = rd + (Noise(i.world.xz * 40 + _Time.y * .8) - .5) * .012;   // round 37: wobbly rings (reviews: "perfect CG rings")
+                float rings = pow(saturate(sin(rd2 * 75 - _Time.y * 13)), 6) * exp(-rd * 4.5) * smoothstep(.05, .12, rd) * stir;
                 c += rings * half3(.9, 1, 1) * .45 * light;
 
                 // A few drifting soap bubbles near the rim (foam and lace terms kept for tuning; unused).
@@ -98,7 +99,18 @@ Shader "Sea Glass/Basin Water"
                 // Round 25: everything above is kept for reference; the output is now a filter over what lies beneath.
                 // Clear teal near the rim, deeper toward the middle where the bowl is deepest.
                 half depthF = saturate(edge * .3 + centre * .6);
-                half3 filterC = lerp(half3(.42, .82, .84), half3(.14, .5, .58), depthF);   // round 26: deeper (review 24: still "milky" against the bright enamel)   // water absorbs red first: teal over the warm enamel, not grey
+                half3 filterC = lerp(half3(.42, .82, .84), half3(.14, .5, .58), depthF);
+                // Round 37 (review 33, all three: "a flat milky mint disc, no depth, no surface"): the middle sinks into a
+                // deeper blue-teal (light crosses more water there), the shallow ring by the wall stays clear, and the
+                // surface itself shows: small sun sparkles dancing on the ripples and brighter caustics on the floor.
+                half deepMid = 1 - smoothstep(.08, .4, rim);
+                filterC = lerp(filterC, half3(.07, .32, .45), deepMid * .75);
+                filterC = lerp(filterC, half3(.56, .9, .9), smoothstep(.34, .44, rim) * (1 - waterline) * .5);
+                float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.3, .45, -.84)));   // ahead of the viewer, so its reflection lands on the water in front
+                float2 sp = p * 26 + float2(_Time.y * .35, -_Time.y * .27);
+                float3 sn = normalize(float3((Noise(sp) - .5) * .5, 1, (Noise(sp + 7.3) - .5) * .5));
+                half glit = pow(saturate(dot(reflect(-wv, sn), keyL)), 140) * step(.5, Noise(p * 13 + _Time.y * .2)) * (1 - smoothstep(.42, .47, rim));
+                caustic *= 1.9;   // round 26: deeper (review 24: still "milky" against the bright enamel)   // water absorbs red first: teal over the warm enamel, not grey
                 // A curved reflection of the window along the far rim, following the bowl's shape (it was a straight
                 // stripe across the whole disc).
                 float2 pd = p / max(rim, 1e-4);
@@ -106,7 +118,8 @@ Shader "Sea Glass/Basin Water"
                 half3 lift = caustic * half3(1, .97, .86) * .22 * sun.shadowAttenuation * (1 - edge * .7)
                            + crescent * half3(1, .96, .88) * .55
                            + waterline * .45 + rings * .4 + bubbles * .3
-                           + refl * fres * .45;
+                           + refl * fres * .45
+                           + glit * half3(1, .97, .9) * 1.2;
                 return half4((filterC + lift) * .5, 1);   // 2x multiply: 0.5 leaves the floor unchanged
             }
             ENDHLSL

@@ -13,8 +13,12 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(0, 1, 1.0, .74, .3, .06, 0.0), (3, .55, 1.0, .92, .3, .05, .0), (4, .6, 1.0, .7, .26, .07, .0),   # round 31: thicker, no points
-          (0, 1, 1.0, .5, .22, .04, .0), (5, .62, .88, .82, .4, .04, .0), (3, .58, 1.0, .62, .26, .06, .0)]
+shapes = [(0, 1, 1.0, .74, .17, .06, .30), (3, .55, 1.0, .92, .16, .05, .0), (4, .6, 1.0, .7, .15, .07, .26),
+          (0, 1, 1.0, .56, .14, .04, .22), (5, .62, .88, .82, .21, .04, .0), (3, .58, 1.0, .62, .15, .06, .28)]
+# Round 37 (review 33, all three: "plump almonds", "gummy sweets", "jelly beans"): flat pieces of bottle wall about a
+# quarter as thick as they are wide (they were 45-60%), each outline lopsided, four of six with one worn, straighter
+# broken edge (a soft chord in the outline, still rounded in section), and broad shallow dents across both faces so
+# the glint breaks into two or three flashes instead of one blob.
 
 
 def outline_r(a, sides, rk):
@@ -35,8 +39,17 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         p = v.co.copy()
         a = math.atan2(p.z, p.x) + rot
         rr = math.hypot(p.x, p.z) / .5            # 0 centre .. 1 at the equator
-        lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .1
-        orr = outline_r(a, sides, rk) * lump
+        lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .14
+        lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)                      # lopsided: one side fuller than the other
+        orr = outline_r(a, sides, rk) * lump * lop
+        if cut > 0:
+            # A worn broken edge: the outline follows a chord at distance (1 - cut) from the centre, softly blended.
+            da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
+            if abs(da) < math.pi / 2 - .05:
+                chord = (1 - cut) / math.cos(da)
+                kb = .12
+                h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
+                orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
         x, z = p.x * sx * orr, p.z * sz * orr
         # Slab profile: flat faces with rounded edges (a superellipse in thickness, not a sphere).
         yn = p.y / .5
@@ -52,7 +65,9 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
             if d > lim:
                 x -= (d - lim) * math.cos(rot) * .92; z -= (d - lim) * math.sin(rot) * .92
         # Fine tumbled unevenness.
-        ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .012
+        ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008
+        # Broad shallow dents (worn facets), strongest on the faces, none at the rim.
+        ys += noise.noise(Vector((x, z, 1.7)) * 2.2 + s) * .022 * (1 - rr * rr) * (1 if yn > 0 else .6)
         v.co = Vector((x, ys, z))
     assign(o, "glass")
     shade_auto(o, 50)
