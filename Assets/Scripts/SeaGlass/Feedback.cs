@@ -52,7 +52,8 @@ namespace SeaGlass
             for(int i=0;i<5;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.035f,.035f),Random.Range(-.008f,.012f),Random.Range(-.03f,.03f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.06f,.09f):Random.Range(.03f,.05f);p.startLifetime=Random.Range(1.8f,2.8f);p.startColor=new Color(.97f,.99f,1f,.95f);foam.Emit(p,1);}
             p=new ParticleSystem.EmitParams();
             // Round 13: a low, short-lived splash; the foam emitter has no gravity, so tall droplets hung in mid-air.
-            if(Random.value<.35f){p.position=at+Vector3.up*.02f;p.velocity=new Vector3(Random.Range(-.25f,.25f),Random.Range(.12f,.25f),Random.Range(-.18f,.18f));p.startSize=.02f;p.startLifetime=Random.Range(.18f,.3f);p.startColor=new Color(.85f,.95f,.97f,.85f);foam.Emit(p,1);}
+            // Round 32 (reviews: "no splashes or drips"): more and larger flicked droplets, so the scrub reads in a still.
+            if(Random.value<.75f)for(int d=0;d<2;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.15f,.3f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.026f,.04f);p.startLifetime=Random.Range(.28f,.45f);p.startColor=new Color(.82f,.95f,.98f,.9f);foam.Emit(p,1);}
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)

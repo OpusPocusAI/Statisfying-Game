@@ -171,7 +171,7 @@ stool = join(parts, "Stool")
 shade_auto(stool, 45)
 export(stool, "stool", ["seat", "wood"])
 
-# ---------------------------------------------------------------- woven rug (striped)
+# ---------------------------------------------------------------- woven rug (striped); superseded by round32.py (thicker, fringed)
 reset()
 L, Wd = 7.0, 3.2
 bpy.ops.mesh.primitive_grid_add(x_subdivisions=28, y_subdivisions=2, size=1)
