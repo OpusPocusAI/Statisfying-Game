@@ -1691,3 +1691,58 @@ The reviewers viewed 41–43 reference screenshots each.
 - The EQUIPMENT sign overlaps the frame of mosaic 03 (s4, s9).
 - Jars are clipped by the camera's near plane (s5).
 - The 09 windows blow out to flat white.
+
+### October 30 — round 40 and review 37 (three reviewers, averaged)
+
+Round 40 (round21.py, menu pass 48):
+- **Glass shapes:** blunt shapes with broken edges (squarish chip, rounded triangle, D-shape, pentagon, hex nugget, triangle shard).
+- **Trays:** the pieces are gathered into two low heaps per tray.
+- **Grime:** a near-opaque brown crust that the brush cuts clean tracks through.
+
+The reviewers viewed 41–46 reference screenshots each.
+
+| Area | A | B | C | Average | Review 36 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Cleaning rose to 3.7 for the first time since review 25. Two reviewers give it 4: the stroke clears a bright track through the brown crust, and there are ripple rings.
+- Sea glass is still 3.0, for the fifth review running.
+  - The new shapes are no longer called almonds. They are now "puffy domes / blister-pack bubbles / pillows".
+  - The low heaps still read as "a single layer".
+  - The held piece reads as opaque mint jelly.
+  - The cloudy piece reads as a flat slab or sandstone, and its crack lines read as "jigsaw".
+- Studio (3.7) and water (4.0) moved back up with no change to them.
+
+**Still open:**
+- **Glass, all three reviewers:**
+  - Uneven thickness within a piece: a thick wedge that tapers to a thin edge, not an even dome.
+  - Visible see-through in the held piece: the felt bent and tinted behind it. The current refraction is too blurred and too absorbed to read.
+  - Heaps two to three layers deep, with real overlap.
+  - A visible rare red piece.
+  - The cloudy piece should be rounder, without crack lines.
+- **Foam, three reviewers:** it reads as opaque popcorn discs. They want translucent bubbles with a rim highlight, droplets and a foam film on the water.
+- **Truck:** block body, disc fringe.
+- **Vegetation:** ball bushes, repeated Y sprigs.
+- **Rubbish:** specks at 5 m; the buried hint is a flat disc ("lily pad").
+- **Mosaic floor light:** reads as an opaque decal.
+- **Sand:** a hard wet/dry seam.
+
+**Bugs reported:**
+- A teal gap between the two halves of the sorting table (06, s10).
+- A straight seam line on the b7 shoulder.
+- The s7 hanging pot looks self-lit.
+- The shovel's grip cap reads as a detached disc (02).
