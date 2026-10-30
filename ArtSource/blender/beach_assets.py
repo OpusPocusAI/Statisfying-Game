@@ -148,7 +148,7 @@ shade_auto(star, 70)
 export(star, "starfish", ["starfish"])
 
 reset()
-# Pebble cluster: a few smooth stones of different sizes.
+# Pebble cluster: a few smooth stones of different sizes. Round 34: four more variants in round34.py.
 parts = []
 for i in range(5):
     r = random.uniform(0.02, 0.05)
