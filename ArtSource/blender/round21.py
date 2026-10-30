@@ -13,8 +13,8 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(0, 1, 1.0, .72, .2, .06, 0.0), (3, .22, 1.0, .92, .22, .05, .0), (4, .28, 1.0, .66, .15, .08, .0),
-          (0, 1, 1.0, .36, .11, .03, .0), (5, .3, .88, .82, .38, .04, .0), (3, .3, 1.0, .55, .17, .06, .0)]
+shapes = [(0, 1, 1.0, .74, .3, .06, 0.0), (3, .55, 1.0, .92, .3, .05, .0), (4, .6, 1.0, .7, .26, .07, .0),   # round 31: thicker, no points
+          (0, 1, 1.0, .5, .22, .04, .0), (5, .62, .88, .82, .4, .04, .0), (3, .58, 1.0, .62, .26, .06, .0)]
 
 
 def outline_r(a, sides, rk):
@@ -27,7 +27,7 @@ def outline_r(a, sides, rk):
 
 for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
     reset(); random.seed(2100 + k)
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=36, ring_count=18, radius=.5)
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=56, ring_count=24, radius=.5)   # round 31: smoother outline (reviews: "jagged right edge")
     o = bpy.context.active_object
     s = Vector((k * 1.9, k * .6, k * 2.7))
     rot = random.uniform(0, math.tau)
@@ -43,7 +43,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # Round 27 (review 25: "a sand biscuit", "uniform-thickness slab with a hard cut edge"): a lens, not a bent
         # plate. Both faces bulge outwards and the piece thins towards a rolled rim, so the middle is about twice
         # as thick as the edge; no straight broken edge.
-        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - (.2 if th > .3 else .45) * rr * rr)   # the nugget keeps its bulk
+        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - (.2 if th > .33 else .32) * rr * rr)   # the nugget keeps its bulk
         dome = max(curve, .1) * .85 * (1 - rr * rr)
         ys += dome * (1 if yn > 0 else -.6)
         if False and cut > 0:
