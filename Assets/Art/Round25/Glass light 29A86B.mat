@@ -25,7 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Strength: 0.36305454
+    - _Strength: 0.14785455
     m_Colors:
     - _Colour: {r: 0.15999997, g: 0.65999997, b: 0.41999996, a: 1}
     - _Focus: {r: 0.58, g: 0.5, b: 0, a: 0}
