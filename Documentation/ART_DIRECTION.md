@@ -1361,3 +1361,43 @@ Round 30 changes (menu pass 41):
 - **Studio:** bare floor in s8 and 07b, flat rugs, and hanging planters floating past the roof edge (s4).
 - **Sand:** repeated pebble decal, coin footprints, near-black boulders.
 - **Rubbish:** still too small to read.
+
+### October 30 — round 31 and review 30 (three reviewers, averaged)
+
+Round 31 changes (menu pass 42):
+- **Truck:** the front canopy pillars moved behind the bonnet.
+- **Studio:** the edge planter moved inside the roof line.
+- **Sea glass:** thicker, rounder glass pebbles with a smoother outline.
+- **Cleaning:** the brushed grime now clears with a ragged edge.
+
+Reviewer C could not view the references because the browser pane was hidden. Reviewers A and B viewed 32 and 40 screenshots.
+
+| Area | A | B | C | Average | Review 29 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.13 Effects | 4 | – | 3 | 3.5 (stills only) | 3.5 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- Props reached 4.0, joining lighting, water, sorting and mosaic, so five areas now meet the bar.
+- No reviewer reports the pillars through the bonnet or the floating planter any more.
+
+**Still open:**
+- **Sea glass (all three):** the rounder pieces now read as "gumdrops, jelly beans, water droplets". Reviewers now ask for flatter, irregular worn shards, which is the direction rounds 21–28 came from. The held piece also has a brown internal smear and a clipped right edge, and cobalt and emerald cast neon halos on the felt.
+- **Studio:** the empty floor in front of the mosaic wall (07b, 08) is still named by all three. Also flat rugs, repeated shelf jars, and a dusty state that is only a colour grade.
+- **Cleaning:** opaque milky water and no splashes.
+- **Tools:** the sleeve is a long blue cylinder across the cleaning frames; the spade is a flat paddle.
+- **Sand:** coin footprints, a repeated pebble cluster, a flat foreground.
+
+**Where things stand:** the glass shape has now been called too thin, too flat, too sharp and too round in successive reviews. That points to reviewer taste around a fixed target, not a missing feature.
