@@ -1635,3 +1635,59 @@ The reviewers viewed 32–43 reference screenshots each.
 - The b4 shadow wedge.
 - A straight seam in the sand beside the road (b7).
 - Smeared cloud tails and dot clouds.
+
+### October 30 — round 39 and review 36 (three reviewers, averaged)
+
+Round 39 (FrostedGlass.shader, StudioStation.cs) changed the glass shader:
+- **Clean glass:** a deeper core and a lit rim, a smaller main glint, and four small glints.
+- **Cloudy glass:** frost as a grainy veil.
+- **Grime:** browner, with a broader film and no straight seam.
+- **Waterline:** a waterline on the working piece in the basin.
+
+The reviewers viewed 41–43 reference screenshots each.
+
+| Area | A | B | C | Average | Review 35 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.13 Effects | – | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Nothing measurable for glass or cleaning, which have been at 3.0 for four reviews running.
+- Studio fell from 4.0 to 3.0 with no change to it. All three reviewers now name cloned props, empty floor and flat rugs, which shows how wide the spread between reviewers is.
+- Shader-only glass work has stopped moving the score. Every reviewer still says the tray pieces are "nearly all one almond / lens silhouette", even though the six meshes have different outlines.
+- Orientation is not the cause. A check after the review found all 72 tray spares lying flat (thin axis within about 15° of vertical). The almond read comes from the outlines: most taper to soft points at both ends. The low, raking camera also foreshortens them into lenses.
+
+**Still open (all three):**
+- **Sea glass:**
+  - Tray shapes read as one almond. They need blunter, broader outlines (squarish, triangular, D-shaped, with broken straight edges instead of points), and the pieces should pile and overlap.
+  - The held piece still reads as a gummy sweet or candy.
+  - The cloudy piece reads as a flat slab or felt.
+- **Cleaning:**
+  - Grime needs to be an opaque brown crust that each stroke cuts through, as in PowerWash.
+  - Add splashes and drips.
+  - The piece still reads as "lying on the water".
+- **Truck:** box cab and bed, disc fringe, floating arch strips.
+- **Vegetation:** sphere bushes; boxy studio plants.
+- **Studio:** cloned props, empty floor, flat rugs. The neglected state is only a colour grade.
+- **Shore:** a stamped, repeating foam ribbon with a hard edge (b6, b8). The wet sand is a band of constant width.
+- **Rubbish:** tiny at 5 m.
+- **Arm:** a plain tube in 04/05.
+
+**Bugs reported:**
+- Dark hexagon patches on the b8 island.
+- Shadows on the water draw pale.
+- The EQUIPMENT sign overlaps the frame of mosaic 03 (s4, s9).
+- Jars are clipped by the camera's near plane (s5).
+- The 09 windows blow out to flat white.
