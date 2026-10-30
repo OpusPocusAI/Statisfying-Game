@@ -37,8 +37,9 @@ namespace SeaGlass
         public void RefreshCargo()
         {
             int gc=S.Count(ItemStage.Truck,true),rc=S.Count(ItemStage.Truck,false);
-            for(int i=0;i<glassCargo.Length;i++)glassCargo[i].gameObject.SetActive(i<gc);
-            for(int i=0;i<rubbishCargo.Length;i++)rubbishCargo[i].gameObject.SetActive(i<rc);
+            // Round 29 (reviews: "one glass piece and one can on a sand fill"): each loaded find shows as a small heap of three.
+            for(int i=0;i<glassCargo.Length;i++)glassCargo[i].gameObject.SetActive(i<gc*3);
+            for(int i=0;i<rubbishCargo.Length;i++)rubbishCargo[i].gameObject.SetActive(i<rc*3);
             if(body)body.localPosition=new Vector3(0,-S.CargoCount*.0025f,0);
         }
         public void ResetVehicle(bool useCurrentRegion=true)

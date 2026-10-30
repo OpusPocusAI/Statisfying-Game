@@ -31,13 +31,14 @@ Material:
     m_Floats:
     - _Cull: 2
     - _Cutoff: 0.5
-    - _GradientHeight: 1.2
-    - _GradientStrength: 0.3
+    - _GradientHeight: 1.1
+    - _GradientStrength: 0.5
     - _GroundPatches: 0
     - _Metallic: 0
     - _Rim: 1
     - _Smoothness: 0.1
     - _Surface: 0
+    - _TopStart: 0.7
     - _Variation: 0.1
     - _WorldMapping: 0
     - _WorldTile: 7
@@ -45,5 +46,6 @@ Material:
     - _BaseColor: {r: 0.3, g: 0.46, b: 0.3, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TopTint: {r: 0.41999996, g: 0.54999995, b: 0.29999998, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -6988,7 +6988,7 @@ Transform:
   m_GameObject: {fileID: 29056775}
   serializedVersion: 2
   m_LocalRotation: {x: -0.45307967, y: 0.5457088, z: -0.5224559, w: -0.47324482}
-  m_LocalPosition: {x: -0.11107365, y: 0.43675995, z: -0.1417431}
+  m_LocalPosition: {x: -0.11107365, y: 0.34599996, z: -0.1417431}
   m_LocalScale: {x: 0.1464648, y: 0.1464648, z: 0.1464648}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8447,7 +8447,7 @@ GameObject:
   - component: {fileID: 35033212}
   - component: {fileID: 35033211}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8463,7 +8463,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.55557066, z: 0, w: -0.8314693}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 412552826}
@@ -19764,7 +19764,7 @@ GameObject:
   - component: {fileID: 81941567}
   - component: {fileID: 81941566}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19780,7 +19780,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9883615, z: 0, w: 0.15212347}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1404557172}
@@ -27133,7 +27133,7 @@ GameObject:
   - component: {fileID: 116623803}
   - component: {fileID: 116623802}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27149,7 +27149,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.13052543, z: 0, w: 0.99144495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 821013349}
@@ -28081,7 +28081,7 @@ GameObject:
   - component: {fileID: 118922429}
   - component: {fileID: 118922428}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28097,7 +28097,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.60876006, z: 0, w: -0.7933544}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62324051}
@@ -31754,7 +31754,7 @@ GameObject:
   - component: {fileID: 135187472}
   - component: {fileID: 135187471}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31770,7 +31770,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.3624396, z: 0, w: -0.93200725}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1496676039}
@@ -38867,7 +38867,7 @@ GameObject:
   - component: {fileID: 158420122}
   - component: {fileID: 158420121}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38883,7 +38883,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.73727566, z: 0, w: -0.6755921}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1743046146}
@@ -43075,7 +43075,7 @@ GameObject:
   - component: {fileID: 176154016}
   - component: {fileID: 176154015}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43091,7 +43091,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.65934724, z: 0, w: 0.75183856}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1439456566}
@@ -45588,7 +45588,7 @@ GameObject:
   - component: {fileID: 186563023}
   - component: {fileID: 186563022}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45604,7 +45604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.76604503, z: 0, w: -0.6427869}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 915148366}
@@ -46376,7 +46376,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.9399996, y: 1.9300001, z: 1.3500004}
-  m_LocalScale: {x: 0.089999996, y: 0.65, z: 0.089999996}
+  m_LocalScale: {x: 0.18463056, y: 1.3, z: 0.18000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 556403983}
@@ -46437,7 +46437,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188695946}
-  m_Mesh: {fileID: 10203, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 66d3f77fab7067d469345c408ca2de19, type: 2}
 --- !u!1 &189242317
 GameObject:
   m_ObjectHideFlags: 0
@@ -48854,7 +48854,7 @@ GameObject:
   - component: {fileID: 202429697}
   - component: {fileID: 202429696}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48870,7 +48870,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.8433906, z: 0, w: 0.53730094}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1643987760}
@@ -50691,7 +50691,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6910f148669b98740bc23a0f285c5995, type: 2}
+  - {fileID: 2100000, guid: 864e4708141828f45a22827a7dcb5b41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -53997,7 +53997,7 @@ GameObject:
   - component: {fileID: 231077812}
   - component: {fileID: 231077811}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54013,7 +54013,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9713417, z: 0, w: 0.23768747}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 626272525}
@@ -61734,7 +61734,7 @@ GameObject:
   - component: {fileID: 264858820}
   - component: {fileID: 264858819}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61750,7 +61750,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.15212451, z: 0, w: 0.98836136}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1708750127}
@@ -78728,7 +78728,7 @@ GameObject:
   - component: {fileID: 345122131}
   - component: {fileID: 345122130}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78744,7 +78744,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9848077, z: 0, w: 0.17364827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 572739230}
@@ -78987,7 +78987,7 @@ GameObject:
   - component: {fileID: 346773388}
   - component: {fileID: 346773387}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79003,7 +79003,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.49999914, z: 0, w: -0.8660259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 340286743}
@@ -82376,7 +82376,7 @@ GameObject:
   - component: {fileID: 362094464}
   - component: {fileID: 362094463}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82392,7 +82392,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.89687085, z: 0, w: 0.4422925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1839280252}
@@ -86170,7 +86170,7 @@ Transform:
   m_GameObject: {fileID: 378175248}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2329159, y: 0.7516688, z: -0.5149165, w: 0.34000778}
-  m_LocalPosition: {x: 0.060246136, y: 0.46075994, z: 0.13954273}
+  m_LocalPosition: {x: 0.060246136, y: 0.36999995, z: 0.13954273}
   m_LocalScale: {x: 0.15854605, y: 0.15854605, z: 0.15854605}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86517,7 +86517,7 @@ GameObject:
   - component: {fileID: 379269281}
   - component: {fileID: 379269280}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86533,7 +86533,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9537172, z: 0, w: 0.30070513}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 284773646}
@@ -89209,7 +89209,7 @@ GameObject:
   - component: {fileID: 395928985}
   - component: {fileID: 395928984}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89225,7 +89225,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.5913099, z: 0, w: 0.8064444}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 66635516}
@@ -96495,7 +96495,7 @@ GameObject:
   - component: {fileID: 428126321}
   - component: {fileID: 428126320}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96511,7 +96511,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9807853, z: 0, w: -0.19509022}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 237320495}
@@ -105173,7 +105173,7 @@ GameObject:
   - component: {fileID: 461771381}
   - component: {fileID: 461771380}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105189,7 +105189,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9940567, z: 0, w: -0.10886336}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1770082292}
@@ -105627,7 +105627,7 @@ GameObject:
   - component: {fileID: 463181366}
   - component: {fileID: 463181365}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105643,7 +105643,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.6755902, z: 0, w: -0.7372773}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215367617}
@@ -108574,7 +108574,7 @@ GameObject:
   - component: {fileID: 477441085}
   - component: {fileID: 477441084}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108590,7 +108590,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.72236353, z: 0, w: -0.6915135}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1139581473}
@@ -110380,7 +110380,7 @@ GameObject:
   - component: {fileID: 485132495}
   - component: {fileID: 485132494}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110396,7 +110396,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.77988386, z: 0, w: -0.6259242}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 537435695}
@@ -117399,7 +117399,7 @@ GameObject:
   - component: {fileID: 516980529}
   - component: {fileID: 516980528}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117415,7 +117415,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9978589, z: 0, w: -0.0654038}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 485895840}
@@ -118418,7 +118418,7 @@ GameObject:
   - component: {fileID: 522107662}
   - component: {fileID: 522107661}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118434,7 +118434,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.44228858, z: 0, w: -0.8968728}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 949086630}
@@ -118510,7 +118510,7 @@ GameObject:
   - component: {fileID: 522544326}
   - component: {fileID: 522544325}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118526,7 +118526,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9469304, z: 0, w: -0.32143864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 966625653}
@@ -118947,9 +118947,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 2b1e9823b3a3cfe41839a2f5c5e7824c, type: 2}
+  - {fileID: 2100000, guid: e7bf41cf3d97f0b4db8365fc68197b5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118980,7 +118979,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522999806}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 372d2fea88cd81e4d87d204b62fc9a27, type: 2}
 --- !u!1 &523036426
 GameObject:
   m_ObjectHideFlags: 0
@@ -120182,7 +120181,7 @@ TextMesh:
   m_GameObject: {fileID: 528967281}
   m_Text: 01  /  Ocean Wave
   m_OffsetZ: 0
-  m_CharacterSize: 0.03
+  m_CharacterSize: 0.041
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
@@ -120193,7 +120192,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 646203244227990408a9c656b67b161a, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4282072340
+    rgba: 4281873183
 --- !u!23 &528967284
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -120837,7 +120836,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9399996, y: 1.9300001, z: 1.3500004}
-  m_LocalScale: {x: 0.089999996, y: 0.65, z: 0.089999996}
+  m_LocalScale: {x: 0.18463056, y: 1.3, z: 0.18000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 556403983}
@@ -120898,7 +120897,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533853047}
-  m_Mesh: {fileID: 10203, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 66d3f77fab7067d469345c408ca2de19, type: 2}
 --- !u!1 &534531372
 GameObject:
   m_ObjectHideFlags: 0
@@ -125384,7 +125383,7 @@ GameObject:
   - component: {fileID: 559209677}
   - component: {fileID: 559209676}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125400,7 +125399,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.17364818, z: 0, w: -0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659346036}
@@ -129636,7 +129635,7 @@ GameObject:
   - component: {fileID: 576782809}
   - component: {fileID: 576782808}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129652,7 +129651,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.25881594, z: 0, w: -0.9659267}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1141377236}
@@ -131820,7 +131819,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.3420201, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 5, y: 1.7, z: 78}
-  m_LocalScale: {x: 5, y: 1.1, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1709832861}
@@ -131851,6 +131850,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bcb8c85f67fbe7c4fb3a7d83c7f39722, type: 2}
+  - {fileID: 2100000, guid: aa3fe8f14ab402d4b9a07a84bf472bd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131893,7 +131893,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 1.1, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &586470863
 MeshFilter:
@@ -131902,7 +131902,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586470859}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: c1acc884a940a284fb5b8d5becff12f8, type: 2}
 --- !u!1 &587077701
 GameObject:
   m_ObjectHideFlags: 0
@@ -133307,7 +133307,7 @@ GameObject:
   - component: {fileID: 593532251}
   - component: {fileID: 593532250}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133323,7 +133323,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.38268325, z: 0, w: -0.9238796}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 500549789}
@@ -141283,7 +141283,7 @@ GameObject:
   - component: {fileID: 624663781}
   - component: {fileID: 624663780}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141299,7 +141299,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9961947, z: 0, w: 0.08715574}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 484964822}
@@ -152180,7 +152180,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.9399996, y: 1.9300001, z: -0.25}
-  m_LocalScale: {x: 0.089999996, y: 0.65, z: 0.089999996}
+  m_LocalScale: {x: 0.18463056, y: 1.3, z: 0.18000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 556403983}
@@ -152241,7 +152241,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675088305}
-  m_Mesh: {fileID: 10203, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 66d3f77fab7067d469345c408ca2de19, type: 2}
 --- !u!1 &675246594
 GameObject:
   m_ObjectHideFlags: 0
@@ -152259,7 +152259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &675246595
 Transform:
   m_ObjectHideFlags: 0
@@ -152269,7 +152269,7 @@ Transform:
   m_GameObject: {fileID: 675246594}
   serializedVersion: 2
   m_LocalRotation: {x: -0.46059194, y: 0.5393841, z: -0.49498275, w: -0.50190836}
-  m_LocalPosition: {x: 0.024500247, y: 0.44875997, z: 0.16599311}
+  m_LocalPosition: {x: 0.024500247, y: 1.0210801, z: 0.16599311}
   m_LocalScale: {x: 0.16736645, y: 0.16736645, z: 0.16736645}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161500,6 +161500,39 @@ Transform:
   - {fileID: 697553652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &716525739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716525740}
+  m_Layer: 0
+  m_Name: "ART \u2022 gallery seating"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716525740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716525739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1478321954}
+  - {fileID: 2108711754}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &716838218
 GameObject:
   m_ObjectHideFlags: 0
@@ -162056,7 +162089,7 @@ GameObject:
   - component: {fileID: 719147123}
   - component: {fileID: 719147122}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162072,7 +162105,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.93969226, z: 0, w: -0.3420211}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1779562686}
@@ -168637,7 +168670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &746590047
 Transform:
   m_ObjectHideFlags: 0
@@ -168647,7 +168680,7 @@ Transform:
   m_GameObject: {fileID: 746590046}
   serializedVersion: 2
   m_LocalRotation: {x: -0.28276348, y: 0.6183679, z: -0.6877746, w: -0.2542284}
-  m_LocalPosition: {x: 0.15655828, y: 0.41275996, z: -0.043272737}
+  m_LocalPosition: {x: 0.15655828, y: 0.9850801, z: -0.043272737}
   m_LocalScale: {x: 0.1328693, y: 0.1328693, z: 0.1328693}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -169649,7 +169682,7 @@ GameObject:
   - component: {fileID: 750008067}
   - component: {fileID: 750008066}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169665,7 +169698,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.087159164, z: 0, w: 0.9961944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 403194625}
@@ -170035,7 +170068,7 @@ GameObject:
   - component: {fileID: 752179644}
   - component: {fileID: 752179643}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170051,7 +170084,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.806446, z: 0, w: -0.5913077}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 688839652}
@@ -173282,7 +173315,7 @@ GameObject:
   - component: {fileID: 771137747}
   - component: {fileID: 771137746}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173298,7 +173331,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.97629607, z: 0, w: 0.21643932}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 742977756}
@@ -180626,7 +180659,7 @@ Transform:
   m_GameObject: {fileID: 809592214}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.57357645, z: -0, w: 0.81915206}
-  m_LocalPosition: {x: -6.4, y: 0.1, z: 167.2}
+  m_LocalPosition: {x: -6.4, y: 0.09999999, z: 167.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180657,9 +180690,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 1904801162b298a4d80cbd08ba88b0c7, type: 2}
+  - {fileID: 2100000, guid: e0a23b2b1f037ee4494c2466b46a9e1d, type: 2}
+  - {fileID: 2100000, guid: 7710716458589cd41ae87e44d987d06d, type: 2}
+  - {fileID: 2100000, guid: 1362b0de633bd984bb6a57fe2c21e604, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -180690,7 +180724,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809592214}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: e1bd5fd9253999f4ba2de0b8c77dbf86, type: 2}
 --- !u!1 &809742128
 GameObject:
   m_ObjectHideFlags: 0
@@ -183784,8 +183818,8 @@ Transform:
   m_GameObject: {fileID: 823453487}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.64278764, z: -0, w: 0.7660445}
-  m_LocalPosition: {x: -22.1, y: -0.100000024, z: 89.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.09587, y: -0.100000024, z: 89.80073}
+  m_LocalScale: {x: 0.5480769, y: 0.6447607, z: 0.55944055}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -183847,7 +183881,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823453487}
-  m_Mesh: {fileID: 4300000, guid: ea50faeea0948e640a26f5cc3f05e3dc, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 1bf9596aef6e1074e8d4b8adcb480fbe, type: 2}
 --- !u!1 &823638173
 GameObject:
   m_ObjectHideFlags: 0
@@ -189148,7 +189182,7 @@ GameObject:
   - component: {fileID: 843865234}
   - component: {fileID: 843865233}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189164,7 +189198,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.10886725, z: 0, w: -0.9940563}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 747266890}
@@ -191213,8 +191247,8 @@ Transform:
   m_GameObject: {fileID: 851773506}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9659258, z: -0, w: 0.25881907}
-  m_LocalPosition: {x: 1.9, y: 0.1, z: 165.4}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalPosition: {x: 1.9, y: 0.09999999, z: 165.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -191244,9 +191278,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 2b1e9823b3a3cfe41839a2f5c5e7824c, type: 2}
+  - {fileID: 2100000, guid: e7bf41cf3d97f0b4db8365fc68197b5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191277,7 +191310,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851773506}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 372d2fea88cd81e4d87d204b62fc9a27, type: 2}
 --- !u!1 &851793631
 GameObject:
   m_ObjectHideFlags: 0
@@ -191786,7 +191819,7 @@ GameObject:
   - component: {fileID: 852677080}
   - component: {fileID: 852677079}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191802,7 +191835,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.34202015, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2033684142}
@@ -197934,8 +197967,8 @@ Transform:
   m_GameObject: {fileID: 879821940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.68008167, z: 0, w: -0.73313636}
-  m_LocalPosition: {x: 1.2, y: 0.1, z: 175.9}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalPosition: {x: 1.2, y: 0.09999997, z: 175.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -197965,9 +197998,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 1904801162b298a4d80cbd08ba88b0c7, type: 2}
+  - {fileID: 2100000, guid: e0a23b2b1f037ee4494c2466b46a9e1d, type: 2}
+  - {fileID: 2100000, guid: 7710716458589cd41ae87e44d987d06d, type: 2}
+  - {fileID: 2100000, guid: 1362b0de633bd984bb6a57fe2c21e604, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -197998,7 +198032,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879821940}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: e1bd5fd9253999f4ba2de0b8c77dbf86, type: 2}
 --- !u!1 &880167786
 GameObject:
   m_ObjectHideFlags: 0
@@ -198011,7 +198045,7 @@ GameObject:
   - component: {fileID: 880167789}
   - component: {fileID: 880167788}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198027,7 +198061,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 451655301}
@@ -200035,7 +200069,7 @@ GameObject:
   - component: {fileID: 888662079}
   - component: {fileID: 888662078}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200051,7 +200085,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.87672675, z: 0, w: 0.48098883}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181196016}
@@ -204552,7 +204586,7 @@ GameObject:
   - component: {fileID: 906516455}
   - component: {fileID: 906516454}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204568,7 +204602,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.4226196, z: 0, w: 0.90630716}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848214314}
@@ -210772,7 +210806,7 @@ GameObject:
   - component: {fileID: 930631288}
   - component: {fileID: 930631287}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210788,7 +210822,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.6915114, z: 0, w: 0.72236556}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 73728757}
@@ -212402,7 +212436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 795c1de90b6fa104f865570d8add6f80, type: 2}
+  - {fileID: 2100000, guid: 7ac6e783130864844bba9dfa847a962f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216334,7 +216368,7 @@ GameObject:
   - component: {fileID: 955504565}
   - component: {fileID: 955504564}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216350,7 +216384,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.51877403, z: 0, w: -0.8549114}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 544870497}
@@ -220307,7 +220341,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9399996, y: 1.9300001, z: -0.25}
-  m_LocalScale: {x: 0.089999996, y: 0.65, z: 0.089999996}
+  m_LocalScale: {x: 0.18463056, y: 1.3, z: 0.18000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 556403983}
@@ -220368,7 +220402,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974333514}
-  m_Mesh: {fileID: 10203, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 66d3f77fab7067d469345c408ca2de19, type: 2}
 --- !u!1 &974592599
 GameObject:
   m_ObjectHideFlags: 0
@@ -222418,7 +222452,7 @@ GameObject:
   - component: {fileID: 984242466}
   - component: {fileID: 984242465}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222434,7 +222468,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.90630764, z: 0, w: 0.4226187}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1945265111}
@@ -223622,7 +223656,7 @@ GameObject:
   - component: {fileID: 990807207}
   - component: {fileID: 990807206}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223638,7 +223672,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.999762, z: 0, w: 0.021815743}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 24148048}
@@ -223714,7 +223748,7 @@ GameObject:
   - component: {fileID: 991214674}
   - component: {fileID: 991214673}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223730,7 +223764,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.065402746, z: 0, w: 0.99785894}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1625415980}
@@ -225458,7 +225492,7 @@ GameObject:
   - component: {fileID: 999590284}
   - component: {fileID: 999590283}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225474,7 +225508,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.2798289, z: 0, w: 0.96004987}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 216134522}
@@ -235210,7 +235244,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4, y: 0.53, z: 176.37001}
-  m_LocalScale: {x: 2.7, y: 0.28, z: 0.07}
+  m_LocalScale: {x: 2.7, y: 0.36, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102969645}
@@ -238393,7 +238427,7 @@ Transform:
   m_GameObject: {fileID: 1053709132}
   serializedVersion: 2
   m_LocalRotation: {x: 0.8025107, y: 0.04628001, z: -0.06278807, w: 0.591517}
-  m_LocalPosition: {x: 0.027735878, y: 0.42475998, z: 0.119546674}
+  m_LocalPosition: {x: 0.027735878, y: 0.334, z: 0.119546674}
   m_LocalScale: {x: 0.15143709, y: 0.15143709, z: 0.15143709}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -241790,7 +241824,7 @@ GameObject:
   - component: {fileID: 1065822243}
   - component: {fileID: 1065822242}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241806,7 +241840,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.86602443, z: 0, w: 0.5000017}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1800697452}
@@ -259971,7 +260005,7 @@ Transform:
   m_GameObject: {fileID: 1144290072}
   serializedVersion: 2
   m_LocalRotation: {x: 0.015195501, y: 0.7726275, z: -0.634408, w: 0.01850617}
-  m_LocalPosition: {x: -0.08837749, y: 0.40076, z: 0.054405775}
+  m_LocalPosition: {x: -0.08837749, y: 0.31, z: 0.054405775}
   m_LocalScale: {x: 0.19024283, y: 0.19024283, z: 0.19024283}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265725,7 +265759,7 @@ GameObject:
   - component: {fileID: 1168913739}
   - component: {fileID: 1168913738}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265741,7 +265775,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.8549119, z: 0, w: -0.51877314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661217738}
@@ -278395,6 +278429,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218557416}
   m_Mesh: {fileID: 4300000, guid: e6de38a7b5f463245a2f7be4101a6270, type: 2}
+--- !u!1 &1219375632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219375633}
+  - component: {fileID: 1219375635}
+  - component: {fileID: 1219375634}
+  m_Layer: 0
+  m_Name: Jar of glass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219375633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219375632}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6999998, y: 0.46749997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1478321954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1219375634
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219375632}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e2ff918fd51d86d42bd3c7ed97298619, type: 2}
+  - {fileID: 2100000, guid: 288207f0fa546414f83c18c745e223b0, type: 2}
+  - {fileID: 2100000, guid: 2479fcd7178a45d48b38d482bdede4b8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1219375635
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219375632}
+  m_Mesh: {fileID: 4300000, guid: 13de96a465711e0428b40185a8054e6f, type: 2}
 --- !u!1 &1220081483
 GameObject:
   m_ObjectHideFlags: 0
@@ -281392,7 +281518,7 @@ GameObject:
   - component: {fileID: 1235038118}
   - component: {fileID: 1235038117}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281408,7 +281534,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.915312, z: 0, w: -0.40274554}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 634564594}
@@ -295961,7 +296087,7 @@ GameObject:
   - component: {fileID: 1290170008}
   - component: {fileID: 1290170007}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295977,7 +296103,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.32144144, z: 0, w: -0.94692945}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 709308673}
@@ -296069,7 +296195,7 @@ Transform:
   m_GameObject: {fileID: 1290197982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.22160615, z: -0, w: 0.9751363}
-  m_LocalPosition: {x: 3.0265086, y: 0.119, z: 162.60883}
+  m_LocalPosition: {x: 3.0265086, y: 0.11899999, z: 162.60883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -296127,9 +296253,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 1904801162b298a4d80cbd08ba88b0c7, type: 2}
+  - {fileID: 2100000, guid: e0a23b2b1f037ee4494c2466b46a9e1d, type: 2}
+  - {fileID: 2100000, guid: 7710716458589cd41ae87e44d987d06d, type: 2}
+  - {fileID: 2100000, guid: 1362b0de633bd984bb6a57fe2c21e604, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -296160,7 +296287,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290197982}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: e1bd5fd9253999f4ba2de0b8c77dbf86, type: 2}
 --- !u!1 &1291159987
 GameObject:
   m_ObjectHideFlags: 0
@@ -306179,7 +306306,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.65, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9615385, y: 1.1764706, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 556403983}
@@ -306210,6 +306337,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4a5d7995b666afd47b4e48d2acdeebca, type: 2}
+  - {fileID: 2100000, guid: 270bf9ad3dbd5ed4ca97692ad3cda9bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -306240,7 +306368,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346896280}
-  m_Mesh: {fileID: 4300000, guid: ed9fa1797ad49db4a98dc1746b2a38ce, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 5de0c446e44f86e4bb38ee7386cd85c0, type: 2}
 --- !u!1 &1346977408
 GameObject:
   m_ObjectHideFlags: 0
@@ -312026,7 +312154,7 @@ GameObject:
   - component: {fileID: 1368556129}
   - component: {fileID: 1368556128}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312042,7 +312170,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.6427876, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 636598855}
@@ -312315,8 +312443,8 @@ Transform:
   m_GameObject: {fileID: 1368949582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.1736482, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -22.1, y: -0.100000024, z: 13.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.098566, y: -0.100000024, z: 13.803943}
+  m_LocalScale: {x: 0.5480769, y: 0.6447607, z: 0.55944055}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -312378,7 +312506,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368949582}
-  m_Mesh: {fileID: 4300000, guid: ea50faeea0948e640a26f5cc3f05e3dc, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 1bf9596aef6e1074e8d4b8adcb480fbe, type: 2}
 --- !u!1 &1369572772
 GameObject:
   m_ObjectHideFlags: 0
@@ -314182,7 +314310,7 @@ GameObject:
   - component: {fileID: 1378530220}
   - component: {fileID: 1378530219}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314198,7 +314326,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.19509105, z: 0, w: 0.98078513}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 889135963}
@@ -315202,7 +315330,7 @@ GameObject:
   - component: {fileID: 1384173018}
   - component: {fileID: 1384173017}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315218,7 +315346,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.21644035, z: 0, w: 0.9762958}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1779808734}
@@ -317551,7 +317679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1396441766
 Transform:
   m_ObjectHideFlags: 0
@@ -317561,7 +317689,7 @@ Transform:
   m_GameObject: {fileID: 1396441765}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5807785, y: 0.39116848, z: -0.6085298, w: 0.3733297}
-  m_LocalPosition: {x: -0.053755537, y: 0.43675995, z: -0.0075537385}
+  m_LocalPosition: {x: -0.053755537, y: 1.00908, z: -0.0075537385}
   m_LocalScale: {x: 0.110581025, y: 0.110581025, z: 0.110581025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321030,7 +321158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.3420201, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 5, y: 1.7, z: 4}
-  m_LocalScale: {x: 5, y: 1.1, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1709832861}
@@ -321061,6 +321189,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bcb8c85f67fbe7c4fb3a7d83c7f39722, type: 2}
+  - {fileID: 2100000, guid: aa3fe8f14ab402d4b9a07a84bf472bd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -321103,7 +321232,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 1.1, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1410410611
 MeshFilter:
@@ -321112,7 +321241,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410410607}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: c1acc884a940a284fb5b8d5becff12f8, type: 2}
 --- !u!1 &1410972105
 GameObject:
   m_ObjectHideFlags: 0
@@ -325324,7 +325453,7 @@ GameObject:
   - component: {fileID: 1430644254}
   - component: {fileID: 1430644253}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325340,7 +325469,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.8870107, z: 0, w: -0.46174884}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 806259287}
@@ -327667,7 +327796,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6910f148669b98740bc23a0f285c5995, type: 2}
+  - {fileID: 2100000, guid: 864e4708141828f45a22827a7dcb5b41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332348,7 +332477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1464355499
 Transform:
   m_ObjectHideFlags: 0
@@ -332358,7 +332487,7 @@ Transform:
   m_GameObject: {fileID: 1464355498}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7428846, y: -0.048486307, z: 0.054127254, w: -0.6654636}
-  m_LocalPosition: {x: 0.075041376, y: 0.42475998, z: -0.15508656}
+  m_LocalPosition: {x: 0.075041376, y: 0.9970801, z: -0.15508656}
   m_LocalScale: {x: 0.17010096, y: 0.17010096, z: 0.17010096}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -332976,7 +333105,7 @@ GameObject:
   - component: {fileID: 1466788288}
   - component: {fileID: 1466788287}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332992,7 +333121,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.99144506, z: 0, w: -0.13052458}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034140977}
@@ -335658,6 +335787,99 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478307439}
   m_Mesh: {fileID: 4300000, guid: e997325259cdb15449240982ae8136b2, type: 2}
+--- !u!1 &1478321953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478321954}
+  - component: {fileID: 1478321956}
+  - component: {fileID: 1478321955}
+  m_Layer: 0
+  m_Name: gallery bench (round 29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4
+  m_IsActive: 1
+--- !u!4 &1478321954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478321953}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10, y: 0.119, z: 169.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1219375633}
+  - {fileID: 2097173597}
+  m_Father: {fileID: 716525740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1478321955
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478321953}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 61d1921eab1ffc443be74a5e95ad15d3, type: 2}
+  - {fileID: 2100000, guid: 38efb8bd304064c4fa575951cb39c749, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1478321956
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478321953}
+  m_Mesh: {fileID: 4300000, guid: 2b892a6a95bec564da64fecaae128565, type: 2}
 --- !u!1 &1478450314
 GameObject:
   m_ObjectHideFlags: 0
@@ -336438,7 +336660,7 @@ GameObject:
   - component: {fileID: 1482477462}
   - component: {fileID: 1482477461}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336454,7 +336676,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071065, z: 0, w: 0.70710707}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 815723251}
@@ -339084,7 +339306,7 @@ Transform:
   m_GameObject: {fileID: 1494011842}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5224263, y: 0.46000782, z: -0.40572014, w: -0.59233}
-  m_LocalPosition: {x: 0.14122553, y: 0.44875997, z: -0.0365417}
+  m_LocalPosition: {x: 0.14122553, y: 0.35799998, z: -0.0365417}
   m_LocalScale: {x: 0.14501414, y: 0.14501414, z: 0.14501414}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -341865,7 +342087,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.3420201, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 5, y: 1.7, z: 41}
-  m_LocalScale: {x: 5, y: 1.1, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1709832861}
@@ -341896,6 +342118,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bcb8c85f67fbe7c4fb3a7d83c7f39722, type: 2}
+  - {fileID: 2100000, guid: aa3fe8f14ab402d4b9a07a84bf472bd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341938,7 +342161,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 1.1, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1502272778
 MeshFilter:
@@ -341947,7 +342170,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502272774}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: c1acc884a940a284fb5b8d5becff12f8, type: 2}
 --- !u!1 &1502376955
 GameObject:
   m_ObjectHideFlags: 0
@@ -344659,7 +344882,7 @@ GameObject:
   - component: {fileID: 1516769496}
   - component: {fileID: 1516769495}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344675,7 +344898,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.81915236, z: 0, w: -0.57357603}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 55595232}
@@ -347460,7 +347683,7 @@ GameObject:
   - component: {fileID: 1534495708}
   - component: {fileID: 1534495707}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347476,7 +347699,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.300706, z: 0, w: -0.95371693}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 826657454}
@@ -353140,7 +353363,7 @@ GameObject:
   - component: {fileID: 1560487234}
   - component: {fileID: 1560487233}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353156,7 +353379,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.02181469, z: 0, w: -0.99976206}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 448579301}
@@ -353979,7 +354202,7 @@ GameObject:
   - component: {fileID: 1565474032}
   - component: {fileID: 1565474031}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353995,7 +354218,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.53729945, z: 0, w: 0.8433916}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1544452619}
@@ -354380,7 +354603,7 @@ TextMesh:
   m_GameObject: {fileID: 1566040808}
   m_Text: 02  /  Lighthouse
   m_OffsetZ: 0
-  m_CharacterSize: 0.03
+  m_CharacterSize: 0.041
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
@@ -354391,7 +354614,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 646203244227990408a9c656b67b161a, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4282072340
+    rgba: 4281873183
 --- !u!23 &1566040811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -365163,7 +365386,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10, y: 0.53, z: 176.37001}
-  m_LocalScale: {x: 2.7, y: 0.28, z: 0.07}
+  m_LocalScale: {x: 2.7, y: 0.36, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102969645}
@@ -370394,7 +370617,7 @@ GameObject:
   - component: {fileID: 1637298490}
   - component: {fileID: 1637298489}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370410,7 +370633,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.40274632, z: 0, w: 0.91531163}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1957800308}
@@ -370773,8 +370996,8 @@ Transform:
   m_GameObject: {fileID: 1639447764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 1.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.1400881, z: 1.3999996}
+  m_LocalScale: {x: 1, y: 0.96187645, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 322391690}
@@ -370835,7 +371058,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639447764}
-  m_Mesh: {fileID: 4300000, guid: d662add263a21b34bba1451eb9bed4d7, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 1db470d7462dfab418fe818e3194a21f, type: 2}
 --- !u!1 &1639471331
 GameObject:
   m_ObjectHideFlags: 0
@@ -374310,7 +374533,7 @@ GameObject:
   - component: {fileID: 1654444254}
   - component: {fileID: 1654444253}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374326,7 +374549,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.0436211, z: 0, w: -0.9990482}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 800648163}
@@ -390754,8 +390977,8 @@ Transform:
   m_GameObject: {fileID: 1721276067}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.4226183, z: -0, w: 0.9063078}
-  m_LocalPosition: {x: -22.1, y: -0.100000024, z: 51.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.096786, y: -0.100000024, z: 51.802696}
+  m_LocalScale: {x: 0.5480769, y: 0.6447607, z: 0.55944055}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -390817,7 +391040,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1721276067}
-  m_Mesh: {fileID: 4300000, guid: ea50faeea0948e640a26f5cc3f05e3dc, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 1bf9596aef6e1074e8d4b8adcb480fbe, type: 2}
 --- !u!1 &1721493804
 GameObject:
   m_ObjectHideFlags: 0
@@ -397683,7 +397906,7 @@ GameObject:
   - component: {fileID: 1746014391}
   - component: {fileID: 1746014390}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397699,7 +397922,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.965926, z: 0, w: -0.2588186}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1761006571}
@@ -401409,6 +401632,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761416278}
   m_Mesh: {fileID: 10203, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1762365966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1762365967}
+  - component: {fileID: 1762365969}
+  - component: {fileID: 1762365968}
+  m_Layer: 0
+  m_Name: Jar of glass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1762365967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762365966}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.34202015, z: -0, w: 0.9396927}
+  m_LocalPosition: {x: 0.5500002, y: 0.46749997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2108711754}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1762365968
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762365966}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e2ff918fd51d86d42bd3c7ed97298619, type: 2}
+  - {fileID: 2100000, guid: 288207f0fa546414f83c18c745e223b0, type: 2}
+  - {fileID: 2100000, guid: 2479fcd7178a45d48b38d482bdede4b8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1762365969
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762365966}
+  m_Mesh: {fileID: 4300000, guid: 13de96a465711e0428b40185a8054e6f, type: 2}
 --- !u!1 &1762650934
 GameObject:
   m_ObjectHideFlags: 0
@@ -407994,7 +408309,7 @@ GameObject:
   - component: {fileID: 1795145240}
   - component: {fileID: 1795145239}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408010,7 +408325,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.8314698, z: 0, w: 0.55556995}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1406642651}
@@ -408298,7 +408613,7 @@ TextMesh:
   m_GameObject: {fileID: 1796457688}
   m_Text: 03  /  Coastal Sunset
   m_OffsetZ: 0
-  m_CharacterSize: 0.03
+  m_CharacterSize: 0.041
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
@@ -408309,7 +408624,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 646203244227990408a9c656b67b161a, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4282072340
+    rgba: 4281873183
 --- !u!23 &1796457691
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -417894,7 +418209,7 @@ GameObject:
   - component: {fileID: 1842056323}
   - component: {fileID: 1842056322}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417910,7 +418225,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.46174622, z: 0, w: 0.88701206}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1768079766}
@@ -419831,7 +420146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 0.53, z: 176.37001}
-  m_LocalScale: {x: 2.7, y: 0.28, z: 0.07}
+  m_LocalScale: {x: 2.7, y: 0.36, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102969645}
@@ -425950,7 +426265,7 @@ GameObject:
   - component: {fileID: 1886540200}
   - component: {fileID: 1886540199}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425966,7 +426281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.4809881, z: 0, w: 0.87672716}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2137444254}
@@ -428552,8 +428867,8 @@ Transform:
   m_GameObject: {fileID: 1894297569}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.33051273, z: -0, w: 0.9438016}
-  m_LocalPosition: {x: -14.6, y: 0.1, z: 158.2}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalPosition: {x: -14.6, y: 0.09999999, z: 158.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1744588731}
@@ -428583,9 +428898,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 551809695cda5d24295a489e3e95888b, type: 2}
-  - {fileID: 2100000, guid: e335062a8a8cb40468d49a39b78fb899, type: 2}
-  - {fileID: 2100000, guid: 537ed327881c74549a1fbd187b3a0362, type: 2}
+  - {fileID: 2100000, guid: 2b1e9823b3a3cfe41839a2f5c5e7824c, type: 2}
+  - {fileID: 2100000, guid: e7bf41cf3d97f0b4db8365fc68197b5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428616,7 +428930,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894297569}
-  m_Mesh: {fileID: 4300000, guid: 6bdbbebecc6a5bb4f91aa51d4e1af507, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 372d2fea88cd81e4d87d204b62fc9a27, type: 2}
 --- !u!1 &1894332688
 GameObject:
   m_ObjectHideFlags: 0
@@ -440134,7 +440448,7 @@ GameObject:
   - component: {fileID: 1941109659}
   - component: {fileID: 1941109658}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440150,7 +440464,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.5735753, z: 0, w: -0.81915283}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 755089583}
@@ -443947,7 +444261,7 @@ GameObject:
   - component: {fileID: 1961924417}
   - component: {fileID: 1961924416}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443963,7 +444277,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.2376846, z: 0, w: -0.97134244}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2055366793}
@@ -456117,7 +456431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2022732898
 Transform:
   m_ObjectHideFlags: 0
@@ -456127,7 +456441,7 @@ Transform:
   m_GameObject: {fileID: 2022732897}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5684505, y: 0.31869468, z: -0.25340915, w: -0.71489966}
-  m_LocalPosition: {x: -0.18108231, y: 0.46075994, z: 0.06617701}
+  m_LocalPosition: {x: -0.18108231, y: 1.0330801, z: 0.06617701}
   m_LocalScale: {x: 0.107545614, y: 0.107545614, z: 0.107545614}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -458940,7 +459254,7 @@ GameObject:
   - component: {fileID: 2033415510}
   - component: {fileID: 2033415509}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458956,7 +459270,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7933532, z: 0, w: 0.6087616}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1461706123}
@@ -460850,7 +461164,7 @@ GameObject:
   - component: {fileID: 2041126054}
   - component: {fileID: 2041126053}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460866,7 +461180,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.6259236, z: 0, w: -0.7798844}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1080915305}
@@ -468089,7 +468403,7 @@ GameObject:
   - component: {fileID: 2072454087}
   - component: {fileID: 2072454086}
   m_Layer: 0
-  m_Name: Metal can
+  m_Name: Metal can (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468105,7 +468419,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7518393, z: 0, w: 0.6593464}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 272777305}
@@ -469614,7 +469928,7 @@ Transform:
   m_GameObject: {fileID: 2079967610}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6430161, y: 0.17876476, z: -0.15794992, w: 0.7277536}
-  m_LocalPosition: {x: -0.009903589, y: 0.41275996, z: 0.06526681}
+  m_LocalPosition: {x: -0.009903589, y: 0.32199997, z: 0.06526681}
   m_LocalScale: {x: 0.14457831, y: 0.14457831, z: 0.14457831}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470457,7 +470771,7 @@ GameObject:
   - component: {fileID: 2087697510}
   - component: {fileID: 2087697509}
   m_Layer: 0
-  m_Name: Bottle cap
+  m_Name: Bottle cap (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470473,7 +470787,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9990483, z: 0, w: -0.043618143}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1925960032}
@@ -471515,7 +471829,7 @@ GameObject:
   - component: {fileID: 2093914773}
   - component: {fileID: 2093914772}
   m_Layer: 0
-  m_Name: Scrap metal
+  m_Name: Scrap metal (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471531,7 +471845,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9600506, z: 0, w: 0.27982652}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1574749251}
@@ -472629,6 +472943,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097170292}
   m_Mesh: {fileID: 4300000, guid: 870352e43356c1d41ba776e00c51cc79, type: 2}
+--- !u!1 &2097173596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2097173597}
+  - component: {fileID: 2097173599}
+  - component: {fileID: 2097173598}
+  m_Layer: 0
+  m_Name: Jar of glass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2097173597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097173596}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.34202015, z: -0, w: 0.9396927}
+  m_LocalPosition: {x: 0.5500002, y: 0.46749997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1478321954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &2097173598
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097173596}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e2ff918fd51d86d42bd3c7ed97298619, type: 2}
+  - {fileID: 2100000, guid: 288207f0fa546414f83c18c745e223b0, type: 2}
+  - {fileID: 2100000, guid: 2479fcd7178a45d48b38d482bdede4b8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2097173599
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097173596}
+  m_Mesh: {fileID: 4300000, guid: 13de96a465711e0428b40185a8054e6f, type: 2}
 --- !u!1 &2098722972
 GameObject:
   m_ObjectHideFlags: 0
@@ -472720,6 +473126,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098722972}
   m_Mesh: {fileID: 4300000, guid: f42f74158e31ce9489a47bdf849cdb34, type: 2}
+--- !u!1 &2099099595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099099596}
+  - component: {fileID: 2099099598}
+  - component: {fileID: 2099099597}
+  m_Layer: 0
+  m_Name: Jar of glass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099099596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099099595}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.70000005, y: 0.46749997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2108711754}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &2099099597
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099099595}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e2ff918fd51d86d42bd3c7ed97298619, type: 2}
+  - {fileID: 2100000, guid: 288207f0fa546414f83c18c745e223b0, type: 2}
+  - {fileID: 2100000, guid: 2479fcd7178a45d48b38d482bdede4b8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2099099598
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099099595}
+  m_Mesh: {fileID: 4300000, guid: 13de96a465711e0428b40185a8054e6f, type: 2}
 --- !u!1 &2099140128
 GameObject:
   m_ObjectHideFlags: 0
@@ -475216,6 +475714,99 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108685885}
   m_Mesh: {fileID: 4300000, guid: de588b249804a0e409d4c7b0c82b49ea, type: 2}
+--- !u!1 &2108711753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108711754}
+  - component: {fileID: 2108711756}
+  - component: {fileID: 2108711755}
+  m_Layer: 0
+  m_Name: gallery bench (round 29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4
+  m_IsActive: 1
+--- !u!4 &2108711754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108711753}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4, y: 0.119, z: 169.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2099099596}
+  - {fileID: 1762365967}
+  m_Father: {fileID: 716525740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &2108711755
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108711753}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 61d1921eab1ffc443be74a5e95ad15d3, type: 2}
+  - {fileID: 2100000, guid: 38efb8bd304064c4fa575951cb39c749, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2108711756
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108711753}
+  m_Mesh: {fileID: 4300000, guid: 2b892a6a95bec564da64fecaae128565, type: 2}
 --- !u!1 &2108801671
 GameObject:
   m_ObjectHideFlags: 0
@@ -479357,7 +479948,7 @@ GameObject:
   - component: {fileID: 2132417965}
   - component: {fileID: 2132417964}
   m_Layer: 0
-  m_Name: Plastic bottle
+  m_Name: Plastic bottle (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479373,7 +479964,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.93200785, z: 0, w: 0.36243805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1955160883}
@@ -481219,7 +481810,7 @@ GameObject:
   - component: {fileID: 2139947297}
   - component: {fileID: 2139947296}
   m_Layer: 0
-  m_Name: Driftwood
+  m_Name: Driftwood (r29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481235,7 +481826,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9238793, z: 0, w: -0.38268405}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259289111}
@@ -482934,7 +483525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2147276719
 Transform:
   m_ObjectHideFlags: 0
@@ -482944,7 +483535,7 @@ Transform:
   m_GameObject: {fileID: 2147276718}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6548656, y: 0.18989207, z: -0.17508776, w: 0.71023685}
-  m_LocalPosition: {x: 0.12096019, y: 0.40076, z: 0.009406297}
+  m_LocalPosition: {x: 0.12096019, y: 0.97308016, z: 0.009406297}
   m_LocalScale: {x: 0.109004825, y: 0.109004825, z: 0.109004825}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -483048,3 +483639,4 @@ SceneRoots:
   - {fileID: 219396206}
   - {fileID: 715122333}
   - {fileID: 197471584}
+  - {fileID: 716525740}
