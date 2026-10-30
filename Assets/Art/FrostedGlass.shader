@@ -57,6 +57,7 @@ Shader "Sea Glass/Frosted Glass"
                 float _Smoothness, _Grime, _Refraction;
                 float4 _MaskRect; float _Facets, _MaskOn;
             CBUFFER_END
+            float4 _SG_Basin;   // round 39: basin water centre (xyz) and radius (w), set by the cleaning station
 
             float Hash(float3 p) { p = frac(p * .3183099 + .1); p *= 17.0; return frac(p.x * p.y * p.z * (p.x + p.y + p.z)); }
             float Noise(float3 x)
@@ -224,6 +225,13 @@ Shader "Sea Glass/Frosted Glass"
                     float2 vn2 = viewN.xy;
                     half inner = pow(saturate(dot(vn2, normalize(float2(.45, -.6))) * 1.4), 2) * smoothstep(.12, .45, nv) * (1 - thinRim);
                     glass += hue * tint * inner * (sun.color * .45 + sky * .55 + .25) * .9;
+                    // Round 39 (review 35, all three: "a blob with one big highlight", "no bright edge, no sense of thickness"): a deeper,
+                    // saturated core where the light crosses the most glass, and a luminous band just inside the rim where the edge
+                    // gathers light, so the piece reads as a thick transmissive body with a lit edge (real glass and the glossy target).
+                    half coreK = smoothstep(.45, .95, nv);
+                    glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .45);
+                    half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
+                    glass += lerp(tint, half3(1, 1, 1), .35) * litRim * (sky * .5 + sun.color * .5 + .25) * .55;
                     clean = glass;
                 }
 
@@ -235,11 +243,11 @@ Shader "Sea Glass/Frosted Glass"
                 float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
-                half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .75), tint * lightOnFrost * 1.15, .55);
+                half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .9), tint * lightOnFrost * .95, .45);   // round 39: deeper colour under the frost
                 half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .62) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.22, .6, smoothstep(.15, .7, nv));   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
+                float crustCover = lerp(.2, .52, smoothstep(.15, .7, nv)) * (.65 + grain * .7);   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
@@ -255,7 +263,7 @@ Shader "Sea Glass/Frosted Glass"
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
                 // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
                 // solid, not speckled, with a faint sandy grain.
-                half3 sandStain = half3(.5, .4, .27) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
+                half3 sandStain = half3(.38, .28, .17) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
                 // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
                 // pebble against pale water or felt.
                 frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
@@ -265,9 +273,9 @@ Shader "Sea Glass/Frosted Glass"
                 float grimeStreaks = smoothstep(.6, .63, streakN) * (1 - smoothstep(.7, .73, streakN));
                 // Round 16 (review 14: round spots read as "chocolate chips"): silt gathers at the edges instead.
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
-                float film = smoothstep(.46, .6, Noise(q * 1.3 + 7.0) * .75 + grain * .25);   // round 27: patches, not a full coat   // round 23: a broad mottled film with sandy speckle, over most of the piece
+                float film = smoothstep(.36, .62, Noise(q * 1.3 + 7.0) * .5 + Noise(float3(q.x * 2.1 + q.z * 1.3, q.y * 2.4, q.z * 2.1 - q.x * 1.3) + 2.7) * .3 + grain * .2);   // round 39 (review 35: "a straight grime seam"): two rotated octaves, a broader soft-edged film   // round 27: patches, not a full coat   // round 23: a broad mottled film with sandy speckle, over most of the piece
                 float stainPatch = saturate(film * .9 + edgeSilt * .6);
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .8);   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .9);   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);
@@ -285,7 +293,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
-                half glint = smoothstep(.9975 - aaK, .9975 + aaK, nk) * .75 + pow(nk, 2600) * 1.1 + pow(nk, 160) * .07;   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
+                half glint = smoothstep(.9985 - aaK, .9985 + aaK, nk) * .7 + pow(nk, 3600) * .9 + pow(nk, 160) * .05;   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
                 // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
@@ -293,7 +301,13 @@ Shader "Sea Glass/Frosted Glass"
                 float3 k3 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.72, -.45, .4)));
                 half n2 = saturate(dot(n, normalize(k2 + v))), n3 = saturate(dot(n, normalize(k3 + v)));
                 half a2 = max(fwidth(n2) * 1.5, .0008), a3 = max(fwidth(n3) * 1.5, .0008);
-                half edgeG = (smoothstep(.994 - a2, .994 + a2, n2) + smoothstep(.994 - a3, .994 + a3, n3) * .8) * smoothstep(.35, .7, 1 - nv);
+                half edgeG = (smoothstep(.994 - a2, .994 + a2, n2) + smoothstep(.994 - a3, .994 + a3, n3) * .8) * smoothstep(.2, .55, 1 - nv);
+                // Round 39 (review 35: "the rim glints do not show from the held view"): two more small glints from lights in
+                // front of the viewer, so the worn dents on the face catch several small flashes whatever the angle.
+                float3 k4 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.4, .5, .77))), k5 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.15, -.35, .92)));
+                half n4 = saturate(dot(n, normalize(k4 + v))), n5 = saturate(dot(n, normalize(k5 + v)));
+                half a4 = max(fwidth(n4) * 1.5, .0008), a5 = max(fwidth(n5) * 1.5, .0008);
+                edgeG += smoothstep(.9975 - a4, .9975 + a4, n4) * .8 + smoothstep(.998 - a5, .998 + a5, n5) * .6;
                 c += edgeG * .95 * (1 - grime) * (1 - _Facets);
                 // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
                 // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
@@ -309,6 +323,12 @@ Shader "Sea Glass/Frosted Glass"
                 c += _EmissionColor.rgb;
                 c = lerp(c, half3(.02, .018, .022) + spec * .05, lead);   // linear: near-black came
                 c += half3(.42, .3, .18) * leadHi * (sky * .5 + sun.color * .5 + .2) * .22;   // round 20: a warm highlight on the came
+                // Round 39: a bright waterline where the piece crosses the basin surface, and the glass just under it a touch deeper.
+                float wlD = i.world.y - _SG_Basin.y;
+                half inBasin = step(.001, _SG_Basin.w) * step(length(i.world.xz - _SG_Basin.xz), _SG_Basin.w);
+                half wl = (1 - smoothstep(.0012, .0045, abs(wlD))) * inBasin * (1 - _Facets);
+                c = lerp(c, c * half3(.72, .9, .92), (1 - smoothstep(-.012, -.002, wlD)) * smoothstep(-.03, -.012, wlD) * inBasin * .5);
+                c = lerp(c, half3(.95, 1, 1), wl * .8);
                 c = MixFog(c, i.fog);
                 return half4(c, 1);
             }

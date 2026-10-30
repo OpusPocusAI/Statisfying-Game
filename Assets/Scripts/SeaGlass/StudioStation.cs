@@ -9,7 +9,7 @@ namespace SeaGlass
         public StationKind kind; public Transform workingGlass; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
         MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam;public bool Processing=>processing>0;
         public bool RevealingCleanGlass=>reveal>0;
-        float lastBrush=-9;Vector3 lastContact;static readonly int RippleId=Shader.PropertyToID("_SG_BrushRipple");
+        float lastBrush=-9;Vector3 lastContact;static readonly int RippleId=Shader.PropertyToID("_SG_BrushRipple"),BasinId=Shader.PropertyToID("_SG_Basin");
         // True while the glass is being brushed (by the mouse or by the verification run); drives the brush animation.
         public bool BrushingNow=>active&&Time.time-lastBrush<.15f;
         // Half-extents (world x, z) the brush stroke sweeps over and the height it rests at, so it covers the whole piece.
@@ -137,6 +137,8 @@ namespace SeaGlass
         {
             // Round 13: where the brush last touched and how long ago, for the ripple rings in the bowl water.
             if(kind==StationKind.Clean)Shader.SetGlobalVector(RippleId,new Vector4(lastContact.x,lastContact.z,Time.time-lastBrush,active?1:0));
+            // Round 39 (review 35: "no waterline on the piece"): the basin surface, so the glass draws a bright waterline where it crosses it.
+            if(kind==StationKind.Clean&&waterSurface){var wb=waterSurface.bounds;Shader.SetGlobalVector(BasinId,new Vector4(wb.center.x,wb.center.y,wb.center.z,Mathf.Max(wb.extents.x,wb.extents.z)));}
             if(!S||S.ControlsBlocked)return;
             if(processing>0){processing-=Time.deltaTime;if(Random.value<.1f)Feedback.Instance.Burst(transform.position+Vector3.up*1.1f,GameCatalog.Palette[0],5);}
             if(!active)return;
