@@ -1488,3 +1488,49 @@ All three reviewers viewed the references (36–43 screenshots each). This revie
 **Owner feedback the same day:** "the arm and hand look terrible ... made out of different shapes put together".
 
 **Round 35 (glove.py):** the hand, wrist, cuff and sleeve are fused into one voxel-remeshed, smoothed surface, coloured by region.
+
+### October 30 — round 35/36 and review 33 (three reviewers, averaged)
+
+Rounds 35 and 36 (glove.py, round36.py, menu pass 45):
+- **Round 35:** the hand and arm are one fused surface.
+- **Round 36:** the toy spade is one fused surface with a dished blade. The tap riser is twice as tall, so the handle stands above the rim. The working glass sits in the water, and the basin pebbles are gone.
+
+All three reviewers viewed the references (32–47 screenshots each).
+
+| Area | A | B | C | Average | Review 32 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.13 Effects | – | – | 3 | 3.0 (one reviewer; stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Nobody mentions paw prints, glass floating on the water or the hand being made of primitives any more. The glove and brush now "read well".
+- Tools rose to 3.3. One reviewer still calls the spade blade a flat "dustpan" or "shield" from the 02 angle.
+- Sand, sea glass and vegetation each lost one reviewer's point. This is reviewer spread: those assets did not change.
+
+**Still open (agreed by two or three reviewers):**
+- **Sea glass:** the shapes are plump, uniform almonds that read as "gummy sweets" or jelly beans, so they need flatter, asymmetric shapes with a chipped edge. The held piece in 06 shows a dark inner band or seam (all three).
+- **Basin water:** still a flat, milky mint disc with no depth tint or reflection, and the dirty-to-clean contrast is weak (all three). One reviewer says the tap's spout does not reach over the bowl.
+- **Truck:** box door and bed, and the sphere canopy fringe (all three).
+- **Vegetation:** ball-pile bushes, and dark rock caps glued onto the islands (all three).
+- **Rubbish:** cans read as capsules at 5 m, so scale them up 1.3–1.5× (all three).
+- **Sand:** a hard terrace step down to the wet band, flat foregrounds, faceted dunes in b4.
+- **Mosaic floor light:** hard-edged flat quads that read as paint (all three). The sleeve is a plain tube.
+
+**Bugs reported:**
+- A large hard shadow wedge across the beach in b4.
+- Stray cloud dots and smeared cloud tails.
+- The arm and tool shadow on the sand in 02.
+- The mosaic name plate is hidden by a plant (s1, s10).
+- There is no contact shadow under the basin.
