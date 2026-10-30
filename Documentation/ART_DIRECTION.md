@@ -1534,3 +1534,52 @@ All three reviewers viewed the references (32–47 screenshots each).
 - The arm and tool shadow on the sand in 02.
 - The mosaic name plate is hidden by a plant (s1, s10).
 - There is no contact shadow under the basin.
+
+### October 30 — round 37 and review 34 (three reviewers, averaged)
+
+Round 37 (round21.py, menu pass 46):
+- **Glass shape:** flat sea glass, about a quarter as thick as it is wide, with lopsided outlines, a worn straight edge and dented faces.
+- **Glass shader:** softer refraction, so the held piece no longer shows a seam, and darker silt.
+- **Basin water:** a deep teal middle, sun sparkles, brighter caustics and wobbly rings.
+
+All three reviewers viewed the references (43–46 screenshots each).
+
+| Area | A | B | C | Average | Review 33 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- The seam in the held piece is no longer mentioned.
+- The flatter glass did not move the score. The tray pieces still read as "almond / leaf lenses" or "gummy sweets", and the held piece as "a jelly blob with one big highlight".
+- Two reviewers now see a ragged lower edge on the held piece in 06. This is new; it is probably the dent noise at the thin rim, or the refraction blur.
+- The basin water is still called "milky mint", although one reviewer now asks for a "darker centre" that already exists. The changes show only weakly in the built frames.
+- Water, studio and tools each lost one reviewer's point with no change to those areas.
+
+**Still open (agreed by two or three reviewers):**
+- **Glass, still the top gap:**
+  - It needs several small edge glints instead of one big highlight, and transmission strong enough to see the felt through it.
+  - The coloured glow halo on the felt reads as "glow-sticks"; reduce it.
+  - The cloudy piece reads as soap or stone.
+- **Basin:**
+  - The water still reads milky.
+  - The foam reads as blue "clover" or "flower" sprites; it should be white soap.
+  - The tap's spout does not reach over the bowl.
+- **Truck:** disc fringe, box cab and bumper, floating mirrors.
+- **Vegetation:** ball-pile bushes, dark boulder caps on the islands.
+- **Shore:** a blocky, stamped foam band with a hard wet-sand edge (b6, b8); opaque shallows.
+- **First-person view:** a big blue tube of an arm in the cleaning frames, and an oversized spade shadow in 02.
+
+**Bugs reported:** dark hexagon patches on the island cliff (b8); the jar at the s11 table edge clips; mosaic plaques hidden; smeared cloud tails.
