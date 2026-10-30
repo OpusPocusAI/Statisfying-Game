@@ -98,10 +98,12 @@ Shader "Sea Glass/Painted Sky"
                 float cloudField = density - (1 - band) * 0.7 + 0.05;
                 // Round 23 (reviews: "stray dot clouds"): where the broad base octave is clear, push the field down so
                 // isolated specks from the fine octaves vanish; applied before the crisp edge, so outlines stay sharp.
-                cloudField -= (1 - smoothstep(.34, .46, Noise3(cp + float3(3.1, 7.4, 1.3)))) * .35;
+                cloudField -= (1 - smoothstep(.22, .52, Noise3(cp * .8 + float3(3.1, 7.4, 1.3)))) * .22;   // round 33: wider and softer, so it no longer carves narrow notches
                 // Round 5: crisp, graphic silhouettes (Firewatch) — the edge is about one pixel wide,
                 // instead of a fixed noise range that read as blurred, melting blobs.
-                float fw = max(fwidth(cloudField) * 1.2, 0.002);
+                // Round 33 (reviews: "a vertical seam through the long cloud"): fixed widths. The sky dome is a mesh, and
+                // screen derivatives jump across its triangle edges, which drew a crease through the clouds.
+                float fw = 0.006;
                 float shape = smoothstep(1 - _CloudCover - fw, 1 - _CloudCover + fw, cloudField);
                 // Self-shadowing: sample towards the sun and upwards; denser there means this side faces away.
                 float3 toSun = float3(normalize(sunDir.xz + 1e-4) * 0.16, 0.22);
@@ -111,7 +113,7 @@ Shader "Sea Glass/Painted Sky"
                 // lilac base and lilac edges, warm cream higher in the body, with a gentle bias to the sun side.
                 float depthIn = cloudField - (1 - _CloudCover);                   // 0 at the silhouette, growing inwards
                 float ramp = (h - 0.12) * 6.0 + saturate(depthIn * 4.0) * .45 + (density - towardSun) * 1.2;   // round 26: saturated, so a thin neck in a cloud no longer draws a dark crease (reviews: "seam")
-                float lfw = max(fwidth(ramp), 0.04);
+                float lfw = 0.05;
                 float lit = smoothstep(0.32 - lfw, 0.48 + lfw, ramp) * 0.85 + saturate(ramp) * 0.15;
                 half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
                 // Bright silver rim on cloud edges near the sun.

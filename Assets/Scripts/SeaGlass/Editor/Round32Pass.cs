@@ -81,15 +81,24 @@ namespace SeaGlass.Editor
             var pebble = ModelLibraryImporter.Load("pebble_cluster");
             var stone = Object.FindObjectsByType<MeshFilter>(FindObjectsSortMode.None).Where(f => f.sharedMesh == pebble).Select(f => f.GetComponent<MeshRenderer>().sharedMaterials).FirstOrDefault();
             if (!pebble || stone == null) return;
-            // Near the rim, clear of the working glass in the middle; just under the surface.
-            var spots = new[] { new Vector2(-.35f, .3f), new Vector2(.38f, -.3f), new Vector2(.42f, .25f) };
+            // Round 33 (reviews: "the pebbles float on the water surface"): seated on the enamel itself, found with a ray
+            // against a temporary collider made from the bowl mesh, away from the rim and the working glass.
+            var bowl = Object.FindObjectsByType<MeshFilter>(FindObjectsSortMode.None).FirstOrDefault(f => f.sharedMesh && f.sharedMesh.name == "enamel_bowl");
+            if (!bowl) return;
+            var probe = new GameObject("TEMP bowl probe"); probe.transform.SetPositionAndRotation(bowl.transform.position, bowl.transform.rotation); probe.transform.localScale = bowl.transform.lossyScale;
+            var mc = probe.AddComponent<MeshCollider>(); mc.sharedMesh = bowl.sharedMesh;
+            Physics.SyncTransforms();
+            var spots = new[] { new Vector2(-.24f, .22f), new Vector2(.26f, -.2f), new Vector2(.3f, .18f) };
             foreach (var s in spots)
             {
-                var p = new Vector3(wb.center.x + s.x * wb.size.x * .9f, wb.max.y - .07f, wb.center.z + s.y * wb.size.z * .9f);
-                var g = Place(root, "Pebbles on the bowl floor", pebble, stone, p, s.x * 200);
-                g.transform.localScale = Vector3.one * .55f;
+                var top = new Vector3(wb.center.x + s.x * wb.size.x, wb.max.y + .02f, wb.center.z + s.y * wb.size.z);
+                if (!mc.Raycast(new Ray(top, Vector3.down), out var hit, 1f)) continue;
+                var g = Place(root, "Pebbles on the bowl floor", pebble, stone, hit.point, s.x * 200);
+                g.transform.localScale = Vector3.one * .5f;
+                var b = g.GetComponent<Renderer>().bounds; g.transform.position += Vector3.up * (hit.point.y - b.min.y - .004f);
                 var r = g.GetComponent<MeshRenderer>(); r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
+            Object.DestroyImmediate(probe);
         }
     }
 }
