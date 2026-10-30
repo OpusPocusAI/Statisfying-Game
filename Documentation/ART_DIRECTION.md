@@ -1801,3 +1801,55 @@ The reviewers viewed 40–44 reference screenshots each.
 - Moiré on the roof underside (s4, s6, s9).
 - A blue sliver at the held piece's left tip (06).
 - A hanging cord into a plant that sits on a shelf (s7).
+
+### October 31 — round 42 and review 39 (three reviewers, averaged)
+
+Round 42 made three changes:
+- **Colour:** what shows through the glass takes the glass's own hue, and the rims are lit in that colour.
+- **Thickness:** the pieces are about 1.4× thicker.
+- **Heaps:** lower, at about two layers, and kept back from the labels.
+
+The reviewers viewed 37–43 reference screenshots each.
+
+| Area | A | B | C | Average | Review 38 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.13 Effects | – | 3 | – | 3.0 (one reviewer; stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Five areas meet the bar: lighting, water, sorting, mosaic and tools (4.0, unanimous). Studio, sand and cleaning are at 3.7.
+- Nobody calls the held glass grey or muddy any more ("glossy and saturated, matches the owner's target"). The covered "Amber" label is no longer named.
+- Sea glass has been at 3.0 for seven reviews.
+  - The words change, but the verdict "jelly / gummy" stays.
+  - The advice now reverses itself. In review 38 two reviewers asked for chunkier pieces. In review 39, after round 42 made them 1.4× thicker, two ask to flatten them again to about 1:3, and to cut the rim glow by half.
+  - Across reviews 9–39 the glass has gone back and forth between pancake, biscuit, lens, almond, dome and jelly. Each change answered the previous review.
+  - This suggests the blind-review score for 5.6 is not converging. The owner may need to choose a reference piece directly. (Recommendation; not acted on.)
+
+**Still open:**
+- **Glass:** rim glow too strong; no frosted micro-pitting under the gloss; a torn or ragged fin on the held piece's back-right edge (06, two reviewers).
+- **Vegetation:** sphere-clump bushes, flat flowers, box cacti.
+- **Rubbish:** specks at 5 m; flat buried hints.
+- **Truck:** box cab and bed, disc scallops, floating seat block.
+- **Mosaic floor light:** reads as opaque paint.
+- **Shore:** a repeating tread pattern in the foam.
+- **Cleaning:** no splashes.
+
+**Bugs reported:**
+- A torn edge on the 06 held piece.
+- Stray dot clouds (b1, t1, 03).
+- Hexagon pits on the b8 island.
+- Faceted brightness patches on the b4 dunes.
+- The 09 basin floats with no contact shadow.
+- Pieces still touch the bottom of the "Emerald" label (06, s10).
