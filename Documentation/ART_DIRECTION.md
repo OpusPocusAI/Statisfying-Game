@@ -1583,3 +1583,55 @@ All three reviewers viewed the references (43–46 screenshots each).
 - **First-person view:** a big blue tube of an arm in the cleaning frames, and an oversized spade shadow in 02.
 
 **Bugs reported:** dark hexagon patches on the island cliff (b8); the jar at the s11 table edge clips; mosaic plaques hidden; smeared cloud tails.
+
+### October 30 — round 38 and review 35 (three reviewers, averaged)
+
+Round 38 (menu pass 47):
+- **Clean glass:** clearer, with a smaller main glint plus two small rim glints. No shadow term on the backlit glow.
+- **Cloudy glass:** thinner frost.
+- **Glass meshes:** no fine noise at the thin rim, so the ragged held-piece edge is fixed.
+- **Foam:** dense white soap, drawn after the basin water so it is no longer tinted blue.
+- **Tap:** a longer swan neck, aimed at the basin centre.
+- **Tray glow:** the light pools under the tray glass are dimmed.
+
+The reviewers viewed 32–43 reference screenshots each.
+
+| Area | A | B | C | Average | Review 34 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.13 Effects | – | – | 3 | 3.0 (one reviewer; stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Five areas now meet the bar: lighting, water, sorting, mosaic and studio. That is the most in this run of reviews.
+- Studio (4.0, unanimous), tools (3.7) and sand (3.7) rose without changes to those areas.
+- Nobody mentions the ragged edge, the blue foam, the glow halos or the tap any more. The foam now reads as "white blossom / popcorn" sprites.
+
+**Still open (all three):**
+- **Sea glass:**
+  - The held piece is still "a blob with one big white highlight". The rim glints do not show from the 06 camera.
+  - The tray pieces still read as "almond / lens jelly beans".
+  - The cloudy piece reads as opaque soap or plaster.
+  - All three ask for a darker saturated core with a bright rim, several small glints, and frost as a translucent veil.
+- **Cleaning:** weak dirty-to-clean contrast. Grime should be darker and browner, against saturated clean glass. A straight grime seam shows in 04, and the piece shows no waterline.
+- **Truck:** disc fringe, box panels, a floating board behind the seat.
+- **Bushes:** sphere clumps. The dark boulder caps on the islands remain.
+- **Mosaic floor light:** opaque hard-edged decals.
+- **Rubbish:** tiny capsules.
+
+**Bugs reported:**
+- Hexagon blotches on the b8 island.
+- The b4 shadow wedge.
+- A straight seam in the sand beside the road (b7).
+- Smeared cloud tails and dot clouds.
