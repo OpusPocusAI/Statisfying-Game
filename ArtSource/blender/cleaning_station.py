@@ -56,7 +56,7 @@ sprayer = join(parts, "HandSprayer")
 shade_auto(sprayer, 45)
 export(sprayer, "hand_sprayer", ["body", "label", "head", "nozzle"])
 
-# ---------------------------------------------------------------- gooseneck tap
+# ---------------------------------------------------------------- gooseneck tap (superseded by round36.py: tall riser, fused)
 # Pivot: base centre on the tabletop. Spout reaches towards -Y (towards the player).
 reset()
 parts = []

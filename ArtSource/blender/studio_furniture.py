@@ -58,7 +58,7 @@ def workbench(length, name):
 workbench(3.0, "workbench_3m")
 workbench(6.0, "workbench_6m")
 
-# ---------------------------------------------------------------- toy beach spade
+# ---------------------------------------------------------------- toy beach spade (superseded by round36.py: fused, dished)
 # Unity local space of "ART • gathering tool": Y up the shaft, blade from ~0.08 to 0.32, grip down to -0.23.
 # Blender: Z = Unity Y, -Y = Unity -Z (towards the camera). Blade scoop faces the camera.
 reset()

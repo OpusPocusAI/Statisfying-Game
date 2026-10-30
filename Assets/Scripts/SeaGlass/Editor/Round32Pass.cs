@@ -76,6 +76,8 @@ namespace SeaGlass.Editor
 
         static void BasinFloor(Transform root)
         {
+            return;   // round 36: the pebbles read as "dark paw prints"; the bowl floor stays clean
+#pragma warning disable CS0162
             var water = GameObject.Find("Basin water"); if (!water) return;
             var wb = water.GetComponent<Renderer>().bounds;
             var pebble = ModelLibraryImporter.Load("pebble_cluster");

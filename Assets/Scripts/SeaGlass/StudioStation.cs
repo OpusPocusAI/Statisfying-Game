@@ -126,7 +126,9 @@ namespace SeaGlass
             {
                 // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank
                 // out of sight in the deeper bowl). The reveal lift and pose resets use this as home.
-                if(waterSurface){var p=workingGlass.position;workingGlass.position=new Vector3(p.x,waterSurface.bounds.center.y+glassRenderer.bounds.extents.y*.55f,p.z);glassHome=workingGlass.localPosition;}
+                // Round 36 (reviews: "the glass sits on top of the water, no waterline"): about 40% under, so the surface
+                // visibly cuts across the piece and tints its lower part.
+                if(waterSurface){var p=workingGlass.position;workingGlass.position=new Vector3(p.x,waterSurface.bounds.center.y+glassRenderer.bounds.extents.y*.2f,p.z);glassHome=workingGlass.localPosition;}
                 var wb=glassRenderer.bounds.extents;Reach=new Vector3(wb.x*.78f,wb.y*.85f,wb.z*.72f);
             }
         }
