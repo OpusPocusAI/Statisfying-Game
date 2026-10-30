@@ -1401,3 +1401,45 @@ Reviewer C could not view the references because the browser pane was hidden. Re
 - **Sand:** coin footprints, a repeated pebble cluster, a flat foreground.
 
 **Where things stand:** the glass shape has now been called too thin, too flat, too sharp and too round in successive reviews. That points to reviewer taste around a fixed target, not a missing feature.
+
+### October 30 — round 32 and review 31 (three reviewers, averaged)
+
+Round 32 changes (menu pass 43):
+- **Mosaic wall:** a trestle table with a panel in progress and a leaning stepladder in the gaps between the mosaics.
+- **Rugs:** thicker woven rugs with a rolled edge and fringe.
+- **Wash bowl:** pebbles on the bowl floor.
+- **Splashes:** larger, more frequent brush splashes.
+
+All three reviewers viewed the references (43–48 screenshots each).
+
+| Area | A | B | C | Average | Review 30 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 4 | 3.3 | 4.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.12 Tools | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.13 Effects | 3 | 4 | 4 | 3.7 (stills only) | 3.5 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:** one reviewer scored the glass 4 for the first time, and effects rose. The new trestle and ladder were not mentioned. The empty floor is now seen in s1, s8 and 09 instead, and reviewers also ask for a finer plank grain and a physical neglected state. Props fell back to 3.3 with no change to the props.
+
+**Consistent across the last eight reviews:** lighting, water, sorting and mosaic hold at 4.0; the truck holds at 3.7. The other areas move between 3.0 and 3.7 from review to review. The remaining complaints are now mostly the same list every time:
+- the cloud seam;
+- coin footprints and repeated pebbles;
+- a colourless floor light under the mosaics;
+- opaque basin water;
+- the sleeve tube;
+- a boxy truck cab.
+
+**Recorded bugs still open:**
+- A thin vertical seam in the long clouds (b2, b7, s4).
+- The basin pebbles read as floating on the surface.
+- The mosaic floor light at the ending is grey-white in the centre.
