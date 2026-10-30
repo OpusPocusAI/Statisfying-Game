@@ -1746,3 +1746,58 @@ The reviewers viewed 41–46 reference screenshots each.
 - A straight seam line on the b7 shoulder.
 - The s7 hanging pot looks self-lit.
 - The shovel's grip cap reads as a detached disc (02).
+
+### October 30 — round 41 and review 38 (three reviewers, averaged)
+
+Round 41 changes:
+- **Glass shape:** wedge-shaped pieces, thick along one side and tapering to a thin edge.
+- **Glass shader:** a clearer, near-sharp see-through on the held piece, a lighter core, and no crack lines in the crust.
+- **Trays:** heaps up to about three layers deep.
+- **Foam:** see-through bubbles with a bright rim.
+
+The reviewers viewed 40–44 reference screenshots each.
+
+| Area | A | B | C | Average | Review 37 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.13 Effects | 4 | – | – | 4.0 (one reviewer; stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- The foam now reads as "stylised ring bubbles", and nobody calls it popcorn any more.
+- Cleaning holds at 3.7. One reviewer now calls the cloudy piece "good: frosted, with colour under the grime".
+- Sea glass has been at 3.0 for six reviews.
+  - The tray pieces now read as "clam-shell domes / lentils / gel drops".
+  - All three agree on one concrete cause: the held clean piece is a "muddy grey-teal" with low saturation. The clearer see-through shows the brown bench through teal glass, and that mix is grey.
+  - Two of the three still ask for thicker pieces (2–3×).
+- **New bug from the round 41 heaps:** in s10 and 06 the Amber and Violet heaps rise in front of the label boards and hide part of "Amber".
+
+**Still open:**
+- **Glass:**
+  - Saturate the held piece. Tint what shows through toward the piece's own hue, and colour the rim with it.
+  - Chunkier pieces.
+  - Lower the heaps, below the labels.
+  - Pearl reads as milky plastic.
+- **Cleaning:** a hard turquoise contour band at the grime edge (one reviewer); drips and runoff; the basin has no contact shadow.
+- **Truck:** box body, disc fringe.
+- **Vegetation:** sphere bushes, black island caps, box cacti, plank-leaf pot plants.
+- **Rubbish:** tiny; the buried hints read as "lily pads / plates".
+- **Sea stacks:** read as "fluted stumps".
+- **Mosaic floor light:** reads as opaque decals.
+
+**Bugs reported:**
+- A straight seam line in the b7 sand.
+- Moiré on the roof underside (s4, s6, s9).
+- A blue sliver at the held piece's left tip (06).
+- A hanging cord into a plant that sits on a shelf (s7).
