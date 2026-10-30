@@ -1443,3 +1443,48 @@ All three reviewers viewed the references (43–48 screenshots each).
 - A thin vertical seam in the long clouds (b2, b7, s4).
 - The basin pebbles read as floating on the surface.
 - The mosaic floor light at the ending is grey-white in the centre.
+
+### October 30 — round 33/34 and review 32 (three reviewers, averaged)
+
+Rounds 33 and 34 (menu pass 44):
+- **Round 33 bug fixes:** cloud seam, seated basin pebbles, coloured mosaic floor light.
+- **Footprints:** soft foot-shaped dents.
+- **Pebbles:** five shape variants, about a third removed.
+- **Sleeve:** tapered cloth sleeve.
+- **Truck mirrors:** ivory.
+
+All three reviewers viewed the references (36–43 screenshots each). This review judged the frames from before the fused hand and arm (round 35, below).
+
+| Area | A | B | C | Average | Review 31 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.13 Effects | 4 | 4 | 4 | **4.0** (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Sand rose to 3.7. No reviewer mentions coin footprints any more, and none mentions the cloud seam.
+- Sea glass, studio and effects rose.
+- Five areas are at 4.0.
+
+**Still open:**
+- **Cleaning (all three):** the basin pebbles now read as "dark paw prints". The water is a flat mint disc, the tap is a bent pipe, and the grime edge is blobby.
+- **Tools:** a flat shovel blade.
+- **Truck:** a flat door, the sphere canopy fringe, a lumpy bonnet.
+- **Vegetation:** ball-pile bushes, repeated grass tufts, V-shaped sprigs that read as birds.
+- **Mosaic glass:** a stretched marble texture.
+- **Sky:** tiny stray cloud dots.
+
+**Owner feedback the same day:** "the arm and hand look terrible ... made out of different shapes put together".
+
+**Round 35 (glove.py):** the hand, wrist, cuff and sleeve are fused into one voxel-remeshed, smoothed surface, coloured by region.
