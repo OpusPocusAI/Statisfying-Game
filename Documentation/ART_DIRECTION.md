@@ -1277,3 +1277,48 @@ Frame time on a quiet machine: 11.1 ms. The 14–16 ms readings in round 27 came
   - unreadable mosaic plaques.
 
 **Where things stand:** five areas hold at 4.0. Sea glass has now sat at 3.0 for fourteen reviews (since review 13) through many material and shape changes. At this point, more glass tuning gives reviewers a new complaint each round rather than a higher score.
+
+### October 30 — round 29 and review 28 (three reviewers, averaged)
+
+Round 29 changes (menu pass 40):
+- **Truck:** crowned bonnet, rolled sills, tapered canopy posts, painted dashboard, and three pieces shown per loaded find.
+- **Props:** rounded two-tone cooler, routed wooden signs, bush base-to-crown gradient, rubbish at 1.5× size.
+- **Studio:** varied baskets, gallery benches with jars, cream mosaic plaques with larger text.
+
+| Area | A | B | C | Average | Review 27 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.4 Props/vegetation | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.13 Effects | 3 | 3 | – | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- Props rose to 3.7: the cooler, bench and signs now read as designed objects.
+- All three reviewers note the visibly filling truck bins and the rounded hood and fenders.
+- The plaques are legible for one reviewer; another still finds them small.
+
+**Still open, named by all three:**
+- **Truck:** the cab side, door and cargo bins are still plain boxes, and the road edge is straight with a dark lip.
+- **Studio:**
+  - one potted plant and one jar crate repeat about 15 times, and the round 29 swaps added more of them;
+  - the floor strip in front of the mosaic wall still reads as empty.
+- **Sea glass:**
+  - the held piece has a hard seam or ragged edge on the right;
+  - the tray pieces read as thin almond or leaf lenses;
+  - the cloudy piece reads as "soap" and sits on top of the water;
+  - no red piece appears.
+- **Cleaning:** the water is a milky disc the glass floats on, and there are no splashes or drips.
+- **Tools:** fell to 3.0 without any change. Reviewers flag the flat spade blade, a sleeve that fills a third of the frame, and the tool's shadow in 02.
+- **Sand:** flat foreground, coin-like footprints, purple pebble pairs.
+
+**Where things stand:** five areas hold at 4.0 and the rest sit at 3.0–3.7. Over the last six reviews the averages have moved by tenths, while the fixes each round answer the previous round's complaints. The remaining gap is breadth: almost every prop, surface and effect needs another pass of hand-modelling to reach the references.
