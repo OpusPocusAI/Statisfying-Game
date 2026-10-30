@@ -60,7 +60,7 @@ namespace SeaGlass.Editor
                     float best = float.MaxValue; Vector3 bestXZ = Vector3.zero; bool bestOn = false;
                     for (int tryN = 0; tryN < 8; tryN++)
                     {
-                        float ang = (float)rng.NextDouble() * Mathf.PI * 2, rad = (float)System.Math.Sqrt(rng.NextDouble()) * Mathf.Min(tb.size.x, tb.size.z) * .26f;
+                        float ang = (float)rng.NextDouble() * Mathf.PI * 2, rad = (float)System.Math.Sqrt(rng.NextDouble()) * Mathf.Min(tb.size.x, tb.size.z) * .19f;   // round 41: tighter heaps
                         var xz = h + new Vector3(Mathf.Cos(ang), 0, Mathf.Sin(ang)) * rad;
                         xz.x = Mathf.Clamp(xz.x, tb.min.x + tb.size.x * .16f, tb.max.x - tb.size.x * .16f);
                         xz.z = Mathf.Clamp(xz.z, tb.min.z + tb.size.z * .16f, tb.max.z - tb.size.z * .16f);
@@ -72,7 +72,7 @@ namespace SeaGlass.Editor
                             bool overlap = Mathf.Abs(qb.center.x - b.center.x) < (qb.extents.x + b.extents.x) * .7f && Mathf.Abs(qb.center.z - b.center.z) < (qb.extents.z + b.extents.z) * .7f;
                             if (overlap && qb.max.y - qb.size.y * .3f > rest0) { rest0 = qb.max.y - qb.size.y * .3f; on = true; }
                         }
-                        float cap = felt + b.size.y * 1.4f;
+                        float cap = felt + b.size.y * 2.6f;   // round 41 (review 37: the heaps "still read as one layer"): up to about three layers
                         float score = rest0 > cap ? 99 + rest0 : rest0 + (float)rng.NextDouble() * b.size.y * .5f;   // a little randomness so some do rest on others
                         if (score < best) { best = score; bestXZ = xz; bestOn = on && rest0 <= cap; }
                     }
@@ -84,7 +84,7 @@ namespace SeaGlass.Editor
                         bool overlap = Mathf.Abs(qb.center.x - bb.center.x) < (qb.extents.x + bb.extents.x) * .7f && Mathf.Abs(qb.center.z - bb.center.z) < (qb.extents.z + bb.extents.z) * .7f;
                         if (overlap && qb.max.y - qb.size.y * .3f > rest) { rest = qb.max.y - qb.size.y * .3f; onGlass = true; }
                     }
-                    rest = Mathf.Min(rest, felt + bb.size.y * 1.4f); onGlass = onGlass && bestOn;
+                    rest = Mathf.Min(rest, felt + bb.size.y * 2.6f); onGlass = onGlass && bestOn;
                     if (onGlass)
                     {
                         // Leaning on the piece below: tipped a little about a random level axis.

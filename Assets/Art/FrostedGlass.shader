@@ -204,14 +204,14 @@ Shader "Sea Glass/Frosted Glass"
                     // the tray edge behind read as a seam inside the glass. A soft five-tap blur keeps the colours of what
                     // lies behind but not its hard edges, as tumbled glass with a faint inner haze does.
                     float2 suv = screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2);
-                    float br = .006 + .006 * fresnel;   // round 38: a lighter blur, so the felt reads through the glass
+                    float br = .0018 + .003 * fresnel;   // round 41 (review 37: "nothing shows through the held piece"): nearly sharp, so the felt and bench read through it   // round 38: a lighter blur, so the felt reads through the glass
                     half3 seen = SampleSceneColor(suv) * .28 + (SampleSceneColor(suv + float2(br, br * .6)) + SampleSceneColor(suv + float2(-br, br * .6))
                                + SampleSceneColor(suv + float2(br * .6, -br)) + SampleSceneColor(suv + float2(-br * .6, -br))) * .18;
                     // Beer-Lambert absorption: the hue of the glass, normalised so it keeps its brightness.
                     half3 hue = tint / max(max(tint.r, tint.g), max(tint.b, .05));
                     // Round 26 (review 24: the held piece "an opaque gummy block"): half the absorption, so the
                     // tray rim and felt stay legible through a piece held at arm's length.
-                    half3 absorbed = seen * pow(saturate(lerp(1, hue, .5)), 1.5 * path) * 1.08;   // round 38 (review 34: "cannot see through it"): clearer   // a softened hue: pure aqua has almost no red and blacked the background out
+                    half3 absorbed = seen * pow(saturate(lerp(1, hue, .45)), 1.15 * path) * 1.1;   // round 41: clearer still   // round 38 (review 34: "cannot see through it"): clearer   // a softened hue: pure aqua has almost no red and blacked the background out
                     // A little scattered light inside, so the core glows its colour rather than going muddy.
                     half3 scatter = tint * (sky * .11 + sun.color * .07 * saturate(dot(n, l) * .5 + .5)) * path;
                     half3 glass = absorbed + scatter + glow * .6;
@@ -229,7 +229,7 @@ Shader "Sea Glass/Frosted Glass"
                     // saturated core where the light crosses the most glass, and a luminous band just inside the rim where the edge
                     // gathers light, so the piece reads as a thick transmissive body with a lit edge (real glass and the glossy target).
                     half coreK = smoothstep(.45, .95, nv);
-                    glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .45);
+                    glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .28);   // round 41: a lighter core, the background shows through it
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
                     glass += lerp(tint, half3(1, 1, 1), .35) * litRim * (sky * .5 + sun.color * .5 + .25) * .55;
                     clean = glass;
@@ -280,7 +280,7 @@ Shader "Sea Glass/Frosted Glass"
                 float stainPatch = saturate(film * .35 + .62 + edgeSilt * .3);
                 float crackN = Noise(q * 5.5 + 13.0);
                 float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
-                sandStain *= lerp(.82, 1.1, film) * (1 - cracks * .22);
+                sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 

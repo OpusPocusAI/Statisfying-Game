@@ -69,6 +69,11 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
             if d > lim:
                 x -= (d - lim) * math.cos(rot) * .92; z -= (d - lim) * math.sin(rot) * .92
         # Fine tumbled unevenness.
+        # Round 41 (review 37, all three: "puffy domes of the same thickness", "blister-pack bubbles"): a wedge. Each piece
+        # is thick along one side and tapers to a thin worn edge on the other, as a shard of bottle wall does.
+        wd = rot * 1.7 + 0.9
+        side = max(-1.0, min(1.0, (x * math.cos(wd) + z * math.sin(wd)) / .45))
+        ys *= 1.0 + .42 * side
         ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008 * (1 - rr ** 4)   # round 38: none at the thin rim, where it zigzagged the silhouette
         # Broad shallow dents (worn facets), strongest on the faces, none at the rim.
         ys += noise.noise(Vector((x, z, 1.7)) * 2.2 + s) * .022 * (1 - rr * rr) * (1 if yn > 0 else .6)

@@ -37,8 +37,9 @@ Shader "Sea Glass/Soft Feedback"
     half inside=1-smoothstep(.9,1,d);
     half rim=smoothstep(.62,.9,d)*inside;
     half hi=1-smoothstep(.0,.28,length(o/r-float2(-.35,.38)));
-    half ba=inside*(.78+rim*.18)+hi*inside*.2;   // round 38 (review 34: "blue clover sprites"): dense white soap, not translucent rings
-    half3 bc=lerp(half3(1,.995,.98),half3(.86,.86,.84),rim*.7)+hi*.15;
+    half ba=inside*(.2+rim*.75)+hi*inside*.55;   // round 41 (review 37: "opaque popcorn discs"): see-through bubbles, a bright rim and a highlight   // round 38 (review 34: "blue clover sprites"): dense white soap, not translucent rings
+    half3 film=half3(.86+.14*sin(d*9+o.x*20),.9+.1*sin(d*9+2.1),.92+.08*sin(d*9+4.2));   // a faint soap-film tint along the rim
+    half3 bc=lerp(half3(.97,.99,1),film,rim)+hi*.25;
     sc=lerp(sc,bc,step(sa,ba)); sa=max(sa,ba);
    }
    return half4(sc*i.color.rgb,i.color.a*sa);
