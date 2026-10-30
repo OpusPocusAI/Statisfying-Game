@@ -138,7 +138,7 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 13, at the wash bowl: the brush path alone decides what is clean. The first pass
                     // takes the sand crust off, the next one the frost; both edges are hard (PowerWash).
                     // Anything the brush missed fades only over the last quarter of the clean.
-                    float aa = max(fwidth(brushed) * 1.5, .08);   // round 27: softer (review 25: "dithered mask edge")   // round 21: soft brush-stroke edges (they read as hard blocks)
+                    float aa = max(fwidth(brushed) * 1.5, .05);   // round 40: a crisper cut through the crust   // round 27: softer (review 25: "dithered mask edge")   // round 21: soft brush-stroke edges (they read as hard blocks)
                     float rest = saturate(_Grime * 4);
                     dirt = (1 - smoothstep(.3 - aa, .3 + aa, brushed)) * rest;
                     grime = (1 - smoothstep(.68 - aa, .68 + aa, brushed)) * rest;
@@ -274,8 +274,14 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 16 (review 14: round spots read as "chocolate chips"): silt gathers at the edges instead.
                 float edgeSilt = smoothstep(.55, .25, nv) * smoothstep(.42, .58, Noise(q * 2.2 + 2.0));
                 float film = smoothstep(.36, .62, Noise(q * 1.3 + 7.0) * .5 + Noise(float3(q.x * 2.1 + q.z * 1.3, q.y * 2.4, q.z * 2.1 - q.x * 1.3) + 2.7) * .3 + grain * .2);   // round 39 (review 35: "a straight grime seam"): two rotated octaves, a broader soft-edged film   // round 27: patches, not a full coat   // round 23: a broad mottled film with sandy speckle, over most of the piece
-                float stainPatch = saturate(film * .9 + edgeSilt * .6);
-                frosted = lerp(frosted, sandStain, dirt * stainPatch * .9);   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
+                // Round 40 (review 36, all three: "grime should be an opaque brown crust each stroke cuts through, as in PowerWash"): the
+                // dried silt covers nearly the whole piece as a crust, mottled and lighter on its raised patches, broken by fine
+                // dark cracks; the frost only shows through in a few thin places.
+                float stainPatch = saturate(film * .35 + .62 + edgeSilt * .3);
+                float crackN = Noise(q * 5.5 + 13.0);
+                float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
+                sandStain *= lerp(.82, 1.1, film) * (1 - cracks * .22);
+                frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 half3 c = lerp(clean, frosted, grime);

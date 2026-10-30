@@ -13,8 +13,12 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(0, 1, 1.0, .74, .17, .06, .30), (3, .55, 1.0, .92, .16, .05, .0), (4, .6, 1.0, .7, .15, .07, .26),
-          (0, 1, 1.0, .56, .14, .04, .22), (5, .62, .88, .82, .21, .04, .0), (3, .58, 1.0, .62, .15, .06, .28)]
+shapes = [(4, .4, 1.0, .84, .16, .05, .22), (3, .42, 1.0, .95, .16, .05, .0), (0, 1, 1.0, .9, .15, .05, .42),
+          (5, .45, 1.0, .86, .14, .04, .2), (6, .5, .95, .9, .2, .04, .0), (3, .4, 1.0, .8, .15, .06, .26)]
+# Round 40 (review 36, all three: "nearly all one almond / lens silhouette"): the pieces lay flat, but most outlines
+# tapered to soft points at both ends and the low camera foreshortened them into lenses. Now blunt, broad pieces a
+# viewer tells apart at a glance: a squarish chip, a rounded triangle, a D-shaped half-disc, a pentagon chip, a chunky
+# hexagonal nugget and a triangle shard, most with one straight broken edge; widths close to lengths.
 # Round 37 (review 33, all three: "plump almonds", "gummy sweets", "jelly beans"): flat pieces of bottle wall about a
 # quarter as thick as they are wide (they were 45-60%), each outline lopsided, four of six with one worn, straighter
 # broken edge (a soft chord in the outline, still rounded in section), and broad shallow dents across both faces so
