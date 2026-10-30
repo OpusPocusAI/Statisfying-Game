@@ -1322,3 +1322,42 @@ Round 29 changes (menu pass 40):
 - **Sand:** flat foreground, coin-like footprints, purple pebble pairs.
 
 **Where things stand:** five areas hold at 4.0 and the rest sit at 3.0–3.7. Over the last six reviews the averages have moved by tenths, while the fixes each round answer the previous round's complaints. The remaining gap is breadth: almost every prop, surface and effect needs another pass of hand-modelling to reach the references.
+
+### October 30 — round 30 and review 29 (three reviewers, averaged)
+
+Round 30 changes (menu pass 41):
+- **Truck:** bulging doors and lipped, flared cargo tubs.
+- **Road:** 52 sand drifts over the road edges.
+- **Studio:** four plant models in rotation, and low linen baskets alternating with the wicker ones.
+
+| Area | A | B | C | Average | Review 28 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.4 Props/vegetation | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.11 Truck/road | 4 | 4 | 3 | 3.7 | 3.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.13 Effects | 4 | 3 | – | 3.5 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What landed:**
+- The truck rose to 3.7. Two reviewers scored it 4, noting "the road has sand drifts, cracks and a varied edge" and cargo bins that fill.
+- Nobody reports the repeated plant any more.
+
+**Still open:**
+- **Truck:** the front canopy posts pass through the bonnet, and the door still reads as a slab for one reviewer.
+- **Sea glass (all three):**
+  - the held piece's broad highlight smear and dented right edge;
+  - thin almond and arrow-shaped tray pieces;
+  - the cloudy piece reads as chalk or soap.
+- **Cleaning:** a straight grime boundary in 04, no splashes, and the tap is a bent tube.
+- **Studio:** bare floor in s8 and 07b, flat rugs, and hanging planters floating past the roof edge (s4).
+- **Sand:** repeated pebble decal, coin footprints, near-black boulders.
+- **Rubbish:** still too small to read.
