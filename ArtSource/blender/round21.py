@@ -13,8 +13,8 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(4, .4, 1.0, .84, .16, .05, .22), (3, .42, 1.0, .95, .16, .05, .0), (0, 1, 1.0, .9, .15, .05, .42),
-          (5, .45, 1.0, .86, .14, .04, .2), (6, .5, .95, .9, .2, .04, .0), (3, .4, 1.0, .8, .15, .06, .26)]
+shapes = [(4, .4, 1.0, .84, .23, .05, .22), (3, .42, 1.0, .95, .22, .05, .0), (0, 1, 1.0, .9, .21, .05, .42),
+          (5, .45, 1.0, .86, .2, .04, .2), (6, .5, .95, .9, .27, .04, .0), (3, .4, 1.0, .8, .21, .06, .26)]   # round 42 (review 38: "thin clam-shell domes"): about 1.4x thicker
 # Round 40 (review 36, all three: "nearly all one almond / lens silhouette"): the pieces lay flat, but most outlines
 # tapered to soft points at both ends and the low camera foreshortened them into lenses. Now blunt, broad pieces a
 # viewer tells apart at a glance: a squarish chip, a rounded triangle, a D-shaped half-disc, a pentagon chip, a chunky

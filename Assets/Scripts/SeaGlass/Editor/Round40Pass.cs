@@ -46,7 +46,7 @@ namespace SeaGlass.Editor
                 Vector3 axis = alongX ? Vector3.right : Vector3.forward;
                 float half = (alongX ? tb.size.x : tb.size.z) * .2f;
                 var heaps = new[] { new Vector3(tb.center.x, 0, tb.center.z) - axis * half + (alongX ? Vector3.forward : Vector3.right) * .03f,
-                                    new Vector3(tb.center.x, 0, tb.center.z) + axis * half - (alongX ? Vector3.forward : Vector3.right) * .04f };
+                                    new Vector3(tb.center.x, 0, tb.center.z) + axis * half * .55f - (alongX ? Vector3.forward : Vector3.right) * .04f };
                 var placed = new List<Renderer>();
                 for (int i = 0; i < pieces.Count; i++)
                 {
@@ -63,7 +63,7 @@ namespace SeaGlass.Editor
                         float ang = (float)rng.NextDouble() * Mathf.PI * 2, rad = (float)System.Math.Sqrt(rng.NextDouble()) * Mathf.Min(tb.size.x, tb.size.z) * .19f;   // round 41: tighter heaps
                         var xz = h + new Vector3(Mathf.Cos(ang), 0, Mathf.Sin(ang)) * rad;
                         xz.x = Mathf.Clamp(xz.x, tb.min.x + tb.size.x * .16f, tb.max.x - tb.size.x * .16f);
-                        xz.z = Mathf.Clamp(xz.z, tb.min.z + tb.size.z * .16f, tb.max.z - tb.size.z * .16f);
+                        xz.z = Mathf.Clamp(xz.z, tb.min.z + tb.size.z * .16f, tb.max.z - tb.size.z * .42f);   // round 42: clear of the label board at the back edge
                         t.position = new Vector3(xz.x, t.position.y, xz.z);
                         var b = r.bounds; float rest0 = felt; bool on = false;
                         foreach (var q in placed)
@@ -72,7 +72,7 @@ namespace SeaGlass.Editor
                             bool overlap = Mathf.Abs(qb.center.x - b.center.x) < (qb.extents.x + b.extents.x) * .7f && Mathf.Abs(qb.center.z - b.center.z) < (qb.extents.z + b.extents.z) * .7f;
                             if (overlap && qb.max.y - qb.size.y * .3f > rest0) { rest0 = qb.max.y - qb.size.y * .3f; on = true; }
                         }
-                        float cap = felt + b.size.y * 2.6f;   // round 41 (review 37: the heaps "still read as one layer"): up to about three layers
+                        float cap = felt + b.size.y * 1.9f;   // round 42 (review 38: "heaps rise in front of the labels"): about two layers   // round 41 (review 37: the heaps "still read as one layer"): up to about three layers
                         float score = rest0 > cap ? 99 + rest0 : rest0 + (float)rng.NextDouble() * b.size.y * .5f;   // a little randomness so some do rest on others
                         if (score < best) { best = score; bestXZ = xz; bestOn = on && rest0 <= cap; }
                     }
@@ -84,12 +84,12 @@ namespace SeaGlass.Editor
                         bool overlap = Mathf.Abs(qb.center.x - bb.center.x) < (qb.extents.x + bb.extents.x) * .7f && Mathf.Abs(qb.center.z - bb.center.z) < (qb.extents.z + bb.extents.z) * .7f;
                         if (overlap && qb.max.y - qb.size.y * .3f > rest) { rest = qb.max.y - qb.size.y * .3f; onGlass = true; }
                     }
-                    rest = Mathf.Min(rest, felt + bb.size.y * 2.6f); onGlass = onGlass && bestOn;
+                    rest = Mathf.Min(rest, felt + bb.size.y * 1.9f); onGlass = onGlass && bestOn;
                     if (onGlass)
                     {
                         // Leaning on the piece below: tipped a little about a random level axis.
                         var tiltAxis = Quaternion.AngleAxis((float)rng.NextDouble() * 360, Vector3.up) * Vector3.right;
-                        t.rotation = Quaternion.AngleAxis(8 + (float)rng.NextDouble() * 12, tiltAxis) * t.rotation;
+                        t.rotation = Quaternion.AngleAxis(5 + (float)rng.NextDouble() * 7, tiltAxis) * t.rotation;
                     }
                     t.position += Vector3.up * (rest - r.bounds.min.y);
                     EditorUtility.SetDirty(t); placed.Add(r); heaped++;

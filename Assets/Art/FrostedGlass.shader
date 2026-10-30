@@ -212,12 +212,16 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 26 (review 24: the held piece "an opaque gummy block"): half the absorption, so the
                     // tray rim and felt stay legible through a piece held at arm's length.
                     half3 absorbed = seen * pow(saturate(lerp(1, hue, .45)), 1.15 * path) * 1.1;   // round 41: clearer still   // round 38 (review 34: "cannot see through it"): clearer   // a softened hue: pure aqua has almost no red and blacked the background out
+                    // Round 42 (review 38, all three: "a muddy grey-teal"): the brown bench seen through teal glass mixed to grey.
+                    // What shows through keeps its light and shade but takes the glass hue, as coloured glass does.
+                    half seenL = dot(seen, half3(.3, .55, .15));
+                    absorbed = lerp(absorbed, seenL * hue * lerp(1.25, .95, path), .6);
                     // A little scattered light inside, so the core glows its colour rather than going muddy.
                     half3 scatter = tint * (sky * .11 + sun.color * .07 * saturate(dot(n, l) * .5 + .5)) * path;
                     half3 glass = absorbed + scatter + glow * .6;
                     // Thin edges: bright and pale, catching the light that skims through the taper.
                     half thinRim = smoothstep(.74, .95, 1 - nv);   // round 26: the true silhouette only (it covered most of a tilted piece)
-                    glass = lerp(glass, lerp(tint, half3(1, 1, 1), .55) * (sky * .45 + sun.color * .55 + .2), thinRim * .45);
+                    glass = lerp(glass, lerp(hue, half3(1, 1, 1), .3) * (sky * .45 + sun.color * .55 + .2), thinRim * .45);   // round 42: a rim in the glass colour
                     // Reflection of the room at grazing angles.
                     glass += sky * fresnel * .18;
                     // Round 26: light entering at the lit top gathers inside the far, lower edge as a bright
@@ -231,7 +235,7 @@ Shader "Sea Glass/Frosted Glass"
                     half coreK = smoothstep(.45, .95, nv);
                     glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .28);   // round 41: a lighter core, the background shows through it
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
-                    glass += lerp(tint, half3(1, 1, 1), .35) * litRim * (sky * .5 + sun.color * .5 + .25) * .55;
+                    glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .55;
                     clean = glass;
                 }
 
