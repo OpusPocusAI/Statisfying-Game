@@ -1915,3 +1915,61 @@ The reviewers viewed 36–39 reference screenshots each.
 - Roof moiré.
 - The b4 shadow wedge.
 - The hanging pot in s7 looks self-lit.
+
+### October 31 — round 44 and review 41 (three reviewers, averaged)
+
+Round 44 made these changes:
+- **Clean glass:** clarity and colour follow the wedge's real thickness.
+- **Cloudy glass:** the frosted hue shows between grime patches.
+- **Shore:** a foam reach that varies along the shore, crisp lace, and a wavy inland edge on the wet sand.
+
+The reviewers viewed 40–43 reference screenshots each.
+
+| Area | A | B | C | Average | Review 40 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | – | 3 | 3 | 3.0 (stills only) | – |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Six areas now meet the bar: lighting, water, sorting, mosaic, studio and tools. That is the most so far.
+- Water returned to 4.0, unanimously. The foam is "lacy" now, and nobody calls the wet-sand edge ruled.
+- Sea glass has been at 3.0 for nine reviews.
+  - The tray heaps read as glass ("glossy and translucent with lighter thin edges").
+  - All three still see the **held piece (06) as an opaque, even-thickness bar of soap**. The thickness-driven colour from round 44 does not read as transmission from the 06 camera.
+  - The cloudy piece's grime now reads as "brown rust paint". Two reviewers see pointed tips on its outline.
+  - Two reviewers see a stray blue line on the held piece's left rim.
+  - Cobalt throws too strong a purple pool.
+  - Pearl reads as white plastic.
+- Cleaning fell to 3.3. The causes named are the rust-looking grime, the clip-art bubble rings and the milky water.
+
+**Next for the glass:**
+- The held piece needs visible see-through: the felt or wood bent and clearly visible through the thin side. Colour alone is not enough.
+- Fix the blue rim line.
+- Grime should be grey-sand, not rust.
+- Round off the remaining tips on the cloudy piece's shape (the D-shape's chord corners).
+
+**Still open (all three):**
+- **Truck:** reads as boxes stuck together.
+- **Vegetation:** ball bushes; dark caps on the island tops.
+- **Sand:** large flat foreground areas; dark, flat-coloured shore boulders.
+- **Rubbish:** reads as pills at 5 m.
+- **Clouds:** smeared tails and dot clouds.
+- **Mosaic:** floor light reads as decals.
+
+**Bugs reported:**
+- A straight crease in the b7 sand.
+- Long straight white specular bars on the water (b3, b8).
+- The s7 hanging plant both hangs and stands on the shelf.
+- Blotchy shading on the truck hood.
