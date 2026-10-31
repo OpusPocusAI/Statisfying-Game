@@ -1862,3 +1862,56 @@ The reviewers viewed 37–43 reference screenshots each.
 - Faceted brightness patches on the b4 dunes.
 - The 09 basin floats with no contact shadow.
 - Pieces still touch the bottom of the "Emerald" label (06, s10).
+
+### October 31 — round 43 and review 40 (three reviewers, averaged)
+
+Round 43 set a fixed sea-glass form in 5.6, chosen at the owner's request: a worn shard of bottle wall. The glass was rebuilt to it:
+- **Shape:** flat faces and a blunt, rounded rim. Edge-on, the old profile ran to a knife edge, which explains the "almond / lens" reads. The pieces measure 29–39% at the thick edge.
+- **Shader:** half the rim glow, and micro-pitted glints.
+- **Trays:** fainter colour pools on the felt.
+
+The reviewers viewed 36–39 reference screenshots each.
+
+| Area | A | B | C | Average | Review 39 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.13 Effects | – | – | – | – (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- The fixed reference worked as intended for the review process. All three reviewers judged 5.6 against it, and nobody asked for a different thickness or finish.
+  - The tray heaps now read as "glossy coloured glass" ("emerald and amber best", "saturated and translucent").
+  - The criticism now converges on one gap. In the hero views, the held clean piece shows no wedge: it reads as "an even-thickness, near-opaque teal slab", with no clearer thin edge. The mesh is a wedge, but seen face-on the shader shows no difference with thickness.
+  - The cloudy piece hides its colour and reads as a "sandy biscuit / mud cake". All three want the hue showing 30–40% through the frost.
+- Water fell from 4.0 to 3.0 with no change to it. All three now name the tiled foam ribbon and the ruled edge between wet and dry sand.
+
+**Next for the glass (against the fixed form):**
+- Drive transmission and colour from the wedge's real thickness, so the thin edge goes pale and clear and the thick edge stays deep.
+- Lift the hue through the frost on cloudy glass, and keep brown grime only in patches.
+- Fix a notch or ledge on the held piece's right face (06, one reviewer).
+
+**Still open:**
+- **Shore:** foam band and wet-sand edge (all three).
+- **Truck:** an assembly of separate parts.
+- **Vegetation:** sphere bushes, black boulder caps on the islands.
+- **Studio:** primitive studio plants, flat rugs.
+- **Rubbish:** specks at 5 m.
+- **Mosaic:** floor light reads as decals.
+
+**Bugs reported:**
+- Stray dot clouds.
+- The "WASH & REVEAL" sign shows mirrored text through its back (s2).
+- Roof moiré.
+- The b4 shadow wedge.
+- The hanging pot in s7 looks self-lit.
