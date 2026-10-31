@@ -51,7 +51,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
             da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
             if abs(da) < math.pi / 2 - .05:
                 chord = (1 - cut) / math.cos(da)
-                kb = .12
+                kb = .26   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
                 h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                 orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
         x, z = p.x * sx * orr, p.z * sz * orr

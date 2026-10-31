@@ -167,7 +167,7 @@ namespace SeaGlass
                 }
                 if(tray)Sort(tray.color);
             }
-            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.13f+S.player.view.transform.right*.12f;
+            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.07f+S.player.view.transform.right*.12f;   // round 45 (review 41: the held piece "reads opaque"): held against the tray rim, felt and heaped glass, so what shows through it is visibly bent and tinted (it hung over the plain bench front)
         }
     }
 }

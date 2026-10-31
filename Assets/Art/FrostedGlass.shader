@@ -207,7 +207,7 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 37 (review 33, all three: "a dark inner band / seam" through the held piece): the bent image of
                     // the tray edge behind read as a seam inside the glass. A soft five-tap blur keeps the colours of what
                     // lies behind but not its hard edges, as tumbled glass with a faint inner haze does.
-                    float2 suv = screenUV + viewN.xy * _Refraction * (1.1 + fresnel * 2.2);
+                    float2 suv = screenUV + viewN.xy * _Refraction * (2.0 + fresnel * 2.6);   // round 45: a stronger bend, so the background visibly shifts through the glass
                     float br = .0018 + .003 * fresnel;   // round 41 (review 37: "nothing shows through the held piece"): nearly sharp, so the felt and bench read through it   // round 38: a lighter blur, so the felt reads through the glass
                     half3 seen = SampleSceneColor(suv) * .28 + (SampleSceneColor(suv + float2(br, br * .6)) + SampleSceneColor(suv + float2(-br, br * .6))
                                + SampleSceneColor(suv + float2(br * .6, -br)) + SampleSceneColor(suv + float2(-br * .6, -br))) * .18;
@@ -272,7 +272,7 @@ Shader "Sea Glass/Frosted Glass"
                 // the vivid clean glass), broad and soft rather than speckled; it washes off first.
                 // Round 13: broad, solid patches of dark dried sand over the white crust (PowerWash contrast);
                 // solid, not speckled, with a faint sandy grain.
-                half3 sandStain = half3(.38, .28, .17) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
+                half3 sandStain = half3(.44, .39, .31) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
                 // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
                 // pebble against pale water or felt.
                 frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
