@@ -198,7 +198,11 @@ Shader "Sea Glass/Frosted Glass"
                 if (_Facets < .5)
                 {
                     // Path length through the piece: long through the domed middle, short at the tapered edge.
-                    half path = lerp(.25, 1.0, smoothstep(.2, .92, nv)) * lerp(.75, 1.15, thickT);
+                    // Round 44 (review 40, all three: "an even-thickness slab", against the 5.6 fixed form): the light path follows the
+                    // wedge itself. The top surface sits higher where the piece is thicker, so its height above the mid-plane is
+                    // the local thickness: deep colour along the thick edge, pale and clear toward the thin one.
+                    half thickN = saturate((abs(i.local.z) - .03) / .14);
+                    half path = lerp(.18, 1.25, thickN) * lerp(.75, 1.0, smoothstep(.2, .92, nv));
                     // A gentler bend, so what lies behind stays legible (an edge, the felt, the bench).
                     // Round 37 (review 33, all three: "a dark inner band / seam" through the held piece): the bent image of
                     // the tray edge behind read as a seam inside the glass. A soft five-tap blur keeps the colours of what
@@ -215,7 +219,7 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 42 (review 38, all three: "a muddy grey-teal"): the brown bench seen through teal glass mixed to grey.
                     // What shows through keeps its light and shade but takes the glass hue, as coloured glass does.
                     half seenL = dot(seen, half3(.3, .55, .15));
-                    absorbed = lerp(absorbed, seenL * hue * lerp(1.25, .95, path), .6);
+                    absorbed = lerp(absorbed, seenL * hue * lerp(1.25, .95, path), lerp(.5, .75, thickN));   // round 44: the thin edge shows what lies behind, lightly tinted (barely tinted read as grey-brown)
                     // A little scattered light inside, so the core glows its colour rather than going muddy.
                     half3 scatter = tint * (sky * .11 + sun.color * .07 * saturate(dot(n, l) * .5 + .5)) * path;
                     half3 glass = absorbed + scatter + glow * .6;
@@ -233,7 +237,8 @@ Shader "Sea Glass/Frosted Glass"
                     // saturated core where the light crosses the most glass, and a luminous band just inside the rim where the edge
                     // gathers light, so the piece reads as a thick transmissive body with a lit edge (real glass and the glossy target).
                     half coreK = smoothstep(.45, .95, nv);
-                    glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .28);   // round 41: a lighter core, the background shows through it
+                    glass = lerp(glass, glass * (hue * .55 + .25) * .9, thickN * .32);   // round 44: deeper where the glass is thick (was view-based)
+                    glass = lerp(glass, (seen * .5 + dot(seen, half3(.3, .55, .15)) * .5) * lerp(half3(1, 1, 1), hue, .55) * 1.12, (1 - thickN) * .25);   // and clearer at the thin edge
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
                     glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28;   // round 43: half the rim glow
                     clean = glass;
@@ -248,7 +253,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .9), tint * lightOnFrost * .95, .45);   // round 39: deeper colour under the frost
-                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .45, .62) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
+                half3 crustColour = lerp(_Frost.rgb, tint * .8 + _Frost.rgb * .35, .78) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
                 float crustCover = lerp(.2, .52, smoothstep(.15, .7, nv)) * (.65 + grain * .7);   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
@@ -281,7 +286,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 40 (review 36, all three: "grime should be an opaque brown crust each stroke cuts through, as in PowerWash"): the
                 // dried silt covers nearly the whole piece as a crust, mottled and lighter on its raised patches, broken by fine
                 // dark cracks; the frost only shows through in a few thin places.
-                float stainPatch = saturate(film * .35 + .62 + edgeSilt * .3);
+                float stainPatch = saturate(film * .75 + .18 + edgeSilt * .35);   // round 44 (review 40, all three: "a sandy biscuit, no colour"): grime in patches, the frosted hue between them
                 float crackN = Noise(q * 5.5 + 13.0);
                 float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
