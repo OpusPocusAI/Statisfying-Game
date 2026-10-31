@@ -1973,3 +1973,57 @@ The reviewers viewed 40–43 reference screenshots each.
 - Long straight white specular bars on the water (b3, b8).
 - The s7 hanging plant both hangs and stands on the shelf.
 - Blotchy shading on the truck hood.
+
+### October 31 — round 45 and review 42 (three reviewers, averaged)
+
+Round 45 made four changes:
+- **Held piece:** held against the tray rim and felt, so what lies behind shows bent through it.
+- **Refraction:** a stronger bend.
+- **Grime:** sandy grey.
+- **Glass outline:** rounder corners where the broken edge meets the outline.
+
+The reviewers viewed 43–46 reference screenshots each.
+
+| Area | A | B | C | Average | Review 41 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 3 | 4 | – | 3.5 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- Sea glass has been at 3.0 for ten reviews.
+  - The tray heaps keep reading as glass.
+  - The held piece is now read as "jelly / soap" with "a murky dark smear / dark streak inside". The bent tray rim seen through the piece is read as a flaw, not as transparency.
+  - Nobody mentions rust-coloured grime any more. The cloudy piece now reads as a "felt / sponge pad".
+- Studio and tools fell back, each by one reviewer's point, with no change to either. Water and lighting hold at 4.0.
+
+**Assessment:** over reviews 33–42, ten consecutive rounds of glass work have held 5.6 at 3.0.
+- The work covered shape, thickness, colour, see-through, staging and a fixed reference.
+- The tray glass now reads as glass. The single held piece at about a third of the screen is where every reviewer stops.
+- Further shader passes are unlikely to move this area.
+- The broad areas still at 3.0 (sand, vegetation, rubbish, truck), which every reviewer flags the same way, are now the better use of rounds.
+
+**Still open (all three):**
+- **Sand:** flat foregrounds, a faceted wet/dry edge.
+- **Vegetation:** ball bushes, boulder caps on the islands, repeated rows of palms.
+- **Rubbish:** pills at 5 m; buried glass shows as a flat "lid".
+- **Truck:** boxes and a disc fringe.
+- **Studio:** empty floor, flat rugs, a swirly floor grain.
+- **Cleaning:** milky water, weak dirty-to-clean value contrast.
+
+**Bugs reported:**
+- Dark half-buried boulders on the b8 island.
+- Roof-trim moiré.
+- A board floats behind the truck cab.
+- The s7 pot looks unlit.
