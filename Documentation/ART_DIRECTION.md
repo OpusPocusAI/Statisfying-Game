@@ -185,6 +185,15 @@ Scoring: rate each area 1–5 against its bar after each pass. 1 = placeholder, 
 
 **Fixed target (owner's decision, October 29):** clean glass is **glossy**. It has a sharp white glint, small flashing facets, and clear, saturated colour. A satin, softly frosted finish was rendered side by side with it and rejected. The piece at the wash bowl stays at its current size (about a third of the bowl's width), so the brush strokes stay readable. Reviews judge clean glass against this target. "Too glossy" or "too large" is not a gap; how well the glossy glass reads as glass is.
 
+**Fixed form (October 31, chosen by Claude at the owner's request):** over reviews 9–39, blind reviews pulled the shape in opposite directions. It went pancake, then biscuit, lens, almond, dome and jelly, and "thicker" and "flatter" were asked for in consecutive reviews. The owner asked for one reference to be picked and held. Each piece is a **worn shard of bottle wall**:
+- **Outline:** blunt, broad and irregular, with one or two straight broken edges and rounded corners. Length is 1 to 1.4 times the width. No pointed tips.
+- **Thickness:** a wedge. About 30% of the width at the thick edge, tapering to about 12% at the thin edge. Both faces are gently domed, like the curve of a bottle wall, and never pillow-shaped.
+- **Surface:** the glossy target above, with faint micro-pitting, so the glint breaks into a few small flashes rather than one smear.
+- **Colour:** the saturated hue of the glass, deeper where thick and lighter and clearer at the thin edge. What shows through takes the glass hue. The rim catches a thin line of light in the glass colour, not a glow.
+- **Trays:** low heaps up to about two layers, with only a faint colour pool on the felt.
+
+Reviews judge form and finish against this reference. Asking for a different thickness or a satin finish is not a gap. How well a piece meets this description is.
+
 **References:** `03-sea-glass`. **Never:** flat slabs, uniform opaque colour, glass that looks like plastic.
 
 ### 5.7 Cleaning station (Oct 24: 1 → 2 → 4/5 after side-by-side round 2)

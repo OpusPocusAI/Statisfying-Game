@@ -40,7 +40,7 @@ namespace SeaGlass.Editor
                 foreach (var m in pools.GetComponentsInChildren<Renderer>().Select(r => r.sharedMaterial).Where(m => m && m.HasProperty("_Strength")).Distinct())
                 {
                     var c = m.GetColor("_Colour"); float lum = c.r * .3f + c.g * .55f + c.b * .15f;
-                    m.SetFloat("_Strength", Mathf.Lerp(.17f, .1f, Mathf.InverseLerp(.3f, .85f, lum)));
+                    m.SetFloat("_Strength", Mathf.Lerp(.1f, .06f, Mathf.InverseLerp(.3f, .85f, lum)));   // round 43: a faint colour pool (5.6 fixed form)
                     EditorUtility.SetDirty(m);
                 }
 

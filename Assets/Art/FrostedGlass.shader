@@ -221,7 +221,7 @@ Shader "Sea Glass/Frosted Glass"
                     half3 glass = absorbed + scatter + glow * .6;
                     // Thin edges: bright and pale, catching the light that skims through the taper.
                     half thinRim = smoothstep(.74, .95, 1 - nv);   // round 26: the true silhouette only (it covered most of a tilted piece)
-                    glass = lerp(glass, lerp(hue, half3(1, 1, 1), .3) * (sky * .45 + sun.color * .55 + .2), thinRim * .45);   // round 42: a rim in the glass colour
+                    glass = lerp(glass, lerp(hue, half3(1, 1, 1), .3) * (sky * .45 + sun.color * .55 + .2), thinRim * .3);   // round 42: a rim in the glass colour; round 43: a thin line, not a glow (5.6 fixed form)
                     // Reflection of the room at grazing angles.
                     glass += sky * fresnel * .18;
                     // Round 26: light entering at the lit top gathers inside the far, lower edge as a bright
@@ -235,7 +235,7 @@ Shader "Sea Glass/Frosted Glass"
                     half coreK = smoothstep(.45, .95, nv);
                     glass = lerp(glass, glass * (hue * .55 + .25) * .9, coreK * .28);   // round 41: a lighter core, the background shows through it
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
-                    glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .55;
+                    glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28;   // round 43: half the rim glow
                     clean = glass;
                 }
 
@@ -291,15 +291,18 @@ Shader "Sea Glass/Frosted Glass"
                 half3 c = lerp(clean, frosted, grime);
 
                 // Crisp highlights only on clean, polished glass.
+                // Round 43 (5.6 fixed form): faint micro-pitting on the glossy skin, so each glint breaks into a few small flashes.
+                float3 pit = float3(Noise(i.local * 70.0), Noise(i.local * 70.0 + 5.3), Noise(i.local * 70.0 + 11.7)) - .5;
+                float3 ng = normalize(n + pit * .09 * (1 - _Facets));
                 float3 h = normalize(l + v);
-                half spec = pow(saturate(dot(n, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
+                half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
                 half window = 0;   // round 12: a sky band drew a bullseye ring on domed pebbles; specular only
                 c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
                 // Round 13: a studio key light from over the viewer's shoulder, so every clean piece shows one
                 // crisp white glint and a soft sheen wherever it is seen from, plus tiny facets that flash.
                 float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.45, .55, .7)));
-                half nk = saturate(dot(n, normalize(keyL + v)));
+                half nk = saturate(dot(ng, normalize(keyL + v)));
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
@@ -309,13 +312,13 @@ Shader "Sea Glass/Frosted Glass"
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
                 float3 k2 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.78, -.2, .35)));
                 float3 k3 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.72, -.45, .4)));
-                half n2 = saturate(dot(n, normalize(k2 + v))), n3 = saturate(dot(n, normalize(k3 + v)));
+                half n2 = saturate(dot(ng, normalize(k2 + v))), n3 = saturate(dot(ng, normalize(k3 + v)));
                 half a2 = max(fwidth(n2) * 1.5, .0008), a3 = max(fwidth(n3) * 1.5, .0008);
                 half edgeG = (smoothstep(.994 - a2, .994 + a2, n2) + smoothstep(.994 - a3, .994 + a3, n3) * .8) * smoothstep(.2, .55, 1 - nv);
                 // Round 39 (review 35: "the rim glints do not show from the held view"): two more small glints from lights in
                 // front of the viewer, so the worn dents on the face catch several small flashes whatever the angle.
                 float3 k4 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.4, .5, .77))), k5 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.15, -.35, .92)));
-                half n4 = saturate(dot(n, normalize(k4 + v))), n5 = saturate(dot(n, normalize(k5 + v)));
+                half n4 = saturate(dot(ng, normalize(k4 + v))), n5 = saturate(dot(ng, normalize(k5 + v)));
                 half a4 = max(fwidth(n4) * 1.5, .0008), a5 = max(fwidth(n5) * 1.5, .0008);
                 edgeG += smoothstep(.9975 - a4, .9975 + a4, n4) * .8 + smoothstep(.998 - a5, .998 + a5, n5) * .6;
                 c += edgeG * .95 * (1 - grime) * (1 - _Facets);

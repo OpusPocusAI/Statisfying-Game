@@ -13,8 +13,8 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(4, .4, 1.0, .84, .23, .05, .22), (3, .42, 1.0, .95, .22, .05, .0), (0, 1, 1.0, .9, .21, .05, .42),
-          (5, .45, 1.0, .86, .2, .04, .2), (6, .5, .95, .9, .27, .04, .0), (3, .4, 1.0, .8, .21, .06, .26)]   # round 42 (review 38: "thin clam-shell domes"): about 1.4x thicker
+shapes = [(4, .4, 1.0, .84, .16, .035, .22), (3, .62, 1.0, .95, .15, .033, .0), (0, 1, 1.0, .9, .17, .05, .42),
+          (5, .45, 1.0, .86, .15, .03, .2), (6, .5, .95, .9, .17, .03, .0), (3, .6, 1.0, .8, .15, .04, .26)]   # round 43: rounder triangle corners (5.6: no pointed tips)   # round 43: the fixed form in ART_DIRECTION 5.6 (about 30% of the width at the thick edge, 12% at the thin edge)
 # Round 40 (review 36, all three: "nearly all one almond / lens silhouette"): the pieces lay flat, but most outlines
 # tapered to soft points at both ends and the low camera foreshortened them into lenses. Now blunt, broad pieces a
 # viewer tells apart at a glance: a squarish chip, a rounded triangle, a D-shaped half-disc, a pentagon chip, a chunky
@@ -60,8 +60,11 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # Round 27 (review 25: "a sand biscuit", "uniform-thickness slab with a hard cut edge"): a lens, not a bent
         # plate. Both faces bulge outwards and the piece thins towards a rolled rim, so the middle is about twice
         # as thick as the edge; no straight broken edge.
-        ys = math.copysign(abs(yn) ** .7, yn) * .5 * th * (1 - (.2 if th > .33 else .32) * rr * rr)   # the nugget keeps its bulk
-        dome = max(curve, .1) * .85 * (1 - rr * rr)
+        # Round 43 (5.6 fixed form): a blunt, rounded rim with real thickness. Seen edge-on, the old profile (power .7, a
+        # strong taper) ran to a knife edge, which is the "almond / lens" every review saw. Power .38 keeps the faces flat
+        # and rounds the rim over; a gentle taper leaves the thin side about 12% of the width.
+        ys = math.copysign(abs(yn) ** .38, yn) * .5 * th * (1 - .12 * rr * rr)
+        dome = max(curve, .1) * .5 * (1 - rr * rr)   # round 43: a gentler bottle-wall curve
         ys += dome * (1 if yn > 0 else -.6)
         if False and cut > 0:
             d = x * math.cos(rot) + z * math.sin(rot)
