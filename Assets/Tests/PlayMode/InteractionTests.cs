@@ -215,7 +215,9 @@ namespace SeaGlass.Tests
             foreach(var socket in Object.FindObjectsByType<MosaicSocket>(FindObjectsSortMode.None).OrderBy(s=>s.glassId))
             {
                 session.progress.Item(socket.glassId).stage=ItemStage.Sorted;
-                session.player.Teleport(new Vector3(socket.transform.position.x,.3f,173.2f),Quaternion.identity);
+                // Round 46: start on the studio floor (y .09), not 21 cm above it. The aim was set before the player fell that gap,
+                // and on a slow frame the drop moved the aim onto the socket below (glass-14 selected glass-13).
+                session.player.Teleport(new Vector3(socket.transform.position.x,.09f,173.2f),Quaternion.identity);
                 Aim(socket.transform.position);yield return null;
                 Assert.AreSame(socket,session.player.focus,"Aiming at "+socket.glassId+" must not select a neighbouring outline or the backing.");
                 yield return KeyPress(Key.E);Assert.AreEqual(ItemStage.Placed,session.progress.Item(socket.glassId).stage);
