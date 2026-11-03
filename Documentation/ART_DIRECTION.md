@@ -2075,3 +2075,51 @@ Reviewers A and B viewed 40–41 reference screenshots. Reviewer C's browser pan
 - A square-cornered shadow wedge on the beach (b4).
 - A flat teal disc on the sand (b2).
 - The studio's open side meets the road with no threshold (s4, s9).
+
+### November 4 — round 47 and review 44 (three reviewers, averaged)
+
+Round 47 (PainterlyForward.hlsl, menu pass 51):
+- **Sand:** a cool bias in the sand albedo so the lit result lands at cream under the golden sun; the wet shoulder a darker damp cream.
+- **Ripples:** two scales that turn and fade from patch to patch, plus a broad tonal drift.
+- **Boulders:** the cliff-style base darkening nearly off, a raised base value and a sun-bleached top cap.
+
+All three reviewers viewed the references (40–44 screenshots each).
+
+| Area | A | B | C | Average | Review 43 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.13 Effects | 3 | – | 4 | 3.5 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Seven areas meet the bar:** lighting, water, cleaning, sorting, mosaic, studio and truck. The most so far.
+- **Cleaning 4.0, unanimous** for the first time (the basin, tap, brush, foam and the brush-following reveal all pass; the water is still "milky").
+- **Sand 3.7.** Two reviewers now call the beach good (b4 "the best beach frame"). The remaining notes: the inland dunes behind the road read "near-white, like snowdrifts" (one reviewer; the cool bias overshoots where the sun is weaker), and the b1 foreground ripples still read as a fan of parallel stripes.
+- **Boulders:** no reviewer calls the shore boulders black any more. The "near-black lumps" every reviewer names are now the trees on the island tops.
+- Sea glass holds at 3.3, with a second reviewer giving it a 4 ("form matches the fixed target"). The held piece's lower half reads as a dark reflection band.
+
+**Next:**
+- Island-top trees: a lit-top gradient and the haze fade (all three).
+- Inland dunes: warm the dune sand slightly so it does not read as snow.
+- Held piece: cap the dark reflection on the lower half.
+- Basin water: milky, no reflection (all three).
+- Foam band: constant width with a hard inner edge (two).
+- Studio: no window-light shapes on the floor; the neglected state is only a colour grade.
+- Rubbish: capsules at 5 m (two).
+
+**Bugs reported:**
+- A sun disc at about 50° while shadows are long and low (02, b5, b8).
+- Warm bloom patches on the studio ceiling (s1, s3).
+- "Seaweed" squiggles read as scribbles (b4, b6).
+- The stray dot cloud (b1, t1, 03).
