@@ -119,12 +119,23 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         albedo = lerp(albedo, albedo * half3(1.04, 1.01, 0.9), saturate(big * 4.0) * _GroundPatches * 2.4);
         // Round 10: wind ripples in the near field (fade out by ~25 m), lit crest and cooler trough, so the
         // sand at the player's feet has detail without speckling the distance.
+        // Round 47 (review 43, two reviewers: "one parallel ripple pattern at one scale across the whole beach"): the
+        // ripples run in a direction that turns from patch to patch, at two scales, and fade out in patches, as wind
+        // ripples do between smoother sweeps. A broad cool/warm drift (40-60 m) sits under the 10-15 m patches.
         float2 wq = input.positionWS.xz;
+        float turn = (SG_ValueNoise(wq * 0.045 + 17.0) - 0.5) * 1.6;
+        float2 rdir = float2(cos(0.38 + turn), sin(0.38 + turn));
         float warp = SG_ValueNoise(wq * 0.35) * 5.0 + SG_ValueNoise(wq * 1.3) * 1.2;
-        float rip = sin(dot(wq, float2(0.93, 0.37)) * 7.5 + warp);
+        float rip = sin(dot(wq, rdir) * 7.5 + warp);
+        float rip2 = sin(dot(wq, float2(-rdir.y, rdir.x) * 0.3 + rdir) * 16.0 + warp * 0.6);
+        float ripMask = smoothstep(0.42, 0.8, SG_ValueNoise(wq * 0.09 + 5.0)) * 0.85 + 0.15;   // real gaps between rippled sweeps
         float near = 1.0 - smoothstep(6.0, 25.0, distance(input.positionWS, _WorldSpaceCameraPos));
-        albedo *= 1.0 + rip * 0.06 * near * (_GroundPatches / 0.4);
-        albedo = lerp(albedo, albedo * half3(0.93, 0.95, 1.04), saturate(-rip) * 0.35 * near * (_GroundPatches / 0.4));
+        float ripK = near * ripMask * (_GroundPatches / 0.4);
+        albedo *= 1.0 + (rip * 0.045 + rip2 * 0.022) * ripK;
+        albedo = lerp(albedo, albedo * half3(0.93, 0.95, 1.04), saturate(-rip) * 0.26 * ripK);
+        float drift = SG_ValueNoise(wq * 0.022 + 31.0) - 0.5;
+        albedo *= 1.0 + drift * 0.14 * (_GroundPatches / 0.4);
+        albedo = lerp(albedo, albedo * half3(0.95, 0.97, 1.03), saturate(-drift * 3.0) * 0.5 * (_GroundPatches / 0.4));
     }
 
     // Round 27 (review 25: island grass read as "blocky pixel camo"): grass or moss painted per pixel on faces
