@@ -2027,3 +2027,51 @@ The reviewers viewed 43–46 reference screenshots each.
 - Roof-trim moiré.
 - A board floats behind the truck cab.
 - The s7 pot looks unlit.
+
+### November 3 — round 46 and review 43 (three reviewers, averaged)
+
+Round 46 (round46.py, menu pass 50):
+- **Truck:** the bodywork as one fused surface (lower body, cab sides with doors, crowned bonnet, flared wheel arches, rounded bumpers), the 16 separate pieces hidden; one continuous scalloped valance instead of discs.
+- **Bushes:** one fused leafy canopy with leaves along the outline, lighter base colours and a sunlit top painted per pixel.
+- **Test:** the mosaic-socket test starts the player on the floor instead of 21 cm above it (a timing fault, not a scene fault).
+
+Reviewers A and B viewed 40–41 reference screenshots. Reviewer C's browser pane would not render and scored from memory of the reference games, so C's comparisons are weaker.
+
+| Area | A | B | C | Average | Review 42 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.13 Effects | – | – | 3 | 3.0 (one reviewer; stills only) | 3.5 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Truck 4.0, unanimous.** It had been 3 from every reviewer in every review since review 19. "Fused rounded body, fenders, scalloped valance, grille, mirrors, stake sides." Remaining notes: flat disc hubcaps, no badge or wear, an empty cab interior.
+- **Sea glass 3.3**, with its first 4 (reviewer A: "broad blunt shards with straight broken edges, deeper colour where thick"). B and C still call the tray pieces "puffy ovals / gumdrops" and the held piece "a dark slab / rubber eraser".
+- Six areas meet the bar: lighting, water, sorting, mosaic, studio and truck.
+- The fused bushes are no longer called "piles of balls". The vegetation score stays at 3 for other reasons: the near-black canopies on the island tops, identical palms, single-tone grass tufts, and the repeated inland bush.
+
+**Still open:**
+- **Sand (two reviewers):** too saturated an apricot-yellow against the cream target, and one parallel ripple pattern at one scale across the whole beach.
+- **Rocks:** shore boulders render near-black with no lit top.
+- **Vegetation:** black island canopies, repeated palms and tufts.
+- **Water:** the wash-basin water is still milky, with no surface highlight.
+- **Held glass:** a double outline along one edge, a smeared highlight, and a long outline (about 1.8:1).
+- **Mosaic:** the floor light is a single hard yellow wedge.
+- **Studio:** no window-light shapes on the floor; the open road side reads as a pavilion.
+
+**Bugs reported:**
+- Brush bristles clip through the glass (05).
+- A double rim on the held piece (06).
+- A square-cornered shadow wedge on the beach (b4).
+- A flat teal disc on the sand (b2).
+- The studio's open side meets the road with no threshold (s4, s9).
