@@ -2123,3 +2123,61 @@ All three reviewers viewed the references (40–44 screenshots each).
 - Warm bloom patches on the studio ceiling (s1, s3).
 - "Seaweed" squiggles read as scribbles (b4, b6).
 - The stray dot cloud (b1, t1, 03).
+
+### November 4 — round 48 and review 45 (three reviewers, averaged)
+
+Round 48 (round25.py, menu pass 52):
+- **Island trees:** the canopies lifted from near-black to a mid blue-green with a sunlit yellow-green top painted per pixel, and the crowns re-exported as larger overlapping domes.
+- **Dunes:** the beach and dune sand kept cream with only a faint warm cap on upward faces (a stronger cap sent the beach back to apricot); the dry dune sand a touch warmer so it no longer reads as snow.
+- **Ripples:** the direction swing from patch to patch widened.
+
+Reviewers viewed 35–43 reference screenshots each; one reviewer's browser pane kept being hidden by the other two and saw the references at store-highlight size. The nine standalone frames (02–09) were judged alongside the 22 review views.
+
+| Area | A | B | C | Average | Review 44 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.5 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Eight areas meet the bar, the most so far:** lighting, water, sand, sorting, mosaic, studio, truck and tools.
+- **Sand 4.0 from all three** for the first time in an averaged review ("sculpted stacks, dune shapes, ripples, footprints pass"; b4 and b9 named as good frames). Nobody calls the dunes snow or the beach apricot any more. What is left is the b1 and b7 foregrounds: one cream value over the lower half of the frame under a repeated diagonal ripple stripe, with no damp patches or tide lines.
+- **Sea glass 3.7**, its best since review 32, with two 4s: "broad blunt shard, saturated aqua, light passes through; reads as glass" (06) and the tray shards "glossy, varied, with faint felt colour pools". The cloudy piece (04) passes for all three (frosted grime with the aqua showing beneath, a straight broken edge). All three name the same remaining gap: the held piece's glint is one long smear, not the few small flashes the fixed form asks for. The dissenting reviewer sees the clean piece as "a glossy gel lozenge" with no visible wedge or broken edge, and the tray pieces as repeated flat ovals in a single layer.
+- **Tools 4.0 unanimous** (the bevelled spade, cuffed glove and bristled brush). The forearm is still "a plain navy tube" (two).
+- **Cleaning 3.7** (one 3): the basin, tap and brush pass and the dirty-to-clean contrast is called PowerWash-like, but the water is "milky soap film" with no depth or bowl floor (all three), and the suds in 05 are ring-outline sprites (all three).
+- **Vegetation 3.0 unanimous.** The round 48 canopies are no longer "near-black", but every reviewer now calls them stacked discs, green lumps or lump clusters sitting on the rock; the palms are flat frond fans, the bushes flat green puddles, and one grass tuft repeats everywhere. Lifting the colour exposed the form.
+- **Clouds** are named by all three for the first time: flat cut-outs with one uniform purple underside, against Tchia's lit, lobed cumulus. Lighting still passes on the gradient, sun disc and purple shadows.
+- Rubbish back to 3.0 and effects to 3.0 with no change to them (reviewer spread).
+
+**Next:**
+- Island canopies, palms, bushes and grass: layered foliage with a lit top and shadowed volume, base-to-tip gradient on grass, more than one tuft (all three).
+- Clouds: lit tops and shaded undersides instead of flat shapes (all three).
+- Held glass: break the single smeared glint into a few small flashes with micro-pitting (all three); show the wedge taper and a broken edge on the held piece (one).
+- Basin water: milky and opaque, no bowl floor (all three; open since review 19). Suds: ring outlines, no volume (all three).
+- Foreground sand in b1/b7: damp patches, tide lines and shell scatter (all three).
+- Rubbish: small, flat-coloured and unworn, pebble-like at 5 m (all three).
+- Shallows: sand should show through the water (two). Window-light shapes on the studio floor (two).
+
+**Bugs reported:**
+- The round bush in b5 casts a spiky palm-frond shadow that does not match its silhouette (two).
+- The truck's far-side mirror floats beside the cab, its stalk too thin to read (t2; two).
+- A flat brown rectangle beside the studio sits on the sand with no edge or contact (b4; two).
+- The aqua tray's glow spills past the tray edge onto the table, and a stray teal square sits on the sorting-table apron (s10, 07).
+- A green ring (the sieve) clips through the basin rim; the basin has no contact shadow (s11, 04).
+- A dark crease runs across the held clean piece (06, 07); its rim is a crisp white outline in 04.
+- The EQUIPMENT sign floats unattached beside the pillar (s1, s4).
+- A black faceted lump at the right edge of 02; pale flat discs on the sand in b2; a grey lump behind the bench in b9; dark squiggles on the sand in b6.
+- A repeated horizontal line tile along the wet-sand strip (b3) and radial stripe banding in the foreground shallows (b8).
+- The b1 near boulder shows a hard horizontal light band like a seam; the sea meets the sand at far left of b1 with no foam or wet band.
+- The mosaic floor light in 08 is one arrow-shaped patch pointing at the camera.
