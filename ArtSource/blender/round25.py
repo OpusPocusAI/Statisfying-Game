@@ -124,20 +124,46 @@ for k in range(3):
         assign(bo, "cliff"); shade_auto(bo, 30)
         parts.append(bo)
     # Tree groves on the hill and a few on the ledges.
+    # Round 49 (review 45, all three: the round 48 domes read as "stacked green discs / lumps sitting on the rock"): each
+    # grove is one fused canopy mass. Overlapping crowns of different heights are voxel-merged, smoothed, then crinkled
+    # into rounded lobes, so the grove has a lobed, broken silhouette with lit lobe tops over shaded hollows instead of a
+    # row of equal domes. The mass is sunk into the hill so it grows out of the ground.
     for g in range(random.randint(3, 4)):
         ga = random.uniform(0, math.tau); gr = random.uniform(.05, .42) * R
-        for t in range(random.randint(4, 7)):
-            a = ga + random.uniform(-.5, .5); r = gr + random.uniform(-.06, .06)
-            x, y = math.cos(a) * r + random.uniform(-.03, .03), math.sin(a) * r * D
-            rad = random.uniform(.04, .065) * 1.1   # round 48: slightly larger canopies that overlap within a grove, so each grove reads as one mass
+        crowns = []
+        n = random.randint(5, 8)
+        for t in range(n):
+            a = ga + random.uniform(-.55, .55); r = gr + random.uniform(-.07, .07)
+            x, y = math.cos(a) * r + random.uniform(-.035, .035), math.sin(a) * r * D
+            rad = random.uniform(.048, .078)
+            tall = random.uniform(.8, 1.2)                  # broad crowns (tall ones showed mostly shaded wall from the beach, and read dark)
             bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1)
             tr = bpy.context.active_object
             ts = Vector((g * 3.1 + t, t * 1.3, g))
             for v in tr.data.vertices:
-                p = v.co.copy(); d = 1 + noise.noise(p * 2 + ts) * .25
-                v.co = Vector((p.x * rad * d, p.y * rad * d, max(p.z, -.45) * rad * 1.1 * d))   # round 48: domed crowns, a little taller than wide
-            tr.location = (x, y, surface(x, y) + rad * .15); bpy.ops.object.transform_apply(location=True)
-            assign(tr, "trees"); shade_auto(tr, 60)
-            parts.append(tr)
+                p = v.co.copy(); d = 1 + noise.noise(p * 2 + ts) * .2
+                v.co = Vector((p.x * rad * d, p.y * rad * d, p.z * rad * tall * d))
+            tr.location = (x, y, surface(x, y) + rad * tall * .5)    # rooted half-way into the hill
+            bpy.ops.object.transform_apply(location=True)
+            crowns.append(tr)
+        gv = join(crowns, "Grove")
+        bpy.context.view_layer.objects.active = gv; gv.select_set(True)
+        rm = gv.modifiers.new("fuse", "REMESH"); rm.mode = "VOXEL"; rm.voxel_size = .008
+        bpy.ops.object.modifier_apply(modifier="fuse")
+        sm = gv.modifiers.new("soften", "CORRECTIVE_SMOOTH"); sm.factor, sm.iterations = .7, 14
+        bpy.ops.object.modifier_apply(modifier="soften")
+        gv.data.update()
+        gs = Vector((g * 7 + k * 3, g * 2, k))
+        for v in gv.data.vertices:
+            p = v.co
+            up = max(0.0, v.normal.z)
+            amt = noise.noise(p * 24 + gs) * .003 * (.35 + .65 * up)   # a faint swell only: at 100-170 m a crinkled crust just scatters the normals and reads dark
+            v.co = p + v.normal * amt
+        sm = gv.modifiers.new("soften2", "CORRECTIVE_SMOOTH"); sm.factor, sm.iterations = .3, 2
+        bpy.ops.object.modifier_apply(modifier="soften2")
+        dm = gv.modifiers.new("reduce", "DECIMATE"); dm.ratio = .3
+        bpy.ops.object.modifier_apply(modifier="reduce")
+        assign(gv, "trees"); shade_auto(gv, 89)   # fully smooth normals, so the lobes shade as rounded masses
+        parts.append(gv)
     isl = join(parts, "FarIsle")
     export(isl, "far_isle_%d" % k, ["cliff", "cap", "trees"])
