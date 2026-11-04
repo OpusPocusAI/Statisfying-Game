@@ -2181,3 +2181,55 @@ Reviewers viewed 35–43 reference screenshots each; one reviewer's browser pane
 - A repeated horizontal line tile along the wet-sand strip (b3) and radial stripe banding in the foreground shallows (b8).
 - The b1 near boulder shows a hard horizontal light band like a seam; the sea meets the sand at far left of b1 with no foam or wet band.
 - The mosaic floor light in 08 is one arrow-shaped patch pointing at the camera.
+
+### November 5 — round 49 and review 46 (three reviewers, averaged)
+
+Round 49 (round25.py, menu pass 53):
+- **Island groves:** each grove one voxel-fused canopy mass of broad overlapping crowns with smooth shading, rooted half-way into the hill, instead of 4-7 equal domes (review 45: "stacked green discs", "lumps sitting on the rock"). Six attempts: a crinkled crust and tall crowns both went dark at 100-170 m (noisy normals and side-facing surfaces fall under the purple shadow tint), so the crowns are broad and smooth, measured against the round 48 domes for the same olive value.
+- **Island trees material:** lighter base, the sunlit cap from a normal.y of .1, more rim light.
+
+Reviewers viewed 32-40 reference screenshots each. The shared browser pane kept hiding behind the other reviewers' tabs again, and one reviewer could not open a tab of its own (tab cap) and viewed the store screenshots full-size in the spare tab instead.
+
+| Area | A | B | C | Average | Review 45 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Vegetation did not move (3.0, unanimous).** The fused groves are no longer called discs, but all three now call them "fused knobs", "green lobes pasted on purple mounds" and "lump clusters with a hard light/dark split", and two say what they want instead: layered canopies with distinct pine or palm silhouettes, as on Tchia's islands. A single blob mass per grove is the wrong model at this distance; the groves need to read as individual trees in tiers.
+- Six areas meet the bar (lighting, water, sorting, mosaic, studio, tools). Sand and the truck each lost one reviewer's point with no change to them: the sand reviewer sees b1/b2 as "one cream tone with a single repeated ripple pattern", the truck reviewer sees t2 as "assembled parts: thin posts, rails, flat windscreen".
+- Sea glass holds at 3.7 with two 4s: 04 passes for all three; 06 reads as glass for two ("glossy wedge with straight broken edge and glint"), as "glossy candy" for one. All three again name the dark crease across the held piece and its single soft glint.
+- Cleaning holds at 3.7: the basin, tap and brush pass; the water is "milky opaque" (two) with a caustic web that reads as a cracked texture (two); suds are ring-outline sprites (all three).
+- Clouds named by all three again as soft flat blobs with no lit volume.
+
+**Next:**
+- Island trees: replace the blob groves with tiers of individual tree silhouettes (umbrella pines or palms at island scale, like the beach's coastal pines) so each grove reads as layered foliage (all three).
+- Grass and palms on the beach: spike tufts and five-frond fans with no base-to-tip variation; the roadside bush repeats (all three).
+- Clouds: lit tops and shaded volume (all three).
+- Basin water: milky, with a cracked caustic web; suds without body (all three).
+- Held glass: the dark crease and the single soft glint (all three).
+- Foreground sand in b1/b2: one tone with a uniform ripple; shallows opaque (two).
+- Rubbish: tiny, flat, unworn (all three). Window-light shapes on the studio floor (all three).
+
+**Bugs reported:**
+- The far-side truck mirror floats beside the cab (t2; two).
+- The b5 bush casts a jagged frond shadow that does not match its silhouette.
+- Dark squiggle strands on the sand (b6; two); a green ring and a white ring lie flat on the sand as discs (b2; two).
+- A dark crease across the held clean piece (06; all three).
+- The completion floor light in 08 is a near-white arrow-shaped fan (all three).
+- The s5 camera clips into the foreground jars (capture fault; two reviews running).
+- A hanging plant at s5's top right floats outside the roof line; the brush handle is cut by the basin rim (s11).
+- Pale floating facets on the left island slope (b8); a hard horizontal colour split on the far-left island canopy (b1); a stray dark shape at the left island's waterline (b5).
+- The emerald tray's colour pool is far stronger than the other trays (s10, 07).
