@@ -123,7 +123,7 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         // ripples run in a direction that turns from patch to patch, at two scales, and fade out in patches, as wind
         // ripples do between smoother sweeps. A broad cool/warm drift (40-60 m) sits under the 10-15 m patches.
         float2 wq = input.positionWS.xz;
-        float turn = (SG_ValueNoise(wq * 0.045 + 17.0) - 0.5) * 1.6;
+        float turn = (SG_ValueNoise(wq * 0.045 + 17.0) - 0.5) * 2.6;   // round 48: a wider swing, so no one stripe direction dominates a view
         float2 rdir = float2(cos(0.38 + turn), sin(0.38 + turn));
         float warp = SG_ValueNoise(wq * 0.35) * 5.0 + SG_ValueNoise(wq * 1.3) * 1.2;
         float rip = sin(dot(wq, rdir) * 7.5 + warp);

@@ -129,13 +129,13 @@ for k in range(3):
         for t in range(random.randint(4, 7)):
             a = ga + random.uniform(-.5, .5); r = gr + random.uniform(-.06, .06)
             x, y = math.cos(a) * r + random.uniform(-.03, .03), math.sin(a) * r * D
-            rad = random.uniform(.035, .06)
+            rad = random.uniform(.04, .065) * 1.1   # round 48: slightly larger canopies that overlap within a grove, so each grove reads as one mass
             bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1)
             tr = bpy.context.active_object
             ts = Vector((g * 3.1 + t, t * 1.3, g))
             for v in tr.data.vertices:
                 p = v.co.copy(); d = 1 + noise.noise(p * 2 + ts) * .25
-                v.co = Vector((p.x * rad * d, p.y * rad * d, max(p.z, -.3) * rad * 1.15 * d))
+                v.co = Vector((p.x * rad * d, p.y * rad * d, max(p.z, -.45) * rad * 1.1 * d))   # round 48: domed crowns, a little taller than wide
             tr.location = (x, y, surface(x, y) + rad * .15); bpy.ops.object.transform_apply(location=True)
             assign(tr, "trees"); shade_auto(tr, 60)
             parts.append(tr)
