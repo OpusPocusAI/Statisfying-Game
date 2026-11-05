@@ -30,6 +30,7 @@ def outline(a, seed):
 
 
 RINGS, SEGS, UMAX = 46, 120, 1.2
+ISLAND_SCALE = {0: (25.543, 44.399, 36.400), 1: (23.973, 46.330, 48.537), 2: (23.303, 39.806, 54.437)}   # scene scale per island: Blender x, y, z = Unity x, z, y
 for k in range(3):
     reset(); random.seed(2500 + k)
     seed = 2450 + k                                   # same outlines as round 24, so placement still fits
@@ -123,47 +124,78 @@ for k in range(3):
         bo.location = (x, y, max(surface(x, y), .12)); bpy.ops.object.transform_apply(location=True)
         assign(bo, "cliff"); shade_auto(bo, 30)
         parts.append(bo)
-    # Tree groves on the hill and a few on the ledges.
-    # Round 49 (review 45, all three: the round 48 domes read as "stacked green discs / lumps sitting on the rock"): each
-    # grove is one fused canopy mass. Overlapping crowns of different heights are voxel-merged, smoothed, then crinkled
-    # into rounded lobes, so the grove has a lobed, broken silhouette with lit lobe tops over shaded hollows instead of a
-    # row of equal domes. The mass is sunk into the hill so it grows out of the ground.
-    for g in range(random.randint(3, 4)):
-        ga = random.uniform(0, math.tau); gr = random.uniform(.05, .42) * R
-        crowns = []
-        n = random.randint(5, 8)
-        for t in range(n):
-            a = ga + random.uniform(-.55, .55); r = gr + random.uniform(-.07, .07)
-            x, y = math.cos(a) * r + random.uniform(-.035, .035), math.sin(a) * r * D
-            rad = random.uniform(.048, .078)
-            tall = random.uniform(.8, 1.2)                  # broad crowns (tall ones showed mostly shaded wall from the beach, and read dark)
-            bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1)
-            tr = bpy.context.active_object
-            ts = Vector((g * 3.1 + t, t * 1.3, g))
-            for v in tr.data.vertices:
-                p = v.co.copy(); d = 1 + noise.noise(p * 2 + ts) * .2
-                v.co = Vector((p.x * rad * d, p.y * rad * d, p.z * rad * tall * d))
-            tr.location = (x, y, surface(x, y) + rad * tall * .5)    # rooted half-way into the hill
-            bpy.ops.object.transform_apply(location=True)
-            crowns.append(tr)
-        gv = join(crowns, "Grove")
-        bpy.context.view_layer.objects.active = gv; gv.select_set(True)
-        rm = gv.modifiers.new("fuse", "REMESH"); rm.mode = "VOXEL"; rm.voxel_size = .008
-        bpy.ops.object.modifier_apply(modifier="fuse")
-        sm = gv.modifiers.new("soften", "CORRECTIVE_SMOOTH"); sm.factor, sm.iterations = .7, 14
-        bpy.ops.object.modifier_apply(modifier="soften")
-        gv.data.update()
-        gs = Vector((g * 7 + k * 3, g * 2, k))
-        for v in gv.data.vertices:
-            p = v.co
-            up = max(0.0, v.normal.z)
-            amt = noise.noise(p * 24 + gs) * .003 * (.35 + .65 * up)   # a faint swell only: at 100-170 m a crinkled crust just scatters the normals and reads dark
-            v.co = p + v.normal * amt
-        sm = gv.modifiers.new("soften2", "CORRECTIVE_SMOOTH"); sm.factor, sm.iterations = .3, 2
-        bpy.ops.object.modifier_apply(modifier="soften2")
-        dm = gv.modifiers.new("reduce", "DECIMATE"); dm.ratio = .3
-        bpy.ops.object.modifier_apply(modifier="reduce")
-        assign(gv, "trees"); shade_auto(gv, 89)   # fully smooth normals, so the lobes shade as rounded masses
-        parts.append(gv)
+    # Round 50 (review 46, all three: the round 49 fused groves read as "fused knobs" and "lobes pasted on the hills";
+    # reviewers want layered canopies with distinct pine silhouettes, as on Tchia's islands). The islands are scaled
+    # about 24 x 40 m across and 36-54 m tall in the scene, so last round's crowns were only 2-3 m wide. Each island now
+    # carries 5-11 individual umbrella pines built in metres (a leaning tapered trunk, a broad flat-topped crown of
+    # 3-4 faceted pads in tiers, like the beach's coastal pines), tallest in the grove centres and shorter toward the
+    # edges, then divided by the island's scene scale per axis so they stay round and upright in the scene.
+    # Trunks use the "cliff" slot (warm sandstone, which reads as bark at 100-170 m); pads use "trees".
+    SX, SY, SZ = ISLAND_SCALE[k]
+    placed = []
+
+    def pad(centre, r, hh, seed):
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1, location=(0, 0, 0))
+        o = bpy.context.active_object
+        ps = Vector((seed, seed * 1.7, seed * .3))
+        for v in o.data.vertices:
+            p = v.co.copy(); d = 1 + noise.fractal(p * 1.6 + ps, .6, 2.0, 3) * .26
+            v.co = Vector((p.x * r * d, p.y * r * d, p.z * hh * d))
+            if v.co.z < -hh * .35: v.co.z = -hh * .35 + (v.co.z + hh * .35) * .3   # flatter underside
+        dec = o.modifiers.new("dec", "DECIMATE"); dec.ratio = .5
+        bpy.ops.object.modifier_apply(modifier="dec")
+        o.location = centre; bpy.ops.object.transform_apply(location=True)
+        assign(o, "trees")
+        for p in o.data.polygons: p.use_smooth = False
+        return o
+
+    def pine(x, y, hm, seed):
+        """An umbrella pine hm metres tall at island-unit position (x, y), rooted in the hill."""
+        rnd = random.Random(seed)
+        lean = Vector((rnd.uniform(-.12, .12), rnd.uniform(-.12, .12), 0)) * hm
+        th = hm * .58
+        bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=.26 + hm * .012, radius2=.11, depth=th, location=(0, 0, th * .5))
+        trunk = bpy.context.active_object
+        for v in trunk.data.vertices:
+            t = max(0.0, v.co.z / th); v.co = v.co + lean * (t * t)
+        assign(trunk, "cliff")
+        for p in trunk.data.polygons: p.use_smooth = False
+        top = Vector((0, 0, th)) + lean
+        pads = [(top + Vector((0, 0, hm * .08)), hm * .50, hm * .17),                       # the broad umbrella
+                (top + Vector((rnd.uniform(-.8, .8), rnd.uniform(-.8, .8), hm * .24)), hm * .36, hm * .14),
+                (top + Vector((rnd.uniform(-.5, .5), rnd.uniform(-.5, .5), hm * .36)), hm * .22, hm * .10)]
+        for i in range(rnd.randint(1, 2)):
+            ang = rnd.uniform(0, math.tau); rr = hm * .32
+            pads.append((top + Vector((math.cos(ang) * rr, math.sin(ang) * rr, hm * rnd.uniform(.02, .12))), hm * rnd.uniform(.24, .32), hm * .12))
+        objs = [trunk] + [pad(c, r, hh, seed * 10 + i) for i, (c, r, hh) in enumerate(pads)]
+        tree = join(objs, "Pine")
+        bpy.context.view_layer.objects.active = tree; tree.select_set(True)
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)   # bake the cone's object offset before rescaling
+        zb = surface(x, y) - .6 / SZ                                               # trunk foot sunk 60 cm into the hill
+        for v in tree.data.vertices:
+            v.co = Vector((x + v.co.x / SX, y + v.co.y / SY, zb + v.co.z / SZ))
+        return tree
+
+    for g in range(random.randint(2, 3)):
+        ga = random.uniform(0, math.tau); gr = random.uniform(.04, .40) * R
+        gx, gy = math.cos(ga) * gr, math.sin(ga) * gr * D
+        for t in range(random.randint(2, 4)):
+            for attempt in range(12):
+                a = random.uniform(0, math.tau); r = random.uniform(0, .13)
+                x, y = gx + math.cos(a) * r, gy + math.sin(a) * r * D
+                u = math.hypot(x, y / D) / (R * outline(math.atan2(y / D, x), seed))
+                if u > .78: continue
+                if all(math.hypot((x - px) * SX, (y - py) * SY) > 4.5 for px, py in placed): break
+            else:
+                continue
+            placed.append((x, y))
+            centre = 1 - min(1.0, r / .13)                                          # tall in the grove centre, short at its edge
+            hm = random.uniform(6.0, 8.0) + centre * random.uniform(2.0, 4.0)
+            parts.append(pine(x, y, hm, k * 100 + g * 10 + t))
+    for t in range(random.randint(1, 2)):                                           # a lone pine or two out on the ledges
+        a = random.uniform(0, math.tau); u = random.uniform(.55, .8)
+        o = outline(a, seed); x, y = math.cos(a) * R * o * u, math.sin(a) * R * o * u * D
+        if all(math.hypot((x - px) * SX, (y - py) * SY) > 4.5 for px, py in placed):
+            placed.append((x, y)); parts.append(pine(x, y, random.uniform(5.0, 7.0), k * 100 + 90 + t))
     isl = join(parts, "FarIsle")
     export(isl, "far_isle_%d" % k, ["cliff", "cap", "trees"])

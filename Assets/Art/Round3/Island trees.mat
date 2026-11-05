@@ -38,7 +38,7 @@ Material:
     - _Rim: 0.6
     - _Smoothness: 0.1
     - _Surface: 0
-    - _TopStart: 0.1
+    - _TopStart: 0.25
     - _Variation: 0.1
     - _WorldMapping: 0
     - _WorldTile: 7
