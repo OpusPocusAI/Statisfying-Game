@@ -25,6 +25,9 @@ shapes = [(4, .4, 1.0, .84, .16, .035, .22), (3, .62, 1.0, .95, .15, .033, .0), 
 # the glint breaks into two or three flashes instead of one blob.
 
 
+BEND = -.1   # round 54: must match FrostedGlass _Bend (set by Round54Pass); negative so the work pieces (rotated 90 about X) lie outer face up
+
+
 def outline_r(a, sides, rk):
     if sides == 0:
         return 1.0
@@ -64,8 +67,12 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # strong taper) ran to a knife edge, which is the "almond / lens" every review saw. Power .38 keeps the faces flat
         # and rounds the rim over; a gentle taper leaves the thin side about 12% of the width.
         ys = math.copysign(abs(yn) ** .38, yn) * .5 * th * (1 - .12 * rr * rr)
-        dome = max(curve, .1) * .5 * (1 - rr * rr)   # round 43: a gentler bottle-wall curve
-        ys += dome * (1 if yn > 0 else -.6)
+        # Round 54 (review 50, all three: the held piece is "a pillowy dome", "a creased jelly lump"): both faces bulged
+        # outwards, so every piece was a lens or pillow whatever its outline. A shard of bottle wall is a curved plate:
+        # the outer face convex, the inner face concave, bent the same way around the bottle's axis (Blender Z). The
+        # whole section now follows one cylindrical bend (sagitta about 10% of the width, as for a 3 cm shard of a
+        # 7 cm bottle); FrostedGlass measures thickness from the same bent mid-surface (_Bend). Added after the wedge
+        # taper below, so the taper does not scale the bend.
         if False and cut > 0:
             d = x * math.cos(rot) + z * math.sin(rot)
             lim = .5 - cut * .5
@@ -77,6 +84,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         wd = rot * 1.7 + 0.9
         side = max(-1.0, min(1.0, (x * math.cos(wd) + z * math.sin(wd)) / .45))
         ys *= 1.0 + .42 * side
+        ys += BEND * (1 - (x / .5) ** 2)   # round 54: the bottle-wall bend, shared by both faces
         ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008 * (1 - rr ** 4)   # round 38: none at the thin rim, where it zigzagged the silhouette
         # Broad shallow dents (worn facets), strongest on the faces, none at the rim.
         ys += noise.noise(Vector((x, z, 1.7)) * 2.2 + s) * .022 * (1 - rr * rr) * (1 if yn > 0 else .6)

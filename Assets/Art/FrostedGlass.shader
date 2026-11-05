@@ -16,6 +16,7 @@ Shader "Sea Glass/Frosted Glass"
         _MaskRect("Mask rect (min xy, size xy)", Vector) = (0, 0, 1, 1)
         _Facets("Stained-glass fragments (mosaic)", Range(0, 1)) = 0
         _MaskOn("Brush mask drives the layers (set at runtime)", Float) = 0
+        _Bend("Bottle-wall bend of the mid-surface (mesh units, round 54)", Range(-.3, .3)) = 0
     }
     SubShader
     {
@@ -55,7 +56,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend;
             CBUFFER_END
             float4 _SG_Basin;   // round 39: basin water centre (xyz) and radius (w), set by the cleaning station
 
@@ -81,6 +82,9 @@ Shader "Sea Glass/Frosted Glass"
             half4 frag(V i) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(i);
+                // Round 54: the pieces are curved plates of bottle wall (round21.py), so the mid-surface bends with local x;
+                // thickness is measured from it, not from the flat z = 0 plane.
+                float lz = abs(i.local.z - _Bend * (1 - i.local.x * i.local.x * 4));
                 float3 n = normalize(i.n), v = GetWorldSpaceNormalizeViewDir(i.world);
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 float3 l = sun.direction;
@@ -122,7 +126,7 @@ Shader "Sea Glass/Frosted Glass"
                 float3 q = i.local * 4.0;
                 float islands = Noise(q) * .65 + Noise(q * 2.3 + 7.1) * .35;
                 float streaks = Noise(float3(i.local.x * 2.0, i.local.y * 14.0, i.local.z * 3.0));
-                float fromEdge = saturate((abs(i.local.z) - .014) / .07);   // 0 at the rim, 1 in the thick middle
+                float fromEdge = saturate((lz - .014) / .07);   // 0 at the rim, 1 in the thick middle
                 float order = saturate(islands * .45 + streaks * .2 + (1 - fromEdge) * .45 - .05);
                 // Each spot goes sandy dirt -> salt frost -> clear glass as grime falls past it.
                 // Where the brush has passed, grime drops sharply (PowerWash-style visible strokes).
@@ -154,7 +158,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Thicker middle tints more strongly than the thin rounded rim.
                 // Round 7: thin rims and glancing edges let the background through almost untinted; only the
                 // thick core filters strongly, so clean glass reads as glass rather than opaque candy.
-                float thickT = saturate((abs(i.local.z) - .02) / .06);
+                float thickT = saturate((lz - .02) / .06);
                 half depthTint = lerp(.3, .72, nv) * lerp(.5, 1, thickT);   // round 19: a little less face-on tint, so the bent background stays legible
                 // Coloured filter: keep the background's brightness, take the glass's hue.
                 half lum = dot(behind, half3(.3, .55, .15));
@@ -171,7 +175,7 @@ Shader "Sea Glass/Frosted Glass"
                 half3 clean = transmitted * .92 + body + glow;
                 // Round 5: a deep, saturated core where the piece is thick, paler and clearer toward the thin
                 // rounded rim (real glass), instead of one even candy colour.
-                float thick = saturate((abs(i.local.z) - .02) / .06);
+                float thick = saturate((lz - .02) / .06);
                 clean = lerp(clean * lerp(1.12, .9, thick), tint * tint * .9 + tint * .05, thick * .1);   // round 17: lighter, so the felt shows through
                 // Edges seen at a glancing angle hold deeper colour (light travels further inside)...
                 clean = lerp(clean, tint * tint * .85 + tint * .05, saturate(fresnel * 1.8) * .75);   // round 21: deeper, more saturated edges (light travels further there)
@@ -201,7 +205,7 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 44 (review 40, all three: "an even-thickness slab", against the 5.6 fixed form): the light path follows the
                     // wedge itself. The top surface sits higher where the piece is thicker, so its height above the mid-plane is
                     // the local thickness: deep colour along the thick edge, pale and clear toward the thin one.
-                    half thickN = saturate((abs(i.local.z) - .03) / .14);
+                    half thickN = saturate((lz - .03) / .14);
                     half path = lerp(.18, 1.25, thickN) * lerp(.75, 1.0, smoothstep(.2, .92, nv));
                     // A gentler bend, so what lies behind stays legible (an edge, the felt, the bench).
                     // Round 37 (review 33, all three: "a dark inner band / seam" through the held piece): the bent image of
@@ -286,7 +290,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 40 (review 36, all three: "grime should be an opaque brown crust each stroke cuts through, as in PowerWash"): the
                 // dried silt covers nearly the whole piece as a crust, mottled and lighter on its raised patches, broken by fine
                 // dark cracks; the frost only shows through in a few thin places.
-                float stainPatch = saturate(film * .75 + .18 + edgeSilt * .35);   // round 44 (review 40, all three: "a sandy biscuit, no colour"): grime in patches, the frosted hue between them
+                float stainPatch = saturate(film * .75 + .3 + edgeSilt * .35);   // round 54: +.12, the gentler curved plate shows less edge silt   // round 44 (review 40, all three: "a sandy biscuit, no colour"): grime in patches, the frosted hue between them
                 float crackN = Noise(q * 5.5 + 13.0);
                 float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
@@ -369,7 +373,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION
