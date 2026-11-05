@@ -2386,3 +2386,51 @@ All three reviewers viewed the references (37-39 screenshots each), opening the 
 - Thin dark vertical lines under the wall shelves, and an orange pot that glows as if emissive (s7; two).
 - Blotchy shading on the truck bonnet and fenders (t2; two); the mirrors appear to float (t2; one).
 - Cloud edges smear into tails (b1; one); the left boardwalk edge seems to hover over the dune (s6; one).
+
+### November 6 — round 53 and review 50 (three reviewers, averaged)
+
+Round 53 (Round53Pass, Round51Pass offsets, TidalWater.shader, menu pass 57):
+- **No shadow ribbon under the foam:** the first 2 m of water lay over the wet-sand shoulder, which takes hard sun shadows, so wherever a dune or rock shaded the beach the swash showed navy under the foam (b8), and pale where lit (b6). The seabed now reaches in to 0.1 m from the waterline, just above the shoulder's underwater strip and always below the surface, so everything seen through the water is evenly lit.
+- **Lace against turquoise:** with the bed evenly lit, the white lace vanished into bare cream sand; the bed is now absorbed as if 18 cm deeper, so even the swash is faintly turquoise.
+
+All three reviewers viewed the references (37-41 screenshots each), mostly by opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 49 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 3.5 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.5 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 3 | 3.3 | 3.5 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Water back to a unanimous 4.0** (first time since review 45). No reviewer names the dark ribbon; all three now describe "lacy broken foam" over turquoise bands (b6, b8). Lighting also returns to a unanimous 4.0.
+- Four areas meet the bar: lighting, water, sorting, mosaic. The panel was very consistent (12 of 13 areas identical across at least two reviewers).
+- The remaining water note moves inland: the wet-sand band above the waterline is "a flat taupe strip with no sheen" and a hard edge to the dry sand (b3, b6; all three).
+
+**Next:**
+- Held glass: the clean piece in 06 reads as a creased jelly lump; the cloudy piece in 04 as a thin sheet or sponge (all three).
+- Vegetation: pancake-tier island pines, blob bushes, sparse grass, camouflage moss decals on the islands (all three).
+- Wet sand: sheen and value variation, softer edge to the dry sand (b3, b6; all three).
+- Flat cream sand fields (b1, b2, b7; all three).
+- Clouds: smooth blobs, not shaped cumulus (all three).
+- Cleaning: no splash, drips or runoff; weak dirty-to-clean moment (all three).
+- Tools: spade a flat blade on a stick, arm a plain tube (all three); rubbish unreadable at 5 m (all three); truck bodywork lumpy and smeared (t2; all three).
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8; all three, sixth review running).
+- The held piece cuts into the tray rims (06; all three).
+- Smeared, blotchy shading on the truck bonnet and front wing (t2; all three).
+- A pale, hard-edged apron or halo where the islands meet the water (b5, b3; two).
+- Stray white dot-clouds (b1, t1, 03); a hanging pot floating against the sky (s5); a dark lampshade shape cutting the top of s7; a plant rope running into a shelved pot (s7).
+- The jar hangs off the wash-table edge (s11, 04); the cloudy piece's rim line separates from its body (04); the spade casts an oversized shadow (02).
+- The open right-hand wall of s3 ends abruptly with a floating bush; the SORT BY COLOUR sign cuts into the table slats (s3); level box-top on the mesa rock (b5, b9, 02); brown squiggles on the wet sand (b6).
