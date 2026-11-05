@@ -91,9 +91,12 @@ Shader "Sea Glass/Tidal Water"
   // See-through shallows (Tchia): the sand bed shows through, tinted turquoise, fading with depth.
   float2 refractUV=suv+float2(cos(phase),cos(crossing))*.004*saturate(vdepth);
   half3 bed=SampleSceneColor(refractUV);
-  half3 transmit=exp(-vdepth*half3(1.6,.55,.5));
-  half3 seen=bed*transmit*half3(.95,1.0,.97)+half3(.16,.62,.6)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
-  c=lerp(seen,c,smoothstep(.15,2.6,vdepth));
+  // Round 51 (review 47: "opaque; no sand visible through the shallows"): a real seabed now lies under the water
+  // (Round51Pass), so the bed is absorbed more gently, red first, and stays visible out to about 4.6 m depth.
+  // A first try (.9,.32,.28) left the shallows a pale yellow-green: red goes first, and the bed takes a cool tint.
+  half3 transmit=exp(-vdepth*half3(1.5,.38,.3));
+  half3 seen=bed*transmit*half3(.72,.98,1.02)+half3(.1,.7,.72)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
+  c=lerp(seen,c,smoothstep(.3,4.6,vdepth));
   // Sun path: broken glints where ripple normals catch the low sun.
   // Round 16: two rotated, finer octaves; one grid-aligned octave drew the glints as straight-edged bars.
   float2 g1=mul(float2x2(.8,-.6,.6,.8),p)*3.1,g2=mul(float2x2(.28,-.96,.96,.28),p)*5.3;
