@@ -2335,3 +2335,54 @@ All three reviewers viewed the references (38-40 screenshots each). Two opened t
 - A stray white dot in the sky (b1, t1, 03); smudged white patches on the truck bonnet and a floating dark board behind the seat (t2).
 - The EQUIPMENT sign cuts through the bookshelf (09); the jar hangs off the wash-table edge (s11, 04); a hanging pot at the roof edge against the sky (s5).
 - A dark, apparently unfilled area near the top centre of the completed Ocean Wave panel (08).
+
+### November 5 — round 52 and review 49 (three reviewers, averaged)
+
+Round 52 (Round52Pass, PainterlyLit/PainterlyForward, TidalWater.shader, menu pass 56):
+- **No hard sun shadows on the seabed:** the painterly shader gained a per-material "Receives sun shadow" setting (default 1, so nothing else changes); the seabed sets it to 0. The water itself darkens only to 86% where a stack blocks the sun, so stack shadows read as slightly darker water instead of inverted bright wedges.
+- **Cooler bed:** the seabed sand is cooler, so it shows as turquoise rather than yellow-green under the low sun; it now sinks away over 30 m beyond both beach ends, removing the pale tongue in b4.
+- Fixed Round51Pass re-copying the beach material on every run, which had reset the new setting.
+
+All three reviewers viewed the references (37-39 screenshots each), opening the full-size store images directly because the viewer opened trailer videos.
+
+| Area | A | B | C | Average | Review 48 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.2 Water | 4 | 3 | 3.5 | 3.5 | 3.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3.5 | 3.2 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3.5 | 3.2 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3.5 | 3.5 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.10 Studio | 4 | 3 | 3.5 | 3.5 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3.5 | 3.2 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3.5 | 3.2 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The wedges are gone.** No reviewer names the inverted shadow wedges; water rose from 3.0 to 3.5, with one 4 ("clear deep-to-turquoise bands, see-through shallows ... curved coves", b3, b4, b6). Reviewer B says the see-through shallows "come close to Tchia". Two still see a straight or curved band crossing the shallows in b4.
+- **Mosaic back to a unanimous 4.0**, sorting holds 4.0. Lighting dipped to 3.7 on one reviewer, who now docks it for the flat clouds.
+- Cleaning, studio, truck and tools each recovered some of what review 48 took with no change to them, which supports reading review 48 as a harsh panel.
+- Sea glass 3.2: the tray shards read as glass; the held clean piece is still "a jelly pillow" with a grey internal fold (06, all three), and the cloudy piece reads as a flat sheet (04, two).
+
+**Next:**
+- Shore foam: a dark navy or teal ribbon runs under the foam line in b8 (and b6); foam should be broken lace over bright shallows (all three, two as a bug).
+- Clouds: smeared soft blobs; Tchia-style shaped, lit cumulus (all three).
+- Island pines read as flat stacked plates; shore bushes as lumpy blobs (all three).
+- Held glass: jelly pillow with an internal fold; wants the wedge taper, a clearer thin edge, a rim line (all three).
+- Flat cream sand fields (b1, b2, b7, s6; all three); hard stepped wet/dry edge (b3, b6; one).
+- Cleaning: grime off in patches rather than strokes, no splash, drips or "done" moment (all three).
+- Rubbish unreadable at 5 m (b1; all three); the spade is a flat paddle and the sleeve a plain tube (all three).
+- Studio: flat rugs, weak window light, small neglected-to-restored change (two).
+
+**Bugs reported:**
+- A dark ribbon under the shore foam (b8; all three).
+- Dark hexagonal patches on the left island's slope (b8; all three, fifth review running).
+- A hard-edged band or shadow across the shallows from the sea stacks (b4; all three).
+- A grey fold or crease inside the held clean piece (06; all three); the held piece clips the tray rims (06; one); the brush bristles sink into the piece (05; one).
+- Thin dark vertical lines under the wall shelves, and an orange pot that glows as if emissive (s7; two).
+- Blotchy shading on the truck bonnet and fenders (t2; two); the mirrors appear to float (t2; one).
+- Cloud edges smear into tails (b1; one); the left boardwalk edge seems to hover over the dune (s6; one).
