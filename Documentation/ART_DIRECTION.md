@@ -2284,3 +2284,54 @@ All three reviewers viewed the references (39-44 screenshots each).
 - The basin interior is pink against a navy rim (s11, 04); a jar hovers off the table edge (s11).
 - Flat dark disc decals under rubbish that ignore the dune shape (b2); a brown rectangle on the sand beside the studio (b4).
 - The studio floor planks meet the tarmac with no threshold (s4, s9); a hard seam where the sea meets sand at far left of b1.
+
+### November 5 — round 51 and review 48 (three reviewers, averaged)
+
+Round 51 (Round51Pass, TidalWater.shader, menu pass 55):
+- **Seabed:** the water shader has sampled the scene behind it since October, but past the wet-sand shoulder (2 m out, 0.45 m deep) there was no geometry, so the depth buffer held open sky and the sea rendered opaque. One sloping sand mesh now follows the authored coastline out to 100 m offshore (about 1.2 m deep at 10 m out, 3 m at 30 m) with low sandbars.
+- **Shader:** the bed is absorbed red-first with a cool tint and stays see-through to about 4.6 m depth (was 2.6 m).
+
+All three reviewers viewed the references (38-40 screenshots each). Two opened the full-size store images directly instead of stepping through the viewer.
+
+| Area | A | B | C | Average | Review 47 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.10 Studio | 3 | 3 | 4 | 3.3 | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 2.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The round backfired on water (3.0, unanimous).** All three reviewers name the same new fault: the sea-stack shadows now fall on the seabed, and the sunlit sand between them shows through as bright, hard-edged yellow-green wedges, so the shadows read inverted (lighter than the lit water) and one wedge runs to the horizon in b4. Reviewer A calls them "opaque pale-green wedges instead of Tchia's see-through sandbed". The see-through effect works, but the hard sun-and-shadow pattern on the bed overwhelms it. Fix: the seabed should not receive hard sun shadows (or only a soft, low-contrast version), and the bed should be less yellow under the low sun.
+- **Only two areas meet the bar** (lighting, sorting). Studio, truck, tools, sea glass, mosaic and cleaning all lost points with no change to them since review 46 or 47: the truck fell from a unanimous 4.0 to a unanimous 3.0 on the same t2 frame ("panels look crumpled and lumpy"), the studio from a unanimous 4.0 to 3.3. This is the harshest panel yet, harder than review 47; read with care against reviews 43-46, which saw the same assets.
+- Sea glass 3.0: the tray shards still read as glass; the held clean piece is "a jelly lozenge with one smeared glint" and shows a hard crease (two).
+- The island pines: one reviewer now says they "read well"; two still call them stacked flat plates.
+
+**Next:**
+- Shallows: stop the seabed receiving hard sun shadows and cool the lit bed, so the see-through sand reads as an even turquoise ramp, not wedges (all three, as a bug).
+- Clouds: smooth blobs; Tchia's are built-up cumulus (all three).
+- Held glass: the jelly read, the smeared glint, the crease (all three).
+- Vegetation: lumpy repeated bushes, sparse grass, plate-tier pines (all three).
+- Flat cream sand foregrounds (b1, b2, s6; all three).
+- Cleaning: grime off in patches, weak "done" moment, no splash or runoff (all three).
+- Mosaic: more and smaller pieces; floor light that reads as light (all three).
+
+**Bugs reported:**
+- Inverted, hard-edged shadow wedges on the shallows (b4, b6, b8; all three) — caused by round 51.
+- A dark navy strip under the shore foam line (b8); a hard stepped lip between wet and dry sand (b3, b6).
+- Dark hexagonal patches on the left island's slope (b8; all three, fourth review running).
+- A straight seam across the foreground sand parallel to the road (b7).
+- A crease through the held clean piece (06; two); a bright offset outline under the piece (04).
+- The flat-topped mesa rock shows a vertical seam between two boxy blocks (b5, b9, 02).
+- A stray white dot in the sky (b1, t1, 03); smudged white patches on the truck bonnet and a floating dark board behind the seat (t2).
+- The EQUIPMENT sign cuts through the bookshelf (09); the jar hangs off the wash-table edge (s11, 04); a hanging pot at the roof edge against the sky (s5).
+- A dark, apparently unfilled area near the top centre of the completed Ocean Wave panel (08).
