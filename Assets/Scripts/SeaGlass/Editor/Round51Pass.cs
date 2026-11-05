@@ -26,8 +26,14 @@ namespace SeaGlass.Editor
 
         // Offshore distance from the waterline (m) and seabed height (world Y). The water surface is at Y -0.85; the
         // shoulder reaches Y -1.3 at 2 m out.
-        static readonly float[] Offsets = { 1.5f, 4, 8, 14, 22, 34, 55, 100 };
-        static readonly float[] Heights = { -1.25f, -1.45f, -1.7f, -2.1f, -2.8f, -4.0f, -7.0f, -14.0f };
+        // Round 53 (review 49, all three: "a dark ribbon under the shore foam", b8): under the first 2 m of water the bed
+        // seen through the surface was the wet-sand shoulder, which takes hard sun shadows, so wherever a dune or rock
+        // shaded the beach the swash turned navy beside the evenly lit seabed. The bed now starts 0.1 m out and lies
+        // just above the shoulder's underwater strip (Y -0.85 at the waterline to -1.3 at 2 m, same coastline rows):
+        // 6 mm at 0.1 m, 3 cm from 0.6 m on, always below the surface, so everything under the water is the unshadowed
+        // seabed except a sliver inside the solid white edge line.
+        static readonly float[] Offsets = { .1f, .25f, .6f, 1, 1.5f, 2, 4, 8, 14, 22, 34, 55, 100 };
+        static readonly float[] Heights = { -.866f, -.89f, -.955f, -1.045f, -1.158f, -1.27f, -1.45f, -1.7f, -2.1f, -2.8f, -4.0f, -7.0f, -14.0f };
 
         [MenuItem("Sea Glass/Art Direction/55 Round 51: see-through shallows over a sandbed")]
         public static void Apply()

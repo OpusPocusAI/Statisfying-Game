@@ -94,7 +94,9 @@ Shader "Sea Glass/Tidal Water"
   // Round 51 (review 47: "opaque; no sand visible through the shallows"): a real seabed now lies under the water
   // (Round51Pass), so the bed is absorbed more gently, red first, and stays visible out to about 4.6 m depth.
   // A first try (.9,.32,.28) left the shallows a pale yellow-green: red goes first, and the bed takes a cool tint.
-  half3 transmit=exp(-vdepth*half3(1.5,.38,.3));
+  // Round 53: the bed now reaches in under the swash (Round51Pass), so the thinnest water showed raw cream sand and the
+  // white lace vanished into it; the bed is absorbed as if 18 cm deeper, so even the swash is faintly turquoise.
+  half3 transmit=exp(-(vdepth+.18)*half3(1.5,.38,.3));
   half3 seen=bed*transmit*half3(.72,.98,1.02)+half3(.1,.7,.72)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
   // Round 52 (review 48, all three: the stack shadows read as "inverted, hard-edged bright wedges"): the seabed no longer
   // takes the sun shadow (its material's _SunShadow is 0), so the bed is evenly lit; the shade is laid on the water
