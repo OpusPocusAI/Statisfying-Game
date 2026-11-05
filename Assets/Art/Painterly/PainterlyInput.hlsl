@@ -27,6 +27,7 @@ CBUFFER_START(UnityPerMaterial)
     half _Cull;            // round 21: 0 marks two-sided foliage and fabric, which lets light through
     half4 _TopTint;        // round 27: rgb grass/moss colour on upward faces, a = amount (0 off)
     half _TopStart;        // round 27: world normal.y where the top colour begins
+    half _SunShadow;       // round 52: how much the sun shadow darkens this surface (1 all, 0 none: the seabed under the water)
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

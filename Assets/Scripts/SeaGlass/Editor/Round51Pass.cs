@@ -49,7 +49,11 @@ namespace SeaGlass.Editor
                     // Low sandbars running along the shore, strongest a few metres out, none at the start row.
                     float bar = (Mathf.Sin(z * .21f + d * .35f) * .6f + Mathf.Sin(z * .057f - d * .2f) * .4f) * .12f
                               * Mathf.Clamp01((d - 3) / 6) * (1 - Mathf.Clamp01((d - 34) / 30));
-                    vertices.Add(new Vector3(shore - d, Heights[j] + bar, z));
+                    // Round 52 (b4 review frame: a straight-edged shallow plate past the end of the beach): beyond the
+                    // ends of the sand (the shoulder runs Z -39..201) the bed sinks away over 30 m, so it fades into deep water.
+                    float beyond = Mathf.Max(Mathf.Clamp01((z - 201) / 30), Mathf.Clamp01((-39 - z) / 30));
+                    float y = Mathf.Lerp(Heights[j] + bar, -14, beyond * beyond * (3 - 2 * beyond));
+                    vertices.Add(new Vector3(shore - d, y, z));
                     uv.Add(new Vector2(j / (float)(columns - 1), i / (float)rows));
                     if (i < rows && j < columns - 1)
                     {
@@ -70,7 +74,8 @@ namespace SeaGlass.Editor
             var mat = AssetDatabase.LoadAssetAtPath<Material>(matPath);
             var beach = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/SeaGlass/Apricot sand.mat");
             if (!mat) { mat = new Material(beach) { name = "Seabed sand" }; AssetDatabase.CreateAsset(mat, matPath); }
-            else mat.CopyPropertiesFromMaterial(beach);
+            // Copied from the beach sand only when first created: re-copying on a re-run left properties the beach never
+            // stored (round 52: _SunShadow) unsettable for the rest of the editor session.
             mat.SetColor("_BaseColor", new Color(.84f, .76f, .64f));
             if (mat.HasProperty("_TopTint")) mat.SetColor("_TopTint", new Color(0, 0, 0, 0));
             if (mat.HasProperty("_GroundPatches")) mat.SetFloat("_GroundPatches", .3f);

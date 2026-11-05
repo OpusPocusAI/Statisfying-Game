@@ -171,7 +171,7 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     half nDotL = dot(normalWS, mainLight.direction);
     half edge = smoothstep(_SG_Terminator.x - _SG_Terminator.y, _SG_Terminator.x + _SG_Terminator.y, nDotL);
-    half lightAmount = edge * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
+    half lightAmount = edge * lerp(1.0h, mainLight.shadowAttenuation, _SunShadow) * mainLight.distanceAttenuation;
 
     half3 sky = SampleSH(normalWS);
     half3 shadowSide = albedo * (_SG_ShadowTint.rgb * _SG_ShadowTint.a + sky * _SG_Terminator.w);

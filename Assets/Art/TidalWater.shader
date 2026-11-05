@@ -96,6 +96,10 @@ Shader "Sea Glass/Tidal Water"
   // A first try (.9,.32,.28) left the shallows a pale yellow-green: red goes first, and the bed takes a cool tint.
   half3 transmit=exp(-vdepth*half3(1.5,.38,.3));
   half3 seen=bed*transmit*half3(.72,.98,1.02)+half3(.1,.7,.72)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
+  // Round 52 (review 48, all three: the stack shadows read as "inverted, hard-edged bright wedges"): the seabed no longer
+  // takes the sun shadow (its material's _SunShadow is 0), so the bed is evenly lit; the shade is laid on the water
+  // surface instead, softly (to 86%), the way a shadow darkens clear water.
+  seen*=lerp(.86,1,sun.shadowAttenuation);
   c=lerp(seen,c,smoothstep(.3,4.6,vdepth));
   // Sun path: broken glints where ripple normals catch the low sun.
   // Round 16: two rotated, finer octaves; one grid-aligned octave drew the glints as straight-edged bars.
