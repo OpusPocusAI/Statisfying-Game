@@ -2233,3 +2233,54 @@ Reviewers viewed 32-40 reference screenshots each. The shared browser pane kept 
 - A hanging plant at s5's top right floats outside the roof line; the brush handle is cut by the basin rim (s11).
 - Pale floating facets on the left island slope (b8); a hard horizontal colour split on the far-left island canopy (b1); a stray dark shape at the left island's waterline (b5).
 - The emerald tray's colour pool is far stronger than the other trays (s10, 07).
+
+### November 5 — round 50 and review 47 (three reviewers, averaged)
+
+Round 50 (round25.py, menu pass 54):
+- **Island pines:** the islands are scaled about 24 x 40 m across and 36-54 m tall in the scene, so the round 49 crowns were only 2-3 m wide. Each island now carries 5-11 individual umbrella pines built in metres (a leaning tapered trunk, a broad flat-topped crown of 3-5 faceted pads in tiers, like the beach's coastal pines), tallest in the grove centres, a lone pine or two on the ledges.
+- **Island trees material:** the sunlit cap starts at a normal.y of .25 so only upward facets take it.
+
+All three reviewers viewed the references (39-44 screenshots each).
+
+| Area | A | B | C | Average | Review 46 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 3 | 3 | 2 | 2.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Vegetation still 3.0, unanimous.** The pines are now read as trees, but all three call them "stacked flat discs on stilt trunks", "parasol discs on bare poles" and "plates on sticks", with the crowns detached from the trunks and no light-to-shadow gradient. One calls them "parts stuck together", which is the owner's primitive-assembly rule. The flat faceted pads that work on the beach pines at 10 m read as plates at 100-170 m; the crown needs to be one fused, domed mass sitting on the trunk, with a lit top and a shaded underside.
+- Only four areas meet the bar this time (lighting, sorting, studio, truck), the fewest since review 41. Water, cleaning, mosaic, tools and effects all lost points with no change to them. This panel was the harshest yet; the round itself only touched the islands.
+- **Water 3.3:** two reviewers now lead with opacity, "no see-through turquoise shallows over sand", as the single biggest gap to Tchia. This has been raised before, but never as the top item by two reviewers.
+- Sea glass holds at 3.7. The tray pieces are called "the best glass in the game" (C); the held piece still has one large glint smear and a dark diagonal streak (all three).
+- Effects 2.7: hollow ring suds, a faint sparkle, a flat floor-light decal.
+
+**Next:**
+- Island pines: fuse each crown into one domed mass on its trunk with a lit top and shaded underside, so it reads as a canopy rather than stacked plates (all three).
+- Shallows: sand and rock visible through the water near the shore, a depth gradient at the waterline (two, as the top gap).
+- Suds with body, drips and splash; a visible clean sparkle (all three).
+- Held glass: the single smear and the dark streak (all three).
+- Roadside bushes and grass: one repeated sprite (all three).
+- Clouds: flat cut-outs (all three). Window-light shapes on the studio floor (all three).
+
+**Bugs reported:**
+- Stray dark diamond or hexagon facets on the left island slope (b5, b8; all three).
+- A lone pale dot in the sky (b1, b6, t1, 03; two).
+- Brown squiggles on the dry sand (b6; two).
+- Two jars clip the camera in s5 (all three; capture position).
+- The EQUIPMENT sign floats (s1, s3, s4); the truck's wing mirrors are flat slabs (t2).
+- A green outline around the glass piece in 05 like a selection highlight; a dark diagonal streak across 06.
+- The basin interior is pink against a navy rim (s11, 04); a jar hovers off the table edge (s11).
+- Flat dark disc decals under rubbish that ignore the dune shape (b2); a brown rectangle on the sand beside the studio (b4).
+- The studio floor planks meet the tarmac with no threshold (s4, s9); a hard seam where the sea meets sand at far left of b1.
