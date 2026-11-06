@@ -2660,3 +2660,47 @@ All three reviewers viewed the references (37-41 screenshots each), opening the 
 - Truck: crumpled bonnet and fender shading, detached side mirrors (t2; two).
 - Stray cloud dots (b1, b6, t1, 03; two); a hard-edged turquoise skirt or water seam around the islands (b3, b5; two).
 - A stepped wet/dry sand edge (b3, b6; one); a thin diagonal seam across the sand and road edge (b7, t1; one); hanging planters outside the roof edge, a bush floating at roof height, an over-bright orange pot (s1, s3, s5, s7; two).
+
+### November 6 — round 59 and review 56 (three reviewers, averaged)
+
+Round 59 (Round59Pass, palm_glove.py, StudioStation, menu pass 63):
+- **Held glass in an open palm:** at the sorting trays the clean piece rests convex side up, about 6.5 cm across, in an open gloved palm held low in front of the player (StudioStation.HoldOnPalm), with the canvas glove behind it instead of the magnified room.
+- **palm_glove:** the gardening glove from glove.py opened palm up, fused into one surface the same way (canvas glove, coral knit cuff, blue sleeve).
+
+All three reviewers viewed the references (38-39 screenshots each), opening the full-size store images directly. The brief's frame list now says 06 shows the clean piece in the palm at the trays (it said "in the basin"), and lists the palm under tools.
+
+| Area | A | B | C | Average | Review 55 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 2 | 3 | 3 | 2.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass holds at 3.0, but the reading of the held piece has narrowed to one fault.** Nobody reads a pillow, shell, sheet, lump or jelly any more. All three now name only its outline: "a shield with a pointed tip", which breaks 5.6's "no pointed tips"; one adds that its edge looks like a uniform extrusion. The tray pieces pass with all three ("glossy, saturated, broad shards ... meets the fixed target"). The cloudy basin piece still reads as sandy rock or sponge (all three), and one reads the half-clean piece as cyan jelly (05).
+- **The open palm reads as "a flat paddle", "a stiff, flat mitten"** (all three), with little finger form; one sees a red sliver at the cut-off wrist (06).
+- Studio fell to 3.3 (two reviewers: empty floor, no window-light shapes on it) and effects to 2.7 (one), with no change to either. Four areas meet the bar unanimously (lighting, water, sorting, mosaic).
+
+**Next:**
+- Held piece: round the pointed tip of the shield-shaped outline (glass_slab with the tip; all three). Palm: curl the fingers and cup the palm so it reads as a hand, not a paddle (all three).
+- Cloudy piece frosted glass with the hue through the frost, not stone (all three).
+- Cleaning: foam that follows the brush, splash and runoff, a clear "done" moment (all three); milky flat basin water (two).
+- Clouds as shaped cumulus (all three); island trees as layered foliage (all three); flat sand fields and a hard wet/dry step with no sheen (all three); rubbish unreadable at range (all three); spade a flat plate (two); truck bonnet blotchy (all three).
+- Studio: empty floor, no window-light pools (two).
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8; all three, twelfth review running).
+- Stray cloud dots (b1, t1, 03; two); a stepped wet/dry sand seam (b3, b6; one).
+- The truck bonnet blotchy or smeared, possibly bad normals (t2; all three).
+- The jar tipped off the wash-board edge (s11, 04, 05; one); the orange pot above the window self-lit (s7; one); a hanging-plant cord into a standing pot (s7; one); the EQUIPMENT sign into the bookshelf (s4; one).
+- A red sliver at the cut-off wrist (06; one); a buried glass piece a flat green plate on the sand (b2; one); dark potted plants on the deck (s6; one); the basin in 09 reads empty (one); a box-topped outcrop (b5; one); a dark rock in a different shading style (02; one).
