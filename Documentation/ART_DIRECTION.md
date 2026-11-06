@@ -2527,3 +2527,47 @@ All three reviewers viewed the references (38-42 screenshots each), opening the 
 - Stray cloud dots (b1, t1, b2; two); the foam band in b8 repeats as identical stamps (one).
 - The held piece clips the tray rim and Amber label (06; one); floating side mirrors and a dark board behind the seat (t2; one); smeared bonnet shading (t2; two).
 - Near-shore rocks cut flat at the waterline (b3, b6; one); a hard step between wet and dry sand (b3, b6; one); the buried glass a flat disc or slab on its mound (b2, 02; two); a hanging pot against open sky (s5; one); the spade shaft nearly hidden by the glove (02, 03; one).
+
+### November 6 — round 56 and review 53 (three reviewers, averaged)
+
+Round 56 (Round56Pass, StudioStation, FrostedGlass.shader, menu pass 60):
+- **See-through held glass:** FrostedGlass gains `_Held`, set only on the piece held up at the sorting trays. It is a coloured lens there: the scene behind stays sharp and keeps its own light and shade, filtered by the glass hue (deeper where the wedge is thick) and bent more towards the curved rim, with a darker refraction band and a thin bright edge.
+- **Pose:** smaller and nearer (22 cm across at 0.7 m, was 36 cm at 0.85 m), raised against the lit room rather than the plain felt, tilted back 18 degrees (was 35).
+- **Glints:** no fine pitting on the held piece and tighter glint thresholds, so the flat face shows two small smooth glints instead of white splatters.
+
+All three reviewers viewed the references (39-41 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 52 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 2 | 2.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass holds at 3.0 for a sixth glass round.** One reviewer now calls the held clean piece "glossy and see-through", so transmission has started to land, but all three read its *form* as "a bulbous, jelly-like lump" or "a lumpy blob, not a bottle-wall shard" (06): held face-on at its convex side and smaller, it reads as a bulging pebble. The cloudy piece (04) still reads as sandstone or sponge (all three). The tray pieces pass (two of three: "good worn-shard outlines").
+- Lighting (one reviewer, clouds), truck (one reviewer) and effects (one reviewer, "stills only: nothing beyond a few bubble rings") each moved a point with no change to them. Sand rose to 3.3 on one reviewer. Three areas meet the bar unanimously (water, sorting, mosaic).
+
+**Next:**
+- Held clean piece: keep the see-through lens but read as a flat bottle-wall shard, not a bulging lump (all three); a hand holding it (one). Cloudy piece frosted glass with the hue through the frost, not stone (all three).
+- Clouds: smeared, puffy blobs, not shaped cumulus (all three).
+- Cleaning: grime off in patches, not strokes; no splash, runoff or "done" sparkle (all three); brush a block (all three).
+- Vegetation: island trees as stacked plates, blob bushes (all three). Flat sand fields (two). Rubbish unreadable at range (all three). Truck bonnet crumpled shading (two).
+
+**Bugs reported:**
+- Hexagonal patches on the left island's rock face (b8; all three, ninth review running).
+- The held piece floats over the Amber tray with no hand and overlaps the Amber label (06; two).
+- Stray cloud dots (b1, t1, 03; all three).
+- The jar tipped at the wash-table edge (s11, 04, 05; two); the hanging plant a stack of spheres (s7; two).
+- Truck: crumpled bonnet and fender shading, floating mirrors, a dark board behind the cab (t2; two).
+- The glove floats over the brush, the brush head sinks into the glass (05; two); flat coloured rectangles on the floor read as stray planes, not light spill (08; one); swirling floor grain (s5, s11; one); a bottle through the driftwood log (b9; one); the buried glass a flat decal disc (b2, 02; one).
