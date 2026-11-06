@@ -254,18 +254,26 @@ Shader "Sea Glass/Frosted Glass"
                     // bent more towards the curved rim, which reads as a darker refraction band and a thin bright edge.
                     if (_Held > .5)
                     {
-                        float rimT = 1 - nv;
-                        float2 huv = screenUV + viewN.xy * (.03 + .1 * rimT * rimT);
+                        // Round 57 (review 53, all three: the held piece "a bulbous, jelly-like lump"): a view-based rim band
+                        // shaded it like a dome. A shard of bottle wall is a plate: two near-flat faces and a narrow edge wall.
+                        // The mesh normal tells them apart. Through a face the scene shifts little and evenly (a pane); the
+                        // edge wall, where light runs along the glass, glows a deep saturated hue (the green edge of a pane),
+                        // with a thin bright lip where it meets the face, and the face carries one straight soft sheen.
+                        float faceK = smoothstep(.5, .86, abs(normalize(i.localN).z));   // 1 on the faces, 0 on the edge wall
+                        float2 huv = screenUV + viewN.xy * lerp(.07, .012, faceK);
                         half3 seenH = SampleSceneColor(huv);
                         half thickH = saturate((lz - .03) / .14);
-                        half3 filt = lerp(half3(1, 1, 1), hue, lerp(.58, .82, thickH));
-                        half3 g = seenH * filt * lerp(1.18, .9, thickH);
+                        half3 filt = lerp(half3(1, 1, 1), hue, lerp(.58, .8, thickH));
+                        half3 g = seenH * filt * lerp(1.15, .92, thickH);
                         g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, .2);   // a little of the glass's own saturated colour
                         g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);
-                        half band = smoothstep(.5, .7, rimT) * (1 - smoothstep(.8, .9, rimT));
-                        g *= 1 - band * .4 * (1 - .4 * thickH);
-                        g = lerp(g, lerp(hue, half3(1, 1, 1), .55) * (sky * .45 + sun.color * .45 + .35), smoothstep(.86, .96, rimT) * .75);
-                        g += sky * fresnel * .22;
+                        half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
+                        g = lerp(g, edgeCol, (1 - faceK) * .85);
+                        half lip = saturate(faceK * (1 - faceK) * 4);
+                        g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
+                        half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
+                        g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
+                        g += sky * fresnel * .12;
                         clean = g;
                     }
                 }
