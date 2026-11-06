@@ -5238,6 +5238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.StudioStation
   kind: 0
   workingGlass: {fileID: 0}
+  heldPalm: {fileID: 0}
   glassRenderer: {fileID: 0}
   waterSurface: {fileID: 0}
   selectedId: 
@@ -215105,6 +215106,7 @@ Transform:
   - {fileID: 717441784}
   - {fileID: 1288950315}
   - {fileID: 1654315451}
+  - {fileID: 1582014221}
   m_Father: {fileID: 1901994643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &940850648
@@ -215121,6 +215123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.StudioStation
   kind: 2
   workingGlass: {fileID: 1164057002}
+  heldPalm: {fileID: 1582014221}
   glassRenderer: {fileID: 1164057003}
   waterSurface: {fileID: 0}
   selectedId: 
@@ -234663,6 +234666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.StudioStation
   kind: 1
   workingGlass: {fileID: 440368879}
+  heldPalm: {fileID: 0}
   glassRenderer: {fileID: 440368880}
   waterSurface: {fileID: 300762363}
   selectedId: 
@@ -360570,6 +360574,98 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581537211}
   m_Mesh: {fileID: 4300000, guid: caa0b81d327ee7e44acdfe2f125b8e92, type: 2}
+--- !u!1 &1582014220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582014221}
+  - component: {fileID: 1582014223}
+  - component: {fileID: 1582014222}
+  m_Layer: 0
+  m_Name: Held palm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1582014221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582014220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 940850647}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1582014222
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582014220}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6ed612922c976e44f9822e3ed2b4624a, type: 2}
+  - {fileID: 2100000, guid: 1b1ae24e1d7c3764f89b59e0176d58e4, type: 2}
+  - {fileID: 2100000, guid: a4e169e6fe6250f4e9a56be58bec909c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1582014223
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582014220}
+  m_Mesh: {fileID: 4300000, guid: aab60bcbaf721d94aa41cc225c3c5a2b, type: 2}
 --- !u!1 &1583156900
 GameObject:
   m_ObjectHideFlags: 0
@@ -435417,6 +435513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.StudioStation
   kind: 3
   workingGlass: {fileID: 0}
+  heldPalm: {fileID: 0}
   glassRenderer: {fileID: 0}
   waterSurface: {fileID: 0}
   selectedId: 

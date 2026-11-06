@@ -6,7 +6,7 @@ namespace SeaGlass
     public enum StationKind { Recycle, Clean, Sort, Upgrade }
     public class StudioStation : Interactable
     {
-        public StationKind kind; public Transform workingGlass; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
+        public StationKind kind; public Transform workingGlass; public Transform heldPalm; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
         MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam;public bool Processing=>processing>0;
         public bool RevealingCleanGlass=>reveal>0;
         float lastBrush=-9;Vector3 lastContact;static readonly int RippleId=Shader.PropertyToID("_SG_BrushRipple"),BasinId=Shader.PropertyToID("_SG_Basin");
@@ -125,7 +125,7 @@ namespace SeaGlass
             if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.22f:.52f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.52f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
             if(kind==StationKind.Clean)
             {
                 // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank
@@ -171,8 +171,29 @@ namespace SeaGlass
                 }
                 if(tray)Sort(tray.color);
             }
-            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.7f+S.player.view.transform.up*.175f+S.player.view.transform.right*.1f;   // round 57: raised clear of the Amber label and tilted back 30 degrees so the edge wall shows as a band of thickness (review 53: "a bulbous lump"). Round 56: smaller, nearer and raised against the lit room, so the scene shows through it (review 52: "an ice cube"). Round 55 (review 51: the inner face read as "a dish"): held up to the eye, convex face toward the camera and tilted back 35 degrees so the thick edge and glint show, over the light felt rather than the dark tray rim (which the curved face bent into a crease)
-            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.rotation=Quaternion.LookRotation(S.player.view.transform.forward,S.player.view.transform.up)*Quaternion.Euler(30,0,-12);   // local +z away from the eye: the bend's convex side (-z) faces the camera. Round 45 (review 41: the held piece "reads opaque"): held where felt and heaped glass show through it, visibly bent and tinted (it hung over the plain bench front)
+            // Round 59: the held piece is placed on the open gloved palm in LateUpdate (HoldOnPalm).
+        }
+        // Round 59 (review 55, all three: the held clean piece read as "a pillow", "a hollow shell", "a jelly blob" while it floated
+        // alone, large, with the room magnified through it; the tray pieces, small and at rest, pass): at the sorting trays the
+        // piece rests convex side up in an open gloved palm held low in front of the player, a few centimetres across, with the
+        // canvas glove behind it rather than the room. Rounds 55-58 held it up to the eye on its own.
+        static readonly Vector3 PalmAt=new Vector3(.1f,-.15f,.42f), PalmTilt=new Vector3(-26,-14,10);
+        void LateUpdate()
+        {
+            if(kind!=StationKind.Sort||!heldPalm)return;
+            bool on=active&&workingGlass&&workingGlass.gameObject.activeSelf&&S&&S.player;
+            if(heldPalm.gameObject.activeSelf!=on)heldPalm.gameObject.SetActive(on);
+            if(on)HoldOnPalm();
+        }
+        void HoldOnPalm()
+        {
+            var v=S.player.view.transform;
+            heldPalm.SetPositionAndRotation(v.position+v.right*PalmAt.x+v.up*PalmAt.y+v.forward*PalmAt.z,Quaternion.LookRotation(v.forward,v.up)*Quaternion.Euler(PalmTilt));
+            // Local +z (the concave inner face) down into the palm, so the convex outer face is up; turned a little on the palm.
+            workingGlass.rotation=Quaternion.LookRotation(-heldPalm.up,heldPalm.forward)*Quaternion.Euler(0,0,25);
+            var mf=workingGlass.GetComponent<MeshFilter>();var mb=mf&&mf.sharedMesh?mf.sharedMesh.bounds:new Bounds(Vector3.zero,Vector3.one);
+            float k=workingGlass.lossyScale.x;
+            workingGlass.position=heldPalm.position+heldPalm.up*(mb.max.z*k+.001f)-workingGlass.rotation*new Vector3(mb.center.x*k,mb.center.y*k,0)+heldPalm.forward*.012f;
         }
     }
 }
