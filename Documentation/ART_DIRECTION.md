@@ -2615,3 +2615,48 @@ All three reviewers viewed the references (39-40 screenshots each), opening the 
 - Stray cloud dots (b1, b6, t1, 03; one); the jar tipped at the wash-table edge (s11, 04, 05; one); the hanging plant stacked spheres or glowing pot (s7; two).
 - The sleeve a long tube from the screen edge, the wrist clipping the brush handle (04-06; two); the held glass floating with no hand (06; one).
 - Stretched, swirling floor grain (s1, s5, 07b; one); the EQUIPMENT sign clipping the bookshelf or hanging unsupported (09, s4; one); a translucent blue slab by the cooler reads as a stray shape (02; one).
+
+### November 6 — round 58 and review 55 (three reviewers, averaged)
+
+Round 58 (Round58Pass, round21.py, FrostedGlass.shader, menu pass 62):
+- **Thicker sea glass:** glass_slab_0..5 measure about 30% of the width at the thick edge and 11% at the thin edge (they measured about 20% and 8%), the 5.6 wedge, with a gentler bottle-wall curl (BEND and _Bend -.06, was -.1). Round37Pass re-seated all 176 tray spares and beach finds.
+- **Held piece:** the rounded rim counts as edge wall, so the thick edge shows as a deep-coloured band; the hue runs from nearly clear at the thin edge to deep at the thick one.
+
+All three reviewers viewed the references (37-41 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 54 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 2.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The three reviewers agree on every score.** Five areas now meet the bar unanimously (lighting, water, sorting, mosaic, studio); the other eight sit at 3.0.
+- **Sea glass holds at 3.0 for an eighth glass round.** The thicker tray shards pass with all three ("glossy, saturated, shard-like", "worn glass with good hue and glints"); nobody calls them thin chips any more. The held clean piece in 06 is no longer a thin sheet, but now reads as "a puffy, pillow-like blister", "a hollow, curled film" or "a jelly/plastic blob"; two say the room refracted inside it (the lamp and table) reads as a jumbled view or a hollow shell. The cloudy piece in 04 still reads as sandy stone (all three).
+- Effects rose back to 3.0 and studio to 4.0 with no change to them.
+- Across rounds 55-58 the held piece has read as a dish, a lump, a sheet and now a pillow or shell: each fix moved the fault rather than removing it. The single large piece floating with no hand and a magnified refracted room behind it is itself hard to read; the tray pieces, small and at rest, pass.
+
+**Next:**
+- Held clean piece: reconsider the 06 framing rather than the shader again: smaller, resting in a gloved palm or on the felt, with a calmer background through it (all three named the piece; two the refracted room). Cloudy piece frosted glass with the hue through the frost, not stone (all three).
+- Cleaning: grime off along brush strokes, not blotches; more suds, splash and runoff (all three).
+- Island trees as layered foliage, not flat disc canopies (all three); clouds as shaped cumulus (all three); flat cream sand fields (all three); rubbish unreadable at range (all three).
+- Spade a flat shield on a stick (all three); truck bonnet crumpled shading (all three).
+
+**Bugs reported:**
+- Hexagonal patches on the left island's face (b8; all three, eleventh review running).
+- The held piece hovering over the trays with a jumbled or hollow view of the lamp and table inside it (06; two).
+- The jar half off the wash-table edge (04, 05, s11; all three).
+- Truck: crumpled bonnet and fender shading, detached side mirrors (t2; two).
+- Stray cloud dots (b1, b6, t1, 03; two); a hard-edged turquoise skirt or water seam around the islands (b3, b5; two).
+- A stepped wet/dry sand edge (b3, b6; one); a thin diagonal seam across the sand and road edge (b7, t1; one); hanging planters outside the roof edge, a bush floating at roof height, an over-bright orange pot (s1, s3, s5, s7; two).
