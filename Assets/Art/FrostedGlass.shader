@@ -259,11 +259,11 @@ Shader "Sea Glass/Frosted Glass"
                         // The mesh normal tells them apart. Through a face the scene shifts little and evenly (a pane); the
                         // edge wall, where light runs along the glass, glows a deep saturated hue (the green edge of a pane),
                         // with a thin bright lip where it meets the face, and the face carries one straight soft sheen.
-                        float faceK = smoothstep(.5, .86, abs(normalize(i.localN).z));   // 1 on the faces, 0 on the edge wall
+                        float faceK = smoothstep(.62, .95, abs(normalize(i.localN).z));   // 1 on the faces, 0 on the edge wall; round 58: the rounded rim counts as edge too, so the thickness reads (review 54: "a thin sheet")
                         float2 huv = screenUV + viewN.xy * lerp(.07, .012, faceK);
                         half3 seenH = SampleSceneColor(huv);
                         half thickH = saturate((lz - .03) / .14);
-                        half3 filt = lerp(half3(1, 1, 1), hue, lerp(.58, .8, thickH));
+                        half3 filt = lerp(half3(1, 1, 1), hue, lerp(.45, .92, thickH));   // round 58: clearer at the thin edge, deeper towards the thick one (the wedge)
                         half3 g = seenH * filt * lerp(1.15, .92, thickH);
                         g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, .2);   // a little of the glass's own saturated colour
                         g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);

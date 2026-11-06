@@ -13,8 +13,8 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(4, .4, 1.0, .84, .16, .035, .22), (3, .62, 1.0, .95, .15, .033, .0), (0, 1, 1.0, .9, .17, .05, .42),
-          (5, .45, 1.0, .86, .15, .03, .2), (6, .5, .95, .9, .17, .03, .0), (3, .6, 1.0, .8, .15, .04, .26)]   # round 43: rounder triangle corners (5.6: no pointed tips)   # round 43: the fixed form in ART_DIRECTION 5.6 (about 30% of the width at the thick edge, 12% at the thin edge)
+shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .0), (0, 1, 1.0, .9, .23, .05, .42),
+          (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .0), (3, .6, 1.0, .8, .21, .04, .26)]   # round 58 (review 54, all three: "thin chips", "a thin curved sheet"): thicker, so the wedge measures about 30% of the width at its thick edge and 11% at its thin edge (5.6)   # round 43: rounder triangle corners (5.6: no pointed tips)   # round 43: the fixed form in ART_DIRECTION 5.6 (about 30% of the width at the thick edge, 12% at the thin edge)
 # Round 40 (review 36, all three: "nearly all one almond / lens silhouette"): the pieces lay flat, but most outlines
 # tapered to soft points at both ends and the low camera foreshortened them into lenses. Now blunt, broad pieces a
 # viewer tells apart at a glance: a squarish chip, a rounded triangle, a D-shaped half-disc, a pentagon chip, a chunky
@@ -25,7 +25,7 @@ shapes = [(4, .4, 1.0, .84, .16, .035, .22), (3, .62, 1.0, .95, .15, .033, .0), 
 # the glint breaks into two or three flashes instead of one blob.
 
 
-BEND = -.1   # round 54: must match FrostedGlass _Bend (set by Round54Pass); negative so the work pieces (rotated 90 about X) lie outer face up
+BEND = -.06   # round 58: a gentler curl (review 54: the held piece "a bent film"). Round 54: must match FrostedGlass _Bend (set by Round54Pass); negative so the work pieces (rotated 90 about X) lie outer face up
 
 
 def outline_r(a, sides, rk):
@@ -83,7 +83,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # is thick along one side and tapers to a thin worn edge on the other, as a shard of bottle wall does.
         wd = rot * 1.7 + 0.9
         side = max(-1.0, min(1.0, (x * math.cos(wd) + z * math.sin(wd)) / .45))
-        ys *= 1.0 + .42 * side
+        ys *= 1.0 + .45 * side   # round 58: .45 (was .42)
         ys += BEND * (1 - (x / .5) ** 2)   # round 54: the bottle-wall bend, shared by both faces
         ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008 * (1 - rr ** 4)   # round 38: none at the thin rim, where it zigzagged the silhouette
         # Broad shallow dents (worn facets), strongest on the faces, none at the rim.
