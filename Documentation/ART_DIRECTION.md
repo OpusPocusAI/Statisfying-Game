@@ -2481,3 +2481,49 @@ All three reviewers viewed the references (38-58 screenshots each), opening the 
 - Stray cloud dots (b1, t1, 02; two); thin vertical lines under the shelves and a hanging plant's string running into a shelved pot (s7; two).
 - Mosaic floor light as hard-edged decals over the rugs (08; two); the EQUIPMENT sign through the bookshelf (09); the jar hovering off the wash table and the scrub ring clipping the basin rim (s11).
 - A bottle clipping the driftwood, a rock intersecting the bench end (b9); a dark line along the road edge (t1) and across the roadside sand (b7); the arm out of proportion (04-06).
+
+### November 6 — round 55 and review 52 (three reviewers, averaged)
+
+Round 55 (Round55Pass, StudioStation, FrostedGlass.shader, menu pass 59):
+- **Convex side out:** the piece held at the sorting trays shows its convex outer face again, held up facing the camera and tilted back 35 degrees, over the light felt.
+- **Gentler refraction for the held piece only** (_Refraction .025 in its property block), so the tray divider behind it no longer bends into a dark band.
+- **Stronger fine pitting** on clean glass, so the glint breaks into a few small flashes.
+
+All three reviewers viewed the references (38-42 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 51 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass holds at 3.0.** Nobody reads a dish or saucer any more, and the tray shards remain "good bottle-wall pieces with rim light" (all three). The held clean piece in 06 now reads as **a thick, opaque lump**: "jelly or plastic" with stripe banding, "an ice cube", "thick opaque jade, muddy in colour". With gentler refraction and the felt behind it, it no longer looks see-through. The cloudy piece in 04 still reads as sandstone or sponge (all three).
+- Studio and truck moved by a reviewer's point each way with no change to them; four areas meet the bar unanimously (lighting, water, sorting, mosaic).
+- Sea glass has now held at 3.0 across five glass rounds (51-55). Each change fixed the named fault and the panel named a new one. The tray pieces pass; the held clean piece and the cloudy piece are what hold the area.
+
+**Next:**
+- Held clean piece: clearly see-through and saturated (thin edge clear, background visibly through it), not an opaque lump (all three); cloudy piece frosted glass with the hue through the frost, not stone (all three).
+- Clouds: blurred inflatable blobs (all three). Flat single-tone sand fields; wet sand with no sheen and a hard step (all three).
+- Vegetation: flat-disc island pines, blob bushes, sparse planting (all three).
+- Cleaning: grime comes off in blotches, no splash, runoff or "done" burst (all three).
+- Spade a flat plate on a stick (all three); rubbish unreadable at range (all three); truck bonnet shading (two).
+
+**Bugs reported:**
+- Hexagonal patches on the left island (b8; all three, eighth review running).
+- A light-turquoise skirt or wedge with a hard edge at the island bases (b5, b3, s7; all three).
+- The jar or scoop at the left edge of the wash table tilted half off the counter, and the ring handle clipping the basin rim (s11, 04, 05; all three).
+- Stray cloud dots (b1, t1, b2; two); the foam band in b8 repeats as identical stamps (one).
+- The held piece clips the tray rim and Amber label (06; one); floating side mirrors and a dark board behind the seat (t2; one); smeared bonnet shading (t2; two).
+- Near-shore rocks cut flat at the waterline (b3, b6; one); a hard step between wet and dry sand (b3, b6; one); the buried glass a flat disc or slab on its mound (b2, 02; two); a hanging pot against open sky (s5; one); the spade shaft nearly hidden by the glove (02, 03; one).
