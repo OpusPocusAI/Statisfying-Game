@@ -17,6 +17,7 @@ Shader "Sea Glass/Frosted Glass"
         _Facets("Stained-glass fragments (mosaic)", Range(0, 1)) = 0
         _MaskOn("Brush mask drives the layers (set at runtime)", Float) = 0
         _Bend("Bottle-wall bend of the mid-surface (mesh units, round 54)", Range(-.3, .3)) = 0
+        _Held("Held up to the eye (set at runtime, round 56)", Float) = 0
     }
     SubShader
     {
@@ -56,7 +57,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn, _Bend;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held;
             CBUFFER_END
             float4 _SG_Basin;   // round 39: basin water centre (xyz) and radius (w), set by the cleaning station
 
@@ -246,6 +247,27 @@ Shader "Sea Glass/Frosted Glass"
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
                     glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28;   // round 43: half the rim glow
                     clean = glass;
+                    // Round 56 (review 52, all three: the held clean piece "an opaque lump", "an ice cube", "thick opaque jade"):
+                    // the layered absorption above replaced what lies behind with its brightness in the glass hue, so nothing
+                    // recognisable showed through a piece held up to the eye. Held, it is a coloured lens instead: the scene
+                    // behind stays sharp, keeps its own light and dark and is only filtered by the hue (deeper where thick),
+                    // bent more towards the curved rim, which reads as a darker refraction band and a thin bright edge.
+                    if (_Held > .5)
+                    {
+                        float rimT = 1 - nv;
+                        float2 huv = screenUV + viewN.xy * (.03 + .1 * rimT * rimT);
+                        half3 seenH = SampleSceneColor(huv);
+                        half thickH = saturate((lz - .03) / .14);
+                        half3 filt = lerp(half3(1, 1, 1), hue, lerp(.58, .82, thickH));
+                        half3 g = seenH * filt * lerp(1.18, .9, thickH);
+                        g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, .2);   // a little of the glass's own saturated colour
+                        g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);
+                        half band = smoothstep(.5, .7, rimT) * (1 - smoothstep(.8, .9, rimT));
+                        g *= 1 - band * .4 * (1 - .4 * thickH);
+                        g = lerp(g, lerp(hue, half3(1, 1, 1), .55) * (sky * .45 + sun.color * .45 + .35), smoothstep(.86, .96, rimT) * .75);
+                        g += sky * fresnel * .22;
+                        clean = g;
+                    }
                 }
 
                 // ---- Frosted glass: milky version of its colour, softly lit, with salt sparkle.
@@ -302,7 +324,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Crisp highlights only on clean, polished glass.
                 // Round 43 (5.6 fixed form): faint micro-pitting on the glossy skin, so each glint breaks into a few small flashes.
                 float3 pit = float3(Noise(i.local * 70.0), Noise(i.local * 70.0 + 5.3), Noise(i.local * 70.0 + 11.7)) - .5;
-                float3 ng = normalize(n + pit * .17 * (1 - _Facets));   // round 55 (review 51: "one smeared glint"): stronger pitting, so the glint breaks into a few flashes
+                float3 ng = normalize(n + pit * .17 * (1 - _Held) * (1 - _Facets));   // round 55 (review 51: "one smeared glint"): stronger pitting, so the glint breaks into a few flashes
                 float3 h = normalize(l + v);
                 half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
@@ -315,7 +337,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
-                half glint = smoothstep(.9985 - aaK, .9985 + aaK, nk) * .7 + pow(nk, 3600) * .9 + pow(nk, 160) * .05;   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
+                half glint = smoothstep(.9985 + _Held * .0011 - aaK, .9985 + _Held * .0011 + aaK, nk) * .7 + pow(nk, 3600) * .9 + pow(nk, 160) * .05;   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
                 // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
@@ -329,7 +351,7 @@ Shader "Sea Glass/Frosted Glass"
                 float3 k4 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.4, .5, .77))), k5 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.15, -.35, .92)));
                 half n4 = saturate(dot(ng, normalize(k4 + v))), n5 = saturate(dot(ng, normalize(k5 + v)));
                 half a4 = max(fwidth(n4) * 1.5, .0008), a5 = max(fwidth(n5) * 1.5, .0008);
-                edgeG += smoothstep(.9975 - a4, .9975 + a4, n4) * .8 + smoothstep(.998 - a5, .998 + a5, n5) * .6;
+                edgeG += smoothstep(.9975 + _Held * .0019 - a4, .9975 + _Held * .0019 + a4, n4) * .8 + smoothstep(.998 + _Held * .0015 - a5, .998 + _Held * .0015 + a5, n5) * .6;   // round 56: smaller on the flat face of the held piece
                 c += edgeG * .95 * (1 - grime) * (1 - _Facets);
                 // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
                 // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
@@ -373,7 +395,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn, _Bend;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION
