@@ -2571,3 +2571,47 @@ All three reviewers viewed the references (39-41 screenshots each), opening the 
 - The jar tipped at the wash-table edge (s11, 04, 05; two); the hanging plant a stack of spheres (s7; two).
 - Truck: crumpled bonnet and fender shading, floating mirrors, a dark board behind the cab (t2; two).
 - The glove floats over the brush, the brush head sinks into the glass (05; two); flat coloured rectangles on the floor read as stray planes, not light spill (08; one); swirling floor grain (s5, s11; one); a bottle through the driftwood log (b9; one); the buried glass a flat decal disc (b2, 02; one).
+
+### November 6 — round 57 and review 54 (three reviewers, averaged)
+
+Round 57 (Round57Pass, StudioStation, FrostedGlass.shader, menu pass 61):
+- **Held glass shaded as a plate, not a dome:** in held mode the mesh normal separates the near-flat faces from the narrow edge wall. Through a face the scene shifts little and evenly, like a pane; the edge wall glows a deep saturated hue with a thin bright lip, and the face carries one straight soft sheen. The view-based dark rim band that rounded it is gone.
+- **Pose:** tilted back 30 degrees (was 18) so the edge wall shows, and raised against the room, clear of the Amber label.
+
+All three reviewers viewed the references (39-40 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 53 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 2 | 2 | 2 | 2.0 (stills only) | 2.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass holds at 3.0 for a seventh glass round, and the held piece overshot.** Nobody reads a lump or jelly any more; all three now read the held clean piece in 06 as **too thin**: "a thin curved sheet, like cellophane", "a thin curved sheet or acetate", "a thin curved acrylic sheet". The narrow edge band does not carry the wedge's thickness at this size, and the visible bottle-wall curve reads as a bent film. All three also call the tray pieces thin chips or flakes rather than the 30%-to-12% wedge. The cloudy piece (04) still reads as sandy stone (all three).
+- **Effects fell to 2.0 (all three, stills only):** a few outlined bubbles in 05, no splash, runoff or "clean" sparkle in 06, no particles at the 08 reveal. Nothing changed there; the panel is now unanimous.
+- Lighting returned to 4.0. Four areas meet the bar unanimously (lighting, water, sorting, mosaic).
+
+**Next:**
+- Held clean piece: between the two last rounds. Keep the see-through faces and the flat plate, but show real thickness: a visibly thick, bright-and-deep edge on the wedge's thick side and less visible curl (all three). Cloudy piece frosted glass with the hue through the frost, not stone (all three). Tray pieces showing their wedge thickness (all three).
+- Effects and cleaning feedback: splash, drips, stroke-following removal, a "clean" sparkle in 06, particles at the reveal (all three).
+- Clouds as shaped cumulus (all three); island trees as layered foliage, not disc stacks (all three); flat sand foregrounds (all three); rubbish unreadable at range (all three).
+- First-person sleeve a long plain tube, block brush, flat spade (all three); truck bonnet lumpy and wheels plain (all three).
+
+**Bugs reported:**
+- Hexagonal patches on the left island's rock face (b8; all three, tenth review running).
+- A hard-edged turquoise skirt around the island bases (b3, b5, 02; two).
+- Truck: crumpled bonnet and fender shading (t2; two), floating mirrors and a board behind the seat (t2; two).
+- Stray cloud dots (b1, b6, t1, 03; one); the jar tipped at the wash-table edge (s11, 04, 05; one); the hanging plant stacked spheres or glowing pot (s7; two).
+- The sleeve a long tube from the screen edge, the wrist clipping the brush handle (04-06; two); the held glass floating with no hand (06; one).
+- Stretched, swirling floor grain (s1, s5, 07b; one); the EQUIPMENT sign clipping the bookshelf or hanging unsupported (09, s4; one); a translucent blue slab by the cooler reads as a stray shape (02; one).
