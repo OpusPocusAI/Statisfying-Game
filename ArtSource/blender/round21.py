@@ -46,17 +46,23 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         p = v.co.copy()
         a = math.atan2(p.z, p.x) + rot
         rr = math.hypot(p.x, p.z) / .5            # 0 centre .. 1 at the equator
-        lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .14
-        lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)                      # lopsided: one side fuller than the other
-        orr = outline_r(a, sides, rk) * lump * lop
-        if cut > 0:
-            # A worn broken edge: the outline follows a chord at distance (1 - cut) from the centre, softly blended.
-            da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
-            if abs(da) < math.pi / 2 - .05:
-                chord = (1 - cut) / math.cos(da)
-                kb = .26   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
-                h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
-                orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
+        def full_r(a):
+            lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .14
+            lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)                      # lopsided: one side fuller than the other
+            orr = outline_r(a, sides, rk) * lump * lop
+            if cut > 0:
+                # A worn broken edge: the outline follows a chord at distance (1 - cut) from the centre, softly blended.
+                da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
+                if abs(da) < math.pi / 2 - .05:
+                    chord = (1 - cut) / math.cos(da)
+                    kb = .26   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
+                    h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
+                    orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
+            return orr
+        # Round 60 (review 56, all three: the held piece "a shield with a pointed tip", against 5.6's "no pointed tips"): the
+        # outline radius is averaged over about +/-24 degrees around each angle, so every convex corner rounds over
+        # (tumbled glass wears its corners first) while the broad outline, straight broken edge and lopsidedness stay.
+        orr = sum(full_r(a + d * .07) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
         x, z = p.x * sx * orr, p.z * sz * orr
         # Slab profile: flat faces with rounded edges (a superellipse in thickness, not a sphere).
         yn = p.y / .5

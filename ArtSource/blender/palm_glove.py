@@ -22,16 +22,22 @@ parts = []
 parts.append(uv_sphere("palm", .05, (0, -.008, -.02), (1.12, 1.08, .42), 28, 16, "glove"))
 parts.append(uv_sphere("heel", .03, (.006, -.046, -.016), (1.5, .8, .55), 20, 10, "glove"))            # heel of the hand, raised
 parts.append(uv_sphere("pads", .028, (0, .036, -.014), (1.85, .62, .55), 20, 10, "glove"))             # finger pads, raised
-parts.append(uv_sphere("thenar", .026, (.034, -.022, -.016), (.9, 1.3, .62), 16, 10, "glove"))         # thumb mound
-# Four fingers, relaxed: straight out, curling up a little at the tips, middle two the longest.
+parts.append(uv_sphere("thenar", .026, (.034, -.022, -.012), (.9, 1.3, .75), 16, 10, "glove"))         # thumb mound, raised (round 60)
+# Round 60 (review 56, all three: "a flat paddle", "a stiff, flat mitten"): a cupped palm, its little-finger edge raised
+# like the thumb mound, so the middle sits lower than the rim of the hand.
+parts.append(uv_sphere("outer edge", .024, (-.04, -.012, -.011), (.62, 1.65, .7), 16, 10, "glove"))
+# Four fingers, relaxed and curling up from the knuckles (round 60: they lay straight out, a paddle), fanned a little, each
+# a slightly different curl, middle two the longest.
 for i in range(4):
     x = -.034 + i * .0225
     r = .0118 if i in (1, 2) else .0105
-    reach = (.124, .132, .128, .112)[i]
-    pts = [(x, .036, -.016), (x, .066, -.014), (x, reach - .026, -.006), (x * 1.04, reach, .01)]
+    reach = (.1, .107, .104, .09)[i]
+    lift = (.034, .03, .032, .038)[i]
+    fan = x * .35
+    pts = [(x, .036, -.015), (x + fan * .3, .062, -.008), (x + fan * .7, reach - .014, lift * .55), (x + fan, reach, lift)]
     parts.append(tube_along("finger", pts, r, "glove", resolution=12, bevel_resolution=4))
 # Thumb out to the side, its tip lifting.
-parts.append(tube_along("thumb", [(.036, -.03, -.018), (.062, -.004, -.014), (.078, .024, -.004), (.084, .046, .01)], .0128, "glove", resolution=12, bevel_resolution=4))
+parts.append(tube_along("thumb", [(.036, -.03, -.016), (.06, -.006, -.008), (.07, .02, .008), (.062, .04, .026)], .0128, "glove", resolution=12, bevel_resolution=4))   # round 60: curling in over the palm
 # Wrist: a short taper from the heel into the cuff.
 parts.append(cylinder("wrist", .04, .06, tuple(wrist - axis_dir * .012), rotation=(math.radians(106), 0, 0), vertices=24, material="glove", radius2=.047))
 

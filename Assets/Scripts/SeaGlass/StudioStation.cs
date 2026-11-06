@@ -193,7 +193,7 @@ namespace SeaGlass
             workingGlass.rotation=Quaternion.LookRotation(-heldPalm.up,heldPalm.forward)*Quaternion.Euler(0,0,25);
             var mf=workingGlass.GetComponent<MeshFilter>();var mb=mf&&mf.sharedMesh?mf.sharedMesh.bounds:new Bounds(Vector3.zero,Vector3.one);
             float k=workingGlass.lossyScale.x;
-            workingGlass.position=heldPalm.position+heldPalm.up*(mb.max.z*k+.001f)-workingGlass.rotation*new Vector3(mb.center.x*k,mb.center.y*k,0)+heldPalm.forward*.012f;
+            workingGlass.position=heldPalm.position+heldPalm.up*(mb.max.z*k+.004f)-workingGlass.rotation*new Vector3(mb.center.x*k,mb.center.y*k,0)+heldPalm.forward*.012f;
         }
     }
 }
