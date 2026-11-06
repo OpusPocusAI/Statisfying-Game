@@ -302,7 +302,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Crisp highlights only on clean, polished glass.
                 // Round 43 (5.6 fixed form): faint micro-pitting on the glossy skin, so each glint breaks into a few small flashes.
                 float3 pit = float3(Noise(i.local * 70.0), Noise(i.local * 70.0 + 5.3), Noise(i.local * 70.0 + 11.7)) - .5;
-                float3 ng = normalize(n + pit * .09 * (1 - _Facets));
+                float3 ng = normalize(n + pit * .17 * (1 - _Facets));   // round 55 (review 51: "one smeared glint"): stronger pitting, so the glint breaks into a few flashes
                 float3 h = normalize(l + v);
                 half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);

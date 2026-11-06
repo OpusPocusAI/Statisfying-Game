@@ -118,6 +118,9 @@ namespace SeaGlass
         {
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
             block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);
+            // Round 55: held up to the eye at the trays, the piece is large on screen; full refraction magnified the tray divider
+            // behind it into a dark band across it, so it bends the background more gently there.
+            block.SetFloat("_Refraction",kind==StationKind.Sort?.025f:glassRenderer.sharedMaterial.GetFloat("_Refraction"));
             if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
@@ -167,7 +170,8 @@ namespace SeaGlass
                 }
                 if(tray)Sort(tray.color);
             }
-            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.07f+S.player.view.transform.right*.12f;   // round 45 (review 41: the held piece "reads opaque"): held against the tray rim, felt and heaped glass, so what shows through it is visibly bent and tinted (it hung over the plain bench front)
+            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.position=S.player.view.transform.position+S.player.view.transform.forward*.85f+S.player.view.transform.up*-.03f+S.player.view.transform.right*.12f;   // round 55 (review 51: the inner face read as "a dish"): held up to the eye, convex face toward the camera and tilted back 35 degrees so the thick edge and glint show, over the light felt rather than the dark tray rim (which the curved face bent into a crease)
+            if(workingGlass&&workingGlass.gameObject.activeSelf&&kind==StationKind.Sort)workingGlass.rotation=Quaternion.LookRotation(S.player.view.transform.forward,S.player.view.transform.up)*Quaternion.Euler(35,0,-12);   // local +z away from the eye: the bend's convex side (-z) faces the camera. Round 45 (review 41: the held piece "reads opaque"): held where felt and heaped glass show through it, visibly bent and tinted (it hung over the plain bench front)
         }
     }
 }
