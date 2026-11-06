@@ -2434,3 +2434,50 @@ All three reviewers viewed the references (37-41 screenshots each), mostly by op
 - Stray white dot-clouds (b1, t1, 03); a hanging pot floating against the sky (s5); a dark lampshade shape cutting the top of s7; a plant rope running into a shelved pot (s7).
 - The jar hangs off the wash-table edge (s11, 04); the cloudy piece's rim line separates from its body (04); the spade casts an oversized shadow (02).
 - The open right-hand wall of s3 ends abruptly with a floating bush; the SORT BY COLOUR sign cuts into the table slats (s3); level box-top on the mesa rock (b5, b9, 02); brown squiggles on the wet sand (b6).
+
+### November 6 — round 54 and review 51 (three reviewers, averaged)
+
+Round 54 (Round54Pass, round21.py, FrostedGlass.shader, menu pass 58):
+- **Curved bottle wall:** both faces of every glass piece bulged outwards, so each read as a lens or pillow. glass_slab_0..5 are now curved plates: one cylindrical bend (about 10% of the width) shared by both faces, with the wedge taper and blunt rim kept. FrostedGlass measures thickness from the same bent mid-surface (`_Bend`, on the six sea-glass colours only).
+- **Orientation:** the basin piece lies convex side up, so its ends stay under the water (concave side up, they broke the surface as a white blotch). The piece held at the trays shows its concave inner face, because seen convex side on the bend refracted the dark tray rim into the old crease.
+- A little more sand stain on the cloudy piece, since the gentler curve shows less edge silt.
+
+All three reviewers viewed the references (38-58 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 50 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The three reviewers agree on every area**, the first fully unanimous panel. Five areas meet the bar: lighting, water, sorting, mosaic and studio (studio up from 3.3 with no change to it).
+- **Sea glass holds at 3.0, but the reading moved.** Nobody calls the held piece a pillow, jelly lump or crease any more, and the tray shards are "convincing", with "good outlines, rim light and colour". All three now read the held clean piece's concave inner face as **a dish or saucer with a raised lip**, not a domed wedge, and two find it pale with little depth tint. The cloudy piece in 04 reads as stone, sandstone or sponge (all three). One reviewer sees the tray pieces as thin flat chips.
+- Lesson: the held piece should show its convex outer face, as sea glass is usually seen; the crease that face showed (the dark tray rim refracted through the bend) needs a calmer background or gentler refraction instead of turning the piece over.
+
+**Next:**
+- Held glass: convex face out, deeper saturated colour, sharper glints; cloudy piece frosted glass, not stone (all three).
+- Wet sand: a flat taupe band with no sheen and a hard stepped edge to the dry sand (b3, b6; all three).
+- Clouds: smooth cut-out blobs (all three). Flat cream sand fields (b1, b2; all three).
+- Vegetation: disc-stack island trees, blob bushes (all three).
+- Cleaning: blotchy grime removal, no "done" sparkle, milky water (all three).
+- Rubbish unreadable at 5 m; spade a flat plate, brush a block, arm a long tube; truck bonnet lumpy and smeared (all three).
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8; all three, seventh review running).
+- A pale, hard-edged halo or skirt in the water around the islands' bases (b3, b4, b5; two).
+- Smeared, crumpled bonnet shading (t2; all three).
+- Stray cloud dots (b1, t1, 02; two); thin vertical lines under the shelves and a hanging plant's string running into a shelved pot (s7; two).
+- Mosaic floor light as hard-edged decals over the rugs (08; two); the EQUIPMENT sign through the bookshelf (09); the jar hovering off the wash table and the scrub ring clipping the basin rim (s11).
+- A bottle clipping the driftwood, a rock intersecting the bench end (b9); a dark line along the road edge (t1) and across the roadside sand (b7); the arm out of proportion (04-06).
