@@ -63,6 +63,108 @@ Shader "Sea Glass/Painted Sky"
                 return v;
             }
 
+            // Round 62 (reviews 39-58, all three: "smooth cut-out blobs", "smeared, puffy blobs, not shaped cumulus",
+            // "stray cloud dots"; Tchia's clouds are built-up, lobed cumulus with lit tops and shaded undersides): the
+            // clouds are no longer a thresholded noise field, which made blobs, smeared tails and lone specks. Each one is
+            // a designed cumulus: a flat base and a domed top of overlapping rounded lobes, fused into one outline, and
+            // each lobe shaded as a rounded volume against the sun, so every cloud shows its cauliflower build-up.
+            float Hash1(float n) { return frac(sin(n * 127.1 + 311.7) * 43758.5453); }
+            float SMin(float a, float b, float k) { float h = saturate(.5 + .5 * (b - a) / k); return lerp(b, a, h) - k * h * (1 - h); }
+
+            // One cumulus. q: position from the middle of its base, in radians (x already scaled by cos(elevation));
+            // W: half-width. Returns the cloud colour and its coverage.
+            half4 Cumulus(float2 q, float W, float seed, float3 right, float3 upL, float3 back, float3 sunDir, float sunAlign)
+            {
+                float tower = Hash1(seed * 3.1), lean = (Hash1(seed * 2.3) - .5) * .5;   // how tall the middle builds up, and to which side
+                float sdf = 1e3, zm = -1e3, sw = 0;
+                float3 sn = 0;
+                float soft = W * .05;   // how far the shading blends across the join of two lobes
+                [unroll] for (int k = 0; k < 13; k++)
+                {
+                    float hk = Hash1(seed + k * 7.13), hk2 = Hash1(seed * 1.7 + k * 3.91);
+                    float2 c; float r;
+                    if (k < 7)
+                    {
+                        // The skirt: lobes of uneven size along the base, biggest in the middle.
+                        float t = ((k + .5) / 7) * 2 - 1 + (hk - .5) * .2, dome = 1 - t * t;
+                        r = W * (.15 + .32 * dome) * (.68 + .64 * hk2);
+                        c = float2(t * W * .9, r * .4 + dome * W * .08);
+                    }
+                    else if (k >= 10)
+                    {
+                        // Small lobes along the upper contour: the cauliflower edge of a cumulus top.
+                        float t = lean * .6 + (k - 11) * .42 + (hk - .5) * .25, dome = 1 - t * t;
+                        r = W * (.1 + .06 * hk2);
+                        c = float2(t * W, W * (.2 + .42 * tower * dome + .22 * dome));
+                    }
+                    else
+                    {
+                        // The build-up: lobes stacked over the middle, leaning to one side, taller on towering clouds.
+                        float t = (k == 9 ? lean * 1.3 : lean + (k - 7.5) * .5) + (hk - .5) * .2;
+                        r = W * (.2 + .16 * tower) * (.75 + .5 * hk2) * (k == 9 ? .8 : 1);
+                        c = float2(t * W, W * (.27 + .34 * tower) * (k == 9 ? 1.45 : 1) + r * .1);
+                    }
+                    float2 dq = q - c; float dl = length(dq);
+                    sdf = SMin(sdf, dl - r, W * .045);
+                    // Height of this lobe's rounded front; the front-most lobe at each point is the one seen.
+                    float z = dl < r ? sqrt(r * r - dl * dl) : r - dl;
+                    float3 nk = normalize(float3(dq / r, sqrt(saturate(1 - dot(dq, dq) / (r * r)))));
+                    // A running soft maximum over the lobes, so the shading never jumps from one lobe to the next.
+                    if (z > zm) { float sc = exp((zm - z) / soft); sw = sw * sc + 1; sn = sn * sc + nk; zm = z; }
+                    else { float wk = exp((z - zm) / soft); sw += wk; sn += nk * wk; }
+                }
+                // A flat, slightly rounded base.
+                float base = (Hash1(seed * 5.3) - .5) * W * .05 * q.x / W;
+                sdf = -SMin(-sdf, -(base - q.y), W * .035);
+                // A little painterly unevenness on the outline, too small to make specks.
+                sdf += (Noise(q / W * 5.5 + seed * 13.7) - .5) * W * .035;
+
+                // Lobe shading: where two lobes meet, their normals blend and the join is softly creased.
+                float3 n = normalize(sn);
+                float crease = saturate((sw - 1) * .8) * step(0, zm);
+                float baseK = 1 - smoothstep(0, W * .2, q.y);
+                n = normalize(lerp(n, float3(0, -.85, .55), baseK * .75));   // the flat underside faces down
+                float3 N = right * n.x + upL * n.y + back * n.z;
+                float ndl = dot(N, sunDir);
+                float lit = saturate(ndl * .5 + .55) * .65 + saturate(q.y / (W * .85)) * .35;
+                lit *= 1 - crease * .18;
+                // Three painted tones with soft steps: lilac underside, warm peach-rose middle, cream tops.
+                half3 mid = lerp(_CloudShade.rgb, _CloudLit.rgb, .62) * half3(1.07, .9, .85);
+                half3 col = lerp(_CloudShade.rgb, mid, smoothstep(.28, .38, lit));
+                col = lerp(col, _CloudLit.rgb, smoothstep(.53, .63, lit));
+                col *= .97 + .06 * Noise(q / W * 9 + seed * 3.3);
+                // Toward the sun the clouds are backlit: light glows through their thin upper edges.
+                float thin = (1 - saturate(-sdf / (W * .22))) * smoothstep(W * .1, W * .45, q.y);
+                col = lerp(col, _CloudLit.rgb * half3(1.04, .9, .76), thin * pow(sunAlign, 2) * .6);
+                // Bright rim around the outline, gold toward the sun.
+                float edge = (1 - smoothstep(0, W * .06, -sdf)) * smoothstep(0, W * .15, q.y);
+                col += _SunGlow.rgb * edge * (pow(sunAlign, 3) * 1.1 + .1);
+                float fw = .0013;   // fixed width in radians: about one pixel, crisp but not aliased
+                return half4(col, smoothstep(fw, -fw, sdf));
+            }
+
+            // A ring of cloud cells around the horizon; each cell holds one cumulus or clear sky.
+            half4 CloudRow(float th, float e, float ce, float cells, float occ, float wMin, float wMax, float eMin, float eMax,
+                           float rowSeed, float3 right, float3 upL, float3 back, float3 sunDir, float sunAlign)
+            {
+                float cw = 6.2831853 / cells, ci = floor(th / cw);
+                half4 o = 0;
+                [unroll] for (int j = -1; j <= 1; j++)
+                {
+                    float idx = ci + j, wrapped = idx - cells * floor(idx / cells);
+                    float seed = wrapped * 17.31 + rowSeed;
+                    if (Hash1(seed) < occ)
+                    {
+                        float W = lerp(wMin, wMax, Hash1(seed + .37)) * _CloudScale / 1.5;
+                        float eb = lerp(eMin, eMax, Hash1(seed + .71));
+                        float xc = (idx + .5 + (Hash1(seed + .93) - .5) * .5) * cw;
+                        half4 cl = Cumulus(float2((th - xc) * ce, e - eb), W, seed, right, upL, back, sunDir, sunAlign);
+                        o.rgb = lerp(o.rgb, cl.rgb, o.a > 0 ? cl.a : 1); o.a = max(o.a, cl.a);   // never blended toward black at an edge
+                    }
+                }
+                return o;
+            }
+
             V vert(A i) { V o; o.p = TransformObjectToHClip(i.p.xyz); o.dir = i.p.xyz; return o; }
 
             half4 frag(V i) : SV_Target
@@ -87,40 +189,17 @@ Shader "Sea Glass/Painted Sky"
                 float disc = smoothstep(0.99935, 0.99965, sunAlign);
                 c = lerp(c, _SunColour.rgb * 1.6, disc);
 
-                // Clouds on a flattened dome; thicker near the horizon, clear overhead.
-                // Wrap the cloud field around the horizon (no stretching, no seam):
-                // banks of cumulus sitting above the sea, flattened bases, taller tops.
-                float2 ring = normalize(d.xz + 1e-5);
-                float3 cp = float3(ring * 3.2 * _CloudScale, h * 5.5 * _CloudScale);
-                float band = smoothstep(0.095, 0.145, h) * (1 - smoothstep(0.22, 0.4, h));   // round 18: higher still; low banks sat on dune ridges like snow
-                float density = Fbm3(cp + float3(3.1, 7.4, 1.3));
-                // The band erodes the noise rather than masking it, so edges stay organic.
-                float cloudField = density - (1 - band) * 0.7 + 0.05;
-                // Round 23 (reviews: "stray dot clouds"): where the broad base octave is clear, push the field down so
-                // isolated specks from the fine octaves vanish; applied before the crisp edge, so outlines stay sharp.
-                cloudField -= (1 - smoothstep(.22, .52, Noise3(cp * .8 + float3(3.1, 7.4, 1.3)))) * .22;   // round 33: wider and softer, so it no longer carves narrow notches
-                // Round 5: crisp, graphic silhouettes (Firewatch) — the edge is about one pixel wide,
-                // instead of a fixed noise range that read as blurred, melting blobs.
-                // Round 33 (reviews: "a vertical seam through the long cloud"): fixed widths. The sky dome is a mesh, and
-                // screen derivatives jump across its triangle edges, which drew a crease through the clouds.
-                float fw = 0.006;
-                float shape = smoothstep(1 - _CloudCover - fw, 1 - _CloudCover + fw, cloudField);
-                // Self-shadowing: sample towards the sun and upwards; denser there means this side faces away.
-                float3 toSun = float3(normalize(sunDir.xz + 1e-4) * 0.16, 0.22);
-                float towardSun = Fbm3(cp + toSun + float3(3.1, 7.4, 1.3));
-                // Round 18 (reviews: "smeared purple stains inside"): the light no longer comes from a noise
-                // difference, which scattered shaded blotches through every cloud. Instead a clean ramp: a flat
-                // lilac base and lilac edges, warm cream higher in the body, with a gentle bias to the sun side.
-                float depthIn = cloudField - (1 - _CloudCover);                   // 0 at the silhouette, growing inwards
-                float ramp = (h - 0.12) * 6.0 + saturate(depthIn * 4.0) * .45 + (density - towardSun) * 1.2;   // round 26: saturated, so a thin neck in a cloud no longer draws a dark crease (reviews: "seam")
-                float lfw = 0.05;
-                float lit = smoothstep(0.32 - lfw, 0.48 + lfw, ramp) * 0.85 + saturate(ramp) * 0.15;
-                half3 cloud = lerp(_CloudShade.rgb, _CloudLit.rgb, lit);
-                // Bright silver rim on cloud edges near the sun.
-                float edge = shape * (1 - smoothstep(1 - _CloudCover + 0.02, 1 - _CloudCover + 0.2, cloudField));
-                cloud += _SunGlow.rgb * edge * pow(sunAlign, 3) * 0.9;
-                cloud = lerp(cloud, c, smoothstep(0.08, 0.0, h) * 0.6);
-                c = lerp(c, cloud, shape * 0.95);
+                // Round 62: two rows of built cumulus around the horizon, clear overhead and clear of the dune crests
+                // (round 18). The far row sits lower, smaller and a little hazed; the near row higher and larger.
+                if (h > .09)
+                {
+                    float th = atan2(d.z, d.x), e = asin(saturate(h)), ce = cos(e);
+                    float3 right = normalize(float3(-d.z, 0, d.x) + 1e-5), upL = normalize(float3(0, 1, 0) - d * h), back = -d;
+                    half4 cFar = CloudRow(th, e, ce, 26, _CloudCover, .065, .11, .12, .16, 11.0, right, upL, back, sunDir, sunAlign);
+                    half4 cNear = CloudRow(th + .9, e, ce, 18, _CloudCover * .85, .1, .16, .19, .25, 47.0, right, upL, back, sunDir, sunAlign);
+                    c = lerp(c, lerp(cFar.rgb, c, .22), cFar.a * .96);
+                    c = lerp(c, lerp(cNear.rgb, c, .06), cNear.a * .97);
+                }
 
                 return half4(c, 1);
             }
