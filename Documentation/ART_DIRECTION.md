@@ -3098,3 +3098,46 @@ All three reviewers viewed the references (37-40 screenshots each), as full-size
 - Blotchy, crumpled bonnet shading (t2; two); a dark strip along the road edge (t1; one); a straight seam across the b7 sand (one).
 - The jar tilted at the wash-table edge (s11, 04; two); a plant clipping the Ocean Wave label (s2; one); a glowing hanging pot (s7; one).
 - Buried glass as flat discs (b2; two); floating V marks over the dunes (b2, b7; one); flat dark decals on the sand (b1, b4; one); hard-edged floor-light quads (08; one).
+
+### November 7 — round 69 and review 66 (three reviewers, averaged)
+
+Round 69 (Round69Pass, glove.py, EquipmentVisuals, menu pass 70):
+- **Arm from the side again:** round 68's aim toward the viewer is removed; the brushing arm comes in from the lower right as before.
+- **Bristles in view:** the brush tips 18 degrees about its handle so the bristles face the camera; the glove mesh angles the forearm -10 degrees so its net rise stays about 8 degrees.
+- **Slimmer sleeve:** about a quarter narrower. **Coarser twill** on the denim, so it no longer shimmers into moire.
+
+All three reviewers viewed the references (36-43 screenshots each), as full-size store images or screenshot grids in their own tab.
+
+| Area | A | B | C | Average | Review 65 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Cleaning recovered part of its loss (3.3, one 4)**; nobody calls the brush a hidden block any more, and one says "the bristled brush reads well" (A). Grime as blotches, not strokes, holds it down (all three).
+- **Tools hold at 3.0 for a fourth round.** The slimmer sleeve still reads as "a long hose-like tube across the basin" (A), "a very long striped tube crossing half the frame, so the arm reads as a hose" (B), "a huge hose-like tube that dominates the frame" (C). The coarse twill now reads as stripes. Glove fingers are "blobby" or "sausage" (A, C); the spade is a good toy (A) or a flat shield plate (C).
+- **Lesson after four arm rounds (66-69):** the sleeve's shape, width, material and angle have each changed and the reading has not moved. What the panel sees is the length of arm between the brush and the frame edge, which is set by the basin camera: it looks down at a piece in the middle of a wide bowl, so any arm reaching it crosses half the frame. Either the basin view frames the piece nearer the edge of the frame on the arm's side (or nearer the camera), so only the hand and a short stretch of cuff and sleeve show, or the arm work should rest while other areas move.
+- Sea glass edged up to 3.3 (one 4: the tray and palm pieces "convincing glossy worn shards"); sand to 3.3; truck fell to 3.0. Five areas meet the bar unanimously (lighting, water, sorting, mosaic, studio).
+
+**Next:**
+- Basin framing: bring the piece and brush nearer the lower-right of the 04 and 05 view (or the camera nearer the piece), so the visible forearm is short; a plain (unstriped) sleeve (all three).
+- Sea glass: the basin piece a wedge, not a pillow or jelly (all three); the cloudy piece frosted, not mud camouflage (one).
+- Grime in strokes with drips (all three); vegetation sparse (all three); rubbish too small (all three); truck boxy with a blotchy bonnet (all three); flat sand and faceted or slab rocks (two).
+
+**Bugs reported:**
+- A hard-edged light shallow-water skirt or step around the island bases (b3, b5, b8; two); the wet/dry edge as a raised step (b3, b6; one); a repeated foam stencil (b8; one).
+- The sleeve stretching unnaturally from the frame edge to the brush, over the rim (04, 05; two).
+- The jar tilted at the wash-table edge (s11, 04; two); crumpled bonnet shading (t2; two).
+- Floating flower sprites (t1, b2, b4; one); a flat mat beside the studio (b4; one); a dark tray-bench square (06, s10; one); slab rocks (b5, b9; one); the EQUIPMENT sign floating (s4; one); the pendant lamp cut by the frame (s7; two); buried glass as a decal (b2; one).
