@@ -16,7 +16,7 @@ from mathutils import noise
 from sleeve_shape import shaped_sleeve
 
 reset()
-axis_dir = Vector((0, -math.cos(math.radians(13)), math.sin(math.radians(13))))   # forearm axis, pointing back to the camera; round 67: 13 degrees (was 8), so the sleeve clears the basin rim
+axis_dir = Vector((0, -math.cos(math.radians(-10)), math.sin(math.radians(-10))))   # forearm axis, pointing back to the camera; round 69: -10 in the mesh, so with the brush tipped 18 degrees to show its bristles (EquipmentVisuals.BristleTilt) the forearm rises about 8 degrees to the lower right; round 67 had 13, round 35 8
 wrist = Vector((0, -.095, -.045))                                                  # where the glove meets the cuff
 parts = []
 
@@ -37,7 +37,7 @@ parts.append(tube_along("thumb", [(-.035, -.07, -.03), (-.056, -.05, -.036), (-.
 parts.append(cylinder("wrist", .043, .07, tuple(wrist - axis_dir * .015), rotation=(math.radians(82), 0, 0), vertices=24, material="glove", radius2=.05))
 
 # Round 67: the shared, shaped work-shirt sleeve (sleeve_shape.py) instead of a plain tapered tube.
-sl = shaped_sleeve(wrist, axis_dir, L=1.0, seed=1)
+sl = shaped_sleeve(wrist, axis_dir, L=1.0, r0=.042, r1=.064, seed=1)   # round 69 (review 65: "a huge sleeve tube"): about a quarter slimmer
 assign(sl, "glove"); parts.append(sl)
 # Knit cuff: a soft band where glove and sleeve meet, slightly proud of both.
 bpy.ops.mesh.primitive_torus_add(major_radius=.055, minor_radius=.016, major_segments=32, minor_segments=10)

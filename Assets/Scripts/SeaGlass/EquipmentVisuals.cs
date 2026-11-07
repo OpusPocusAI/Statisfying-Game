@@ -11,33 +11,11 @@ namespace SeaGlass
             for(int i=0;i<dividers.Length;i++)if(dividers[i])dividerScales[i]=dividers[i].localScale;
             if(brush)brushHome=brush.transform.localPosition;if(sprayer)sprayerHome=sprayer.transform.localPosition;
             foreach(var station in FindObjectsByType<StudioStation>(FindObjectsSortMode.None))if(station.kind==StationKind.Clean)cleaning=station;
-            if(brush)foreach(var t in brush.GetComponentsInChildren<Transform>(true))if(t.name=="Gloved hand"){brushArm=t;brushArmBase=t.localRotation;break;}
         }
-        // Round 68 (review 64: the brushing sleeve "a huge plain tube stretching across half the screen", "an implausible
-        // length"): the arm turns about its grip on the brush handle so the sleeve heads for a shoulder below and to the right of
-        // the camera, as a real forearm does. It then runs toward the viewer and out of the corner of the frame, foreshortened,
-        // instead of lying flat across the bowl.
-        Transform brushArm;Quaternion brushArmBase;
-        static readonly Vector3 ArmAxis=new Vector3(0,Mathf.Sin(13*Mathf.Deg2Rad),-Mathf.Cos(13*Mathf.Deg2Rad));   // the sleeve axis in the glove mesh (glove.py)
-        // The brush turns with the arm (its handle across the forearm) so the forearm points back toward the viewer; then the arm
-        // pitches about the grip to the shoulder's height.
-        float AimYaw(Transform view)
-        {
-            if(!brushArm||!brushArm.parent||!brush)return 0;
-            var shoulder=view.position+view.right*.2f-view.up*.32f;
-            var axis=brushArm.parent.rotation*brushArmBase*ArmAxis;
-            var f=Vector3.ProjectOnPlane(axis,Vector3.up);var want=Vector3.ProjectOnPlane(shoulder-brushArm.position,Vector3.up);
-            return f.sqrMagnitude<1e-6f||want.sqrMagnitude<1e-6f?0:Mathf.Clamp(Vector3.SignedAngle(f,want,Vector3.up),-60,60);
-        }
-        void AimArm(Transform view)
-        {
-            if(!brushArm||!brushArm.parent)return;
-            var shoulder=view.position+view.right*.2f-view.up*.32f;
-            var baseRot=brushArm.parent.rotation*brushArmBase;
-            Vector3 bar=baseRot*Vector3.right,axis=baseRot*ArmAxis,want=shoulder-brushArm.position;
-            float a=Vector3.SignedAngle(Vector3.ProjectOnPlane(axis,bar),Vector3.ProjectOnPlane(want,bar),bar);
-            brushArm.localRotation=brushArmBase*Quaternion.AngleAxis(Mathf.Clamp(a,-10,55),Vector3.right);
-        }
+        // Round 69 (review 65: round 68 turned the forearm toward the viewer, which made it larger, hid the brush and crowded the
+        // basin; cleaning fell from 4 to 3): the arm comes in from the side again, as before round 68. The brush tips a little
+        // about its handle so the bristles face the camera (review 65: "a flat block with its bristles hidden").
+        const float BristleTilt=18;
         void Update()
         {
             var s=GameSession.Instance;if(!s)return;bool walking=s.player.mode==PlayerMode.Walking&&!s.menu&&!s.PresentationActive&&!s.player.IsIndoors;
@@ -53,7 +31,7 @@ namespace SeaGlass
                 // Keep the brush at the glass, rather than waving an unrelated block at the edge of the camera.
                 // The modelled brush pivots at its bristle tips, so .05 rests it on the domed glass.
                 Vector3 stroke=Stroke(brushing,StudioStation.StrokeClock);
-                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0),0);brush.transform.rotation=Quaternion.Euler(0,AimYaw(s.player.view.transform),0)*brush.transform.rotation;AimArm(s.player.view.transform);}
+                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0),0)*Quaternion.Euler(BristleTilt,0,0);}
                 if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}
