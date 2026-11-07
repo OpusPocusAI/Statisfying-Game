@@ -2879,3 +2879,47 @@ All three reviewers viewed the references (about 52-54 screenshots each), as scr
 - Truck: the dark board behind the seat (t2; two), detached-looking mirrors (t2; one) and a blotchy, lumpy bonnet (t2; two); a hard dark kerb line along the road (t1, b7; one).
 - A dark notch in the tray table's front edge (06, s10; one); the jar at the wash-table edge (s11; one); the brush bristles hovering above the glass (04; one); hard pixel-noise grime edges (04; one).
 - Glass on the sand as flat decals (b2, 02; one); stacked-sphere hanging plant (s7; one); the 08 floor light as hard shapes (08; one); a flat diamond banner (s3; one); the deck ending abruptly (s3, s4; one).
+
+### November 7 — round 64 and review 61 (three reviewers, averaged)
+
+Round 64 (Round64Pass, round64.py, menu pass 67):
+- **Layered beach bushes in three variants:** the one decimated, faceted bush (with leaf cards at random angles that read as dark specks) is replaced by a broad mound, a taller rounded bush and a two-lobed spreading one. Each is a fused, tiered inner mass shingled with broad cupped leaves laid along the surface and tilted out, so the outline breaks into leaf tips.
+- **Volume normals:** every vertex carries the bush's rounded volume normal, so each bush shades as one soft lit form, sunlit on top and deep green underneath.
+- **Variety:** the three variants are dealt out across the 292 bushes in the scene by position. Frame time 11.7 ms average (p95 14.2 ms).
+
+All three reviewers viewed the references (39-49 screenshots each), as full-size store images or strip images in their own tab.
+
+| Area | A | B | C | Average | Review 60 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Vegetation rose to 3.7, its best in many reviews, with two 4s.** Nobody calls the bushes blobs or balls in b5 or 02 any more: "the bushes in b5 and 02 are good" (C), "layered island canopies, palms and bushes read well" (B), "the b5 bush is good" (A). The holdout (A) still sees "yellow blobs" for the small dune shrubs at range in b7 and b2, and sparse spike-tuft grass; one other names sparse dune planting with stray "v" sprigs (b2, b7).
+- **Truck and road reached 4 unanimously** with no change to them: "rounded hood, scalloped canopy, loaded cargo" (B), "charming, cargo that visibly fills" (A). Five areas now meet the bar unanimously (lighting, water, sorting, mosaic, truck).
+- Sand rose to 3.3 with no change. Sea glass holds at 3.0: the cloudy piece is still grey concrete or camouflage patches (04) and the palm piece a guitar pick (06; all three).
+
+**Next:**
+- Cloudy piece frosted glass with the hue under it (all three); palm piece without the near-triangle outline (all three).
+- Cleaning strokes, splash, drips and a clean-moment sparkle (all three); the tube sleeve and stiff, mannequin-like open palm (all three).
+- Wet sand: a soft blend instead of the hard stepped ledge (two); flat foreground sand fields (two); rubbish too small at range and the glass hint a flat disc (all three).
+- Dune planting denser, with the small shrubs at range reading as foliage (one); clouds of one size and a clay look (all three, finish only).
+
+**Bugs reported:**
+- A hard-edged lighter shallow-water plate or seam around the island bases (b3, b5, b8, 02; two); constant-width foam rings around the sea stacks (b4, b8; two).
+- A long straight seam across the b7 foreground sand (two); a hard dark line along the road edge (t1, 03; one); a hard wet/dry ledge (b3, b6; one).
+- Truck: detached-looking mirrors and the board behind the seat (t2; one); a smeared bonnet texture (t2; one).
+- The jar at the wash-table edge (s11, 04, 05; two); hard pixel-noise grime edges (04; one).
+- The glass hint and a white ring lying flat like decals (b2; two); stray "v" sprigs on the dunes (b2, b7; one); a glowing hanging-plant pot (s7; one); mosaic labels hidden by props (s2; one).
