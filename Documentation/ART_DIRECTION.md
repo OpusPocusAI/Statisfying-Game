@@ -3054,3 +3054,47 @@ All three reviewers viewed the references (38-58 screenshots each), as full-size
 - Foam at the sea-stack bases as hard straight bands (b4, b5, b8; all three); a hard-edged shallow-water ring at the island bases (b3, b5; one); a stepped wet/dry edge (b3, b6; two); a straight seam across the b7 verge (one); a dark strip along the road edge (t1; one).
 - The jar at the wash-table edge, tilted, overhanging or cut by the near plane (s11, 04, 05; all three).
 - A bottle in the driftwood (b9; two); buried glass as flat discs (b2, 02; one); lumpy bonnet shading (t2; two); the EQUIPMENT sign clipping the bookshelf (s4; one); an unlit white slab (s3; one); hard floor-light rectangles (08; one).
+
+### November 7 — round 68 and review 65 (three reviewers, averaged)
+
+Round 68 (Round68Pass, Cloth.shader, glove.py, palm_glove.py, EquipmentVisuals, StudioStation, menu pass 69):
+- **Cloth materials:** a stepped light-to-shade ramp and a woven surface in the arm's own space (canvas, denim twill, knit rib, rubber) on every glove and the held palm.
+- **Rubber-dipped gloves:** a deep navy coating on the palm and fingers of the brushing glove and over the whole visible open hand.
+- **Arm aim:** the brush turns with the forearm and the arm pitches toward a shoulder below and right of the camera, so the sleeve comes up from the bottom of the frame, foreshortened. The held palm is turned so the finger curl shows from the side.
+
+All three reviewers viewed the references (37-40 screenshots each), as full-size store images in their own tab or the store's showcase.
+
+| Area | A | B | C | Average | Review 64 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The round regressed cleaning from 4.0 to 3.0 (all three), and tools hold at 3.0.** Coming up from the bottom of the frame, the foreshortened forearm is now closer to the camera and larger: "a huge sleeve tube dominates the frame" (A), "a very long tube that fills a third of the frame" (B), "the ribbed sleeve fills a third of the frame" (C), "at an implausible scale and angle" (A). It also hides the brush, which now reads as "a flat block with its bristles hidden" (B) or "a block" (A), so the scrub reads less. The twill still aliases into moiré stripes on the near sleeve (C).
+- **The open palm (06) improved for some:** "acceptable" (B), "designed" (C); one still sees sausage fingers (A). Nobody calls it a flat mitten or mannequin any more.
+- **Lesson:** turning the forearm toward the viewer makes it bigger, not smaller. At the basin the arm should stay to the side, as it was before round 68, but thinner and shorter on screen: a narrower sleeve, the brush held so the bristles face the camera, and the arm leaving the frame edge sooner.
+- Five areas meet the bar unanimously (lighting, water, sorting, mosaic, studio). Sand fell to 3.0 and effects to 3.0 with no change.
+
+**Next:**
+- Revert the forearm aim at the basin to the side approach, with a slimmer, shorter visible sleeve and the bristles in view; lose the moiré (all three).
+- Sea glass: the cloudy piece frosted, not opaque paint patches (all three); the basin piece a wedge, not a jelly blob (all three).
+- Grime clearing in brush-shaped strokes (all three), with drips (one). Sand foregrounds and the hard wet/dry edge (all three). Vegetation sparse (all three); slab and extruded rocks (one). Rubbish too small (all three). Spade a faceted plate (one).
+
+**Bugs reported:**
+- A hard-edged shallow-water skirt or ridge around the left island (b3, b5; all three).
+- The sleeve at an implausible scale and angle (04, 05; two); moiré on the sleeve (04, 05; one).
+- Blotchy, crumpled bonnet shading (t2; two); a dark strip along the road edge (t1; one); a straight seam across the b7 sand (one).
+- The jar tilted at the wash-table edge (s11, 04; two); a plant clipping the Ocean Wave label (s2; one); a glowing hanging pot (s7; one).
+- Buried glass as flat discs (b2; two); floating V marks over the dunes (b2, b7; one); flat dark decals on the sand (b1, b4; one); hard-edged floor-light quads (08; one).
