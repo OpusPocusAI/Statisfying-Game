@@ -2968,3 +2968,48 @@ All three reviewers viewed the references (38-41 screenshots each), as full-size
 - A green-handled object clipping the basin rim (s11; two); the brush bristles hovering beside the glass (04; one).
 - A bottle intersecting the driftwood (b9; two); buried glass as flat decals (b2, 02; one); a grey hook-shaped object floating beside the spade (02; one).
 - Crumpled bonnet shading (t2; one); dark blob plants in the front pots (s6; one); the s3 wall ending against the sky (s3; one); jars cut by the near plane (s5; one); a floating canopy read behind the bookshelf (s4; one); the studio roof edge a tiled slab from above (b4; one).
+
+### November 7 — round 66 and review 63 (three reviewers, averaged)
+
+Round 66 (FrostedGlass.shader, Feedback, StudioStation; no editor pass):
+- **Smooth crust:** the frost and sand grain were sampled up to ~360 cycles across the piece, finer than a pixel at the basin, so they aliased into speckle over the crust and along every stroke front. The grain, pits and salt glints are now coarser and soft-edged.
+- **Fuller suds:** two larger, longer-lived clumps per emission. **Round droplets** instead of stretched streaks. **A faint reveal glow**, so the glints carry the moment.
+- **Reliable reveal glints:** they have their own world-space system, and the effect emitters always simulate and stay playing. On the shared pool (which the recycling sparkles could take over), or stopped with stale bounds, the glints and drops sometimes never drew.
+
+All three reviewers viewed the references (38-39 screenshots each), as full-size store images in their own tab. The brief now asks for whole-number scores.
+
+| Area | A | B | C | Average | Review 62 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.5 |
+| 5.4 Props/vegetation | 3 | 4 | 4 | 3.7 | 3.8 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.5 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.5 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 3.5 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.2 |
+| 5.13 Effects | 4 | 4 | 3 | 3.7 (stills only) | 3.2 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Cleaning reaches 4 from all three for the first time.** "The enamel basin, shaped tap, caustics, suds and sparkle moment are all there" (A); "suds where the brush works, a sparkle at the clean moment" (B); "a clear finished moment" (C). Nobody reports pixel noise, dithering or stray streaks any more. What is left is PowerWash's stronger dirty-to-clean contrast along the strokes (all three).
+- **Effects rose to 3.7 with two 4s** on the suds clusters, the 05b sparkles and the floor light; one finds the sparkles generic four-point stars.
+- **Sand reached 4 from all three** with no change to it. Six areas now meet the bar unanimously (lighting, water, sand, cleaning, sorting, mosaic); three hold at 3.0 (rubbish, sea glass, tools).
+- Sea glass holds at 3.0: the tray pieces and the palm piece pass (all three), but the cloudy piece is opaque grey camouflage patches (04) and the lifted piece in 05b a jelly pillow (all three).
+
+**Next:**
+- Sea glass: the cloudy piece frosted and translucent with the hue through it (all three); the lifted piece in 05b as a wedge with broken glints, not a jelly pillow (all three).
+- Tools: the long tube sleeve (all three), the stiff mannequin palm (two), the flat shield spade (two).
+- Rubbish too small and too clean to read at 5 m (all three).
+- Wet sand without sheen and a hard step (two); flat rugs and repeated vases in the studio (two); a blotchy bonnet and blocky truck body (two); one puffy cloud type (all three).
+
+**Bugs reported:**
+- A hard-edged pale shelf or seam around the island bases and between the water bands (b3, b4, b5; all three).
+- Driftwood twigs on the wet sand as flat squiggle glyphs (b6; two); repeating foam glyphs (b6, b8; one); a hard wet/dry step (b3, b6; one); the ocean curving up at the b4 horizon (one).
+- The sleeve crossing the basin rim (04, 05; two); a handle clipping the rim (s11; one); the jar overhanging the counter (s11, 04; one).
+- Truck: blotchy bonnet shading (t2; two), floating mirrors and the board behind the seat (t2; one).
+- A flat white ring or disc decal (b1, b2; two); the bottle and driftwood intersecting (b9; one).
