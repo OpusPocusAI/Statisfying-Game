@@ -26,8 +26,8 @@ namespace SeaGlass
             {
                 // Keep the brush at the glass, rather than waving an unrelated block at the edge of the camera.
                 // The modelled brush pivots at its bristle tips, so .05 rests it on the domed glass.
-                Vector3 stroke=Stroke(brushing,Time.time);
-                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(Time.time*7)*12:0),0);}
+                Vector3 stroke=Stroke(brushing,StudioStation.StrokeClock);
+                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0),0);}
                 if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}
@@ -36,7 +36,13 @@ namespace SeaGlass
         }
         // Where the bristles meet the glass. A scrubbing path that sweeps the whole piece (StudioStation
         // cleans exactly here, so the reveal follows the brush).
-        public static Vector3 Stroke(bool brushing,float t)=>brushing?new Vector3(Mathf.Sin(t*7)*StudioStation.Reach.x,StudioStation.Reach.y*(1-Mathf.Sin(t*7)*Mathf.Sin(t*7)*.25f),Mathf.Sin(t*2.3f)*StudioStation.Reach.z):new Vector3(StudioStation.Reach.x+.12f,StudioStation.Reach.y+.04f,.1f);   // round 13: sweeps the whole piece
+        // Round 65 (review 61, all three: "grime comes off in blotches, not strokes"): parallel side-to-side passes that work
+        // steadily from one end of the piece to the other and back (they were a Lissajous figure whose crossing sweeps left a
+        // patchwork), timed by the station's brushing clock so the brush and the cleared path always agree.
+        static float Tri(float u){u-=Mathf.Floor(u);return 1-Mathf.Abs(1-2*u);}
+        public static Vector3 Stroke(bool brushing,float t)=>brushing?new Vector3(Mathf.Sin(t*7)*StudioStation.Reach.x,StudioStation.Reach.y*(1-Mathf.Sin(t*7)*Mathf.Sin(t*7)*.25f),StudioStation.Reach.z*(1-2*Tri(t*.11f))):new Vector3(StudioStation.Reach.x+.12f,StudioStation.Reach.y+.04f,.1f);   // round 13: sweeps the whole piece
+        // How fast the brush head is moving along the stroke (world units per second), for the water it flicks off.
+        public static Vector3 StrokeVelocity(float t){float h=.01f;return (Stroke(true,t+h)-Stroke(true,t-h))/(2*h);}
         static void RefreshFill(Transform contents,float amount)
         {if(!contents)return;contents.gameObject.SetActive(amount>0);contents.localScale=new Vector3(.9f,Mathf.Max(.03f,amount),.9f);}
     }

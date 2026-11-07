@@ -17,7 +17,7 @@ namespace SeaGlass
             {var g=new GameObject("Pooled foam and sparkle");g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();var main=ps.main;main.playOnAwake=false;main.startLifetime=.7f;main.startSpeed=1.3f;main.startSize=.07f;main.gravityModifier=.2f;main.maxParticles=60;var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.12f;
                 ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;pool[i]=ps;}
             // Reward bursts: sparkle-shaped, rising softly, shrinking and fading out.
-            if(particleMaterial){sparkle=new Material(particleMaterial){name="Reward sparkle"};sparkle.SetFloat("_Glint",1);}
+            if(particleMaterial){sparkle=new Material(particleMaterial){name="Reward sparkle"};sparkle.SetFloat("_Glint",1);sparkle.renderQueue=3100;}   // round 65: after the basin water, which drew over the reveal glints
             foreach(var ps in pool)
             {
                 var main=ps.main;main.startSize=new ParticleSystem.MinMaxCurve(.07f,.16f);main.gravityModifier=-.05f;main.startLifetime=new ParticleSystem.MinMaxCurve(.6f,1.1f);
@@ -31,8 +31,12 @@ namespace SeaGlass
             if(particleMaterial){suds=new Material(particleMaterial){name="Soap suds"};suds.SetFloat("_Suds",1);suds.renderQueue=3100;// round 38: after the basin water (Transparent+50), whose multiply tinted the white suds blue
             foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
+            // Round 65 (review 61, all three: "no splash, drips or runoff"): water flicked off the brush. Real gravity and
+            // stretched along their flight, so each drop reads as a falling streak of water in a still, not a hanging dot.
+            splash=Emitter("Brush splash",.5f,1f,.012f,.024f,1.4f,240,.02f);
+            {var r=splash.GetComponent<ParticleSystemRenderer>();r.renderMode=ParticleSystemRenderMode.Stretch;r.velocityScale=.06f;r.lengthScale=1.6f;}
         }
-        ParticleSystem foam,dust;float nextDust;Material sparkle,suds;
+        ParticleSystem foam,dust,splash;float nextDust;Material sparkle,suds;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
         ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
         {
@@ -55,6 +59,22 @@ namespace SeaGlass
             // Round 13: a low, short-lived splash; the foam emitter has no gravity, so tall droplets hung in mid-air.
             // Round 32 (reviews: "no splashes or drips"): more and larger flicked droplets, so the scrub reads in a still.
             if(Random.value<.75f)for(int d=0;d<2;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.15f,.3f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.026f,.04f);p.startLifetime=Random.Range(.28f,.45f);p.startColor=new Color(.82f,.95f,.98f,.9f);foam.Emit(p,1);}
+        }
+        // Brushing: droplets thrown off the bristles in the direction of the stroke, arcing up and falling back into the bowl.
+        public void Splash(Vector3 at,Vector3 strokeVelocity)
+        {
+            if(!splash)return;var p=new ParticleSystem.EmitParams();var flick=Vector3.ClampMagnitude(new Vector3(strokeVelocity.x,0,strokeVelocity.z),1.2f);
+            int n=Random.Range(2,5);
+            for(int i=0;i<n;i++){p.position=at+new Vector3(Random.Range(-.03f,.03f),.02f,Random.Range(-.02f,.02f));p.velocity=flick*Random.Range(.35f,.8f)+new Vector3(Random.Range(-.18f,.18f),Random.Range(.45f,.85f),Random.Range(-.18f,.18f));p.startSize=Random.Range(.011f,.022f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=new Color(.86f,.97f,1f,.85f);splash.Emit(p,1);}
+        }
+        // The colour-revealed moment: a ring of glints in the glass colour rising off the piece, a bright star at its centre,
+        // and a crown of droplets as it lifts out of the water.
+        public void Reveal(Vector3 at,Color colour,float radius)
+        {
+            var ring=pool[cursor++%pool.Length];ring.transform.SetPositionAndRotation(at,Quaternion.identity);var p=new ParticleSystem.EmitParams();   // pooled systems simulate locally: offsets from here
+            for(int i=0;i<22;i++){float a=i/22f*Mathf.PI*2+Random.Range(-.12f,.12f);var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a))*radius*Random.Range(.55f,1f);p.position=o;p.velocity=o.normalized*Random.Range(.15f,.35f)+Vector3.up*Random.Range(.25f,.55f);p.startSize=Random.Range(.035f,.075f);p.startLifetime=Random.Range(.9f,1.4f);p.startColor=Color.Lerp(colour,Color.white,Random.Range(.25f,.6f))*1.3f;ring.Emit(p,1);}
+            p.position=Vector3.up*.03f;p.velocity=Vector3.up*.12f;p.startSize=.16f;p.startLifetime=.8f;p.startColor=Color.Lerp(colour,Color.white,.75f)*1.6f;ring.Emit(p,1);
+            if(splash)for(int i=0;i<16;i++){float a=i/16f*Mathf.PI*2;var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));p=new ParticleSystem.EmitParams();p.position=at+o*radius*.8f;p.velocity=o*Random.Range(.25f,.45f)+Vector3.up*Random.Range(.7f,1.05f);p.startSize=Random.Range(.014f,.026f);p.startLifetime=Random.Range(.45f,.65f);p.startColor=new Color(.86f,.97f,1f,.9f);splash.Emit(p,1);}
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)

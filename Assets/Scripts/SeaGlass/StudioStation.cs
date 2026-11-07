@@ -14,6 +14,8 @@ namespace SeaGlass
         public bool BrushingNow=>active&&Time.time-lastBrush<.15f;
         // Half-extents (world x, z) the brush stroke sweeps over and the height it rests at, so it covers the whole piece.
         public static Vector3 Reach=new Vector3(.17f,.05f,.11f);
+        // Round 65: seconds of brushing on the current piece; drives the stroke path (EquipmentVisuals.Stroke).
+        public static float StrokeClock;Color revealColour;
         GameSession S=>GameSession.Instance;
         public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
         void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;glassRotation=workingGlass.localRotation;workingGlass.gameObject.SetActive(false);}}
@@ -43,7 +45,7 @@ namespace SeaGlass
         }
         public bool SelectNext()
         {
-            reveal=0;RestoreGlassPose();
+            reveal=0;RestoreGlassPose();StrokeClock=0;
             var r=S.progress.items.FirstOrDefault(i=>i.id.StartsWith("glass-")&&i.stage==(kind==StationKind.Clean?ItemStage.Studio:ItemStage.Clean));selectedId=r?.id;
             if(workingGlass)workingGlass.gameObject.SetActive(r!=null);
             if(r!=null)UpdateGlass();return r!=null;
@@ -53,16 +55,21 @@ namespace SeaGlass
             if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
             r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));
             // The salt comes off where the brush (or spray) actually touches the glass.
-            var contact=workingGlass.position+EquipmentVisuals.Stroke(true,Time.time);
+            StrokeClock+=Time.deltaTime;
+            var contact=workingGlass.position+EquipmentVisuals.Stroke(true,StrokeClock);
             // Round 13: the brush sweeps a hard-edged path from where it was last frame, so the grime clears in
             // visible strokes (PowerWash), and the water ripples from the contact point.
             bool continuing=Time.time-lastBrush<.15f;StampClean(continuing?lastContact:contact,contact,S.progress.upgrades.Contains("washer")?.085f:.06f);
             lastBrush=Time.time;lastContact=contact;
             UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);}
+            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,EquipmentVisuals.StrokeVelocity(StrokeClock));}
             if(r.grime<=.001f)
             {
-                r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");Feedback.Instance.Burst(workingGlass.position+Vector3.up*.05f,GameCatalog.Palette[(int)S.catalog.glass.First(g=>g.id==r.id).color]*1.4f,18);S.Save();
+                r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");
+                // Round 65 (review 61, all three: "no clean-moment sparkle"): the colour-revealed moment is a ring of glints in the
+                // glass colour, a few water droplets thrown up as the piece lifts, and a short glow from inside the glass.
+                revealColour=GameCatalog.Palette[(int)S.catalog.glass.First(g=>g.id==r.id).color];
+                Feedback.Instance.Reveal(workingGlass.position+Vector3.up*.04f,revealColour,glassRenderer?glassRenderer.bounds.extents.x:.15f);S.Save();
                 S.Notify("Colour revealed. Take this piece to the sorting trays.");
                 // Progress commits immediately; the presentation gives the finished piece a moment
                 // in the light. Leaving or loading can cancel this without losing/duplicating it.
@@ -103,13 +110,18 @@ namespace SeaGlass
             int y0=Mathf.FloorToInt((Mathf.Min(a.y,c.y)-rv)*MaskSize),y1=Mathf.CeilToInt((Mathf.Max(a.y,c.y)+rv)*MaskSize);
             // Work in brush-radius units so the head stays round on a non-square piece.
             Vector2 A=new Vector2(a.x/ru,a.y/rv),C=new Vector2(c.x/ru,c.y/rv),AC=C-A;float len2=Mathf.Max(1e-6f,AC.sqrMagnitude);
+            // Round 65: bristle streaks. Across the stroke the bristles clear unevenly in fine lines that run with the stroke and stay
+            // put in the glass, so a part-cleaned pass shows scrubbed lines along the brush direction, not a soft round dab.
+            Vector2 across=len2>1e-4f?new Vector2(-AC.y,AC.x).normalized:new Vector2(0,1);
             // Time-based, so the strokes build up at the same rate at any frame rate.
             byte add=(byte)Mathf.Clamp(Time.deltaTime*1700f,4,60);
             for(int y=Mathf.Max(0,y0);y<=Mathf.Min(MaskSize-1,y1);y++)for(int x=Mathf.Max(0,x0);x<=Mathf.Min(MaskSize-1,x1);x++)
             {
                 var P=new Vector2((x+.5f)/MaskSize/ru,(y+.5f)/MaskSize/rv);float t=Mathf.Clamp01(Vector2.Dot(P-A,AC)/len2);
                 float dd=(P-(A+AC*t)).sqrMagnitude;if(dd>1)continue;
-                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)));   // round 21: a soft round brush head, strongest at its centre
+                float s=Vector2.Dot(P,across)*1.6f;   // about 11 mask pixels per streak: finer aliases into speckle
+               float bristle=.4f+.6f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
+                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)*bristle));   // round 21: a soft round brush head, strongest at its centre
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);
         }
@@ -152,6 +164,7 @@ namespace SeaGlass
                 float lift=Mathf.Sin(t*Mathf.PI);
                 workingGlass.localPosition=glassHome+Vector3.up*(lift*.16f);
                 workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
+                if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.55f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));glassRenderer.SetPropertyBlock(block);}
                 if(reveal<=0)SelectNext();
                 return;
             }

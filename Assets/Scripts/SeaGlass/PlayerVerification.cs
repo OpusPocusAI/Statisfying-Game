@@ -84,7 +84,9 @@ namespace SeaGlass
             // half-clean frame shows the cleaning as it plays. 2.5 s at 1.8x the record rate = half the grime.
             for(float t=0;t<2.5f;t+=Time.deltaTime){clean.Clean(Time.deltaTime*1.8f);yield return null;}
             StartCoroutine(KeepBrushing(clean,.4f));yield return Shot("05-half-clean");
-            clean.Clean(5);clean.Leave();sort.Interact();yield return Shot("06-clean-glass");
+            // Round 65: the colour-revealed moment at the basin (glints, droplets and the glow as the piece lifts), which no still showed.
+            clean.Clean(5);yield return Shot("05b-colour-revealed");
+            clean.Leave();sort.Interact();yield return Shot("06-clean-glass");
             Require(sort.Sort(session.catalog.glass.First(d=>d.id==glass.id).color),"Correct sorting");sort.Leave();
             {var sortedTray=FindObjectsByType<SortingTray>(FindObjectsSortMode.None).First(t=>t.color==session.catalog.glass.First(d=>d.id==glass.id).color).transform.position;
             View(new Vector3(sortedTray.x,.3f,sortedTray.z-2.1f),0,sortedTray);}yield return new WaitForSeconds(1.2f);yield return Shot("07-sorted-tray");   // frame the tray that just received the piece, after the transfer lands

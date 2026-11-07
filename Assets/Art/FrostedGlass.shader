@@ -136,7 +136,8 @@ Shader "Sea Glass/Frosted Glass"
                 float brushed = SAMPLE_TEXTURE2D(_CleanMask, sampler_CleanMask, (i.local.xy - _MaskRect.xy) / _MaskRect.zw).r;
                 // Round 31 (reviews: "the grime ends in a straight line"): a ragged edge, so each swept stroke clears in a
                 // broken, sandy outline instead of a ruler-straight one.
-                brushed = saturate(brushed + (Noise(i.local * 22.0 + 3.0) - .5) * .32 * saturate(brushed * 3.0) * saturate((1 - brushed) * 3.0) * 2.0);
+                // Round 65 (review 61: "hard pixel-noise edges"): a gentler, broader raggedness, so the bristle streaks in the mask carry the edge.
+                brushed = saturate(brushed + (Noise(i.local * 11.0 + 3.0) - .5) * .16 * saturate(brushed * 3.0) * saturate((1 - brushed) * 3.0) * 2.0);
                 float localGrime = _Grime * (1 - smoothstep(.35, .45, brushed) * .92);   // round 12: crisp brush-stroke edges
                 float grime = smoothstep(order - .1, order + .1, localGrime);
                 float dirt = smoothstep(order + .18, order + .4, localGrime); float dirtRim = 0;
