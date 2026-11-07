@@ -29,7 +29,7 @@ Material:
     - _Sheen: 0
     - _Weave: 1
     - _WeaveScale: 70
-    - _WeaveStrength: 0.1
+    - _WeaveStrength: 0.025
     m_Colors:
     - _BaseColor: {r: 0.29, g: 0.43, b: 0.6, a: 1}
     - _ShadeColor: {r: 0.55, g: 0.55, b: 0.74, a: 1}

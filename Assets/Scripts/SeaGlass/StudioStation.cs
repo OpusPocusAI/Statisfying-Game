@@ -31,8 +31,11 @@ namespace SeaGlass
             if(!SelectNext()){S.Notify(kind==StationKind.Clean?"Park the truck by the studio and bring cloudy glass.":"Wash a glass piece at the basin first.");return;}
             returnPosition=S.player.transform.position;returnRotation=S.player.transform.rotation;returnView=S.player.view.transform.localRotation;active=true;S.player.mode=PlayerMode.Workstation;
             bool cleaning=kind==StationKind.Clean;
-            S.player.Teleport(transform.position-transform.forward*(cleaning?.82f:1.75f)+Vector3.up*(cleaning?.36f:.12f),transform.rotation);S.player.interactOverride=Leave;
-            S.player.LookAt(cleaning?workingGlass.position:transform.position+Vector3.up*1.15f);
+            // Round 70 (review 66, all three: the brushing sleeve "a long hose-like tube across the basin"): at the basin the
+            // camera stands closer and a little to the left, and aims past the piece, so the glass sits right of centre and
+            // low in the frame and the brushing hand leaves the frame after a short stretch of sleeve.
+            S.player.Teleport(transform.position-transform.forward*(cleaning?BasinBack:1.75f)-transform.right*(cleaning?BasinLeft:0)+Vector3.up*(cleaning?BasinUp:.12f),transform.rotation);S.player.interactOverride=Leave;
+            S.player.LookAt(cleaning?workingGlass.position+transform.forward*BasinAimAhead-transform.right*BasinLeft:transform.position+Vector3.up*1.15f);
             S.Notify(kind==StationKind.Clean?"Hold LMB to brush away the salt. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
         }
         public bool Recycle()
@@ -192,6 +195,7 @@ namespace SeaGlass
         // canvas glove behind it rather than the room. Rounds 55-58 held it up to the eye on its own.
         // Round 68 (review 64: the open palm "a flat mitten"): turned so the fingers point partly across the view (yaw -40, was -14),
         // so their curl shows from the side instead of foreshortening away from the camera.
+        const float BasinBack=.55f,BasinLeft=.26f,BasinUp=.3f,BasinAimAhead=.32f;   // round 70: the basin camera
         static readonly Vector3 PalmAt=new Vector3(.12f,-.15f,.42f), PalmTilt=new Vector3(-26,-40,14);
         void LateUpdate()
         {
