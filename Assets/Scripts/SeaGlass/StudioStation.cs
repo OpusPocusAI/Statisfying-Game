@@ -125,7 +125,7 @@ namespace SeaGlass
             if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.52f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.42f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
             if(kind==StationKind.Clean)
             {
                 // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank

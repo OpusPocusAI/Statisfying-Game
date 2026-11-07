@@ -13,8 +13,8 @@ from mathutils import noise
 # (outline sides 0 = oval, roundness, stretch x, stretch z, thickness, bottle curve, broken-edge cut)
 # Round 28 (review 26: "nearly all the same almond lens"): six clearly different pieces: an oval, a rounded
 # triangle, a D-shaped chip, a thin sliver, a chunky nugget and a long shard. Lower roundness keeps the corners.
-shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .0), (0, 1, 1.0, .9, .23, .05, .42),
-          (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .0), (3, .6, 1.0, .8, .21, .04, .26)]   # round 58 (review 54, all three: "thin chips", "a thin curved sheet"): thicker, so the wedge measures about 30% of the width at its thick edge and 11% at its thin edge (5.6)   # round 43: rounder triangle corners (5.6: no pointed tips)   # round 43: the fixed form in ART_DIRECTION 5.6 (about 30% of the width at the thick edge, 12% at the thin edge)
+shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18), (0, 1, 1.0, .9, .23, .05, .42),
+          (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .2), (3, .6, 1.0, .8, .21, .04, .26)]   # round 61: every piece has one straight broken edge (review 57: "no straight broken edge"). Round 58 (review 54, all three: "thin chips", "a thin curved sheet"): thicker, so the wedge measures about 30% of the width at its thick edge and 11% at its thin edge (5.6)   # round 43: rounder triangle corners (5.6: no pointed tips)   # round 43: the fixed form in ART_DIRECTION 5.6 (about 30% of the width at the thick edge, 12% at the thin edge)
 # Round 40 (review 36, all three: "nearly all one almond / lens silhouette"): the pieces lay flat, but most outlines
 # tapered to soft points at both ends and the low camera foreshortened them into lenses. Now blunt, broad pieces a
 # viewer tells apart at a glance: a squarish chip, a rounded triangle, a D-shaped half-disc, a pentagon chip, a chunky
@@ -59,10 +59,12 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
                     h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                     orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
             return orr
+        # Round 61 (review 57, all three: "rounded jelly lozenges, no straight broken edge"): about +/-10 degrees (was 24), so
+        # only the sharp tips round over and the straight broken edges stay straight.
         # Round 60 (review 56, all three: the held piece "a shield with a pointed tip", against 5.6's "no pointed tips"): the
         # outline radius is averaged over about +/-24 degrees around each angle, so every convex corner rounds over
         # (tumbled glass wears its corners first) while the broad outline, straight broken edge and lopsidedness stay.
-        orr = sum(full_r(a + d * .07) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
+        orr = sum(full_r(a + d * .03) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
         x, z = p.x * sx * orr, p.z * sz * orr
         # Slab profile: flat faces with rounded edges (a superellipse in thickness, not a sphere).
         yn = p.y / .5

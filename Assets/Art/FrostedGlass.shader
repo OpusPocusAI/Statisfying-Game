@@ -86,6 +86,8 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 54: the pieces are curved plates of bottle wall (round21.py), so the mid-surface bends with local x;
                 // thickness is measured from it, not from the flat z = 0 plane.
                 float lz = abs(i.local.z - _Bend * (1 - i.local.x * i.local.x * 4));
+                // Round 61: 1 on the two near-flat faces of a loose piece, 0 on its edge wall (the mosaic panes count as all face).
+                float faceF = lerp(1, smoothstep(.62, .95, abs(normalize(i.localN).z)), 1 - _Facets);
                 float3 n = normalize(i.n), v = GetWorldSpaceNormalizeViewDir(i.world);
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 float3 l = sun.direction;
@@ -287,19 +289,19 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .9), tint * lightOnFrost * .95, .45);   // round 39: deeper colour under the frost
-                half3 crustColour = lerp(_Frost.rgb, tint * .8 + _Frost.rgb * .35, .78) * lightOnFrost * (.93 + grain * .1);   // round 27: frosted colour, not white (review 25: "a sand biscuit")
+                half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .4, .92) * lightOnFrost * (.95 + grain * .06);   // round 61 (review 57: "a stone", "a bread roll"): a milky frost in the glass colour, smoother (it was a grainy beige)   // round 27: frosted colour, not white (review 25: "a sand biscuit")
                 float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
                 crustColour *= 1 - pits;
-                float crustCover = lerp(.2, .52, smoothstep(.15, .7, nv)) * (.65 + grain * .7);   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
+                float crustCover = lerp(.2, .52, faceF) * (.8 + grain * .4);   // round 61 (review 57, all three: the cloudy piece "a big domed pebble", "a bread roll"): an even veil over the flat faces, thinner on the edge wall, instead of one graded by view angle (which shaded it like a dome)   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
-                half3 frosted = lerp(frostedGlass, saltCrust, crust * .4);
+                half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
                 float sparkle = step(.975, Noise(i.local * 70)) * pow(wrap, 3);
                 frosted += sparkle * sun.color * .4;
                 // Round 11: even frosted glass shows its volume: a bright rounded rim and a slightly deeper,
                 // more saturated edge band, so a cloudy piece never reads as a flat decal.
-                frosted = lerp(frosted, tint * lightOnFrost * .8, saturate(fresnel * 1.6) * .45);
-                frosted += lerp(tint, half3(1, 1, 1), .5) * pow(fresnel, 4) * .9 * (sky * .5 + sun.color * .5);
+                frosted = lerp(frosted, tint * lightOnFrost * .8, (1 - faceF) * .6 + saturate(fresnel * 1.6) * .1);   // round 61: the glass hue shows along the edge wall (the broken edge reads as glass), not as a view-based rim
+                frosted += lerp(tint, half3(1, 1, 1), .5) * pow(fresnel, 4) * .5 * (sky * .5 + sun.color * .5);   // round 61: half the bright rim
                 // Sandy staining on top of the frost; it washes off first.
                 // Round 5: only scattered patches of pale sand, so the piece reads as frosted glass, not sandpaper.
                 // Round 5b: a dark olive-brown film of grime (PowerWash contrast: dirty must read clearly against
@@ -309,7 +311,7 @@ Shader "Sea Glass/Frosted Glass"
                 half3 sandStain = half3(.44, .39, .31) * lightOnFrost * (.86 + grain * .22);   // round 23: a warm, sandy film (the dark bands read as shadow stripes)
                 // Round 18: a soft dark edge where the crusted piece meets what it rests on, so it reads as a solid
                 // pebble against pale water or felt.
-                frosted *= 1 - smoothstep(.72, .95, 1 - nv) * .28;
+                frosted *= 1 - (1 - faceF) * .12;   // round 61: a slight shade on the edge wall only; the view-based dark rim rounded it into a pebble
                 // Round 14 (review 12): thin brown streaks and a few small spots of dried sand over the frost,
                 // not a solid coat.
                 float streakN = Noise(float3(q.x * .45 + q.z * .3, q.y * 5.5, q.z * .45) + 11.0);
@@ -320,7 +322,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 40 (review 36, all three: "grime should be an opaque brown crust each stroke cuts through, as in PowerWash"): the
                 // dried silt covers nearly the whole piece as a crust, mottled and lighter on its raised patches, broken by fine
                 // dark cracks; the frost only shows through in a few thin places.
-                float stainPatch = saturate(film * .75 + .3 + edgeSilt * .35);   // round 54: +.12, the gentler curved plate shows less edge silt   // round 44 (review 40, all three: "a sandy biscuit, no colour"): grime in patches, the frosted hue between them
+                float stainPatch = smoothstep(.42, .62, film + edgeSilt * .3);   // round 61 (review 57: the cloudy piece "a stone or bread roll"): patches of dried sand with frosted glass between them, not a near-solid coat   // round 54: +.12, the gentler curved plate shows less edge silt   // round 44 (review 40, all three: "a sandy biscuit, no colour"): grime in patches, the frosted hue between them
                 float crackN = Noise(q * 5.5 + 13.0);
                 float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
