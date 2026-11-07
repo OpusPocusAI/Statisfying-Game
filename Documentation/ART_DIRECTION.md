@@ -3184,3 +3184,46 @@ All three reviewers viewed the references (41-53 screenshots each), as full-size
 - A straight seam across the foreground sand (b7; two); a dark blue strip along the road edge (t1, b7, 03; two).
 - The glint on the revealed piece a large smeared white blotch (05b; two).
 - The brush hovering above the piece in the rest pose (04; one); the jar tilted off the wash-table edge (s11; one); driftwood joins (b9; one); the glove changing between 04/05 and 06 (one); the "01 / Ocean Wave" label partly hidden (s1, s2; one).
+
+### November 8 — round 71 and review 68 (three reviewers, averaged)
+
+Round 71 (FrostedGlass, StudioStation; no menu pass):
+- **Plate shading at the basin:** the basin piece uses the palm's shading (two flat faces and a narrow edge wall), so the wedge's thick edge shows and the revealed piece carries small glints.
+- **Frost:** at the basin the cloudy piece is a milky, diffusing skin: what lies behind shows through as a soft blur in the glass hue, deeper where the wedge is thick, with light scattered inside.
+- **Sand:** a warm, pale, part see-through dusting, heavier toward the edges, instead of hard-edged opaque grey islands.
+
+All three reviewers viewed the references (35-41 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 67 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Cleaning reaches the bar unanimously (4.0)** for the first time since round 63. Nobody calls the cloudy piece grey camouflage any more; the basin, tap, brush, caustic water and the 05b clean moment all read. What remains is grime coming off in patches rather than along the strokes (all three), no splashes or drips (one), and a milder dirty-to-clean contrast than PowerWash (one).
+- **Sea glass fell to 3.0 (all three 3).** The revealed basin piece in 05b now has the shard outline and wedge (B), but reads as "a mint jelly or soap bar", "mint jelly or gummy", "a near-opaque mint gummy" (A, B, C): one even tint, with no clearer thin edge and little light passing through. The plate shading took away the dome but not the candy colour: against the pale basin, the filtered water is an even mint. Tray pieces still pass (all three).
+- Sand fell back to 3.3 without a change (large plain foregrounds, all three); truck and effects each lost their one 4. Six areas meet the bar: lighting, water, cleaning, sorting, mosaic, studio.
+
+**Next:**
+- The revealed basin piece: clear at the thin edge and deep at the thick one, with what lies beneath visibly bent through it, so it reads as glass and not a gummy (all three).
+- The glove's knit patchwork reads as a noisy or pixelated texture fault (all three) and differs from the plain palm glove in 06 (one).
+- Suds as clip-art bubble rings (all three); grime in strokes (all three).
+- Plain sand foregrounds (all three), vegetation (all three), rubbish too small (all three), truck bodywork blocky or smeared (all three), wet sand without sheen in a hard step (all three).
+
+**Bugs reported:**
+- The wet/dry sand boundary as a stepped mesh seam (b3, b6; two); the shallow-water skirt at the left island (b5, 02; one).
+- The glove's yellow and navy pattern as an aliased texture fault (04, 05; two); the glove material changing between 04/05 and 06 (one).
+- Glass on the sand as a flat disc or a hollow ring (b2; two).
+- A dark triangle inside the palm piece (06; one); a bottle embedded in the driftwood (b9; one) and its blocky branch ends (b9; one); the jar half off the wash-table edge (s11; one); a stray board and posts behind the cab (t2; one); orange discs floating over the roadside grass (t1, 03; one); glass above a crate rim (s4; one); jars clipping the near plane (s5; one); a purple disc at the b5 edge (one); dark lines under the s7 shelves (one).
