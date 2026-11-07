@@ -286,18 +286,21 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 13: a floor on the light, so the crust reads white indoors rather than grey dough.
                 half3 lightOnFrost = max(sky * .55 + sun.color * wrap * .75 * lerp(.55, 1, sun.shadowAttenuation), half3(.8, .79, .77));
                 float crust = smoothstep(.5, .75, Noise(q * .9 + 3.3));
-                float grain = Noise(q * 40.0) * .5 + Noise(q * 90.0) * .5;
+                // Round 66 (review 62, all three: the grime "dithered noise", "pixel-noise edges"): the grain was sampled up to ~360
+                // cycles across the piece, finer than a pixel at the basin, so it aliased into speckle over the crust and along every
+                // stroke front. Now a coarser, painterly grain that stays a few pixels across.
+                float grain = Noise(q * 9.0) * .6 + Noise(q * 19.0) * .4;
                 // Round 13: frosted sea glass is a matte white crust. The colour shows through only where the
                 // glass is thin (the rounded rim) and as a faint tint in the crust; tiny pits break up the surface.
                 half3 edgeGlass = lerp(behind * lerp(half3(1, 1, 1), tint, .9), tint * lightOnFrost * .95, .45);   // round 39: deeper colour under the frost
                 half3 crustColour = lerp(_Frost.rgb, tint * .75 + _Frost.rgb * .4, .92) * lightOnFrost * (.95 + grain * .06);   // round 61 (review 57: "a stone", "a bread roll"): a milky frost in the glass colour, smoother (it was a grainy beige)   // round 27: frosted colour, not white (review 25: "a sand biscuit")
-                float pits = step(.86, Noise(q * 26.0 + 5.0)) * .12;
+                float pits = smoothstep(.84, .9, Noise(q * 8.0 + 5.0)) * .08;   // round 66: broader, soft-edged pits (they aliased into speckle)
                 crustColour *= 1 - pits;
                 float crustCover = lerp(.2, .52, faceF) * (.8 + grain * .4);   // round 61 (review 57, all three: the cloudy piece "a big domed pebble", "a bread roll"): an even veil over the flat faces, thinner on the edge wall, instead of one graded by view angle (which shaded it like a dome)   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
-                float sparkle = step(.975, Noise(i.local * 70)) * pow(wrap, 3);
+                float sparkle = smoothstep(.965, .985, Noise(i.local * 24)) * pow(wrap, 3);   // round 66: fewer, larger salt glints
                 frosted += sparkle * sun.color * .4;
                 // Round 11: even frosted glass shows its volume: a bright rounded rim and a slightly deeper,
                 // more saturated edge band, so a cloudy piece never reads as a flat decal.

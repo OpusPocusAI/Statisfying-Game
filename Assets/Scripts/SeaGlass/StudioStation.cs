@@ -164,7 +164,7 @@ namespace SeaGlass
                 float lift=Mathf.Sin(t*Mathf.PI);
                 workingGlass.localPosition=glassHome+Vector3.up*(lift*.16f);
                 workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
-                if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.55f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));glassRenderer.SetPropertyBlock(block);}
+                if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.12f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));/* round 66 (review 62: "uniform opaque cyan, jelly"): a faint glow; the glints carry the moment */glassRenderer.SetPropertyBlock(block);}
                 if(reveal<=0)SelectNext();
                 return;
             }
