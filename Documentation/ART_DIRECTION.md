@@ -3141,3 +3141,46 @@ All three reviewers viewed the references (36-43 screenshots each), as full-size
 - The sleeve stretching unnaturally from the frame edge to the brush, over the rim (04, 05; two).
 - The jar tilted at the wash-table edge (s11, 04; two); crumpled bonnet shading (t2; two).
 - Floating flower sprites (t1, b2, b4; one); a flat mat beside the studio (b4; one); a dark tray-bench square (06, s10; one); slab rocks (b5, b9; one); the EQUIPMENT sign floating (s4; one); the pendant lamp cut by the frame (s7; two); buried glass as a decal (b2; one).
+
+### November 7 — round 70 and review 67 (three reviewers, averaged)
+
+Round 70 (Round70Pass, StudioStation, menu pass 71):
+- **Basin framing:** the basin camera stands closer (0.55 m back, was 0.82), 0.26 m to the left and a little lower, and aims 0.32 m past the piece, so the glass sits low and right of centre and only the hand, cuff and a short stretch of sleeve show in 04, 05 and 05b.
+- **Plain sleeve:** the denim weave is all but gone, so the sleeve no longer reads as stripes.
+
+All three reviewers viewed the references (41-53 screenshots each), as full-size store images or screenshot grids in their own tab.
+
+| Area | A | B | C | Average | Review 66 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.13 Effects | 4 | 3 | 3 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The hose reading is gone.** After four rounds in which all three called the sleeve a hose or tube across the basin, nobody does; one still sees "a flat grey tube" in 05 (A). Tools rose to 3.3 for the first time since round 62 (one 4: "brush with real bristles", B). What holds tools down now is the spade, a "flat paddle on a stick" or plate (A, C), and the glove: a noisy knit patchwork (A) that does not match the smooth coated palm in 06 (C).
+- **Sand reaches the bar unanimously (4.0)**, so six areas now meet it: lighting, water, sand, sorting, mosaic, studio. Truck (3.3) and effects (3.3) each gained a 4.
+- **The closer framing shows the basin piece's faults more plainly:** the cloudy piece reads as opaque grey camouflage patches over flat turquoise, with no frosted translucency (all three), and the piece itself as a pillowy jelly blob rather than a wedge shard (A, C). Grime still comes off in patches, not strokes, with no drips or runoff (all three), so cleaning holds at 3.3.
+
+**Next:**
+- The basin piece: a frosted, translucent cloudy state with the colour showing through, and a wedge-shard form (all three).
+- Grime that clears along the brush strokes, with drips or runoff (all three).
+- The spade (two) and one consistent glove between the basin and the palm (one).
+- Vegetation sparse (all three); rubbish too small to read (all three); truck hood shading lumpy (all three); wet sand flat, meeting dry sand in a hard step (all three).
+
+**Bugs reported:**
+- Lumpy, smudged shading on the truck hood and fenders (t2; all three).
+- A hard-edged light shallow-water skirt at the island bases (b3, b5, 02; two); the wet/dry sand boundary as a mesh step (b3, b6; two).
+- A straight seam across the foreground sand (b7; two); a dark blue strip along the road edge (t1, b7, 03; two).
+- The glint on the revealed piece a large smeared white blotch (05b; two).
+- The brush hovering above the piece in the rest pose (04; one); the jar tilted off the wash-table edge (s11; one); driftwood joins (b9; one); the glove changing between 04/05 and 06 (one); the "01 / Ocean Wave" label partly hidden (s1, s2; one).
