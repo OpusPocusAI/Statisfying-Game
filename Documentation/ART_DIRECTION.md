@@ -2836,3 +2836,46 @@ All three reviewers viewed the references (40-57 screenshots each), as full-size
 - The jar at the wash-table edge (s11, 04, 05; two); the open palm with no sleeve or unshaded (06; two).
 - Truck: blotchy smudges on the bonnet and arches (t2; two).
 - Driftwood with a flat end cap (b9; one); the capsule-like striped rock (b1; one); the hanging-plant rope into a standing pot (s7; one); the 08 floor light as hard rectangles (08; one); dark front pots (s6; one).
+
+### November 7 — round 63 and review 60 (three reviewers, averaged)
+
+Round 63 (Round63Pass, round25.py, Island trees material, menu pass 66):
+- **Layered island canopies:** the faceted umbrella pines are replaced by groves of broadleaf crowns, built in metres. Each crown has a broad lower tier and a rounded upper tier of lobes, with undergrowth at the foot. Each grove is fused into one crinkled, smooth-shaded canopy over the hilltop, sitting low on short trunks, plus small clumps on the upper ledges.
+- **Island trees material:** a fresher green body and a softer, less mustard sunlit top that starts lower and blends at a lower amount.
+- **No talus boulders:** the small boulders at the island waterlines are gone; at range they were the dark "hexagon patches" on the b8 cliff, and smoothed they read as bubbles.
+
+All three reviewers viewed the references (about 52-54 screenshots each), as screenshot grids in their own tab.
+
+| Area | A | B | C | Average | Review 59 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The island trees are no longer plates.** Nobody calls them flat plates, umbrella layers or disc stacks any more: "the layered island canopies read better" (A), "an improvement" (B), "layered" (C). What is left: "uniform olive blob clusters with weak top light" (B) and "repeated clump stamps" (C). Vegetation holds at 3.0 because all three now name the beach bushes as lumpy single blobs (b5, b7, 02), with sparse, repeated grass and palms, and one names the boxy flat-topped rock (b5, b9).
+- **The b8 hexagon patches are gone.** For the first time in fifteen reviews, nobody reports them.
+- Sand fell to 3.0 with no change to it (large flat cream foregrounds, all three). Four areas still meet the bar unanimously (lighting, water, sorting, mosaic).
+
+**Next:**
+- Beach bushes as layered, lit foliage instead of single lumpy blobs; more varied canopy clumps and a stronger lit top on the island trees (all three).
+- Cloudy piece frosted glass with the hue under it, not camouflage stone (all three); palm piece without pointed tips (one).
+- Large flat sand foregrounds with low-frequency tone and height; wet sand with sheen and a soft edge (all three).
+- Cleaning strokes, splash and a clean-moment sparkle (all three); truck slab panels and bonnet (all three); stiff flat palm and tube sleeve (all three); clouds of one size at one height (two).
+
+**Bugs reported:**
+- A pale turquoise shelf with a hard edge around the island bases (b5, 02; two); a hard wet/dry sand ledge (b3, b6; one); brown squiggle decals on the wet sand (b6; one); flat green caps on the sea stacks (b4; one).
+- Truck: the dark board behind the seat (t2; two), detached-looking mirrors (t2; one) and a blotchy, lumpy bonnet (t2; two); a hard dark kerb line along the road (t1, b7; one).
+- A dark notch in the tray table's front edge (06, s10; one); the jar at the wash-table edge (s11; one); the brush bristles hovering above the glass (04; one); hard pixel-noise grime edges (04; one).
+- Glass on the sand as flat decals (b2, 02; one); stacked-sphere hanging plant (s7; one); the 08 floor light as hard shapes (08; one); a flat diamond banner (s3; one); the deck ending abruptly (s3, s4; one).
