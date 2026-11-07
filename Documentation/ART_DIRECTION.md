@@ -2748,3 +2748,49 @@ All three reviewers viewed the references (41-49 screenshots each), opening the 
 - Stray cloud spheres (b1, t1, 03; one); a dark board behind the truck seat (t2; one); a smeared bonnet texture (t2; one).
 - A straight seam through the foreground sand by the road and flat hard-edged sand drifts (b7, t2; one); a hard dark line along the left road edge (t1, 03; one).
 - A red artefact at the bottom of the wrist cuff or the sleeve cut off abruptly (06; two); a small dark teal square on the tray table's front rail (s10, 06; one); a hanging pot that seems to float (s5; one); the reveal's floor light a hard-edged shape unlike the window (08; one).
+
+### November 7 — round 61 and review 58 (three reviewers, averaged)
+
+Round 61 (Round61Pass, round21.py, FrostedGlass.shader, StudioStation, menu pass 65):
+- **Straight broken edges:** the outline is averaged over about +/-10 degrees (was 24), so only sharp tips round over; every glass_slab now has one straight broken edge (two had none).
+- **Cloudy piece shaded flat:** the frosted state is shaded by face and edge wall instead of view angle (no view-based dark rim). The dried sand lies in distinct patches with a smoother milky frost in the glass colour between them, and the basin piece is a fifth smaller.
+
+All three reviewers viewed the references (38-41 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 57 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 2 | 2 | 2.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The cloudy piece no longer reads as a dome or bread roll, but now as camouflage.** The distinct sand patches over the tinted frost read as "opaque grey stone with teal camouflage patches", "a grey camouflage blotch over turquoise", "grey paint patches, not frosting" (all three). One sees hard pixel noise at the patch edges (04).
+- **The held piece** reads as glossy glass to one, but two see "a near-triangle pick shape" with point-like corners (06): the narrower smoothing brought the corners back on that piece.
+- **Tray pieces** are "close to 4" for one; the others see "flat lozenges with little wedge thickness" or "gummy acrylic with uniform thickness" (s10, 07).
+- Sea glass holds at 3.0 for an eleventh glass round (rounds 51-61). Effects fell to 2.3 and studio to 3.3, sand to 3.3 and cleaning to 3.0, with no change to any of them. Four areas meet the bar unanimously (lighting, water, sorting, mosaic).
+
+**Next:**
+- Cloudy piece: an even translucent frost with the glass hue glowing through it and only light sand at the edges, not opaque grey patches on bright teal (all three).
+- Held piece: round the remaining near-triangle corners on that one outline (two).
+- Effects and cleaning feedback: splash, drips, a sparkle or burst at the clean moment, stroke-following grime removal (all three).
+- Clouds as shaped cumulus (all three); island trees and bushes as layered foliage (all three); wet sand with sheen and a soft edge (all three); rubbish unreadable at range (all three); truck slab panels and crumpled bonnet (all three); stiff palm, block brush, plate spade, tube sleeve (all three).
+- After eleven glass rounds at 3.0, the glass score has stopped responding to single fixes; the other 3.0 areas (vegetation, clouds, effects, tools, truck) each have one clear, unanimous fault.
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8; all three, fourteenth review running).
+- Water-plane seams or a hard step at the island bases (b3, b5; one); a hard wet/dry sand edge (b3, b6; two).
+- Stray cloud dots (b1, b6, t1; two); a long straight seam across the sand at the road shoulder and a line along the road edge (b7, t1; one).
+- The jar at the wash-table edge cut by the table (s11, 04, 05; one); a teal handle through the basin rim (s11; one); the sleeve passing through the basin rim (04, 05; one).
+- Truck: a dark board behind the seat (t2; one), melted bonnet and floating mirrors (t2; one).
+- A bottle through the driftwood and a bag into the bench rail (b9; two); the half-buried glass a flat decal (b2; one); the hanging pot outside the roof line (s5; one); the hanging-plant cord into a standing pot and a stack-of-spheres plant (s7; two).
