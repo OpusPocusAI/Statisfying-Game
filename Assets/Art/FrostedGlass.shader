@@ -268,7 +268,22 @@ Shader "Sea Glass/Frosted Glass"
                         half thickH = saturate((lz - .03) / .14);
                         half3 filt = lerp(half3(1, 1, 1), hue, lerp(.45, .92, thickH));   // round 58: clearer at the thin edge, deeper towards the thick one (the wedge)
                         half3 g = seenH * filt * lerp(1.15, .92, thickH);
-                        g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, .2);   // a little of the glass's own saturated colour
+                        // Round 72 (review 68, all three: the revealed basin piece "a mint jelly or soap bar", "a near-opaque mint gummy":
+                        // one even tint, no clearer thin edge, little light through). Seen down into the pale basin, the same filter
+                        // turned even pale water into even mint. At the basin the wedge grades from almost clear glass at its thin edge to
+                        // a deep, saturated hue at its thick one, and the floor below shifts further through the thicker glass, so the
+                        // caustic lines on the basin floor visibly kink and bend where they pass under the piece.
+                        if (_MaskOn > .5)
+                        {
+                            half tB = smoothstep(.05, .13, lz);
+                            float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
+                            half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
+                            half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .15), hue * hue * .9 + hue * .1, tB);
+                            g = seenB * filtB * lerp(1.12, .78, tB);
+                            g += tint * (sky * .05 + sun.color * .04) * tB;
+                            seenH = seenB;
+                        }
+                        g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, _MaskOn > .5 ? .06 : .2);   /* round 72: at the basin the thin edge stays nearly clear */   // a little of the glass's own saturated colour
                         g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         g = lerp(g, edgeCol, (1 - faceK) * .85);
