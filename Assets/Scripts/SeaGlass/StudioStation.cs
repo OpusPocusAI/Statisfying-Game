@@ -190,7 +190,9 @@ namespace SeaGlass
         // alone, large, with the room magnified through it; the tray pieces, small and at rest, pass): at the sorting trays the
         // piece rests convex side up in an open gloved palm held low in front of the player, a few centimetres across, with the
         // canvas glove behind it rather than the room. Rounds 55-58 held it up to the eye on its own.
-        static readonly Vector3 PalmAt=new Vector3(.1f,-.15f,.42f), PalmTilt=new Vector3(-26,-14,10);
+        // Round 68 (review 64: the open palm "a flat mitten"): turned so the fingers point partly across the view (yaw -40, was -14),
+        // so their curl shows from the side instead of foreshortening away from the camera.
+        static readonly Vector3 PalmAt=new Vector3(.12f,-.15f,.42f), PalmTilt=new Vector3(-26,-40,14);
         void LateUpdate()
         {
             if(kind!=StationKind.Sort||!heldPalm)return;

@@ -83,12 +83,17 @@ bpy.ops.object.modifier_apply(modifier="soften")
 
 # Colour regions along the arm.
 arm.data.materials.clear()
-for n in ("glove", "cuff", "sleeve"): arm.data.materials.append(mat(n))
+for n in ("glove", "cuff", "sleeve", "coat"): arm.data.materials.append(mat(n))
 for p in arm.data.polygons:
     s = (Vector(p.center) - wrist).dot(axis_dir)
     if s < -.004: p.material_index = 0   # round 67: bands moved up with the cuff
     elif s < .034: p.material_index = 1
     else: p.material_index = 2
+    # Round 68: the rubber-dipped palm, in a contrasting colour, so the glass stands out on it and the fingers read.
+    c = Vector(p.center)
+    # Coated all round the visible hand; the canvas shows only on the back, which faces away from the camera (a ragged
+    # coating edge along the side of the hand read as tan blotches).
+    if p.material_index == 0 and p.normal.z > -.55: p.material_index = 3
 for p in arm.data.polygons: p.use_smooth = True
 edge_band = arm.vertex_groups.new(name="band_edges")
 for v in arm.data.vertices:
@@ -97,4 +102,4 @@ for v in arm.data.vertices:
 dec = arm.modifiers.new("reduce", "DECIMATE"); dec.ratio = .14
 dec.vertex_group = "band_edges"; dec.invert_vertex_group = True; dec.vertex_group_factor = 10
 bpy.ops.object.modifier_apply(modifier="reduce")
-export(arm, "palm_glove", ["glove", "cuff", "sleeve"])
+export(arm, "palm_glove", ["glove", "cuff", "sleeve", "coat"])

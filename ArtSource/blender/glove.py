@@ -58,13 +58,17 @@ bpy.ops.object.modifier_apply(modifier="soften")
 
 # ---------------------------------------------------------------- colour regions along the arm
 arm.data.materials.clear()
-for n in ("glove", "cuff", "sleeve"): arm.data.materials.append(mat(n))
+for n in ("glove", "cuff", "sleeve", "coat"): arm.data.materials.append(mat(n))
 for p in arm.data.polygons:
     s = (Vector(p.center) - wrist).dot(axis_dir)     # < 0 on the hand, > 0 along the forearm
     wob = 0.0   # round 35: straight bands; a wobble zigzagged across the reduced triangles
     if s < .012 + wob: p.material_index = 0
     elif s < .05 + wob: p.material_index = 1
     else: p.material_index = 2
+    # Round 68 (review 64: "a flat, single-tone glove"): a rubber-dipped work glove. The palm side and the fingers from the
+    # knuckles on are coated in a contrasting colour; the back of the hand stays canvas, so the hand reads in two tones.
+    c = Vector(p.center)
+    if p.material_index == 0 and (p.normal.y < -.35 or (c.y > -.03 and c.z > -.002)): p.material_index = 3
 for p in arm.data.polygons: p.use_smooth = True
 # Reduce only after colouring the dense surface, so the band edges stay clean.
 edge_band = arm.vertex_groups.new(name="band_edges")
@@ -74,4 +78,4 @@ for v in arm.data.vertices:
 dec = arm.modifiers.new("reduce", "DECIMATE"); dec.ratio = .14   # round 67: a little more, so the sleeve folds survive
 dec.vertex_group = "band_edges"; dec.invert_vertex_group = True; dec.vertex_group_factor = 10   # keep detail along the colour edges
 bpy.ops.object.modifier_apply(modifier="reduce")
-export(arm, "garden_glove", ["glove", "cuff", "sleeve"])
+export(arm, "garden_glove", ["glove", "cuff", "sleeve", "coat"])
