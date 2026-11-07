@@ -111,91 +111,100 @@ for k in range(3):
         a = math.atan2(y / D, x); u = math.hypot(x, y / D) / (R * outline(a, seed))
         return height(u, a)
 
-    # Talus boulders at the waterline.
-    for b in range(random.randint(7, 11)):
-        a = random.uniform(0, math.tau); u = random.uniform(1.0, 1.08)
-        o = outline(a, seed); x, y = math.cos(a) * R * o * u, math.sin(a) * R * o * u * D
-        sz = random.uniform(.018, .035)
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=1)
-        bo = bpy.context.active_object
-        for v in bo.data.vertices:
-            p = v.co.copy(); d = 1 + noise.noise(p * 1.7 + Vector((b, k, 3))) * .3
-            v.co = Vector((p.x * sz * 1.3 * d, p.y * sz * d, p.z * sz * .8 * d))
-        bo.location = (x, y, max(surface(x, y), .12)); bpy.ops.object.transform_apply(location=True)
-        assign(bo, "cliff"); shade_auto(bo, 30)
-        parts.append(bo)
-    # Round 50 (review 46, all three: the round 49 fused groves read as "fused knobs" and "lobes pasted on the hills";
-    # reviewers want layered canopies with distinct pine silhouettes, as on Tchia's islands). The islands are scaled
-    # about 24 x 40 m across and 36-54 m tall in the scene, so last round's crowns were only 2-3 m wide. Each island now
-    # carries 5-11 individual umbrella pines built in metres (a leaning tapered trunk, a broad flat-topped crown of
-    # 3-4 faceted pads in tiers, like the beach's coastal pines), tallest in the grove centres and shorter toward the
-    # edges, then divided by the island's scene scale per axis so they stay round and upright in the scene.
-    # Trunks use the "cliff" slot (warm sandstone, which reads as bark at 100-170 m); pads use "trees".
+    # Round 63: no talus boulders. At 100-170 m the small boulders on the cliff foot read as dark "hexagon patches" (reviews
+    # 45-59), and smoothed they read as round bubbles stuck on the cliff face.
+    # Round 63 (review 59, all three, and every review since 46: the island trees are "stacks of flat plates", "flat
+    # umbrella layers on bare rock", far from Tchia's layered foliage). The umbrella pines were faceted, flat-shaded pads.
+    # Now each island carries groves of broadleaf crowns, built in metres: every crown a broad lower tier and a smaller
+    # rounded upper tier of overlapping lobes, with low undergrowth between the trunks, and each grove fused into ONE
+    # surface (voxel remesh), crinkled into leafy clumps, smoothed and smooth-shaded, so it shows lit tops, shaded
+    # undersides and the layered build-up of a canopy rather than separate plates. Crowns sit close enough to overlap
+    # into a continuous canopy over the hilltop, with a few lone crowns out on the ledges. Trunks use the "cliff" slot
+    # (warm sandstone, which reads as bark at 100-170 m); canopies use "trees".
     SX, SY, SZ = ISLAND_SCALE[k]
-    placed = []
+    rng = random.Random(9100 + k)
 
-    def pad(centre, r, hh, seed):
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=1, location=(0, 0, 0))
+    def surface_m(xm, ym):
+        return surface(xm / SX, ym / SY) * SZ
+
+    def u_at(xm, ym):
+        x, y = xm / SX, ym / SY
+        return math.hypot(x, y / D) / (R * outline(math.atan2(y / D, x), seed))
+
+    def lobe(c, r, sq):
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=18, ring_count=10, radius=1, location=(0, 0, 0))
         o = bpy.context.active_object
-        ps = Vector((seed, seed * 1.7, seed * .3))
         for v in o.data.vertices:
-            p = v.co.copy(); d = 1 + noise.fractal(p * 1.6 + ps, .6, 2.0, 3) * .26
-            v.co = Vector((p.x * r * d, p.y * r * d, p.z * hh * d))
-            if v.co.z < -hh * .35: v.co.z = -hh * .35 + (v.co.z + hh * .35) * .3   # flatter underside
-        dec = o.modifiers.new("dec", "DECIMATE"); dec.ratio = .5
-        bpy.ops.object.modifier_apply(modifier="dec")
-        o.location = centre; bpy.ops.object.transform_apply(location=True)
-        assign(o, "trees")
-        for p in o.data.polygons: p.use_smooth = False
+            z = v.co.z * sq
+            if z < -.4 * sq: z = -.4 * sq + (z + .4 * sq) * .7         # a slightly fuller top than underside, but still round
+            v.co = Vector((v.co.x * r, v.co.y * r, z * r))
+        o.location = c; bpy.ops.object.transform_apply(location=True)
         return o
 
-    def pine(x, y, hm, seed):
-        """An umbrella pine hm metres tall at island-unit position (x, y), rooted in the hill."""
-        rnd = random.Random(seed)
-        lean = Vector((rnd.uniform(-.12, .12), rnd.uniform(-.12, .12), 0)) * hm
-        th = hm * .58
-        bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=.26 + hm * .012, radius2=.11, depth=th, location=(0, 0, th * .5))
-        trunk = bpy.context.active_object
-        for v in trunk.data.vertices:
-            t = max(0.0, v.co.z / th); v.co = v.co + lean * (t * t)
-        assign(trunk, "cliff")
-        for p in trunk.data.polygons: p.use_smooth = False
-        top = Vector((0, 0, th)) + lean
-        pads = [(top + Vector((0, 0, hm * .08)), hm * .50, hm * .17),                       # the broad umbrella
-                (top + Vector((rnd.uniform(-.8, .8), rnd.uniform(-.8, .8), hm * .24)), hm * .36, hm * .14),
-                (top + Vector((rnd.uniform(-.5, .5), rnd.uniform(-.5, .5), hm * .36)), hm * .22, hm * .10)]
-        for i in range(rnd.randint(1, 2)):
-            ang = rnd.uniform(0, math.tau); rr = hm * .32
-            pads.append((top + Vector((math.cos(ang) * rr, math.sin(ang) * rr, hm * rnd.uniform(.02, .12))), hm * rnd.uniform(.24, .32), hm * .12))
-        objs = [trunk] + [pad(c, r, hh, seed * 10 + i) for i, (c, r, hh) in enumerate(pads)]
-        tree = join(objs, "Pine")
-        bpy.context.view_layer.objects.active = tree; tree.select_set(True)
-        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)   # bake the cone's object offset before rescaling
-        zb = surface(x, y) - .6 / SZ                                               # trunk foot sunk 60 cm into the hill
-        for v in tree.data.vertices:
-            v.co = Vector((x + v.co.x / SX, y + v.co.y / SY, zb + v.co.z / SZ))
-        return tree
+    def grove(gx, gy, n, spread, umax, gseed):
+        crowns = []
+        for t in range(n * 6):
+            if len(crowns) >= n: break
+            a = rng.uniform(0, math.tau); rr = spread * math.sqrt(rng.random())
+            x, y = gx + math.cos(a) * rr, gy + math.sin(a) * rr
+            if u_at(x, y) > umax: continue
+            edge = rr / spread if spread > 0 else 0
+            rc = rng.uniform(2.6, 4.0) * (1.15 - .3 * edge)
+            if any(math.hypot(x - cx, y - cy) < (rc + cr) * .55 for cx, cy, cr, _, _ in crowns): continue
+            zg = surface_m(x, y)
+            crowns.append((x, y, rc, zg, zg + rng.uniform(.6, 1.8) * (1.1 - .35 * edge) + rc * .45))
+        if not crowns: return []
+        lobes = []
+        for (x, y, rc, zg, zc) in crowns:
+            for i in range(rng.randint(5, 7)):                                    # the broad lower tier
+                a = rng.uniform(0, math.tau); d = rc * rng.uniform(.3, .6)
+                lobes.append(lobe(Vector((x + math.cos(a) * d, y + math.sin(a) * d, zc + rng.uniform(-.15, .1) * rc)), rc * rng.uniform(.45, .6), .75))
+            for i in range(rng.randint(2, 4)):                                    # the rounded upper tier
+                a = rng.uniform(0, math.tau); d = rc * rng.uniform(0, .32)
+                lobes.append(lobe(Vector((x + math.cos(a) * d, y + math.sin(a) * d, zc + rc * rng.uniform(.38, .55))), rc * rng.uniform(.38, .5), .85))
+            if True:                                                              # undergrowth at the foot, so the canopy meets the hill
+                a = rng.uniform(0, math.tau)
+                lobes.append(lobe(Vector((x + math.cos(a) * rc * .5, y + math.sin(a) * rc * .5, zg + .2)), rc * rng.uniform(.55, .7), .6))
+                lobes.append(lobe(Vector((x, y, zg - .3)), rc * .75, .45))
+        g = join(lobes, "Grove")
+        bpy.context.view_layer.objects.active = g
+        rm = g.modifiers.new("fuse", "REMESH"); rm.mode = "VOXEL"; rm.voxel_size = .38
+        bpy.ops.object.modifier_apply(modifier="fuse")
+        ps = Vector((gseed * .37, gseed * .71, gseed * .13))
+        g.data.update()
+        for v in g.data.vertices:                                                 # leafy clumps, not a smooth balloon
+            p = v.co.copy()
+            v.co = p + v.normal * (noise.noise(p * .55 + ps) * .55 + noise.noise(p * 1.4 + ps * 2) * .2)
+        sm = g.modifiers.new("soften", "CORRECTIVE_SMOOTH"); sm.factor = .5; sm.iterations = 5
+        bpy.ops.object.modifier_apply(modifier="soften")
+        target = 1400 + 650 * len(crowns)
+        if len(g.data.polygons) > target:
+            dec = g.modifiers.new("reduce", "DECIMATE"); dec.ratio = target / len(g.data.polygons)
+            bpy.ops.object.modifier_apply(modifier="reduce")
+        assign(g, "trees")
+        for p in g.data.polygons: p.use_smooth = True
+        out = [g]
+        for (x, y, rc, zg, zc) in crowns:                                         # trunks, leaning a little
+            lean = Vector((rng.uniform(-.5, .5), rng.uniform(-.5, .5), 0))
+            th = zc - zg + .6 - rc * .1
+            bpy.ops.mesh.primitive_cone_add(vertices=8, radius1=.42, radius2=.2, depth=th, location=(0, 0, th * .5))
+            tr = bpy.context.active_object
+            for v in tr.data.vertices:
+                t = max(0.0, v.co.z / th); v.co = v.co + lean * (t * t)
+            tr.location = (x, y, zg - .6); bpy.ops.object.transform_apply(location=True)
+            assign(tr, "cliff"); out.append(tr)
+        for o in out:                                                             # metres -> island units
+            for v in o.data.vertices:
+                v.co = Vector((v.co.x / SX, v.co.y / SY, v.co.z / SZ))
+        return out
 
-    for g in range(random.randint(2, 3)):
-        ga = random.uniform(0, math.tau); gr = random.uniform(.04, .40) * R
-        gx, gy = math.cos(ga) * gr, math.sin(ga) * gr * D
-        for t in range(random.randint(2, 4)):
-            for attempt in range(12):
-                a = random.uniform(0, math.tau); r = random.uniform(0, .13)
-                x, y = gx + math.cos(a) * r, gy + math.sin(a) * r * D
-                u = math.hypot(x, y / D) / (R * outline(math.atan2(y / D, x), seed))
-                if u > .78: continue
-                if all(math.hypot((x - px) * SX, (y - py) * SY) > 4.5 for px, py in placed): break
-            else:
-                continue
-            placed.append((x, y))
-            centre = 1 - min(1.0, r / .13)                                          # tall in the grove centre, short at its edge
-            hm = random.uniform(6.0, 8.0) + centre * random.uniform(2.0, 4.0)
-            parts.append(pine(x, y, hm, k * 100 + g * 10 + t))
-    for t in range(random.randint(1, 2)):                                           # a lone pine or two out on the ledges
-        a = random.uniform(0, math.tau); u = random.uniform(.55, .8)
-        o = outline(a, seed); x, y = math.cos(a) * R * o * u, math.sin(a) * R * o * u * D
-        if all(math.hypot((x - px) * SX, (y - py) * SY) > 4.5 for px, py in placed):
-            placed.append((x, y)); parts.append(pine(x, y, random.uniform(5.0, 7.0), k * 100 + 90 + t))
+    for gi in range(rng.randint(2, 3)):                                           # groves over the hilltop
+        a = rng.uniform(0, math.tau); r = rng.uniform(0, .3)
+        gx, gy = math.cos(a) * r * R * SX, math.sin(a) * r * R * D * SY
+        parts += grove(gx, gy, rng.randint(7, 11), rng.uniform(6.0, 8.0), .68, k * 10 + gi)
+    for t in range(rng.randint(1, 2)):                                            # small clumps on the upper ledges
+        a = rng.uniform(0, math.tau); u = rng.uniform(.6, .68)
+        o = outline(a, seed)
+        parts += grove(math.cos(a) * R * o * u * SX, math.sin(a) * R * o * u * D * SY, 2, 2.5, .72, k * 10 + 5 + t)
     isl = join(parts, "FarIsle")
     export(isl, "far_isle_%d" % k, ["cliff", "cap", "trees"])

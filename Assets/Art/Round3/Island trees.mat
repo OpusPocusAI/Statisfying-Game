@@ -37,15 +37,16 @@ Material:
     - _Metallic: 0
     - _Rim: 0.6
     - _Smoothness: 0.1
+    - _SunShadow: 1
     - _Surface: 0
-    - _TopStart: 0.25
+    - _TopStart: 0.4
     - _Variation: 0.1
     - _WorldMapping: 0
     - _WorldTile: 7
     m_Colors:
-    - _BaseColor: {r: 0.5, g: 0.72, b: 0.5, a: 1}
+    - _BaseColor: {r: 0.36, g: 0.64, b: 0.44, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
-    - _TopTint: {r: 0.76, g: 0.84, b: 0.44, a: 0.9}
+    - _TopTint: {r: 0.66, g: 0.84, b: 0.42, a: 0.6}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
