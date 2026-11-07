@@ -2794,3 +2794,45 @@ All three reviewers viewed the references (38-41 screenshots each), opening the 
 - The jar at the wash-table edge cut by the table (s11, 04, 05; one); a teal handle through the basin rim (s11; one); the sleeve passing through the basin rim (04, 05; one).
 - Truck: a dark board behind the seat (t2; one), melted bonnet and floating mirrors (t2; one).
 - A bottle through the driftwood and a bag into the bench rail (b9; two); the half-buried glass a flat decal (b2; one); the hanging pot outside the roof line (s5; one); the hanging-plant cord into a standing pot and a stack-of-spheres plant (s7; two).
+
+### November 7 — round 62 and review 59 (three reviewers, averaged)
+
+Round 62 (PaintedSky.shader only, no editor pass):
+- **Built cumulus instead of a noise field.** The clouds were a thresholded noise field, which drew blobs, smeared tails and lone dots. Each cloud is now a designed cumulus in one of two rings of cells around the horizon: a flat, slightly rounded base, a skirt of uneven lobes, a leaning build-up over the middle and small lobes along the top contour, fused into one outline.
+- **Lobes shaded as volumes:** each lobe is lit as a rounded form against the sun, with normals blended smoothly across joins and soft creases between lobes: cream tops, a warm rose middle and a lilac underside, gold rims and light through the thin tops when backlit. The far ring sits lower, smaller and slightly hazed.
+
+All three reviewers viewed the references (40-57 screenshots each), as full-size store images or strip images in their own tab.
+
+| Area | A | B | C | Average | Review 58 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 2.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The clouds are off the list of main faults.** For the first time since review 39, nobody calls them blobs, smears or cut-outs, and nobody reports stray cloud dots. All three now read "shaped cumulus" (lighting 4.0 from all three). What is left is finish: "slightly clay-like with the same lilac underside everywhere" (A), "slightly puffy clay" (C), and "all similar sizes, matching marshmallows" (B, across b1, b2 and b7).
+- Sand rose to 3.7, studio to 3.7 and effects back to 3.0, with no change to any of them. Four areas still meet the bar unanimously (lighting, water, sorting, mosaic).
+- Sea glass holds at 3.0: the cloudy piece is still "camouflage-painted stone" (04) and the palm piece "a gummy guitar pick" (06; all three). The tray pieces are "close to 4" (A).
+
+**Next:**
+- Clouds (finish only, one each): more variety of size and spacing, from small fair-weather puffs to one or two large banks; less uniform lilac on the undersides, with warmer bounce light toward the sun; a little less smooth clay.
+- Cloudy piece: an even translucent frost with the hue under it, not camouflage patches (all three). Palm piece: round the near-triangle outline (all three).
+- Island trees and bushes as layered foliage (all three); wet sand with sheen and a soft edge (two); cleaning feedback with strokes, runoff and a clean-moment sparkle (all three); truck bonnet and flat panels (all three); the stiff open palm and the plain sleeve (all three); rubbish too small at range (all three).
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8; all three, fifteenth review running).
+- A hard wet/dry sand seam (b3, b6; one); a turquoise wedge at the island and headland bases (b3, b5; one); a long straight line across the sand beside the road (b7; two); repeated foam stamps (b8; one).
+- The jar at the wash-table edge (s11, 04, 05; two); the open palm with no sleeve or unshaded (06; two).
+- Truck: blotchy smudges on the bonnet and arches (t2; two).
+- Driftwood with a flat end cap (b9; one); the capsule-like striped rock (b1; one); the hanging-plant rope into a standing pot (s7; one); the 08 floor light as hard rectangles (08; one); dark front pots (s6; one).
