@@ -13,9 +13,10 @@ import sys, os, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sg_export import *
 from mathutils import noise
+from sleeve_shape import shaped_sleeve
 
 reset()
-axis_dir = Vector((0, -math.cos(math.radians(8)), math.sin(math.radians(8))))   # forearm axis, pointing back to the camera
+axis_dir = Vector((0, -math.cos(math.radians(13)), math.sin(math.radians(13))))   # forearm axis, pointing back to the camera; round 67: 13 degrees (was 8), so the sleeve clears the basin rim
 wrist = Vector((0, -.095, -.045))                                                  # where the glove meets the cuff
 parts = []
 
@@ -35,20 +36,8 @@ parts.append(tube_along("thumb", [(-.035, -.07, -.03), (-.056, -.05, -.036), (-.
 # Wrist: a short taper from the heel of the hand into the cuff.
 parts.append(cylinder("wrist", .043, .07, tuple(wrist - axis_dir * .015), rotation=(math.radians(82), 0, 0), vertices=24, material="glove", radius2=.05))
 
-# Sleeve: a tapering, gently wrinkled cloth tube from the wrist back past the edge of the frame.
-L = .72
-bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1, depth=1)
-sl = bpy.context.active_object
-bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.subdivide(number_cuts=8); bpy.ops.object.mode_set(mode="OBJECT")
-for v in sl.data.vertices:
-    t = v.co.z + .5                                  # 0 at the wrist .. 1 at the elbow
-    a = math.atan2(v.co.y, v.co.x); rr = math.hypot(v.co.x, v.co.y)
-    r = (.053 + .034 * t ** .8) * min(1.0, rr * 1.0001)
-    r *= 1 + .045 * math.sin(a * 2 + t * 9) * (.4 + t)
-    r *= 1 + .03 * noise.noise(Vector((math.cos(a) * 2, math.sin(a) * 2, t * 4)))
-    v.co = Vector((math.cos(a) * r * 1.08, math.sin(a) * r * .9, t * L))
-sl.rotation_mode = "QUATERNION"; sl.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(axis_dir)
-sl.location = wrist + axis_dir * .01; bpy.ops.object.transform_apply(location=True, rotation=True)
+# Round 67: the shared, shaped work-shirt sleeve (sleeve_shape.py) instead of a plain tapered tube.
+sl = shaped_sleeve(wrist, axis_dir, L=1.0, seed=1)
 assign(sl, "glove"); parts.append(sl)
 # Knit cuff: a soft band where glove and sleeve meet, slightly proud of both.
 bpy.ops.mesh.primitive_torus_add(major_radius=.055, minor_radius=.016, major_segments=32, minor_segments=10)
@@ -82,7 +71,7 @@ edge_band = arm.vertex_groups.new(name="band_edges")
 for v in arm.data.vertices:
     s = (Vector(v.co) - wrist).dot(axis_dir)
     if min(abs(s - .012), abs(s - .05)) < .006: edge_band.add([v.index], 1.0, "REPLACE")
-dec = arm.modifiers.new("reduce", "DECIMATE"); dec.ratio = .1
+dec = arm.modifiers.new("reduce", "DECIMATE"); dec.ratio = .14   # round 67: a little more, so the sleeve folds survive
 dec.vertex_group = "band_edges"; dec.invert_vertex_group = True; dec.vertex_group_factor = 10   # keep detail along the colour edges
 bpy.ops.object.modifier_apply(modifier="reduce")
 export(arm, "garden_glove", ["glove", "cuff", "sleeve"])
