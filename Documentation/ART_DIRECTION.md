@@ -3013,3 +3013,44 @@ All three reviewers viewed the references (38-39 screenshots each), as full-size
 - The sleeve crossing the basin rim (04, 05; two); a handle clipping the rim (s11; one); the jar overhanging the counter (s11, 04; one).
 - Truck: blotchy bonnet shading (t2; two), floating mirrors and the board behind the seat (t2; one).
 - A flat white ring or disc decal (b1, b2; two); the bottle and driftwood intersecting (b9; one).
+
+### November 7 — round 67 and review 64 (three reviewers, averaged)
+
+Round 67 (Round67Pass, glove.py, palm_glove.py, sleeve_shape.py, menu pass 68):
+- **Shaped sleeve:** both first-person arms share one work-shirt sleeve with a forearm swell, uneven compression folds above the cuff, drape creases, a pushed-up gathered band and an underside seam, longer so its end leaves the frame. The brushing arm rises at 13 degrees (was 8) to clear the basin rim.
+- **Relaxed palm:** fingers built joint by joint (tapering, with knuckles, bending at three joints), close together and curled up around the glass; the thumb curls in beside them; the coral cuff sits nearer the hand.
+
+All three reviewers viewed the references (38-58 screenshots each), as full-size store images in their own tab or the store viewer.
+
+| Area | A | B | C | Average | Review 63 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 4 | 3 | 3 | 3.3 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The round missed: tools hold at 3.0 and the arm reads the same or worse.** All three still read the sleeve as a plain tube: "a long straight tube" (A), "a huge plain tube stretching across half the screen" (B), "a thick plain tube" (C). The folds and forearm swell do not read at basin distance under the flat denim shading, and the longer, higher arm now crosses more of the frame: "the arm length reads wrong" (A), "an implausible length" (B). The curled palm reads as "a flat mitten" (A), "flat, stiff, featureless" (B), "a flat, stiff, skin-like mitt" (C): from the camera above, the finger curl foreshortens away and the single tan colour hides the joints.
+- **Lesson:** the arm's problem is how much of the frame it fills and its flat single-tone shading, not its silhouette. A shorter visible forearm (the brush held nearer the camera, or the sleeve ending at the elbow out of frame sooner) and a cloth material with weave, seams and shading would do more than more geometry.
+- Studio reached 4 from all three with no change, so six areas meet the bar unanimously (lighting, water, cleaning, sorting, mosaic, studio). Vegetation fell back to 3.0, sand to 3.7, truck to 3.3 and effects to 3.3, all with no change.
+
+**Next:**
+- Tools: shorten how much sleeve is visible in 04 and 05 and give the sleeve and glove a fabric material (weave, seams, darker folds); show the palm's finger curl from the camera's side and break the single tan with seams or a darker palm patch (all three); the flat shield spade (one).
+- Sea glass: the cloudy piece frosted, not opaque grey blotches (all three); the 05b and 06 pieces translucent shards, not jelly or gems (all three; one sees a pointed tip in 06).
+- Vegetation: blob bushes, sparse dune planting, island canopies as blob clusters (all three). Rubbish too small at 5 m (all three).
+
+**Bugs reported:**
+- The sleeve running over the bowl rim at an implausible length (04, 05; two).
+- Foam at the sea-stack bases as hard straight bands (b4, b5, b8; all three); a hard-edged shallow-water ring at the island bases (b3, b5; one); a stepped wet/dry edge (b3, b6; two); a straight seam across the b7 verge (one); a dark strip along the road edge (t1; one).
+- The jar at the wash-table edge, tilted, overhanging or cut by the near plane (s11, 04, 05; all three).
+- A bottle in the driftwood (b9; two); buried glass as flat discs (b2, 02; one); lumpy bonnet shading (t2; two); the EQUIPMENT sign clipping the bookshelf (s4; one); an unlit white slab (s3; one); hard floor-light rectangles (08; one).
