@@ -2704,3 +2704,47 @@ All three reviewers viewed the references (38-39 screenshots each), opening the 
 - The truck bonnet blotchy or smeared, possibly bad normals (t2; all three).
 - The jar tipped off the wash-board edge (s11, 04, 05; one); the orange pot above the window self-lit (s7; one); a hanging-plant cord into a standing pot (s7; one); the EQUIPMENT sign into the bookshelf (s4; one).
 - A red sliver at the cut-off wrist (06; one); a buried glass piece a flat green plate on the sand (b2; one); dark potted plants on the deck (s6; one); the basin in 09 reads empty (one); a box-topped outcrop (b5; one); a dark rock in a different shading style (02; one).
+
+### November 7 — round 60 and review 57 (three reviewers, averaged)
+
+Round 60 (Round60Pass, round21.py, palm_glove.py, menu pass 64):
+- **Rounded glass corners:** each glass_slab outline radius is averaged over about +/-24 degrees around each angle, so every convex corner rounds over (the held piece's shield tip included). Round37Pass re-seated the pieces.
+- **Cupped palm:** fingers curl up from the knuckles and fan a little, the thumb curls in, the little-finger edge and thumb mound are raised; the held piece sits a few millimetres higher.
+
+All three reviewers viewed the references (41-49 screenshots each), opening the full-size store images directly.
+
+| Area | A | B | C | Average | Review 56 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 2.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The pointed tip is gone, but the rounding went too far.** Nobody names a tip any more, and one reviewer calls the held piece "the best: a glossy rounded triangle" (06). But the averaged outline also softened the straight broken edges: "most read as rounded jelly lozenges, with no straight broken edge or wedge" (A), "tray pieces are uniform lozenges" (B). The basin piece (04, 05), large and domed under the frost, now draws the glass criticism: "a big domed pebble, like a stone or bread roll", "a large domed pillow ... more like jelly" (all three). Sea glass holds at 3.0.
+- **The palm still reads as stiff:** "a flat paddle with stiff, primitive-like fingers", "a stiff, rubbery spread hand", "a stiff, flat cut-out hand" (all three).
+- Studio returned to 4.0, sand rose to 3.7 and cleaning to 3.3 (one reviewer each), effects to 3.0, all with no change to them. Five areas meet the bar unanimously (lighting, water, sorting, mosaic, studio).
+
+**Next:**
+- Glass outline: round only the tips. A narrower averaging window (about +/-10 degrees) or one applied only where the outline turns sharply would keep the straight broken edges (all three named their absence).
+- Basin piece: the large cloudy piece reads as a domed stone, pillow or bread roll (all three): flatter in section under the frost, a visible straight broken edge, and the hue through the frost.
+- Palm: fingers that bend at the joints and a relaxed curl, not a spread cut-out (all three).
+- Clouds as shaped cumulus (all three); island trees as layered foliage (all three); rubbish and buried glass too small or flat decals (all three); spade a flat plate (all three); truck bonnet smeared, boxy rear (all three).
+
+**Bugs reported:**
+- Dark hexagonal patches on the left island (b8, faint in b3 and b5; all three, thirteenth review running).
+- A hard-edged shallow-water shelf or halo around the islands (b3, b5; two).
+- The jar at the wash-table edge overhanging or clipping (s11, 04, 05; two); a bottle clipping the driftwood log (b9; one).
+- Stray cloud spheres (b1, t1, 03; one); a dark board behind the truck seat (t2; one); a smeared bonnet texture (t2; one).
+- A straight seam through the foreground sand by the road and flat hard-edged sand drifts (b7, t2; one); a hard dark line along the left road edge (t1, 03; one).
+- A red artefact at the bottom of the wrist cuff or the sleeve cut off abruptly (06; two); a small dark teal square on the tray table's front rail (s10, 06; one); a hanging pot that seems to float (s5; one); the reveal's floor light a hard-edged shape unlike the window (08; one).
