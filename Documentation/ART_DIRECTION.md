@@ -2923,3 +2923,48 @@ All three reviewers viewed the references (39-49 screenshots each), as full-size
 - Truck: detached-looking mirrors and the board behind the seat (t2; one); a smeared bonnet texture (t2; one).
 - The jar at the wash-table edge (s11, 04, 05; two); hard pixel-noise grime edges (04; one).
 - The glass hint and a white ring lying flat like decals (b2; two); stray "v" sprigs on the dunes (b2, b7; one); a glowing hanging-plant pot (s7; one); mosaic labels hidden by props (s2; one).
+
+### November 7 — round 65 and review 62 (three reviewers, averaged)
+
+Round 65 (StudioStation, EquipmentVisuals, Feedback, FrostedGlass.shader, PlayerVerification; no editor pass):
+- **Brush strokes:** the brush works in parallel side-to-side passes from one end of the piece to the other (it traced a Lissajous figure whose crossing sweeps left a patchwork), timed by a per-piece brushing clock so the brush and the cleared path agree. The cleared path carries bristle streaks along the stroke, and the shader's stroke edge is less noisy.
+- **Splash:** water flicks off the brush as falling, stretched droplets thrown in the stroke direction.
+- **The colour-revealed moment:** a ring of glints in the glass colour, a bright star, a crown of droplets and a short inner glow as the piece lifts. The sparkles now draw after the basin water, which had been covering them.
+- **New frame 05b-colour-revealed:** the verification run captures that moment; no still showed it before. The reviewer brief lists ten build frames from this review on.
+
+All three reviewers viewed the references (38-41 screenshots each), as full-size store images in their own tab. Reviewer C scored in half points; the averages use those scores as given.
+
+| Area | A | B | C | Average | Review 61 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3.5 | 3.5 | 3.3 |
+| 5.4 Props/vegetation | 4 | 4 | 3.5 | 3.8 | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3.5 | 3.2 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3.5 | 3.5 | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 3.5 | 3.5 | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 3.5 | 3.5 | 4.0 |
+| 5.12 Tools | 3 | 3 | 3.5 | 3.2 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3.5 | 3.2 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Cleaning rose to 3.5, its first move since review 57, with one 4.** All three now see "a clear done moment" in 05b ("the sparkle lift-out", "star sparkles"). The grime itself still reads as "noisy blotches" or "dithered noise", not strokes along the brush (05; all three), and the foam and splash in 05 are small (all three).
+- **Effects rose to 3.2** on the 05b sparkles. But the falling droplets under the lifted piece read as "thin vertical blue streaks", "stray line particles" (05b; two): stretched along a vertical fall seen from above, they read as lines, not drops.
+- **The 05b view of the clean piece** adds a new reading: lifted and lit from inside, it is "a domed, jelly-like pillow" or "uniform opaque cyan, reads as jelly or soap" (05b; all three). Sea glass rose to 3.2 on one 3.5.
+- Truck fell back to 3.5 and studio to 3.5 with no change to either; sand and vegetation edged up. Four areas meet the bar unanimously (lighting, water, sorting, mosaic).
+
+**Next:**
+- Cleaning: the crust edge still reads as noise at the stroke front; the grime should break away in clean, brush-shaped swaths with a visible wet trail, and fuller suds at the brush (all three).
+- 05b: droplets as round drops and a splash crown, not vertical streaks (two); the lifted piece keeps its glass read (no inner glow that flattens it into opaque cyan; all three).
+- Cloudy piece frost, not camouflage (two); palm piece shape (two); the tube forearm and mitten palm (all three); wet sand sheen and soft edge (all three); rubbish too small at range (all three).
+
+**Bugs reported:**
+- Vertical blue streaks under the lifted piece (05b; two).
+- A thin dark seam across the b7 foreground sand (two); a hard line along the left road edge (t1; one); a stepped wet/dry boundary (b3, b6; one).
+- A green-handled object clipping the basin rim (s11; two); the brush bristles hovering beside the glass (04; one).
+- A bottle intersecting the driftwood (b9; two); buried glass as flat decals (b2, 02; one); a grey hook-shaped object floating beside the spade (02; one).
+- Crumpled bonnet shading (t2; one); dark blob plants in the front pots (s6; one); the s3 wall ending against the sky (s3; one); jars cut by the near plane (s5; one); a floating canopy read behind the bookshelf (s4; one); the studio roof edge a tiled slab from above (b4; one).
