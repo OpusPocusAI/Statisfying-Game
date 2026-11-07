@@ -298,6 +298,24 @@ Shader "Sea Glass/Frosted Glass"
                 crustColour *= 1 - pits;
                 float crustCover = lerp(.2, .52, faceF) * (.8 + grain * .4);   // round 61 (review 57, all three: the cloudy piece "a big domed pebble", "a bread roll"): an even veil over the flat faces, thinner on the edge wall, instead of one graded by view angle (which shaded it like a dome)   // round 39 (review 35: "opaque soap / plaster"): a grainy veil, the colour shows through between the grains   // round 38 (review 34: cloudy piece "reads as soap or stone"): thinner frost, the colour shows through   // view-based; round 18: denser, so the cloudy piece stands out from the water
                 half3 frostedGlass = lerp(edgeGlass, crustColour, crustCover);
+                // Round 71 (review 67, all three: the cloudy basin piece "opaque grey camouflage patches over flat turquoise", "no
+                // frosted translucency or colour showing through"): at the basin the frost is a milky, diffusing skin over glass you can
+                // see into. What lies behind shows through as a broad, soft blur in the glass hue, deeper where the wedge is thick and
+                // paler at the thin edge, under a pale veil of frost that lets the colour glow through rather than painting it flat.
+                if (_MaskOn > .5)
+                {
+                    half3 hueF = tint / max(max(tint.r, tint.g), max(tint.b, .05));
+                    half thickF = saturate((lz - .03) / .14);
+                    float fb = .014;
+                    half3 diffused = (SampleSceneColor(screenUV + float2(fb, fb * .6)) + SampleSceneColor(screenUV + float2(-fb, fb * .6))
+                                    + SampleSceneColor(screenUV + float2(fb * .6, -fb)) + SampleSceneColor(screenUV + float2(-fb * .6, -fb))) * .25;
+                    half dl = dot(diffused, half3(.3, .55, .15));
+                    half3 through = lerp(diffused, dl * hueF * 1.15, lerp(.55, .9, thickF)) * lerp(1.15, .9, thickF);
+                    through += tint * lightOnFrost * (.16 + .22 * thickF);   // light scattered inside the frosted body: the colour glows
+                    half3 milk = lerp(_Frost.rgb, hueF * .62 + _Frost.rgb * .38, .7) * lightOnFrost;
+                    half veil = lerp(.4, .66, faceF) * (.75 + grain * .45) * lerp(1.1, .78, thickF);
+                    frostedGlass = lerp(through, milk, veil);
+                }
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
                 float sparkle = smoothstep(.965, .985, Noise(i.local * 24)) * pow(wrap, 3);   // round 66: fewer, larger salt glints
@@ -330,6 +348,9 @@ Shader "Sea Glass/Frosted Glass"
                 float crackN = Noise(q * 5.5 + 13.0);
                 float cracks = (1 - smoothstep(.0, .018, abs(crackN - .5))) * smoothstep(.3, .7, Noise(q * 1.7 + 4.0));
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
+                // Round 71: at the basin the dried sand is a warm, pale, slightly see-through film with soft edges, not opaque grey
+                // camouflage over the glass; the stroke still cuts through it cleanly (the mask edge is unchanged).
+                if (_MaskOn > .5) { sandStain = lerp(sandStain, half3(.66, .58, .45) * lightOnFrost, .55); stainPatch = smoothstep(.15, .95, film * .8 + edgeSilt * .5 + grain * .15) * .62; /* a graded dusting, heavier toward the edges, no hard-edged islands */ }
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 

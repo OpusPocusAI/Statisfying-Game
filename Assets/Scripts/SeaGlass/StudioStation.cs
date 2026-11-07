@@ -136,7 +136,7 @@ namespace SeaGlass
             // Round 55: held up to the eye at the trays, the piece is large on screen; full refraction magnified the tray divider
             // behind it into a dark band across it, so it bends the background more gently there.
             block.SetFloat("_Refraction",kind==StationKind.Sort?.025f:glassRenderer.sharedMaterial.GetFloat("_Refraction"));
-            block.SetFloat("_Held",kind==StationKind.Sort?1:0);   // round 56 (review 52: "an opaque lump"): held up, the piece is a coloured lens the scene shows through
+            block.SetFloat("_Held",1);   // round 71 (review 67: the basin piece "a pillowy jelly blob", "a soap blob"; the palm piece, shaded as a plate, passes): the basin piece too is shaded as a shard of bottle wall, two flat faces and a narrow edge wall, not as a dome   // round 56 (review 52: "an opaque lump"): held up, the piece is a coloured lens the scene shows through
             if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
             var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
