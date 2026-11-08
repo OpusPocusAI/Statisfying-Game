@@ -3350,3 +3350,42 @@ All three reviewers viewed the references (40-43 screenshots each), as full-size
 - A straight seam across the b7 foreground sand at the verge (two); the shallow-water skirt at the left island (b5; two).
 - The truck front: a stray board behind the seat (one), dents and creases (one), a stretched texture (one) (t2).
 - The jar off the wash-table edge (s11; one); the brush-holder ring through the basin rim (s11, 04, 05; one); the EQUIPMENT sign through the bookshelf (s4; one); near-black deck plants (s6; one); a plant both hanging and standing (s7; one); the bag through the bench (b9; one); the palm piece hovering (06; one); dark "V" marks on the dunes (b2, b7; one); a white ring on the sand (b2; one); a notch in the wet/dry edge (b6; one); dense sparkle noise on the water (b4; one); the "01 / Ocean Wave" plaque overlapped (s10, 06; one).
+
+### November 8 — round 75 and review 72 (three reviewers, averaged)
+
+Round 75 (round73.py, FrostedGlass, Round73Pass re-run):
+- **No face pits:** the pits added in round 73 caught the key light as soft rings ("blobby highlight dimples"); they are off, and the bevel is tighter again (power .22, was .3).
+- **Sharp flashes, at the basin only:** a fine scatter of small four-point flashes over the lit face, a smaller and harder key glint with no soft sheen around it, and a thin bright line where the face turns over the rim.
+
+All three reviewers viewed the references (38-54 screenshots each), as full-size store images or grids in their own tab.
+
+| Area | A | B | C | Average | Review 71 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.4 Props/vegetation | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass reaches the bar unanimously (4.0)** for the first time since the fixed form was set: the trays, the palm piece and the frosted 04 piece all read as glass, and the 05b piece is "glossy, with a crisp rim and a glint that breaks into small flashes" (C). A residue remains: the 05b piece reads "slightly like jelly or soap" (B), "slightly jelly-like at its centre" (C), "a soft pillowy edge, no visible chipped rim" (A); the rim chips barely show (two). The run on this piece: framing (70), frost (71), plate shading (71), clear-to-deep (72), hero mesh and size (73), thinner (74), sharp flashes (75).
+- **Seven areas meet the bar:** lighting, water, sea glass, cleaning, sorting, mosaic, studio (back to 4.0 without a change). Tools fell to 3.3, also without a change: the spade is "a flat paddle on a stick" or "a flat faceted plate" (two). Sand fell to 3.0: large single-colour foregrounds in b1, b2 and b7 (all three), against the 5.3 rule on one flat colour over a third of the screen.
+
+**Next:**
+- Sand foregrounds: damp patches, tide lines and tone variation in b1, b2, b7 and 02 (all three).
+- The spade blade (two); rubbish too small and unworn (all three); island canopies and dune bushes (all three); shallows not see-through over sand (two).
+- Effects beyond the wash: nothing visible in 06 or 08 (all three); suds as outlined circles (two).
+
+**Bugs reported:**
+- A straight seam across the b7 foreground sand along the verge (all three).
+- A smeared white texture on the truck bonnet and arches (t2; two).
+- The hard water shelf at the near island (b3, b5; one); the bag through the bench (b9; one); driftwood and bottle merged (b9; one); the jar half off the board (s11; one); near-black deck plants (s6; one); a doubled water ring in the basin (s11, 04; one); the basin underside flat purple (s11; one); a bright halo under the buried glass (b2, 02; one); a hard foam ring and a flat rock cut-out (b6, b8; one); the vase over the window frame (07; one); the floor light as hard-edged quads (08; one, and flat light in two more scores); the studio sign unreadable at distance (b1; one).
