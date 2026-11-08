@@ -3389,3 +3389,45 @@ All three reviewers viewed the references (38-54 screenshots each), as full-size
 - A straight seam across the b7 foreground sand along the verge (all three).
 - A smeared white texture on the truck bonnet and arches (t2; two).
 - The hard water shelf at the near island (b3, b5; one); the bag through the bench (b9; one); driftwood and bottle merged (b9; one); the jar half off the board (s11; one); near-black deck plants (s6; one); a doubled water ring in the basin (s11, 04; one); the basin underside flat purple (s11; one); a bright halo under the buried glass (b2, 02; one); a hard foam ring and a flat rock cut-out (b6, b8; one); the vase over the window frame (07; one); the floor light as hard-edged quads (08; one, and flat light in two more scores); the studio sign unreadable at distance (b1; one).
+
+### November 8 — round 76 and review 73 (three reviewers, averaged)
+
+Round 76 (Round76Pass, PainterlyLit _SandDetail, menu pass 73):
+- **Sand detail** on the beach sand, dune sand, tidal sand and the road's sandy shoulders: mid-scale tone (lighter, warmer wind-swept sweeps and darker, cooler packed sand, 2-5 m), soft-edged damp hollows with a darker drying rim, and pale and dark shell grit near the player.
+- Lit sand renders close to white, so a mild darkening barely showed; the damp patches are strong to read at all. Wavy wrack lines were tried and dropped (without the distance to the shore they wandered like tyre tracks).
+
+All three reviewers viewed the references (38-43 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 72 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.4 Props/vegetation | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sand rose from 3.0 to 3.7 (two 4s)**, but no reviewer names the new damp patches or tone sweeps, and all three still see large plain cream foregrounds in b1 and b2 (and b7 and s6 for two). The change is too quiet at review size; one reviewer reads the near-field ripples in b1 as "odd radial streaks" (A), and one sees "faceted, blotchy shading" on the b4 dunes (C), which may be the damp patches on the dune sand.
+- Sea glass slipped to 3.7 (A: "one smeared glint and evenly thick edges"; the chips and flashes "barely visible"); two still see the 05b piece as slightly jelly. The palm piece's dark inner triangle is now reported by two reviewers (06).
+- Six areas meet the bar: lighting, water, cleaning, sorting, mosaic, studio. Truck fell to 3.0 (bonnet and fenders lumpy, all three).
+
+**Next:**
+- The truck bonnet and fender shading (all three), the bug most often reported across reviews 66-73.
+- The palm piece's dark inner triangle (two) and the b7 verge seam (all three).
+- Sand: features large enough to read at review size, damp patches nearer the water rather than on dunes (all three).
+- Rubbish too small (all three); vegetation (all three); the spade blade (all three); grime in strokes and suds as clip-art rings (all three).
+
+**Bugs reported:**
+- A straight seam across the b7 verge sand (all three).
+- The truck bonnet and fender shading crumpled or faceted (t2; two as a bug, all three in scores); a dark stripe along the road edge (t1; two).
+- A pale vertical band on the near-shore boulder (b1, t1; two); a dark triangle inside the palm piece (06; two).
+- The lighter water wedge at the island bases (b3, b5; one); radial streaks across the b1 sand (one); blotchy dune shading (b4; one); the sieve through the basin rim (s11, 04; one); the jar sunk into the board (s11; one); the bag through the bench (b9; one); a lampshade clipping the top of s7 (one); the "01 / Ocean Wave" label hidden (s1; one); the brush head over the piece (05; one).
