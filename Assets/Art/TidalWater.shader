@@ -102,7 +102,15 @@ Shader "Sea Glass/Tidal Water"
   // takes the sun shadow (its material's _SunShadow is 0), so the bed is evenly lit; the shade is laid on the water
   // surface instead, softly (to 86%), the way a shadow darkens clear water.
   seen*=lerp(.86,1,sun.shadowAttenuation);
-  c=lerp(seen,c,smoothstep(.3,4.6,vdepth));
+  // Round 84 (review 80, all three: "a hard-edged lighter turquoise sheet" round the island base, b5; two also b1, b3): far
+  // offshore the sea is open and deep, so the see-through bed fades out with distance from the beach (18 to 36 m, where the
+  // seabed is already about 3 m down). The islands' underwater flanks, which used to show as pale skirts ending in a hard rim,
+  // now sit in opaque sea; the shallows along the beach and round the near rocks are unchanged. The distance is taken at
+  // whichever is further out, the water surface or what lies under it: from the beach a sightline can enter the water close
+  // in and meet an island's flank only a little under the surface, far out (eye depth scales linearly along the ray).
+  float3 bedPos=_WorldSpaceCameraPos+(i.world-_WorldSpaceCameraPos)*min(sceneEye/max(i.eye,.01),1000.);
+  float bedOff=ShoreX(bedPos.z)-bedPos.x;
+  c=lerp(seen,c,max(smoothstep(.3,4.6,vdepth),smoothstep(18,36,max(depth,bedOff))));
   // Sun path: broken glints where ripple normals catch the low sun.
   // Round 16: two rotated, finer octaves; one grid-aligned octave drew the glints as straight-edged bars.
   float2 g1=mul(float2x2(.8,-.6,.6,.8),p)*3.1,g2=mul(float2x2(.28,-.96,.96,.28),p)*5.3;
