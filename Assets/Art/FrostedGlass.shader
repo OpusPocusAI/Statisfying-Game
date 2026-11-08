@@ -275,7 +275,7 @@ Shader "Sea Glass/Frosted Glass"
                         // caustic lines on the basin floor visibly kink and bend where they pass under the piece.
                         if (_MaskOn > .5)
                         {
-                            half tB = smoothstep(.05, .13, lz);
+                            half tB = smoothstep(.025, .085, lz);   /* round 74: the thinner hero basin shard (about 19% to 7% of the width) */
                             float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
                             half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
                             half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .15), hue * hue * .9 + hue * .1, tB);

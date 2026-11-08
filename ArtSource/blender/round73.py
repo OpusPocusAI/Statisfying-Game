@@ -19,6 +19,10 @@ from mathutils import noise
 shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18), (0, 1, 1.0, .9, .23, .05, .42),
           (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .2), (3, .6, 1.0, .8, .21, .04, .26)]   # as round21.py
 BEND = -.06   # must match round21.py and FrostedGlass _Bend
+# Round 74 (review 70, all three: the hero piece "a thick gummy block", "thick vertical sides"; owner's decision, November 8):
+# the basin hero shard is thinner than 5.6's 30%/12% wedge, about 19% of the width at its thick edge and 7% at its thin
+# edge, and its edge wall slopes over a broader bevel instead of standing straight up.
+HERO_TH = .6
 
 
 def outline_r(a, sides, rk):
@@ -65,13 +69,13 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         x, z = p.x * sx * orr, p.z * sz * orr
         yn = p.y / .5
         # A crisper edge: flat faces turning over a narrow worn bevel (round21.py's power .38 rolled the whole rim over).
-        ys = math.copysign(abs(yn) ** .2, yn) * .5 * th * (1 - .1 * rr * rr)
+        ys = math.copysign(abs(yn) ** .3, yn) * .5 * th * HERO_TH * (1 - .1 * rr * rr)
         wd = rot * 1.7 + 0.9
         side = max(-1.0, min(1.0, (x * math.cos(wd) + z * math.sin(wd)) / .45))
         ys *= 1.0 + .45 * side
         # Flake scars: each chip leaves a shallow dished scar on the face beside it.
         face = abs(yn) ** 2
-        ys -= math.copysign(1, yn) * .045 * chip * smooth(.68, .98, rr) * face * (1 + .45 * side)
+        ys -= math.copysign(1, yn) * .028 * chip * smooth(.68, .98, rr) * face * (1 + .45 * side)
         ys += BEND * (1 - (x / .5) ** 2)
         ys += noise.noise(Vector((x, z, 0)) * 5 + s) * .008 * (1 - rr ** 4)
         ys += noise.noise(Vector((x, z, 1.7)) * 2.2 + s) * .022 * (1 - rr * rr) * (1 if yn > 0 else .6)
