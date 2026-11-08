@@ -3684,3 +3684,44 @@ All three reviewers viewed the references (38-39 screenshots each), as full-size
 - A hard edge where the pale shallow-water skirt around the left island meets the deep water (b5; all three, one also at the left of b8).
 - A diagonal seam line across the sand by the road (b7; two); a pale horizontal band across a boulder by the waterline (b1, b3; two); a bare brown quad on the sand by the studio (b4; two); the jar tilted off the board edge (s11; two).
 - Flat squiggle decals on the wet sand (b6; one); the "03 / SUNSET POINT" sign looking post-less (b2; one); a cyan sliver offset along the clean piece's rim (05b; one); dark smudges in the s11 bottom corners (one); the tagline touching the sign's bottom edge (s6; one); a mosaic name plate partly hidden by props (s1; one); the pendant shade intruding at the top of s7 (one).
+
+### November 8 — round 83 and review 80 (three reviewers, averaged)
+
+Round 83 (Painterly Lit wet band, no pass):
+- **The wet band read lilac** because round 82 darkened it toward a cool grey-blue and then laid a strong sky mirror over it.
+- **Damp sand is now the dry sand darker and warmer**, a caramel tan-brown (albedo × 0.5, 0.385, 0.28 at full wetness). A first, lighter warm tone (0.62, 0.49, 0.37) let the band vanish into the dry sand in b4.
+- **The sky mirror is a sheen, not a coat**: weaker head-on (it builds mostly at grazing angles, at half its old strength), and tinted by the sand's warmth. The soft sun glint is unchanged.
+
+All three reviewers viewed the references (38-40 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 79 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.7 Cleaning | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the wet band lilac** (all three in review 79), and nobody raises it as open; one lists "damp patches, footprints and a wet band" among the sand's strengths (b1, b4, b7). Sand rose to 4.0, unanimous for the first time, so it meets the bar.
+- Five areas meet the bar: lighting, water, sand, sorting, mosaic. Sea glass (3.3), cleaning (3.7) and the truck (3.7) fell back from 4.0 with no change to them; tools rose to 3.7, also unchanged. These areas swing between reviews: their recurring gaps (the hero piece, the basin's before/after, the truck's wheels and bed, the spade) are the steadier guide.
+
+**Next:**
+- Sea glass reading as candy, gummy or soap (all three: the hero piece in 05b, the palm piece as a pick or gem, the cloudy piece as blotchy ice or mould).
+- The basin: flat, milky water and a weak dirty-to-clean contrast (all three; grime as patches, not strokes, one).
+- Vegetation (all three); rubbish too small at 5 m (all three); generic suds and sparkles and no response at the mosaic reveal (all three); the spade as a flat plate (all three); studio's empty floor and flat rugs (all three).
+- Opaque shallows (two); the truck's plain wheels (two) and boxy bed (two); uniform clouds (two); dark navy mid-state mosaic panels (two).
+
+**Bugs reported:**
+- Hard-edged shallow-water sheets: around the left island (b5; all three), at the shore behind the left rocks (b1; two), offshore (b3; two, 02; one), and radial streaks across the b8 shallows (one).
+- The green sieve ring clipping the basin rim (s11, 04; two); floating truck mirrors (t2; two).
+- A pale horizontal band across boulders (b1, b9; one); the bottle through the driftwood (b9; one); the brush hovering above the piece (04; one); a flat white disc on the sand (b2; one); the pendant shade at the top of s7 (one); a flat untextured deck slab (s9; one); the tagline clipped by the sign's edge (s6; one); the Ocean Wave plaque hidden by a plant (s1; one).
