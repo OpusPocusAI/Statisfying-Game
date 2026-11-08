@@ -3767,3 +3767,47 @@ All three reviewers viewed the references (39-44 screenshots each), as full-size
 **Bugs reported:**
 - A pale horizontal band round the dark boulders (b1, b3, b9; two); the green sieve handle through the basin rim (s11, 04, 05; two); floating truck mirrors (t2; two); a large shadow on the b4 beach with no clear caster, probably the sea stacks (two).
 - A straight seam across the b7 sand verge (one); small dark V shapes over the dunes (b2, b7; one); sea stacks cut flat at the waterline by a straight foam band (b6, b8; one); glass on the sand as flat decals (b2; one); the jar overhanging the table edge and no contact shadow under the basin (s11; one); the pendant shade at the top of s7 (one); the hanging planter through the mosaic frame (s8; one); the EQUIPMENT sign through the bookshelf (09; one).
+
+### November 8 — round 85 and review 82 (three reviewers, averaged)
+
+Round 85 (EquipmentVisuals.Stroke, StudioStation.StampClean, PlayerVerification):
+- **The grime cleared as one soft band, not strokes.** The scrub path swept side to side while creeping slowly along the piece, so every pass overlapped the last three or four and the cleaned area grew as a single soft-edged band. The half-clean frame (05) was also taken mid-scrub, with the brush and suds over exactly the part that had been cleaned.
+- **Each side-to-side pass now runs down its own lane** (far edge, near edge, middle, and round again), stepping to the next lane as the brush turns at the end of a pass.
+- **A pass deposits a fixed amount whatever the brush speed or frame rate** (each frame adds the distance swept over the head's width), enough to cut through to clear glass, with the bristle lines left frosted for the next pass; the cleaned width is a little under a lane, so the first passes leave crust between them. A first try with the old width cleared the whole piece: on this small piece (about 30 × 24 cm) the head was wider than the lane spacing.
+- **05 is taken a second after the brush lifts**, after two and a half passes, with the record still at half the grime.
+
+All three reviewers viewed the references (38-46 screenshots each), as full-size store images in their own tab (one laid each page's images out in a grid on the page).
+
+| Area | A | B | C | Average | Review 81 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **All three now see brush strokes in the grime** (all three called it mottled patches in review 81): "grime comes off in brush strokes (05)", "strokes in the grime are visible in 05", "brush stripes show in the grime in 05". Cleaning rose to 4.0, unanimous.
+- Six areas meet the bar: lighting, water, cleaning, sorting, mosaic, truck. Sea glass fell back to 3.3 (two 3s) on the hero piece as jelly or a gummy, the studio to 3.7 and tools to 3.3, none of them changed.
+- **All three now call the deep water a flat, saturated cobalt or electric blue** (b3, b4; one in review 81). Round 84 made the open sea fully opaque from 18-36 m out, so the far water is now the plain deep colour; it may want more teal and variation.
+
+**Next:**
+- The hero piece as jelly, a gummy or soap (all three); cobalt and emerald tray glass as candy (one).
+- The deep water as flat cobalt (all three); opaque beach shallows (two).
+- The spade as a flat paddle (all three); the glove as blocky or a balloon (two).
+- Vegetation (all three); rubbish too small (all three); clouds all one glossy shape (all three); generic effects (all three); studio's bare floor (all three) and repeated props (two).
+- No splashes, drips or runoff at the basin (two); a mild dirty-to-clean contrast in 04 (two); the sand fields (two); dark, murky unlit mosaic panels (two).
+
+**Bugs reported:**
+- The green sieve sinking into the basin rim (s11, 04, 05; all three).
+- Floating truck mirrors (t2; two); the bottle through the driftwood (b9; two); a straight seam between road and sand (b7; two).
+- The jar tilted off the board (s11; one); the brush hovering over the water (04, 05; one); a flat box top with a seam on the b5 rock stack (one); a mosaic label over the table (s1; one); hard flat foam rings round the b8 sea stacks (one); jagged glove stripes (04, 05; one); the 08 floor light reading as decals (one); a detached shadow in b4 (one); jars clipped by the near plane (s5; one); the glass hovering on the palm (06; one).
