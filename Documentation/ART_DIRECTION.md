@@ -3641,3 +3641,46 @@ All three reviewers viewed the references (37-50 screenshots each), as full-size
 - The bottle through the driftwood (b9; two); the EQUIPMENT sign through the bookshelf (s4, 09; two).
 - A straight seam across the b7 sand by the road verge (one); a straight colour band in the b3 deep water (one); a stamped, glyph-like foam tile (b8; one); flat cylinder caps on the b4 sea stacks (one).
 - The palm piece's dark inner face (06; one); bright caustic veins running up to the piece (04, 05; one); the tap behind the basin (s11, 04; one); a dark piece in the finished Ocean Wave panel (08; one); a floating bush (s3; one); the s7 rope and lamp (one); the jar off the counter (s11; one).
+
+### November 8 — round 82 and review 79 (three reviewers, averaged)
+
+Round 82 (Round82Pass, Painterly Lit wet-band sheen, menu pass 79):
+- **The wet band had lost its read.** Round 81 matched the wet-sand strip to the dry sand, which removed its hard edge but also the overall darkening it had carried; the damp tone was left on the strip's narrow slope, seen at a grazing angle.
+- **Painterly Lit now treats the wet band as a thin water film**: it mirrors the sky colour, most at grazing angles, carries a broad soft sun glint, and darkens a little more toward the water.
+- **The strip's flat inland part reaches about a metre further inland** (its first two columns of seven, 1.3 m and 0.75 m), so the band has room before the bend. The third column stays where the dry shelf ends; moving it let the shelf poke through the slope as a bright straight stripe along the beach.
+
+All three reviewers viewed the references (38-39 screenshots each), as full-size store images in their own tab or in the store page's viewer.
+
+| Area | A | B | C | Average | Review 78 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 4 | 3 | 3 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **All three now see the wet band** (all three called it barely visible in review 78), but all three say it reads lilac, lavender or lilac-pink rather than darker, damp sand: "lilac-grey, not orange-brown" (b3, b6), "lilac-pink, not darker sand" (b3), "lavender with little sheen" (b3, b6, b8). The sky reflection tints it too cool; it needs a warmer, darker damp-sand base under the sheen.
+- Seven areas meet the bar, the most yet: lighting, water, sea glass, cleaning, sorting, mosaic and truck (all unanimous 4s). Sea glass, cleaning and the truck rose with no change to them.
+- Sand fell to 3.3 (two 3s): the b1 and b2 foregrounds still read as large stippled cream fields (all three), and two find the pebble grit too dark and too dense, "dark speckle noise" (B) and "scattered everywhere rather than sparingly" (C). Tools fell to 3.3 (two 3s) on the flat spade, with no change to them.
+
+**Next:**
+- The wet band as warm damp sand, not lilac (all three); see-through shallows (two).
+- The plain sand foregrounds (all three); fewer, lighter pebbles (two).
+- The hero wash piece as thick jelly or a gummy (all three); the spade as a flat paddle (all three), the glove's palm as a flat mitt (two).
+- Vegetation (all three); rubbish too small at distance (all three); no dig or load effects (two); studio empty floor and flat rugs (all three); truck wheels as plain discs (all three).
+- Mid-progress mosaic panels as flat dark navy (two).
+
+**Bugs reported:**
+- A hard edge where the pale shallow-water skirt around the left island meets the deep water (b5; all three, one also at the left of b8).
+- A diagonal seam line across the sand by the road (b7; two); a pale horizontal band across a boulder by the waterline (b1, b3; two); a bare brown quad on the sand by the studio (b4; two); the jar tilted off the board edge (s11; two).
+- Flat squiggle decals on the wet sand (b6; one); the "03 / SUNSET POINT" sign looking post-less (b2; one); a cyan sliver offset along the clean piece's rim (05b; one); dark smudges in the s11 bottom corners (one); the tagline touching the sign's bottom edge (s6; one); a mosaic name plate partly hidden by props (s1; one); the pendant shade intruding at the top of s7 (one).
