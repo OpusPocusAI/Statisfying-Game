@@ -3725,3 +3725,45 @@ All three reviewers viewed the references (38-40 screenshots each), as full-size
 - Hard-edged shallow-water sheets: around the left island (b5; all three), at the shore behind the left rocks (b1; two), offshore (b3; two, 02; one), and radial streaks across the b8 shallows (one).
 - The green sieve ring clipping the basin rim (s11, 04; two); floating truck mirrors (t2; two).
 - A pale horizontal band across boulders (b1, b9; one); the bottle through the driftwood (b9; one); the brush hovering above the piece (04; one); a flat white disc on the sand (b2; one); the pendant shade at the top of s7 (one); a flat untextured deck slab (s9; one); the tagline clipped by the sign's edge (s6; one); the Ocean Wave plaque hidden by a plant (s1; one).
+
+### November 8 — round 84 and review 81 (three reviewers, averaged)
+
+Round 84 (Round84Pass, TidalWater.shader, menu pass 80):
+- **The hard-edged pale sheets were the islands' underwater flanks.** The six offshore islands ("Wind-shaped coastal stone") ended about 4.6 m under the surface, just where the water turns opaque, so each flank showed through as a pale turquoise skirt that stopped dead along the mesh's bottom rim.
+- **Each offshore island now has its own mesh copy whose underwater part plunges away**: a vertex's depth grows by the square of how deep it already is (about 9.5 m more at the old rim), so the flank sinks out of sight before it ends. Nothing above the water moves. (About 108 objects share the islands' name; the pass touches only offshore ones that reach under the water.)
+- **The water's see-through bed fades out 18-36 m from the beach**, measured at whichever is further out, the surface or what lies under it: from the beach, a sightline can enter the water close in and meet an island's flank only a little under the surface, far out. The beach shallows and the near rocks are unchanged.
+
+All three reviewers viewed the references (39-44 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 80 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody reports the hard-edged shallow-water sheets** (all three in review 80, round the b5 island, and two each in b1 and b3). Water held at 4.0, unanimous.
+- Two still find the beach shallows opaque, with no seabed visible (two in review 80 too), and one sees the deep water as royal blue rather than teal (b4, b5).
+- Seven areas meet the bar again: lighting, water, sea glass, sorting, mosaic, studio and truck (all unanimous 4s). Sea glass, studio and the truck rose with no change to them; sand slipped to 3.7 (one 3), with two finding the wet band thin or dull again (b3, b6, 02).
+
+**Next:**
+- Grime coming off in mottled patches, not brush strokes (all three); no splashes or drips (two); milky, flat basin water (one).
+- Vegetation (all three); rubbish too small at 5 m (all three); generic effects with no digging or loading feedback (all three); the spade as a flat plate (all three).
+- The sand foregrounds (all three), pebbles as dark blobs (two), the wet band thin or dull (two).
+- Studio floor bare and rugs flat (all three); mosaic pieces coarse and came heavy (all three).
+- Opaque beach shallows (two); the hero piece leaning gummy or soap (two); clouds as one repeated clay puff (two).
+
+**Bugs reported:**
+- A pale horizontal band round the dark boulders (b1, b3, b9; two); the green sieve handle through the basin rim (s11, 04, 05; two); floating truck mirrors (t2; two); a large shadow on the b4 beach with no clear caster, probably the sea stacks (two).
+- A straight seam across the b7 sand verge (one); small dark V shapes over the dunes (b2, b7; one); sea stacks cut flat at the waterline by a straight foam band (b6, b8; one); glass on the sand as flat decals (b2; one); the jar overhanging the table edge and no contact shadow under the basin (s11; one); the pendant shade at the top of s7 (one); the hanging planter through the mosaic frame (s8; one); the EQUIPMENT sign through the bookshelf (09; one).
