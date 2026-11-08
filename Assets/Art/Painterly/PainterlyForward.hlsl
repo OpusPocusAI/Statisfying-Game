@@ -219,7 +219,7 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     if (_WetBand > 0.001)
     {
-        albedo *= lerp(half3(1, 1, 1), half3(0.6, 0.65, 0.7), wet);
+        albedo *= lerp(half3(1, 1, 1), half3(0.55, 0.6, 0.67), wet);
         albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.05;   // a faint darker line where the sand is drying
     }
 
@@ -268,6 +268,19 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     half sheen = lerp(_Smoothness, 0.5, wet);   // wet sand is glossier (round 81)
     half spec = pow(saturate(dot(normalWS, halfDir)), exp2(9.0 * sheen + 2.0));
     colour += mainLight.color * spec * sheen * lightAmount * _SG_Paint.w;
+
+    // Round 82 (review 78, all three: the wet-sand band "barely visible", "very thin or missing", "almost absent"). Wet sand is a
+    // thin film of water: it mirrors the sky, most at the grazing angles the band is usually seen at, and the low sun lays a broad,
+    // soft glint along it. The reflection uses a flatter normal than the sand's own (the film is level) and the sky's ambient colour.
+    if (wet > 0.001)
+    {
+        float3 filmN = normalize(lerp(normalWS, float3(0, 1, 0), 0.6));
+        half graze = pow(1.0 - saturate(dot(filmN, viewWS)), 3.0);
+        half3 skyR = SampleSH(reflect(-viewWS, filmN));
+        colour = lerp(colour, skyR * 1.05, saturate(0.22 + graze * 0.9) * wet * 0.75);
+        half glint = pow(saturate(dot(filmN, halfDir)), 70.0);
+        colour += mainLight.color * glint * 0.55 * wet * lerp(0.35, 1.0, lightAmount) * _SG_Paint.w;
+    }
 
     // Warm rim, strongest when looking towards the sun.
     half fresnel = pow(1.0 - saturate(dot(normalWS, viewWS)), 4.0);
