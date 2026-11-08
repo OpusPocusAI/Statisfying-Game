@@ -99,7 +99,12 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
            : an.x > an.z ? input.positionWS.zy / tile : input.positionWS.xy / tile;
     }
     else if (_WorldMapping > 0.5) uv = input.positionWS.xz / tile;
-    half3 albedo = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv).rgb * _BaseColor.rgb;
+    half3 baseTex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv).rgb;
+    // Round 78 (review 74, all three: "radial streaks fanning across the foreground sand" in b1): the painted sand texture
+    // carries long wavy streaks along one world axis, repeating every 7 m; looking along them, they converged into spokes.
+    // On beach sand (_SandDetail) the shader's own ripples, tone and damp patches carry the surface, so the texture fades.
+    if (_SandDetail > 0.001) baseTex = lerp(baseTex, half3(0.96, 0.96, 0.96), 0.85 * _SandDetail);
+    half3 albedo = baseTex * _BaseColor.rgb;
     float3 viewWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
     float2 screenUV = GetNormalizedScreenSpaceUV(input.positionCS);
 
@@ -125,12 +130,21 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         float2 wq = input.positionWS.xz;
         float turn = (SG_ValueNoise(wq * 0.045 + 17.0) - 0.5) * 2.6;   // round 48: a wider swing, so no one stripe direction dominates a view
         float2 rdir = float2(cos(0.38 + turn), sin(0.38 + turn));
-        float warp = SG_ValueNoise(wq * 0.35) * 5.0 + SG_ValueNoise(wq * 1.3) * 1.2;
-        float rip = sin(dot(wq, rdir) * 7.5 + warp);
-        float rip2 = sin(dot(wq, float2(-rdir.y, rdir.x) * 0.3 + rdir) * 16.0 + warp * 0.6);
+        // Round 78 (review 74, all three: "radial streaks fanning across the foreground sand" in b1): where the ripples ran
+        // toward the camera, their long straight crests converged in perspective like spokes. The crests now wander more
+        // and break into short lengths (as wind ripples do), and each set fades out before it is finer than a few pixels.
+        float warp = SG_ValueNoise(wq * 0.35) * 5.0 + SG_ValueNoise(wq * 1.3) * 2.6;
+        float ph = dot(wq, rdir) * 7.5 + warp, ph2 = dot(wq, float2(-rdir.y, rdir.x) * 0.3 + rdir) * 16.0 + warp * 0.6;
+        float crest = smoothstep(0.42, 0.7, SG_ValueNoise(wq * float2(1.9, 1.9) + rdir.yx * 3.0 + 41.0));   // short crests, not endless lines
+        float rip = sin(ph) * crest * saturate(1.6 - fwidth(ph) * 1.1);
+        float rip2 = sin(ph2) * crest * saturate(1.6 - fwidth(ph2) * 1.1);
         float ripMask = smoothstep(0.42, 0.8, SG_ValueNoise(wq * 0.09 + 5.0)) * 0.85 + 0.15;   // real gaps between rippled sweeps
         float near = 1.0 - smoothstep(6.0, 25.0, distance(input.positionWS, _WorldSpaceCameraPos));
         float ripK = near * ripMask * (_GroundPatches / 0.4);
+        // Crests that run along the line of sight read as spokes converging in perspective: those fade, crests seen across
+        // the view (bands) stay. The direction turns from patch to patch, so every view keeps some rippled sweeps.
+        float2 vxz = normalize(viewWS.xz + 1e-4);
+        ripK *= smoothstep(0.25, 0.65, abs(dot(vxz, rdir)));
         albedo *= 1.0 + (rip * 0.045 + rip2 * 0.022) * ripK;
         albedo = lerp(albedo, albedo * half3(0.93, 0.95, 1.04), saturate(-rip) * 0.26 * ripK);
         float drift = SG_ValueNoise(wq * 0.022 + 31.0) - 0.5;
