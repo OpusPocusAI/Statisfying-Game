@@ -3515,3 +3515,44 @@ All three reviewers viewed the references (37-41 screenshots each), as full-size
 - Floating side mirrors and the board behind the seat (t2; two); the bottle in the driftwood (b9; two); the flat box-topped offshore rock (b5, b9, 02; one); a pale band on a rock (b1, b9; one).
 - The b7 sand seam (one); the hard wet/dry sand step (b6; one); a pale skirt around the left island (b5; one); a light patch in the water (b3; one); the flat green disc in b2 (two).
 - Brush bristles hovering above the piece (04; one); the floor light lying over the rugs (08; one); a canopy above the bookshelf (s4; one); the jar off the bench edge (s11; one).
+
+### November 8 — round 79 and review 76 (three reviewers, averaged)
+
+Round 79 (Round79Pass, menu pass 76):
+- **The b4 cell pattern was the beach's shape, not its colour** (a debug capture with the round 76 mid-scale tone off still showed it). The open beach's height came from 48 separate, overlapping "Beach swell" mounds (TerrainShapePass); wherever two cut through each other the surface creased, and from b4's height the creases drew a net of cells. Round 78's texture fade had uncovered them.
+- **One fused beach surface** ("Beach surface", 0.4 m heightfield): the same swells, sampled from their transforms with the same cosine profile and joined by a smooth blend (a 4-norm of their heights), so where two meet the surface rounds over instead of creasing. Only cells above the flat sand shelf are kept, so it meets the shelf tangentially as the swells did. The swell objects are switched off, not deleted.
+
+All three reviewers viewed the references (33-40 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 75 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody reports the b4 cell pattern** (two in review 75) or the b1 streaks. Sand is back to 3.3 (one 4); what holds it below the bar is the large, low-detail cream foreground in b1, b2 and s6 (all three).
+- **Seven areas meet the bar**, the most so far: lighting, water, cleaning, sorting, mosaic, truck (back to 4.0, unanimous) and tools (4.0 unanimous for the first time, though all three still call the spade blade flat). Studio slipped to 3.7 (one 3) without a change; sea glass and effects moved within the usual ±0.3.
+
+**Next:**
+- The empty sand foregrounds (all three).
+- Vegetation: blob-cluster canopies, thin palms, cloned tufts (all three); rubbish too small to read at 5 m (all three).
+- Effects: no splashes, drips or runoff while cleaning (all three); the mosaic floor light reads as flat painted shapes (all three).
+- Studio: open floor and flat rugs (all three). Sea glass: the hero piece as jelly (two), the palm piece (all three: dark facet, pointed tip, a gem or guitar pick). The shallows opaque (two).
+
+**Bugs reported:**
+- Hard edges in the water at the island bases or around rock bases (b3, b5, b8; three).
+- The board behind the truck seat (t2; two); floating side mirrors (t2; one); the "01 / Ocean Wave" label half hidden (s1, s2; two); the floor light spilling over the rugs (08; two).
+- The bottle in the driftwood (b9; one); the jar off the counter edge (s11; one); the EQUIPMENT sign through the bookshelf (s4, 09; one); the tote bag through the bench (b9; one); the hanging-plant rope (s7; one); the s7 lamp cut off by the frame (one).
+- A straight line across the b7 sand shoulder (one); S-shaped ribbons on the b6 sand (one); the green glass in b2 as a flat glowing disc (one); the build frames graded flatter than the review captures (one).
