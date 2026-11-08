@@ -173,6 +173,25 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         float2 gp = frac(sq * 2.2) - (0.25 + 0.5 * float2(SG_Hash(gc + 3.0), SG_Hash(gc + 29.0)));
         half fleck = (1.0 - smoothstep(0.04, 0.07, length(gp))) * step(0.7, gh) * (1.0 - smoothstep(4.0, 12.0, camD));
         albedo = lerp(albedo, gh > 0.88 ? albedo * half3(1.22, 1.18, 1.1) : albedo * half3(0.66, 0.6, 0.58), fleck * 0.8 * _SandDetail);
+
+        // Round 80 (review 76, all three: the b1, b2 and s6 foregrounds "large, low-detail cream fields", against Tchia's grainy,
+        // painted sand). Within about 15 m:
+        // - scuffs: soft, slightly elongated patches of wind-scoured (lighter, warmer) and trodden (darker, cooler) sand, 0.5-1.5 m,
+        //   short and rounded so they never line up into streaks; the lit sand sits near white, so the trodden side carries most of it;
+        // - grain: a fine stipple of warm and cool sand grains (5 cm), faded out before it is finer than a pixel, so it never shimmers.
+        float nearK = (1.0 - smoothstep(9.0, 18.0, camD)) * _SandDetail;
+        float2 sd = float2(dot(sq, float2(0.93, 0.37)), dot(sq, float2(-0.37, 0.93)));
+        float scuff = SG_ValueNoise(sd * float2(0.75, 1.3) + 83.0) * 0.6 + SG_ValueNoise(sd * float2(1.7, 2.6) + 27.0) * 0.4 - 0.5;
+        scuff = clamp(scuff * 3.2, -1.0, 1.0);
+        albedo = lerp(albedo, albedo * half3(1.06, 1.03, 0.97), saturate(scuff) * 0.85 * nearK);
+        albedo = lerp(albedo, albedo * half3(0.74, 0.73, 0.83), saturate(-scuff) * 0.9 * nearK);
+        float2 grainUV = sq * 20.0;
+        float grainFade = 1.0 - smoothstep(0.35, 0.7, max(fwidth(grainUV.x), fwidth(grainUV.y)));
+        float2 gcell = floor(grainUV);
+        float g1 = SG_Hash(gcell + 91.0), g2 = SG_Hash(gcell + 17.0);
+        float2 gq = frac(grainUV) - (0.3 + 0.4 * float2(SG_Hash(gcell + 5.0), g2));
+        half grain = (1.0 - smoothstep(0.18, 0.32, length(gq))) * grainFade * nearK;
+        albedo = lerp(albedo, g1 > 0.62 ? albedo * half3(1.08, 1.05, 0.98) : g1 < 0.42 ? albedo * half3(0.8, 0.78, 0.82) : albedo, grain * 0.9);
     }
 
     // Round 27 (review 25: island grass read as "blocky pixel camo"): grass or moss painted per pixel on faces
