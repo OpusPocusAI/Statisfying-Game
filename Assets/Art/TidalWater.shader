@@ -54,6 +54,12 @@ Shader "Sea Glass/Tidal Water"
   float waves=sin(phase)*.65+sin(crossing)*.35;
   float shallows=1-smoothstep(0,34,depth);
   half3 c=lerp(_DeepColor.rgb,_BaseColor.rgb,saturate(shallows*.8+.12+waves*.07+(broad-.5)*.12));
+  // Round 86 (review 82, all three: the deep water "a flat cobalt", "electric blue", b3, b4): since round 84 the open sea is
+  // fully opaque past 18-36 m, so it showed the plain deep colour edge to edge. Out there it now drifts between deep blue and
+  // a deeper teal in broad, slow patches (two octaves, tens of metres across), the way open water varies under a sunset.
+  float open=smoothstep(8,60,depth);
+  float swell=BrushNoise(p*.019+float2(t*.004,-t*.003))*.6+BrushNoise(p*.047+3.3)*.4;
+  c=lerp(c,half3(.035,.4,.47)*(.86+swell*.3),open*smoothstep(.2,.7,swell)*.8);
 
   // Irregular elongated brush marks replace the uniform lattice of bright specks.
   // Round 16: rotated and warped by a second noise, so the strokes curve; axis-aligned stretched noise drew
@@ -111,6 +117,10 @@ Shader "Sea Glass/Tidal Water"
   float3 bedPos=_WorldSpaceCameraPos+(i.world-_WorldSpaceCameraPos)*min(sceneEye/max(i.eye,.01),1000.);
   float bedOff=ShoreX(bedPos.z)-bedPos.x;
   c=lerp(seen,c,max(smoothstep(.3,4.6,vdepth),smoothstep(18,36,max(depth,bedOff))));
+  // Round 86: open water seen at a low angle mirrors the sky (Fresnel), so the far sea takes the sunset's lilac and peach
+  // instead of staying saturated cobalt to the horizon. The beach shallows keep their own turquoise.
+  float fres=pow(1-saturate(dot(normal,view)),5);
+  c=lerp(c,SampleSH(reflect(-view,normal)),fres*.36*smoothstep(12,45,depth));
   // Sun path: broken glints where ripple normals catch the low sun.
   // Round 16: two rotated, finer octaves; one grid-aligned octave drew the glints as straight-edged bars.
   float2 g1=mul(float2x2(.8,-.6,.6,.8),p)*3.1,g2=mul(float2x2(.28,-.96,.96,.28),p)*5.3;
