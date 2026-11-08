@@ -288,6 +288,7 @@ Shader "Sea Glass/Frosted Glass"
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         g = lerp(g, edgeCol, (1 - faceK) * .85);
                         half lip = saturate(faceK * (1 - faceK) * 4);
+                        if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
@@ -387,7 +388,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 14 (review 12): one large, crisp-edged highlight shape instead of glitter specks, with a hot
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
-                half glint = smoothstep(.9985 + _Held * .0011 - aaK, .9985 + _Held * .0011 + aaK, nk) * .7 + pow(nk, 3600) * .9 + pow(nk, 160) * .05;   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
+                half glint = smoothstep(.9985 + _Held * .0011 + _MaskOn * .00025 - aaK, .9985 + _Held * .0011 + _MaskOn * .00025 + aaK, nk) * .7 + pow(nk, 3600 + _MaskOn * 6000) * .9 + pow(nk, 160) * .05 * (1 - _MaskOn);   /* round 75: at the basin a smaller, harder key glint and no soft sheen around it */   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
                 c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
                 // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
@@ -412,6 +413,11 @@ Shader "Sea Glass/Frosted Glass"
                 half diamond = saturate(1 - fd.x * fd.y * 110 - (fd.x + fd.y) * 1.9 - fd.z * .6);
                 half wink = .45 + .55 * pow(saturate(sin(_Time.y * 2.5 + fh * 40.0 + dot(v, float3(9, 5, 7)) * 4.0)), 4);
                 half facets = step(.965, fh) * diamond * wink * smoothstep(.7, .95, nk) * (1 - _Facets);
+                // Round 75 (review 71, all three: the basin piece's highlights "blobby", "blobby highlight dimples"): at the basin a
+                // finer scatter of small, sharp four-point flashes over the lit face stands in for the face pits, as on worn glass.
+                if (_MaskOn > .5) { float3 bc = i.local * 44.0; float bh = Hash(floor(bc) + 57.0); float3 bd = abs(frac(bc) - .5);
+                    half star = saturate(1 - bd.x * bd.y * 160 - (bd.x + bd.y) * 2.6 - bd.z * .8);
+                    facets = max(facets, step(.93, bh) * star * wink * smoothstep(.55, .9, nk) * smoothstep(.6, .9, faceF)); }
                 c += facets * .75 * (1 - grime);   // round 28: smaller, rarer, dimmer, only near the glint (reviews: "stickers")
 
                 c += _EmissionColor.rgb;
