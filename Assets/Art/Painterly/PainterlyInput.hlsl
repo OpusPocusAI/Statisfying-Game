@@ -26,6 +26,7 @@ CBUFFER_START(UnityPerMaterial)
     half _GroundPatches;
     half _SandDetail;
     half _AOScale;
+    half _WetBand;
     half _Cull;            // round 21: 0 marks two-sided foliage and fabric, which lets light through
     half4 _TopTint;        // round 27: rgb grass/moss colour on upward faces, a = amount (0 off)
     half _TopStart;        // round 27: world normal.y where the top colour begins

@@ -90,6 +90,19 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     // Two-sided surfaces (grass blades, leaves, fabric) light their back faces with the flipped normal,
     // so they are not rendered near-black from behind (round 7).
     float3 normalWS = normalize(input.normalWS) * IS_FRONT_VFACE(face, 1.0, -1.0);
+    // Round 81 (review 77, all three: the wet/dry sand boundary "a hard, angular polygon edge" in b3, b4 and b6). The wet-sand strip
+    // along the coast (_WetBand, uv.x 0 on its inland edge, 1 under the water) now wears exactly the dry beach's surface and gets
+    // its wetness here: darker, cooler and glossier from about a tenth of the way across (fully wet by halfway, where the strip bends down), with the tide line roughened by world
+    // noise so it wanders between the mesh's rows instead of following their straight segments. Over the strip's bend down to the
+    // water the shading normal eases from level, so the bend does not draw a crease.
+    float wet = 0.0;
+    if (_WetBand > 0.001)
+    {
+        float2 wq0 = input.positionWS.xz;
+        float edgeN = (SG_ValueNoise(wq0 * 0.45 + 7.0) - 0.5) * 0.26 + (SG_ValueNoise(wq0 * 1.7 + 19.0) - 0.5) * 0.1;
+        wet = smoothstep(0.1, 0.55, input.uv.x + edgeN) * _WetBand;
+        normalWS = normalize(lerp(float3(0, 1, 0), normalWS, smoothstep(0.22, 0.75, input.uv.x)));
+    }
     float2 uv = input.uv;
     float tile = max(_WorldTile, 0.01);
     if (_WorldMapping > 1.5)
@@ -204,6 +217,12 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         albedo = lerp(albedo, grass, top * _TopTint.a);
     }
 
+    if (_WetBand > 0.001)
+    {
+        albedo *= lerp(half3(1, 1, 1), half3(0.6, 0.65, 0.7), wet);
+        albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.05;   // a faint darker line where the sand is drying
+    }
+
     // Height gradient: darker, cooler base and a sunlit crown.
     float height = saturate(input.positionWS.y / max(_GradientHeight, 0.05));
     albedo *= lerp(1.0 - _GradientStrength, 1.0 + _GradientStrength * 0.3, smoothstep(0.0, 1.0, height));
@@ -246,8 +265,9 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     // Soft sun sheen for enamel, glass-like paint and metal.
     float3 halfDir = SafeNormalize(mainLight.direction + viewWS);
-    half spec = pow(saturate(dot(normalWS, halfDir)), exp2(9.0 * _Smoothness + 2.0));
-    colour += mainLight.color * spec * _Smoothness * lightAmount * _SG_Paint.w;
+    half sheen = lerp(_Smoothness, 0.5, wet);   // wet sand is glossier (round 81)
+    half spec = pow(saturate(dot(normalWS, halfDir)), exp2(9.0 * sheen + 2.0));
+    colour += mainLight.color * spec * sheen * lightAmount * _SG_Paint.w;
 
     // Warm rim, strongest when looking towards the sun.
     half fresnel = pow(1.0 - saturate(dot(normalWS, viewWS)), 4.0);
