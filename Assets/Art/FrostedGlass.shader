@@ -278,6 +278,16 @@ Shader "Sea Glass/Frosted Glass"
                             half tB = smoothstep(.025, .085, lz);   /* round 74: the thinner hero basin shard (about 19% to 7% of the width) */
                             float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
                             half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
+                            // Round 87 (review 83, all three: "a thick mint jelly lozenge", "a gummy sweet"): the basin water draws its
+                            // bright caustic lines after the glass, and the glass hides it, so through the piece the floor was plain
+                            // enamel and the piece filled with one even mint, like a solid sweet. The same caustic network
+                            // (BasinWater.shader, in the bowl's unit-disc coordinates) is drawn here as seen through the glass, shifted
+                            // further where the glass is thicker, and gathered a little closer (the bowl's lines are wider apart than the
+                            // piece), so a few bright lines always run through the piece and visibly bend inside it.
+                            float2 bp = (i.world.xz - _SG_Basin.xz) / max(_SG_Basin.w * 2, 1e-3) + viewN.xy * lerp(.012, .05, tB);
+                            float2 cw = bp * 14 + float2(_Time.y * .22, -_Time.y * .16);
+                            float ca = abs(sin(cw.x + sin(cw.y * 1.3 + _Time.y * .4) * 1.4) * sin(cw.y + sin(cw.x * 1.1 - _Time.y * .3) * 1.4));
+                            seenB += pow(1 - ca, 8) * half3(1, .97, .86) * .55 * step(.001, _SG_Basin.w);
                             half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .15), hue * hue * .9 + hue * .1, tB);
                             g = seenB * filtB * lerp(1.12, .78, tB);
                             g += tint * (sky * .05 + sun.color * .04) * tB;
@@ -286,7 +296,11 @@ Shader "Sea Glass/Frosted Glass"
                         g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, _MaskOn > .5 ? .06 : .2);   /* round 72: at the basin the thin edge stays nearly clear */   // a little of the glass's own saturated colour
                         g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
-                        g = lerp(g, edgeCol, (1 - faceK) * .85);
+                        // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,
+                        // jelly rim"): its edge wall glowed pale, which is how a gummy's edge looks. The edge of a pane of bottle glass
+                        // is dark and deeply saturated, because light runs a long way along it; at the basin it now is.
+                        if (_MaskOn > .5) edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .3 + .05) * (sky * .3 + sun.color * .3 + .45);
+                        g = lerp(g, edgeCol, (1 - faceK) * (_MaskOn > .5 ? .95 : .85));
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
