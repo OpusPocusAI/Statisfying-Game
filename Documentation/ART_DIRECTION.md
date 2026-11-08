@@ -3556,3 +3556,46 @@ All three reviewers viewed the references (33-40 screenshots each), as full-size
 - The board behind the truck seat (t2; two); floating side mirrors (t2; one); the "01 / Ocean Wave" label half hidden (s1, s2; two); the floor light spilling over the rugs (08; two).
 - The bottle in the driftwood (b9; one); the jar off the counter edge (s11; one); the EQUIPMENT sign through the bookshelf (s4, 09; one); the tote bag through the bench (b9; one); the hanging-plant rope (s7; one); the s7 lamp cut off by the frame (one).
 - A straight line across the b7 sand shoulder (one); S-shaped ribbons on the b6 sand (one); the green glass in b2 as a flat glowing disc (one); the build frames graded flatter than the review captures (one).
+
+### November 8 — round 80 and review 77 (three reviewers, averaged)
+
+Round 80 (Round80Pass, PainterlyForward.hlsl, menu pass 77):
+- **Near-field sand detail** (Painterly Lit, beach sand only, within about 15 m): soft trodden (darker, cooler) and wind-scoured (lighter, warmer) patches, 0.5-1.5 m, short and rounded so they cannot line up into streaks; and a fine 5 cm grain stipple, faded before it is finer than a pixel. The lit sand sits near white, so the darker side carries most of it.
+- **Beach grit** (Round80Pass): about 300 small groups of shells and pebbles (about 1,100 pieces) across the open beach, density following a broad noise, a clear metre kept around every collectible. Twigs and kelp strands were tried and dropped: they read as dark sticks and black squiggles.
+
+All three reviewers viewed the references (39-41 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 76 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The round did not move sand** (3.0 unanimous, from 3.3). Two still call the b1, b2 and s6 foregrounds large plain areas "with only stipple and pebbles"; the third calls the near sand "a repeating speckle", so the grain reads as pattern, not as sand. The grit groups are not mentioned. Surface detail at this strength does not answer "empty"; the foreground needs a change of value or form that reads at a glance.
+- **All three now name the wet/dry sand boundary** as a hard, angular polygon edge (b3, b4, b6; one in review 76), the most-reported sand fault this time.
+- Five areas meet the bar: lighting, water, sorting, mosaic, truck. Cleaning (one 3), tools (two 3s) and sea glass (three 3s) fell without any change to them, the usual spread; sea glass's hero piece as jelly or soap is reported by all three again.
+
+**Next:**
+- Sand: the hard wet/dry edge (all three); the empty foregrounds (all three, counting the speckle).
+- The hero shard as jelly, soap or ice (all three); the palm piece as a gem (two).
+- Vegetation sparse and repeated, sea stacks as extrusions (all three); rubbish too small (all three).
+- Water-plane edges in the shallows (b3, b4, b5; two); shallows opaque (two).
+- Effects generic, no spray or runoff (all three); the mosaic floor light as a decal (all three); studio floor and rugs (all three).
+
+**Bugs reported:**
+- The wet/dry sand boundary as straight polygon segments (b3, b4, b6; all three).
+- Hard-edged lighter patches or seams in the water (b3, b4, b5; two); dark spokes in the shallows around the b8 stacks (one).
+- The hero piece as a plate on a plate (05b, 06; one); a basin handle through the rim (s11, 04; one); glove texture aliasing (04, 05; one).
+- A straight crease across the b7 sand (one); floating mirrors (t2; one); the b2 glass and plastic as flat decals (one); a pale stripe on boulders (b1, t1; one); a floating bush (s3; one); the s7 lamp in frame (one); a dark gap in the Ocean Wave panel (08; one); a pale plane between deck and road (s9; one).
