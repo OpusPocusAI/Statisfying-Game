@@ -3472,3 +3472,46 @@ All three reviewers viewed the references (38-41 screenshots each), as full-size
 - Radial streaks across the b1 foreground sand (all three).
 - The b7 verge seam (one); faceting on the b4 dunes (one); dark squiggles on the wet sand (b6; one); a flat box-cut rock top (b5, b9; one); the bottle in the driftwood (b9; one); umbrella and bench shadows disagreeing (b9; one).
 - The deck meeting a flat pale ground plane (s3, s4; one); the EQUIPMENT sign floating (s4; one); the plant both hanging and standing (s7; one); the jar off the table edge (s11; one); the hero piece sitting on the water (05b; one); an olive patch in the palm piece (06; one); a dark gap in the "Ocean Wave" panel (08; one); a sign board behind the seat (t2; one).
+
+### November 8 — round 78 and review 75 (three reviewers, averaged)
+
+Round 78 (Round78Pass, PainterlyForward.hlsl, menu pass 75):
+- **The b1 radial streaks were the near-field wind ripples**, whose crests ran along the line of sight in b1 and converged in perspective (debug captures ruled out shadow acne, occlusion and the lighting normals; with the ripples off the streaks vanished). Ripples now fade where their crests run along the view, break into shorter crests and fade before they get too fine to render cleanly.
+- **The streaky Painted sand texture is mostly faded on beach sand** (85% of _SandDetail).
+
+All three reviewers viewed the references (37-41 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 74 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.13 Effects | 3 | 4 | 3 | 3.3 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody reports the b1 radial streaks** (all three in review 74).
+- **Sand fell to 3.0 unanimously.** All three call the b1/b2 foreground a large, near-empty plane, and two now report a quilted, cellular patch pattern across the b4 sand (one in review 74). Comparing r78 and r79 b4: the pattern was there before, but the streaky texture faded in round 78 was hiding it, so the fade is the likely cause of the drop.
+- Six areas meet the bar: lighting, water, cleaning, sorting, mosaic, studio (back to 4.0, unanimous). The truck slipped to 3.3 (two 3s: boxy rear and wheels, flat hubs, floating mirrors); the round changed nothing on the truck, so this is reviewer spread. Sea glass, tools and effects moved within the usual ±0.3.
+
+**Next:**
+- The empty b1/b2 foreground (all three) and the b4 cellular sand pattern (two).
+- Vegetation, canopies as blob clusters (all three); rubbish too small (all three); the spade blade flat (all three).
+- The hero shard still reads as soap or jelly (two); the palm piece's dark patch (all three).
+- Truck wheels, hubs and mirrors (three); grime in blotches (two); empty mosaic sockets dark (one); the floor light as a flat decal (two).
+
+**Bugs reported:**
+- A cellular or faceted patch pattern across the b4 sand (two).
+- A dark opaque patch in the palm piece (06; all three).
+- Floating side mirrors and the board behind the seat (t2; two); the bottle in the driftwood (b9; two); the flat box-topped offshore rock (b5, b9, 02; one); a pale band on a rock (b1, b9; one).
+- The b7 sand seam (one); the hard wet/dry sand step (b6; one); a pale skirt around the left island (b5; one); a light patch in the water (b3; one); the flat green disc in b2 (two).
+- Brush bristles hovering above the piece (04; one); the floor light lying over the rugs (08; one); a canopy above the bookshelf (s4; one); the jar off the bench edge (s11; one).
