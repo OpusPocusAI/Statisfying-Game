@@ -3270,3 +3270,42 @@ All three reviewers viewed the references (38-41 screenshots each), as full-size
 - A bottle clipping into the driftwood (b9; two); crumpled or mottled bonnet shading (t2; two).
 - The lighter skirt at the left island's base (b5, b3; one); radial light streaks in the shallows (b8; one); the bag through the bench (b9; one); flat rings and discs on the sand (b2, 02; one); dark "v" marks over the dunes (b2, b7; one).
 - A pale ring between the basin water and the enamel (04, 05, s11; one); the sieve through the basin rim (s11, 04; one); the bristles clipping the glass (05; one); hard-edged floor light (08; one); the dark road-edge line (t1; one).
+
+### November 8 — round 73 and review 70 (three reviewers, averaged)
+
+Round 73 (Round73Pass, round73.py, GameCatalog, StudioStation, menu pass 72):
+- **Hero basin shards:** glass_basin_0..5, one per slab, with the same outline, wedge and bend, a crisper edge over a narrow worn bevel, conchoidal chips along the rim with flake scars beside them, and fine pitting on both faces. GlassDefinition.basinMesh holds each piece's hero shard; the trays and palm keep the slabs.
+- **Smaller:** the basin piece is 0.3 m across (was 0.42).
+
+All three reviewers viewed the references (36-40 screenshots each), as full-size store images or in Steam's viewer in their own tab.
+
+| Area | A | B | C | Average | Review 69 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.13 Effects | 4 | 4 | 3 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass edged up to 3.3 (one 4)**, but the basin piece still reads as "a thick mint gummy or soap bar" (A), "a thick uniform gummy block" (B), and has "thick vertical sides, so it reads closer to a jelly or soap block than a thin bottle wall" (C). The crisper edge made the edge wall read as a straight, tall side: the reading has moved from "pillowy" to "thick". Nobody mentions the chips or pitting. The palm piece is a wedge shard (C), but has a pointed bottom tip (A) and a dark inner triangle (B). Section 5.6 fixes the thickness (about 30% of the width at the thick edge); at the basin's size that thickness is what reads as a block.
+- **Six areas meet the bar unanimously again** (lighting, water, cleaning, sorting, mosaic, studio). Tools (3.7) and effects (3.7) each gained two 4s; sand fell back to 3.3 without a change.
+
+**Next:**
+- The basin piece reads thick at the basin's size (all three): a decision on 5.6's thickness for the hero piece, or a still smaller basin piece.
+- The palm piece's pointed tip (one) and dark inner triangle (one).
+- Plain sand foregrounds (all three); vegetation (all three); rubbish too small and buried glass as a flat disc (all three); opaque mint shallows (three); truck bonnet (all three); grime in blotches (all three); one repeated cloud shape (three).
+
+**Bugs reported:**
+- A lighter shallow-water shelf or band with a hard edge at the left island and headland (b3, b5, b8; all three).
+- A dark line along the road edge and across the b7 sand (t1, b7, 03; two); bonnet shading blotches (t2; two); the jar tilted off the wash-table edge (s11; two).
+- The wet/dry sand step (b3, b6; one as a bug, all three as a gap); a dark triangle inside the palm piece (06; one) and its pointed tip (06; one); the EQUIPMENT sign through the bookcase top (s4; one); the buried glass floating as a flat plate (02; one); a hanging pot glowing orange (s7; one); a dark-teal rectangle in the sorting bench apron (06, s10; one).
