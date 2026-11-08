@@ -3227,3 +3227,46 @@ All three reviewers viewed the references (35-41 screenshots each), as full-size
 - The glove's yellow and navy pattern as an aliased texture fault (04, 05; two); the glove material changing between 04/05 and 06 (one).
 - Glass on the sand as a flat disc or a hollow ring (b2; two).
 - A dark triangle inside the palm piece (06; one); a bottle embedded in the driftwood (b9; one) and its blocky branch ends (b9; one); the jar half off the wash-table edge (s11; one); a stray board and posts behind the cab (t2; one); orange discs floating over the roadside grass (t1, 03; one); glass above a crate rim (s4; one); jars clipping the near plane (s5; one); a purple disc at the b5 edge (one); dark lines under the s7 shelves (one).
+
+### November 8 — round 72 and review 69 (three reviewers, averaged)
+
+Round 72 (FrostedGlass; no menu pass):
+- **Clear to deep:** at the basin the wedge grades from nearly clear glass at its thin edge to a deep, saturated hue at its thick one (it was tinted between about half and four-fifths of the hue edge to edge).
+- **Water tint:** what shows through takes the basin water's tint; the opaque pass holds the enamel floor without the water, which read cream.
+- **Bend:** the floor below shifts further through the thicker glass. The caustic lines are drawn by the water itself, so they do not show through the piece.
+
+All three reviewers viewed the references (38-41 screenshots each), as full-size store images or in Steam's viewer in their own tab.
+
+| Area | A | B | C | Average | Review 68 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass holds at 3.0 (all three 3); the grading did not register.** The revealed piece still reads as "a thick jelly or gummy shield" (A), "a mint jelly or soap bar: uniform thickness, no visible wedge" (B), "pillowy and evenly thick, like a gummy sweet" (C). One sees a pointed lower tip (A). The cloudy piece in 04 again reads as a soap bar, patchy paint or camouflage blotches (all three). The tray pieces pass (all three).
+- **Lesson after two shader rounds on the basin piece (71-72):** shading has now gone from dome to plate and from even mint to clear-to-deep, and the reading has not moved. The same mesh passes in the trays and the palm, a few centimetres across; at the basin it is 0.42 m across and fills a fifth of the frame, so its soft rounded rim and smooth faces read as a moulded sweet. The basin piece needs either a much smaller on-screen size (the real scale of a shard) or a hero form with a crisper broken edge and surface wear that holds up at that size.
+- Reviewer C scored harder across the board: cleaning (3.7) and studio (3.7) each lost one 4, and only four areas now meet the bar unanimously (lighting, water, sorting, mosaic). Sand (3.7) and truck (3.3) each gained a 4; tools fell back to 3.0 (spade "a flat plate on a stick", all three; the glove knit aliasing, two).
+
+**Next:**
+- The basin piece's size or hero form (all three).
+- The spade (all three) and the glove's knit aliasing (two).
+- Grime in strokes and a stronger dirty-to-clean contrast (all three); no splashes or drips (two).
+- Vegetation (all three), rubbish too small (all three), plain sand foregrounds (all three), wet sand in a hard step (all three), repeated cloud puffs (all three).
+
+**Bugs reported:**
+- The wet/dry sand boundary as a stepped ledge or seam (b3, b6; all three).
+- A bottle clipping into the driftwood (b9; two); crumpled or mottled bonnet shading (t2; two).
+- The lighter skirt at the left island's base (b5, b3; one); radial light streaks in the shallows (b8; one); the bag through the bench (b9; one); flat rings and discs on the sand (b2, 02; one); dark "v" marks over the dunes (b2, b7; one).
+- A pale ring between the basin water and the enamel (04, 05, s11; one); the sieve through the basin rim (s11, 04; one); the bristles clipping the glass (05; one); hard-edged floor light (08; one); the dark road-edge line (t1; one).
