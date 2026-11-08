@@ -3599,3 +3599,45 @@ All three reviewers viewed the references (39-41 screenshots each), as full-size
 - Hard-edged lighter patches or seams in the water (b3, b4, b5; two); dark spokes in the shallows around the b8 stacks (one).
 - The hero piece as a plate on a plate (05b, 06; one); a basin handle through the rim (s11, 04; one); glove texture aliasing (04, 05; one).
 - A straight crease across the b7 sand (one); floating mirrors (t2; one); the b2 glass and plastic as flat decals (one); a pale stripe on boulders (b1, t1; one); a floating bush (s3; one); the s7 lamp in frame (one); a dark gap in the Ocean Wave panel (08; one); a pale plane between deck and road (s9; one).
+
+### November 8 — round 81 and review 78 (three reviewers, averaged)
+
+Round 81 (Round81Pass, Painterly Lit _WetBand, menu pass 78):
+- **The hard wet/dry edge was a material mismatch.** The wet-sand strip ("Soft wet-sand shoreline", Warm tidal sand) had a base colour 20% darker even at its dry end, its own gradient texture instead of the world-mapped painted sand, weaker patches and detail, and three times the gloss, so the colour jumped along its inland edge, which runs in straight segments between the mesh's rows.
+- **Warm tidal sand now matches Apricot sand exactly** and turns on _WetBand: Painterly Lit darkens, cools and glosses it across the strip (from a tenth of the way in, fully wet by the bend), along a tide line roughened by world noise, and eases the shading normal over the strip's bend toward the water. (CopyPropertiesFromMaterial left _WetBand unsettable on this material; the pass copies property by property.)
+
+All three reviewers viewed the references (37-50 screenshots each), as full-size store images or the store page's own images in their own tab.
+
+| Area | A | B | C | Average | Review 77 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody reports the hard wet/dry edge** (all three in review 77). Sand rose to 3.7 (two 4s).
+- **But all three now say the wet-sand band is barely visible**: "very thin or missing" (b1, b6), "barely visible" (b1, b3, 02), "almost absent" (b3, b4). Matching the strip to the dry sand removed its old overall darkening; the damp tone now sits mostly on the strip's slope, which is narrow and seen at a grazing angle. Water held at 4.0, but the band needs to read again, wider and with a sheen, without bringing back a hard edge.
+- Five areas meet the bar: lighting, water, sorting, mosaic, tools (4.0 unanimous again). Sea glass rose to 3.7 and the truck slipped to 3.7 (one 3), with no change to either.
+
+**Next:**
+- A visible wet-sand band with sheen (all three).
+- The plain b1 foreground (all three); grime coming off in blotches, not strokes (all three).
+- Vegetation (all three); rubbish too small (all three); effects (all three); studio bare floor and flat rugs (all three).
+- The hero piece as soap or jelly (two); the mosaic floor light as a hard stencil (two); truck mirrors, wheels and slab panels (three).
+
+**Bugs reported:**
+- Floating truck mirrors (t2; two); a floating board behind the wheel and a step slab (t2; one).
+- The bottle through the driftwood (b9; two); the EQUIPMENT sign through the bookshelf (s4, 09; two).
+- A straight seam across the b7 sand by the road verge (one); a straight colour band in the b3 deep water (one); a stamped, glyph-like foam tile (b8; one); flat cylinder caps on the b4 sea stacks (one).
+- The palm piece's dark inner face (06; one); bright caustic veins running up to the piece (04, 05; one); the tap behind the basin (s11, 04; one); a dark piece in the finished Ocean Wave panel (08; one); a floating bush (s3; one); the s7 rope and lamp (one); the jar off the counter (s11; one).
