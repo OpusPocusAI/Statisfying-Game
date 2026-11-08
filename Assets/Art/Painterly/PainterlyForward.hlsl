@@ -219,7 +219,9 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     if (_WetBand > 0.001)
     {
-        albedo *= lerp(half3(1, 1, 1), half3(0.55, 0.6, 0.67), wet);
+        // Round 83 (review 79, all three: the band "lilac-grey, not orange-brown", "lilac-pink, not darker sand", "lavender"):
+        // damp sand is the dry sand darker and richer, a warm tan-brown, not a cooled grey.
+        albedo *= lerp(half3(1, 1, 1), half3(0.5, 0.385, 0.28), wet);
         albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.05;   // a faint darker line where the sand is drying
     }
 
@@ -277,7 +279,10 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         float3 filmN = normalize(lerp(normalWS, float3(0, 1, 0), 0.6));
         half graze = pow(1.0 - saturate(dot(filmN, viewWS)), 3.0);
         half3 skyR = SampleSH(reflect(-viewWS, filmN));
-        colour = lerp(colour, skyR * 1.05, saturate(0.22 + graze * 0.9) * wet * 0.75);
+        // Round 83: the mirror is a sheen over the damp sand, not a coat of sky. It is weaker head-on, and the sand's own warmth
+        // tints what it reflects, so the band stays sand-coloured with a glossy top instead of turning lilac.
+        half3 filmR = skyR * lerp(half3(1, 1, 1), half3(1.12, 0.96, 0.8), 0.6);
+        colour = lerp(colour, filmR, saturate(0.04 + graze * 0.85) * wet * 0.5);
         half glint = pow(saturate(dot(filmN, halfDir)), 70.0);
         colour += mainLight.color * glint * 0.55 * wet * lerp(0.35, 1.0, lightAmount) * _SG_Paint.w;
     }
