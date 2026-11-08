@@ -62,7 +62,7 @@ namespace SeaGlass
             var contact=workingGlass.position+EquipmentVisuals.Stroke(true,StrokeClock);
             // Round 13: the brush sweeps a hard-edged path from where it was last frame, so the grime clears in
             // visible strokes (PowerWash), and the water ripples from the contact point.
-            bool continuing=Time.time-lastBrush<.15f;StampClean(continuing?lastContact:contact,contact,S.progress.upgrades.Contains("washer")?.085f:.06f);
+            bool continuing=Time.time-lastBrush<.15f;StampClean(continuing?lastContact:contact,contact,Mathf.Min(S.progress.upgrades.Contains("washer")?.07f:.045f,Reach.z*.42f));   // round 85: narrower than a lane, so the first passes leave crust between them
             lastBrush=Time.time;lastContact=contact;
             UpdateGlass();Feedback.Instance.LoopAction("water");
             if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,EquipmentVisuals.StrokeVelocity(StrokeClock));}
@@ -116,14 +116,16 @@ namespace SeaGlass
             // Round 65: bristle streaks. Across the stroke the bristles clear unevenly in fine lines that run with the stroke and stay
             // put in the glass, so a part-cleaned pass shows scrubbed lines along the brush direction, not a soft round dab.
             Vector2 across=len2>1e-4f?new Vector2(-AC.y,AC.x).normalized:new Vector2(0,1);
-            // Time-based, so the strokes build up at the same rate at any frame rate.
-            byte add=(byte)Mathf.Clamp(Time.deltaTime*1700f,4,60);
+            // Round 85: a fixed amount per crossing, whatever the brush speed or frame rate (each frame adds its share: the distance
+            // swept over the head's width). One pass down a lane takes the crust off and most of the frost (it took three or four
+            // overlapping passes), leaving the bristle lines frosted; the next pass along that lane clears them.
+            float add=255f*2.1f*Mathf.Min(1f,Vector3.Distance(fromWorld,toWorld)/(2*radius));
             for(int y=Mathf.Max(0,y0);y<=Mathf.Min(MaskSize-1,y1);y++)for(int x=Mathf.Max(0,x0);x<=Mathf.Min(MaskSize-1,x1);x++)
             {
                 var P=new Vector2((x+.5f)/MaskSize/ru,(y+.5f)/MaskSize/rv);float t=Mathf.Clamp01(Vector2.Dot(P-A,AC)/len2);
                 float dd=(P-(A+AC*t)).sqrMagnitude;if(dd>1)continue;
                 float s=Vector2.Dot(P,across)*1.6f;   // about 11 mask pixels per streak: finer aliases into speckle
-               float bristle=.4f+.6f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
+               float bristle=.22f+.78f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
                 int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)*bristle));   // round 21: a soft round brush head, strongest at its centre
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);

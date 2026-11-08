@@ -43,8 +43,19 @@ namespace SeaGlass
         // Round 65 (review 61, all three: "grime comes off in blotches, not strokes"): parallel side-to-side passes that work
         // steadily from one end of the piece to the other and back (they were a Lissajous figure whose crossing sweeps left a
         // patchwork), timed by the station's brushing clock so the brush and the cleared path always agree.
-        static float Tri(float u){u-=Mathf.Floor(u);return 1-Mathf.Abs(1-2*u);}
-        public static Vector3 Stroke(bool brushing,float t)=>brushing?new Vector3(Mathf.Sin(t*7)*StudioStation.Reach.x,StudioStation.Reach.y*(1-Mathf.Sin(t*7)*Mathf.Sin(t*7)*.25f),StudioStation.Reach.z*(1-2*Tri(t*.11f))):new Vector3(StudioStation.Reach.x+.12f,StudioStation.Reach.y+.04f,.1f);   // round 13: sweeps the whole piece
+        // Round 85 (review 81, all three: grime "comes off in mottled patches, not brush strokes"): the passes crept along the piece
+        // a little at a time, so each overlapped the last and the cleared area grew as one soft-edged band. Now every side-to-side
+        // pass runs down its own lane (far edge, near edge, then the middle, and round again), so the first passes cut separate
+        // clean stripes through the crust, as a PowerWash stroke does, and the lanes close up as the brush keeps going.
+        static readonly int[] Lanes={0,2,1};
+        static float LaneZ(int pass)=>StudioStation.Reach.z*(1-Lanes[((pass%3)+3)%3]);
+        public static Vector3 Stroke(bool brushing,float t)
+        {
+            if(!brushing)return new Vector3(StudioStation.Reach.x+.12f,StudioStation.Reach.y+.04f,.1f);
+            float u=t*7f/Mathf.PI;int k=Mathf.FloorToInt(u);float ph=u-k,c=Mathf.Cos(t*7);
+            float z=Mathf.Lerp(LaneZ(k),LaneZ(k+1),Mathf.SmoothStep(0,1,(ph-.82f)/.18f));   // steps to the next lane as the brush turns at the end of a pass
+            return new Vector3(-c*StudioStation.Reach.x,StudioStation.Reach.y*(1-c*c*.25f),z);
+        }
         // How fast the brush head is moving along the stroke (world units per second), for the water it flicks off.
         public static Vector3 StrokeVelocity(float t){float h=.01f;return (Stroke(true,t+h)-Stroke(true,t-h))/(2*h);}
         static void RefreshFill(Transform contents,float amount)
