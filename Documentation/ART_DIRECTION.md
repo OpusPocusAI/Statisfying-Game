@@ -3310,3 +3310,43 @@ All three reviewers viewed the references (36-40 screenshots each), as full-size
 - A lighter shallow-water shelf or band with a hard edge at the left island and headland (b3, b5, b8; all three).
 - A dark line along the road edge and across the b7 sand (t1, b7, 03; two); bonnet shading blotches (t2; two); the jar tilted off the wash-table edge (s11; two).
 - The wet/dry sand step (b3, b6; one as a bug, all three as a gap); a dark triangle inside the palm piece (06; one) and its pointed tip (06; one); the EQUIPMENT sign through the bookcase top (s4; one); the buried glass floating as a flat plate (02; one); a hanging pot glowing orange (s7; one); a dark-teal rectangle in the sorting bench apron (06, s10; one).
+
+### November 8 — round 74 and review 71 (three reviewers, averaged)
+
+Round 74 (round73.py, FrostedGlass, Round73Pass re-run; owner's decision):
+- **Thinner hero basin shard:** about 19% of the width at the thick edge and 7% at the thin edge (was 5.6's 30% and 12%), the edge wall sloping over a broader bevel instead of standing straight up. The trays and palm keep the 5.6 wedge.
+- **5.6 updated** with the wash-bowl piece's thinner hero form and its 0.3 m size (owner's choices, November 8); the reviewers' excerpt carries it.
+
+All three reviewers viewed the references (40-43 screenshots each), as full-size store images or in Steam's viewer in their own tab.
+
+| Area | A | B | C | Average | Review 70 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 4 | 3 | 4 | 3.7 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass rose to 3.7 (two 4s), its best since round 61.** Nobody reads the basin piece as thick any more, and the cloudy piece in 04 now passes: it "shows its colour under the frost well" (C), "the 04 cloudy frost is fine" (B). The palm piece reads as a wedge shard (A). What remains is the revealed piece in 05b, still "a jelly sweet: soft outline, blobby highlight" (A), "a mint gummy sweet: blobby highlight dimples and a soft rim" (B), "a gummy or jelly slab ... blobby highlights" (C). The pitting breaks the glint into soft blobs rather than the small sharp flashes 5.6 asks for, and the broader bevel softened the rim again.
+- **Tools reach the bar unanimously (4.0)** for the first time: glove, brush and open palm all read; the spade blade is still a flat paddle (all three). Six areas meet the bar: lighting, water, cleaning, sorting, mosaic, tools.
+- Studio fell to 3.3 without a change (empty floor and flat rugs in s8 and 07b, all three); sand rose to 3.7, also unchanged.
+
+**Next:**
+- The revealed piece: small, sharp glints instead of blobby highlights, and a crisper rim at the thin edge (all three).
+- Studio floor and rugs (all three); vegetation (all three); rubbish too small (all three); truck bodywork (all three); flat sand foregrounds (all three).
+- Grime in strokes and a stronger dirty-to-clean contrast (all three); suds as identical rings (two).
+
+**Bugs reported:**
+- A straight seam across the b7 foreground sand at the verge (two); the shallow-water skirt at the left island (b5; two).
+- The truck front: a stray board behind the seat (one), dents and creases (one), a stretched texture (one) (t2).
+- The jar off the wash-table edge (s11; one); the brush-holder ring through the basin rim (s11, 04, 05; one); the EQUIPMENT sign through the bookshelf (s4; one); near-black deck plants (s6; one); a plant both hanging and standing (s7; one); the bag through the bench (b9; one); the palm piece hovering (06; one); dark "V" marks on the dunes (b2, b7; one); a white ring on the sand (b2; one); a notch in the wet/dry edge (b6; one); dense sparkle noise on the water (b4; one); the "01 / Ocean Wave" plaque overlapped (s10, 06; one).
