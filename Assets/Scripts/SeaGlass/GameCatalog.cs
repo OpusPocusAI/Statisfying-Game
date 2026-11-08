@@ -11,7 +11,9 @@ namespace SeaGlass
         public Mesh visualMesh; public Mesh VisualMesh=>visualMesh?visualMesh:mesh;
         // Round 12: one shared family of tumbled pebbles for everything held, sorted, found or carried; the mosaic
         // keeps VisualMesh so installed pieces still fit their sockets.
-        public Mesh pebbleMesh; public Mesh HeldMesh=>pebbleMesh?pebbleMesh:VisualMesh; }
+        public Mesh pebbleMesh; public Mesh HeldMesh=>pebbleMesh?pebbleMesh:VisualMesh;
+        // Round 73: a hero version of the same shard for the wash basin, where it is seen large (crisper edge, rim chips, pitting).
+        public Mesh basinMesh; public Mesh BasinMesh=>basinMesh?basinMesh:HeldMesh; }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject

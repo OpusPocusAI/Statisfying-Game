@@ -104,7 +104,7 @@ namespace SeaGlass
         // amount once per sweep so overlapping strokes build up pass by pass.
         void StampClean(Vector3 fromWorld,Vector3 toWorld,float radius)
         {
-            var mesh=S.catalog.glass.First(g=>g.id==selectedId).HeldMesh;if(!mesh)return;EnsureMask();
+            var mesh=S.catalog.glass.First(g=>g.id==selectedId).BasinMesh;if(!mesh)return;EnsureMask();
             var b=mesh.bounds;
             Vector2 UV(Vector3 w){var l=workingGlass.InverseTransformPoint(w);return new Vector2((l.x-b.min.x)/b.size.x,(l.y-b.min.y)/b.size.y);}
             Vector2 a=UV(fromWorld),c=UV(toWorld);
@@ -137,10 +137,11 @@ namespace SeaGlass
             // behind it into a dark band across it, so it bends the background more gently there.
             block.SetFloat("_Refraction",kind==StationKind.Sort?.025f:glassRenderer.sharedMaterial.GetFloat("_Refraction"));
             block.SetFloat("_Held",1);   // round 71 (review 67: the basin piece "a pillowy jelly blob", "a soap blob"; the palm piece, shaded as a plate, passes): the basin piece too is shaded as a shard of bottle wall, two flat faces and a narrow edge wall, not as a dome   // round 56 (review 52: "an opaque lump"): held up, the piece is a coloured lens the scene shows through
-            if(kind==StationKind.Clean){EnsureMask();var mb=def.HeldMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
+            if(kind==StationKind.Clean){EnsureMask();var mb=def.BasinMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
             glassRenderer.SetPropertyBlock(block);
-            var filter=workingGlass.GetComponent<MeshFilter>();if(def.HeldMesh)filter.sharedMesh=def.HeldMesh;
-            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.42f)/Mathf.Max(def.HeldMesh.bounds.size.x,def.HeldMesh.bounds.size.y));
+            var shown=kind==StationKind.Clean?def.BasinMesh:def.HeldMesh;var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
+            // Round 73 (review 69: at 0.42 m across the basin piece filled a fifth of the frame and read as a moulded sweet): smaller.
+            workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.3f)/Mathf.Max(shown.bounds.size.x,shown.bounds.size.y));
             if(kind==StationKind.Clean)
             {
                 // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank
