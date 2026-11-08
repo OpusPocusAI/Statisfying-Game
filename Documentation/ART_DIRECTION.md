@@ -3853,3 +3853,46 @@ All three reviewers viewed the references (38-42 screenshots each), as full-size
 **Bugs reported:**
 - The bottle through the driftwood (b9; two); a pale band across the boulders (b1, b6; two); a dark wedge inside the palm glass (06; two); flat squiggle decals on the b6 sand (two); the tap and the brush hung on it reading as a stray broom or a floating disc (s11; two).
 - The sieve through the basin rim (s11, 04, 05; one); the brush hovering above the water (04, 05; one); the jar tilted off the board (s11; one); floating truck mirrors (t2; one); the windscreen as an opaque slab (t2; one); a flat top on the b5 stack (one); a plant pot on a shelf with a cord to the ceiling (s7; one); a blank pale panel (s3; one); the 08 floor light as flat quads (one); the fence and porch looking detached from the sand (s6; one).
+
+### November 9 — round 87 and review 84 (three reviewers, averaged)
+
+Round 87 (FrostedGlass.shader, basin piece only):
+- **Through the basin piece the floor was plain enamel.** The basin water (Transparent+50) draws its teal filter and caustic lines after the glass (Transparent, depth-writing), so wherever the piece lay the water was missing beneath it, and the piece filled with one even mint.
+- **The water's caustic network is drawn inside the glass**, in the bowl's unit-disc coordinates, shifted by refraction (more where the glass is thicker) and gathered a little closer (14 against the bowl's 8: its lines are wider apart than the piece, and often none crossed it).
+- **The edge wall is dark and saturated** at the basin, as the edge of a pane of bottle glass is, where it glowed pale.
+- A crisp window reflection on the face was tried and dropped: the face is curved enough that the reflected direction swings widely and it never landed.
+
+The reviewers saw fewer references than usual (A 25, B about 34, C about 35): the shared browser pane kept being hidden by the others' tabs, and many screenshots timed out.
+
+| Area | A | B | C | Average | Review 83 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The hero piece still reads as jelly or soap to all three**: "pale mint and soft, still slightly jelly-like" (A), "a mint soap or jelly", "a dark teal underside reads as a second layer" (B), "an opaque mint gummy with little see-through" (C). Nobody mentions the caustic lines; one reads the new dark edge as a separate slab under the piece. Sea glass held at a unanimous 3.0. The round did not land.
+- **All three now call the stripes in the half-clean piece (05) artefacts**: "dark comb-like stripes", "horizontal stripe artefacts", "parallel stripe or comb artefacts". In review 82 all three read the same lanes as brush strokes; the frosted bristle lines between clean lanes, now beside the darker edge and the caustics, read as a rendering fault. Cleaning slipped to 3.7 (one 3).
+- Six areas meet the bar: lighting, water, sand, sorting, mosaic, truck. The truck rose to 4.0, the studio slipped to 3.7 and tools fell to a unanimous 3.0 on the flat spade, none of them changed.
+
+**Next:**
+- The hero piece as an opaque mint gummy (all three); the comb stripes in 05 (all three); the palm piece's dark inner facet (two).
+- The milky, flat basin water (all three); a weak dirty-to-clean contrast (two).
+- The spade as a flat plate (all three); the glove changing between knit and rubber (two).
+- Vegetation, rubbish, effects and the studio floor (all three); no deep-teal band toward the horizon (two); the wet band a flat strip (two); the mosaic floor light as decals (two).
+
+**Bugs reported:**
+- Comb or stripe artefacts inside the half-clean piece (05; all three).
+- A dark inner facet in the palm piece (06; two); floating truck mirrors (t2; two); clipping in s4 (a stool leg into a crate, a rod out of a crate, a pot over the stool; two).
+- A dark teal slab under the hero piece (05b; one); the brush hovering above the piece (05; one); the bag through the bench rail and the bottle in the driftwood (b9; one); a fan of floorboards under the sorting table (s2, 09; one); a shadow with no caster (b4; one); the EQUIPMENT sign through the bookshelf (09; one); the sieve through the basin rim and the jar over the table edge (s11; one); a bright untextured floor slab outside the wall (s3; one); flat, even foam rings round the stacks (b3, b8; one); the 08 floor light as decals (one).
