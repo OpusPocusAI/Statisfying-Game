@@ -3811,3 +3811,45 @@ All three reviewers viewed the references (38-46 screenshots each), as full-size
 - The green sieve sinking into the basin rim (s11, 04, 05; all three).
 - Floating truck mirrors (t2; two); the bottle through the driftwood (b9; two); a straight seam between road and sand (b7; two).
 - The jar tilted off the board (s11; one); the brush hovering over the water (04, 05; one); a flat box top with a seam on the b5 rock stack (one); a mosaic label over the table (s1; one); hard flat foam rings round the b8 sea stacks (one); jagged glove stripes (04, 05; one); the 08 floor light reading as decals (one); a detached shadow in b4 (one); jars clipped by the near plane (s5; one); the glass hovering on the palm (06; one).
+
+### November 8 — round 86 and review 83 (three reviewers, averaged)
+
+Round 86 (TidalWater.shader):
+- **The deep water was one flat colour.** Since round 84 the open sea is fully opaque past 18-36 m, so it showed the plain deep colour (0.02, 0.25, 0.5) edge to edge, with nothing to vary it and no sky in it.
+- **Out at sea the colour now drifts between deep blue and a deeper teal** (0.035, 0.4, 0.47) in broad, slow patches tens of metres across (two octaves of noise, from 8-60 m off the beach).
+- **Open water seen at a low angle mirrors the sky** (Fresnel to the fifth power, sampling the ambient sky in the reflected direction), from 12-45 m off the beach, so the far sea hazes toward the horizon; the beach shallows keep their turquoise. A first strength (0.5) turned the open water past the b4 stacks purple; it is 0.36, with the teal patches stronger.
+
+All three reviewers viewed the references (38-42 screenshots each), as full-size store images in their own tab or in the store viewer.
+
+| Area | A | B | C | Average | Review 82 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the deep water flat cobalt** (all three in review 82); one now finds the deep-teal band weak (b4, s7). Water held at 4.0, unanimous.
+- **All three now name the opaque beach shallows** as the water's gap ("milky mint, not see-through to the seabed", b3, b6, b8, 02; two in review 82).
+- Seven areas meet the bar: lighting, water, sand, cleaning, sorting, mosaic, studio (all unanimous 4s). Sand and studio rose with no change to them; the truck slipped to 3.7 (one 3) and tools rose to 3.7, also unchanged.
+- **Sea glass is a unanimous 3.0**, all three on the hero piece as jelly, a gummy or soap and on the palm piece as a pick, plectrum or plastic with a dark inner band.
+
+**Next:**
+- The hero piece as jelly or a gummy (all three); the palm piece as a pick with a dark wedge (all three).
+- See-through beach shallows (all three); a faint wet-sand sheen (two).
+- Vegetation (all three); rubbish too small (all three); generic effects (all three); the plain sand foregrounds (all three); the studio's empty floor and flat rugs (all three); the mosaic floor light as flat polygons (all three).
+- No splashes or drips at the basin (two); the stiff open palm (two); the truck's plain wheels (two); repeated roadside palms (two).
+
+**Bugs reported:**
+- The bottle through the driftwood (b9; two); a pale band across the boulders (b1, b6; two); a dark wedge inside the palm glass (06; two); flat squiggle decals on the b6 sand (two); the tap and the brush hung on it reading as a stray broom or a floating disc (s11; two).
+- The sieve through the basin rim (s11, 04, 05; one); the brush hovering above the water (04, 05; one); the jar tilted off the board (s11; one); floating truck mirrors (t2; one); the windscreen as an opaque slab (t2; one); a flat top on the b5 stack (one); a plant pot on a shelf with a cord to the ceiling (s7; one); a blank pale panel (s3; one); the 08 floor light as flat quads (one); the fence and porch looking detached from the sand (s6; one).
