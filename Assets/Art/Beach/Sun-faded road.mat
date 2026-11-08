@@ -36,8 +36,11 @@ Material:
     - _GroundPatches: 0.35
     - _Metallic: 0
     - _Rim: 0.2
+    - _SandDetail: 0.45
     - _Smoothness: 0.1
+    - _SunShadow: 1
     - _Surface: 0
+    - _TopStart: 0.7
     - _Variation: 0.16
     - _WorldMapping: 1
     - _WorldTile: 7
@@ -45,5 +48,6 @@ Material:
     - _BaseColor: {r: 0.66, g: 0.62, b: 0.62, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TopTint: {r: 0.41999996, g: 0.54999995, b: 0.29999998, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

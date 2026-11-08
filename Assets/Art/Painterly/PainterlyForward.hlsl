@@ -138,6 +138,29 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         albedo = lerp(albedo, albedo * half3(0.95, 0.97, 1.03), saturate(-drift * 3.0) * 0.5 * (_GroundPatches / 0.4));
     }
 
+    // Round 76 (review 72, all three: the b1, b2 and b7 foregrounds "large near-single-colour areas", against 5.3's rule on one
+    // flat colour over a third of the screen; Tchia's sand carries far more value change). Beach sand only (_SandDetail):
+    // - mid-scale tone (2-5 m): lighter, warmer wind-swept sweeps and slightly darker, cooler packed sand;
+    // - damp hollows: soft-edged darker, cooler patches where the sand holds water;
+    // - near the player, scattered shell grit: small pale and dark flecks, faded out before they would shimmer.
+    if (_SandDetail > 0.001)
+    {
+        float2 sq = input.positionWS.xz;
+        float mid = saturate((SG_ValueNoise(sq * 0.32 + 41.0) * 0.65 + SG_ValueNoise(sq * 0.85 + 9.0) * 0.35 - 0.5) * 2.6 + 0.5) - 0.5;   // stretched: two blended octaves stay near their middle
+        albedo *= 1.0 + mid * 0.45 * _SandDetail;
+        albedo = lerp(albedo, albedo * half3(1.05, 1.0, 0.9), saturate(mid * 3.0) * 0.8 * _SandDetail);
+        albedo = lerp(albedo, albedo * half3(0.94, 0.95, 1.02), saturate(-mid * 3.0) * 0.7 * _SandDetail);
+        float dampN = SG_ValueNoise(sq * 0.11 + 63.0) * 0.7 + SG_ValueNoise(sq * 0.5 + 2.0) * 0.3;
+        half damp = smoothstep(0.6, 0.66, dampN) * _SandDetail;   // the lit sand sits near white, so the change must be strong to read
+        albedo = lerp(albedo, albedo * half3(0.6, 0.62, 0.74), damp * 0.9);
+        albedo *= 1.0 - saturate(damp * (1.0 - damp) * 4.0) * 0.1 * _SandDetail;   // a slightly darker drying rim
+        float camD = distance(input.positionWS, _WorldSpaceCameraPos);
+        float2 gc = floor(sq * 2.2); float gh = SG_Hash(gc + 13.0);
+        float2 gp = frac(sq * 2.2) - (0.25 + 0.5 * float2(SG_Hash(gc + 3.0), SG_Hash(gc + 29.0)));
+        half fleck = (1.0 - smoothstep(0.04, 0.07, length(gp))) * step(0.7, gh) * (1.0 - smoothstep(4.0, 12.0, camD));
+        albedo = lerp(albedo, gh > 0.88 ? albedo * half3(1.22, 1.18, 1.1) : albedo * half3(0.66, 0.6, 0.58), fleck * 0.8 * _SandDetail);
+    }
+
     // Round 27 (review 25: island grass read as "blocky pixel camo"): grass or moss painted per pixel on faces
     // that point up, with a soft, noisy edge, instead of a per-face material split.
     if (_TopTint.a > 0.001)
