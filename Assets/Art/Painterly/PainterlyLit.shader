@@ -18,6 +18,7 @@ Shader "Sea Glass/Painterly Lit"
         _WorldTile("World tile size (m)", Float) = 7
         _GroundPatches("Broad ground patches", Range(0, 0.4)) = 0
         _SandDetail("Beach sand detail: mid-scale tone, damp hollows, wrack lines, grit (round 76)", Range(0, 1)) = 0
+        _AOScale("Screen-space occlusion strength (round 77; low on smooth painted panels)", Range(0, 1)) = 1
         [HideInInspector] _Cutoff("Alpha cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _SpecColor("Spec", Color) = (0, 0, 0, 0)

@@ -205,7 +205,10 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     // Ambient occlusion pools into the shadow colour instead of grey.
     AmbientOcclusionFactor ao = GetScreenSpaceAmbientOcclusion(screenUV);
-    half occlusion = lerp(1.0, ao.indirectAmbientOcclusion, _SG_Paint.z);
+    // Round 77 (review 73, all three, and every review since 66: the truck bonnet and fenders "crumpled", "mottled", "smeared"):
+    // on large smooth painted panels the screen-space occlusion is noise, and it pooled into the shadow colour in blotches.
+    // Those materials turn it down (_AOScale); creases and prop bases elsewhere keep it.
+    half occlusion = lerp(1.0, ao.indirectAmbientOcclusion, _SG_Paint.z * _AOScale);
     colour = lerp(colour * _SG_ShadowTint.rgb * 0.9, colour, occlusion);
 
     // Soft sun sheen for enamel, glass-like paint and metal.
