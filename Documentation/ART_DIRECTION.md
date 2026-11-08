@@ -3431,3 +3431,44 @@ All three reviewers viewed the references (38-43 screenshots each), as full-size
 - The truck bonnet and fender shading crumpled or faceted (t2; two as a bug, all three in scores); a dark stripe along the road edge (t1; two).
 - A pale vertical band on the near-shore boulder (b1, t1; two); a dark triangle inside the palm piece (06; two).
 - The lighter water wedge at the island bases (b3, b5; one); radial streaks across the b1 sand (one); blotchy dune shading (b4; one); the sieve through the basin rim (s11, 04; one); the jar sunk into the board (s11; one); the bag through the bench (b9; one); a lampshade clipping the top of s7 (one); the "01 / Ocean Wave" label hidden (s1; one); the brush head over the piece (05; one).
+
+### November 8 — round 77 and review 74 (three reviewers, averaged)
+
+Round 77 (Round77Pass, round77.py, PainterlyLit _AOScale, menu pass 74):
+- **The bonnet blotches were screen-space occlusion noise** on the large smooth panels, pooled into the painterly shadow colour (a debug capture with occlusion off showed clean panels; smoothing the mesh and a shadow-lookup offset changed nothing). Painterly Lit gains _AOScale; the truck's four paint materials use .15, every other material keeps full occlusion.
+- **truck_shell** (round77.py): a finer, smoother fuse, a lighter decimation (30%, was 17%) and normals carried over from the full-resolution surface.
+
+All three reviewers viewed the references (38-41 screenshots each), as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 73 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.12 Tools | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.13 Effects | 4 | 3 | 4 | 3.7 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The truck reaches the bar unanimously (4.0)**, up from 3.0. Nobody reports the bonnet any more, for the first time since review 66: "rounded bonnet and fenders" (B, C), "chunky rounded bonnet, wheel arches" (A). What remains is the boxy rear bed and the flat door panel (two).
+- Six areas meet the bar: lighting, water, cleaning, sorting, truck, mosaic. Studio slipped to 3.7 (one 3) and props to 3.0, both unchanged.
+- **The b1 radial streaks are now reported by all three** (one in review 73): the near-field wind ripples fan across the b1 foreground. They predate round 76, but its stronger mid-scale tone may make them more visible.
+
+**Next:**
+- The b1 radial streaks (all three).
+- Vegetation (all three); rubbish too small (all three); the spade blade (all three).
+- The hero shard still reads slightly as jelly (all three); the palm piece small, dark or with an olive patch (two).
+- Basin water milky and flat (three); grime in blotches (three); empty mosaic sockets dark (three); studio rugs flat (three).
+
+**Bugs reported:**
+- Radial streaks across the b1 foreground sand (all three).
+- The b7 verge seam (one); faceting on the b4 dunes (one); dark squiggles on the wet sand (b6; one); a flat box-cut rock top (b5, b9; one); the bottle in the driftwood (b9; one); umbrella and bench shadows disagreeing (b9; one).
+- The deck meeting a flat pale ground plane (s3, s4; one); the EQUIPMENT sign floating (s4; one); the plant both hanging and standing (s7; one); the jar off the table edge (s11; one); the hero piece sitting on the water (05b; one); an olive patch in the palm piece (06; one); a dark gap in the "Ocean Wave" panel (08; one); a sign board behind the seat (t2; one).
