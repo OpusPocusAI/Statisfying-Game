@@ -3896,3 +3896,44 @@ The reviewers saw fewer references than usual (A 25, B about 34, C about 35): th
 - Comb or stripe artefacts inside the half-clean piece (05; all three).
 - A dark inner facet in the palm piece (06; two); floating truck mirrors (t2; two); clipping in s4 (a stool leg into a crate, a rod out of a crate, a pot over the stool; two).
 - A dark teal slab under the hero piece (05b; one); the brush hovering above the piece (05; one); the bag through the bench rail and the bottle in the driftwood (b9; one); a fan of floorboards under the sorting table (s2, 09; one); a shadow with no caster (b4; one); the EQUIPMENT sign through the bookshelf (09; one); the sieve through the basin rim and the jar over the table edge (s11; one); a bright untextured floor slab outside the wall (s3; one); flat, even foam rings round the stacks (b3, b8; one); the 08 floor light as decals (one).
+
+### November 9 — round 88 and review 85 (three reviewers, averaged)
+
+Round 88 (StudioStation.StampClean, PlayerVerification):
+- **The comb was a half-made pass.** The bristles left most of a lane frosted, so one pass cut rows of short clear dashes, and the half-clean frame (05) was taken halfway down the middle lane, where that half-made pass was in full view.
+- **The bristles now vary a pass only gently** (0.62-1.0, was 0.22-1.0), so the middle of a lane clears in one stroke. A middle setting (0.42) brought the comb straight back at the front of the unfinished lane; with smooth lanes alone, the cleared area read as a dark patch.
+- **05 is taken after two whole passes** (the far lane and the near lane, crust between them), with the record still at half the grime.
+
+The reviewers saw fewer references than usual again (A 39, B 32, C 27): the shared browser pane kept being hidden by the others' tabs.
+
+| Area | A | B | C | Average | Review 84 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody reports comb or stripe artefacts** (all three in review 84). But nobody names brush strokes either, and two describe the grime as "faint mottling" or "patches". Cleaning fell to 3.3 (two 3s) on the milky, flat basin water, the clip-art suds and a weak dirty-to-clean contrast (all three).
+- **Sea glass rose to a unanimous 4.0** with no change to it (the hero piece is as round 87 left it): "the wedge in 05b" reads as "glossy, saturated glass" (A), "a good wedge and glint" (B), "glossy wedge shards with glints" (C). In review 84 all three called the same piece an opaque gummy. All three now name the cloudy piece in 04 as soap, marble or chalky stone.
+- Seven areas meet the bar: lighting, water, sand, sea glass, sorting, mosaic, truck.
+
+**Next:**
+- The cleaning contrast and the milky basin water (all three); clip-art suds (all three); no splash or runoff (two).
+- The cloudy piece as soap or stone (all three); the palm piece as a gem (one); pearl as ice or plastic (one).
+- The opaque beach shallows (all three); stamped shore foam and even rock rings (two).
+- Vegetation, rubbish, sand foregrounds, the studio floor and simple mosaic pieces (all three); the flat spade (two); glossy cloned clouds (two).
+
+**Bugs reported:**
+- Floating truck mirrors (t2; two); the glass on the b2 mound as a flat disc (two); a flat-topped rock block in the water (b5, b9; two).
+- The sieve through the basin rim (s11, 04; one); a dark band under the rock foam rings (b3, b8; one); the deck hovering and the fascia detached (s6; one); a hard cut where the deck meets the road (s4, s9; one); a red checker strip under the roof edge (s4, s9; one); a pale band on a boulder (b1; one); a brown stroke decal (b6; one); the jar off the table (s11; one); the cloudy piece sitting on the water (04; one); glass above the bin rim (03; one); the hanging planter through the mosaic frame (07b, 08, s8; one); an emissive-looking pot (s7; one); a floating bar at the towel's end (b9; one).
