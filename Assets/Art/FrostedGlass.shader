@@ -380,7 +380,7 @@ Shader "Sea Glass/Frosted Glass"
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
                 // Round 71: at the basin the dried sand is a warm, pale, slightly see-through film with soft edges, not opaque grey
                 // camouflage over the glass; the stroke still cuts through it cleanly (the mask edge is unchanged).
-                if (_MaskOn > .5) { sandStain = lerp(sandStain, half3(.66, .58, .45) * lightOnFrost, .55); stainPatch = smoothstep(.15, .95, film * .8 + edgeSilt * .5 + grain * .15) * .62; /* a graded dusting, heavier toward the edges, no hard-edged islands */ }
+                if (_MaskOn > .5) { sandStain = lerp(sandStain, half3(.66, .58, .45) * lightOnFrost, .3); stainPatch = smoothstep(.1, .85, film * .8 + edgeSilt * .5 + grain * .15) * .8; /* a graded dusting, heavier toward the edges, no hard-edged islands */ /* round 89 (review 85, all three: "weak dirty-to-clean contrast", "faint mottling"): a browner, fuller coat of dried sand, so the clean strokes stand out */ }
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 

@@ -99,13 +99,16 @@ Shader "Sea Glass/Basin Water"
                 // Round 25: everything above is kept for reference; the output is now a filter over what lies beneath.
                 // Clear teal near the rim, deeper toward the middle where the bowl is deepest.
                 half depthF = saturate(edge * .3 + centre * .6);
-                half3 filterC = lerp(half3(.42, .82, .84), half3(.14, .5, .58), depthF);
+                // Round 89 (review 85, all three: the basin water "milky and flat", "a flat milky disc with no depth or transparency"): a clearer,
+                // more saturated aqua filter (it was a greyed teal), and below, less of the whitish lift (sky reflection, rim crescent, pale
+                // ring) that lay over the whole disc, so the enamel floor and its caustics show through as clear water.
+                half3 filterC = lerp(half3(.36, .84, .86), half3(.16, .56, .64), depthF);
                 // Round 37 (review 33, all three: "a flat milky mint disc, no depth, no surface"): the middle sinks into a
                 // deeper blue-teal (light crosses more water there), the shallow ring by the wall stays clear, and the
                 // surface itself shows: small sun sparkles dancing on the ripples and brighter caustics on the floor.
                 half deepMid = 1 - smoothstep(.08, .4, rim);
-                filterC = lerp(filterC, half3(.07, .32, .45), deepMid * .75);
-                filterC = lerp(filterC, half3(.56, .9, .9), smoothstep(.34, .44, rim) * (1 - waterline) * .5);
+                filterC = lerp(filterC, half3(.08, .4, .52), deepMid * .75);
+                filterC = lerp(filterC, half3(.5, .92, .9), smoothstep(.34, .44, rim) * (1 - waterline) * .25);
                 float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.3, .45, -.84)));   // ahead of the viewer, so its reflection lands on the water in front
                 float2 sp = p * 26 + float2(_Time.y * .35, -_Time.y * .27);
                 float3 sn = normalize(float3((Noise(sp) - .5) * .5, 1, (Noise(sp + 7.3) - .5) * .5));
@@ -116,9 +119,9 @@ Shader "Sea Glass/Basin Water"
                 float2 pd = p / max(rim, 1e-4);
                 half crescent = exp(-pow((rim - .4) / .045, 2)) * smoothstep(.1, .85, dot(pd, normalize(float2(-.55, .83))));
                 half3 lift = caustic * half3(1, .97, .86) * .22 * sun.shadowAttenuation * (1 - edge * .7)
-                           + crescent * half3(1, .96, .88) * .55
+                           + crescent * half3(1, .96, .88) * .35
                            + waterline * .45 + rings * .4 + bubbles * .3
-                           + refl * fres * .45
+                           + refl * fres * .18
                            + glit * half3(1, .97, .9) * 1.2;
                 return half4((filterC + lift) * .5, 1);   // 2x multiply: 0.5 leaves the floor unchanged
             }
