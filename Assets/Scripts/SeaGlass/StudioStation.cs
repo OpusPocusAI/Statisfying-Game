@@ -125,7 +125,10 @@ namespace SeaGlass
                 var P=new Vector2((x+.5f)/MaskSize/ru,(y+.5f)/MaskSize/rv);float t=Mathf.Clamp01(Vector2.Dot(P-A,AC)/len2);
                 float dd=(P-(A+AC*t)).sqrMagnitude;if(dd>1)continue;
                 float s=Vector2.Dot(P,across)*1.6f;   // about 11 mask pixels per streak: finer aliases into speckle
-               float bristle=.22f+.78f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
+               // Round 88 (review 84, all three: "dark comb-like stripes" in the half-clean piece): with the bristles leaving most of the
+               // lane frosted, one pass cut rows of short clear dashes that read as a comb. The bristles now vary the pass only gently,
+               // so the middle of a lane clears in one stroke and the bristle streaks show only along its edges, where the head is lighter.
+               float bristle=.62f+.38f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
                 int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)*bristle));   // round 21: a soft round brush head, strongest at its centre
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);

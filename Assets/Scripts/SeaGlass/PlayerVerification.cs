@@ -82,9 +82,11 @@ namespace SeaGlass
             clean.Interact();yield return Shot("04-cloudy-glass");
             // Brush for real (round 13): strokes clear along the brush path, with foam and ripples, so the
             // half-clean frame shows the cleaning as it plays. 2.5 s at 1.8x the record rate = half the grime.
-            // Round 85: two and a half passes (the far lane, the near lane, half the middle one), at a rate that still takes half the
-            // grime off the record, then the brush lifts for a moment so the clean lanes cut through the crust are in view, not under it.
-            for(float t=0;t<1.12f;t+=Time.deltaTime){clean.Clean(Time.deltaTime*4f);yield return null;}
+            // Round 85: the brush lifts for a moment before the shot, so the clean lanes cut through the crust are in view, not under it.
+            // Round 88 (review 84, all three: "comb-like stripes" in this frame): it stopped halfway down the middle lane, where the half-made
+            // pass showed as rows of short dashes. Now two whole passes (the far lane and the near lane, each one clean stroke, with the
+            // crust still between them), at a rate that still takes half the grime off the record.
+            for(float t=0;t<.82f;t+=Time.deltaTime){clean.Clean(Time.deltaTime*5.5f);yield return null;}
             yield return new WaitForSeconds(1f);yield return Shot("05-half-clean");
             // Round 65: the colour-revealed moment at the basin (glints, droplets and the glow as the piece lifts), which no still showed.
             clean.Clean(5);yield return Shot("05b-colour-revealed");
