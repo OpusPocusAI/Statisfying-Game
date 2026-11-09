@@ -3937,3 +3937,44 @@ The reviewers saw fewer references than usual again (A 39, B 32, C 27): the shar
 **Bugs reported:**
 - Floating truck mirrors (t2; two); the glass on the b2 mound as a flat disc (two); a flat-topped rock block in the water (b5, b9; two).
 - The sieve through the basin rim (s11, 04; one); a dark band under the rock foam rings (b3, b8; one); the deck hovering and the fascia detached (s6; one); a hard cut where the deck meets the road (s4, s9; one); a red checker strip under the roof edge (s4, s9; one); a pale band on a boulder (b1; one); a brown stroke decal (b6; one); the jar off the table (s11; one); the cloudy piece sitting on the water (04; one); glass above the bin rim (03; one); the hanging planter through the mosaic frame (07b, 08, s8; one); an emissive-looking pot (s7; one); a floating bar at the towel's end (b9; one).
+
+### November 9 — round 89 and review 86 (three reviewers, averaged)
+
+Round 89 (BasinWater.shader, FrostedGlass.shader):
+- **The basin water read milky**: a greyed teal filter under a whitish lift spread over the whole disc (the room reflection, a rim crescent and a pale ring by the wall).
+- **The filter is a clearer, saturated aqua deepening to teal** (rim 0.36, 0.84, 0.86, was 0.42, 0.82, 0.84; deep 0.08, 0.4, 0.52), with the reflection lift at 0.18 (was 0.45), the crescent at 0.35 (0.55) and the pale ring at half strength, so the enamel floor and its caustics show through. A first, paler aqua still read washed out over the outer zone.
+- **At the basin the dried sand on the cloudy piece is browner and covers more of it** (sand colour 30% toward the pale film, was 55%; coverage up to 0.8, was 0.62), for a stronger dirty-to-clean contrast.
+
+All three reviewers viewed the references (37-41 screenshots each), as full-size store images in their own tab (one showed four at a time in the tab).
+
+| Area | A | B | C | Average | Review 85 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the basin water milky** (all three in review 85): "translucent caustic water" (A), "clear water with caustics (s11) are good" (B), "the enamel basin is good" (C).
+- **But the dirty-to-clean contrast is still weak to all three**, and all three now say the grime comes off "in blotches" or "patches, not brush strokes" (04, 05). The fuller coat reads as "opaque brown camo" or "camouflage blotches over strong cyan" (all three on the 04 piece as camo, stone or plastic). Cleaning held at 3.3.
+- Seven areas meet the bar: lighting, water, sea glass, sorting, mosaic, studio, truck. Sea glass held at a unanimous 4.0; the studio rose to 4.0 and sand slipped to 3.7 (one 3), neither changed.
+
+**Next:**
+- The cleaning read (all three): grime as camo patches on the cloudy piece, coming off in blotches rather than strokes, no splashes, drips or surface foam; clip-art suds (all three).
+- The spade (all three); the brush as a plain block (two); the palm piece as thick and gummy or murky (two).
+- Vegetation, rubbish and the sand foregrounds (all three); dark, flat unlit mosaic panels (two).
+
+**Bugs reported:**
+- A pale band across the boulders (b1, b9; all three).
+- A shadow with no caster on the b4 beach (two); the jar off the table edge (s11; two); a darker doubled layer at the piece's edge (05, 05b; two).
+- A seam across the b7 verge (one); the piece sitting on the water with no waterline (04, 05b; one); the EQUIPMENT sign floating (s4; one) or through the bookshelf (09; one); the tap spout stopping short of the bowl (s11, 04; one); the bottle in the driftwood (b9; one); the bottle on the 02 mound reading as floating (one); dark vertical lines under the shelves (s7; one); floating truck mirrors (t2; one).
