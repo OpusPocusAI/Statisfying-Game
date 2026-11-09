@@ -4016,3 +4016,40 @@ All three reviewers viewed the references (37-39 screenshots each), as full-size
 **Bugs reported:**
 - The pale band on the boulders (b1, b3, b9; two); a loose orange strip off the towel (b9; two).
 - The sieve through the basin rim (one); the jar off the table edge (s11; one); floating truck mirrors and board (t2; one); the EQUIPMENT sign with no support (s4, s5; one); a hard two-tone split in the palm piece (06; one) and no contact shadow under it (06; one); a crease on the half-clean piece (05; one); a straight dark seam across the b7 sand (one); a flat white ring and a flattened blue item on the sand (b2, 02; one); the brush handle and glove piercing each other (04, 05; one); a hanging pot with no rope (s1; one).
+
+### November 9 — round 91 and review 88 (three reviewers, averaged)
+
+Round 91 (Frosted Glass, the palm path only):
+- **The two tones were the glove and the edge wall.** Held in the palm, the piece's face showed the navy glove through the glass, which the glass hue turned an olive-brown; beside it the thick edge wall, seen side-on, glowed bright aqua, with a hard turn between. The face now blends in the glass's own lit body colour (deeper where the piece is thicker), so the glove shows only faintly, and the edge wall leans away from the face colour by half as much (0.5, was 0.85). The basin path (_MaskOn) is unchanged.
+
+All three reviewers viewed the references (37-40 screenshots each), as full-size store images in their own tab or in the store viewer.
+
+| Area | A | B | C | Average | Review 87 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **No reviewer reports the two-tone split in the palm piece** (all three in review 87). C calls it a glossy, saturated shard with rim light; A now objects to its pointed, guitar-pick outline (a model shape, unchanged this round); B finds it small and plain.
+- Six areas meet the bar: lighting, water, sorting, mosaic, studio, truck. The studio rose to 4.0 (all three) with no change to it; sand fell back to 3.3 (two 3s, "large flat cream areas", b1, b2, s6), also with no change. Cleaning, tools and effects each lost a point from one reviewer.
+
+**Next:**
+- The cloudy piece as camouflage blotches, and grime that comes off in patches rather than brush strokes (all three, 04, 05).
+- The spade as a flat paddle on a stick (all three); vegetation and repeated island canopies, rubbish unreadable at distance, the sand foregrounds (all three).
+- The opaque mint shallows (two); generic bubble sprites and no splash or drips (all three); the brush hovering above the piece (two).
+
+**Bugs reported:**
+- The pale band on the boulders (b1, b3; two); the jar off the table edge (s11; two); the hanging pot also resting on the shelf, its orange pot looking self-lit (s7; two); the brush floating above the piece (04, 05; two).
+- A second, darker shard edge under the half-clean piece (05; one) and a flat teal band along the cloudy piece's rim (04; one); the water plane cutting a hard line under the wash piece (05b; one); the tap spout ending over the table, behind the basin rim (s11, 04; one); the straight dark seam along the road shoulder (b7, t1; one); flat pale ends on the driftwood (b9; one); a bush floating outside the studio (s3; one); the EQUIPMENT sign clipped behind the bookcase (09; one); the plaque hidden by a plant (s2; one); the floor light running under rugs and furniture (08; one); a purple shadow with no caster (b4; one); the knit glove at the basin becoming a plain rubber glove at the trays (06; one).
