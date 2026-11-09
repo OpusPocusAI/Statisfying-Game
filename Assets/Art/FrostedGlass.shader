@@ -295,12 +295,22 @@ Shader "Sea Glass/Frosted Glass"
                         }
                         g = lerp(g, dot(g, half3(.3, .55, .15)) * hue * 1.15, _MaskOn > .5 ? .06 : .2);   /* round 72: at the basin the thin edge stays nearly clear */   // a little of the glass's own saturated colour
                         g += tint * (sky * .06 + sun.color * .04) * (.5 + thickH);
+                        // Round 91 (review 87, all three: the palm piece "split into two flat tones", "two-tone like a gem", "a hard
+                        // cyan/olive split"): held in the palm, the face showed the navy glove behind it, which the glass hue turned
+                        // olive-brown, beside an edge wall glowing bright aqua, so one piece wore two unrelated colours. In the palm the
+                        // face now carries the glass's own lit colour, deeper where thick, with the glove showing faintly through it,
+                        // and the edge wall turns from it more gently.
+                        if (_MaskOn < .5)
+                        {
+                            half3 bodyH = hue * (sky * .35 + sun.color * .3 + .3) * lerp(.85, .6, thickH);
+                            g = lerp(g, bodyH + g * .35, .55);
+                        }
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,
                         // jelly rim"): its edge wall glowed pale, which is how a gummy's edge looks. The edge of a pane of bottle glass
                         // is dark and deeply saturated, because light runs a long way along it; at the basin it now is.
                         if (_MaskOn > .5) edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .3 + .05) * (sky * .3 + sun.color * .3 + .45);
-                        g = lerp(g, edgeCol, (1 - faceK) * (_MaskOn > .5 ? .95 : .85));
+                        g = lerp(g, edgeCol, (1 - faceK) * (_MaskOn > .5 ? .95 : .5));   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
