@@ -94,7 +94,7 @@ namespace SeaGlass
         // Round 13: two passes over a spot take the sand crust off, a third reveals the clear glass; the
         // shader draws each threshold as a hard edge.
         Texture2D cleanMask;string maskFor;Color32[] maskPixels;const int MaskSize=128;
-        static readonly int MaskId=Shader.PropertyToID("_CleanMask"),MaskRectId=Shader.PropertyToID("_MaskRect"),MaskOnId=Shader.PropertyToID("_MaskOn");
+        static readonly int MaskId=Shader.PropertyToID("_CleanMask"),MaskRectId=Shader.PropertyToID("_MaskRect"),MaskOnId=Shader.PropertyToID("_MaskOn"),StrokeDirId=Shader.PropertyToID("_SG_StrokeDir");
         void EnsureMask()
         {
             if(!cleanMask){cleanMask=new Texture2D(MaskSize,MaskSize,TextureFormat.R8,false){wrapMode=TextureWrapMode.Clamp,name="Clean mask"};maskPixels=new Color32[MaskSize*MaskSize];}
@@ -142,7 +142,9 @@ namespace SeaGlass
             // behind it into a dark band across it, so it bends the background more gently there.
             block.SetFloat("_Refraction",kind==StationKind.Sort?.025f:glassRenderer.sharedMaterial.GetFloat("_Refraction"));
             block.SetFloat("_Held",1);   // round 71 (review 67: the basin piece "a pillowy jelly blob", "a soap blob"; the palm piece, shaded as a plate, passes): the basin piece too is shaded as a shard of bottle wall, two flat faces and a narrow edge wall, not as a dome   // round 56 (review 52: "an opaque lump"): held up, the piece is a coloured lens the scene shows through
-            if(kind==StationKind.Clean){EnsureMask();var mb=def.BasinMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);}
+            if(kind==StationKind.Clean){EnsureMask();var mb=def.BasinMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);
+                // Round 92: the brush scrubs along world x (EquipmentVisuals.Stroke); the crust's grain runs the same way in mask space.
+                var sd=workingGlass.InverseTransformDirection(Vector3.right);Shader.SetGlobalVector(StrokeDirId,new Vector4(sd.x/mb.size.x,sd.y/mb.size.y,0,0));}
             glassRenderer.SetPropertyBlock(block);
             var shown=kind==StationKind.Clean?def.BasinMesh:def.HeldMesh;var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
             // Round 73 (review 69: at 0.42 m across the basin piece filled a fifth of the frame and read as a moulded sweet): smaller.

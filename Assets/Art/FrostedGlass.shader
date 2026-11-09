@@ -60,6 +60,7 @@ Shader "Sea Glass/Frosted Glass"
                 float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held;
             CBUFFER_END
             float4 _SG_Basin;   // round 39: basin water centre (xyz) and radius (w), set by the cleaning station
+            float4 _SG_StrokeDir;   // round 92: the scrub direction in the clean mask's space (xy), set by the cleaning station
 
             float Hash(float3 p) { p = frac(p * .3183099 + .1); p *= 17.0; return frac(p.x * p.y * p.z * (p.x + p.y + p.z)); }
             float Noise(float3 x)
@@ -390,7 +391,17 @@ Shader "Sea Glass/Frosted Glass"
                 sandStain *= lerp(.82, 1.1, film);   // round 41: no crack lines (review 37: "a jigsaw pattern")
                 // Round 71: at the basin the dried sand is a warm, pale, slightly see-through film with soft edges, not opaque grey
                 // camouflage over the glass; the stroke still cuts through it cleanly (the mask edge is unchanged).
-                if (_MaskOn > .5) { sandStain = lerp(sandStain, half3(.66, .58, .45) * lightOnFrost, .3); stainPatch = smoothstep(.1, .85, film * .8 + edgeSilt * .5 + grain * .15) * .8; /* a graded dusting, heavier toward the edges, no hard-edged islands */ /* round 89 (review 85, all three: "weak dirty-to-clean contrast", "faint mottling"): a browner, fuller coat of dried sand, so the clean strokes stand out */ }
+                if (_MaskOn > .5) { sandStain = lerp(sandStain, half3(.66, .58, .45) * lightOnFrost, .3); stainPatch = smoothstep(.1, .85, film * .8 + edgeSilt * .5 + grain * .15) * .8; /* a graded dusting, heavier toward the edges, no hard-edged islands */ /* round 89 (review 85, all three: "weak dirty-to-clean contrast", "faint mottling"): a browner, fuller coat of dried sand, so the clean strokes stand out */
+                    // Round 92 (review 88, all three: the cloudy piece "camouflage blotches", grime coming off "in patches, not brush strokes"): the
+                    // round blotches of sand left bright aqua holes that read as places already cleaned, so the strokes were lost among them.
+                    // The coat is now even, a little thicker toward the edges, and its only variation is a grain of fine streaks running the way
+                    // the brush scrubs, so the crust reads as one dried layer and each pass cuts a clean lane along its own grain.
+                    float2 muv = (i.local.xy - _MaskRect.xy) / _MaskRect.zw;
+                    float2 sd = dot(_SG_StrokeDir.xy, _SG_StrokeDir.xy) > .01 ? normalize(_SG_StrokeDir.xy) : float2(1, 0);
+                    float alongS = dot(muv, sd), acrossS = dot(muv, float2(-sd.y, sd.x));
+                    float grainS = Noise(float3(alongS * 3.0, acrossS * 55.0, 3.1)) * .6 + Noise(float3(alongS * 7.0, acrossS * 120.0, 8.7)) * .4;
+                    stainPatch = saturate(.92 + (grainS - .5) * .3 + edgeSilt * .1);
+                    sandStain = half3(.44, .37, .28) * lightOnFrost * lerp(.66, .98, grainS); }   // a darker, warmer coat: under the teal water a paler one read grey-beige, barely apart from the clean glass
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
