@@ -3978,3 +3978,41 @@ All three reviewers viewed the references (37-41 screenshots each), as full-size
 - A pale band across the boulders (b1, b9; all three).
 - A shadow with no caster on the b4 beach (two); the jar off the table edge (s11; two); a darker doubled layer at the piece's edge (05, 05b; two).
 - A seam across the b7 verge (one); the piece sitting on the water with no waterline (04, 05b; one); the EQUIPMENT sign floating (s4; one) or through the bookshelf (09; one); the tap spout stopping short of the bowl (s11, 04; one); the bottle in the driftwood (b9; one); the bottle on the 02 mound reading as floating (one); dark vertical lines under the shelves (s7; one); floating truck mirrors (t2; one).
+
+### November 9 — round 90 and review 87 (three reviewers, averaged)
+
+Round 90 (Round90Pass, Painterly Lit _LightWrap, menu pass 81):
+- **The pale band was a sunlit cut plane.** The shore boulders (shore_rock_0..3, round24.py) are rounded masses chiselled by a few big planar cuts. A cut facing the low sun turned pale tan against the purple rock, with a hard turn between, and a pale sand tint (_TopTint, 55%) dusted the facets facing up; one whole plane switched on at once and read as a painted stripe. A close render showed it; removing the sand tint alone changed nothing visible.
+- **Painterly Lit has a per-material light wrap** (_LightWrap, widening the lit-to-shade turn). Shore boulder uses 0.6, drops the top tint and takes a cooler, greyer stone colour (0.68, 0.64, 0.74, was 0.8, 0.72, 0.7), so a sunlit plane reads as the same rock in sun. A wider wrap (0.9) barely helped: a cut that faces the sun squarely stays fully lit.
+
+All three reviewers viewed the references (37-39 screenshots each), as full-size store images in their own tab or in the store viewer.
+
+| Area | A | B | C | Average | Review 86 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Two still see the pale band on the boulders** (all three in review 86): "the pale horizontal band across the boulder tops is still visible" (A, b1, b3, b9), "boulders still carry a pale flat band or facet" (B, b1, b3). One no longer mentions it. The round softened it but did not remove it; the planar cuts themselves would have to change.
+- Six areas meet the bar: lighting, water, sand, sorting, mosaic, truck. Sand rose to 4.0 and cleaning to 3.7, with no change to either; sea glass and the studio slipped to 3.7 (one 3 each).
+
+**Next:**
+- The cloudy piece as camouflage blotches, and grime that does not follow the brush (all three); the palm piece split into two flat tones (all three).
+- Vegetation, rubbish, the opaque shallows, the sand foregrounds and the studio floor (all three).
+- The spade (two); dark unlit mosaics (two); generic suds and sparkles (two); the boulders' pale cut planes (two).
+
+**Bugs reported:**
+- The pale band on the boulders (b1, b3, b9; two); a loose orange strip off the towel (b9; two).
+- The sieve through the basin rim (one); the jar off the table edge (s11; one); floating truck mirrors and board (t2; one); the EQUIPMENT sign with no support (s4, s5; one); a hard two-tone split in the palm piece (06; one) and no contact shadow under it (06; one); a crease on the half-clean piece (05; one); a straight dark seam across the b7 sand (one); a flat white ring and a flattened blue item on the sand (b2, 02; one); the brush handle and glove piercing each other (04, 05; one); a hanging pot with no rope (s1; one).
