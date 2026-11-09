@@ -4091,3 +4091,42 @@ The reviewers saw fewer references than usual (A about 35, B 40, C 13): the shar
 **Bugs reported:**
 - The jar off the table edge (s11; all three); the EQUIPMENT sign clipping the bookshelf (s4, 09; two); the bottle through the driftwood (b9; two); the cleared strip floating above the piece (05; two); the brush floating above the piece (04, 05; one).
 - A bush floating outside the studio (s3; one); the bumper through the wheel arch (t2; one); a board through the cab and detached mirrors (t2; one); the deck mat hovering on the sand (b4; one); flat green caps on the sea stacks (b4; one); dune grass hovering (b7; one); a hanging pot with no cord (s2; one) or over the mosaic frame (s8; one); stool legs through the crate (s4; one); an orange rod under the towel (b9; one); the tap spout ending behind the basin rim (s11; one).
+
+### November 9 — round 93 and review 90 (three reviewers, averaged)
+
+Round 93 (Frosted Glass, the basin path):
+- **The even coat hid the glass.** Round 92's crust covered about 92% of the piece in an opaque brown, so the frosted body and its colour could not show (review 89: "a beige stone with no colour through it").
+- **The sand is now a dusting over the frosted glass** (about half cover, 0.52, with the stroke-direction streaks and a faint broad drift varying it), so the milky aqua body glows through between the grains. A first try with stronger streaks (0.9) read as wood grain or a striped shell.
+- The dirty-to-clean step is smaller as a result: in 05 the cleared lanes are clearer and glossier than the crust rather than a different colour.
+
+The reviewers viewed 30-39 references each, as full-size store images in their own tab (the shared pane kept hiding, so some frames were retaken).
+
+| Area | A | B | C | Average | Review 89 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 3 | 3.7 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the cloudy piece stone any more** (all three in review 89), and nobody calls it camouflage. One credits the strokes directly: "grime streaks along the brush in 04" (C). Nobody reports the cleared lane floating above the piece (two in review 89). Sea glass rose to 3.7 and cleaning to 3.7, each with two 4s.
+- **The cost is contrast, as expected:** "the dirty-to-clean contrast in 04 is mild next to PowerWash, and the grime reads as streaks rather than crust" (A); "cloudy-to-clean contrast is weak", "the frames are washed out" (B).
+- Five areas meet the bar: lighting, water, sorting, mosaic, truck. The truck returned to 4.0 and tools rose to 3.7 (two 4s), both with no change; sand slipped to 3.7 (one 3).
+
+**Next:**
+- A stronger dirty-to-clean step at the basin without losing the colour through the frost (two); the clean pieces in 05b and 06 reading as jelly, candy or plastic (all three).
+- Vegetation and rubbish (all three); opaque shallows (all three); generic suds (all three); the spade (two); flat sand fields (two); bare studio floor (two).
+
+**Bugs reported:**
+- The pale band on the boulders (b1, b3; two); the brush hovering above the piece (04, 05; one); the build frames looking flatter than the editor captures (04-09; one).
+- Flat box-like rock tops (b5; two); the bottle through the driftwood (b9; one); the bag through the bench and a sunken cooler (b9; one); the hanging plant also resting on the shelf (s7; one); dark V marks on the dunes (b2, b7; one); a dark mat on the sand (b4; one); the WASH sign clipping the table (s2; one); the s3 wall ending against the sky (one); bubbles drawn over the glove (05; one); a bag clipping the sand (02; one); a tree lining up with the bookshelf (s4; one).
