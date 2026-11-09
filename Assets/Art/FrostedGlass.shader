@@ -356,6 +356,11 @@ Shader "Sea Glass/Frosted Glass"
                     half3 milk = lerp(_Frost.rgb, hueF * .62 + _Frost.rgb * .38, .7) * lightOnFrost;
                     half veil = lerp(.4, .66, faceF) * (.75 + grain * .45) * lerp(1.1, .78, thickF);
                     frostedGlass = lerp(through, milk, veil);
+                    // Round 94 (review 90, two: "the dirty-to-clean contrast is mild", "the grime reads as streaks rather than crust"): the
+                    // frosted body glowed nearly as saturated an aqua as the clean glass, so cleaning changed little. Weathered frost is dull: the
+                    // colour stays as a muted hint under a greyer, chalkier skin, and the clean glass beneath reads as the jewel it becomes.
+                    half fl = dot(frostedGlass, half3(.3, .55, .15));
+                    frostedGlass = lerp(frostedGlass, fl * half3(1.0, .98, .93), .5) * .92;
                 }
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
@@ -407,6 +412,8 @@ Shader "Sea Glass/Frosted Glass"
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
+                // Round 94: at the basin the clean glass under the water read pale mint, close to the frost; a richer colour where it is clean.
+                if (_MaskOn > .5) { half cl = dot(clean, half3(.3, .55, .15)); clean = max(lerp(cl.xxx, clean, 1.3), 0); }
                 half3 c = lerp(clean, frosted, grime);
 
                 // Crisp highlights only on clean, polished glass.
