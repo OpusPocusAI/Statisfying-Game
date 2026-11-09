@@ -400,7 +400,9 @@ Shader "Sea Glass/Frosted Glass"
                     float2 sd = dot(_SG_StrokeDir.xy, _SG_StrokeDir.xy) > .01 ? normalize(_SG_StrokeDir.xy) : float2(1, 0);
                     float alongS = dot(muv, sd), acrossS = dot(muv, float2(-sd.y, sd.x));
                     float grainS = Noise(float3(alongS * 3.0, acrossS * 55.0, 3.1)) * .6 + Noise(float3(alongS * 7.0, acrossS * 120.0, 8.7)) * .4;
-                    stainPatch = saturate(.92 + (grainS - .5) * .3 + edgeSilt * .1);
+                    // Round 93 (review 89, all three: the even coat read as "a beige stone with no colour through it"): a thinner dusting, so the
+                    // frosted glass and its colour glow through between the grains of sand; the streaks still run with the brush.
+                    stainPatch = saturate(.52 + (grainS - .5) * .45 + (film - .5) * .25 + edgeSilt * .15);   // strong streaks read as wood grain; a faint broad drift breaks them
                     sandStain = half3(.44, .37, .28) * lightOnFrost * lerp(.66, .98, grainS); }   // a darker, warmer coat: under the teal water a paler one read grey-beige, barely apart from the clean glass
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
