@@ -20,6 +20,7 @@ Shader "Sea Glass/Painterly Lit"
         _SandDetail("Beach sand detail: mid-scale tone, damp hollows, wrack lines, grit (round 76)", Range(0, 1)) = 0
         _AOScale("Screen-space occlusion strength (round 77; low on smooth painted panels)", Range(0, 1)) = 1
         _WetBand("Wet-sand band (round 81): wetness across uv.x, 0 off", Range(0, 1)) = 0
+        _LightWrap("Light wrap (round 90): widens the lit-to-shade turn, for faceted rock", Range(0, 1)) = 0
         [HideInInspector] _Cutoff("Alpha cutoff", Range(0, 1)) = 0.5
         [HideInInspector] _Surface("Surface", Float) = 0
         [HideInInspector] _SpecColor("Spec", Color) = (0, 0, 0, 0)

@@ -247,7 +247,10 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     Light mainLight = GetMainLight(shadowCoord, input.positionWS, shadowMask);
 
     half nDotL = dot(normalWS, mainLight.direction);
-    half edge = smoothstep(_SG_Terminator.x - _SG_Terminator.y, _SG_Terminator.x + _SG_Terminator.y, nDotL);
+    // Round 90 (review 86, all three, and in most reviews since 77: "a pale band" across the shore boulders, "like a texture seam"):
+    // the low sun lit only a narrow strip of a boulder's flat facets, which turned tan against purple with a hard turn between,
+    // so the lit strip read as a painted stripe. _LightWrap widens the turn, so light rolls across the facets in steps of shade.
+    half edge = smoothstep(_SG_Terminator.x - _SG_Terminator.y - _LightWrap, _SG_Terminator.x + _SG_Terminator.y + _LightWrap * .6, nDotL);
     half lightAmount = edge * lerp(1.0h, mainLight.shadowAttenuation, _SunShadow) * mainLight.distanceAttenuation;
 
     half3 sky = SampleSH(normalWS);
