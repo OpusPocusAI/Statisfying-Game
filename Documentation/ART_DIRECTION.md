@@ -4130,3 +4130,43 @@ The reviewers viewed 30-39 references each, as full-size store images in their o
 **Bugs reported:**
 - The pale band on the boulders (b1, b3; two); the brush hovering above the piece (04, 05; one); the build frames looking flatter than the editor captures (04-09; one).
 - Flat box-like rock tops (b5; two); the bottle through the driftwood (b9; one); the bag through the bench and a sunken cooler (b9; one); the hanging plant also resting on the shelf (s7; one); dark V marks on the dunes (b2, b7; one); a dark mat on the sand (b4; one); the WASH sign clipping the table (s2; one); the s3 wall ending against the sky (one); bubbles drawn over the glove (05; one); a bag clipping the sand (02; one); a tree lining up with the bookshelf (s4; one).
+
+### November 10 — round 94 and review 91 (three reviewers, averaged)
+
+Round 94 (Frosted Glass, the basin path):
+- **The frost glowed nearly as bright an aqua as the clean glass**, so scrubbing changed little (review 90: "the dirty-to-clean contrast is mild", "streaks rather than crust"), and under the water the clean glass itself read pale mint.
+- **Weathered frost is now dull:** the frosted body is half desaturated toward a chalky grey and a little darker (0.92), keeping only a muted hint of the colour under the sand dusting.
+- **Clean glass at the basin is richer** (30% more saturation where clean), so each scrubbed lane comes up as a saturated green against the grey frost, and the finished piece (05b) is a deeper green.
+
+All three reviewers viewed the references (38-42 screenshots each), mostly as full-size store images in their own tab.
+
+| Area | A | B | C | Average | Review 90 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Cleaning reaches the bar, unanimous (4.0)**, its first since review 82: "grime comes off along the stroke in 05, and 05b has a clear done moment" (A), "grime streaks follow the brush (05); the clear done moment in 05b is PowerWash-like" (B), "the frosted-to-clean change is readable across 04, 05 and 05b" (C). Nobody calls the contrast weak or the grime blotches; all three note there are no splashes or drips.
+- **The clean basin piece now passes:** "a convincing glossy emerald shard" (A), "saturated, glossy wedge, deeper where thick, sharp glint" (B), "reads as glass" (C). The jelly and candy remarks moved to the palm piece in 06 (all three).
+- **The cost is the cloudy piece's hue:** "grey-white with almost no hue showing" (A), "almost no hue under the frost" (B). Nobody calls it stone.
+- **Eight areas meet the bar**, the most yet: lighting, water, sand, cleaning, sorting, mosaic, studio, truck. Sand and the studio rose to 4.0 and tools fell to 3.0 (all three on the flat spade), none with a change.
+
+**Next:**
+- The spade, a flat plate on a stick (all three); vegetation and rubbish (all three); suds as outline rings with no splash or drips (all three).
+- The palm piece reading as candy or plastic (all three); a little more hue in the cloudy piece (two); opaque shallows and hard foam collars round the sea stacks (all three).
+
+**Bugs reported:**
+- The pale band on the boulders (b1, b3, b9; two); hard white foam collars round the sea stacks (b3, b5, b8; all three); a flat sliced-off rock top (b5, b9; two); the board or jar at the basin clipping the table or rim (s11; three).
+- The EQUIPMENT sign through the bookshelf (s4, 09; two); the hanging plant also resting on the shelf (s7; one); dark vertical lines under the shelves (s7; one); the dark seam along the road edge and across the sand (b7, t1; one); a flat glass disc and a perfectly round mound on the sand (b2, 02; two); no contact shadow under the basin (s11; one).
