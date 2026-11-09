@@ -4053,3 +4053,41 @@ All three reviewers viewed the references (37-40 screenshots each), as full-size
 **Bugs reported:**
 - The pale band on the boulders (b1, b3; two); the jar off the table edge (s11; two); the hanging pot also resting on the shelf, its orange pot looking self-lit (s7; two); the brush floating above the piece (04, 05; two).
 - A second, darker shard edge under the half-clean piece (05; one) and a flat teal band along the cloudy piece's rim (04; one); the water plane cutting a hard line under the wash piece (05b; one); the tap spout ending over the table, behind the basin rim (s11, 04; one); the straight dark seam along the road shoulder (b7, t1; one); flat pale ends on the driftwood (b9; one); a bush floating outside the studio (s3; one); the EQUIPMENT sign clipped behind the bookcase (09; one); the plaque hidden by a plant (s2; one); the floor light running under rugs and furniture (08; one); a purple shadow with no caster (b4; one); the knit glove at the basin becoming a plain rubber glove at the trays (06; one).
+
+### November 9 — round 92 and review 89 (three reviewers, averaged)
+
+Round 92 (Frosted Glass, the basin path; StudioStation sets _SG_StrokeDir):
+- **The camouflage was holes in the crust.** At the basin the dried sand lay in round noise blotches with bright aqua glass between them, and those aqua holes read as places already cleaned, so the brush's lanes were lost among them (04, 05).
+- **The coat is now even** (about 0.92 cover, a little heavier at the edges) and a darker, warmer brown (0.44, 0.37, 0.28); a paler coat read grey-beige under the teal water, barely apart from the clean glass. Its only variation is a grain of fine streaks running the way the brush scrubs (the stroke direction in the clean mask's space, set by the cleaning station), so the crust reads as one dried layer and each pass cuts a clean aqua lane along its grain. A first, wider grain read as shell ridges.
+
+The reviewers saw fewer references than usual (A about 35, B 40, C 13): the shared browser pane kept being hidden by the others' tabs, and C's later screenshots all failed.
+
+| Area | A | B | C | Average | Review 88 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.7 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the cloudy piece camouflage any more** (all three in review 88), **but all three now call it stone**: "a beige stone with no hue showing through" (C), "a beige stone with no colour underneath" (B), "a beige disc with no hue underneath" (A). The even opaque coat traded one fault for an old one (rounds 38-61: "soap", "a bread roll"). Sea glass fell to 3.0, unanimous.
+- **The strokes did not register as strokes.** Two read the cleared lane in 05 as a separate layer: "the cleaned green strip curls up and floats above the grimy piece" (A), "the grime is a separate beige slab rather than a coat", "the green glass edge pokes out beneath an offset grime layer" (B). The bright aqua edge wall along each lane, against the dark crust, reads as a second sheet of glass. Cleaning holds at 3.3.
+- Five areas meet the bar: lighting, water, sand, sorting, mosaic. Sand returned to 4.0 (all three), and the studio and truck slipped to 3.7 (one 3 each), all with no change.
+
+**Next:**
+- The cloudy piece: frost with the glass colour glowing through, not an opaque coat (all three); the cleared lane sitting in the surface, not floating above it (two).
+- Vegetation and rubbish (all three); the spade (all three); generic suds and no drips (all three); the palm piece's pointed outline (two).
+
+**Bugs reported:**
+- The jar off the table edge (s11; all three); the EQUIPMENT sign clipping the bookshelf (s4, 09; two); the bottle through the driftwood (b9; two); the cleared strip floating above the piece (05; two); the brush floating above the piece (04, 05; one).
+- A bush floating outside the studio (s3; one); the bumper through the wheel arch (t2; one); a board through the cab and detached mirrors (t2; one); the deck mat hovering on the sand (b4; one); flat green caps on the sea stacks (b4; one); dune grass hovering (b7; one); a hanging pot with no cord (s2; one) or over the mosaic frame (s8; one); stool legs through the crate (s4; one); an orange rod under the towel (b9; one); the tap spout ending behind the basin rim (s11; one).
