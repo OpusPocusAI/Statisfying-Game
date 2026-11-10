@@ -39,12 +39,15 @@ namespace SeaGlass
             {var r=splash.GetComponent<ParticleSystemRenderer>();r.renderMode=ParticleSystemRenderMode.Billboard;
              // Round 96 (review 92: "no splash or drip shapes"): clear drops with a highlight, drawn after the basin water.
              if(particleMaterial){drop=new Material(particleMaterial){name="Water drop"};drop.SetFloat("_Drop",1);drop.renderQueue=3100;r.sharedMaterial=drop;}}
+            // Round 98: drips off the lifted piece, under light gravity so a string of them hangs between the glass and the water.
+            drips=Emitter("Glass drips",.7f,.1f,.024f,.04f,.35f,120,.01f);
+            {var size=drips.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.7f),new Keyframe(.25f,1),new Keyframe(1,.8f)));if(drop)drips.GetComponent<ParticleSystemRenderer>().sharedMaterial=drop;}
             // Round 66: the colour-revealed glints get their own world-space system. On the shared pool, the recycling station's
             // sparkles could pick the same pooled system a moment later and carry the glints off with it.
             revealGlints=Emitter("Reveal glints",1.2f,.2f,.035f,.075f,-.05f,80,.05f);
             {var main=revealGlints.main;var size=revealGlints.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.4f),new Keyframe(.15f,1),new Keyframe(1,0)));var drag=revealGlints.limitVelocityOverLifetime;drag.enabled=true;drag.drag=2.5f;if(sparkle)revealGlints.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;}
         }
-        ParticleSystem foam,dust,splash,revealGlints;float nextDust;Material sparkle,suds,drop;
+        ParticleSystem foam,dust,splash,revealGlints,drips;float nextDust;Material sparkle,suds,drop;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
         ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
         {
@@ -90,9 +93,25 @@ namespace SeaGlass
         public void Reveal(Vector3 at,Color colour,float radius)
         {
             var ring=revealGlints;ring.transform.position=at;if(splash)splash.transform.position=at;var p=new ParticleSystem.EmitParams();   // world space
-            for(int i=0;i<22;i++){float a=i/22f*Mathf.PI*2+Random.Range(-.12f,.12f);var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a))*radius*Random.Range(.55f,1f);p.position=at+o;p.velocity=o.normalized*Random.Range(.15f,.35f)+Vector3.up*Random.Range(.25f,.55f);p.startSize=Random.Range(.035f,.075f);p.startLifetime=Random.Range(.9f,1.4f);p.startColor=Color.Lerp(colour,Color.white,Random.Range(.25f,.6f))*1.3f;ring.Emit(p,1);}
-            p.position=at+Vector3.up*.03f;p.velocity=Vector3.up*.12f;p.startSize=.16f;p.startLifetime=.8f;p.startColor=Color.Lerp(colour,Color.white,.75f)*1.6f;ring.Emit(p,1);
-            if(splash)for(int i=0;i<16;i++){float a=i/16f*Mathf.PI*2;var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));p=new ParticleSystem.EmitParams();p.position=at+o*radius*.8f;p.velocity=o*Random.Range(.25f,.45f)+Vector3.up*Random.Range(.7f,1.05f);p.startSize=Random.Range(.02f,.034f);p.startLifetime=Random.Range(.45f,.65f);p.startColor=new Color(.9f,.98f,1f,.9f);splash.Emit(p,1);}
+            // Round 98 (review 94, all three: "evenly scattered", "evenly ringed" stars): glints catch on the wet glass itself, scattered
+            // over the piece and just off its edge, mostly tiny with a few large ones, each turned its own way; not a ring around it.
+            // They start at the height the piece lifts to, and since the glass writes depth, each is pulled a little toward the eye so it
+            // sits in front of the lifted, tilted piece instead of inside it.
+            var cam=Camera.main;
+            for(int i=0;i<20;i++){var o=Random.insideUnitCircle*radius*1.1f;p.position=at+new Vector3(o.x,Random.Range(.07f,.16f),o.y);
+                if(cam)p.position+=(cam.transform.position-p.position).normalized*.12f;
+                p.velocity=new Vector3(o.x,0,o.y).normalized*Random.Range(.02f,.1f)+Vector3.up*Random.Range(.03f,.12f);
+                bool big=i<5;p.startSize=big?Random.Range(.14f,.2f):Random.Range(.035f,.065f);p.rotation=Random.Range(-25f,25f);p.startLifetime=Random.Range(.8f,1.3f);p.startColor=Color.Lerp(colour,Color.white,Random.Range(.2f,.5f))*1.3f;ring.Emit(p,1);}
+            p.position=at+Vector3.up*.03f;p.velocity=Vector3.up*.08f;p.startSize=.18f;p.rotation=12;p.startLifetime=.8f;p.startColor=Color.Lerp(colour,Color.white,.7f)*1.6f;ring.Emit(p,1);
+            // A crown of water thrown up as the piece lifts: larger, higher-contrast drops (they went unseen).
+            if(splash)for(int i=0;i<18;i++){float a=i/18f*Mathf.PI*2+Random.Range(-.1f,.1f);var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));p=new ParticleSystem.EmitParams();p.position=at+o*radius*.8f;p.velocity=o*Random.Range(.2f,.4f)+Vector3.up*Random.Range(.6f,.95f);p.startSize=Random.Range(.03f,.05f);p.startLifetime=Random.Range(.5f,.7f);p.startColor=Color.white;splash.Emit(p,1);}
+        }
+        // Round 98 (review 94, all three: "no splashes, drips or runoff"): water dripping off the lifted piece's lower edge, falling
+        // slowly enough to hang in a still as a string of drops between the glass and the water.
+        public void Drip(Vector3 at)
+        {
+            if(!drips)return;drips.transform.position=at;var p=new ParticleSystem.EmitParams();p.position=at;p.velocity=new Vector3(Random.Range(-.02f,.02f),Random.Range(-.15f,-.05f),Random.Range(-.02f,.02f));
+            p.startSize=Random.Range(.024f,.04f);p.startLifetime=Random.Range(.45f,.7f);p.startColor=Color.white;drips.Emit(p,1);
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)

@@ -21,12 +21,19 @@ Shader "Sea Glass/Soft Feedback"
   float2 q=i.uv*2-1;
   float distance=length(q);
   half disc=1-smoothstep(.35,1,distance);
-  // Sparkle: thin cross arms plus a hot core.
-  float arms=max(saturate(1-abs(q.x)*9)*saturate(1-abs(q.y)),saturate(1-abs(q.y)*9)*saturate(1-abs(q.x)));
-  float core=saturate(1-distance*2.6);
-  half star=saturate(arms*1.2+core*core+disc*.25);
+  // Sparkle. Round 98 (review 94, all three: "generic, evenly scattered four-point stars", "stock"): a glint of light on wet glass,
+  // not a symmetric cross: a long upright arm and a shorter level one that taper to fine points, four faint short diagonal rays,
+  // a soft halo in the glass colour and a small white-hot core. Each particle turns at random, so no two read alike.
+  float armV=saturate(1-abs(q.x)*16)*pow(saturate(1-abs(q.y)),2.2);
+  float armH=saturate(1-abs(q.y)*16)*pow(saturate(1-abs(q.x)*1.45),2.2);
+  float2 dg=float2(q.x+q.y,q.x-q.y)*.7071;
+  float rays=max(saturate(1-abs(dg.x)*22)*pow(saturate(1-abs(dg.y)*2.6),3),saturate(1-abs(dg.y)*22)*pow(saturate(1-abs(dg.x)*2.6),3))*.55;
+  float arms=max(armV,armH);
+  float core=saturate(1-distance*3.2);
+  half halo=exp(-distance*distance*10)*.5;
+  half star=saturate(arms*1.25+rays+core*core*1.2+halo);
   half a=lerp(disc,star,_Glint);
-  half3 c=i.color.rgb*(1.1-distance*.2)+core*core*_Glint*.8;
+  half3 c=lerp(i.color.rgb*(1.1-distance*.2),lerp(i.color.rgb*1.15,half3(1,1,1),saturate(core*1.6+arms*.45)),_Glint);
   if(_Suds>.5)
   {
    // Round 96 (review 92, all three: "ring-outline bubble clusters", "clip-art", "close to default sprites"): every particle drew
@@ -65,8 +72,9 @@ Shader "Sea Glass/Soft Feedback"
    half inside=1-smoothstep(.72,.95,distance);
    half rim=smoothstep(.4,.9,distance)*inside;
    half hi=1-smoothstep(0,.32,length(q-float2(-.3,.32)));
-   half3 col=lerp(half3(.8,.94,.97),half3(.5,.74,.82),rim)+hi*.8;
-   return half4(col*i.color.rgb,i.color.a*saturate(inside*(.45+rim*.4)+hi*inside*.5));
+   // Round 98 (review 94: no splashes or drips seen): a deeper teal rim and a hotter highlight, so a drop stands out over the pale water.
+   half3 col=lerp(half3(.78,.93,.97),half3(.22,.5,.6),rim)+hi*1.2;
+   return half4(col*i.color.rgb,i.color.a*saturate(inside*(.55+rim*.45)+hi*inside*.6));
   }
   return half4(c,i.color.a*a);
  }

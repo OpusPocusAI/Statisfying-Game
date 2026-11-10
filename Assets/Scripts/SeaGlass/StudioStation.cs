@@ -7,7 +7,7 @@ namespace SeaGlass
     public class StudioStation : Interactable
     {
         public StationKind kind; public Transform workingGlass; public Transform heldPalm; public Renderer glassRenderer; public Renderer waterSurface; public string selectedId; public bool active; public GlassColor selectedTray;
-        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam;public bool Processing=>processing>0;
+        MaterialPropertyBlock block; Vector3 returnPosition,glassHome;Quaternion returnRotation,returnView,glassRotation;float processing,reveal,nextFoam,nextDrip;public bool Processing=>processing>0;
         public bool RevealingCleanGlass=>reveal>0;
         float lastBrush=-9;Vector3 lastContact;static readonly int RippleId=Shader.PropertyToID("_SG_BrushRipple"),BasinId=Shader.PropertyToID("_SG_Basin");
         // True while the glass is being brushed (by the mouse or by the verification run); drives the brush animation.
@@ -175,6 +175,9 @@ namespace SeaGlass
                 float lift=Mathf.Sin(t*Mathf.PI);
                 workingGlass.localPosition=glassHome+Vector3.up*(lift*.16f);
                 workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
+                // Round 98 (review 94, all three: "no splashes, drips or runoff"): water runs off the lifted piece and drips from its lower edge.
+                if(kind==StationKind.Clean&&glassRenderer&&lift>.2f&&Time.time>=nextDrip){nextDrip=Time.time+.035f;var gb=glassRenderer.bounds;var e=Random.insideUnitCircle.normalized*.85f;
+                    Feedback.Instance.Drip(new Vector3(gb.center.x+e.x*gb.extents.x,gb.min.y+.004f,gb.center.z+e.y*gb.extents.z));}
                 if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.12f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));/* round 66 (review 62: "uniform opaque cyan, jelly"): a faint glow; the glints carry the moment */glassRenderer.SetPropertyBlock(block);}
                 if(reveal<=0)SelectNext();
                 return;
