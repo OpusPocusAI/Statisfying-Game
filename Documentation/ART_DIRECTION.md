@@ -4289,3 +4289,44 @@ The reviewers viewed 32-38 references each, mostly as full-size store images in 
 **Bugs reported:**
 - The jar off the table edge (s11; all three); a shadow with no caster (b4; two); the pale band on a b1 boulder (one); the straight seam across the b7 sand (one); dark vertical lines under the s7 shelves (one).
 - Stacked wavy layers in the half-clean piece (05; one); the board and stalk mirrors at the truck cab (t2; one); the hanging pot also on the shelf (s7; one); a sieve clipping the basin rim (04, s11; one); an orange bar at the towel corner and the bag through the bench rail (b9; two); the deck edge hovering (s6; one); hard-edged floor light (08; one); the editor and build cleaning frames graded differently (one).
+
+### November 10 — round 98 and review 95 (three reviewers, averaged)
+
+Round 98 (Soft Feedback shader, Feedback, StudioStation):
+- **The sparkles were one symmetric four-point cross, laid in an even ring** round the piece ("generic, evenly scattered four-point stars", review 94, all three). Each glint is now a long upright arm and a shorter level one tapering to fine points, four faint short diagonal rays, a soft halo in the glass colour and a white-hot core, turned at random; twenty of them, mostly small with five large, are scattered over and just off the piece rather than ringed round it.
+- **The glints first went unseen:** emitted where the piece starts, they were hidden as it lifted, because the glass writes depth. They now start at the height it lifts to and are pulled a little toward the eye, in front of the tilted piece. (A sed edit had also commented out half the emit line for one build; fixed.)
+- **Water now drips off the lifted piece:** a new drip emitter under light gravity drops a string of clear drops from its lower edge while it lifts, and the crown of drops thrown up is larger. The drops have a deeper teal rim and a hotter highlight, so they stand out over the pale water.
+- The half-clean frame (05) is taken a second after the brush lifts, so its flicked splash has already fallen; it is unchanged.
+
+All three reviewers viewed the references (40-43 screenshots each), as full-size store images in their own tab or the store's images in a grid.
+
+| Area | A | B | C | Average | Review 94 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The sparkles are split:** "the sparkle stars on the clean moment work" (A), "star sparkles" (C, scoring effects 4, its first since review 91), but still "generic 4-point sparkles" (B). Nobody calls them evenly ringed (all three in review 94).
+- **Nobody saw the drips:** "no drips are visible" (A), "I saw no drips" (B). At this distance a string of small clear drops between the lifted piece and the foam does not read in a still.
+- **The suds slipped from "one foam mass" to "cotton wool":** "suds are cotton-wool clumps", "fuzzy sprite blobs" (A), "stippled cotton-ball clumps" (B), "soft clustered suds" (C). The suds were unchanged this round.
+- Six areas meet the bar: lighting, water, sorting, mosaic, truck (back to 4.0, unanimous, no change), tools. Effects rose to 3.3 and sea glass to 3.7, the latter with no change.
+
+**Next:**
+- Effects: suds that read as foam rather than cotton wool, and drips or splash that read in a still (two); a particle response at the mosaic reveal (08) and the palm (06) (two).
+- The cloudy piece's hidden hue (all three); clean glass as jelly or candy (two); vegetation and rubbish (all three); opaque shallows and puddle-like foam (all three); flat sand foregrounds (all three).
+
+**Bugs reported:**
+- The EQUIPMENT sign through the bookshelf (s4, 09; two); detached truck mirrors (t2; two); the pale band on the b1 boulder (one); the sieve clipping the basin rim (s11, 04; one); hard-edged floor light under the mats (08; one).
+- The brush floating above the piece (04, 05; one); the jar at the near plane and no contact shadow under the basin (s11; one); a stray mat quad (b4; one) and a floating rod (b1; one); the towel hovering with an orange stub (b9; one); a pendant lamp at the near plane (s7; one); curved slats under the sorting table (s2, 09; one); the far water's edge as a band (b4; one); dark chevrons on the dunes (b2, b7; one).
