@@ -4330,3 +4330,41 @@ All three reviewers viewed the references (40-43 screenshots each), as full-size
 **Bugs reported:**
 - The EQUIPMENT sign through the bookshelf (s4, 09; two); detached truck mirrors (t2; two); the pale band on the b1 boulder (one); the sieve clipping the basin rim (s11, 04; one); hard-edged floor light under the mats (08; one).
 - The brush floating above the piece (04, 05; one); the jar at the near plane and no contact shadow under the basin (s11; one); a stray mat quad (b4; one) and a floating rod (b1; one); the towel hovering with an orange stub (b9; one); a pendant lamp at the near plane (s7; one); curved slats under the sorting table (s2, 09; one); the far water's edge as a band (b4; one); dark chevrons on the dunes (b2, b7; one).
+
+### November 10 — round 99 and review 96 (three reviewers, averaged)
+
+Round 99 (Frosted Glass, the basin path):
+- **Round 94's grey went too far:** to strengthen the dirty-to-clean step it half-desaturated the frost toward a neutral chalky grey, and by review 95 all three saw the cloudy piece as "grey-white with almost no colour under the grime", "a white shell".
+- **The frost is now a pale, matte pastel of the glass's own colour** (the grey takes 55% of the hue back), still chalky and a little darker than the clean glass, so the piece reads as frosted green-aqua under its sand dusting while the scrubbed lanes stay the deep, glossy version of the same colour.
+
+The reviewers viewed 35-38 references each, in the store viewer or as the store's full-size images in their own tab (the shared pane kept hiding their tabs).
+
+| Area | A | B | C | Average | Review 95 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.13 Effects | 4 | 3 | 4 | 3.7 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The cloudy piece passes:** "the 04 cloudy piece is good" (A), "cloudy 04 is good" (C); nobody calls it grey, white or colourless (all three in review 95). What holds sea glass at 3.7 is the hero pieces: the palm piece as "a plastic guitar pick" (all three) and the 05b piece's dark, thick edge band read as a slab or gummy sweet (all three).
+- One still finds the dirty-to-clean contrast mild (B); another calls the grime streaks in 04 faint (C).
+- **Seven areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, truck. Sand and the studio rose to 4.0 (unanimous) and effects to 3.7 (two 4s: "shaped star sparkles", "soft and shaped" suds), none changed; tools slipped to 3.7 (one 3, the stiff navy palm in 06).
+
+**Next:**
+- The hero glass: the palm piece's pointed pick outline and the 05b piece's dark edge band (all three).
+- Vegetation and rubbish (all three); the brush hovering above the piece (one, and a bug for two in earlier reviews); flat far water and the hard-edged mosaic floor light (two).
+
+**Bugs reported:**
+- The 05b piece's dark under-layer rim (two); stacked translucent layers in the half-clean piece (05; one); the brush hovering (04, 05; one); the jar off the table edge (s11; two); the tap standing behind the basin (s11; one); the hanging plant also on the shelf (s7; two).
+- Hard-edged floor light over the rugs (08; two); the bottle in the driftwood (b9; one); the EQUIPMENT sign floating (s4; one); a gap in the sorting table's front rail (06, s10; one); glass hovering on the truck's bin rim (03; one); the dune over the deck edge (s6; one); a pot hiding a plaque label (s2; one); the palm piece floating in front of the glove (06; one); no stack shadows on the water (b4, b8; one); a bush floating at the dune line (s3; one).
