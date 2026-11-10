@@ -310,8 +310,11 @@ Shader "Sea Glass/Frosted Glass"
                         // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,
                         // jelly rim"): its edge wall glowed pale, which is how a gummy's edge looks. The edge of a pane of bottle glass
                         // is dark and deeply saturated, because light runs a long way along it; at the basin it now is.
-                        if (_MaskOn > .5) edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .3 + .05) * (sky * .3 + sun.color * .3 + .45);
-                        g = lerp(g, edgeCol, (1 - faceK) * (_MaskOn > .5 ? .95 : .5));   // round 91: in the palm the edge wall turns from the face more gently
+                        // Round 100 (review 96, all three: the lifted piece's "dark, thick edge band", "a second slab beneath it", "a gummy
+                        // sweet's uniform edge band"): the dark wall read as a thick slab. A middle course between that and the pale gummy rim:
+                        // a saturated mid-tone of the glass colour, held to a narrower band at the very edge, so the wedge reads thin.
+                        if (_MaskOn > .5) edgeCol = hue * lerp(hue, half3(1, 1, 1), .35) * (dot(seenH, half3(.3, .55, .15)) * .4 + .16) * (sky * .3 + sun.color * .3 + .5);
+                        g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 1.7) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);

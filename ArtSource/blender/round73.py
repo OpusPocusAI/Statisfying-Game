@@ -17,7 +17,7 @@ from sg_export import *
 from mathutils import noise
 
 shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18), (0, 1, 1.0, .9, .23, .05, .42),
-          (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .2), (3, .6, 1.0, .8, .21, .04, .26)]   # as round21.py
+          (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .2), (3, .84, 1.0, .9, .21, .04, .26)]   # round 100 (review 96, all three: the palm piece "a plastic guitar pick", "a pointed pick triangle"): piece 5 (glass-03, the verification piece) gets blunt, well-rounded corners and a broader body   # as round21.py
 BEND = -.06   # must match round21.py and FrostedGlass _Bend
 # Round 74 (review 70, all three: the hero piece "a thick gummy block", "thick vertical sides"; owner's decision, November 8):
 # the basin hero shard is thinner than 5.6's 30%/12% wedge, about 19% of the width at its thick edge and 7% at its thin
