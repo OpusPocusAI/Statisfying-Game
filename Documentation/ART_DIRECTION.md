@@ -4409,3 +4409,44 @@ The reviewers viewed 40-54 references each, in the store viewer or as the store'
 **Bugs reported:**
 - The flat brown rectangle on the sand by the studio (b4; three); the jar off the table edge (s11; three); the dark pendant shade clipped at the top of s7 (two) and the hanging plant as stacked spheres (s7; one); the driftwood as joined cylinders with a bottle sunk in it (b9, 02; two).
 - A seam line across the sand (b7; one); a hard purple line at the road edge (t1; one); the stretched floor texture (s3, s5, s8; one); the far sign with no post (b2; one); the palm piece with no contact shadow (06; one); the wall panel ending at open sky (s3; one); a light band on the left boulder (b1; one); flat paddle mirrors and disc hubs (t2; one); hard floor light over the rugs (08; one); the WASH sign over the table leg (s1; one).
+
+### November 11 — round 101 and review 98 (three reviewers, averaged)
+
+Round 101 (round21.py and round73.py, piece 5 only; Frosted Glass, the palm piece):
+- **Piece 5's broken edge had never bitten:** its chord sat at 0.74 of the radius while the well-rounded outline only reached about 0.55, so the piece had no straight edge at all, and round 100's rounder corners left a smooth lozenge.
+- **It now has two straight broken edges that bite,** meeting at one blunt corner, with a crisp blend into the outline and half the outline wobble; the far side stays rounded and worn. Both glass_slab_5 (palm, trays) and glass_basin_5 (basin hero) carry it; the other five outlines are unchanged.
+- **In the palm the face grades with the wedge:** the glass's own lit colour covered the glove evenly at 55%; now 12% at the thin edge to 55% at the thick one, so the thin side is darker and clearer. The change is small in 06.
+
+The reviewers viewed 37-42 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 97 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The palm piece mostly reads as glass now:** two of three no longer fault it ("the palm piece in 06 read as glossy, saturated glass", C); B still calls it "a rounded jelly lozenge with no straight broken edge". Sea glass rose to 3.7 (two 4s).
+- **What holds it is the basin hero (05b), all three:** "a thick green jelly slab", "a thick jelly or soap bar", with a dark rim or underside band read as a seam (A, B) and a soft, unchipped rim (C).
+- The studio returned to 4.0 (unanimous); the truck slipped to 3.7 (one 3: the cab and bed "read as stacked boxes", floating mirrors).
+- **Eight areas meet the bar:** lighting, water, sand, cleaning, sorting, mosaic, studio, tools.
+
+**Next:**
+- The basin hero's thickness and its dark edge band (all three).
+- Suds as circle clusters, and no splashes or drips seen (all three); vegetation and rubbish (all three).
+- The truck's boxy cab and bed (two); weak wet-sand sheen (three); one cloud template (two); dull unfinished mosaic panels (two).
+
+**Bugs reported:**
+- The jar over the table edge (s11; three); the bottle in the driftwood (b9; three); a dark shape on the sand by the studio (b4; one).
+- The pendant shade clipped (s7; one); the 05b dark rim band (05b; one); stacked contour bands in the half-clean piece (05; one); floating mirrors and a hanging board (t2; one) and a floating step (t2; one); mismatched Ocean Wave pieces (08, 09; one); the swirled floor grain (one); repeated identical pebbles (b1, b2; one); pale hard-edged boulder caps (b1, b3, b6; one); dark strands on the wet sand (b6; one); the green glass on the b2 mound as a flat disc (one); the tap read as a coat stand (04, 05; one).
