@@ -4249,3 +4249,43 @@ All three reviewers viewed the references (38-53 screenshots each), as full-size
 **Bugs reported:**
 - The clean shard poking out under the frosted shell or a darker slab under the 05b piece (05, 05b; all three); the jar off the table edge (s11; all three); the pale band on the boulders (b1, b3, b5; two); the brush floating beside the glass (04, 05; one).
 - A pendant lamp clipping the top of s7 (one); the hanging plant on its cord also resting on the shelf, or three stacked balls (s7; two); the bottle through the driftwood (b9; one); the mat on the sand as a flat quad (b4; one); the tap spout ending behind the basin (s11; one); hard-edged floor light reading as rugs (08; one); a board and mirror floating behind the cab (t2; one); a plaque label hidden by props (s1; one).
+
+### November 10 — round 97 and review 94 (three reviewers, averaged)
+
+Round 97 (Soft Feedback shader, Feedback):
+- **Six small opaque particles a clump read as separate white spots** at basin scale ("popcorn clusters", "clumped white blobs", review 93, all three), and the film patch was too faint and too rare to notice.
+- **The suds are now two large, part-transparent masses a call** (0.13-0.2 m, was six of 0.04-0.12), each fading softly from a dense middle and overlapping its neighbours, so they build into one heap of foam around the brush. The fine packed-bubble pattern is a little stronger, and the larger bubbles fade with the foam instead of ringing its edge.
+- **The soapy film patch now comes every call**, slightly larger and denser.
+- A first, softer falloff read as mist or steam; the firmer middle reads as foam.
+
+The reviewers viewed 32-38 references each, mostly as full-size store images in their own tab (the shared pane kept being hidden by the others' tabs).
+
+| Area | A | B | C | Average | Review 93 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The suds now read as foam, all three:** "05 suds read as one foam mass" (B), "suds are soft (05)", "suds mass" (A), "the soft foam mass (05) is fine" (C). Nobody calls them popcorn, blobs or rings (all three in review 93). One sees a foam patch left under the lifted piece in 05b as residue (C).
+- **Effects hold at 3.0 for other reasons:** the 05b sparkles are "generic, evenly scattered four-point stars" (all three), and there are still no visible splashes, drips or ripples round the brush (all three).
+- Five areas meet the bar: lighting, water, sorting, mosaic, tools (back to 4.0, unanimous, no change). Sea glass fell to 3.3 (two 3s: the hero pieces "gummy candy", "slab-like") and the truck to 3.7, neither changed.
+
+**Next:**
+- Sparkles that are not stock four-point stars, and splashes or drips that read in a still (all three).
+- The hero and palm glass reading as candy or jelly (all three); the cloudy piece's hidden hue (two); vegetation and rubbish (all three); flat sand foregrounds (all three).
+
+**Bugs reported:**
+- The jar off the table edge (s11; all three); a shadow with no caster (b4; two); the pale band on a b1 boulder (one); the straight seam across the b7 sand (one); dark vertical lines under the s7 shelves (one).
+- Stacked wavy layers in the half-clean piece (05; one); the board and stalk mirrors at the truck cab (t2; one); the hanging pot also on the shelf (s7; one); a sieve clipping the basin rim (04, s11; one); an orange bar at the towel corner and the bag through the bench rail (b9; two); the deck edge hovering (s6; one); hard-edged floor light (08; one); the editor and build cleaning frames graded differently (one).
