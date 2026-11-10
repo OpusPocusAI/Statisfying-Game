@@ -304,7 +304,10 @@ Shader "Sea Glass/Frosted Glass"
                         if (_MaskOn < .5)
                         {
                             half3 bodyH = hue * (sky * .35 + sun.color * .3 + .3) * lerp(.85, .6, thickH);
-                            g = lerp(g, bodyH + g * .35, .55);
+                            // Round 101 (review 97, all three: the palm piece "an opaque teal token", "fairly opaque"): an even 55% of the
+                            // glass's own colour hid the glove at every thickness. Now the thin side of the wedge lets more of the glove through
+                            // (a darker, clearer glass), the thick side keeps the lit body colour, so the piece grades as a wedge of glass.
+                            g = lerp(g, bodyH + g * .35, lerp(.12, .55, thickH));
                         }
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,

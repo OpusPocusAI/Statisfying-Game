@@ -18,6 +18,14 @@ from mathutils import noise
 
 shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18), (0, 1, 1.0, .9, .23, .05, .42),
           (5, .45, 1.0, .86, .21, .03, .2), (6, .5, .95, .9, .23, .03, .2), (3, .84, 1.0, .9, .21, .04, .26)]   # round 100 (review 96, all three: the palm piece "a plastic guitar pick", "a pointed pick triangle"): piece 5 (glass-03, the verification piece) gets blunt, well-rounded corners and a broader body   # as round21.py
+# Round 101 (review 97, all three: the palm piece "a rounded, opaque-looking aqua lozenge, more jelly sweet than shard", the 05b
+# edge "jelly or gummy"; A: "one or two straight broken edges"): piece 5's single broken edge never bit, because its chord
+# (0.74) lay outside the rounded outline (about 0.55). It now has two broken edges that do bite, straight and meeting at one
+# blunt corner, with a crisp blend and a calmer outline wobble, while the far side stays rounded and worn.
+CUTS = {5: [(0, .6), (1.35, .57)]}
+CUT_KB = {5: .03}
+LUMP = {5: .07}
+
 BEND = -.06   # must match round21.py and FrostedGlass _Bend
 # Round 74 (review 70, all three: the hero piece "a thick gummy block", "thick vertical sides"; owner's decision, November 8):
 # the basin hero shard is thinner than 5.6's 30%/12% wedge, about 19% of the width at its thick edge and 7% at its thin
@@ -52,14 +60,15 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         rr = math.hypot(p.x, p.z) / .5
 
         def full_r(a):
-            lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .14
+            lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * LUMP.get(k, .14)
             lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)
             orr = outline_r(a, sides, rk) * lump * lop
-            if cut > 0:
-                da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
+            for off, depth in CUTS.get(k, [(0, cut)] if cut > 0 else []):
+                # A worn broken edge: the outline follows a chord at distance (1 - depth) from the centre, softly blended.
+                da = (a - rot * 1.3 + off + math.pi) % math.tau - math.pi
                 if abs(da) < math.pi / 2 - .05:
-                    chord = (1 - cut) / math.cos(da)
-                    kb = .26
+                    chord = (1 - depth) / math.cos(da)
+                    kb = CUT_KB.get(k, .26)   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
                     h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                     orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
             return orr

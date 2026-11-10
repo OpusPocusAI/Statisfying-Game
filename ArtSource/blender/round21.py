@@ -25,6 +25,14 @@ shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18),
 # the glint breaks into two or three flashes instead of one blob.
 
 
+# Round 101 (review 97, all three: the palm piece "a rounded, opaque-looking aqua lozenge, more jelly sweet than shard", the 05b
+# edge "jelly or gummy"; A: "one or two straight broken edges"): piece 5's single broken edge never bit, because its chord
+# (0.74) lay outside the rounded outline (about 0.55). It now has two broken edges that do bite, straight and meeting at one
+# blunt corner, with a crisp blend and a calmer outline wobble, while the far side stays rounded and worn.
+CUTS = {5: [(0, .6), (1.35, .57)]}
+CUT_KB = {5: .03}
+LUMP = {5: .07}
+
 BEND = -.06   # round 58: a gentler curl (review 54: the held piece "a bent film"). Round 54: must match FrostedGlass _Bend (set by Round54Pass); negative so the work pieces (rotated 90 about X) lie outer face up
 
 
@@ -47,15 +55,15 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         a = math.atan2(p.z, p.x) + rot
         rr = math.hypot(p.x, p.z) / .5            # 0 centre .. 1 at the equator
         def full_r(a):
-            lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * .14
+            lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * LUMP.get(k, .14)
             lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)                      # lopsided: one side fuller than the other
             orr = outline_r(a, sides, rk) * lump * lop
-            if cut > 0:
-                # A worn broken edge: the outline follows a chord at distance (1 - cut) from the centre, softly blended.
-                da = (a - rot * 1.3 + math.pi) % math.tau - math.pi
+            for off, depth in CUTS.get(k, [(0, cut)] if cut > 0 else []):
+                # A worn broken edge: the outline follows a chord at distance (1 - depth) from the centre, softly blended.
+                da = (a - rot * 1.3 + off + math.pi) % math.tau - math.pi
                 if abs(da) < math.pi / 2 - .05:
-                    chord = (1 - cut) / math.cos(da)
-                    kb = .26   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
+                    chord = (1 - depth) / math.cos(da)
+                    kb = CUT_KB.get(k, .26)   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
                     h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                     orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
             return orr
