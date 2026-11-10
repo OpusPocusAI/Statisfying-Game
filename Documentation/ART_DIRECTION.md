@@ -4170,3 +4170,43 @@ All three reviewers viewed the references (38-42 screenshots each), mostly as fu
 **Bugs reported:**
 - The pale band on the boulders (b1, b3, b9; two); hard white foam collars round the sea stacks (b3, b5, b8; all three); a flat sliced-off rock top (b5, b9; two); the board or jar at the basin clipping the table or rim (s11; three).
 - The EQUIPMENT sign through the bookshelf (s4, 09; two); the hanging plant also resting on the shelf (s7; one); dark vertical lines under the shelves (s7; one); the dark seam along the road edge and across the sand (b7, t1; one); a flat glass disc and a perfectly round mound on the sand (b2, 02; two); no contact shadow under the basin (s11; one).
+
+### November 10 — round 95 and review 92 (three reviewers, averaged)
+
+Round 95 (ArtSource/blender/round95.py, toy_spade re-imported; same name, frame and material slots):
+- **The flat plate was three things.** The blade's width curve came to a point and the heavy decimation (12%) cut it into a pentagon; the shallow dish faced the camera squarely, so it was lit as one even face; and nothing showed its thickness.
+- **The blade is now a rounded scoop:** square shoulders into a full round tip, a deeper dish canted back from the shaft, a fatter rolled rim, and 30% decimation so the tip stays round.
+- **The blade is turned 24° about the shaft** in the model (the shaft and grip stay put, so the glove still holds it), so the player sees the scoop at an angle: the rolled rim and curled side in depth and a shaded hollow inside, not a shield square to the camera. Facing the camera straight on, the new round blade still read partly as a plate in 02.
+- The studio's bench-end spade uses the same mesh and turns with it.
+
+All three reviewers viewed the references (38-51 screenshots each), as full-size store images in their own tab or in the store viewer.
+
+| Area | A | B | C | Average | Review 91 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.13 Effects | 4 | 3 | 3 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Tools reach the bar, unanimous (4.0), up a full point.** Nobody calls the spade a plate, paddle or pentagon (all three in review 91): "rounded scoop spade with a rim" (A), "the spade is a rounded scoop" (B), "02 rounded spade scoop" (C). What remains in tools is the open palm in 06, "rubbery and a little stiff" (A), "a dark navy mitten with little form" (C).
+- Sea glass reached 4.0 (all three), with no change: the 05b shard and the trays pass; the cloudy piece in 04 shows almost no colour (all three) and the palm piece leans gummy (all three).
+- **Eight areas meet the bar** (lighting, water, sand, sea glass, cleaning, sorting, mosaic, tools). The studio and truck slipped to 3.7 (one 3 each) and effects rose to 3.3 (one 4), none with a change.
+
+**Next:**
+- Vegetation and rubbish (all three); generic ring-outline suds with no splash or drips (all three); opaque shallows (all three).
+- The cloudy piece's hidden colour (all three); hard white foam rings round the sea stacks (two); flat purple boulders (two); the studio floor and flat rugs (all three); boxy truck panels (two).
+
+**Bugs reported:**
+- The hard white foam ring round the sea stacks (b3, b8; two); the pale band on a b1 boulder (one); floating truck mirrors or a stray board in the cab (t2; two); the EQUIPMENT sign through the bookshelf (09; one); the jar off the table edge (s11; one); no contact shadow under the basin (s11; one) or the palm piece (06; one).
+- A pendant lamp cutting into the top of s7 (one); dark twig strands on the b6 sand (one); a mat above the sand and a shadow with no caster (b4; two); a stiff towel with an orange stick (b9; one); a dig pile of egg-shaped stones (b1; one).
