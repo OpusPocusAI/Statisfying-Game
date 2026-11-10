@@ -31,6 +31,10 @@ BEND = -.06   # must match round21.py and FrostedGlass _Bend
 # the basin hero shard is thinner than 5.6's 30%/12% wedge, about 19% of the width at its thick edge and 7% at its thin
 # edge, and its edge wall slopes over a broader bevel instead of standing straight up.
 HERO_TH = .6
+# Round 102 (review 98, all three: the basin hero "a thick green jelly slab", "a thick jelly or soap bar"): piece 5's outline
+# reaches only about 0.55 of the nominal radius (its rounded triangle and two broken edges), so at the shared thickness it stood
+# about 30% of its own width at the thick edge, half again the 19% the other hero pieces have. It is now scaled to match.
+HERO_TH_K = {5: .4}
 # Round 75 (review 71, all three: "blobby highlights", "a soft rim"): the face pits caught the key light as soft rings, so they
 # are off (the sharp flashes come from FrostedGlass at the basin), and the bevel is tighter again (power .22, was .3).
 
@@ -80,7 +84,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         x, z = p.x * sx * orr, p.z * sz * orr
         yn = p.y / .5
         # A crisper edge: flat faces turning over a narrow worn bevel (round21.py's power .38 rolled the whole rim over).
-        ys = math.copysign(abs(yn) ** .22, yn) * .5 * th * HERO_TH * (1 - .1 * rr * rr)
+        ys = math.copysign(abs(yn) ** .22, yn) * .5 * th * HERO_TH_K.get(k, HERO_TH) * (1 - .1 * rr * rr)
         wd = rot * 1.7 + 0.9
         side = max(-1.0, min(1.0, (x * math.cos(wd) + z * math.sin(wd)) / .45))
         ys *= 1.0 + .45 * side

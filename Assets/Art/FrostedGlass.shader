@@ -276,7 +276,7 @@ Shader "Sea Glass/Frosted Glass"
                         // caustic lines on the basin floor visibly kink and bend where they pass under the piece.
                         if (_MaskOn > .5)
                         {
-                            half tB = smoothstep(.025, .085, lz);   /* round 74: the thinner hero basin shard (about 19% to 7% of the width) */
+                            half tB = smoothstep(.012, .06, lz);   /* round 102: the thinner hero 5 kept its colour only with lower thresholds. Round 74: the thinner hero basin shard (about 19% to 7% of the width) */
                             float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
                             half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
                             // Round 87 (review 83, all three: "a thick mint jelly lozenge", "a gummy sweet"): the basin water draws its
@@ -316,7 +316,10 @@ Shader "Sea Glass/Frosted Glass"
                         // Round 100 (review 96, all three: the lifted piece's "dark, thick edge band", "a second slab beneath it", "a gummy
                         // sweet's uniform edge band"): the dark wall read as a thick slab. A middle course between that and the pale gummy rim:
                         // a saturated mid-tone of the glass colour, held to a narrower band at the very edge, so the wedge reads thin.
-                        if (_MaskOn > .5) edgeCol = hue * lerp(hue, half3(1, 1, 1), .35) * (dot(seenH, half3(.3, .55, .15)) * .4 + .16) * (sky * .3 + sun.color * .3 + .5);
+                        // Round 102 (review 98: "a separate-looking dark teal rim band under its top face", "a dark rim", read as a seam or
+                        // a second layer): the wall's own colour, worked out apart from the face, met the face along a line. It is now
+                        // the face's colour carried over the edge, a little deeper in the hue, so face and wall read as one piece of glass.
+                        if (_MaskOn > .5) edgeCol = g * lerp(half3(1, 1, 1), hue, .3) * .9;
                         g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 1.7) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
