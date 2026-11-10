@@ -4368,3 +4368,44 @@ The reviewers viewed 35-38 references each, in the store viewer or as the store'
 **Bugs reported:**
 - The 05b piece's dark under-layer rim (two); stacked translucent layers in the half-clean piece (05; one); the brush hovering (04, 05; one); the jar off the table edge (s11; two); the tap standing behind the basin (s11; one); the hanging plant also on the shelf (s7; two).
 - Hard-edged floor light over the rugs (08; two); the bottle in the driftwood (b9; one); the EQUIPMENT sign floating (s4; one); a gap in the sorting table's front rail (06, s10; one); glass hovering on the truck's bin rim (03; one); the dune over the deck edge (s6; one); a pot hiding a plaque label (s2; one); the palm piece floating in front of the glove (06; one); no stack shadows on the water (b4, b8; one); a bush floating at the dune line (s3; one).
+
+### November 10 — round 100 and review 97 (three reviewers, averaged)
+
+Round 100 (round21.py and round73.py, piece 5 only; Frosted Glass, the basin edge):
+- **The pick was shard outline 5**, a rounded triangle with its corners rounded only 60%, which the verification piece (glass-03) uses in the palm and, as its hero version, at the basin. Its corners are now 84% rounded and its body broader (0.9 deep, was 0.8), in both glass_slab_5 and glass_basin_5; the other five outlines are unchanged.
+- **The basin edge wall was dark and deeply saturated** (round 87, against "a gummy's pale rim"), which by review 96 read as "a dark, thick edge band", "a second slab beneath it". It is now a saturated mid-tone of the glass colour, held to a narrower band at the very edge (the blend falls off as (1 - face)^1.7), so the wedge reads thinner. The thick side of the wedge still shows as a teal band.
+
+The reviewers viewed 40-54 references each, in the store viewer or as the store's full-size images in their own tab.
+
+| Area | A | B | C | Average | Review 96 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The pick is gone, but the piece went too far the other way:** nobody calls the palm piece a pick, but it now reads as "a rounded, opaque-looking aqua lozenge, more jelly sweet than shard" (A), "an opaque teal token" (B), "fairly opaque" (C). The 05b hero edge still reads as jelly or a gummy sweet (all three); A asks for "one or two straight broken edges". Sea glass fell to 3.3 (two 3s), though the tray pieces are praised by all three.
+- **Cleaning and tools pass (unanimous):** "a clear sparkle moment", grime "in brush-direction stripes"; the spade's rim and the open palm read. The dirty-to-clean contrast is still called weaker than PowerWash's (C) and the 04 grime uniform beige (B).
+- **Effects fell to 3.0 (unanimous):** the 05 suds read as "dotted cauliflower blobs" (A), "stamped dot clusters" (C); no drips or splashes are seen in 05b; 06 and 08 show no effect. The 05b sparkles are praised by all three.
+- The studio slipped to 3.7 (one 3: the swirly, stretched floor grain, flat rugs, the empty s8 floor).
+- **Eight areas meet the bar:** lighting, water, sand, cleaning, sorting, mosaic, truck, tools.
+
+**Next:**
+- The hero glass: straight broken edges on a shard that is still rounded at the corners, and more see-through in the palm (all three).
+- The suds' dotted texture, and drips that actually show in 05b (all three).
+- Vegetation and rubbish (all three); clouds all the same puff (two); shallows that don't show sand (two); the studio floor grain (one).
+
+**Bugs reported:**
+- The flat brown rectangle on the sand by the studio (b4; three); the jar off the table edge (s11; three); the dark pendant shade clipped at the top of s7 (two) and the hanging plant as stacked spheres (s7; one); the driftwood as joined cylinders with a bottle sunk in it (b9, 02; two).
+- A seam line across the sand (b7; one); a hard purple line at the road edge (t1; one); the stretched floor texture (s3, s5, s8; one); the far sign with no post (b2; one); the palm piece with no contact shadow (06; one); the wall panel ending at open sky (s3; one); a light band on the left boulder (b1; one); flat paddle mirrors and disc hubs (t2; one); hard floor light over the rugs (08; one); the WASH sign over the table leg (s1; one).
