@@ -65,12 +65,13 @@ namespace SeaGlass
             if(!foam)return;var p=new ParticleSystem.EmitParams();
             // A clump of suds: one larger head with smaller bubbles packed around it, drifting slowly outward.
             // Round 66 (review 62, all three: "little foam"): two clumps a call, larger, so suds build up around the brush and drift.
-            for(int c=0;c<2;c++){
-            var centre=at+new Vector3(Random.Range(-spread,spread)*1.6f,.015f,Random.Range(-spread,spread)*.9f);
-            for(int i=0;i<6;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.05f,.05f),Random.Range(-.008f,.016f),Random.Range(-.04f,.04f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.08f,.12f):Random.Range(.04f,.07f);p.startLifetime=Random.Range(2.2f,3.4f);p.startColor=SudsTint(.95f);foam.Emit(p,1);}}
-            // Round 96 (review 92: "no foam or film on the water"): now and then a broad, faint patch of foam spreading on the water
-            // around the brush, so the suds sit in a soapy film instead of floating as separate clumps.
-            if(Random.value<.45f){p=new ParticleSystem.EmitParams();p.position=at+new Vector3(Random.Range(-spread,spread)*2f,.006f,Random.Range(-spread,spread)*1.4f);p.velocity=new Vector3(Random.Range(-.03f,.03f),0,Random.Range(-.03f,.03f));p.startSize=Random.Range(.2f,.32f);p.startLifetime=Random.Range(2.8f,4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.38f);foam.Emit(p,1);}
+            // Round 97 (review 93, all three: the suds "popcorn clusters", "clumped white blobs", "white dots"): six small opaque particles
+            // a clump read as separate white spots at basin scale. Now two large, part-transparent masses a call, overlapping their
+            // neighbours, so the suds build into one soft heap of foam around the brush instead of a scatter of popcorn.
+            for(int i=0;i<2;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.012f+Random.Range(0f,.01f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.13f,.2f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);foam.Emit(p,1);}
+            // Round 96 (review 92: "no foam or film on the water"): a broad, faint patch of foam spreading on the water around the brush,
+            // so the suds sit in a soapy film. Round 97: every call, a little denser (it went unnoticed).
+            {p=new ParticleSystem.EmitParams();p.position=at+new Vector3(Random.Range(-spread,spread)*2f,.006f,Random.Range(-spread,spread)*1.4f);p.velocity=new Vector3(Random.Range(-.03f,.03f),0,Random.Range(-.03f,.03f));p.startSize=Random.Range(.24f,.36f);p.startLifetime=Random.Range(3f,4.2f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.42f);foam.Emit(p,1);}
             // Round 13: a low, short-lived splash. Round 32 (reviews: "no splashes or drips"): flicked droplets, so the scrub reads in a
             // still. Round 96: on the splash emitter (clear drops under real gravity); on the foam emitter they drew as foam.
             if(splash&&Random.value<.75f){splash.transform.position=at;p=new ParticleSystem.EmitParams();for(int d=0;d<3;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.5f,.85f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.022f,.04f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=Color.white;splash.Emit(p,1);}}

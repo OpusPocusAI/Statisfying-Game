@@ -35,11 +35,13 @@ Shader "Sea Glass/Soft Feedback"
    float seed=frac(i.color.r*251.0+i.color.g*113.0)*6.2832;
    float ang=atan2(q.y,q.x);
    float edgeR=.74+.05*sin(ang*2+seed)+.04*sin(ang*3+seed*2.3)+.02*sin(ang*7-seed);   // gentle lobes: stronger ones read as clover at basin scale
-   half body=1-smoothstep(edgeR-.32,edgeR,distance);
+   // Round 97: a long, soft falloff from a dense middle, so overlapping masses blend into one heap of foam (a short edge drew
+   // each particle as its own white blob, "popcorn").
+   half body=1-smoothstep(edgeR*.38,edgeR,distance); body=sqrt(body);   // a firmer middle: softer still read as mist
    // Fine foam: a cell pattern of tiny packed bubbles, a little greyer in the gaps between them.
    float2 g=q*6.5+seed*3.1; float2 cell=floor(g); float2 f=frac(g); float md=1;
    for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){float2 nb=float2(x,y);md=min(md,length(nb+Hash2(cell+nb)-f));}
-   half micro=1-smoothstep(.3,.62,md)*.09;
+   half micro=1-smoothstep(.3,.62,md)*.15;
    half shade=lerp(.8,1.04,saturate(.5+dot(q,float2(-.45,.55))*.7));
    half3 col=half3(.97,.98,.99)*micro*shade;
    half alpha=body*.92;
@@ -53,7 +55,7 @@ Shader "Sea Glass/Soft Feedback"
     half hi=1-smoothstep(0,.3,length(o/r-float2(-.35,.38)));
     half3 film=half3(.9+.1*sin(d*8+seed),.94+.06*sin(d*8+2.1),.96+.04*sin(d*8+4.2));
     col=lerp(col,lerp(col*1.02,film*.86,rim),inside)+hi*inside*.35;
-    alpha=max(alpha,inside*(rim*.85+hi*.6));
+    alpha=max(alpha,inside*(rim*.5+hi*.45)*body);   // round 97: the bubbles sit in the foam, fading with it, not ringed on its edge
    }
    return half4(col*i.color.rgb,i.color.a*alpha);
   }
