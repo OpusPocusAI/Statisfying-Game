@@ -36,13 +36,15 @@ namespace SeaGlass
             splash=Emitter("Brush splash",.5f,1f,.012f,.024f,1.4f,240,.02f);
             // Round 66 (review 62: "thin vertical blue streaks", "stray line particles" under the lifted piece): round drops. Stretched
             // along a fall seen from above, they read as lines.
-            {var r=splash.GetComponent<ParticleSystemRenderer>();r.renderMode=ParticleSystemRenderMode.Billboard;}
+            {var r=splash.GetComponent<ParticleSystemRenderer>();r.renderMode=ParticleSystemRenderMode.Billboard;
+             // Round 96 (review 92: "no splash or drip shapes"): clear drops with a highlight, drawn after the basin water.
+             if(particleMaterial){drop=new Material(particleMaterial){name="Water drop"};drop.SetFloat("_Drop",1);drop.renderQueue=3100;r.sharedMaterial=drop;}}
             // Round 66: the colour-revealed glints get their own world-space system. On the shared pool, the recycling station's
             // sparkles could pick the same pooled system a moment later and carry the glints off with it.
             revealGlints=Emitter("Reveal glints",1.2f,.2f,.035f,.075f,-.05f,80,.05f);
             {var main=revealGlints.main;var size=revealGlints.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.4f),new Keyframe(.15f,1),new Keyframe(1,0)));var drag=revealGlints.limitVelocityOverLifetime;drag.enabled=true;drag.drag=2.5f;if(sparkle)revealGlints.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;}
         }
-        ParticleSystem foam,dust,splash,revealGlints;float nextDust;Material sparkle,suds;
+        ParticleSystem foam,dust,splash,revealGlints;float nextDust;Material sparkle,suds,drop;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
         ParticleSystem Emitter(string name,float life,float speed,float minSize,float maxSize,float gravity,int max,float radius)
         {
@@ -65,18 +67,22 @@ namespace SeaGlass
             // Round 66 (review 62, all three: "little foam"): two clumps a call, larger, so suds build up around the brush and drift.
             for(int c=0;c<2;c++){
             var centre=at+new Vector3(Random.Range(-spread,spread)*1.6f,.015f,Random.Range(-spread,spread)*.9f);
-            for(int i=0;i<6;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.05f,.05f),Random.Range(-.008f,.016f),Random.Range(-.04f,.04f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.08f,.12f):Random.Range(.04f,.07f);p.startLifetime=Random.Range(2.2f,3.4f);p.startColor=new Color(.97f,.99f,1f,.95f);foam.Emit(p,1);}}
-            p=new ParticleSystem.EmitParams();
-            // Round 13: a low, short-lived splash; the foam emitter has no gravity, so tall droplets hung in mid-air.
-            // Round 32 (reviews: "no splashes or drips"): more and larger flicked droplets, so the scrub reads in a still.
-            if(Random.value<.75f)for(int d=0;d<2;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.15f,.3f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.026f,.04f);p.startLifetime=Random.Range(.28f,.45f);p.startColor=new Color(.82f,.95f,.98f,.9f);foam.Emit(p,1);}
+            for(int i=0;i<6;i++){var o=i==0?Vector3.zero:new Vector3(Random.Range(-.05f,.05f),Random.Range(-.008f,.016f),Random.Range(-.04f,.04f));p.position=centre+o;p.velocity=new Vector3(o.x,0,o.z)*.6f;p.startSize=i==0?Random.Range(.08f,.12f):Random.Range(.04f,.07f);p.startLifetime=Random.Range(2.2f,3.4f);p.startColor=SudsTint(.95f);foam.Emit(p,1);}}
+            // Round 96 (review 92: "no foam or film on the water"): now and then a broad, faint patch of foam spreading on the water
+            // around the brush, so the suds sit in a soapy film instead of floating as separate clumps.
+            if(Random.value<.45f){p=new ParticleSystem.EmitParams();p.position=at+new Vector3(Random.Range(-spread,spread)*2f,.006f,Random.Range(-spread,spread)*1.4f);p.velocity=new Vector3(Random.Range(-.03f,.03f),0,Random.Range(-.03f,.03f));p.startSize=Random.Range(.2f,.32f);p.startLifetime=Random.Range(2.8f,4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.38f);foam.Emit(p,1);}
+            // Round 13: a low, short-lived splash. Round 32 (reviews: "no splashes or drips"): flicked droplets, so the scrub reads in a
+            // still. Round 96: on the splash emitter (clear drops under real gravity); on the foam emitter they drew as foam.
+            if(splash&&Random.value<.75f){splash.transform.position=at;p=new ParticleSystem.EmitParams();for(int d=0;d<3;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.5f,.85f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.022f,.04f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=Color.white;splash.Emit(p,1);}}
         }
+        // A tiny random jitter in the suds colour seeds each clump's shape in the shader.
+        static Color SudsTint(float alpha)=>new Color(Random.Range(.95f,1f),Random.Range(.97f,1f),1f,alpha);
         // Brushing: droplets thrown off the bristles in the direction of the stroke, arcing up and falling back into the bowl.
         public void Splash(Vector3 at,Vector3 strokeVelocity)
         {
             if(!splash)return;splash.transform.position=at;var p=new ParticleSystem.EmitParams();var flick=Vector3.ClampMagnitude(new Vector3(strokeVelocity.x,0,strokeVelocity.z),1.2f);
-            int n=Random.Range(2,5);
-            for(int i=0;i<n;i++){p.position=at+new Vector3(Random.Range(-.03f,.03f),.02f,Random.Range(-.02f,.02f));p.velocity=flick*Random.Range(.35f,.8f)+new Vector3(Random.Range(-.18f,.18f),Random.Range(.45f,.85f),Random.Range(-.18f,.18f));p.startSize=Random.Range(.016f,.03f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=new Color(.9f,.98f,1f,.9f);splash.Emit(p,1);}
+            int n=Random.Range(3,7);   // round 96: more and larger drops (they read as specks)
+            for(int i=0;i<n;i++){p.position=at+new Vector3(Random.Range(-.03f,.03f),.02f,Random.Range(-.02f,.02f));p.velocity=flick*Random.Range(.35f,.8f)+new Vector3(Random.Range(-.18f,.18f),Random.Range(.45f,.85f),Random.Range(-.18f,.18f));p.startSize=Random.Range(.022f,.042f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=Color.white;splash.Emit(p,1);}
         }
         // The colour-revealed moment: a ring of glints in the glass colour rising off the piece, a bright star at its centre,
         // and a crown of droplets as it lifts out of the water.
@@ -124,6 +130,6 @@ namespace SeaGlass
             Destroy(go);
         }
         void Update(){music.volume=musicVolume;if(!GameSession.Instance||GameSession.Instance.ControlsBlocked||!GameSession.Instance.truck.driving)engine.volume=0;}
-        void OnDestroy(){if(sparkle)Destroy(sparkle);if(suds)Destroy(suds);foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
+        void OnDestroy(){if(sparkle)Destroy(sparkle);if(suds)Destroy(suds);if(drop)Destroy(drop);foreach(var clip in clips.Values)Destroy(clip);if(music&&music.clip)Destroy(music.clip);if(Instance==this)Instance=null;}
     }
 }
