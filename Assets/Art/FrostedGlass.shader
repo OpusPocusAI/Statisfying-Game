@@ -360,7 +360,11 @@ Shader "Sea Glass/Frosted Glass"
                     // frosted body glowed nearly as saturated an aqua as the clean glass, so cleaning changed little. Weathered frost is dull: the
                     // colour stays as a muted hint under a greyer, chalkier skin, and the clean glass beneath reads as the jewel it becomes.
                     half fl = dot(frostedGlass, half3(.3, .55, .15));
-                    frostedGlass = lerp(frostedGlass, fl * half3(1.0, .98, .93), .5) * .92;
+                    // Round 99 (review 95, all three: the cloudy piece "grey-white with almost no colour under the grime", "a white shell"): the
+                    // grey went too far. Frosted sea glass is a pale, matte pastel of its own colour, so the frost is now chalky but clearly tinted
+                    // (a pastel of the hue, not neutral grey); the clean glass stays the deep, glossy version of the same colour.
+                    half3 pastel = fl * lerp(half3(1.0, .98, .93), hueF, .55);
+                    frostedGlass = lerp(frostedGlass, pastel, .55) * .94;
                 }
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
