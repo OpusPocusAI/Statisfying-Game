@@ -4210,3 +4210,42 @@ All three reviewers viewed the references (38-51 screenshots each), as full-size
 **Bugs reported:**
 - The hard white foam ring round the sea stacks (b3, b8; two); the pale band on a b1 boulder (one); floating truck mirrors or a stray board in the cab (t2; two); the EQUIPMENT sign through the bookshelf (09; one); the jar off the table edge (s11; one); no contact shadow under the basin (s11; one) or the palm piece (06; one).
 - A pendant lamp cutting into the top of s7 (one); dark twig strands on the b6 sand (one); a mat above the sand and a shadow with no caster (b4; two); a stiff towel with an orange stick (b9; one); a dig pile of egg-shaped stones (b1; one).
+
+### November 10 — round 96 and review 93 (three reviewers, averaged)
+
+Round 96 (Soft Feedback shader, Feedback):
+- **Every foam particle drew the same six outlined rings**, so the suds read as "ring-outline bubble clusters", "clip-art" (review 92, all three), and the flicked droplets were drawn by the suds material as tiny foam blobs.
+- **Each suds particle is now a soft, creamy foam mass:** an irregular, softly fading edge, a fine cell pattern of packed tiny bubbles, shading from the top-left for volume, and a few larger bubbles riding on it; the shape is seeded per particle from a small colour jitter, so no two clumps match. Stronger edge lobes read as clover at basin scale.
+- **A faint, broad film of foam now spreads on the water** around the brush (now and then, 0.2-0.32 m, 3-4 s), so the clumps sit in soapy water.
+- **Splash drops are clear water drops** (a pale see-through body, a deeper rim and a highlight, a new _Drop mode), more and larger, and the brush's flicked droplets moved onto the splash emitter under real gravity.
+
+All three reviewers viewed the references (38-53 screenshots each), as full-size store images in their own tab or as the store's own images in a grid.
+
+| Area | A | B | C | Average | Review 92 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody calls the suds outlined rings any more** (all three in review 92), **but nobody calls them foam either:** "popcorn-like clusters", "clumped white blobs" (A), "clustered white disc blobs, close to plain bubbles" (B), "popcorn clusters", "clumped white dots" (C). The soft foam film went unmentioned, and nobody saw the splash drops. Effects fell back to 3.0 (all three): at basin scale each clump is a small opaque white blob, and many of them read as popcorn.
+- Six areas meet the bar: lighting, water, sea glass, sorting, mosaic, truck. Tools fell to 3.3 (two 3s: the brush "a bevelled block", the glove texture, and one now calls the spade "a flat paddle with a lip"), and sand and cleaning slipped to 3.7 (one 3 each), none with a change to them.
+
+**Next:**
+- Suds that read as a foam mass rather than many separate white clumps, and drips or runoff (all three).
+- Vegetation and rubbish (all three); the cloudy piece's hidden hue (two); the palm piece as candy or plastic (all three); the brush block and the glove (two); the studio floor (all three).
+
+**Bugs reported:**
+- The clean shard poking out under the frosted shell or a darker slab under the 05b piece (05, 05b; all three); the jar off the table edge (s11; all three); the pale band on the boulders (b1, b3, b5; two); the brush floating beside the glass (04, 05; one).
+- A pendant lamp clipping the top of s7 (one); the hanging plant on its cord also resting on the shelf, or three stacked balls (s7; two); the bottle through the driftwood (b9; one); the mat on the sand as a flat quad (b4; one); the tap spout ending behind the basin (s11; one); hard-edged floor light reading as rugs (08; one); a board and mirror floating behind the cab (t2; one); a plaque label hidden by props (s1; one).
