@@ -4450,3 +4450,45 @@ The reviewers viewed 37-42 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The jar over the table edge (s11; three); the bottle in the driftwood (b9; three); a dark shape on the sand by the studio (b4; one).
 - The pendant shade clipped (s7; one); the 05b dark rim band (05b; one); stacked contour bands in the half-clean piece (05; one); floating mirrors and a hanging board (t2; one) and a floating step (t2; one); mismatched Ocean Wave pieces (08, 09; one); the swirled floor grain (one); repeated identical pebbles (b1, b2; one); pale hard-edged boulder caps (b1, b3, b6; one); dark strands on the wet sand (b6; one); the green glass on the b2 mound as a flat disc (one); the tap read as a coat stand (04, 05; one).
+
+### November 11 — round 102 and review 99 (three reviewers, averaged)
+
+Round 102 (round73.py, piece 5 only; Frosted Glass, the basin path):
+- **The hero piece was twice as thick for its size as the others:** piece 5's outline reaches only about 0.55 of the nominal radius (its rounded triangle and two broken edges), so at the shared hero thickness its thick edge stood about 30% of its own width, against the 19% the other hero pieces have. glass_basin_5 is now scaled to match (0.4 of the slab thickness, was 0.6); the palm and tray model is unchanged.
+- **The edge wall is the face's colour carried over the edge,** a little deeper in the hue, instead of a colour worked out apart from the face, which met it along a line and read as a dark band or a second layer under the top face.
+- **The thickness thresholds that grade the hue across the wedge are lower** (0.012 to 0.06, were 0.025 to 0.085), so the thinner piece keeps its deep aqua at the thick side and stays clear yellow-green at the thin one; on the thinner mesh the old ones washed it out to pale lime.
+
+The reviewers viewed 36-38 references each, in the store viewer or as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 98 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.7 Cleaning | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The thinner hero did not land, all three:** 05b still reads as "a thick jelly or gummy block" (A), "a jelly block" (B), "a thick green gummy block with a wide bright side band" (C). The dark band is gone, but carrying the face's colour over the edge made the wall a bright, wide band that "makes the shard edge look extruded" (C). The palm piece is called glass or good by two (B, C).
+- Sea glass fell to 3.3 (two 3s); one also finds the cloudy 04 piece colourless or "soap or ice" (A, C), and one sees pointed, leaf-like tips on some tray pieces (C).
+- **Sand fell to 3.0 (unanimous), though nothing on the beach changed:** "flat cream sand fills well over a third of the frame" (A), "plain sand fills more than half the frame" (B), "a large cream field with evenly sprinkled purple pebbles" (C). Earlier reviews named the same fields but still gave 4.
+- Cleaning (one 3: flat milky water, grime as noise) and tools (one 3: the paddle spade, plain glove) slipped to 3.7; the truck returned to 4.0 (unanimous).
+- **Six areas meet the bar:** lighting, water, sorting, mosaic, studio, truck.
+
+**Next:**
+- The basin hero's edge wall: narrower and less bright, so the plate reads thin (all three).
+- The beach foregrounds: low-frequency variation, clustered debris and grass instead of even cream with sprinkled pebbles (all three).
+- Vegetation, rubbish and suds (all three); the uniform ripple cutout and weak deep-teal band in the shallows (two); hard floor light in 08 (two).
+
+**Bugs reported:**
+- The jar over the table edge (s11; three); the bottle in the driftwood (b9; three); a shadow on the sand with no caster (b4; two); hard-edged floor patches in 08 (two).
+- Stepped bands on the half-clean piece's edge (05; one); the 05b side band (one); floating mirrors (t2; one) and an unsupported board behind the seat (t2; one); a flat-topped box rock in the water (b5, b9, 02; one); pale hard-edged boulder bands (b1, b3; one); the deck unsupported over the sand (s6; one); a self-lit pot with the hanging cord running into it (s7; one); floating wall diamonds and a flat plane beyond the open side (s3; one).
