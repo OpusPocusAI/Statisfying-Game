@@ -319,10 +319,10 @@ Shader "Sea Glass/Frosted Glass"
                         // Round 102 (review 98: "a separate-looking dark teal rim band under its top face", "a dark rim", read as a seam or
                         // a second layer): the wall's own colour, worked out apart from the face, met the face along a line. It is now
                         // the face's colour carried over the edge, a little deeper in the hue, so face and wall read as one piece of glass.
-                        if (_MaskOn > .5) edgeCol = g * lerp(half3(1, 1, 1), hue, .3) * .9;
-                        g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 1.7) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
+                        if (_MaskOn > .5) edgeCol = g * lerp(half3(1, 1, 1), hue, .75) * .8;   /* round 103 (review 99, all three: "a thick gummy block with a wide bright side band", "the shard edge looks extruded"): the face colour carried over the edge lit the whole wall as a pale band; it is now a deeper, slightly darker hue of the face, as the edge of a pane is, and held to a narrow strip at the very rim (below), so it reads as the thin edge of a plate, not a side */
+                        g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 3) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
-                        if (_MaskOn > .5) lip = smoothstep(.12, .0, abs(faceK - .55)) * 1.6;   /* round 75: a thin, bright line where the face turns over the rim */
+                        if (_MaskOn > .5) lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
