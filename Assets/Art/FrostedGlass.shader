@@ -87,6 +87,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 54: the pieces are curved plates of bottle wall (round21.py), so the mid-surface bends with local x;
                 // thickness is measured from it, not from the flat z = 0 plane.
                 float lz = abs(i.local.z - _Bend * (1 - i.local.x * i.local.x * 4));
+                lz *= _Held > .5 ? (_MaskOn > .5 ? 1.6 : 2.2) : 1;   // round 108: the hero plate (round108.py, at the basin and in the palm) is about 2.2 times thinner; in the palm its colour grading keeps its thresholds, at the basin it reads a little thinner, so more of the plate is clear glass
                 // Round 61: 1 on the two near-flat faces of a loose piece, 0 on its edge wall (the mosaic panes count as all face).
                 float faceF = lerp(1, smoothstep(.62, .95, abs(normalize(i.localN).z)), 1 - _Facets);
                 float3 n = normalize(i.n), v = GetWorldSpaceNormalizeViewDir(i.world);

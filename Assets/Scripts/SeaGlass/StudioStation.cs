@@ -146,7 +146,7 @@ namespace SeaGlass
                 // Round 92: the brush scrubs along world x (EquipmentVisuals.Stroke); the crust's grain runs the same way in mask space.
                 var sd=workingGlass.InverseTransformDirection(Vector3.right);Shader.SetGlobalVector(StrokeDirId,new Vector4(sd.x/mb.size.x,sd.y/mb.size.y,0,0));}
             glassRenderer.SetPropertyBlock(block);
-            var shown=kind==StationKind.Clean?def.BasinMesh:def.HeldMesh;var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
+            var shown=def.BasinMesh;   /* round 108 (review 104, all three: the palm piece "pillowy green jelly", "thick gummy candy"): the piece held up at the trays is the same thin hero plate as at the basin, not the thicker tray pebble */var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
             // Round 73 (review 69: at 0.42 m across the basin piece filled a fifth of the frame and read as a moulded sweet): smaller.
             workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.3f)/Mathf.Max(shown.bounds.size.x,shown.bounds.size.y));
             if(kind==StationKind.Clean)
