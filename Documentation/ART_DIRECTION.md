@@ -4662,3 +4662,47 @@ The reviewers viewed 38-43 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The sieve handle through the basin rim (s11, 04, 05; two); a seam line at the road shoulder (b7; two) and a purple strip along the road edge (t1; two); the EQUIPMENT sign through the bookshelf (s4, 09; two); the jar over the table edge (s11; two).
 - The tap behind the basin (s11, 04; one); floating mirrors and board, no windscreen (t2; one); a bag through the bench (b9; one); the hard water-sand cut in 02 (one); pale bands on the boulders (b1, b3, b9; one); flat box-cut rock tops (b5, b9, 02; one); the hard clean/grime edge on the half-clean piece (05; one); suds cutting the glass silhouette (05; one).
+
+### November 11 — round 107 and review 104 (three reviewers, averaged)
+
+Round 107 (round107.py, toy_spade; the glove canvas material):
+- **The spade's scoop is much deeper** (the dish across the blade is two-thirds deeper), so its sides curl well forward and the blade shades from lit edges into a hollow middle; **a moulded rib runs down the middle of the inside of the scoop**, with two shorter side ribs, as on a moulded plastic toy spade, and the rolled rim is fatter. Still one fused surface, under the same name and slots.
+- **The glove is one colour family on both hands:** the canvas back of the glove was a pale mustard yellow, which on the brush hand (seen from the back) read as a different, yellow-striped knit glove beside the navy coated palm of the spade and palm hands. The canvas is now a dusty mid-blue under the same navy coating and orange cuff.
+- In 02 the spade reads as a curved scoop with a raised rib and rim; in 04 and 05 the brush hand wears the same blue glove as 02 and 06.
+
+The reviewers viewed 32-53 references each, as the store's screenshots opened in their own tab (one saw Unpacking only as thumbnails; its full-size images failed to load).
+
+| Area | A | B | C | Average | Review 103 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Tools passed again (unanimous, 3.0 to 4.0):** "ribbed plastic spade and a good knit glove" (A), "deep ribbed spade, knitted glove with orange cuff" (B), "ribbed toy spade, cuffed glove" (C). Nobody mentions a mismatched glove now. Two still note the spade: "a bit paddle-like" (A), "a big flat orange paddle" in 02 (B); C calls the shaft a thin stick.
+- **Sea glass fell to 3.0 (unanimous), with no change:** the held piece in 05b and 06 as "pillowy green jelly" (A), "a thick gummy jelly" (B), "thick gummy candy" (C), and the 04 cloudy glass as marble, stone or wood grain (all three).
+- **Studio and truck slipped to 3.7, each on one reviewer, with no change:** the oversized floor grain, flat rugs and empty back of the room (C); the slab door and bed panels and plain wheels (B).
+- The foam and suds remain noise speckle or flat discs (all three); effects hold at 3.0.
+- **Six areas meet the bar:** lighting, water, sand, sorting, mosaic, tools.
+
+**Next:**
+- The held hero piece in 05b and 06: a thin worn plate of bottle wall, not a thick jelly pillow (all three, now across several reviews).
+- The 04 cloudy grime: a frosted, dusty film, not wood grain or marble (all three).
+- The basin suds as soft shaped clusters, not speckle and flat discs (all three).
+- Vegetation, rubbish read at range and opaque shallows (all three, long-standing).
+
+**Bugs reported:**
+- The jar tipped over the edge of the counter (s11; all three); the floating navy board and mirror plates on the truck (t2; two).
+- Pale bands or caps on the boulders (b1, b3; one); the pendant lamp clipping the top of the frame (s7; one); the WASH sign through the table corner (s2; one); the glass on the sand reading as a flat glowing decal (b2; one); the flat box-cut sea stack (b5, 02; one).
+- Small dark V marks on the dunes (b7, b2; one); the grime layer offset from the glass so a green rim shows (05; one); round suds patches as flat decals and outline-ring bubbles like UI circles (05, 05b; two); no contact shadow under the held piece (06; one); the towel and stick lifted off the sand (b9; one); a bottle through the driftwood log (b9; one); a mat above the sand beside the studio (b4; one).
