@@ -16,6 +16,7 @@ Shader "Sea Glass/Soft Feedback"
  struct V {float4 p:SV_POSITION;float2 uv:TEXCOORD0;half4 color:COLOR;};
  V vert(A i){V o;o.p=TransformObjectToHClip(i.p.xyz);o.uv=i.uv;o.color=i.color;return o;}
  float2 Hash2(float2 p){p=float2(dot(p,float2(127.1,311.7)),dot(p,float2(269.5,183.3)));return frac(sin(p)*43758.5453);}
+ float VNoise(float2 p){float2 c=floor(p),f=frac(p);f=f*f*(3-2*f);return lerp(lerp(Hash2(c).x,Hash2(c+float2(1,0)).x,f.x),lerp(Hash2(c+float2(0,1)).x,Hash2(c+float2(1,1)).x,f.x),f.y);}
  half4 frag(V i):SV_Target
  {
   float2 q=i.uv*2-1;
@@ -36,21 +37,21 @@ Shader "Sea Glass/Soft Feedback"
   half3 c=lerp(i.color.rgb*(1.1-distance*.2),lerp(i.color.rgb*1.15,half3(1,1,1),saturate(core*1.6+arms*.45)),_Glint);
   if(_Lace>.5)
   {
-   // Round 104 (review 100, all three: "stamped circle clumps", "cotton-ball spheres"): soap foam lying on water is a lacy raft: a
-   // network of white bubble walls, water showing through the cells between them, densest in the middle and breaking up into
-   // loose strands and islands at its ragged edge. Cell borders (the second-nearest minus the nearest point) draw the walls.
+   // Round 104 (review 100: "stamped circle clumps", "cotton-ball spheres"): soap foam lies on the water as a flat raft.
+   // Round 105 (review 101, all three: the rafts "a hexagon wire-mesh tile", "a white lattice that reads as netting"): the raft drew
+   // its bubble walls as a cell network, which is a regular net at any softness. It is now soft, irregular foam: a cloudy density
+   // (layered value noise) that is thick and creamy in the middle, thins into drifting wisps, holes and islands toward a ragged
+   // edge, and carries a fine, uneven speckle of tiny bubbles of mixed size, never in a pattern.
    float seed=frac(i.color.r*251.0+i.color.g*113.0)*6.2832;
-   float ang=atan2(q.y,q.x);
-   float edgeR=.8+.08*sin(ang*3+seed)+.05*sin(ang*5-seed*1.7);
-   float2 g=q*9+seed*2.3; float2 cell=floor(g); float2 f=frac(g); float f1=8,f2=8;
-   for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){float2 nb=float2(x,y);float d=length(nb+Hash2(cell+nb)-f);if(d<f1){f2=f1;f1=d;}else if(d<f2)f2=d;}
-   half wall=1-smoothstep(.04,.3,f2-f1);   // soft, thick walls: thin crisp ones drew a white net
-   half fill=1-smoothstep(.15,.6,f1);   // a little foam fills the middle of each cell too
-   half mask=1-smoothstep(edgeR*.25,edgeR,distance);
-   half lace=saturate(wall*(.45+mask*.4)+fill*mask*.5+mask*mask*.25);
-   half a2=lace*smoothstep(0,.35,mask)*smoothstep(.15,.6,mask+wall*.2);   // the edge breaks into strands
-   half3 col=lerp(half3(.88,.93,.95),half3(1,1,1),wall);
-   return half4(col*i.color.rgb,i.color.a*a2*.8);
+   float2 o=float2(seed*3.7,seed*1.9);
+   float n=VNoise(q*2.6+o)*.45+VNoise(q*5.9+o*1.3)*.33+VNoise(q*13+o*.7)*.22;
+   half radial=1-smoothstep(.1,.95,distance+(n-.5)*.7);
+   half dens=smoothstep(.5,.6,radial*.6+n*.7);   // a crisper, ragged edge with holes (a soft one read as a white smudge)
+   half spk=smoothstep(.62,.72,VNoise(q*34+o*2.1))*smoothstep(.05,.4,radial)*(1-dens);   // tiny bubbles drifting off the edge
+   half pore=smoothstep(.6,.75,VNoise(q*22+o*3.3))*dens;   // open pores in the foam, a touch darker
+   half3 col=lerp(half3(.84,.9,.93),half3(.99,1,1),saturate(dens*.85+spk))*(1-pore*.16);
+   half a2=saturate(dens*(.9-pore*.35)+spk*.7);
+   return half4(col*i.color.rgb,i.color.a*a2*.85);
   }
   if(_Ring>.5)
   {
@@ -82,7 +83,7 @@ Shader "Sea Glass/Soft Feedback"
    half3 col=half3(.97,.98,.99)*micro*shade;
    half alpha=body*.92;
    // A few larger bubbles on the mass: thin bright rims with a soap-film tint and a highlight.
-   for(int k=0;k<1;k++)   // round 104: one bubble, three made each mass a cluster of circles
+   for(int k=0;k<0;k++)   // round 105: none (review 101: "plain white sphere bubbles"); round 104: one, three made each mass a cluster of circles
    {
     float2 bc=float2(sin(seed*1.7+k*2.1),cos(seed*1.3+k*2.7))*.34; float r=.13+.08*frac(seed*3.1+k*.37);
     float2 o=q-bc; float d=length(o)/r;
