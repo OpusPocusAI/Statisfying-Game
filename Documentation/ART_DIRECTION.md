@@ -4619,3 +4619,46 @@ The reviewers viewed 35-39 references each, in the store viewer or as the store'
 **Bugs reported:**
 - The jar over the table edge (s11; three); the hanging-pot cord into a pot on the shelf (s7; three); a bush floating at the s3 edge (two); floating mirrors and board (t2; three); a shadow on the sand with no caster (b2, b4; two).
 - The sieve handle through the basin rim (s11, 04, 05; one); a pale slab between the deck and the road (s9, s4; one); overlapping clouds (b5; one); an orange stick by the towel (b9; one); the mosaic label cut off by a plant (s2; one).
+
+### November 11 — round 106 and review 103 (three reviewers, averaged)
+
+Round 106 (Feedback.cs, StudioStation.cs, MosaicPanel.cs):
+- **The clean piece in the palm catches the light:** every moment or two a small flash in its own colour runs over its top face, a few larger among many small, set a little in front of the glass so it does not hide them. Nothing moved in 06 before.
+- **A finished mosaic fills its light with motes:** once a panel lights, soft motes in the colours of its pieces drift slowly up in front of the glass and down through its beam toward the floor for about fourteen seconds, as dust does in light through a coloured window. A first pass at mote sizes for a hand-held scale was invisible from across the room, so they are larger.
+- In 06 a few coloured glints sit on the piece; in 08 coloured motes float before all three panels. The motes are round soft dots and could read as bubbles.
+
+The reviewers viewed 38-43 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 102 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The palm glints read (two):** "the star sparkles in 05b and 06 work" (B), "star glints work (05b, 06)" (C); nobody says 06 is static now.
+- **The motes split the reviewers:** "the 08 motes work" (A), but "plain round dots that read like default particles" (B), "uniform round dots that read close to default sprite particles" (C). Effects hold at 3.0.
+- **The foam is the weak point again (all three):** "flat stamped white blotches with noisy edges" (A), "hard-edged splats" (B), "flat stippled decals with no volume" (C), with no spray or runoff; cleaning fell back to 3.3 on it (two 3s), and two read the cloudy 04 grime as wood grain.
+- **Tools fell to 3.0 again (unanimous), with no change:** the spade as a flat or faceted paddle (A, B) and the brush hand's lumpy yellow-striped glove not matching the navy one (C). Sea glass slipped to 3.3 (the 05b jelly piece, all three).
+- Sand and the truck returned to 4.0 (unanimous).
+- **Seven areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, truck.
+
+**Next:**
+- The foam's body: soft, layered, with some volume, not a flat decal (all three).
+- Tools: the spade's paddle blade and the mismatched brush glove (all three, across reviews 101 and 103).
+- The 05b hero piece (all three); the 04 grime as wood grain (two); the motes as shaped light, not round dots (two).
+
+**Bugs reported:**
+- The sieve handle through the basin rim (s11, 04, 05; two); a seam line at the road shoulder (b7; two) and a purple strip along the road edge (t1; two); the EQUIPMENT sign through the bookshelf (s4, 09; two); the jar over the table edge (s11; two).
+- The tap behind the basin (s11, 04; one); floating mirrors and board, no windscreen (t2; one); a bag through the bench (b9; one); the hard water-sand cut in 02 (one); pale bands on the boulders (b1, b3, b9; one); flat box-cut rock tops (b5, b9, 02; one); the hard clean/grime edge on the half-clean piece (05; one); suds cutting the glass silhouette (05; one).
