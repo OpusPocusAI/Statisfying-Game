@@ -177,7 +177,7 @@ namespace SeaGlass
                 workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
                 // Round 98 (review 94, all three: "no splashes, drips or runoff"): water runs off the lifted piece and drips from its lower edge.
                 if(kind==StationKind.Clean&&glassRenderer&&lift>.2f&&Time.time>=nextDrip){nextDrip=Time.time+.035f;var gb=glassRenderer.bounds;var e=Random.insideUnitCircle.normalized*.85f;
-                    Feedback.Instance.Drip(new Vector3(gb.center.x+e.x*gb.extents.x,gb.min.y+.004f,gb.center.z+e.y*gb.extents.z));}
+                    Feedback.Instance.Drip(new Vector3(gb.center.x+e.x*gb.extents.x,gb.min.y+.004f,gb.center.z+e.y*gb.extents.z),waterSurface?waterSurface.bounds.center.y:gb.min.y-.03f);}
                 if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.12f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));/* round 66 (review 62: "uniform opaque cyan, jelly"): a faint glow; the glints carry the moment */glassRenderer.SetPropertyBlock(block);}
                 if(reveal<=0)SelectNext();
                 return;

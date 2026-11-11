@@ -46,6 +46,28 @@ namespace SeaGlass
             // sparkles could pick the same pooled system a moment later and carry the glints off with it.
             revealGlints=Emitter("Reveal glints",1.2f,.2f,.035f,.075f,-.05f,80,.05f);
             {var main=revealGlints.main;var size=revealGlints.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.4f),new Keyframe(.15f,1),new Keyframe(1,0)));var drag=revealGlints.limitVelocityOverLifetime;drag.enabled=true;drag.drag=2.5f;if(sparkle)revealGlints.GetComponent<ParticleSystemRenderer>().sharedMaterial=sparkle;}
+            // Round 104 (review 100, all three: the suds "stamped circle clumps", "cotton-ball spheres"; no splashes or drips seen): soap
+            // foam on water is a flat, lacy raft, a network of fine bubble walls with the water showing through between them, lying on
+            // the surface; and a falling drop shows in a still by the ring it spreads on the water. Both lie flat on the water.
+            film=Flat("Foam film",3.8f,160,"_Lace",new AnimationCurve(new Keyframe(0,.8f),new Keyframe(.3f,1),new Keyframe(1,1.05f)));
+            rings=Flat("Drip rings",.9f,120,"_Ring",new AnimationCurve(new Keyframe(0,.45f),new Keyframe(1,1)));
+        }
+        ParticleSystem film,rings;
+        // A system whose particles lie flat on the water (world-aligned quads turned to face up), drawn with one Soft Feedback mode.
+        ParticleSystem Flat(string name,float life,int max,string mode,AnimationCurve grow)
+        {
+            var ps=Emitter(name,life,0,.1f,.2f,0,max,.01f);var main=ps.main;main.startRotation3D=true;
+            var size=ps.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,grow);
+            var r=ps.GetComponent<ParticleSystemRenderer>();r.alignment=ParticleSystemRenderSpace.World;
+            if(particleMaterial){var m=new Material(particleMaterial){name=name};m.SetFloat(mode,1);m.renderQueue=3090;r.sharedMaterial=m;}
+            return ps;
+        }
+        static Vector3 FlatTurn()=>new Vector3(90*Mathf.Deg2Rad,Random.Range(0f,Mathf.PI*2),0);
+        // A ring spreading on the water where a drop lands.
+        public void Ripple(Vector3 at,float size)
+        {
+            if(!rings)return;var p=new ParticleSystem.EmitParams();p.position=at;p.velocity=Vector3.zero;p.rotation3D=FlatTurn()*Mathf.Rad2Deg;
+            p.startSize=size*Random.Range(.85f,1.15f);p.startLifetime=Random.Range(.7f,1f);p.startColor=Color.white;rings.Emit(p,1);
         }
         ParticleSystem foam,dust,splash,revealGlints,drips;float nextDust;Material sparkle,suds,drop;
         // Soft, shaped particles (the Soft Feedback disc), shrinking and fading out over their life.
@@ -71,10 +93,12 @@ namespace SeaGlass
             // Round 97 (review 93, all three: the suds "popcorn clusters", "clumped white blobs", "white dots"): six small opaque particles
             // a clump read as separate white spots at basin scale. Now two large, part-transparent masses a call, overlapping their
             // neighbours, so the suds build into one soft heap of foam around the brush instead of a scatter of popcorn.
-            for(int i=0;i<2;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.012f+Random.Range(0f,.01f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.13f,.2f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);foam.Emit(p,1);}
+            // Round 104: one smaller mass a call (heaps of large masses read as cotton balls); the raft of lace below carries the foam.
+            for(int i=0;i<1;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.01f+Random.Range(0f,.006f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.08f,.13f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);foam.Emit(p,1);}
             // Round 96 (review 92: "no foam or film on the water"): a broad, faint patch of foam spreading on the water around the brush,
             // so the suds sit in a soapy film. Round 97: every call, a little denser (it went unnoticed).
-            {p=new ParticleSystem.EmitParams();p.position=at+new Vector3(Random.Range(-spread,spread)*2f,.006f,Random.Range(-spread,spread)*1.4f);p.velocity=new Vector3(Random.Range(-.03f,.03f),0,Random.Range(-.03f,.03f));p.startSize=Random.Range(.24f,.36f);p.startLifetime=Random.Range(3f,4.2f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.42f);foam.Emit(p,1);}
+            // Round 104: the film is a flat raft of lace on the water (it was a faint upright disc).
+            if(film){p=new ParticleSystem.EmitParams();p.position=at+new Vector3(Random.Range(-spread,spread)*2.4f,.004f,Random.Range(-spread,spread)*1.8f);p.velocity=new Vector3(Random.Range(-.04f,.04f),0,Random.Range(-.04f,.04f));p.startSize=Random.Range(.16f,.26f);p.startLifetime=Random.Range(3f,4.4f);p.rotation3D=FlatTurn()*Mathf.Rad2Deg;p.startColor=SudsTint(.9f);film.Emit(p,1);}
             // Round 13: a low, short-lived splash. Round 32 (reviews: "no splashes or drips"): flicked droplets, so the scrub reads in a
             // still. Round 96: on the splash emitter (clear drops under real gravity); on the foam emitter they drew as foam.
             if(splash&&Random.value<.75f){splash.transform.position=at;p=new ParticleSystem.EmitParams();for(int d=0;d<3;d++){p.position=at+Vector3.up*.025f;p.velocity=new Vector3(Random.Range(-.45f,.45f),Random.Range(.5f,.85f),Random.Range(-.3f,.3f));p.startSize=Random.Range(.022f,.04f);p.startLifetime=Random.Range(.32f,.5f);p.startColor=Color.white;splash.Emit(p,1);}}
@@ -102,16 +126,20 @@ namespace SeaGlass
                 if(cam)p.position+=(cam.transform.position-p.position).normalized*.12f;
                 p.velocity=new Vector3(o.x,0,o.y).normalized*Random.Range(.02f,.1f)+Vector3.up*Random.Range(.03f,.12f);
                 bool big=i<5;p.startSize=big?Random.Range(.14f,.2f):Random.Range(.035f,.065f);p.rotation=Random.Range(-25f,25f);p.startLifetime=Random.Range(.8f,1.3f);p.startColor=Color.Lerp(colour,Color.white,Random.Range(.2f,.5f))*1.3f;ring.Emit(p,1);}
-            p.position=at+Vector3.up*.03f;p.velocity=Vector3.up*.08f;p.startSize=.18f;p.rotation=12;p.startLifetime=.8f;p.startColor=Color.Lerp(colour,Color.white,.7f)*1.6f;ring.Emit(p,1);
+            // Round 104: the water the piece leaves rings outward around it.
+            for(int i=0;i<3;i++)Ripple(new Vector3(at.x,at.y-.035f,at.z),radius*(1.6f+i*.7f));
+            p=new ParticleSystem.EmitParams();p.position=at+Vector3.up*.03f;p.velocity=Vector3.up*.08f;p.startSize=.18f;p.rotation=12;p.startLifetime=.8f;p.startColor=Color.Lerp(colour,Color.white,.7f)*1.6f;ring.Emit(p,1);
             // A crown of water thrown up as the piece lifts: larger, higher-contrast drops (they went unseen).
             if(splash)for(int i=0;i<18;i++){float a=i/18f*Mathf.PI*2+Random.Range(-.1f,.1f);var o=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));p=new ParticleSystem.EmitParams();p.position=at+o*radius*.8f;p.velocity=o*Random.Range(.2f,.4f)+Vector3.up*Random.Range(.6f,.95f);p.startSize=Random.Range(.03f,.05f);p.startLifetime=Random.Range(.5f,.7f);p.startColor=Color.white;splash.Emit(p,1);}
         }
         // Round 98 (review 94, all three: "no splashes, drips or runoff"): water dripping off the lifted piece's lower edge, falling
         // slowly enough to hang in a still as a string of drops between the glass and the water.
-        public void Drip(Vector3 at)
+        public void Drip(Vector3 at,float waterY)
         {
             if(!drips)return;drips.transform.position=at;var p=new ParticleSystem.EmitParams();p.position=at;p.velocity=new Vector3(Random.Range(-.02f,.02f),Random.Range(-.15f,-.05f),Random.Range(-.02f,.02f));
-            p.startSize=Random.Range(.024f,.04f);p.startLifetime=Random.Range(.45f,.7f);p.startColor=Color.white;drips.Emit(p,1);
+            // Round 104: each drop lands on the water as a spreading ring, the part of a drip that reads in a still.
+            if(Random.value<.5f)Ripple(new Vector3(at.x,waterY+.003f,at.z),Random.Range(.07f,.12f));
+            p.startSize=Random.Range(.03f,.05f);p.startLifetime=Random.Range(.45f,.7f);p.startColor=Color.white;drips.Emit(p,1);
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)
