@@ -4534,3 +4534,46 @@ The reviewers viewed 39-41 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The jar over the table edge (s11; three); a shadow on the sand with no caster (b4; two); a dark teal notch in the sorting bench front (06, s10; two); pale hard-edged boulder bands (b1, b3, b6; two); floating mirrors (t2; one).
 - The brush hovering off the piece (04, 05; one); hard rectangular floor-light patches over the rugs (08; one); flat-topped rock (b5, b9; one); boxy foam collars on the sea stacks (b8; one); stamped circle tiling in the suds (05, 05b; one); the driftwood's disconnected branches (b9; one); a bush floating outside the wall (s3; one); Aqua tray pieces over the rim (s10, 06; one); a white ring on the sand (b2; one); a windowless flat backdrop (s7; one); an oversized spade shadow (02; one).
+
+### November 11 — round 104 and review 101 (three reviewers, averaged)
+
+Round 104 (Soft Feedback, Feedback.cs, StudioStation.cs):
+- **The foam is now a flat, lacy raft on the water:** a network of soft white bubble walls with the water showing through the cells, densest in the middle and breaking into strands at a ragged edge, on particles that lie flat on the surface (the faint upright film disc and two large masses a call before). Upright masses are fewer (one a call) and smaller, shaded flatter, with one bubble instead of three and fainter cells, since the sphere shading and ringed bubbles read as cotton balls and stamped circles.
+- **Drips show as rings on the water:** about half the drops falling from the lifted piece spread a ring where they land (a bright crest with a darker trough inside it, slightly wobbly), and the lift itself sends three rings out around the piece. The drops are a little larger.
+- In 05 the brushing leaves lace rafts around the piece; in 05b a ring and drop rings show beside it. The rafts' cells can still read a little regular up close.
+
+The reviewers viewed 40-41 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 100 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.12 Tools | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The ripple rings work (all three):** "the sparkle stars and ring ripple are nice" (A), "the sparkle stars and ring in 05b read well" (B), "the star sparkles and ripple ring in 05b read" (C).
+- **The lace foam failed (all three):** "a hexagon wire-mesh tile" (A), "a repeated hexagon-net stamp" (B), "a white lattice that reads as netting, not foam" (C); B also names plain white sphere bubbles in 05b. The cell walls drew a regular net, not foam. Effects hold at 3.0; cleaning fell to 3.3 with it (two 3s; the 04 grime also reads as wood grain to two).
+- **Tools fell to 3.0 (unanimous):** the flat paddle spade, the block-and-loop brush "an assembly" (A), and the brush hand's yellow-striped knit glove not matching the navy glove of 02 and 06 (B). Nothing changed in the tools.
+- Sea glass fell to 3.0 (unanimous): the 05b and 06 pieces read as jelly, candy, mint sweet or soap; C adds the cloudy 04 piece as "marbled stone or wood-grain". Props rose to 3.3 (one 4: layered island canopies); sand slipped to 3.7 (one 3).
+- C scored lower than A and B on five areas that did not change (sand, props, studio, truck, cleaning), so part of the drop is reviewer spread.
+- **Four areas meet the bar:** lighting, water, sorting, mosaic.
+
+**Next:**
+- The foam: keep the rafts flat on the water, but soft and irregular, not a cell net (all three).
+- The hero glass reading as jelly or soap (all three); tools: the spade, the brush form and the mismatched glove (all three).
+- The 04 grime reading as wood grain (two); rubbish and vegetation (all three).
+
+**Bugs reported:**
+- The foam as a tiled hexagon mesh (05, 05b; three); the jar over the table edge (s11; three); a bush floating at the s3 roof edge (two); hard floor-light patches over the rugs (08; two); the bottle in the driftwood (b9; one).
+- The glove changing material between frames (04, 05 against 02, 06; one); plain sphere bubbles (05b; one); the grime outline not matching the glass (05; one); the cloudy piece with no submersion cue (04; one); a seam line at the road shoulder (b7, t1; one); floating mirrors (t2; one) and an unattached board behind the seat (t2; one); an orange bar under the towel (b9; one); a pale band on the waterline boulders (b1; one); flat green caps on the sea stacks (b4; one); the self-lit hanging pot (s7; one).
