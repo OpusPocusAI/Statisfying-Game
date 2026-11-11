@@ -4492,3 +4492,45 @@ The reviewers viewed 36-38 references each, in the store viewer or as the store'
 **Bugs reported:**
 - The jar over the table edge (s11; three); the bottle in the driftwood (b9; three); a shadow on the sand with no caster (b4; two); hard-edged floor patches in 08 (two).
 - Stepped bands on the half-clean piece's edge (05; one); the 05b side band (one); floating mirrors (t2; one) and an unsupported board behind the seat (t2; one); a flat-topped box rock in the water (b5, b9, 02; one); pale hard-edged boulder bands (b1, b3; one); the deck unsupported over the sand (s6; one); a self-lit pot with the hanging cord running into it (s7; one); floating wall diamonds and a flat plane beyond the open side (s3; one).
+
+### November 11 — round 103 and review 100 (three reviewers, averaged)
+
+Round 103 (Frosted Glass, the basin edge wall):
+- **Round 102 carried the face's colour over the edge,** which removed the dark band but lit the whole wall as a pale, wide strip that read as an extruded side.
+- **The wall is now a deeper, slightly darker hue of the face** (the colour still continues from the face, so no seam), as the edge of a pane of coloured glass is, **and it is held to a narrow strip at the very rim** (the blend falls off as (1 - face)^3, was ^1.7).
+- **The bright lip where the face turns over is finer** and sits nearer the face.
+- In 05b the wall shows as a thin deeper-teal line along the near edges; the lifted, tilted piece still shows some of its underside.
+
+The reviewers viewed 39-41 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 99 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The edge band is no longer named as an extruded side,** but the 05b hero still reads as "gummy or soap" (A), "a gummy or soap bar with a bright band" (B), "a thick, soft jelly puck with blobby edges" (C). Sea glass holds at 3.3 (two 3s). Two now call the palm piece thick or pillowy ("a thick, pillowy block" A, "a chunky gummy-like block" C); B reads it as a shard. Three rounds of edge and thickness work at the basin have not moved the jelly reading.
+- **Sand returned to 4.0 (unanimous), unchanged in the game,** which confirms review 99's drop was reviewer variance; the plain b1 foreground is still named by all three.
+- The studio (one 3: bare floor, no window light shapes) and the truck (one 3: lumpy hood, plain wheels) slipped to 3.7; tools returned to 4.0 (unanimous).
+- **Six areas meet the bar:** lighting, water, sand, sorting, mosaic, tools.
+
+**Next:**
+- The hero glass: the jelly read at the basin and the thick palm block (all three).
+- Suds as stamped circle clumps, with no splashes or drips (all three); vegetation and rubbish (all three).
+- Hard-edged floor light in 08 (two); window light on the studio floor (two); the truck's flat panels and plain wheels (three).
+
+**Bugs reported:**
+- The jar over the table edge (s11; three); a shadow on the sand with no caster (b4; two); a dark teal notch in the sorting bench front (06, s10; two); pale hard-edged boulder bands (b1, b3, b6; two); floating mirrors (t2; one).
+- The brush hovering off the piece (04, 05; one); hard rectangular floor-light patches over the rugs (08; one); flat-topped rock (b5, b9; one); boxy foam collars on the sea stacks (b8; one); stamped circle tiling in the suds (05, 05b; one); the driftwood's disconnected branches (b9; one); a bush floating outside the wall (s3; one); Aqua tray pieces over the rim (s10, 06; one); a white ring on the sand (b2; one); a windowless flat backdrop (s7; one); an oversized spade shadow (02; one).
