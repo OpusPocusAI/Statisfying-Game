@@ -4577,3 +4577,45 @@ The reviewers viewed 40-41 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The foam as a tiled hexagon mesh (05, 05b; three); the jar over the table edge (s11; three); a bush floating at the s3 roof edge (two); hard floor-light patches over the rugs (08; two); the bottle in the driftwood (b9; one).
 - The glove changing material between frames (04, 05 against 02, 06; one); plain sphere bubbles (05b; one); the grime outline not matching the glass (05; one); the cloudy piece with no submersion cue (04; one); a seam line at the road shoulder (b7, t1; one); floating mirrors (t2; one) and an unattached board behind the seat (t2; one); an orange bar under the towel (b9; one); a pale band on the waterline boulders (b1; one); flat green caps on the sea stacks (b4; one); the self-lit hanging pot (s7; one).
+
+### November 11 — round 105 and review 102 (three reviewers, averaged)
+
+Round 105 (Soft Feedback, the foam raft and the suds):
+- **The raft drew its bubble walls as a cell network,** which reads as a regular net however soft the walls are.
+- **It is now irregular foam built from layered noise:** dense and creamy in the middle, breaking toward a ragged edge into holes, islands and wisps, with open pores a touch darker inside it and a fine scatter of tiny flecks of foam drifting off its edge, never in a pattern. A first pass with soft edges read as white smudges, so the edge is crisper.
+- **The upright suds masses lose their last ringed bubble** (review 101: "plain white sphere bubbles").
+- In 05 and 05b the foam lies around the piece as ragged, porous patches of suds; the ripple rings are unchanged.
+
+The reviewers viewed 35-39 references each, in the store viewer or as the store's screenshots opened in their own tab (the shared pane kept hiding their tabs).
+
+| Area | A | B | C | Average | Review 101 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Nobody sees a net any more:** the foam is "decent" clumps (B), but still "noisy white decal splotches lying flat on the water, not shaped foam" (A) and "flat decals" (C). Cleaning returned to 4.0 (unanimous; "grime coming off in strokes and the sparkle done moment"). Effects hold at 3.0: generic four-point stars (B, C) and nothing in 06 or 08 (all three).
+- Tools returned to 4.0 (unanimous) and sea glass to 3.7 (two 4s; the palm piece "good" to A), with no change to either: review 101's drops were reviewer spread. The 05b piece still reads gummy or jelly to all three.
+- The studio returned to 4.0 (unanimous); props slipped to 3.0.
+- **Seven areas meet the bar:** lighting, water, cleaning, sorting, mosaic, studio, tools.
+
+**Next:**
+- Effects: feedback at the clean-piece (06) and mosaic (08) moments, and sparkles less like stock stars (all three); the foam with more body than a flat decal (two).
+- The hero glass reading as gummy (all three); vegetation and rubbish (all three).
+- See-through shallows (two); the truck's boxy, faceted body (two).
+
+**Bugs reported:**
+- The jar over the table edge (s11; three); the hanging-pot cord into a pot on the shelf (s7; three); a bush floating at the s3 edge (two); floating mirrors and board (t2; three); a shadow on the sand with no caster (b2, b4; two).
+- The sieve handle through the basin rim (s11, 04, 05; one); a pale slab between the deck and the road (s9, s4; one); overlapping clouds (b5; one); an orange stick by the towel (b9; one); the mosaic label cut off by a plant (s2; one).
