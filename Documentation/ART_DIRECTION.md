@@ -4706,3 +4706,46 @@ The reviewers viewed 32-53 references each, as the store's screenshots opened in
 - The jar tipped over the edge of the counter (s11; all three); the floating navy board and mirror plates on the truck (t2; two).
 - Pale bands or caps on the boulders (b1, b3; one); the pendant lamp clipping the top of the frame (s7; one); the WASH sign through the table corner (s2; one); the glass on the sand reading as a flat glowing decal (b2; one); the flat box-cut sea stack (b5, 02; one).
 - Small dark V marks on the dunes (b7, b2; one); the grime layer offset from the glass so a green rim shows (05; one); round suds patches as flat decals and outline-ring bubbles like UI circles (05, 05b; two); no contact shadow under the held piece (06; one); the towel and stick lifted off the sand (b9; one); a bottle through the driftwood log (b9; one); a mat above the sand beside the studio (b4; one).
+
+### November 11 — round 108 and review 105 (three reviewers, averaged)
+
+Round 108 (round108.py, glass_basin_0..5; StudioStation.cs; FrostedGlass.shader):
+- **The hero piece is a thin plate:** the hero shards were domed slabs, about 19% of their width thick, whose faces carried bumps up to half their thickness and rolled over a broad bevel, so they read as pillows. They are rebuilt as plates of bottle wall, about 10% of the width thick at the thick edge and 4% at the thin one. The faces are flat apart from the bottle-wall bend, and they turn over a narrow rounded rim about as wide as the glass is thick. The outline, chips and wedge are unchanged.
+- **The palm holds the same plate:** the piece held up at the trays used the thicker tray pebble (about 30% of its width thick); it now shows the same thin hero plate as the basin.
+- **The colour still grades as a wedge:** the shader measures the thinner glass so the palm keeps its colour. At the basin the plate reads a little thinner, so its thin side is clear glass over the pale enamel and only the thick edge is a deep green.
+- In 05b the piece is a flat plate with a narrow rim, deep green at one edge and clear at the other; in 06 a thin flat chip lies in the palm.
+
+The reviewers viewed 37-41 references each, mostly as the store's full-size screenshots opened in their own tab (some as trailer or highlight frames where the viewer would not open).
+
+| Area | A | B | C | Average | Review 104 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.0 |
+| 5.7 Cleaning | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The palm piece passes as glass (two):** "the 06 palm piece [is] glossy, saturated, worn shards and read as glass" (C); the palm pose in 06 works and the shards "clearly read as glass" (A). Nobody calls the palm piece jelly or a pillow now.
+- **Sea glass rose to 3.7 (two 4s):** but the 05b hero piece still reads as gummy, now on its colour rather than its thickness (all three): it "shifts from green to yellow and looks like a gummy sweet" (A), "green-yellow jelly or gummy candy" (B), "a green-to-yellow gradient that reads as gummy candy" (C). B calls the yellow half "a lighting or tint error rather than thin-edge clarity"; C also wants a straight broken edge on its "wavy, blobby outline". Nobody calls it thick.
+- **Studio and truck returned to 4.0 (unanimous), with no change.**
+- The 04 grime as wood grain (all three) and the suds as dithered noise (all three) are unchanged; cleaning and effects hold.
+- **Eight areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, truck, tools.
+
+**Next:**
+- The 05b clear side: the thin edge shows the pale cream enamel, which reads as yellow; it should stay a light, clear version of the glass's own hue (all three). A straight broken edge on the hero outline (one).
+- The 04 grime as a frosted, dusty film, not wood grain (all three); the basin suds as soft shaped foam, not dithered noise (all three).
+- Vegetation, rubbish read at range, and the shallows (all three, long-standing).
+
+**Bugs reported:**
+- The navy board and detached mirrors on the truck (t2; two); a bottle through the driftwood log (b9; two); hard, dithered sud edges and plain sphere bubbles (05, 05b; two).
+- Floating flower heads with no stems (t1, 03; one); an unexplained shadow on the sand (b4; one); the bag through the bench legs and a loose orange piece by the towel (b9; one); a cobalt piece over the tray rim (07; one); near-plane-cut jars and painted-looking glass in a jar (s5; one); the 05b yellow half as a tint error (one); the basin frames washed out beside s11 (04, 05, 05b; one); the glove looking grey and knit at the basin (04, 05; one); the jar off the table edge (s11; one); the hanging-planter cord into a standing pot (s7; one); the basin tap reading as a coat stand (s11, 04; one).
