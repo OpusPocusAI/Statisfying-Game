@@ -290,8 +290,14 @@ Shader "Sea Glass/Frosted Glass"
                             float2 cw = bp * 14 + float2(_Time.y * .22, -_Time.y * .16);
                             float ca = abs(sin(cw.x + sin(cw.y * 1.3 + _Time.y * .4) * 1.4) * sin(cw.y + sin(cw.x * 1.1 - _Time.y * .3) * 1.4));
                             seenB += pow(1 - ca, 8) * half3(1, .97, .86) * .55 * step(.001, _SG_Basin.w);
-                            half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .15), hue * hue * .9 + hue * .1, tB);
-                            g = seenB * filtB * lerp(1.12, .78, tB);
+                            // Round 109 (review 105, all three: the 05b piece "shifts from green to yellow", "green-yellow jelly", "a
+                            // green-to-yellow gradient that reads as gummy candy"; B: "a lighting or tint error"): the thin side showed the warm
+                            // cream enamel through an almost white filter, so beside the water (which tints the same floor teal) it read yellow.
+                            // Seen through the glass the floor keeps its light and dark but loses its warmth, and the thin side carries a light
+                            // wash of the glass's own hue, so the plate grades from clear pale glass to deep glass in one colour.
+                            seenB = lerp(seenB, dot(seenB, half3(.3, .55, .15)).xxx, .65);
+                            half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .42), hue * hue * .9 + hue * .1, tB);
+                            g = seenB * filtB * lerp(1.2, .78, tB);
                             g += tint * (sky * .05 + sun.color * .04) * tB;
                             seenH = seenB;
                         }
