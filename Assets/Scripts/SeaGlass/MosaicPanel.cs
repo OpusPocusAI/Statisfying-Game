@@ -8,7 +8,16 @@ namespace SeaGlass
         public int index; public MosaicSocket[] sockets; public Light glow; public Renderer backing;
         public float Illumination {get;private set;}
         public bool IsRevealing {get;private set;}
-        CoastalPlayer presentationPlayer;Quaternion entryView;bool emphasizing;
+        CoastalPlayer presentationPlayer;Quaternion entryView;bool emphasizing;float motesUntil,nextMote;
+        // Round 106 (review 102, all three: no response in 08): once a panel lights, motes of its colours drift slowly in its light, in
+        // front of the glass and down through the beam toward the floor, for a while after it completes.
+        void Update()
+        {
+            if(Time.time>=motesUntil||Time.time<nextMote||sockets==null||sockets.Length==0||!S)return;nextMote=Time.time+.015f;
+            var slot=sockets[Random.Range(0,sockets.Length)];if(!slot)return;var col=GameCatalog.Palette[(int)S.catalog.glass.First(x=>x.id==slot.glassId).color];
+            float out_=Random.Range(.12f,2.6f);
+            Feedback.Instance.Mote(slot.transform.position-transform.forward*out_+Vector3.down*out_*Random.Range(.3f,.75f)+Random.insideUnitSphere*.35f,col);
+        }
         GameSession S=>GameSession.Instance;
         public override string Prompt=>"E · fit a sorted piece into "+S.catalog.panelNames[index]+" ("+sockets.Count(x=>S.progress.Item(x.glassId).stage==ItemStage.Placed)+" / 10)";
         public override void Interact()
@@ -63,7 +72,7 @@ namespace SeaGlass
             S.Notify(S.catalog.panelNames[index]+" complete. Let the light come through.");
             // The snap lands first. A short breath separates placement from the harmonic/light resolution.
             for(float t=0;t<.45f;t+=Time.deltaTime){if(emphasizing)player.view.transform.rotation=Quaternion.Slerp(from,to,Mathf.SmoothStep(0,1,t/.45f));yield return null;}
-            Feedback.Instance.Play("complete");
+            Feedback.Instance.Play("complete");motesUntil=Time.time+14;
             for(float t=0;t<1.9f;t+=Time.deltaTime){SetIllumination(Mathf.SmoothStep(0,1,t/1.9f));yield return null;}
             SetIllumination(1);yield return new WaitForSeconds(.2f);
             for(float t=0;t<.2f;t+=Time.deltaTime){if(emphasizing)player.view.transform.rotation=Quaternion.Slerp(to,from,Mathf.SmoothStep(0,1,t/.2f));yield return null;}

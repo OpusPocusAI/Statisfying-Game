@@ -50,9 +50,27 @@ namespace SeaGlass
             // foam on water is a flat, lacy raft, a network of fine bubble walls with the water showing through between them, lying on
             // the surface; and a falling drop shows in a still by the ring it spreads on the water. Both lie flat on the water.
             film=Flat("Foam film",3.8f,160,"_Lace",new AnimationCurve(new Keyframe(0,.8f),new Keyframe(.3f,1),new Keyframe(1,1.05f)));
+            motes=Emitter("Light motes",4f,0,.03f,.06f,0,600,.01f);
+            {var size=motes.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.2f),new Keyframe(.25f,1),new Keyframe(.8f,1),new Keyframe(1,0)));
+             var fade=motes.colorOverLifetime;var g=new Gradient();g.SetKeys(new[]{new GradientColorKey(Color.white,0),new GradientColorKey(Color.white,1)},new[]{new GradientAlphaKey(0,0),new GradientAlphaKey(1,.2f),new GradientAlphaKey(.9f,.75f),new GradientAlphaKey(0,1)});fade.color=g;
+             if(particleMaterial){var m=new Material(particleMaterial){name="Light motes"};m.renderQueue=3100;motes.GetComponent<ParticleSystemRenderer>().sharedMaterial=m;}}
             rings=Flat("Drip rings",.9f,120,"_Ring",new AnimationCurve(new Keyframe(0,.45f),new Keyframe(1,1)));
         }
-        ParticleSystem film,rings;
+        ParticleSystem film,rings,motes;
+        // Round 106 (review 102, all three: nothing happens in 06 or 08; "generic four-point stars"): a glint that runs across the clean
+        // piece in the palm, a short, soft flash of its colour, not a stock star; and slow motes of coloured light drifting in the
+        // light of a finished mosaic, as dust does in a coloured window's beam.
+        public void Twinkle(Vector3 at,Color colour,float size)
+        {
+            if(!revealGlints)return;var p=new ParticleSystem.EmitParams();p.position=at;p.velocity=Vector3.up*.004f;p.startSize=size;
+            p.rotation=Random.Range(-25f,25f);p.startLifetime=Random.Range(.35f,.6f);p.startColor=Color.Lerp(colour,Color.white,.55f)*1.2f;revealGlints.Emit(p,1);
+        }
+        public void Mote(Vector3 at,Color colour)
+        {
+            if(!motes)return;var p=new ParticleSystem.EmitParams();p.position=at;
+            p.velocity=new Vector3(Random.Range(-.03f,.03f),Random.Range(.02f,.07f),Random.Range(-.03f,.03f));p.startSize=Random.Range(.1f,.22f);   // seen from across the room (.025-.06 were specks)
+            p.startLifetime=Random.Range(2.5f,4f);var c=Color.Lerp(colour,Color.white,.45f)*1.15f;c.a=Random.Range(.6f,.95f);p.startColor=c;motes.Emit(p,1);
+        }
         // A system whose particles lie flat on the water (world-aligned quads turned to face up), drawn with one Soft Feedback mode.
         ParticleSystem Flat(string name,float life,int max,string mode,AnimationCurve grow)
         {

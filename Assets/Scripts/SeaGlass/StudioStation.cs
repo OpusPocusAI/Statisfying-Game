@@ -213,7 +213,18 @@ namespace SeaGlass
             if(kind!=StationKind.Sort||!heldPalm)return;
             bool on=active&&workingGlass&&workingGlass.gameObject.activeSelf&&S&&S.player;
             if(heldPalm.gameObject.activeSelf!=on)heldPalm.gameObject.SetActive(on);
-            if(on)HoldOnPalm();
+            if(on){HoldOnPalm();HeldTwinkle();}
+        }
+        float nextTwinkle;
+        // Round 106 (review 102, all three: nothing happens in 06): the clean piece catches the light in the palm: small flashes of its
+        // own colour run over its top face every moment or two, a little in front of it so the glass does not hide them.
+        void HeldTwinkle()
+        {
+            if(Time.time<nextTwinkle||!glassRenderer||string.IsNullOrEmpty(selectedId))return;nextTwinkle=Time.time+Random.Range(.05f,.1f);
+            var g=S.catalog.glass.FirstOrDefault(x=>x.id==selectedId);var col=g!=null?GameCatalog.Palette[(int)g.color]:Color.white;
+            var b=glassRenderer.bounds;var cam=S.player.view.transform;var o=Random.insideUnitCircle*.8f;
+            var at=b.center+new Vector3(o.x*b.extents.x,b.extents.y*.6f,o.y*b.extents.z);at+=(cam.position-at).normalized*.012f;
+            Feedback.Instance.Twinkle(at,col,Random.value<.35f?Random.Range(.03f,.045f):Random.Range(.012f,.022f));
         }
         void HoldOnPalm()
         {
