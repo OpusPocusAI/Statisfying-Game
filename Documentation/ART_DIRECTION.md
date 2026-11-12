@@ -4915,3 +4915,44 @@ The reviewers viewed 40-42 references each, mostly as the store's full-size scre
 **Bugs reported:**
 - The 08 floor light as a hard orange arrow-shaped decal (two); the jar off the table edge (s11; two); boulders with a pale band or cap (b1, b3; two); the board behind the truck seat and detached mirror shapes (t2; two).
 - The grime layer looking like a second offset shard (05; one); the sieve ring through the basin rim (s11, 04; one); a hard straight cut on a foreground rock (b6; one); a flat mat by the studio (b4; one) and a hard dark shadow from an off-screen object (b4; one); a pale rectangle over the road (s9; one); a bottle through the driftwood (b9; one); a foliage clump hanging in the air (s3; one); the hanging pot resting on the shelf and a pendant clipped at the frame edge (s7; two).
+
+### November 13 — round 113 and review 110 (three reviewers, averaged)
+
+Round 113 (SoftFeedback.shader, Feedback.cs):
+- **The suds are shaped foam, not a noise decal:** the flat foam raft carried pixel-sized pores and drifting specks and had no light and shade, so it read as a speckled, dithered stamp. It is now drawn as a stylised foam raft: a smooth, lobed outline with a few clean open holes, cel-shaded with a bright top and a cool shadow along its far side so it has thickness on the water, crisp anti-aliased edges, and a handful of separate round bubbles of different sizes breaking away from its rim, shaded the same way. The foam clumps on top lose their cell pattern and long soft falloff for a crisp lobed outline with a lit top and a shaded underside.
+- **The motes are flecks of light, not dots:** each mote at a finished mosaic is now a slender, tapering lozenge of coloured light with a white-hot core and a faint halo, its length varying per particle, turned at its own angle and slowly spinning; they are a little larger, since a slender fleck needs more length to read than a round dot.
+- In 05 and 05b the foam lies on the water as shaded rafts with bubbles breaking off; in 08 coloured slivers of light glint in front of the panels.
+
+The reviewers viewed 39-40 references each, as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 109 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The suds are no longer called noise, but now read as flat cut-outs (all three):** "flat white cut-out shapes with ring bubbles" (A), "a flat white decal splat, not PowerWash's volumetric spray" (B), "flat white sticker shapes with ring bubbles" (C). Nobody calls them speckled or dithered now; the cel shading did not read as volume, and the small bubbles read as rings. No drips are seen (two).
+- **The motes split:** nobody calls them round dots now; A counts the 08 sparkles as working, but B reads them as "noisy confetti" scattered "onto the plaster wall well outside the panels".
+- Effects hold at 3.0 (unanimous); sea glass and cleaning hold at 4.0 (unanimous), the hero piece now praised by all three (C: its pitting "a dotted decal").
+- **Eight areas meet the bar:** lighting, water, sea glass, cleaning, sorting, mosaic, truck, tools.
+
+**Next:**
+- The suds' volume: foam that stands up off the water (layered clumps that catch light and shade), not a flat sheet; drips or splashes that show in a still (all three).
+- The motes held to the light of the panels, not scattered over the wall (one).
+- Vegetation, rubbish read at range and the shallows foam (all three); studio clutter variety (two).
+
+**Bugs reported:**
+- The jar at the table edge (s11; two); a bottle through the driftwood (b9; two); the board and paddles behind the truck seat (t2; two).
+- A dark straight line across the sand by the road (b7; one); a pendant clipping the top of the frame (s7; one); hard even foam rings round the stacks (b6, b8; one); the floor light cut off at the rug edges (08; one); sparkles on the wall outside the panels (08; one); stray dark squiggles at the waterline (b6; one); parasol faceting (02; one); the cloudy piece with no waterline (04; one).
