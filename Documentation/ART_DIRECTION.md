@@ -4790,3 +4790,45 @@ The reviewers viewed 38-39 references each, mostly as the store's full-size scre
 **Bugs reported:**
 - A dark diagonal seam line in the sand at the road verge (b7; all three); a bottle through the driftwood log (b9; one) and the bag through the bench legs (b9; one).
 - Pale bands on the shore boulders (b1, b3, b6; one); the sieve handle through the basin rim (s11, 04; one); floating oval mirrors (t2; one); suds overlapping the glass edge flatly (05; one); the floor light as a painted decal (08; one); a very bright hanging pot (s7; one); the EQUIPMENT sign floating (s4; one); stretched floor grain (s5; one); the WASH & REVEAL sign mirrored (s2; one); the jar over the table edge (s11; one).
+
+### November 12 — round 110 and review 107 (three reviewers, averaged)
+
+Round 110 (round108.py, glass_basin_0..5):
+- **The hero plate has long straight broken edges:** its two broken edges bit only about a fifth of the radius, and the outline averaging and rim chips rounded them off, so the outline read as a rounded blob. The hero plate (the piece at the basin and in the palm) now has three straight broken edges, deep enough to run most of the way across it, meeting at blunt worn corners, with one rounded worn side. The outline is averaged over a narrower angle there, and no rim chips wobble a broken edge (on every hero plate).
+- In 05b the piece reads as a broken shard with three straight sides and one worn curve; in 06 the palm piece has the same angular outline.
+
+The reviewers viewed 38-54 references each, mostly as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 106 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The broken edges barely registered:** nobody calls the outline a blob now, but nobody names straight edges either; A says "few edges read as broken".
+- **The 05b piece is now judged on its even colour (all three):** "not lighter or clearer at the thin edge" (A), "uniformly saturated, like jelly or acrylic, with a weak rim line" (B), "one even mint colour, with no deeper hue where it is thick" (C). Sea glass fell to 3.0, unanimous.
+- **A dark spot in the middle of the hero piece (05b, 06; B):** the pinched pole of the sphere the plate is built from shows as a small dark mark.
+- **Cleaning passed at 4.0 (unanimous), with no change:** the basin, tap, brush and the sparkling done moment carry it, though all three still call the suds noisy decals.
+- **The truck returned to 4.0 (unanimous), with no change.**
+- **Nine areas meet the bar:** lighting, water, sand, cleaning, sorting, mosaic, studio, truck, tools.
+
+**Next:**
+- The hero piece's wedge: a visible deep hue where thick and a lighter, clearer thin edge in the same hue (all three); a brighter rim line (B); the dark centre spot (B).
+- The basin suds and the ending motes as shaped particles, not noise and dots (all three).
+- Vegetation, rubbish read at range and the see-through shallows (all three, long-standing).
+
+**Bugs reported:**
+- A dark spot in the centre of the hero piece (05b, 06; one); a hard diagonal seam in the sand at the road verge (b7; two); the mirrors on stalks floating (t2; two); floating objects on the wire rack and a glowing pot (s7; two); the 08 floor light as a hard painted shape over the rugs (two).
+- Dithered sud edges (05; one); the cloudy piece floating with no meniscus (04; one); the EQUIPMENT sign in the bookcase (s4; one); the glass on the sand as a flat bright disc (b2; one); a pendant lamp clipped by the camera (s7; one); a blurred table corner (s11; one); a plain sphere bubble (05b; one); near-plane-cut jars (s5; one); a bottle through the driftwood (b9; one); a stray dark rock (02; one); the sieve ring through the basin rim (04, s11; one).
