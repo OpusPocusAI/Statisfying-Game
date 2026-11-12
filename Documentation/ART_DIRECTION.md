@@ -4832,3 +4832,44 @@ The reviewers viewed 38-54 references each, mostly as the store's full-size scre
 **Bugs reported:**
 - A dark spot in the centre of the hero piece (05b, 06; one); a hard diagonal seam in the sand at the road verge (b7; two); the mirrors on stalks floating (t2; two); floating objects on the wire rack and a glowing pot (s7; two); the 08 floor light as a hard painted shape over the rugs (two).
 - Dithered sud edges (05; one); the cloudy piece floating with no meniscus (04; one); the EQUIPMENT sign in the bookcase (s4; one); the glass on the sand as a flat bright disc (b2; one); a pendant lamp clipped by the camera (s7; one); a blurred table corner (s11; one); a plain sphere bubble (05b; one); near-plane-cut jars (s5; one); a bottle through the driftwood (b9; one); a stray dark rock (02; one); the sieve ring through the basin rim (04, s11; one).
+
+### November 12 — round 111 and review 108 (three reviewers, averaged)
+
+Round 111 (round108.py, glass_basin_0..5; FrostedGlass.shader):
+- **The plate is a true wedge, with no spot in the middle:** the wedge was measured at the outline for every point along a ray from the centre, so each ray had a single thickness and they all met at a pinched point in the middle (the dark spot), with no gradient across the plate. It is now measured at each point, so the plate thickens evenly from its thin edge (about 6.5% of the width) to its thick one (about 12%).
+- **The colour follows the wedge:** at the basin the colour thresholds spanned only the middle of the plate's thickness, so it sat at one mid tone. They now run from the thin edge to the thick one, with a paler, clearer thin edge and a deeper thick one in the same hue, and the bright lip at the rim is stronger.
+- In 05b the piece grades from deep emerald-teal at its thick edge to pale, clear aqua at its thin one, with no centre spot; in 06 the palm piece has no centre spot either.
+
+The reviewers viewed 30-38 references each, two of them short of the usual 40 because the shared browser pane kept hiding their tab.
+
+| Area | A | B | C | Average | Review 107 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The hero piece is no longer called jelly (all three):** for the first time in many reviews nobody reads it as a gummy sweet. It now reads as cut acrylic: "a cut acrylic tile" with "a near-geometric outline and even tint" (A), "an even-thickness slab of acrylic rather than a wedge" (B), "a flat gradient slab with a thin rim line, reading as acrylic or hard candy", with "no visible chips or pitting" (C). C calls the broken-shard outline believable (B too); the centre spot is not mentioned.
+- **Sea glass rose to 3.3:** A gives 4; two now praise the 04 frosting (A, C), one still calls it a striped wood or plastic slab (B).
+- **Sand, cleaning and the studio each slipped on one or two reviewers, with no change:** sand on the broad flat cream foregrounds (B, C), cleaning on the flat suds and weak contrast (B), the studio on empty floor and repeated clutter (A).
+- **Six areas meet the bar:** lighting, water, sorting, mosaic, truck, tools.
+
+**Next:**
+- The hero plate's worn surface: the chips along the rim, a faint pitting or frosting, and a glint that breaks into small flashes, so it reads as tumbled sea glass rather than new acrylic (all three).
+- The basin suds as soft, shaped foam (all three); the ending motes as shaped light (all three).
+- The flat sand foregrounds, vegetation, rubbish read at range and the see-through shallows (all three, long-standing).
+
+**Bugs reported:**
+- The brush hovering beside the piece without touching it (04, 05; two); the board behind the truck seat and the floating mirrors (t2; two); the 08 floor light as a hard-edged flat decal (one, plus two last review).
+- The EQUIPMENT sign through the bookshelf (s4, 09; one); a possibly floating towel and orange stub (b9; two); a cream band on the boulders (b1, b9; one); dark blobs in the shallows (b6, b8; one); the hanging cord into a standing pot and a stacked-sphere plant (s7; one); near-plane-cut jars (s5; one); cobalt and emerald pieces passing into each other (s10, 07; one); a loose dark mat beside the studio (b4; one); floating flower heads (t1; one); the flat-topped rock as a primitive (b5, b9; one).
