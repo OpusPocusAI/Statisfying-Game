@@ -277,7 +277,7 @@ Shader "Sea Glass/Frosted Glass"
                         // caustic lines on the basin floor visibly kink and bend where they pass under the piece.
                         if (_MaskOn > .5)
                         {
-                            half tB = smoothstep(.012, .06, lz);   /* round 102: the thinner hero 5 kept its colour only with lower thresholds. Round 74: the thinner hero basin shard (about 19% to 7% of the width) */
+                            half tB = smoothstep(.02, .042, lz);   /* round 111 (review 107, all three: the 05b piece "one even mint colour, with no deeper hue where it is thick", "not lighter or clearer at the thin edge"): the thresholds spanned only the middle of the plate's thickness (round108.py), so it sat at one mid tone; they now run from its thin edge to its thick one */   /* round 102: the thinner hero 5 kept its colour only with lower thresholds. Round 74: the thinner hero basin shard (about 19% to 7% of the width) */
                             float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
                             half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
                             // Round 87 (review 83, all three: "a thick mint jelly lozenge", "a gummy sweet"): the basin water draws its
@@ -296,8 +296,8 @@ Shader "Sea Glass/Frosted Glass"
                             // Seen through the glass the floor keeps its light and dark but loses its warmth, and the thin side carries a light
                             // wash of the glass's own hue, so the plate grades from clear pale glass to deep glass in one colour.
                             seenB = lerp(seenB, dot(seenB, half3(.3, .55, .15)).xxx, .65);
-                            half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .42), hue * hue * .9 + hue * .1, tB);
-                            g = seenB * filtB * lerp(1.2, .78, tB);
+                            half3 filtB = lerp(lerp(half3(1, 1, 1), hue, .3), hue * hue * .75, tB);   /* round 111: a paler, clearer thin edge and a deeper thick one, in the same hue */
+                            g = seenB * filtB * lerp(1.3, .6, tB);
                             g += tint * (sky * .05 + sun.color * .04) * tB;
                             seenH = seenB;
                         }
@@ -330,7 +330,7 @@ Shader "Sea Glass/Frosted Glass"
                         g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 3) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
-                        g += lerp(hue, half3(1, 1, 1), .6) * lip * .3 * (sky * .5 + sun.color * .5 + .3);
+                        g += lerp(hue, half3(1, 1, 1), .6) * lip * (_MaskOn > .5 ? .5 : .3) * (sky * .5 + sun.color * .5 + .3);   /* round 111 (review 107, B: "a weak rim line"): a brighter lip at the basin */
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
                         g += sky * fresnel * .12;

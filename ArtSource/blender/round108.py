@@ -114,7 +114,12 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         dx, dz = dx / dl, dz / dl
         ro = .5 * orr
         wd = rot * 1.7 + 0.9
-        side = max(-1.0, min(1.0, (dx * sx * ro * math.cos(wd) + dz * sz * ro * math.sin(wd)) / SIDE_N.get(k, .45)))
+        # Round 111 (review 107, B: "a dark pit or spot in the centre of the glass"; all three: "one even mint colour, with no deeper
+        # hue where it is thick"): the wedge was measured at the outline for every point along a ray from the centre, so each ray
+        # had one thickness and they all met in a pinched point in the middle; there was no gradient across the plate. It is now
+        # measured at the point itself, so the plate thickens evenly from its thin edge to its thick one.
+        rp = ro * min(1.0, u / U0)
+        side = max(-1.0, min(1.0, (dx * sx * rp * math.cos(wd) + dz * sz * rp * math.sin(wd)) / SIDE_N.get(k, .45)))
         hl = PLATE * PLATE_K.get(k, 1.0) * (1.0 + .45 * side)
         e = hl * 1.15
         if u < U0:
