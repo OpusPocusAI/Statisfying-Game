@@ -24,7 +24,13 @@ shapes = [(4, .4, 1.0, .84, .22, .035, .22), (3, .62, 1.0, .95, .21, .033, .18),
 # (0.74) lay outside the rounded outline (about 0.55). It now has two broken edges that do bite, straight and meeting at one
 # blunt corner, with a crisp blend and a calmer outline wobble, while the far side stays rounded and worn.
 CUTS = {5: [(0, .6), (1.35, .57)]}
-CUT_KB = {5: .03}
+# Round 110 (review 106, C: "a rounded blob outline", "needs straight broken edges"; A, B: still a sweet): the two broken edges
+# bit only about a fifth of the radius and the outline averaging and rim chips rounded them off. The hero plate 5 now has three
+# long straight broken edges, deep enough to run most of the way across, meeting at blunt worn corners, with one rounded worn
+# side; the averaging is narrower there and no chips wobble a broken edge.
+HERO_CUTS = {5: [(0, .68), (1.3, .66), (2.65, .62)]}
+AVG = {5: .012}
+CUT_KB = {5: .05}   # round 110: blunt worn corners where the three broken edges meet
 LUMP = {5: .07}
 
 BEND = -.06   # must match round21.py and FrostedGlass _Bend
@@ -75,7 +81,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
             lump = 1 + noise.noise(Vector((math.cos(a) * 1.7, math.sin(a) * 1.7, 0)) + s) * LUMP.get(k, .14)
             lop = 1 + .1 * math.cos(a - rot * .7 + 1.1)
             orr = outline_r(a, sides, rk) * lump * lop
-            for off, depth in CUTS.get(k, [(0, cut)] if cut > 0 else []):
+            for off, depth in HERO_CUTS.get(k, CUTS.get(k, [(0, cut)] if cut > 0 else [])):
                 # A worn broken edge: the outline follows a chord at distance (1 - depth) from the centre, softly blended.
                 da = (a - rot * 1.3 + off + math.pi) % math.tau - math.pi
                 if abs(da) < math.pi / 2 - .05:
@@ -83,11 +89,18 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
                     kb = CUT_KB.get(k, .26)   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
                     h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                     orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
+                    CUTW[0] = max(CUTW[0], 1 - h)
             return orr
-        orr = sum(full_r(a + d * .03) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
+        CUTW = [0.0]
+        cutw = 0.0
+        for d0 in (0,):
+            full_r(a)
+            cutw = CUTW[0]
+        orr = sum(full_r(a + d * AVG.get(k, .03)) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
         # Conchoidal chips: shallow scalloped bites out of the outline, uneven in size and spacing.
         ca = a * 7 + noise.noise(Vector((math.cos(a) * 2.3, math.sin(a) * 2.3, 4.0)) + s) * 2.4
         chip = max(0.0, math.sin(ca)) ** 3 * smooth(.1, .5, noise.noise(Vector((math.cos(a) * 3.1, math.sin(a) * 3.1, 9.0)) + s) + .25)
+        chip *= 1 - cutw   # round 110: a broken edge stays straight
         orr *= 1 - .03 * chip
         # Round 108: a plate, not a pillow. The sphere's latitude is remapped so most of it is one flat face at a constant
         # half-thickness (the wedge and the bottle-wall bend give the only curvature), turning over a narrow rounded rim whose
