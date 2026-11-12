@@ -100,8 +100,8 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         # Conchoidal chips: shallow scalloped bites out of the outline, uneven in size and spacing.
         ca = a * 7 + noise.noise(Vector((math.cos(a) * 2.3, math.sin(a) * 2.3, 4.0)) + s) * 2.4
         chip = max(0.0, math.sin(ca)) ** 3 * smooth(.1, .5, noise.noise(Vector((math.cos(a) * 3.1, math.sin(a) * 3.1, 9.0)) + s) + .25)
-        chip *= 1 - cutw   # round 110: a broken edge stays straight
-        orr *= 1 - .03 * chip
+        chip *= 1 - .75 * cutw   # round 110: a broken edge stays straight (round 112: a few small chips on it too)
+        orr *= 1 - .055 * chip   # round 112 (review 108, C: "no visible chips"): chips that read at the basin (were 3% of the radius)
         # Round 108: a plate, not a pillow. The sphere's latitude is remapped so most of it is one flat face at a constant
         # half-thickness (the wedge and the bottle-wall bend give the only curvature), turning over a narrow rounded rim whose
         # width is about the local half-thickness, instead of a dome that rolls over a broad bevel.

@@ -332,6 +332,7 @@ Shader "Sea Glass/Frosted Glass"
                         if (_MaskOn > .5) lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * (_MaskOn > .5 ? .5 : .3) * (sky * .5 + sun.color * .5 + .3);   /* round 111 (review 107, B: "a weak rim line"): a brighter lip at the basin */
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
+                        if (_MaskOn > .5) sheen *= .4 * (.5 + Noise(i.local * 9.0 + 2.0));   /* round 112 (review 108, all three: "a cut acrylic tile", "acrylic or hard candy"): one long, clean sheen streak is how new acrylic catches light; at the basin it is fainter and broken */
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
                         g += sky * fresnel * .12;
                         clean = g;
@@ -433,13 +434,29 @@ Shader "Sea Glass/Frosted Glass"
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
                 // Round 94: at the basin the clean glass under the water read pale mint, close to the frost; a richer colour where it is clean.
-                if (_MaskOn > .5) { half cl = dot(clean, half3(.3, .55, .15)); clean = max(lerp(cl.xxx, clean, 1.3), 0); }
+                if (_MaskOn > .5) { half cl = dot(clean, half3(.3, .55, .15)); clean = max(lerp(cl.xxx, clean, 1.15), 0); }   // round 112: less of a candy boost (was 1.3)
+                // Round 112 (review 108, all three: the hero plate "a cut acrylic tile", "an even-thickness slab of acrylic", C: "no visible
+                // chips or pitting"): new acrylic is flawless; tumbled sea glass, even wet and glossy, carries a worn skin. At the basin the
+                // clean glass now shows scattered pale crescent C-marks (the little percussion scars sea glass collects from knocking against
+                // other stones), a faint frost in the fine pits between them, and a lightly frosted rim where the edges wore most.
+                if (_MaskOn > .5)
+                {
+                    float2 wp = i.local.xy * 46.0; float2 wc = floor(wp); float wh = Hash(float3(wc, 91.0));
+                    float2 wf = frac(wp) - .5 - (float2(Hash(float3(wc, 3.0)), Hash(float3(wc, 7.0))) - .5) * .35;
+                    float wr = length(wf); float wa = atan2(wf.y, wf.x) + wh * 40.0;
+                    half cmark = step(.82, wh) * (1 - smoothstep(.025, .07, abs(wr - lerp(.16, .28, frac(wh * 7.3))))) * smoothstep(-.3, .3, sin(wa)) * faceF;
+                    half fine = smoothstep(.62, .8, Noise(i.local * 85.0 + 4.0)) * faceF;
+                    half rimFrost = (1 - faceF) * .35;
+                    half wear = saturate(cmark * .5 + fine * .14 + rimFrost + .04);
+                    half3 wornCol = lerp(_Frost.rgb, tint * .7 + _Frost.rgb * .45, .5) * lightOnFrost;
+                    clean = lerp(clean, wornCol, wear);
+                }
                 half3 c = lerp(clean, frosted, grime);
 
                 // Crisp highlights only on clean, polished glass.
                 // Round 43 (5.6 fixed form): faint micro-pitting on the glossy skin, so each glint breaks into a few small flashes.
                 float3 pit = float3(Noise(i.local * 70.0), Noise(i.local * 70.0 + 5.3), Noise(i.local * 70.0 + 11.7)) - .5;
-                float3 ng = normalize(n + pit * .17 * (1 - _Held) * (1 - _Facets));   // round 55 (review 51: "one smeared glint"): stronger pitting, so the glint breaks into a few flashes
+                float3 ng = normalize(n + pit * .17 * (1 - _Held + _MaskOn * .6) * (1 - _Facets));   /* round 112: at the basin the worn skin breaks the glint too */   // round 55 (review 51: "one smeared glint"): stronger pitting, so the glint breaks into a few flashes
                 float3 h = normalize(l + v);
                 half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
