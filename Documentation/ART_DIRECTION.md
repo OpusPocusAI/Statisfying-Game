@@ -4873,3 +4873,45 @@ The reviewers viewed 30-38 references each, two of them short of the usual 40 be
 **Bugs reported:**
 - The brush hovering beside the piece without touching it (04, 05; two); the board behind the truck seat and the floating mirrors (t2; two); the 08 floor light as a hard-edged flat decal (one, plus two last review).
 - The EQUIPMENT sign through the bookshelf (s4, 09; one); a possibly floating towel and orange stub (b9; two); a cream band on the boulders (b1, b9; one); dark blobs in the shallows (b6, b8; one); the hanging cord into a standing pot and a stacked-sphere plant (s7; one); near-plane-cut jars (s5; one); cobalt and emerald pieces passing into each other (s10, 07; one); a loose dark mat beside the studio (b4; one); floating flower heads (t1; one); the flat-topped rock as a primitive (b5, b9; one).
+
+### November 13 — round 112 and review 109 (three reviewers, averaged)
+
+Round 112 (FrostedGlass.shader; round108.py, glass_basin_0..5):
+- **The clean hero glass has a worn skin:** new acrylic is flawless, while tumbled sea glass, even wet and glossy, is not. At the basin the clean glass now shows scattered pale crescent C-marks (the small percussion scars sea glass picks up knocking against stones), a faint frost in fine pits between them, and a lightly frosted rim where the edges wore most.
+- **The gloss is broken up:** the long, clean sheen streak across the face is fainter and broken, the key glint is scattered by the pitting into several small flashes, and the colour is boosted less (a candy-like saturation).
+- **Visible chips on the rim:** the conchoidal chips along the worn side bite nearly twice as deep (5.5% of the radius, were 3%), and a few small ones now sit on the straight broken edges too.
+- In 05b the piece reads as weathered glass, with crescent scars, a frosted rim and broken glints over the deep-to-clear wedge; the palm piece in 06 is unchanged.
+
+The reviewers viewed 40-42 references each, mostly as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 108 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.3 |
+| 5.4 Props/vegetation | 3 | 4 | 3 | 3.3 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass passed (unanimous, 3.3 to 4.0), for the first time in many reviews, on the hero piece:** "the hero shard matches the fixed form: straight broken edges, glossy finish, chips and glint (05b)" (A), "05b is a convincing aqua shard with pitting" (B), "saturated aqua with glints, pitting and a rim line. The worn-shard outline reads" (C). Nobody calls it jelly, a sweet or acrylic.
+- **The tray pieces are now the weak point of 5.6 (all three, no change there):** some colours "lean toward gummy candy" (amber and pearl for A, pearl and cobalt "thin and plastic" for B, emerald and cobalt for C). Two read the 04 cloudy piece well (A: "frosted, with the hue just showing through"), one as pale soap (B).
+- **Cleaning returned to 4.0 (unanimous), with no change;** sand and props rose a little on one reviewer each.
+- **Eight areas meet the bar:** lighting, water, sea glass, cleaning, sorting, mosaic, truck, tools.
+
+**Next:**
+- The suds as soft shaped foam with splashes or drips, and the ending motes as shaped light, not round dots (all three); effects are the lowest area left with rubbish.
+- Rubbish read at range (all three); vegetation, boulders and the flat sand foregrounds (all three); the see-through shallows (all three).
+- The tray glass that reads as candy in some colours (all three); the studio's empty floor and mild restored change (two).
+
+**Bugs reported:**
+- The 08 floor light as a hard orange arrow-shaped decal (two); the jar off the table edge (s11; two); boulders with a pale band or cap (b1, b3; two); the board behind the truck seat and detached mirror shapes (t2; two).
+- The grime layer looking like a second offset shard (05; one); the sieve ring through the basin rim (s11, 04; one); a hard straight cut on a foreground rock (b6; one); a flat mat by the studio (b4; one) and a hard dark shadow from an off-screen object (b4; one); a pale rectangle over the road (s9; one); a bottle through the driftwood (b9; one); a foliage clump hanging in the air (s3; one); the hanging pot resting on the shelf and a pendant clipped at the frame edge (s7; two).
