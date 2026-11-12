@@ -4749,3 +4749,44 @@ The reviewers viewed 37-41 references each, mostly as the store's full-size scre
 **Bugs reported:**
 - The navy board and detached mirrors on the truck (t2; two); a bottle through the driftwood log (b9; two); hard, dithered sud edges and plain sphere bubbles (05, 05b; two).
 - Floating flower heads with no stems (t1, 03; one); an unexplained shadow on the sand (b4; one); the bag through the bench legs and a loose orange piece by the towel (b9; one); a cobalt piece over the tray rim (07; one); near-plane-cut jars and painted-looking glass in a jar (s5; one); the 05b yellow half as a tint error (one); the basin frames washed out beside s11 (04, 05, 05b; one); the glove looking grey and knit at the basin (04, 05; one); the jar off the table edge (s11; one); the hanging-planter cord into a standing pot (s7; one); the basin tap reading as a coat stand (s11, 04; one).
+
+### November 12 — round 109 and review 106 (three reviewers, averaged)
+
+Round 109 (FrostedGlass.shader):
+- **The hero plate's clear side is clear glass, not yellow:** its thin side showed the warm cream enamel of the basin through an almost white filter, so beside the water (which tints the same floor teal) it read as a yellow half. Seen through the glass the floor now keeps its light and dark but loses its warmth, and the thin side carries a light wash of the glass's own hue.
+- In 05b the plate grades from a deep aqua-green at its thick edge to a pale, clear aqua at its thin edge, one colour throughout; in 05 the brushed strips are the same clear aqua.
+
+The reviewers viewed 38-39 references each, mostly as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 105 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.7 Cleaning | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The yellow half is gone (all three):** nobody mentions a green-to-yellow shift or a tint error now.
+- **The 05b piece still reads as a sweet (all three), now on its outline and evenness:** "aqua jelly or a gummy sweet" (A), "a uniform neon slab ... closer to gummy candy than bottle wall", "no depth variation or clear thin edge" (B), "a gummy jelly sweet with a rounded blob outline", "needs straight broken edges and a thinner rim" (C). Sea glass fell back to 3.3; the palm piece in 06 still reads well (two) and the tray pieces pass (all three).
+- **Cleaning fell to 3.0 (unanimous), with no change:** the 04 grime as wood grain and the 05 suds as noise (all three); C adds that the clean area does not visibly follow the brush.
+- **The truck slipped to 3.7 on one reviewer, with no change** (A: "an assembly of separate parts", plain wheels).
+- **Seven areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, tools.
+
+**Next:**
+- The 05b outline: one or two straight broken edges that read at that size, not a rounded blob (C, and A's "jelly"); a visible wedge, with a clearer thin edge than the neutralised grade now shows (B).
+- The 04 grime as a frosted, dusty film, not wood grain (all three); the basin suds as soft shaped foam (all three).
+- Vegetation, rubbish read at range, boulders and the shallows (all three, long-standing).
+
+**Bugs reported:**
+- A dark diagonal seam line in the sand at the road verge (b7; all three); a bottle through the driftwood log (b9; one) and the bag through the bench legs (b9; one).
+- Pale bands on the shore boulders (b1, b3, b6; one); the sieve handle through the basin rim (s11, 04; one); floating oval mirrors (t2; one); suds overlapping the glass edge flatly (05; one); the floor light as a painted decal (08; one); a very bright hanging pot (s7; one); the EQUIPMENT sign floating (s4; one); stretched floor grain (s5; one); the WASH & REVEAL sign mirrored (s2; one); the jar over the table edge (s11; one).
