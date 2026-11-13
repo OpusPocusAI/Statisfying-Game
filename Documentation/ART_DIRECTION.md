@@ -5377,3 +5377,43 @@ The reviewers viewed 35-39 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The jar at the s11 edge (all three); pale bands on the boulders (b1, b3; two); tray pieces through each other or over the Amber label (06, s10, 07; two); a shadow with no caster on the b4 sand (one); a bottle through the driftwood (b9; one); the sieve handle through the basin rim (one).
 - The EQUIPMENT sign floating (s4; one); a dark line along the road kerb (b7, t1; one); the truck mirrors floating (t2; one); flat coloured light shapes over the rugs (08; one); glass on the table rim outside the Aqua tray and Amber spilling past its tray (06, s2; one); dark stroke lines on the s7 wall (one); a leafy blob at the s3 wall edge (one); the green glass in b2 a flat disc (two); a plant over the mosaic label (s1; one).
+
+### November 13 — round 124 and review 121 (three reviewers, averaged)
+
+Round 124 (FrostedGlass.shader):
+- **Frosted glass keeps its colour:** the cloudy piece was one even pale pastel over the whole plate, which is how soap reads. Frosted sea glass is matte but plainly coloured, deeper where the glass is thicker and paler toward the thin edge. The frost now carries more of the glass hue, graded across the plate's own wedge (the same span as the clean glass, round 111), and the sandy dusting over it is lighter.
+- In 04 the cloudy piece is a matte aqua plate, deeper at its thick side and paler toward the thin one; in 05 the frost still reads apart from the glossier, deeper clean glass, a little less sharply than before.
+
+The reviewers viewed 38-58 references each (A as grids of the store's 600-wide images, B in the store's own viewer, C opened in their own tab).
+
+| Area | A | B | C | Average | Review 120 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 4 | 4 | 3.7 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sea glass rose to 3.7; the cloudy piece shows its colour (two):** "04 shows the hue under the frost" (B), "a frosted mint tile, and its hue is visible" (C); to A it still reads as "a flat pale soap or plastic card". The 05b and 06 pieces read as glossy glass with all three ("glossy wedge shards with a glint and visible pitting", B). The trays still read as thin chips (all three), Amber and Cobalt as plastic (B), "close to gummy sweets" (C).
+- **Cleaning slipped to 3.7 (C):** milky, flat basin water, sphere suds, and the grime not coming off in visible strokes. The lower frost-to-clean contrast of this round may play a part; nobody names it directly.
+- **With no change to them, the truck fell to 3.3 (B, C: "joined blocks", "flat slabs"), the studio to 3.7 (A: bare floor, no window light), effects to 3.0 (the sphere suds again).** Reviewer spread keeps swinging these areas by a point.
+- **Five areas meet the bar:** lighting, water, sorting, mosaic, tools.
+
+**Next:**
+- The suds: clustered white spheres again (all three), as in most reviews since 112 (reviews 116 and 118 passed them as shaped foam).
+- The truck bodywork (two); vegetation and rubbish (all three); the shallows and wet sand (all three).
+- The tray pieces: thin chips, Amber and Cobalt plastic (all three).
+
+**Bugs reported:**
+- The jar at the s11 edge (all three); a bottle through the driftwood (b9; two); the truck mirrors floating (t2; two); a green blob floating at the s3 edge (two); the sieve handle through the basin rim (s11, 04, 05; one); Amber pieces over the Amber label (06; one).
+- The hanging pot on the shelf (s7; one); the sea stack's hard slab of shadow (b4; one); a straight seam across the sand beside the road (b7; one); the RECYCLING sign hovering (s2, s9; one); the diamond beam ending at the open wall (s3; one); a long thin parasol shadow (02; one).
