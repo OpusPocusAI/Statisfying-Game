@@ -5252,3 +5252,46 @@ The reviewers viewed 39-50 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The jar at the s11 table edge (all three); pale bands on the boulders (b1, b3; two); the sieve handle through the basin rim (s11, 04; one); a bottle through the driftwood (b9; one); the truck mirrors floating (t2; one); the towel lifted with an orange stick under it (b9; one).
 - A dark line along the road shoulder and floating sprouts on the dunes (b7; one); a red checker on the eave undersides (s4, s9; one); glass floating over the truck's bin rim and an orange item through the recycle bed (03; two, one each); the hard foam ring round the sea stacks (b8; one); the boardwalk ending at the deck edge (s6; one); the SORT BY COLOUR sign at a diagonal (s3; one); a plant over the first mosaic label (s1; one); the blue item on the 02 mound unclear (one).
+
+### November 13 — round 121 and review 118 (three reviewers, averaged)
+
+Round 121 (FrostedGlass.shader; StudioStation.cs; GameCatalog.cs; Round121Pass.cs, Round119Pass.cs):
+- **Pale frost, not bubbles in jelly:** the worn skin's fine pits were darker than the bright wet glass round them and a few millimetres across, so they read as bubbles set inside a jelly. A frosted pit is paler than the glass and fine: they are now a pale satin grain, and the C-marks and the rim pale frost too.
+- **No inner glow:** at the basin the clean glass carried a coloured glow (12% of its colour, pulsing to 24% as it lifted), which is how a gummy reads; it is now 5%, rising to 11%.
+- **The thin edge toward the eye:** as in the palm (round 119), the basin piece is turned in its own plane so its thick side points away, and the reveal tips it up 8 degrees, not 18; the near edge, the one that showed as a tall wall, is now the thin one.
+- **The thick side, measured properly:** round 119 took it from the outline weighted by thickness, which mostly measured how lopsided the outline is and how the plate is bent; its palm result was partly luck. It is now the slope of the top face less the slope of the bottom face, each fitted over its own flat face, so the bend cancels; the palm and the basin both use it.
+- In 05b the clean piece is a thin plate of glass tipped slightly, its near edge a fine line, the water and suds showing through it, with fine pale wear marks; in 06 the palm piece lies at a new turn.
+
+The reviewers viewed 39-41 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 117 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.13 Effects | 4 | 4 | 4 | **4.0** (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The 05b piece is no longer a jelly block (all three):** "glossy with pits and sparkle, and works" (A), "the glossy glint and sparkle in 05b ... read as glass" (C), "glossy with good glints" (B). Two now see dark specks on it that "read as dirt" (B, C); in the frame these are most likely the suds seen through the clearer glass, which the glass darkens.
+- **Sea glass stays at 3.3 on the other pieces:** the 04 cloudy piece reads as "a frosted plastic card" (A), "a frosted tile" (C), its streaks "read as wood grain, not frost" (B); the trays are still "thin, uniform jelly chips" (A), "flat cut-outs" (B), Amber and Pearl "toward candy or plastic" (C, and Pearl plastic for A and B). The palm piece passes with two (A, C), "a bevelled plastic chip" to B.
+- **Effects returned to 4.0 (unanimous), with no change;** the suds are now "shaped holed foam, not spheres" (B). Tools slipped to 3.7 (B: the glove "a lumpy, flat-shaded rubber form with sausage fingers"), also with no change.
+- **Eight areas meet the bar:** lighting, water, cleaning, sorting, mosaic, studio, truck, effects.
+
+**Next:**
+- The 04 cloudy piece: frost that reads as a worn skin on glass, not a plastic card or wood grain (all three).
+- The tray pieces: still flat chips; Amber and Pearl candy or plastic (all three).
+- Vegetation and rubbish (all three); the boulders a flat saturated purple (two); the shallows and the deep-teal band (two).
+
+**Bugs reported:**
+- The sieve handle through the basin rim (04, 05, 05b, s11; two); Amber pieces heaped over the Amber label (06, 07; two); the dark board behind the truck seat and the mirrors as flat cards (t2; two); the jar at the s11 edge (one); a bottle through the driftwood (b9; one); the towel's orange bar (b9; one).
+- The bench crossbar through a bag (b9, 02; one); dark streaks round the sea stacks in the shallows (b8, b6; one); the stiff foam rings round the stacks (b3, b8; one); the EQUIPMENT sign floating (s4; one); the floor light flat over the rugs (08; one); a hard straight seam between the clean and dirty halves (05; one); dark driftwood squiggles (b6; one); orange pieces off the Amber tray (s2; one, unsure).
