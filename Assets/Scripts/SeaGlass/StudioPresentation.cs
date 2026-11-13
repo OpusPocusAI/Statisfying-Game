@@ -28,7 +28,7 @@ namespace SeaGlass
                 go.transform.rotation=Quaternion.Euler(90+(index%3-1)*7,index*29,0);
                 var mesh=def.PlateMesh;   // round 115: the thin plates, like the spares (Round115Pass)
                 float size=pieceSize/Mathf.Max(mesh.bounds.size.x,mesh.bounds.size.y);
-                go.transform.localScale=Vector3.one*size;
+                go.transform.localScale=new Vector3(size,size,size*Round118Thick);   // round 118: as thick as the spares (Round118Pass)
                 go.AddComponent<MeshFilter>().sharedMesh=mesh;
                 var mr=go.AddComponent<MeshRenderer>();mr.sharedMaterial=sockets.First(s=>s.glassId==def.id).surface.sharedMaterial;MarkPlate(mr);
                 // Round 117: the trays hold fuller heaps (Round117Pass); a sorted piece comes to rest on top of the pieces beneath it.
@@ -41,6 +41,8 @@ namespace SeaGlass
             foreach(var r in FindObjectsByType<MeshRenderer>(FindObjectsInactive.Include,FindObjectsSortMode.None))if(r.name.StartsWith("Spare ")&&r.name.EndsWith(" glass"))MarkPlate(r);
             session.Changed+=Refresh;Refresh();
         }
+        // Round 118: the tray plates are this much thicker than the hero plate, so their edges show from across the bench.
+        public const float Round118Thick=1.8f;
         static MaterialPropertyBlock plateBlock;
         static void MarkPlate(Renderer r){plateBlock??=new MaterialPropertyBlock();r.GetPropertyBlock(plateBlock);plateBlock.SetFloat("_Plate",1);r.SetPropertyBlock(plateBlock);}
         void Refresh(){foreach(var pair in pieces)pair.Value.SetActive(session.progress.items.Any(i=>i.id==pair.Key&&i.stage==ItemStage.Sorted));}

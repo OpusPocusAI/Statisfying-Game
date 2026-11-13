@@ -91,6 +91,8 @@ Shader "Sea Glass/Frosted Glass"
                 lz *= _Held > .5 ? (_MaskOn > .5 ? 1.6 : 2.2) : (_Plate > .5 ? 1.3 : 1);   /* round 115: the tray pieces are the same thin plates (glass_plate_k), read a little thinner than in the palm so the felt shows through them (at the palm's scale they read coppery and solid) */   // round 108: the hero plate (round108.py, at the basin and in the palm) is about 2.2 times thinner; in the palm its colour grading keeps its thresholds, at the basin it reads a little thinner, so more of the plate is clear glass
                 // Round 61: 1 on the two near-flat faces of a loose piece, 0 on its edge wall (the mosaic panes count as all face).
                 float faceF = lerp(1, smoothstep(.62, .95, abs(normalize(i.localN).z)), 1 - _Facets);
+                // Round 118: the edge wall of a tray plate (0 on its faces).
+                half plateWall = _Plate > .5 ? 1 - smoothstep(.3, .75, abs(normalize(i.localN).z)) : 0;
                 float3 n = normalize(i.n), v = GetWorldSpaceNormalizeViewDir(i.world);
                 Light sun = GetMainLight(TransformWorldToShadowCoord(i.world));
                 float3 l = sun.direction;
@@ -254,6 +256,19 @@ Shader "Sea Glass/Frosted Glass"
                     glass = lerp(glass, (seen * .5 + dot(seen, half3(.3, .55, .15)) * .5) * lerp(half3(1, 1, 1), hue, .55) * 1.12, (1 - thickN) * .25);   // and clearer at the thin edge
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
                     glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28 * rimQ;   // round 43: half the rim glow
+                    // Round 118 (review 114, all three: the tray plates "scattered flat petals", "paper-thin, like petals or coins, with no
+                    // wedge visible"): seen from across the bench, a thin plate with a pale edge vanished into its own face. On the tray plates
+                    // the edge wall now holds the deep colour of the glass, as the edge of a pane looks, under a soft lip of light where it
+                    // turns onto the top face, so each plate shows its thickness and where it lies over another.
+                    if (_Plate > .5)
+                    {
+                        half az = abs(normalize(i.localN).z);
+                        half wall = plateWall;
+                        half lipB = smoothstep(.55, .8, az) * (1 - smoothstep(.85, .97, az)) * saturate(dot(n, float3(0, 1, 0)) * 2);
+                        half3 deep = hue * hue * (seenL * .35 + sky * .22 + sun.color * .3 * saturate(dot(n, l) * .5 + .5) + .06);
+                        glass = lerp(glass, deep, wall * .85);
+                        glass += lerp(hue, half3(1, 1, 1), .25) * lipB * (sky * .3 + sun.color * .3) * .3;
+                    }
                     clean = glass;
                     // Round 56 (review 52, all three: the held clean piece "an opaque lump", "an ice cube", "thick opaque jade"):
                     // the layered absorption above replaced what lies behind with its brightness in the glass hue, so nothing
@@ -464,7 +479,7 @@ Shader "Sea Glass/Frosted Glass"
                 half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
                 half window = 0;   // round 12: a sky band drew a bullseye ring on domed pebbles; specular only
-                c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime);
+                c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime) * (1 - plateWall * .85);   /* round 118: on the thicker tray plates the glints swept along every rim as a white line */
                 // Round 13: a studio key light from over the viewer's shoulder, so every clean piece shows one
                 // crisp white glint and a soft sheen wherever it is seen from, plus tiny facets that flash.
                 float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.45, .55, .7)));
@@ -473,7 +488,7 @@ Shader "Sea Glass/Frosted Glass"
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
                 half glint = smoothstep(.9985 + _Held * .0011 + _MaskOn * .00025 - aaK, .9985 + _Held * .0011 + _MaskOn * .00025 + aaK, nk) * .7 + pow(nk, 3600 + _MaskOn * 6000) * .9 + pow(nk, 160) * .05 * (1 - _MaskOn);   /* round 75: at the basin a smaller, harder key glint and no soft sheen around it */   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
-                c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85);
+                c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85) * (1 - plateWall * .85);
                 // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
                 float3 k2 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.78, -.2, .35)));

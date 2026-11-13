@@ -22,7 +22,10 @@ namespace SeaGlass.Editor
         const int PerTray = 20;
 
         [MenuItem("Sea Glass/Art Direction/116 Round 117: fuller heaps in the trays")]
-        public static void Apply()
+        public static void Apply() { Settle(5f, 7f); }
+
+        // leanMin and leanSpan: how far (in degrees) a piece that lands on another leans down off it.
+        public static void Settle(float leanMin, float leanSpan)
         {
             if (EditorApplication.isPlaying) throw new System.InvalidOperationException("Leave Play Mode first.");
             var scene = EditorSceneManager.GetActiveScene();
@@ -38,7 +41,7 @@ namespace SeaGlass.Editor
                         .Where(r => r.name == "Spare " + tray.color + " glass").OrderBy(r => r.transform.GetSiblingIndex()).ToList();
                     if (spares.Count == 0) continue;
                     var tb = tray.GetComponent<Collider>() ? tray.GetComponent<Collider>().bounds : tray.GetComponent<Renderer>().bounds;
-                    float felt = spares.Min(r => r.bounds.min.y);
+                    float felt = Felt(tray, tb, temp);   // round 118: measured on the tray itself (the lowest piece drifted down as the plates were thickened)
                     var mid = new Vector3(tb.center.x, 0, tb.center.z);
                     int start = spares.Count;
                     for (int i = start; i < PerTray; i++)
@@ -82,7 +85,7 @@ namespace SeaGlass.Editor
                         {
                             var away = Flat(r.bounds.center - on.bounds.center);
                             if (away.sqrMagnitude < 1e-8f) away = Vector3.right;
-                            float lean = 5f + (float)rng.NextDouble() * 7f;
+                            float lean = leanMin + (float)rng.NextDouble() * leanSpan;
                             t.rotation = Quaternion.AngleAxis(lean, Vector3.Cross(Vector3.up, away.normalized)) * t.rotation;
                             Drop(r, c, placed, felt);
                             resting++;
@@ -98,6 +101,22 @@ namespace SeaGlass.Editor
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             Debug.Log("Round 117: " + total + " tray plates settled (" + added + " added), " + resting + " resting on another");
+        }
+
+        // The height of the felt in the middle of the tray: rays straight down onto the tray's own mesh.
+        static float Felt(SortingTray tray, Bounds tb, List<MeshCollider> temp)
+        {
+            var mf = tray.GetComponent<MeshFilter>();
+            var c = tray.gameObject.AddComponent<MeshCollider>(); c.sharedMesh = mf.sharedMesh; temp.Add(c);
+            Physics.SyncTransforms();
+            var hits = new List<float>();
+            for (int i = -1; i <= 1; i++) for (int j = -1; j <= 1; j++)
+            {
+                var o = new Vector3(tb.center.x + i * tb.extents.x * .3f, tb.max.y + 1, tb.center.z + j * tb.extents.z * .3f);
+                if (c.Raycast(new Ray(o, Vector3.down), out var hit, 3)) hits.Add(hit.point.y);
+            }
+            if (hits.Count == 0) throw new System.InvalidOperationException("No felt found in the " + tray.color + " tray.");
+            hits.Sort(); return hits[hits.Count / 2];
         }
 
         static Vector3 Flat(Vector3 v) { v.y = 0; return v; }
