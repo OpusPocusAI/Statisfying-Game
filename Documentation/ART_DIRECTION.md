@@ -5041,3 +5041,46 @@ The reviewers viewed 34-40 references each, as the store's full-size screenshots
 **Bugs reported:**
 - The navy panel behind the truck seat (t2; two); the brush hovering above the piece (04; one); the sieve through the basin rim (s11, 04, 05; one); the suds heaps with no contact on the water (05, 05b; one).
 - A hard diagonal seam in the sand (b7; one); pale bands on the boulders (b1, b6; one); a bottle through the driftwood (b9, 02; one); an orange bar at the towel (b9; one); the EQUIPMENT sign in the bookshelf (s4, 09; one); a hanging pot resting on the shelf (s7; one); hard foam rings round the rocks (b3, b8; one); a foliage blob at the frame edge (s3; one).
+
+### November 13 — round 116 and review 113 (three reviewers, averaged)
+
+Round 116 (FrostedGlass.shader; Round116Pass.cs):
+- **Quiet rims on the tray plates:** at tray size the lit rim, the grazing reflection and the ring of small edge glints round every plate drew a white outline, so each read as a cut acrylic chip or sequin. On the tray plates they are a quarter as strong, and the edge glints a fifth.
+- **A visible wedge in the trays:** the colour now runs from clear at a plate's thin edge to deep at its thick one, over the plates' own range of thickness (before, every tray plate sat at the thin, pale end).
+- **Low heaps:** the trays were dressed in layers of the old thick pebbles, and after round 115 the thin plates hung over each other or lay flat. From the lowest up, every piece now tips a little off the flat, each its own way, and comes to rest on the felt or on the pieces already beneath it, by how much it overlaps them, leaning down off any piece it rests on; two-thirds of the pieces rest partly on another, so each tray holds a low, overlapping heap.
+- In s10 and 06 the trays hold low heaps of tipped, overlapping plates, deep where thick and clear where thin, without the white outlines.
+
+The reviewers viewed 38-40 references each, as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 112 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.11 Truck/road | 3 | 4 | 3 | 3.3 | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 4 | 4 | 3 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sorting rose to 4.0 (unanimous):** the trays read as felt-lined trays of glass, "the heaps are flat and a little sparse" (A), "sparse and scattered flat" (B), "the heaps are sparse" (C). Nobody calls the pieces acrylic now, but all three still see them as flat: "thin flat sequins, not domed wedges" (A), "flat wafers with bright outlines" (B), "flat petal cutouts with white rims, single layer" (C). The Pearl tray reads as white discs or paper (all three). Two see neighbouring pieces cut into each other or the heap as one layer.
+- **Sea glass rose to 3.3:** the 05b piece is "a translucent shard with sparkle" (B) and "reads as a bottle-wall plate" (C), but "a squared jelly or ice slab" with a boxy trapezoid outline to A. The palm piece reads as a cushion-cut or candy gem (B, C).
+- **Cleaning rose to 4.0 and effects to 3.7, with no change to them:** two now read the foam heaps and teardrop drips as soft and shaped; all three still call the suds popcorn or cotton balls. C finds the dirty state in 04 too faint.
+- **Sand (3.7), the studio (3.7) and the truck (3.3) slipped, with no change to them:** flat cream sand fields (B), flat rugs and faceted jars (B), the truck read as slab panels and disc wheels (A, C).
+- **Six areas meet the bar:** lighting, water, cleaning, sorting, mosaic, tools.
+
+**Next:**
+- The tray pieces: more of them, in fuller heaps two layers deep with no pieces cutting into each other, and a Pearl that reads as frosted glass rather than white plastic (all three).
+- The suds heaps: lower and lacier, a film that follows the brush rather than balls (all three).
+- The island canopies: layered foliage instead of repeated blobs (all three); the rubbish, too small to read at 5 m (all three); the truck body (two).
+
+**Bugs reported:**
+- A shadow on the b4 sand with no object casting it (two); the jar at s11 hanging off the counter edge (two); pale bands on the boulders (b1, b3, b6; two); neighbouring tray pieces cutting into each other (s10, 06; one).
+- A bottle through the driftwood (b9, 02; one); a bright flat plane past the deck (s3, s4; one); the hanging planter resting on the shelf (s7; one); tray labels overlapping and the trays looking afloat (s1; one); the potted plants black in s6 (one); a dark slab on the sand (02; one); the green glass in b2 a flat disc on the sand (two); the patterned beam running past the building (s3; one); the Aqua label over the tray rim (s10; one).
