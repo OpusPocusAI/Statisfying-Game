@@ -4956,3 +4956,45 @@ The reviewers viewed 39-40 references each, as the store's full-size screenshots
 **Bugs reported:**
 - The jar at the table edge (s11; two); a bottle through the driftwood (b9; two); the board and paddles behind the truck seat (t2; two).
 - A dark straight line across the sand by the road (b7; one); a pendant clipping the top of the frame (s7; one); hard even foam rings round the stacks (b6, b8; one); the floor light cut off at the rug edges (08; one); sparkles on the wall outside the panels (08; one); stray dark squiggles at the waterline (b6; one); parasol faceting (02; one); the cloudy piece with no waterline (04; one).
+
+### November 13 — round 114 and review 111 (three reviewers, averaged)
+
+Round 114 (round114.py, foam_clump; FoamClump.shader, FoamClump.mat; Round114Pass.cs; Feedback.cs, StudioStation.cs, EquipmentVisuals.cs, SoftFeedback.shader):
+- **The suds stand up off the water as real foam:** every foam sprite, however it was shaded, lay flat against the eye or the water. The brushing suds are now heaps of soap foam modelled as geometry: a dome of bubbles with smaller ones packed around and on top, merged into one smooth surface with a flat underside where it sits in the water, drawn as lit mesh particles, each turned its own way. They are white in the light and a cool lilac-blue in the shade under and between the bubbles, with a pale glow at the silhouette and a small wet glint; the warm studio light only faintly tints them (more, they read as peach popcorn). The flat foam raft stays beneath them on the water.
+- **The lifted brush drips:** the stills are taken with the brush lifted, after the brushing drops had fallen. A wet brush lifted off the glass now keeps dripping from just below its bristles for a couple of seconds, each drop ringing the water below; falling drops are drawn as teardrops with a darker rim, so they read over the pale water, and are larger. Drops also fall from the brush while it scrubs.
+- In 05 and 05b white heaps of foam stand around the piece on the raft of suds; in 05 a drop and its ring sit under the lifted brush.
+
+The reviewers viewed 30-39 references each, mostly as the store's full-size screenshots opened in their own tab; one fell short of 40 because the shared browser pane kept hiding.
+
+| Area | A | B | C | Average | Review 110 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 4.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 4 | 4 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Effects rose to 3.7 (two 4s):** "lit foam heaps, star sparkles and a ripple ring ... nothing reads as a default particle" (C), "foam heaps, ripple rings and the sparkle burst ... soft and colour-matched" (B). A reads the heaps as "popcorn-like white clusters with little shading". Nobody calls the suds flat now; the 08 motes pass with two (A, C).
+- **Cleaning held at 4.0 (unanimous)**, with "lit 3D foam" (C) and "3D suds" (A) named.
+- **Sea glass fell back to 3.0 (unanimous), with no change to the glass:** the palm piece in 06 as "a flat rhombus with a pointed tip" (C) or "an opaque teal plastic chip" (A); the 05b pitting as "a polka-dot pattern" (B) or "speckled gummy candy" (C); the tray pieces as gummy sweets or lozenges (all three). The hero piece's straight broken edges and blunt corners from round 110 are seen at a steep angle in the palm, where one corner reads as a point.
+- **Sand slipped to 3.3 (two 3s), with no change.**
+- **Seven areas meet the bar:** lighting, water, cleaning, sorting, mosaic, truck, tools.
+
+**Next:**
+- Sea glass in the palm and the trays: a blunter palm outline with no pointed corner and a glassier, less opaque palm piece; tray pieces that read as glass rather than sweets in emerald and cobalt (all three); the 05b C-marks as scattered scars, not an even dot pattern (two).
+- The flat sand foregrounds, vegetation and rubbish read at range (all three, long-standing).
+- The shallows' foam as broken lace (all three).
+
+**Bugs reported:**
+- Pale seam bands on the boulders (b1, b3, b9; all three); the sieve handle through the basin rim (s11, 04; one); the SORT BY COLOUR sign tilted into the table in s3 (two).
+- A dark seam line in the sand by the road (b7, t1; one); the EQUIPMENT sign through the bookshelf (09; one); the glove floating over the brush handle (04, 05; one); a stray orange stick at the towel (b9; one); the basin with no contact shadow and the jar half off the table (s11; one); the lifted piece cut by the water plane (05b; one); thin dark lines down the wall (s7; one); the 08 floor light as flat decals (one); the banner on an unsupported plane (s3; one).
