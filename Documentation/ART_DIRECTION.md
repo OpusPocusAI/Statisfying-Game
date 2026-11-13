@@ -4998,3 +4998,46 @@ The reviewers viewed 30-39 references each, mostly as the store's full-size scre
 **Bugs reported:**
 - Pale seam bands on the boulders (b1, b3, b9; all three); the sieve handle through the basin rim (s11, 04; one); the SORT BY COLOUR sign tilted into the table in s3 (two).
 - A dark seam line in the sand by the road (b7, t1; one); the EQUIPMENT sign through the bookshelf (09; one); the glove floating over the brush handle (04, 05; one); a stray orange stick at the towel (b9; one); the basin with no contact shadow and the jar half off the table (s11; one); the lifted piece cut by the water plane (05b; one); thin dark lines down the wall (s7; one); the 08 floor light as flat decals (one); the banner on an unsupported plane (s3; one).
+
+### November 13 — round 115 and review 112 (three reviewers, averaged)
+
+Round 115 (round108.py, glass_plate_0..5; Round115Pass.cs; GameCatalog.cs, StudioStation.cs, StudioPresentation.cs; FrostedGlass.shader):
+- **The palm piece has no pointed corner:** the palm held the basin plate, whose corners are only lightly rounded; seen small and steeply in the palm, one of them read as a point. A second set of the same thin plates, glass_plate_0..5, keeps the straight broken edges but rounds every corner well, for the palm and the trays. In the palm a little more of what lies behind shows through, and a bright line runs along its rim.
+- **The tray pieces are thin plates of glass, not lozenges:** the hero piece passed at the basin once it was a thin plate with broken edges, while the 72 spare pieces in the trays were still the thick, rounded pebbles that read as gummy sweets. They are now the same thin plates at the same size, set back down onto the felt, with the felt showing through their thin sides; the sorted pieces and the piece flying to its tray are plates too. The fixed form in 5.6 records it.
+- In 06 the palm piece is a thin, blunt-cornered shard with a lit rim; in 06 and 07 the trays hold flat broken shards of glass. Amber can still look a little coppery up close.
+
+The reviewers viewed 34-40 references each, as the store's full-size screenshots opened in their own tab; reviewer A stalled once and was run again from the start.
+
+| Area | A | B | C | Average | Review 111 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 3 | 3 | 3.3 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The thin tray plates did not read as glass (all three):** "thin flat chips that read as acrylic sequins" (B), "flat, white-rimmed chips lying in one layer, which reads as cut acrylic", "no low heaps and no wedge thickness" (C), "flat, pale and white-rimmed" (A); Pearl and Amber read as plastic (two). Sorting slipped to 3.7 on the flat single layer (C). The bright rim on every small plate reads as a white outline.
+- **The palm piece is split:** "decent" (C), "glossy but gummy" (B), "glossy candy" (A). Nobody calls it pointed now.
+- **The 05b hero piece reads as a block again (all three), with no change to it:** "a thick jelly block with blotchy spots" (C), "dark blotchy pitting that reads as dirt or jelly" (B), "a blotchy inner pattern" (A). The fine frosted pits added in round 112 read as blotches.
+- **The 3D suds now read as spheres (all three):** "clustered white spheres ('popcorn')" (B), "lumpy white blobs that look like popcorn" (C), "cotton or popcorn spheres" with "no contact or meniscus" (A). Effects fell back to 3.0 and cleaning to 3.3, both with no change since review 111.
+- Sand returned to 4.0 and the studio rose to 4.0 (unanimous), both with no change.
+- **Seven areas meet the bar:** lighting, water, sand, mosaic, studio, truck, tools.
+
+**Next:**
+- The tray pieces: the thin plates read as flat acrylic chips. Return the trays to their earlier pebbles, or keep the plates with a quieter rim, a real wedge and low heaps of two layers (all three).
+- The 05b frosted pits: fewer and finer, so they do not read as blotches (all three).
+- The suds heaps: lower and flatter where they meet the water, with a soft foot into the foam raft, so they do not read as spheres (all three).
+
+**Bugs reported:**
+- The navy panel behind the truck seat (t2; two); the brush hovering above the piece (04; one); the sieve through the basin rim (s11, 04, 05; one); the suds heaps with no contact on the water (05, 05b; one).
+- A hard diagonal seam in the sand (b7; one); pale bands on the boulders (b1, b6; one); a bottle through the driftwood (b9, 02; one); an orange bar at the towel (b9; one); the EQUIPMENT sign in the bookshelf (s4, 09; one); a hanging pot resting on the shelf (s7; one); hard foam rings round the rocks (b3, b8; one); a foliage blob at the frame edge (s3; one).
