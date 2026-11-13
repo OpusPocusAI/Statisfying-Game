@@ -5295,3 +5295,45 @@ The reviewers viewed 39-41 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The sieve handle through the basin rim (04, 05, 05b, s11; two); Amber pieces heaped over the Amber label (06, 07; two); the dark board behind the truck seat and the mirrors as flat cards (t2; two); the jar at the s11 edge (one); a bottle through the driftwood (b9; one); the towel's orange bar (b9; one).
 - The bench crossbar through a bag (b9, 02; one); dark streaks round the sea stacks in the shallows (b8, b6; one); the stiff foam rings round the stacks (b3, b8; one); the EQUIPMENT sign floating (s4; one); the floor light flat over the rugs (08; one); a hard straight seam between the clean and dirty halves (05; one); dark driftwood squiggles (b6; one); orange pieces off the Amber tray (s2; one, unsure).
+
+### November 13 — round 122 and review 119 (three reviewers, averaged)
+
+Round 122 (FrostedGlass.shader):
+- **Dried sand, not wood grain:** the crust on the cloudy piece was an even coat broken only by fine streaks running the way the brush scrubs (round 92), which read as the grain of a wooden board over a flat card. Dried sand has no direction: it is now a granular dusting, fine grains of sand over a soft, broad mottle, heavier toward the edges. The brushed lanes come from the clean mask itself and still show as the brush passes.
+- **Frost on glass:** the frost veil is thinner, so more of the glass colour glows through it; the worn rim carries a whiter, thicker rind of frost; a faint sugary sparkle and a soft satin sheen lie over the faces, as on frosted sea glass.
+- In 04 the cloudy piece is a milky, pale aqua plate with a whiter rim and a faint sandy dusting; in 05 the brushed part is the deep clean glass beside it. The crust reads less dirty than the brown streaks did.
+
+The reviewers viewed 37-39 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 118 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The cloudy piece still reads as a tile, now a soft one:** "a flat frosted tile" (A), "a flat, evenly pale tile with no wedge visible", "the colour underneath barely shows" (B), "a matte bar of soap" (C). Nobody names wood grain now, but the milky, even frost reads as a solid bar; the thinner veil did not let enough colour through to read as glass.
+- **The dark shapes in the 05b piece (all three):** "dark grey blobs inside the glass that look like leftover grime" (A), "dark clumped shapes inside the clean glass look like trapped geometry" (C). These are most likely the suds and their shadows seen through the clearer glass of round 121, darkened by it (not yet checked).
+- **The 05 piece's outline (two):** "hard gem-cut facets, not a worn shard" (A), "a pointed hexagonal, gem-like outline" (C). Most likely round 121's turn of the basin piece (thin edge to the eye) shows its broken corners end-on in 05 (not yet checked). Two also see the grime clear "as one straight-edged wedge" (A, C; B says "a clear dirty/clean split").
+- **Sea glass fell to 3.0 and cleaning to 3.7 (C), effects back to 3.0 (unanimous, no change); sand returned to 4.0.**
+- **Seven areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, truck.
+
+**Next:**
+- The 05b piece: the suds behind it should not darken through it into dark blobs (all three).
+- The cloudy piece: more of the glass colour and its wedge through the frost, so it is frosted glass, not a tile or soap (all three).
+- The 05 piece: a turn that does not show the broken corners as points (two); a softer grime edge (two).
+
+**Bugs reported:**
+- The jar at the s11 edge (all three); the sieve handle through the basin rim (s11, 04, 05; one); a hard straight seam between frost and clean glass (05; one); the EQUIPMENT sign floating or through the bookshelf (s2, s4; one); the potted plants black in s6 (two); a bottle through the driftwood (b9; one).
+- Pearl and Amber tray pieces passing through each other (s10, 07; one); the build frames greyer than the editor captures (one); glass in the truck crate oversized and glowing (03; one); a plant over the mosaic plaque (s2; one); a green bush floating at the s3 edge (one); the hanging pot resting on the shelf (s7; one); a dark pebble floating at b8 and the stacks' rim light on the camera side (one).
