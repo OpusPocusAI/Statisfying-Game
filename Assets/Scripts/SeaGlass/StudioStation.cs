@@ -139,12 +139,12 @@ namespace SeaGlass
         void UpdateGlass()
         {
             if(!glassRenderer||selectedId==null)return;var def=S.catalog.glass.First(g=>g.id==selectedId);var r=S.progress.Item(selectedId);var c=GameCatalog.Palette[(int)def.color];
-            block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*.12f);
+            block??=new MaterialPropertyBlock();glassRenderer.GetPropertyBlock(block);block.SetColor("_BaseColor",c);block.SetFloat("_Grime",r.grime);block.SetFloat("_Smoothness",Mathf.Lerp(.85f,.05f,r.grime));block.SetColor("_EmissionColor",c*(1-r.grime)*(kind==StationKind.Clean?.05f:.12f));   /* round 121 (review 117, all three: the 05b piece "a thick jelly block"): at the basin the clean glass glowed from within like a gummy; less */
             // Round 55: held up to the eye at the trays, the piece is large on screen; full refraction magnified the tray divider
             // behind it into a dark band across it, so it bends the background more gently there.
             block.SetFloat("_Refraction",kind==StationKind.Sort?.025f:glassRenderer.sharedMaterial.GetFloat("_Refraction"));
             block.SetFloat("_Held",1);   // round 71 (review 67: the basin piece "a pillowy jelly blob", "a soap blob"; the palm piece, shaded as a plate, passes): the basin piece too is shaded as a shard of bottle wall, two flat faces and a narrow edge wall, not as a dome   // round 56 (review 52: "an opaque lump"): held up, the piece is a coloured lens the scene shows through
-            if(kind==StationKind.Clean){EnsureMask();var mb=def.BasinMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);
+            if(kind==StationKind.Clean){BasinThinEdge(def.basinThickSide);EnsureMask();var mb=def.BasinMesh.bounds;block.SetTexture(MaskId,cleanMask);block.SetVector(MaskRectId,new Vector4(mb.min.x,mb.min.y,mb.size.x,mb.size.y));block.SetFloat(MaskOnId,1);
                 // Round 92: the brush scrubs along world x (EquipmentVisuals.Stroke); the crust's grain runs the same way in mask space.
                 var sd=workingGlass.InverseTransformDirection(Vector3.right);Shader.SetGlobalVector(StrokeDirId,new Vector4(sd.x/mb.size.x,sd.y/mb.size.y,0,0));}
             glassRenderer.SetPropertyBlock(block);
@@ -167,6 +167,19 @@ namespace SeaGlass
         // like a gummy's side. The piece is turned in its own plane so the thick side points away: the near edge is the thin one,
         // and the colour deepens across the face away from the eye.
         Vector2 thickSide;   // GlassDefinition.plateThickSide of the piece in the palm
+        // Round 121 (review 117, all three: the 05b piece "a thick jelly block"): as in the palm, the basin piece is turned in its own
+        // plane so its thick side points away from the eye and the near edge, the one the reveal tips up, is the thin one.
+        Quaternion basinSpin=Quaternion.identity;
+        void BasinThinEdge(Vector2 d)
+        {
+            basinSpin=Quaternion.identity;workingGlass.localRotation=glassRotation;
+            if(d.sqrMagnitude<1e-10f)return;
+            var eye=transform.position-transform.forward*BasinBack-transform.right*BasinLeft+Vector3.up*(BasinUp+1.6f);   // where Enter stands the player
+            var view=workingGlass.InverseTransformDirection(workingGlass.position-eye);
+            var v2=new Vector2(view.x,view.y);if(v2.sqrMagnitude<1e-8f)return;
+            basinSpin=Quaternion.AngleAxis(Vector2.SignedAngle(d,v2),Vector3.forward);
+            workingGlass.localRotation=glassRotation*basinSpin;
+        }
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
@@ -182,11 +195,11 @@ namespace SeaGlass
                 reveal=Mathf.Max(0,reveal-Time.deltaTime);float t=1-reveal/1.1f;
                 float lift=Mathf.Sin(t*Mathf.PI);
                 workingGlass.localPosition=glassHome+Vector3.up*(lift*.16f);
-                workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-18,0,lift*8);
+                workingGlass.localRotation=glassRotation*Quaternion.Euler(lift*-8,0,lift*4)*basinSpin;   // round 121: tipped less toward the eye, so less of the edge wall shows (it read as a thick block)
                 // Round 98 (review 94, all three: "no splashes, drips or runoff"): water runs off the lifted piece and drips from its lower edge.
                 if(kind==StationKind.Clean&&glassRenderer&&lift>.2f&&Time.time>=nextDrip){nextDrip=Time.time+.035f;var gb=glassRenderer.bounds;var e=Random.insideUnitCircle.normalized*.85f;
                     Feedback.Instance.Drip(new Vector3(gb.center.x+e.x*gb.extents.x,gb.min.y+.004f,gb.center.z+e.y*gb.extents.z),waterSurface?waterSurface.bounds.center.y:gb.min.y-.03f);}
-                if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.12f+.12f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));/* round 66 (review 62: "uniform opaque cyan, jelly"): a faint glow; the glints carry the moment */glassRenderer.SetPropertyBlock(block);}
+                if(glassRenderer&&kind==StationKind.Clean){glassRenderer.GetPropertyBlock(block);block.SetColor("_EmissionColor",revealColour*(.05f+.06f*Mathf.Pow(Mathf.Sin(t*Mathf.PI),2)));/* round 121: a fainter glow *//* round 66 (review 62: "uniform opaque cyan, jelly"): a faint glow; the glints carry the moment */glassRenderer.SetPropertyBlock(block);}
                 if(reveal<=0)SelectNext();
                 return;
             }

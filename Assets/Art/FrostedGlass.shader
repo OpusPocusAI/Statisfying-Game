@@ -484,10 +484,15 @@ Shader "Sea Glass/Frosted Glass"
                     float2 wf = frac(wp) - .5 - (float2(Hash(float3(wc, 3.0)), Hash(float3(wc, 7.0))) - .5) * .35;
                     float wr = length(wf); float wa = atan2(wf.y, wf.x) + wh * 40.0;
                     half cmark = step(.82, wh) * (1 - smoothstep(.025, .07, abs(wr - lerp(.16, .28, frac(wh * 7.3))))) * smoothstep(-.3, .3, sin(wa)) * faceF;
-                    half fine = smoothstep(.62, .8, Noise(i.local * 85.0 + 4.0)) * faceF;
+                    // Round 121 (review 117, all three: the 05b piece "a thick jelly block", "a bit like jelly with surface spots"; review 116,
+                    // two: the pits "jelly bubbles"): the frost in the pits was darker than the bright wet glass round it, and the pits were
+                    // blots a few millimetres across, so they read as bubbles set inside a jelly. A frosted pit is paler than the glass, and
+                    // fine: they are now a pale satin grain, and the C-marks and rim pale frost too.
+                    half fine = smoothstep(.7, .85, Noise(i.local * 210.0 + 4.0)) * faceF;
                     half rimFrost = (1 - faceF) * .35;
-                    half wear = saturate(cmark * .5 + fine * .14 + rimFrost + .04);
-                    half3 wornCol = lerp(_Frost.rgb, tint * .7 + _Frost.rgb * .45, .5) * lightOnFrost;
+                    half wear = saturate(cmark * .45 + fine * .12 + rimFrost + .05);
+                    half3 hueW = tint / max(max(tint.r, tint.g), max(tint.b, .05));
+                    half3 wornCol = max(clean, lerp(clean, lerp(hueW, half3(1, 1, 1), .7) * (sky * .45 + sun.color * .35 + .3), .65));
                     clean = lerp(clean, wornCol, wear);
                 }
                 half3 c = lerp(clean, frosted, grime);

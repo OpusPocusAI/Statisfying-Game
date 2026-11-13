@@ -17,7 +17,9 @@ namespace SeaGlass
         // Round 115: the same thin plate with well-rounded corners, for the palm and the trays, where a piece is seen small and steeply.
         public Mesh plateMesh; public Mesh PlateMesh=>plateMesh?plateMesh:BasinMesh;
         // Round 119: which way the plate thickens, in its local x/y (Round119Pass; the meshes cannot be read in the built game).
-        public Vector2 plateThickSide; }
+        public Vector2 plateThickSide;
+        public Vector2 basinThickSide;   // round 121: the same for the basin plate (Round121Pass)
+        }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject
