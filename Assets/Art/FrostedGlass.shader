@@ -307,7 +307,16 @@ Shader "Sea Glass/Frosted Glass"
                         {
                             half tB = smoothstep(.02, .042, lz);   /* round 111 (review 107, all three: the 05b piece "one even mint colour, with no deeper hue where it is thick", "not lighter or clearer at the thin edge"): the thresholds spanned only the middle of the plate's thickness (round108.py), so it sat at one mid tone; they now run from its thin edge to its thick one */   /* round 102: the thinner hero 5 kept its colour only with lower thresholds. Round 74: the thinner hero basin shard (about 19% to 7% of the width) */
                             float2 buv = screenUV + viewN.xy * lerp(.07, .018, faceK) + float2(.012, .03) * tB * faceK;
-                            half3 seenB = SampleSceneColor(buv) * half3(.7, .86, .82);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
+                            float bb = .006;   /* round 123: a soft five-tap blur (was one sharp sample) */
+                            half3 seenB = (SampleSceneColor(buv) * .28 + (SampleSceneColor(buv + float2(bb, bb * .6)) + SampleSceneColor(buv + float2(-bb, bb * .6))
+                                        + SampleSceneColor(buv + float2(bb * .6, -bb)) + SampleSceneColor(buv + float2(-bb * .6, -bb))) * .18) * half3(.7, .86, .82);
+                            // Round 123 (review 119, all three: "dark grey blobs inside the glass that look like leftover grime", "dark clumped shapes
+                            // inside the clean glass look like trapped geometry"; review 118, two: "a dark pit cluster reads as dirt"): through the
+                            // clearer plate of round 121 the 3D suds behind it showed sharp, their cool shaded sides turned by the glass hue into
+                            // dark lumps inside it. Under water and through a worn plate of glass what lies behind is soft and low in contrast: it is
+                            // blurred a little more and pulled toward one pale level (the caustic lines, added after, keep their contrast).
+                            half sLB = dot(seenB, half3(.3, .55, .15));
+                            seenB *= lerp(sLB, .66, .6) / max(sLB, .02);   // the opaque pass has the enamel floor but not the basin water over it: the water tint
                             // Round 87 (review 83, all three: "a thick mint jelly lozenge", "a gummy sweet"): the basin water draws its
                             // bright caustic lines after the glass, and the glass hides it, so through the piece the floor was plain
                             // enamel and the piece filled with one even mint, like a solid sweet. The same caustic network
