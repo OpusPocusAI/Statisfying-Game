@@ -5126,3 +5126,45 @@ The reviewers viewed 38-40 references each, as the store's full-size screenshots
 **Bugs reported:**
 - A bottle through the driftwood and an orange stub under the towel at b9 (all three); the EQUIPMENT sign through the bookshelf (s4, 09; two); the truck mirrors floating beside the canopy posts (t2; two); sparkle drifting off the panels onto the wall (08, 09; two).
 - The brush hovering above the piece (04, 05; one); the sieve through the basin rim and the jar at the board edge (s11, 04; one); the hanging planter over the mosaic frame or resting on the shelf (s7, s8; two); the gap above the deck edge at the patterned wall (s3; one); the far tray labels overlapping (s3; one); the floor light over the rugs, possibly flickering (08; one); the green glass in b2 a flat decal (one).
+
+### November 13 — round 118 and review 115 (three reviewers, averaged)
+
+Round 118 (Round118Pass.cs, Round117Pass.cs; FrostedGlass.shader; StudioPresentation.cs; the "Glass <colour> tray" materials):
+- **The review stills had never shown the tray plate shading:** the plate look of rounds 115-116 (the wedge from clear to deep, the quiet rims) was switched on only when the game starts, so the s10 still, taken in the editor, showed the tray plates with the plain pebble shading: pale, glossy, white-rimmed. The spares now carry their own copies of their colour's material with it on, so s10 shows what the game shows.
+- **Edges you can see:** the tray plates were the hero plate's thickness, a few millimetres at their size, which from across the bench is no edge at all. They are 1.8 times thicker (the sorted pieces too), their edge wall holds the deep colour of the glass under a soft lip of light, and the sun and key glints no longer sweep along every rim as a white line.
+- **Layers that show:** a piece that lands on another now leans 12-22 degrees off it (was 5-12), so its edge faces up and the heap reads as two layers. The felt is measured on the tray itself (the settle took the lowest piece, which sank with every thickening, and one try buried most of the Emerald tray).
+- In s10 and 07 every tray holds a heap of deep-coloured plates with visible edges, layered where they overlap; Pearl reads as pale frosted glass. The faces are richer and less see-through than the old s10 look, as they already were in the game.
+
+The reviewers viewed 36-42 references each, as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 114 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 4 | 3.7 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 3 | 4 | 3.7 | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sorting held at 4.0 (unanimous), and the trays now read as heaps:** "real heaps" (C), "full heaps", "an Unpacking-level sense of order" (B), "fuller heaps" (A). Nobody calls them petals or confetti now. B still sees "thin flat chips", Amber "as crisps" and Pearl "as white plastic"; A finds them "saturated and glossy" and "Pearl reads well"; C calls them "varied but flat".
+- **Sea glass rose to 3.7:** the hero piece passes with two ("a convincing glossy, pitted shard of bottle wall", A; "straight broken edges, a wedge and pitting", C). All three now name the palm piece as the weak point: "thick and gummy, more like candy than a wedge" (A), "like a gummy candy" (B), "slightly like a jelly sweet" (C).
+- **The mosaic and the studio returned to 4.0 (unanimous), with no change to them.** Effects fell to 3.0: all three call the suds clustered white spheres, and two the 05b foam trail a flat white sheet.
+- **Eight areas meet the bar, the most so far:** lighting, water, sand, cleaning, sorting, mosaic, studio, tools.
+
+**Next:**
+- The palm piece in 06: it reads thick and gummy, not a wedge of bottle wall (all three).
+- The suds: clustered spheres, and the 05b foam trail a flat white sheet (all three).
+- Vegetation (all three); rubbish too small to read at 5 m (all three); the shallows opaque with no seabed showing (two); the truck wheels and bed (two).
+
+**Bugs reported:**
+- The sieve handle through the basin rim (s11, 04; two); a bottle through the driftwood (b9; two); the truck mirrors floating (t2; two); the 05/05b foam trail a flat white sheet (two).
+- Amber tray pieces heaped above the rim over the label, or standing on edge into their neighbours (06; two); the tray labels overlapping and the WASH sign through the table leg (s1; one); the EQUIPMENT sign through the bookshelf (s4; one); the stool through the glass crate (s4; one); the jar at the s11 board edge (one); a straight dark line along the road shoulder (b7, t1; one); blocky foam tiles (b8; one); dark squiggles on the sand (b6; one); a pale band on the b1 boulder (one); no parasol shadow (b9; one); the lamp shade at the s7 frame edge (one).
