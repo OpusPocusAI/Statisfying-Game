@@ -5337,3 +5337,43 @@ The reviewers viewed 37-39 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The jar at the s11 edge (all three); the sieve handle through the basin rim (s11, 04, 05; one); a hard straight seam between frost and clean glass (05; one); the EQUIPMENT sign floating or through the bookshelf (s2, s4; one); the potted plants black in s6 (two); a bottle through the driftwood (b9; one).
 - Pearl and Amber tray pieces passing through each other (s10, 07; one); the build frames greyer than the editor captures (one); glass in the truck crate oversized and glowing (03; one); a plant over the mosaic plaque (s2; one); a green bush floating at the s3 edge (one); the hanging pot resting on the shelf (s7; one); a dark pebble floating at b8 and the stacks' rim light on the camera side (one).
+
+### November 13 — round 123 and review 120 (three reviewers, averaged)
+
+Round 123 (FrostedGlass.shader):
+- **No dark blobs inside the 05b piece:** checked in the frame: the dark shapes sat exactly where the 3D suds lie behind the piece. Through the clearer plate of round 121 the suds showed sharp, and their cool shaded sides, turned by the deep glass hue, came out darker than the pale enamel floor round them: dark lumps inside the glass. Under water and through a worn plate of glass what lies behind is soft and low in contrast: it is now blurred a little more and pulled toward one pale level, while the caustic lines, added after, keep their contrast.
+- In 05b the clean piece is an even aqua plate with soft, pale shapes behind it and no dark clumps.
+
+The reviewers viewed 35-39 references each, as the store's screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 119 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 3 | 4 | 4 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.13 Effects | 4 | 3 | 4 | 3.7 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **No dark blobs in the 05b piece (all three):** nobody names them now; it "reads as glossy glass with pitting and flashes" (A), is "glossy emerald with glints" (B), "meet[s] the glossy target well (glint, pitting, emerald depth)" (C). Nobody calls the 05 outline gem-like either; B sees "a thin clean edge in 05".
+- **Sea glass stays at 3.0 on the other pieces:** the 04 cloudy piece is "a flat mint card or soap bar" (A), "an opaque pale slab or soap with no hue underneath" (C), "a frosted card" (B, who counts it with the good hero piece); the tray pieces are "flat translucent cutouts or cellophane" (A), "flat acrylic cut-outs with no wedge thickness" (B), "flat cut-out chips lying in one layer" (C); the palm piece "a rounded tile" (A, B).
+- **Cleaning and tools returned to 4.0 (unanimous), effects rose to 3.7, sand slipped to 3.7 (A), all with no change to them.**
+- **Eight areas meet the bar:** lighting, water, cleaning, sorting, mosaic, studio, truck, tools.
+
+**Next:**
+- The 04 cloudy piece: the glass hue faintly through the frost, with some depth, so it is not a card or soap (all three).
+- The tray pieces: wedge thickness and a rim light at tray size, and low two-layer heaps (all three); the palm piece reads as a rounded tile (two).
+- Vegetation and rubbish (all three); the shallows (all three); the grime clearing as a band, not along the brush (two).
+
+**Bugs reported:**
+- The jar at the s11 edge (all three); pale bands on the boulders (b1, b3; two); tray pieces through each other or over the Amber label (06, s10, 07; two); a shadow with no caster on the b4 sand (one); a bottle through the driftwood (b9; one); the sieve handle through the basin rim (one).
+- The EQUIPMENT sign floating (s4; one); a dark line along the road kerb (b7, t1; one); the truck mirrors floating (t2; one); flat coloured light shapes over the rugs (08; one); glass on the table rim outside the Aqua tray and Amber spilling past its tray (06, s2; one); dark stroke lines on the s7 wall (one); a leafy blob at the s3 wall edge (one); the green glass in b2 a flat disc (two); a plant over the mosaic label (s1; one).
