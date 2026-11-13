@@ -268,6 +268,16 @@ Shader "Sea Glass/Frosted Glass"
                         half3 deep = hue * hue * (seenL * .35 + sky * .22 + sun.color * .3 * saturate(dot(n, l) * .5 + .5) + .06);
                         glass = lerp(glass, deep, wall * .85);
                         glass += lerp(hue, half3(1, 1, 1), .25) * lipB * (sky * .3 + sun.color * .3) * .3;
+                        // Round 120 (review 116, all three: the tray pieces "flat-looking cut-outs with dark rims that read as gummy candy",
+                        // "Amber reads as gummy candy and Pearl as frosted plastic", "Pearl pieces read close to plastic"): deep, glossy and
+                        // solid, they read as boiled sweets. Sea glass is clear glass under a frosted skin: the felt now shows through the
+                        // thinner part of each plate, lightly tinted, and a soft, lit, faintly grainy frost lies over the faces, in a pale
+                        // tint of the glass colour, so a plate reads as worn glass (the glints are softened to match, below).
+                        half faceP = 1 - wall;
+                        glass = lerp(glass, seen * lerp(half3(1, 1, 1), hue, .55) * 1.08, (1 - thickN * .6) * .62 * faceP);
+                        half grainP = Noise(i.local * 60.0 + 3.0);
+                        half3 frostP = lerp(hue, half3(1, 1, 1), .55) * (sky * .42 + sun.color * .32 * saturate(dot(n, l) * .5 + .5) + .16);
+                        glass = lerp(glass, frostP, (.15 + grainP * .09) * (1 - wall * .5));
                     }
                     clean = glass;
                     // Round 56 (review 52, all three: the held clean piece "an opaque lump", "an ice cube", "thick opaque jade"):
@@ -490,7 +500,7 @@ Shader "Sea Glass/Frosted Glass"
                 half spec = pow(saturate(dot(ng, h)), lerp(120, 900, _Smoothness)) * lerp(1.5, 6.0, _Smoothness);   // small, sharp sun glint
                 float3 r = reflect(-v, n);
                 half window = 0;   // round 12: a sky band drew a bullseye ring on domed pebbles; specular only
-                c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime) * (1 - plateWall * .85);   /* round 118: on the thicker tray plates the glints swept along every rim as a white line */
+                c += (spec * sun.color * sun.shadowAttenuation + window * sky) * (1 - grime) * (1 - plateWall * .85) * (1 - _Plate * .55);   /* round 120: a frosted skin catches only a soft glint */   /* round 118: on the thicker tray plates the glints swept along every rim as a white line */
                 // Round 13: a studio key light from over the viewer's shoulder, so every clean piece shows one
                 // crisp white glint and a soft sheen wherever it is seen from, plus tiny facets that flash.
                 float3 keyL = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(-.45, .55, .7)));
@@ -499,7 +509,7 @@ Shader "Sea Glass/Frosted Glass"
                 // centre and a soft sheen around it.
                 half aaK = max(fwidth(nk) * 1.5, .0008);
                 half glint = smoothstep(.9985 + _Held * .0011 + _MaskOn * .00025 - aaK, .9985 + _Held * .0011 + _MaskOn * .00025 + aaK, nk) * .7 + pow(nk, 3600 + _MaskOn * 6000) * .9 + pow(nk, 160) * .05 * (1 - _MaskOn);   /* round 75: at the basin a smaller, harder key glint and no soft sheen around it */   // round 39: smaller again   // round 38 (review 34: "one big white smear"): smaller   // round 28 (review 26: "one blown-out highlight blob covers a quarter of the face"): a small, sharp glint on the domed piece
-                c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85) * (1 - plateWall * .85);
+                c += glint * lerp(half3(1, 1, 1), sun.color, .25) * (1 - grime) * (1 - _Facets * .85) * (1 - plateWall * .85) * (1 - _Plate * .55);
                 // Round 38 (review 34: "several small sharp glints along the edges, not one big highlight"): two more small
                 // glints from side lights, only on the rounded rim, where tumbled glass catches light as it turns.
                 float3 k2 = normalize(mul((float3x3)UNITY_MATRIX_I_V, float3(.78, -.2, .35)));
@@ -528,7 +538,7 @@ Shader "Sea Glass/Frosted Glass"
                 if (_MaskOn > .5) { float3 bc = i.local * 44.0; float bh = Hash(floor(bc) + 57.0); float3 bd = abs(frac(bc) - .5);
                     half star = saturate(1 - bd.x * bd.y * 160 - (bd.x + bd.y) * 2.6 - bd.z * .8);
                     facets = max(facets, step(.93, bh) * star * wink * smoothstep(.55, .9, nk) * smoothstep(.6, .9, faceF)); }
-                c += facets * .75 * (1 - grime);   // round 28: smaller, rarer, dimmer, only near the glint (reviews: "stickers")
+                c += facets * .75 * (1 - grime) * (1 - _Plate * .6);   // round 120: fewer flashes on the frosted tray plates   // round 28: smaller, rarer, dimmer, only near the glint (reviews: "stickers")
 
                 c += _EmissionColor.rgb;
                 c = lerp(c, half3(.02, .018, .022) + spec * .05, lead);   // linear: near-black came
