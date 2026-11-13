@@ -524586,7 +524586,7 @@ MonoBehaviour:
   effectsVolume: 0.65
   musicVolume: 0.25
   particleMaterial: {fileID: 2100000, guid: bacf12eaac49c31488892bb8222b2bf7, type: 2}
-  foamMesh: {fileID: 4300000, guid: 1b5f90b0f7c8f1e4ea3bc00575d5f955, type: 2}
+  foamMesh: {fileID: 4300000, guid: 5ae4049c0e75c67439a608f579cf7078, type: 2}
   foamMaterial: {fileID: 2100000, guid: e6dd9b13512af6049a308b951d94641a, type: 2}
 --- !u!114 &1901994642
 MonoBehaviour:
