@@ -213,6 +213,8 @@ Shader "Sea Glass/Frosted Glass"
                     // wedge itself. The top surface sits higher where the piece is thicker, so its height above the mid-plane is
                     // the local thickness: deep colour along the thick edge, pale and clear toward the thin one.
                     half thickN = saturate((lz - .03) / .14);
+                    if (_Plate > .5) thickN = smoothstep(.02, .045, lz);   /* round 116 (review 112, C: the tray pieces "no wedge thickness"): the thin plates run from clear at the thin edge to deep at the thick one */
+                    half rimQ = _Plate > .5 ? .25 : 1;   /* round 116 (review 112, all three: the tray plates "white-rimmed chips", "acrylic sequins"): at tray size every lit rim read as a white outline */
                     half path = lerp(.18, 1.25, thickN) * lerp(.75, 1.0, smoothstep(.2, .92, nv));
                     // A gentler bend, so what lies behind stays legible (an edge, the felt, the bench).
                     // Round 37 (review 33, all three: "a dark inner band / seam" through the held piece): the bent image of
@@ -236,9 +238,9 @@ Shader "Sea Glass/Frosted Glass"
                     half3 glass = absorbed + scatter + glow * .6;
                     // Thin edges: bright and pale, catching the light that skims through the taper.
                     half thinRim = smoothstep(.74, .95, 1 - nv);   // round 26: the true silhouette only (it covered most of a tilted piece)
-                    glass = lerp(glass, lerp(hue, half3(1, 1, 1), .3) * (sky * .45 + sun.color * .55 + .2), thinRim * .3);   // round 42: a rim in the glass colour; round 43: a thin line, not a glow (5.6 fixed form)
+                    glass = lerp(glass, lerp(hue, half3(1, 1, 1), .3) * (sky * .45 + sun.color * .55 + .2), thinRim * .3 * rimQ);   // round 42: a rim in the glass colour; round 43: a thin line, not a glow (5.6 fixed form)
                     // Reflection of the room at grazing angles.
-                    glass += sky * fresnel * .18;
+                    glass += sky * fresnel * .18 * rimQ;
                     // Round 26: light entering at the lit top gathers inside the far, lower edge as a bright
                     // saturated crescent (how real glass and gems read as lit through, not painted).
                     float2 vn2 = viewN.xy;
@@ -251,7 +253,7 @@ Shader "Sea Glass/Frosted Glass"
                     glass = lerp(glass, glass * (hue * .55 + .25) * .9, thickN * .32);   // round 44: deeper where the glass is thick (was view-based)
                     glass = lerp(glass, (seen * .5 + dot(seen, half3(.3, .55, .15)) * .5) * lerp(half3(1, 1, 1), hue, .55) * 1.12, (1 - thickN) * .25);   // and clearer at the thin edge
                     half litRim = smoothstep(.5, .78, 1 - nv) * (1 - smoothstep(.86, .97, 1 - nv));
-                    glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28;   // round 43: half the rim glow
+                    glass += lerp(hue, half3(1, 1, 1), .15) * litRim * (sky * .5 + sun.color * .5 + .25) * .28 * rimQ;   // round 43: half the rim glow
                     clean = glass;
                     // Round 56 (review 52, all three: the held clean piece "an opaque lump", "an ice cube", "thick opaque jade"):
                     // the layered absorption above replaced what lies behind with its brightness in the glass hue, so nothing
@@ -485,7 +487,7 @@ Shader "Sea Glass/Frosted Glass"
                 half n4 = saturate(dot(ng, normalize(k4 + v))), n5 = saturate(dot(ng, normalize(k5 + v)));
                 half a4 = max(fwidth(n4) * 1.5, .0008), a5 = max(fwidth(n5) * 1.5, .0008);
                 edgeG += smoothstep(.9975 + _Held * .0019 - a4, .9975 + _Held * .0019 + a4, n4) * .8 + smoothstep(.998 + _Held * .0015 - a5, .998 + _Held * .0015 + a5, n5) * .6;   // round 56: smaller on the flat face of the held piece
-                c += edgeG * .95 * (1 - grime) * (1 - _Facets);
+                c += edgeG * .95 * (1 - grime) * (1 - _Facets) * (_Plate > .5 ? .2 : 1);   // round 116: no rim of glints round every small tray plate
                 // Round 16: the owner's glossy target names small flashing facets. A few crisp diamond-shaped
                 // flashes on tumbled facets near the highlight, each winking as the view or time changes (round 14
                 // removed the earlier speckle; these are fewer, larger and sharper).
