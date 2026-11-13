@@ -5084,3 +5084,45 @@ The reviewers viewed 38-40 references each, as the store's full-size screenshots
 **Bugs reported:**
 - A shadow on the b4 sand with no object casting it (two); the jar at s11 hanging off the counter edge (two); pale bands on the boulders (b1, b3, b6; two); neighbouring tray pieces cutting into each other (s10, 06; one).
 - A bottle through the driftwood (b9, 02; one); a bright flat plane past the deck (s3, s4; one); the hanging planter resting on the shelf (s7; one); tray labels overlapping and the trays looking afloat (s1; one); the potted plants black in s6 (one); a dark slab on the sand (02; one); the green glass in b2 a flat disc on the sand (two); the patterned beam running past the building (s3; one); the Aqua label over the tray rim (s10; one).
+
+### November 13 — round 117 and review 114 (three reviewers, averaged)
+
+Round 117 (Round117Pass.cs; StudioPresentation.cs):
+- **Fuller trays:** each tray holds 20 plates (was 12); the new ones are copies of the tray's own pieces, turned and resized.
+- **One low mound per tray:** the old pieces lay in two clusters with bare felt between, and the first try piled the new ones on them six deep. All 20 are now spread over the middle of the tray, denser toward its centre, with two strays near the rim, and settled from the rim inward, so the middle pieces come down on the outer ones; about half rest partly on another, two deep in the middle.
+- **No piece cuts into another:** round 116 rested each plate by how much its box overlapped the boxes beneath, which sank some into their neighbours. Now each plate tips a few degrees and drops straight down until it touches the felt or a piece beneath, found by casting rays from its corners and rims down onto the pieces below and up from theirs onto it; one that lands on another leans down off it and is dropped again. The sorted pieces come to rest on top of the heap too.
+- In s10 and 07 every tray holds a fuller, overlapping heap. Pearl, whose material the beach pebbles and the mosaic share, is unchanged and may still read as white chips.
+
+The reviewers viewed 38-40 references each, as the store's full-size screenshots opened in their own tab; the first three reviewers stopped before finishing and were run again from the start.
+
+| Area | A | B | C | Average | Review 113 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.10 Studio | 3 | 4 | 4 | 3.7 | 3.7 |
+| 5.11 Truck/road | 3 | 4 | 4 | 3.7 | 3.3 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 4 | 3.3 (stills only) | 3.7 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **Sorting held at 4.0 (unanimous):** nobody reports pieces cutting into each other now, and the Pearl tray drew only one remark ("puddles", C). But all three still read the heaps as flat: "the heaps look like scattered flat petals" (A), "flat glossy flakes, almost confetti" (B), "paper-thin, like petals or coins, with no wedge visible" (C). The fuller trays did not register as heaps.
+- **Sea glass stayed at 3.3:** the clean pieces read as glossy and saturated (A, C), but the 04 cloudy piece reads as "a flat pale slab with straight cut edges", "soap or ice" (C) and "a near-white slab with its colour barely showing" (B); the 05b pits read as water blotches (B), and the palm piece as jelly-thick (B).
+- **Mosaic slipped to 3.7, effects to 3.3, with no change to them:** B sees the unlit panels as "navy vector clip art" and the floor light as painted decals; A and B call the suds cotton-ball spheres again. Sand returned to 4.0 and the truck rose to 3.7, also with no change.
+- **Six areas meet the bar:** lighting, water, sand, cleaning, sorting, tools.
+
+**Next:**
+- The tray pieces still read flat from the s10 and 07 distance: a visible wedge or edge thickness, or pieces propped at steeper angles, so a heap reads as a heap (all three).
+- The 04 cloudy piece: show more of its colour through the frost, and soften its straight cut edges (two).
+- The suds: not spheres (two); the island canopies and dune bushes (all three); rubbish too small to read at 5 m (all three).
+
+**Bugs reported:**
+- A bottle through the driftwood and an orange stub under the towel at b9 (all three); the EQUIPMENT sign through the bookshelf (s4, 09; two); the truck mirrors floating beside the canopy posts (t2; two); sparkle drifting off the panels onto the wall (08, 09; two).
+- The brush hovering above the piece (04, 05; one); the sieve through the basin rim and the jar at the board edge (s11, 04; one); the hanging planter over the mosaic frame or resting on the shelf (s7, s8; two); the gap above the deck edge at the patterned wall (s3; one); the far tray labels overlapping (s3; one); the floor light over the rugs, possibly flickering (08; one); the green glass in b2 a flat decal (one).
