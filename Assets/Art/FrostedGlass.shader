@@ -18,6 +18,7 @@ Shader "Sea Glass/Frosted Glass"
         _MaskOn("Brush mask drives the layers (set at runtime)", Float) = 0
         _Bend("Bottle-wall bend of the mid-surface (mesh units, round 54)", Range(-.3, .3)) = 0
         _Held("Held up to the eye (set at runtime, round 56)", Float) = 0
+        _Plate("Thin plate in the trays (set at runtime, round 115)", Float) = 0
     }
     SubShader
     {
@@ -57,7 +58,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held, _Plate;
             CBUFFER_END
             float4 _SG_Basin;   // round 39: basin water centre (xyz) and radius (w), set by the cleaning station
             float4 _SG_StrokeDir;   // round 92: the scrub direction in the clean mask's space (xy), set by the cleaning station
@@ -87,7 +88,7 @@ Shader "Sea Glass/Frosted Glass"
                 // Round 54: the pieces are curved plates of bottle wall (round21.py), so the mid-surface bends with local x;
                 // thickness is measured from it, not from the flat z = 0 plane.
                 float lz = abs(i.local.z - _Bend * (1 - i.local.x * i.local.x * 4));
-                lz *= _Held > .5 ? (_MaskOn > .5 ? 1.6 : 2.2) : 1;   // round 108: the hero plate (round108.py, at the basin and in the palm) is about 2.2 times thinner; in the palm its colour grading keeps its thresholds, at the basin it reads a little thinner, so more of the plate is clear glass
+                lz *= _Held > .5 ? (_MaskOn > .5 ? 1.6 : 2.2) : (_Plate > .5 ? 1.3 : 1);   /* round 115: the tray pieces are the same thin plates (glass_plate_k), read a little thinner than in the palm so the felt shows through them (at the palm's scale they read coppery and solid) */   // round 108: the hero plate (round108.py, at the basin and in the palm) is about 2.2 times thinner; in the palm its colour grading keeps its thresholds, at the basin it reads a little thinner, so more of the plate is clear glass
                 // Round 61: 1 on the two near-flat faces of a loose piece, 0 on its edge wall (the mosaic panes count as all face).
                 float faceF = lerp(1, smoothstep(.62, .95, abs(normalize(i.localN).z)), 1 - _Facets);
                 float3 n = normalize(i.n), v = GetWorldSpaceNormalizeViewDir(i.world);
@@ -314,7 +315,7 @@ Shader "Sea Glass/Frosted Glass"
                             // Round 101 (review 97, all three: the palm piece "an opaque teal token", "fairly opaque"): an even 55% of the
                             // glass's own colour hid the glove at every thickness. Now the thin side of the wedge lets more of the glove through
                             // (a darker, clearer glass), the thick side keeps the lit body colour, so the piece grades as a wedge of glass.
-                            g = lerp(g, bodyH + g * .35, lerp(.12, .55, thickH));
+                            g = lerp(g, bodyH + g * .35, lerp(.1, .45, thickH));   /* round 115 (review 111, A: the palm piece "an opaque teal plastic chip"): a little more of what lies behind shows through */
                         }
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,
@@ -330,7 +331,7 @@ Shader "Sea Glass/Frosted Glass"
                         g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 3) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
                         if (_MaskOn > .5) lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
-                        g += lerp(hue, half3(1, 1, 1), .6) * lip * (_MaskOn > .5 ? .5 : .3) * (sky * .5 + sun.color * .5 + .3);   /* round 111 (review 107, B: "a weak rim line"): a brighter lip at the basin */
+                        g += lerp(hue, half3(1, 1, 1), .6) * lip * (_MaskOn > .5 ? .5 : .5) *   /* round 115: the palm piece keeps a bright line at its rim too */ (sky * .5 + sun.color * .5 + .3);   /* round 111 (review 107, B: "a weak rim line"): a brighter lip at the basin */
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
                         if (_MaskOn > .5) sheen *= .4 * (.5 + Noise(i.local * 9.0 + 2.0));   /* round 112 (review 108, all three: "a cut acrylic tile", "acrylic or hard candy"): one long, clean sheen streak is how new acrylic catches light; at the basin it is fainter and broken */
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
@@ -532,7 +533,7 @@ Shader "Sea Glass/Frosted Glass"
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor, _EmissionColor, _Frost;
                 float _Smoothness, _Grime, _Refraction;
-                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held;
+                float4 _MaskRect; float _Facets, _MaskOn, _Bend, _Held, _Plate;
             CBUFFER_END
             struct A { float4 p : POSITION; float3 n : NORMAL; UNITY_VERTEX_INPUT_INSTANCE_ID };
             float4 vert(A i) : SV_POSITION

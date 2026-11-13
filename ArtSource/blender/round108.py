@@ -66,7 +66,12 @@ def smooth(e0, e1, x):
     return t * t * (3 - 2 * t)
 
 
-for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
+# Round 115 (review 111, C: the palm piece "a flat rhombus with a pointed tip"; all three: the tray pieces "glossy gummy sweets",
+# "lozenge outlines, not broken shards"): a second set, glass_plate_0..5, the same thin plates with the same broken edges for the
+# palm and the trays, where a piece is seen small and at a steep angle: their corners are rounded off well (a blunt corner seen
+# edge-on read as a point) and the outline is averaged a little more widely.
+PLATE_KB = .16
+for variant, k, (sides, rk, sx, sz, th, curve, cut) in [(vv, kk, ss) for vv in ("basin", "plate") for kk, ss in enumerate(shapes)]:
     reset(); random.seed(2100 + k)
     bpy.ops.mesh.primitive_uv_sphere_add(segments=160, ring_count=72, radius=.5)
     o = bpy.context.active_object
@@ -86,7 +91,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
                 da = (a - rot * 1.3 + off + math.pi) % math.tau - math.pi
                 if abs(da) < math.pi / 2 - .05:
                     chord = (1 - depth) / math.cos(da)
-                    kb = CUT_KB.get(k, .26)   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
+                    kb = max(CUT_KB.get(k, .26), PLATE_KB) if variant == "plate" else CUT_KB.get(k, .26)   # round 45: rounder corners where the broken edge meets the outline (review 41: "pointed tips")
                     h = max(0.0, min(1.0, .5 + .5 * (chord - orr) / kb))
                     orr = chord * (1 - h) + orr * h - kb * h * (1 - h)
                     CUTW[0] = max(CUTW[0], 1 - h)
@@ -96,7 +101,7 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         for d0 in (0,):
             full_r(a)
             cutw = CUTW[0]
-        orr = sum(full_r(a + d * AVG.get(k, .03)) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
+        orr = sum(full_r(a + d * (.03 if variant == "plate" else AVG.get(k, .03))) * w for d, w in ((-6, .03), (-5, .05), (-4, .07), (-3, .09), (-2, .11), (-1, .12), (0, .13), (1, .12), (2, .11), (3, .09), (4, .07), (5, .05), (6, .03))) / 1.07
         # Conchoidal chips: shallow scalloped bites out of the outline, uneven in size and spacing.
         ca = a * 7 + noise.noise(Vector((math.cos(a) * 2.3, math.sin(a) * 2.3, 4.0)) + s) * 2.4
         chip = max(0.0, math.sin(ca)) ** 3 * smooth(.1, .5, noise.noise(Vector((math.cos(a) * 3.1, math.sin(a) * 3.1, 9.0)) + s) + .25)
@@ -140,4 +145,4 @@ for k, (sides, rk, sx, sz, th, curve, cut) in enumerate(shapes):
         v.co = Vector((x, ys, z))
     assign(o, "glass")
     shade_auto(o, 40)
-    export(o, "glass_basin_%d" % k, ["glass"])
+    export(o, "glass_%s_%d" % (variant, k), ["glass"])

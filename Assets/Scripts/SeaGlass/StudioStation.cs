@@ -88,7 +88,7 @@ namespace SeaGlass
             if(def.color!=color){S.Notify("A gentle nudge: this piece belongs in the "+def.color+" tray.");return false;}
             r.stage=ItemStage.Sorted;S.Award(8);S.Tutorial(9);Feedback.Instance.Play("sort",1+(int)color*.09f);
             var tray=FindObjectsByType<SortingTray>(FindObjectsSortMode.None).FirstOrDefault(t=>t.color==color);
-            if(tray)Feedback.Instance.Fly(def.HeldMesh,glassRenderer.sharedMaterial,GameCatalog.Palette[(int)color],workingGlass.position,tray.transform.position+Vector3.up*.15f,workingGlass.lossyScale,Quaternion.Euler(90,0,0));
+            if(tray)Feedback.Instance.Fly(def.PlateMesh,glassRenderer.sharedMaterial,GameCatalog.Palette[(int)color],workingGlass.position,tray.transform.position+Vector3.up*.15f,workingGlass.lossyScale,Quaternion.Euler(90,0,0));
             Feedback.Instance.Burst(tray?tray.transform.position+Vector3.up*.2f:workingGlass.position,GameCatalog.Palette[(int)color]);S.Save();SelectNext();return true;
         }
         // Per-piece mask of where the glass has been scrubbed (white = brushed). Presentation only:
@@ -148,7 +148,7 @@ namespace SeaGlass
                 // Round 92: the brush scrubs along world x (EquipmentVisuals.Stroke); the crust's grain runs the same way in mask space.
                 var sd=workingGlass.InverseTransformDirection(Vector3.right);Shader.SetGlobalVector(StrokeDirId,new Vector4(sd.x/mb.size.x,sd.y/mb.size.y,0,0));}
             glassRenderer.SetPropertyBlock(block);
-            var shown=def.BasinMesh;   /* round 108 (review 104, all three: the palm piece "pillowy green jelly", "thick gummy candy"): the piece held up at the trays is the same thin hero plate as at the basin, not the thicker tray pebble */var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
+            var shown=kind==StationKind.Sort?def.PlateMesh:def.BasinMesh;   /* round 115 (review 111, C: the palm piece "a flat rhombus with a pointed tip"): in the palm, the plate with rounded corners */   /* round 108 (review 104, all three: the palm piece "pillowy green jelly", "thick gummy candy"): the piece held up at the trays is the same thin hero plate as at the basin, not the thicker tray pebble */var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
             // Round 73 (review 69: at 0.42 m across the basin piece filled a fifth of the frame and read as a moulded sweet): smaller.
             workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.3f)/Mathf.Max(shown.bounds.size.x,shown.bounds.size.y));
             if(kind==StationKind.Clean)
