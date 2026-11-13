@@ -5168,3 +5168,45 @@ The reviewers viewed 36-42 references each, as the store's full-size screenshots
 **Bugs reported:**
 - The sieve handle through the basin rim (s11, 04; two); a bottle through the driftwood (b9; two); the truck mirrors floating (t2; two); the 05/05b foam trail a flat white sheet (two).
 - Amber tray pieces heaped above the rim over the label, or standing on edge into their neighbours (06; two); the tray labels overlapping and the WASH sign through the table leg (s1; one); the EQUIPMENT sign through the bookshelf (s4; one); the stool through the glass crate (s4; one); the jar at the s11 board edge (one); a straight dark line along the road shoulder (b7, t1; one); blocky foam tiles (b8; one); dark squiggles on the sand (b6; one); a pale band on the b1 boulder (one); no parasol shadow (b9; one); the lamp shade at the s7 frame edge (one).
+
+### November 13 — round 119 and review 116 (three reviewers, averaged)
+
+Round 119 (FrostedGlass.shader; StudioStation.cs; GameCatalog.cs; Round119Pass.cs):
+- **The thin edge toward the eye:** every plate is a wedge, but in the palm the piece always lay at the same turn, so for most pieces the thick side faced the eye and the nearest edge was the plate's tallest wall, a pale band like a gummy's side. The piece is now turned on the palm so its thick side points away: the near edge is the thin one, a fine line. Which way each plate thickens is measured from its mesh in the editor and kept in the catalog (the built game cannot read the meshes; a first try that read them there silently did nothing).
+- **Clear to deep across the face:** the palm's shading spanned only the lower half of the plate's thickness, so the face sat at one even mint. It now grades over the whole wedge as the basin piece does: clear glass on the thin side, the glove seen through it in grey rather than navy (so it does not turn olive), deepening to the lit colour of the glass on the thick side.
+- **The edge of a pane, not a gummy:** the palm takes the basin piece's narrow, deeper edge strip, its fine lip and its broken sheen, in place of a wide pale edge band and one clean sheen streak.
+- In 06 the palm piece is a trapezoid shard with a fine near edge, deepening in colour away from the eye.
+
+The reviewers viewed 35-50 references each, as the store's screenshots opened in their own tab (B in the store's own grid at 600 wide).
+
+| Area | A | B | C | Average | Review 115 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 4 | 3.3 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 4 | 4 | 4 | **4.0** (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The palm piece passes:** "the palm piece (06) reads as glass" (B), "the hero piece's wedge and gloss read well (05b, 06)" (A); C does not name it. Nobody calls it gummy or candy now (all three did in review 115).
+- **Sea glass fell to 3.3 on the trays:** all three now name the tray pieces as the weak point: "thin, flat-looking cut-outs with dark rims that read as gummy candy" (A), "flat chips: Amber reads as gummy candy and Pearl as frosted plastic" (B), "flat cut-outs, with little thick-to-thin wedge visible" and "Pearl pieces read close to plastic" (C). Two read the 05b fine pits as "jelly bubbles". The richer, less see-through tray faces of round 118 lean toward candy, as feared.
+- **Effects rose to 4.0 and the truck to 4.0 (both unanimous), with no change to them;** sand slipped to 3.7 (C), also with no change.
+- **Nine areas meet the bar, the most so far:** lighting, water, cleaning, sorting, mosaic, studio, truck, tools, effects.
+
+**Next:**
+- The tray pieces: clearer and less candy-like (more of the felt through the thin side, a frosted worn skin), and Pearl as frosted glass rather than plastic (all three).
+- The 05b fine pits read as jelly bubbles (two).
+- Vegetation and rubbish (all three); the shallows with no seabed showing (two); the open sand (two).
+
+**Bugs reported:**
+- The truck mirrors floating and a dark panel behind the seat (t2; all three); a shadow with no caster on the b4 sand (two); the sieve handle through the basin rim (s11, 04; one); the jar at the s11 board edge (one); pale bands on the boulders (b1, b3, b5; one); a mid-water rock with a flat box-like top (b9, b5, 02; one).
+- The hanging planter resting on the shelf and the pendant at the s7 frame edge (one); the EQUIPMENT sign floating behind the bookcase (s4; one); the towel end lifted (b9; one); the s6 subtitle touching the fascia edge (one); the cloudy piece cutting the water unevenly (04; one); a green blob at the s3 roof edge (one); a white sliver at the 06/07 frame edge (one).
