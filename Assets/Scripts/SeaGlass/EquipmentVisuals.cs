@@ -3,7 +3,7 @@ namespace SeaGlass
 {
     public class EquipmentVisuals : MonoBehaviour
     {
-        public GameObject bucket,sack,scoop,brush,sprayer;public Transform bucketFill,sackFill;public Transform[] dividers;
+        public GameObject bucket,sack,scoop,brush,sprayer;float lastBrushing=-9,nextBrushDrip;public Transform bucketFill,sackFill;public Transform[] dividers;
         Vector3[] dividerScales; Vector3 brushHome,sprayerHome; StudioStation cleaning;
         void Awake()
         {
@@ -32,6 +32,12 @@ namespace SeaGlass
                 // The modelled brush pivots at its bristle tips, so .05 rests it on the domed glass.
                 Vector3 stroke=Stroke(brushing,StudioStation.StrokeClock);
                 if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0),0)*Quaternion.Euler(BristleTilt,0,0);}
+                // Round 114 (review 110: "no drips"; the stills are taken with the brush lifted, after the brushing drops have fallen): a wet
+                // brush lifted off the glass keeps dripping from its bristles for a couple of seconds, each drop ringing the water below.
+                if(brushing)lastBrushing=Time.time;
+                else if(brush&&brush.activeSelf&&Time.time-lastBrushing<2.4f&&Time.time>=nextBrushDrip&&Feedback.Instance)
+                {nextBrushDrip=Time.time+Random.Range(.07f,.16f);var tip=brush.transform.position+brush.transform.right*Random.Range(-.05f,.05f)+brush.transform.forward*Random.Range(-.025f,.025f)-Vector3.up*Random.Range(.02f,.05f);   // just below the bristles, where the eye sees them
+                 Feedback.Instance.Drip(tip,cleaning.waterSurface?cleaning.waterSurface.bounds.center.y:tip.y-.06f);}
                 if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}

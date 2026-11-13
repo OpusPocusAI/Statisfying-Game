@@ -125,11 +125,15 @@ Shader "Sea Glass/Soft Feedback"
   if(_Drop>.5)
   {
    // Round 96: a clear water drop: a pale see-through body, a slightly deeper rim and a bright highlight, so a splash reads as water.
-   half inside=1-smoothstep(.72,.95,distance);
-   half rim=smoothstep(.4,.9,distance)*inside;
+   // Round 114: a falling drop (_Drop 2) is a teardrop, round below and drawn to a point above, so it reads as a drip in a still.
+   float dd=distance;
+   if(_Drop>1.5){float yy=q.y+.18;dd=yy<0?length(float2(q.x,yy))/.78:abs(q.x)/max(.78*(1-yy/.95),1e-3);dd=yy>.95?2:dd;dd*=.95;}
+   half inside=1-smoothstep(.72,.95,dd);
+   half rim=smoothstep(.4,.9,dd)*inside;
    half hi=1-smoothstep(0,.32,length(q-float2(-.3,.32)));
    // Round 98 (review 94: no splashes or drips seen): a deeper teal rim and a hotter highlight, so a drop stands out over the pale water.
    half3 col=lerp(half3(.78,.93,.97),half3(.22,.5,.6),rim)+hi*1.2;
+   if(_Drop>1.5){col=lerp(half3(.72,.9,.95),half3(.12,.36,.46),rim)+hi*1.4;return half4(col*i.color.rgb,i.color.a*saturate(inside*(.72+rim*.5)+hi*inside*.8));}   // round 114: a teardrop, higher contrast over the pale water
    return half4(col*i.color.rgb,i.color.a*saturate(inside*(.55+rim*.45)+hi*inside*.6));
   }
   if(_Mote>.5)

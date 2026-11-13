@@ -65,7 +65,9 @@ namespace SeaGlass
             bool continuing=Time.time-lastBrush<.15f;StampClean(continuing?lastContact:contact,contact,Mathf.Min(S.progress.upgrades.Contains("washer")?.07f:.045f,Reach.z*.42f));   // round 85: narrower than a lane, so the first passes leave crust between them
             lastBrush=Time.time;lastContact=contact;
             UpdateGlass();Feedback.Instance.LoopAction("water");
-            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,EquipmentVisuals.StrokeVelocity(StrokeClock));}
+            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,EquipmentVisuals.StrokeVelocity(StrokeClock));
+                // Round 114 (review 110: "no drips"): water running off the brush falls back into the bowl as drops and rings.
+                if(Random.value<.55f)Feedback.Instance.Drip(contact+new Vector3(Random.Range(-.035f,.035f),Random.Range(.035f,.07f),Random.Range(-.025f,.025f)),waterSurface?waterSurface.bounds.center.y:contact.y-.01f);}
             if(r.grime<=.001f)
             {
                 r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");

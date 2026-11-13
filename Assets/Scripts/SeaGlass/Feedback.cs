@@ -5,6 +5,8 @@ namespace SeaGlass
     public class Feedback : MonoBehaviour
     {
         public static Feedback Instance; public float effectsVolume=.65f,musicVolume=.25f; public Material particleMaterial;
+        // Round 114: the brushing suds as lit mesh particles (foam_clump, FoamClump.mat; set by Round114Pass).
+        public Mesh foamMesh; public Material foamMaterial;
         AudioSource effects,engine,music; readonly Dictionary<string,AudioClip> clips=new(); ParticleSystem[] pool;int cursor;float nextAction;
         void Awake()
         {
@@ -30,6 +32,10 @@ namespace SeaGlass
             // Round 19: each foam particle draws a clump of soap bubbles, turned at random (flat discs read as "flat white circles").
             if(particleMaterial){suds=new Material(particleMaterial){name="Soap suds"};suds.SetFloat("_Suds",1);suds.renderQueue=3100;// round 38: after the basin water (Transparent+50), whose multiply tinted the white suds blue
             foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
+            // Round 114 (review 110, all three: the suds "flat white cut-out shapes", "a flat decal splat, not volumetric"): heaps of foam
+            // as real geometry standing up off the water, lit, each turned its own way about the vertical.
+            if(foamMesh&&foamMaterial){var fr=foam.GetComponent<ParticleSystemRenderer>();fr.renderMode=ParticleSystemRenderMode.Mesh;fr.mesh=foamMesh;fr.sharedMaterial=foamMaterial;fr.alignment=ParticleSystemRenderSpace.World;var fm=foam.main;fm.startRotation3D=true;
+             var fs=foam.sizeOverLifetime;fs.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.35f),new Keyframe(.15f,1),new Keyframe(.85f,.95f),new Keyframe(1,0)));}
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
             // Round 65 (review 61, all three: "no splash, drips or runoff"): water flicked off the brush. Real gravity and
             // stretched along their flight, so each drop reads as a falling streak of water in a still, not a hanging dot.
@@ -41,7 +47,7 @@ namespace SeaGlass
              if(particleMaterial){drop=new Material(particleMaterial){name="Water drop"};drop.SetFloat("_Drop",1);drop.renderQueue=3100;r.sharedMaterial=drop;}}
             // Round 98: drips off the lifted piece, under light gravity so a string of them hangs between the glass and the water.
             drips=Emitter("Glass drips",.7f,.1f,.024f,.04f,.35f,120,.01f);
-            {var size=drips.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.7f),new Keyframe(.25f,1),new Keyframe(1,.8f)));if(drop)drips.GetComponent<ParticleSystemRenderer>().sharedMaterial=drop;}
+            {var size=drips.sizeOverLifetime;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.7f),new Keyframe(.25f,1),new Keyframe(1,.8f)));if(drop){var tear=new Material(drop){name="Water teardrop"};tear.SetFloat("_Drop",2);drips.GetComponent<ParticleSystemRenderer>().sharedMaterial=tear;}}   // round 114: falling drops drawn as teardrops
             // Round 66: the colour-revealed glints get their own world-space system. On the shared pool, the recycling station's
             // sparkles could pick the same pooled system a moment later and carry the glints off with it.
             revealGlints=Emitter("Reveal glints",1.2f,.2f,.035f,.075f,-.05f,80,.05f);
@@ -113,7 +119,9 @@ namespace SeaGlass
             // a clump read as separate white spots at basin scale. Now two large, part-transparent masses a call, overlapping their
             // neighbours, so the suds build into one soft heap of foam around the brush instead of a scatter of popcorn.
             // Round 104: one smaller mass a call (heaps of large masses read as cotton balls); the raft of lace below carries the foam.
-            for(int i=0;i<1;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.01f+Random.Range(0f,.006f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.08f,.13f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);foam.Emit(p,1);}
+            for(int i=0;i<1;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.01f+Random.Range(0f,.006f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.08f,.13f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);
+                if(foamMesh&&foamMaterial){if(Random.value>.75f)continue;p.rotation3D=new Vector3(Random.Range(-8f,8f),Random.Range(0f,360f),Random.Range(-8f,8f));p.startSize=Random.Range(.085f,.15f);p.position=at+new Vector3(o.x,.004f,o.z);p.startColor=Color.white;}   // round 114: a heap sitting in the water
+                foam.Emit(p,1);}
             // Round 96 (review 92: "no foam or film on the water"): a broad, faint patch of foam spreading on the water around the brush,
             // so the suds sit in a soapy film. Round 97: every call, a little denser (it went unnoticed).
             // Round 104: the film is a flat raft of lace on the water (it was a faint upright disc).
@@ -158,7 +166,7 @@ namespace SeaGlass
             if(!drips)return;drips.transform.position=at;var p=new ParticleSystem.EmitParams();p.position=at;p.velocity=new Vector3(Random.Range(-.02f,.02f),Random.Range(-.15f,-.05f),Random.Range(-.02f,.02f));
             // Round 104: each drop lands on the water as a spreading ring, the part of a drip that reads in a still.
             if(Random.value<.5f)Ripple(new Vector3(at.x,waterY+.003f,at.z),Random.Range(.07f,.12f));
-            p.startSize=Random.Range(.03f,.05f);p.startLifetime=Random.Range(.45f,.7f);p.startColor=Color.white;drips.Emit(p,1);
+            p.startSize=Random.Range(.045f,.07f);p.startLifetime=Random.Range(.45f,.7f);p.startColor=Color.white;drips.Emit(p,1);   // round 114: larger teardrops (they went unseen)
         }
         // Digging: puffs of sand kicked up from the mound.
         public void Dust(Vector3 at)
