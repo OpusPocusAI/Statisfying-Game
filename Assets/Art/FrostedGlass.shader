@@ -410,7 +410,7 @@ Shader "Sea Glass/Frosted Glass"
                     half3 through = lerp(diffused, dl * hueF * 1.15, lerp(.55, .9, thickF)) * lerp(1.15, .9, thickF);
                     through += tint * lightOnFrost * (.16 + .22 * thickF);   // light scattered inside the frosted body: the colour glows
                     half3 milk = lerp(_Frost.rgb, hueF * .62 + _Frost.rgb * .38, .7) * lightOnFrost;
-                    half veil = lerp(.4, .66, faceF) * (.75 + grain * .45) * lerp(1.1, .78, thickF);
+                    half veil = lerp(.32, .56, faceF) * (.75 + grain * .45) * lerp(1.1, .78, thickF);   // round 122: a thinner veil, more of the colour glows through
                     frostedGlass = lerp(through, milk, veil);
                     // Round 94 (review 90, two: "the dirty-to-clean contrast is mild", "the grime reads as streaks rather than crust"): the
                     // frosted body glowed nearly as saturated an aqua as the clean glass, so cleaning changed little. Weathered frost is dull: the
@@ -468,7 +468,21 @@ Shader "Sea Glass/Frosted Glass"
                     // Round 93 (review 89, all three: the even coat read as "a beige stone with no colour through it"): a thinner dusting, so the
                     // frosted glass and its colour glow through between the grains of sand; the streaks still run with the brush.
                     stainPatch = saturate(.52 + (grainS - .5) * .45 + (film - .5) * .25 + edgeSilt * .15);   // strong streaks read as wood grain; a faint broad drift breaks them
-                    sandStain = half3(.44, .37, .28) * lightOnFrost * lerp(.66, .98, grainS); }   // a darker, warmer coat: under the teal water a paler one read grey-beige, barely apart from the clean glass
+                    sandStain = half3(.44, .37, .28) * lightOnFrost * lerp(.66, .98, grainS);
+                    // Round 122 (review 118, all three: the cloudy piece "a frosted plastic card", "a frosted tile", its streaks "read as wood
+                    // grain, not frost"): the fine streaks along the scrub direction read as the grain of a wooden board, and the even frost
+                    // under them as a flat card. Dried sand has no direction: it is now a granular dusting (fine grains of sand a few pixels
+                    // across over a soft, broad mottle), heavier toward the edges; the brushed lanes come from the clean mask itself and still
+                    // show. Under it the frost is whiter and thicker along the worn rim, as on real sea glass, with a faint sugary sparkle.
+                    float2 gp = muv * float2(_MaskRect.z, _MaskRect.w) / max(_MaskRect.z, _MaskRect.w);
+                    float sandG = Noise(float3(gp * 95.0, 5.7)) * .6 + Noise(float3(gp * 48.0, 1.3)) * .4;
+                    float speck = smoothstep(.66, .8, sandG);
+                    float broad = Noise(float3(gp * 3.2, 9.1));
+                    stainPatch = saturate(.3 + (broad - .5) * .5 + edgeSilt * .25 + speck * .16);
+                    sandStain = half3(.5, .43, .33) * lightOnFrost * lerp(.74, 1.0, sandG) * (1 - speck * .12);
+                    frosted = lerp(frosted, saltCrust * 1.04, (1 - faceF) * .4 + smoothstep(.5, .25, nv) * .12);
+                    frosted += step(.972, Noise(i.local * 64.0 + 2.0)) * wrap * .22 * sun.color;
+                    frosted += pow(saturate(dot(n, normalize(l + v))), 14) * .14 * sun.color * faceF; }   // a soft satin sheen, as on frosted glass   // a darker, warmer coat: under the teal water a paler one read grey-beige, barely apart from the clean glass
                 frosted = lerp(frosted, sandStain, dirt * stainPatch * .97);   // round 40: an opaque crust   // round 39: browner, darker silt (review 35: "dirty and clean look alike")   // round 37: darker silt (review 33: "weak dirty-to-clean contrast")   // white frost between the patches
                 frosted = lerp(frosted, sandStain * .85, dirtRim);   // round 21: lifted grime along the stroke edge
 
