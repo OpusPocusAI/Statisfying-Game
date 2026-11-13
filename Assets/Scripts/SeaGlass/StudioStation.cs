@@ -151,6 +151,7 @@ namespace SeaGlass
             var shown=kind==StationKind.Sort?def.PlateMesh:def.BasinMesh;   /* round 115 (review 111, C: the palm piece "a flat rhombus with a pointed tip"): in the palm, the plate with rounded corners */   /* round 108 (review 104, all three: the palm piece "pillowy green jelly", "thick gummy candy"): the piece held up at the trays is the same thin hero plate as at the basin, not the thicker tray pebble */var filter=workingGlass.GetComponent<MeshFilter>();if(shown)filter.sharedMesh=shown;
             // Round 73 (review 69: at 0.42 m across the basin piece filled a fifth of the frame and read as a moulded sweet): smaller.
             workingGlass.localScale=Vector3.one*((kind==StationKind.Sort?.065f:.3f)/Mathf.Max(shown.bounds.size.x,shown.bounds.size.y));
+            if(kind==StationKind.Sort)thickSide=def.plateThickSide;
             if(kind==StationKind.Clean)
             {
                 // Round 14: each piece floats just at the waterline whatever its thickness (thin pieces sank
@@ -161,6 +162,11 @@ namespace SeaGlass
                 var wb=glassRenderer.bounds.extents;Reach=new Vector3(wb.x*.78f,wb.y*.85f,wb.z*.72f);
             }
         }
+        // Round 119 (review 115, all three: the palm piece "thick and gummy, more like candy than a wedge"): each plate is a wedge
+        // (round108.py), but in the palm its thick side often faced the eye, so the nearest edge was its tallest wall, a pale band
+        // like a gummy's side. The piece is turned in its own plane so the thick side points away: the near edge is the thin one,
+        // and the colour deepens across the face away from the eye.
+        Vector2 thickSide;   // GlassDefinition.plateThickSide of the piece in the palm
         public void Leave(){active=false;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);S.player.mode=PlayerMode.Walking;S.player.interactOverride=null;S.player.Teleport(returnPosition,returnRotation);S.player.SetLookRotation(returnView);S.Save();}
         void Update()
         {
@@ -234,6 +240,14 @@ namespace SeaGlass
             heldPalm.SetPositionAndRotation(v.position+v.right*PalmAt.x+v.up*PalmAt.y+v.forward*PalmAt.z,Quaternion.LookRotation(v.forward,v.up)*Quaternion.Euler(PalmTilt));
             // Local +z (the concave inner face) down into the palm, so the convex outer face is up; turned a little on the palm.
             workingGlass.rotation=Quaternion.LookRotation(-heldPalm.up,heldPalm.forward)*Quaternion.Euler(0,0,25);
+            // Round 119: turned on the palm so the thick side points away from the eye (the turn above when it cannot be told).
+            if(thickSide.sqrMagnitude>1e-10f)
+            {
+                var flat=Quaternion.LookRotation(-heldPalm.up,heldPalm.forward);
+                var view=Quaternion.Inverse(flat)*(heldPalm.position-v.position);
+                var v2=new Vector2(view.x,view.y);
+                if(v2.sqrMagnitude>1e-8f)workingGlass.rotation=flat*Quaternion.AngleAxis(Vector2.SignedAngle(thickSide,v2),Vector3.forward);
+            }
             var mf=workingGlass.GetComponent<MeshFilter>();var mb=mf&&mf.sharedMesh?mf.sharedMesh.bounds:new Bounds(Vector3.zero,Vector3.one);
             float k=workingGlass.lossyScale.x;
             workingGlass.position=heldPalm.position+heldPalm.up*(mb.max.z*k+.004f)-workingGlass.rotation*new Vector3(mb.center.x*k,mb.center.y*k,0)+heldPalm.forward*.012f;

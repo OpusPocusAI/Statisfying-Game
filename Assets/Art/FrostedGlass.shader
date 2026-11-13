@@ -333,6 +333,17 @@ Shader "Sea Glass/Frosted Glass"
                             // glass's own colour hid the glove at every thickness. Now the thin side of the wedge lets more of the glove through
                             // (a darker, clearer glass), the thick side keeps the lit body colour, so the piece grades as a wedge of glass.
                             g = lerp(g, bodyH + g * .35, lerp(.1, .45, thickH));   /* round 115 (review 111, A: the palm piece "an opaque teal plastic chip"): a little more of what lies behind shows through */
+                            // Round 119 (review 115, all three: the palm piece "thick and gummy, more like candy than a wedge", "like a gummy candy",
+                            // "slightly like a jelly sweet"): thickH spanned only the lower half of the plate's thickness here, so the whole face sat
+                            // at one mint, over a pale edge band, which is how a gummy reads. The basin piece passed as bottle wall once it graded
+                            // from clear to deep across its own thickness; the palm piece now does the same: on its thin side clear glass, the
+                            // glove seen through it in grey rather than navy (so it does not turn olive, round 91) under a light wash of the hue;
+                            // on its thick side the deep lit colour of the glass.
+                            half tP = smoothstep(.05, .105, lz);
+                            half3 seenP = lerp(seenH, dot(seenH, half3(.3, .55, .15)).xxx, .7);
+                            half3 filtP = lerp(lerp(half3(1, 1, 1), hue, .35), hue * hue * .8, tP);
+                            half3 gP = seenP * filtP * lerp(1.5, .75, tP) + hue * (sky * .3 + sun.color * .25 + .22) * lerp(.12, .55, tP);
+                            g = lerp(g, gP, .85);
                         }
                         half3 edgeCol = hue * hue * (dot(seenH, half3(.3, .55, .15)) * .55 + .2) * (sky * .35 + sun.color * .35 + .55);
                         // Round 87 (review 83, all three: the basin piece "a thick mint jelly lozenge", "a gummy sweet: a thick, soft,
@@ -344,13 +355,13 @@ Shader "Sea Glass/Frosted Glass"
                         // Round 102 (review 98: "a separate-looking dark teal rim band under its top face", "a dark rim", read as a seam or
                         // a second layer): the wall's own colour, worked out apart from the face, met the face along a line. It is now
                         // the face's colour carried over the edge, a little deeper in the hue, so face and wall read as one piece of glass.
-                        if (_MaskOn > .5) edgeCol = g * lerp(half3(1, 1, 1), hue, .75) * .8;   /* round 103 (review 99, all three: "a thick gummy block with a wide bright side band", "the shard edge looks extruded"): the face colour carried over the edge lit the whole wall as a pale band; it is now a deeper, slightly darker hue of the face, as the edge of a pane is, and held to a narrow strip at the very rim (below), so it reads as the thin edge of a plate, not a side */
-                        g = lerp(g, edgeCol, _MaskOn > .5 ? pow(1 - faceK, 3) * .9 : (1 - faceK) * .5);   // round 91: in the palm the edge wall turns from the face more gently
+                        edgeCol = g * lerp(half3(1, 1, 1), hue, .75) * .8;   /* round 119: in the palm too, the edge of a pane, not a gummy's pale band */   /* round 103 (review 99, all three: "a thick gummy block with a wide bright side band", "the shard edge looks extruded"): the face colour carried over the edge lit the whole wall as a pale band; it is now a deeper, slightly darker hue of the face, as the edge of a pane is, and held to a narrow strip at the very rim (below), so it reads as the thin edge of a plate, not a side */
+                        g = lerp(g, edgeCol, pow(1 - faceK, 3) * .9);   /* round 119: the palm takes the basin's narrow edge strip */   // round 91: in the palm the edge wall turns from the face more gently
                         half lip = saturate(faceK * (1 - faceK) * 4);
-                        if (_MaskOn > .5) lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
+                        lip = smoothstep(.06, .0, abs(faceK - .7)) * 1.2;   /* round 119: the fine lip in the palm too */   /* round 103: a finer lip, nearer the face */   /* round 75: a thin, bright line where the face turns over the rim */
                         g += lerp(hue, half3(1, 1, 1), .6) * lip * (_MaskOn > .5 ? .5 : .5) *   /* round 115: the palm piece keeps a bright line at its rim too */ (sky * .5 + sun.color * .5 + .3);   /* round 111 (review 107, B: "a weak rim line"): a brighter lip at the basin */
                         half sheen = (1 - smoothstep(.0, .09, abs(dot(i.local.xy, float2(.86, .5)) - .14))) * faceK;
-                        if (_MaskOn > .5) sheen *= .4 * (.5 + Noise(i.local * 9.0 + 2.0));   /* round 112 (review 108, all three: "a cut acrylic tile", "acrylic or hard candy"): one long, clean sheen streak is how new acrylic catches light; at the basin it is fainter and broken */
+                        sheen *= .4 * (.5 + Noise(i.local * 9.0 + 2.0));   /* round 119: broken in the palm too */   /* round 112 (review 108, all three: "a cut acrylic tile", "acrylic or hard candy"): one long, clean sheen streak is how new acrylic catches light; at the basin it is fainter and broken */
                         g += (sky * .5 + sun.color * .3 + .15) * sheen * .1;
                         g += sky * fresnel * .12;
                         clean = g;

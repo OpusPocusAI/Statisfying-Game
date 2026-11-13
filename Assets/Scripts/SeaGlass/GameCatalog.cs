@@ -15,7 +15,9 @@ namespace SeaGlass
         // Round 73: a hero version of the same shard for the wash basin, where it is seen large (crisper edge, rim chips, pitting).
         public Mesh basinMesh; public Mesh BasinMesh=>basinMesh?basinMesh:HeldMesh;
         // Round 115: the same thin plate with well-rounded corners, for the palm and the trays, where a piece is seen small and steeply.
-        public Mesh plateMesh; public Mesh PlateMesh=>plateMesh?plateMesh:BasinMesh; }
+        public Mesh plateMesh; public Mesh PlateMesh=>plateMesh?plateMesh:BasinMesh;
+        // Round 119: which way the plate thickens, in its local x/y (Round119Pass; the meshes cannot be read in the built game).
+        public Vector2 plateThickSide; }
     [Serializable] public class UpgradeDefinition { public string id; public string title; public string description; public int level; public int cost; }
     [CreateAssetMenu(menuName="Sea Glass/Game Catalog")]
     public class GameCatalog : ScriptableObject
