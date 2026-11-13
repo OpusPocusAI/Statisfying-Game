@@ -430,6 +430,14 @@ Shader "Sea Glass/Frosted Glass"
                     // (a pastel of the hue, not neutral grey); the clean glass stays the deep, glossy version of the same colour.
                     half3 pastel = fl * lerp(half3(1.0, .98, .93), hueF, .55);
                     frostedGlass = lerp(frostedGlass, pastel, .55) * .94;
+                    // Round 124 (review 120: the cloudy piece "a flat mint card or soap bar", "an opaque pale slab or soap with no hue
+                    // underneath"; review 119: "a matte bar of soap"): one even pale pastel over the whole plate is how soap reads. Frosted sea
+                    // glass keeps its colour: matte, but plainly coloured, and deeper where the glass is thicker, paler toward the thin edge.
+                    // The frost now carries more of the hue, graded across the plate's own wedge (the same span as the clean glass, round 111).
+                    half tF = smoothstep(.02, .042, lz);
+                    half fl2 = dot(frostedGlass, half3(.3, .55, .15));
+                    half3 tinted = fl2 * lerp(lerp(half3(1, 1, 1), hueF, .55), hueF * hueF * 1.05, tF) * lerp(1.12, .9, tF);
+                    frostedGlass = lerp(frostedGlass, tinted, lerp(.45, .7, faceF));
                 }
                 half3 saltCrust = _Frost.rgb * lightOnFrost * 1.04;
                 half3 frosted = lerp(frostedGlass, saltCrust, crust * .2);   // round 61: fewer white salt patches
@@ -487,7 +495,7 @@ Shader "Sea Glass/Frosted Glass"
                     float sandG = Noise(float3(gp * 95.0, 5.7)) * .6 + Noise(float3(gp * 48.0, 1.3)) * .4;
                     float speck = smoothstep(.66, .8, sandG);
                     float broad = Noise(float3(gp * 3.2, 9.1));
-                    stainPatch = saturate(.3 + (broad - .5) * .5 + edgeSilt * .25 + speck * .16);
+                    stainPatch = saturate(.24 + (broad - .5) * .5 + edgeSilt * .25 + speck * .16);   /* round 124: a lighter dusting, so the colour shows */
                     sandStain = half3(.5, .43, .33) * lightOnFrost * lerp(.74, 1.0, sandG) * (1 - speck * .12);
                     frosted = lerp(frosted, saltCrust * 1.04, (1 - faceF) * .4 + smoothstep(.5, .25, nv) * .12);
                     frosted += step(.972, Noise(i.local * 64.0 + 2.0)) * wrap * .22 * sun.color;
