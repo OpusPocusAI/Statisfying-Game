@@ -18,6 +18,7 @@ namespace SeaGlass
             // Round 13: sorted pieces match the spare pebbles already in the trays (they were about 3x larger).
             var spares=FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None).Where(r=>r.name.StartsWith("Spare ")&&r.name.EndsWith(" glass")).Select(r=>Mathf.Max(r.bounds.size.x,r.bounds.size.z)).OrderBy(x=>x).ToArray();
             float pieceSize=spares.Length>0?spares[spares.Length/2]*1.1f:.14f;
+            var heap=FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None).Where(r=>r.name.StartsWith("Spare ")&&r.name.EndsWith(" glass")).ToArray();
             foreach(var def in session.catalog.glass)
             {
                 var tray=trays.First(t=>t.color==def.color);int index=counts[(int)def.color]++;
@@ -30,6 +31,9 @@ namespace SeaGlass
                 go.transform.localScale=Vector3.one*size;
                 go.AddComponent<MeshFilter>().sharedMesh=mesh;
                 var mr=go.AddComponent<MeshRenderer>();mr.sharedMaterial=sockets.First(s=>s.glassId==def.id).surface.sharedMaterial;MarkPlate(mr);
+                // Round 117: the trays hold fuller heaps (Round117Pass); a sorted piece comes to rest on top of the pieces beneath it.
+                var under=heap.Where(q=>q.name=="Spare "+def.color+" glass").Select(q=>q.bounds).Where(b=>mr.bounds.center.x>b.min.x&&mr.bounds.center.x<b.max.x&&mr.bounds.center.z>b.min.z&&mr.bounds.center.z<b.max.z).ToArray();
+                if(under.Length>0){float rest=under.Max(b=>b.max.y)-.004f;if(rest>mr.bounds.min.y)go.transform.position+=Vector3.up*(rest-mr.bounds.min.y);}
                 pieces.Add(def.id,go);
             }
             // Round 115: the tray spares are thin plates too; their colour materials are shared with the beach pebbles, so the plate
