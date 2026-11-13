@@ -5210,3 +5210,45 @@ The reviewers viewed 35-50 references each, as the store's screenshots opened in
 **Bugs reported:**
 - The truck mirrors floating and a dark panel behind the seat (t2; all three); a shadow with no caster on the b4 sand (two); the sieve handle through the basin rim (s11, 04; one); the jar at the s11 board edge (one); pale bands on the boulders (b1, b3, b5; one); a mid-water rock with a flat box-like top (b9, b5, 02; one).
 - The hanging planter resting on the shelf and the pendant at the s7 frame edge (one); the EQUIPMENT sign floating behind the bookcase (s4; one); the towel end lifted (b9; one); the s6 subtitle touching the fascia edge (one); the cloudy piece cutting the water unevenly (04; one); a green blob at the s3 roof edge (one); a white sliver at the 06/07 frame edge (one).
+
+### November 13 — round 120 and review 117 (three reviewers, averaged)
+
+Round 120 (FrostedGlass.shader; Round120Pass.cs, the Pearl tray material):
+- **Glass under a frosted skin, not boiled sweets:** the tray plates were deep, glossy and solid, which is how a boiled sweet reads. The felt now shows through the thinner part of each plate, lightly tinted by the glass, and a soft, lit, faintly grainy frost in a pale tint of the glass colour lies over the faces, as on worn sea glass. Their sun and key glints are about half as strong and the star flashes fewer, as a frosted skin catches only a soft glint.
+- **Pearl as white sea glass:** the Pearl tray shared the beach pebble's cream, which under the frost read as white plastic. Its tray copy now has the faint cool cast of white sea glass; the beach pebbles and the mosaic keep theirs.
+- In s10, 06 and 07 the tray pieces are matte, frosted and paler, with the felt grain showing through Emerald and Cobalt; Pearl is a pale cool frosted glass. Amber, orange over the lilac felt, stays the most solid.
+
+The reviewers viewed 39-50 references each, as the store's screenshots opened in their own tab (B partly in a grid of the page's images).
+
+| Area | A | B | C | Average | Review 116 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.3 |
+| 5.7 Cleaning | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 4.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The trays are split:** "the tray shards are translucent and saturated, and Pearl is frosted" (A); "thin flat plastic flakes, and the amber looks like candy" (B); "flat outlined cutouts", Pearl "plastic or ice" (C). Fewer call them candy than in review 116 (all three), but two still read them as flat flakes. Two call the heaps a single flat layer again.
+- **The 05b clean piece now reads as a thick jelly block (all three), with no change to it:** "reads thicker than its target and a bit like jelly with surface spots" (A), "a thick gummy block, not a plate of bottle wall" (B), "a thick jelly block" (C). In review 115 two passed it. This is now the main reason sea glass sits at 3.3.
+- **The palm piece passes:** "a convincing glossy wedge" (B), "glints well" (A).
+- **Effects fell back to 3.0 (unanimous), with no change:** the suds "popcorn-like white blobs on flat white decals" again. The effects score has swung 3.0 / 4.0 / 3.0 over three reviews on the same suds.
+- **Eight areas meet the bar:** lighting, water, cleaning, sorting, mosaic, studio, truck, tools.
+
+**Next:**
+- The 05b clean piece: thinner-looking, a plate of bottle wall rather than a jelly block (all three).
+- The suds: translucent, varied foam rather than white blobs on flat decals (all three).
+- Vegetation, rubbish (all three); the shallows (two); the clouds as one repeated puff (all three).
+
+**Bugs reported:**
+- The jar at the s11 table edge (all three); pale bands on the boulders (b1, b3; two); the sieve handle through the basin rim (s11, 04; one); a bottle through the driftwood (b9; one); the truck mirrors floating (t2; one); the towel lifted with an orange stick under it (b9; one).
+- A dark line along the road shoulder and floating sprouts on the dunes (b7; one); a red checker on the eave undersides (s4, s9; one); glass floating over the truck's bin rim and an orange item through the recycle bed (03; two, one each); the hard foam ring round the sea stacks (b8; one); the boardwalk ending at the deck edge (s6; one); the SORT BY COLOUR sign at a diagonal (s3; one); a plant over the first mosaic label (s1; one); the blue item on the 02 mound unclear (one).
