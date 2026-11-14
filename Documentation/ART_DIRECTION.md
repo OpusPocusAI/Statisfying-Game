@@ -5459,3 +5459,44 @@ The reviewers viewed 31-39 references each, as the store's full-size screenshots
 **Bugs reported:**
 - The jar at the s11 edge (all three); pale bands on the boulders (b1, b3; all three); a flat brown mat on the b4 sand (two); a purple shadow with no caster on the b4 sand (one); the EQUIPMENT sign floating (s4; one); the hanging pot over the shelf (s7; one); the clean piece pasted on the palm with no contact shadow (06; one).
 - A bottle through the driftwood (b9; one); the truck mirrors floating (t2; one); the potted plants black in s6 (one); the deck ending straight onto the road (s4; one); a flat-topped rock outcrop (b5, b9; one); a dark block at the 07b edge (one); a plant over the mosaic label (s1; one).
+
+### November 14 — round 126 and review 123 (three reviewers, averaged)
+
+Round 126 (Feedback.cs; FoamClump.shader):
+- **Smaller suds:** each foam mound was 8.5-15 cm across, as big as the piece itself. The brush now leaves two or three small, low dabs per stroke instead, each 3.5-7 cm across and about half as tall as it is wide. Each dab is stretched its own way, so no two share an outline. They drift out slowly and gather in a band of suds around the piece and the brush, rather than floating off as separate puffs.
+- **Softer suds:** the foam is a less bright white, and its bubble grain is twice as fine (about 3 mm cells). The bright outline glow is mostly gone. The foam is now drawn after the basin water and thins toward its edges and its foot, so the water shows through there, and it fades out at the end of its life rather than only shrinking.
+- In 05 the suds are a gathered band of small, low foam dabs around the piece and brush, translucent at their edges, beside the flat foam lace.
+
+The reviewers viewed 38-40 references each, as the store's full-size screenshots opened in their own tab.
+
+| Area | A | B | C | Average | Review 122 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 3 | 3 | 3 | 3.0 | 3.3 |
+| 5.7 Cleaning | 3 | 4 | 3 | 3.3 | 3.7 |
+| 5.8 Sorting | 4 | 3 | 4 | 3.7 | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 3 | 3 | 3.0 (stills only) | 3.3 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The suds did not pass, and now read grey (all three):** "grey popcorn lumps", with no splashes or drips (A); "cotton or popcorn clumps sitting on top of the water, not foam" (B); "grey popcorn or stone clumps" and "solid" (C). Nobody calls them too big now, but B, who passed round 125's mounds, no longer does; effects fell to 3.0 and cleaning to 3.3 (A and C mark the suds down there). The grey is most likely the less bright white together with the teal water showing through the thinned edges (not yet checked); many small dabs also read as popcorn again, as the round 97 scatter did.
+- **Sea glass at 3.0 (all three):** the clean piece's near-regular pentagon outline reads as acrylic (A); the trays as thin flat cut-outs (all three); the cloudy piece as a flat opaque tile (C); the palm piece as a gummy tile (B).
+- **Sorting slipped to 3.7 (B), with no change to it:** single-layer, flat piles.
+- **Seven areas meet the bar:** lighting, water, sand, mosaic, studio, truck, tools.
+
+**Next:**
+- The suds: round 126's small dabs regressed. Either return to round 125's mounds made a little smaller, or move away from upright lumps toward foam that lies in the water, bright white, not grey.
+- The tray pieces as flat cut-outs (all three); the clean piece's regular outline (one); vegetation, rubbish (all three).
+
+**Bugs reported:**
+- A straight dark line across the sand by the road (b7; two); the s11 jar over the table edge (one); pale bands on the boulders (b1, b9; one); a bottle through the driftwood (b9; one).
+- The tap behind the basin, not over it (04, 05, s11; one); warm light on the b8 stacks' sun-facing-away side (one); the s7 window plant glowing orange (one); stray orange and blue shapes on the s7 wall grid (one); a lamp shade clipping the s7 frame (one).
+- The Violet tray's pieces over its rim (s10, 06; one); the Aqua tray overlapped by the Emerald one (s10, 06; one); the s3 diamond beam unsupported (one); a box-like sea stack (b5, 02; one); the "01 / Ocean" plaque behind a plant (s1; one); swirled floor grain (s11, 04; one); jars at the s5 near plane (one); hard-edged floor light and needle sparkles (08; one).
