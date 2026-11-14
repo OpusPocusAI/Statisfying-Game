@@ -78,7 +78,7 @@ namespace SeaGlass
             session.truck.transform.position=new Vector3(15,.3f,150);
             var stations=FindObjectsByType<StudioStation>(FindObjectsSortMode.None);
             var clean=stations.First(s=>s.kind==StationKind.Clean);var sort=stations.First(s=>s.kind==StationKind.Sort);
-            Require(stations.First(s=>s.kind==StationKind.Recycle).Recycle(),"Recycling");
+            Require(session.truck.Unload(),"Rubbish carried from the truck");Require(stations.First(s=>s.kind==StationKind.Recycle).Recycle(),"Recycling");
             clean.Interact();yield return Shot("04-cloudy-glass");
             // Brush for real (round 13): strokes clear along the brush path, with foam and ripples, so the
             // half-clean frame shows the cleaning as it plays. 2.5 s at 1.8x the record rate = half the grime.

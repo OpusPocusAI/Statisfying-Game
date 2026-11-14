@@ -79,10 +79,10 @@ namespace SeaGlass.Tests
                 {
                     if(s.BucketCount>=s.progress.BucketCapacity){s.truck.Load(true);s.truck.Load(false);}
                     if(s.CargoCount+s.BucketCount>=s.progress.TruckCapacity)
-                    {s.truck.transform.position=new Vector3(15,.3f,150);s.truck.Load(true);s.truck.Load(false);recycle.Recycle();clean.Interact();if(clean.active)clean.Leave();yield return new WaitForSeconds(1.6f);s.truck.transform.position=new Vector3(15,.3f,8);}
+                    {s.truck.transform.position=new Vector3(15,.3f,150);s.truck.Load(true);s.truck.Load(false);{while(s.truck.Unload())recycle.Recycle();}clean.Interact();if(clean.active)clean.Leave();yield return new WaitForSeconds(1.6f);s.truck.transform.position=new Vector3(15,.3f,8);}
                     item.Use(2);Assert.IsTrue(item.Collect(),item.id);
                 }
-                s.truck.Load(true);s.truck.Load(false);s.truck.transform.position=new Vector3(15,.3f,150);recycle.Recycle();yield return new WaitForSeconds(1.6f);
+                s.truck.Load(true);s.truck.Load(false);s.truck.transform.position=new Vector3(15,.3f,150);{while(s.truck.Unload())recycle.Recycle();}yield return new WaitForSeconds(1.6f);
                 clean.Interact();for(int i=0;i<10;i++){clean.Clean(10);yield return new WaitForSeconds(1.15f);}clean.Leave();sort.Interact();
                 for(int i=0;i<10;i++){var def=s.catalog.glass.First(x=>x.id==sort.selectedId);Assert.IsTrue(sort.Sort(def.color));}sort.Leave();
                 var panel=panels.First(x=>x.index==section);foreach(var def in s.catalog.glass.Where(x=>x.panel==section))Assert.IsTrue(panel.Place(def.id));yield return new WaitForSeconds(3);

@@ -192,7 +192,10 @@ namespace SeaGlass.Tests
             rubbish.Use(2);Assert.IsTrue(rubbish.Collect());Assert.IsTrue(session.truck.Load(false));
             session.truck.transform.position=new Vector3(15,.3f,150);session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);
             StringAssert.Contains("recycling press",TutorialGuidance.Get(session));
-            Assert.IsTrue(Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(s=>s.kind==StationKind.Recycle).Recycle());
+            var press=Object.FindObjectsByType<StudioStation>(FindObjectsSortMode.None).First(s=>s.kind==StationKind.Recycle);
+            Assert.IsFalse(press.Recycle(),"The press only takes rubbish you carry to it.");
+            Assert.IsTrue(session.truck.Unload());StringAssert.Contains("recycling press",TutorialGuidance.Get(session));
+            Assert.IsTrue(press.Recycle());
             StringAssert.Contains("Return to the shore",TutorialGuidance.Get(session));yield return null;
         }
         [UnityTest] public IEnumerator GuidanceFollowsProcessingAfterAnEarlyUpgrade()

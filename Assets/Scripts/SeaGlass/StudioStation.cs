@@ -23,7 +23,7 @@ namespace SeaGlass
         public static bool Manual;public static Vector3 ManualOffset,ManualVelocity;const float WipeTarget=.88f;
         bool[] silhouette;int silhouetteCount,cleanedCount;
         GameSession S=>GameSession.Instance;
-        public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
+        public override string Prompt=> kind==StationKind.Recycle?(S&&S.Count(ItemStage.Bucket,false)>0?"E · feed "+S.Count(ItemStage.Bucket,false)+" pieces of rubbish into the press":"Recycling press · bring rubbish here in your bucket"):kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
         void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;glassRotation=workingGlass.localRotation;workingGlass.gameObject.SetActive(false);}}
         void RestoreGlassPose(){if(workingGlass){workingGlass.localPosition=glassHome;workingGlass.localRotation=glassRotation;}}
         public void ResetStation(){active=false;selectedId=null;processing=0;reveal=0;RestoreGlassPose();if(workingGlass)workingGlass.gameObject.SetActive(false);}
@@ -47,11 +47,34 @@ namespace SeaGlass
         }
         public bool Recycle()
         {
-            if(processing>0)return false;
-            if(!S.truck.AtStudio){S.Notify("Park the truck beside the studio first.");return false;}
-            int count=0;foreach(var r in S.progress.items)if(r.stage==ItemStage.Truck&&r.id.StartsWith("rubbish-")){r.stage=ItemStage.Recycled;count++;}
-            if(count==0){S.Notify("No rubbish in the truck's recycling crate.");return false;}
-            S.Award(count*12,count*5);S.Tutorial(7);S.truck.RefreshCargo();S.Save();processing=1.5f;Feedback.Instance.Play("recycle");S.Notify(count+" pieces recycled · +"+(count*5)+" caps · +"+(count*12)+" XP");return true;
+            // Carrying rubbish: the press takes the rubbish in your bucket. Progress commits at once; the pieces then drop in one by one.
+            var fed=S.progress.items.Where(r=>r.stage==ItemStage.Bucket&&r.id.StartsWith("rubbish-")).ToList();
+            if(fed.Count==0){S.Notify(S.truck.AtStudio&&S.Count(ItemStage.Truck,false)>0?"Take the rubbish out of the truck's rubbish crate first, then carry it here.":"Nothing to recycle. Bring rubbish here in your bucket.");return false;}
+            foreach(var r in fed)r.stage=ItemStage.Recycled;int count=fed.Count;
+            S.Award(count*12,count*5);S.Tutorial(7);S.Save();processing=Mathf.Max(processing,0)+count*.22f+.6f;
+            FeedingUntil=Time.time+count*.22f+.3f;StartCoroutine(Feed(fed.Select(r=>r.id).ToArray(),count));return true;
+        }
+        public static float FeedingUntil;   // the bucket stays in hand while its rubbish drops into the press
+        System.Collections.IEnumerator Feed(string[] ids,int count)
+        {
+            var items=FindObjectsByType<ShoreItem>(FindObjectsInactive.Include,FindObjectsSortMode.None).ToDictionary(i=>i.id);
+            var mouth=transform.position+Vector3.up*1.1f;
+            for(int k=0;k<ids.Length;k++)
+            {
+                var hand=S.player.view.transform.position+S.player.view.transform.forward*.55f-S.player.view.transform.up*.35f;
+                if(items.TryGetValue(ids[k],out var item)&&Feedback.Instance)
+                {
+                    var mf=(item.visual?item.visual:item.transform).GetComponentInChildren<MeshFilter>(true);var mr=mf?mf.GetComponent<MeshRenderer>():null;
+                    if(mf&&mr&&mr.sharedMaterial){var m=mr.sharedMaterial;Feedback.Instance.Fly(mf.sharedMesh,m,m.HasProperty("_BaseColor")?m.GetColor("_BaseColor"):Color.white,hand,mouth,mf.transform.lossyScale,mf.transform.rotation);}
+                }
+                Feedback.Instance?.Play(ids[k].EndsWith("0")?"metal":"plastic",.9f+k*.06f);
+                yield return new WaitForSeconds(.22f);
+                Feedback.Instance?.Burst(mouth,new Color(1f,.84f,.55f),5);
+            }
+            yield return new WaitForSeconds(.25f);
+            Feedback.Instance?.Play("recycle");Feedback.Instance?.Burst(mouth,GameCatalog.Palette[0],16);
+            int left=S.Count(ItemStage.Truck,false);
+            S.Notify(count+" pieces recycled · +"+(count*5)+" caps · +"+(count*12)+" XP"+(left>0?". "+left+" more in the truck's rubbish crate.":""));
         }
         public bool SelectNext()
         {

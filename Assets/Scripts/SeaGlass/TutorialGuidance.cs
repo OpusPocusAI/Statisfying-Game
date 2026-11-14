@@ -25,6 +25,7 @@ namespace SeaGlass
             int bucket=session.BucketCount,cargo=session.CargoCount;
             if(session.player.mode==PlayerMode.Driving)
                 return session.truck.AtStudio?"Studio reached. Space to brake, then E to leave the cab.":"W/S to drive, A/D to steer, Space to brake. Follow the coastal road.";
+            if(atStudio&&session.Count(ItemStage.Bucket,false)>0)return "Carry your rubbish to the recycling press and press E to feed it in.";
             if(bucket>0&&(atStudio||cargo>0||bucket>=p.BucketCapacity))
             {
                 bool glass=session.Count(ItemStage.Bucket,true)>0,rubbish=session.Count(ItemStage.Bucket,false)>0;
@@ -32,7 +33,7 @@ namespace SeaGlass
             }
             if(atStudio)
             {
-                if(session.truck.AtStudio&&session.Count(ItemStage.Truck,false)>0)return "E at the recycling press to turn the truck's rubbish into bottle caps.";
+                if(session.truck.AtStudio&&session.Count(ItemStage.Truck,false)>0)return "E at the truck's rubbish crate to take the rubbish out, then carry it to the recycling press for bottle caps.";
                 if(session.Count(ItemStage.Studio,true)>0||(session.truck.AtStudio&&session.Count(ItemStage.Truck,true)>0))return "E at the basin, then hold LMB and wipe to wash your cloudy glass.";
                 if(session.Count(ItemStage.Clean,true)>0)return "E at the sorting table. Match each polished piece to its colour tray.";
                 var sorted=session.catalog.glass.FirstOrDefault(d=>p.items.Any(r=>r.id==d.id&&r.stage==ItemStage.Sorted));
@@ -61,10 +62,11 @@ namespace SeaGlass
             Vector3 Crates(){var c=Object.FindObjectsByType<TruckCompartment>(FindObjectsSortMode.None).FirstOrDefault(x=>!x.skip);return c?c.transform.position:s.truck.transform.position;}
             Vector3 Truck()=>s.truck.transform.position+Vector3.up*1.5f;
             if(s.player.mode==PlayerMode.Driving){if(s.truck.AtStudio)return false;at=new Vector3(15,1.2f,150);label="Studio";return true;}
+            if(atStudio&&s.Count(ItemStage.Bucket,false)>0){at=Station(StationKind.Recycle);label="Recycling press";return true;}
             if(bucket>0&&(atStudio||cargo>0||bucket>=p.BucketCapacity)){at=Crates();label="Truck crates";return true;}
             if(atStudio)
             {
-                if(s.truck.AtStudio&&s.Count(ItemStage.Truck,false)>0){at=Station(StationKind.Recycle);label="Recycling press";return true;}
+                if(s.truck.AtStudio&&s.Count(ItemStage.Truck,false)>0){var rc=Object.FindObjectsByType<TruckCompartment>(FindObjectsSortMode.None).FirstOrDefault(x=>!x.skip&&!x.glass);at=rc?rc.transform.position:Truck();label="Rubbish crate";return true;}
                 if(s.Count(ItemStage.Studio,true)>0||(s.truck.AtStudio&&s.Count(ItemStage.Truck,true)>0)){at=Station(StationKind.Clean);label="Wash basin";return true;}
                 if(s.Count(ItemStage.Clean,true)>0){at=Station(StationKind.Sort);label="Sorting trays";return true;}
                 var sorted=s.catalog.glass.FirstOrDefault(d=>p.items.Any(r=>r.id==d.id&&r.stage==ItemStage.Sorted));

@@ -34,6 +34,18 @@ namespace SeaGlass
             if(count==0){S.Notify("No "+(glass?"glass":"rubbish")+" to load, or the truck is full.");return false;}
             S.Tutorial(5);RefreshCargo();S.Save();Feedback.Instance?.Play(glass?"glass":"metal");Feedback.Instance?.Burst(transform.position-transform.forward*1.5f+Vector3.up,glass?GameCatalog.Palette[0]:new Color(1f,.84f,.55f),12);S.Notify(count+" pieces loaded into the "+(glass?"glass":"recycling")+" crate.");return true;
         }
+        // Carrying rubbish (owner playtest, November 14: "rubbish should have to be carried to the recycler"). At the studio the rubbish
+        // crate empties into your bucket, as much as it holds; you walk it to the press and feed it in.
+        public bool Unload()
+        {
+            if(!AtStudio){S.Notify("Park the truck beside the studio first.");return false;}
+            int room=S.progress.BucketCapacity-S.BucketCount,count=0;
+            foreach(var r in S.progress.items)if(count<room&&r.stage==ItemStage.Truck&&r.id.StartsWith("rubbish-")){r.stage=ItemStage.Bucket;count++;}
+            if(count==0){S.Notify(S.Count(ItemStage.Truck,false)==0?"The rubbish crate is empty.":"Your bucket is full. Feed it to the recycling press first.");return false;}
+            S.player.equippedTool=1;RefreshCargo();S.Save();
+            Feedback.Instance?.Play("metal",.9f);Feedback.Instance?.Burst(transform.position-transform.forward*1.5f+Vector3.up,new Color(1f,.84f,.55f),8);
+            S.Notify(count+" pieces of rubbish in your bucket. Carry them to the recycling press.");return true;
+        }
         public void RefreshCargo()
         {
             int gc=S.Count(ItemStage.Truck,true),rc=S.Count(ItemStage.Truck,false);

@@ -6,6 +6,8 @@ namespace SeaGlass.Editor
     public static class WorkflowChecks
     {
         static void Check(bool condition,string message){if(!condition)throw new Exception("CHECK FAILED: "+message);}
+        // Carrying rubbish: the crate empties into the bucket a bucketful at a time, and the press takes what is carried.
+        static void RecycleAll(GameSession s,StudioStation press){while(s.truck.Unload())press.Recycle();}
         public static string FirstWave()
         {
             var s=GameSession.Instance;Check(s!=null&&Application.isPlaying,"Play Mode session exists");s.testMode=true;s.Begin(false);
@@ -20,14 +22,14 @@ namespace SeaGlass.Editor
                 if(s.BucketCount>=s.progress.BucketCapacity){s.truck.Load(true);s.truck.Load(false);}
                 if(s.CargoCount+s.BucketCount>=s.progress.TruckCapacity)
                 {
-                    s.truck.transform.position=new Vector3(15,.3f,150);s.truck.Load(true);s.truck.Load(false);recycle.Recycle();
+                    s.truck.transform.position=new Vector3(15,.3f,150);s.truck.Load(true);s.truck.Load(false);RecycleAll(s,recycle);
                     clean.Interact();if(clean.active)clean.Leave();s.truck.transform.position=new Vector3(15,.3f,8);
                 }
                 item.Use(2);Check(item.Record.stage==ItemStage.Shore,"Dig reveals "+item.id);Check(item.Collect(),"Collection succeeds "+item.id);
             }
             s.truck.Load(true);s.truck.Load(false);s.truck.transform.position=new Vector3(15,.3f,150);
             // Recycle press cooldown is respected by normal play; process remaining cargo after clearing its visual timer for this synchronous harness.
-            typeof(StudioStation).GetField("processing",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).SetValue(recycle,0f);recycle.Recycle();
+            RecycleAll(s,recycle);
             clean.Interact();Check(clean.active,"Cleaning station entered");
             // This synchronous fixture skips the reveal; timed presentation is covered in PlayMode.
             for(int i=0;i<10;i++){clean.Clean(10);clean.SelectNext();}clean.Leave();Check(s.Count(ItemStage.Clean,true)==10,"Ten pieces washed");
