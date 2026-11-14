@@ -5417,3 +5417,45 @@ The reviewers viewed 38-58 references each (A as grids of the store's 600-wide i
 **Bugs reported:**
 - The jar at the s11 edge (all three); a bottle through the driftwood (b9; two); the truck mirrors floating (t2; two); a green blob floating at the s3 edge (two); the sieve handle through the basin rim (s11, 04, 05; one); Amber pieces over the Amber label (06; one).
 - The hanging pot on the shelf (s7; one); the sea stack's hard slab of shadow (b4; one); a straight seam across the sand beside the road (b7; one); the RECYCLING sign hovering (s2, s9; one); the diamond beam ending at the open wall (s3; one); a long thin parasol shadow (02; one).
+
+### November 14 — round 125 and review 122 (three reviewers, averaged)
+
+Round 125 (round125.py, foam_mound; FoamClump.shader; Round125Pass.cs):
+- **Soft foam, not popcorn:** the brushing suds were foam_clump, a dome ringed by distinct balls, which read as clustered white spheres. Soap suds are a soft mass of very many small bubbles: they are now foam_mound, a low mound of foam with an irregular, lobed outline, a gently rolling top and a flat foot in the water (a first try at a third of its width high read as meringue, so it is a quarter).
+- **Many small bubbles:** the foam shader draws them as a fine net of bubble cells, about 6 mm across, each with a faint cool wall and a tiny glint, under a softer light; where the foam meets the water its foot takes on the water's tint.
+- In 05 and 05b the suds are soft, lobed drifts of soap foam with a fine bubble grain, lying low on the water beside the flat foam lace.
+
+The reviewers viewed 31-39 references each, as the store's full-size screenshots opened in their own tab (A fewer, as the shared pane kept hiding).
+
+| Area | A | B | C | Average | Review 121 average |
+| --- | --- | --- | --- | --- | --- |
+| 5.1 Lighting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.2 Water | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.3 Sand/terrain | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.4 Props/vegetation | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.5 Rubbish | 3 | 3 | 3 | 3.0 | 3.0 |
+| 5.6 Sea glass | 4 | 3 | 3 | 3.3 | 3.7 |
+| 5.7 Cleaning | 4 | 4 | 3 | 3.7 | 3.7 |
+| 5.8 Sorting | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.9 Mosaic | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.10 Studio | 4 | 4 | 4 | **4.0** | 3.7 |
+| 5.11 Truck/road | 4 | 4 | 4 | **4.0** | 3.3 |
+| 5.12 Tools | 4 | 4 | 4 | **4.0** | 4.0 |
+| 5.13 Effects | 3 | 4 | 3 | 3.3 (stills only) | 3.0 |
+| 5.14 Signs | – | – | – | – | – |
+
+**What changed:**
+- **The suds are no longer spheres, but read as solid lumps (two):** "suds are soft mounds" and "suds with grain" (B, effects 4); "oversized cauliflower lumps with flat, cut-out spill patches", "cotton blobs pasted on the water", "too big next to the piece" (A); "solid white cotton or marshmallow lumps, not foam" (C). Nobody says spheres or popcorn. They are opaque, bright and large beside the piece.
+- **The weak dirty-to-clean contrast (C):** "04 is already pale aqua, and the 05 strokes can't be read". Round 124 gave the frost more colour; with it the cloudy piece and the clean glass are closer.
+- **Sea glass slipped to 3.3:** the palm piece reads as a gummy square to two (A, B); the trays as flat outlined cut-outs (B, C); the cloudy piece as "a pale translucent plastic card" (C). A finds the trays' Pearl and Amber now read as glass.
+- **The truck and the studio returned to 4.0, sand too, all with no change to them.**
+- **Eight areas meet the bar:** lighting, water, sand, sorting, mosaic, studio, truck, tools.
+
+**Next:**
+- The suds: smaller, lower and softer at the edges, a little translucent, so they are foam on the water rather than solid cotton lumps beside the piece (two).
+- The dirty-to-clean contrast at the basin (one, with round 124's change the likely cause).
+- The palm piece reads boxy (two); the trays as flat cut-outs (two); vegetation, rubbish, boulders (all three).
+
+**Bugs reported:**
+- The jar at the s11 edge (all three); pale bands on the boulders (b1, b3; all three); a flat brown mat on the b4 sand (two); a purple shadow with no caster on the b4 sand (one); the EQUIPMENT sign floating (s4; one); the hanging pot over the shelf (s7; one); the clean piece pasted on the palm with no contact shadow (06; one).
+- A bottle through the driftwood (b9; one); the truck mirrors floating (t2; one); the potted plants black in s6 (one); the deck ending straight onto the road (s4; one); a flat-topped rock outcrop (b5, b9; one); a dark block at the 07b edge (one); a plant over the mosaic label (s1; one).
