@@ -11,7 +11,7 @@ namespace SeaGlass
         public string message="Welcome to Shell Cove"; public float messageUntil; public bool menu=true,paused; public bool testMode;
         int presentations;
         public bool PresentationActive=>presentations>0;
-        bool ScreenOpen=>menu||paused||(StudioUI.Instance&&(StudioUI.Instance.shop||StudioUI.Instance.ending));
+        bool ScreenOpen=>menu||paused||(StudioUI.Instance&&(StudioUI.Instance.shop||StudioUI.Instance.ending||StudioUI.Instance.intro));
         public bool ControlsBlocked=>ScreenOpen||presentations>0;
         // Closing one overlay must not release another overlay's or presentation's input lock.
         public void RefreshControlState(){player.blocked=ControlsBlocked;player.SetCursor(!ScreenOpen);}
@@ -43,15 +43,31 @@ namespace SeaGlass
             foreach(var station in FindObjectsByType<StudioStation>(FindObjectsSortMode.None))station.ResetStation();
             foreach(var panel in FindObjectsByType<MosaicPanel>(FindObjectsSortMode.None))panel.ResetPresentation();
             presentations=0;
-            truck.driving=false;truck.ResetVehicle(false);StudioUI.Instance.shop=false;StudioUI.Instance.ending=false;
+            truck.driving=false;truck.ResetVehicle(false);StudioUI.Instance.shop=false;StudioUI.Instance.ending=false;StudioUI.Instance.intro=false;newCoveUntil=0;
             menu=false;paused=false;Time.timeScale=1;player.mode=PlayerMode.Walking;player.interactOverride=null;player.transform.SetParent(null);player.blocked=false;
             player.Teleport(new Vector3(0,.2f,0),Quaternion.identity);player.SetCursor(true);
             if(load&&progress.returnToStudio){truck.transform.position=new Vector3(15,.3f,150);truck.ResetVehicle();player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);}
             player.SetLookRotation(Quaternion.identity);player.safePosition=player.transform.position;
             Synchronize();Notify(load?"Welcome back. Your studio is just up the coast.":"WASD to walk · mouse to look. Find the little sand mounds.");
+            // Clarity pass (owner playtest: "needs more of an introduction", "not enough direction on why"): a new visit opens on a card
+            // that says what the game is about, what the goal is and how the loop goes. Skipped by the automated checks.
+            if(!testMode&&!progress.introSeen){StudioUI.Instance.intro=true;RefreshControlState();}
         }
         public void Tutorial(int step){if(progress.tutorial<step){progress.tutorial=step;}}
-        public void Award(int xp,int caps=0){progress.xp+=xp;progress.caps+=caps;Changed?.Invoke();}
+        public void Award(int xp,int caps=0)
+        {
+            int before=progress.Level;progress.xp+=xp;progress.caps+=caps;Changed?.Invoke();
+            // Clarity pass (owner playtest: "I don't understand what I get to unlock"): a level-up says what it opened.
+            if(progress.Level>before)
+            {
+                int lv=progress.Level;var gear=catalog.upgrades.Where(u=>u.level==lv).Select(u=>u.title).ToArray();
+                string cove=lv<=3?"A new cove is open further along the beach. ":"";
+                LevelUp="LEVEL "+lv+"!  "+cove+(gear.Length>0?"New equipment at the studio cabinet: "+string.Join(", ",gear)+".":"");
+                levelUpUntil=Time.unscaledTime+9;if(lv<=3){newCoveUntil=Time.time+90;newCove=lv-1;}
+                Feedback.Instance?.Play("upgrade");
+            }
+        }
+        public string LevelUp;public float levelUpUntil,newCoveUntil;public int newCove;
         public void Notify(string text){message=text;messageUntil=Time.unscaledTime+5;Changed?.Invoke();}
         public bool Buy(string id)
         {

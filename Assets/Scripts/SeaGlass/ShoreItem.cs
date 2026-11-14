@@ -41,8 +41,9 @@ namespace SeaGlass
             if(S.BucketCount>=S.progress.BucketCapacity){S.Notify("Bucket full. Load the truck's rear compartments.");return false;}
             if(S.CargoCount+S.BucketCount>=S.progress.TruckCapacity){S.Notify("Truck allocation full. Return to the studio to unload.");return false;}
             if(glass&&visual&&surface)Feedback.Instance?.Fly(visual.GetComponent<MeshFilter>().sharedMesh,surface.sharedMaterial,GameCatalog.Palette[colorIndex],visual.position,S.player.view.transform.position+S.player.view.transform.forward*.65f-S.player.view.transform.up*.35f,visual.lossyScale,visual.rotation);
-            Record.stage=ItemStage.Bucket;S.Award(glass?12:5,id.EndsWith("7")?2:0);S.Tutorial(S.BucketCount>=S.progress.BucketCapacity?4:3);
-            Feedback.Instance?.Play(glass?"glass":id.EndsWith("0")?"metal":"plastic",1+colorIndex*.08f);S.Notify(glass?"A cloudy treasure. Load it into the truck.":"One less piece on the shore.");Refresh();S.Save();return true;
+            bool first=S.progress.tutorial<3;Record.stage=ItemStage.Bucket;S.Award(glass?12:5,id.EndsWith("7")?2:0);S.Tutorial(S.BucketCount>=S.progress.BucketCapacity?4:3);
+            Feedback.Instance?.Play(glass?"glass":id.EndsWith("0")?"metal":"plastic",1+colorIndex*.08f);// Clarity pass (owner playtest: "not initially how much I can carry"): the first find says what the bucket holds.
+            S.Notify(first?"Into your bucket. It holds "+S.progress.BucketCapacity+" finds; when it is full, load it into the truck's rear crates.":glass?"A cloudy treasure. Load it into the truck.":"One less piece on the shore.");Refresh();S.Save();return true;
         }
         public void Highlight(){if(glass&&gameObject.activeSelf)highlightUntil=Time.time+12;}
         void Update()

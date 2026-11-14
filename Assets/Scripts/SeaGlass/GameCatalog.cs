@@ -34,10 +34,13 @@ namespace SeaGlass
     {
         public int version=1; public int xp; public int caps; public int tutorial; public bool skipDrive;
         public bool returnToStudio, tutorialDismissed;
+        public bool introSeen;   // clarity pass (owner playtest, November 14): the opening card that explains the goal has been read
         public bool[] completed = new bool[3];
         public System.Collections.Generic.List<string> upgrades = new();
         public System.Collections.Generic.List<ItemRecord> items = new();
         public int Level => xp >= 1100 ? 4 : xp >= 550 ? 3 : xp >= 180 ? 2 : 1;
+        public static readonly int[] LevelXp = { 0, 180, 550, 1100 };
+        public int NextLevelXp => Level >= 4 ? -1 : LevelXp[Level];
         public int BucketCapacity => upgrades.Contains("bucket") ? 14 : 7;
         public int TruckCapacity => upgrades.Contains("truck") ? 40 : 22;
         public bool SectionOpen(int section) => section == 0 || (section == 1 ? Level >= 2 : Level >= 3);

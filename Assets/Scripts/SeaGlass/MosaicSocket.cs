@@ -15,7 +15,9 @@ namespace SeaGlass {
         public void SetGlow(float value){if(!surface)return;block??=new MaterialPropertyBlock();surface.GetPropertyBlock(block);block.SetColor("_EmissionColor",color*value);block.SetFloat("_Facets",1);surface.SetPropertyBlock(block);}
         void Update(){if(!GameSession.Instance||piece.activeSelf)return;var r=GetComponent<Renderer>();if(r){block??=new MaterialPropertyBlock();// Empty sockets keep a tint of their intended colour on a mid-slate backing (round 5: the near-black
                 // backing made empty panels read as dark holes), so the picture is readable before it is filled.
-                block.SetColor("_BaseColor",GameSession.Instance.progress.Item(glassId).stage==ItemStage.Sorted?Color.Lerp(new Color(.3f,.32f,.4f),color,.52f+.12f*Mathf.Sin(Time.time*3)):IdleTint(color));r.SetPropertyBlock(block);}}
+                // Clarity pass: a socket whose glass is sorted and ready glows and pulses in its colour, so it stands out from the empty ones.
+                bool ready=GameSession.Instance.progress.Item(glassId).stage==ItemStage.Sorted;float pulse=.5f+.5f*Mathf.Sin(Time.time*4);
+                block.SetColor("_BaseColor",ready?Color.Lerp(new Color(.3f,.32f,.4f),color,.7f+.3f*pulse):IdleTint(color));block.SetColor("_EmissionColor",ready?color*(.35f+.55f*pulse):Color.black);r.SetPropertyBlock(block);}}
         // How an empty socket looks before its glass is sorted: a faint tint of its colour on slate.
         public static Color IdleTint(Color c)=>Color.Lerp(new Color(.3f,.32f,.4f),c,.35f);
     }

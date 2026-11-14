@@ -19,7 +19,8 @@ namespace SeaGlass
             Feedback.Instance.Mote(slot.transform.position-transform.forward*out_+Vector3.down*out_*Random.Range(.3f,.75f)+Random.insideUnitSphere*.35f,col);
         }
         GameSession S=>GameSession.Instance;
-        public override string Prompt=>"E · fit a sorted piece into "+S.catalog.panelNames[index]+" ("+sockets.Count(x=>S.progress.Item(x.glassId).stage==ItemStage.Placed)+" / 10)";
+        // Clarity pass (owner playtest: "we need a manner to make it feel more clear"): how many of your sorted pieces belong here, and where.
+        public override string Prompt{get{int ready=sockets.Count(x=>S.progress.Item(x.glassId).stage==ItemStage.Sorted);return (ready>0?"E · place "+ready+" sorted piece"+(ready>1?"s":"")+" in the glowing sockets of ":"Wash and sort matching glass for ")+S.catalog.panelNames[index]+" ("+sockets.Count(x=>S.progress.Item(x.glassId).stage==ItemStage.Placed)+" / 10)";}}
         public override void Interact()
         {
             var slot=sockets.FirstOrDefault(x=>S.progress.Item(x.glassId).stage==ItemStage.Sorted);

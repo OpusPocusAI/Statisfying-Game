@@ -5,11 +5,12 @@ namespace SeaGlass
 {
     public class StudioUI : MonoBehaviour
     {
-        public static StudioUI Instance; public bool shop,ending;bool settings,confirmReset;[System.NonSerialized] GUIStyle title,heading,body,small,button,panel;[System.NonSerialized] Texture2D cream,teal,coral;
+        public static StudioUI Instance; public bool shop,ending,intro;bool settings,confirmReset;[System.NonSerialized] GUIStyle title,heading,body,small,button,panel;[System.NonSerialized] Texture2D cream,teal,coral;
         GameSession S=>GameSession.Instance;
         void Awake(){Instance=this;}
         public void CloseShop(){shop=false;S.RefreshControlState();}
         public void CloseEnding(){ending=false;S.RefreshControlState();}
+        public void CloseIntro(){intro=false;S.progress.introSeen=true;S.RefreshControlState();S.Save();}
         void Start(){S.player.sensitivity=PlayerPrefs.GetFloat("sensitivity",.12f);S.player.invertY=PlayerPrefs.GetInt("invert",0)==1;Feedback.Instance.musicVolume=PlayerPrefs.GetFloat("music",.25f);Feedback.Instance.effectsVolume=PlayerPrefs.GetFloat("effects",.65f);}
         Texture2D Tex(Color c)
         {
@@ -35,7 +36,7 @@ namespace SeaGlass
             }
             t.Apply();return t;
         }
-        [System.NonSerialized] Texture2D tape;[System.NonSerialized] Font friendly;public Font uiFont;   // bundled Fredoka (OFL, Assets/Art/Fonts); OS fallback only if unset
+        [System.NonSerialized] GUIStyle marker;[System.NonSerialized] Texture2D tape;[System.NonSerialized] Font friendly;public Font uiFont;   // bundled Fredoka (OFL, Assets/Art/Fonts); OS fallback only if unset
         void Panel(Rect r){GUI.Box(r,GUIContent.none,panel);GUI.color=new Color(1,1,1,.85f);GUI.DrawTexture(new Rect(r.x+18,r.y-8,64,20),tape);GUI.color=Color.white;}
         void Styles()
         {
@@ -44,7 +45,7 @@ namespace SeaGlass
             // Bundled Fredoka (SIL OFL); the OS fallback is only used if the field is unset.
             friendly=uiFont?uiFont:Font.CreateDynamicFontFromOSFont(new[]{"Candara","Corbel","Segoe UI"},24);
             title=new GUIStyle(GUI.skin.label){fontSize=54,fontStyle=FontStyle.Bold,wordWrap=true,font=friendly};title.normal.textColor=new Color(.05f,.25f,.26f);
-            heading=new GUIStyle(title){fontSize=24};body=new GUIStyle(heading){fontSize=17,fontStyle=FontStyle.Normal};small=new GUIStyle(body){fontSize=13};
+            heading=new GUIStyle(title){fontSize=24};marker=new GUIStyle(GUI.skin.box){font=friendly,fontSize=15,alignment=TextAnchor.MiddleCenter,padding=new RectOffset(10,10,4,4),border=new RectOffset(8,8,8,8)};marker.normal.background=teal;marker.normal.textColor=Color.white;body=new GUIStyle(heading){fontSize=17,fontStyle=FontStyle.Normal};small=new GUIStyle(body){fontSize=13};
             button=new GUIStyle(GUI.skin.button){font=friendly,fontSize=18,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(18,12,8,8)};button.normal.background=teal;button.normal.textColor=Color.white;button.hover.background=coral;button.hover.textColor=Color.white;button.active.background=coral;
             button.border=new RectOffset(8,8,8,8);panel=new GUIStyle(GUI.skin.box){padding=new RectOffset(24,24,20,20),border=new RectOffset(14,14,14,14)};panel.normal.background=cream;
         }
@@ -52,6 +53,7 @@ namespace SeaGlass
         {
             if(!S)return;if(title==null)Styles();float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1440*scale)*.5f,0,0),Quaternion.identity,new Vector3(scale,scale,1));
             if(S.menu){Menu();return;}
+            if(intro&&!S.paused){Intro();return;}
             if(ending&&!S.paused&&!shop){Ending();return;}
             if(S.PresentationActive&&!S.paused&&!shop)
             {
@@ -63,16 +65,21 @@ namespace SeaGlass
             // Status panels step aside while the player works at a station, so the glass stays the focus.
             if(!station||S.paused||shop)
             {
-                Panel(new Rect(28,25,360,113));GUI.Label(new Rect(47,35,300,28),"SEA GLASS / STUDIO",heading);
-                Stat("xp",47,71,"LEVEL "+S.progress.Level+"  ·  "+S.progress.xp+" XP");Stat("caps",255,71,S.progress.caps.ToString());
-                Stat("bucket",47,101,S.BucketCount+" / "+S.progress.BucketCapacity);Stat("truck",155,101,S.CargoCount+" / "+S.progress.TruckCapacity);
-                Panel(new Rect(1025,25,387,102));GUI.Label(new Rect(1047,37,345,28),"THE SEASIDE TRIPTYCH",heading);
+                // Clarity pass (owner playtest, November 14: "I don't understand what I get to unlock", "not initially how much I can carry"):
+                // every number is labelled, and the panel says what the next level opens and what caps are for.
+                Panel(new Rect(28,25,470,160));GUI.Label(new Rect(47,33,380,36),"SEA GLASS / STUDIO",heading);
+                int next=S.progress.NextLevelXp;
+                Stat("xp",47,71,"Level "+S.progress.Level+"  ·  "+(next>0?S.progress.xp+" / "+next+" XP":S.progress.xp+" XP"));Stat("caps",300,71,S.progress.caps+" caps");
+                Stat("bucket",47,101,"Bucket "+S.BucketCount+" / "+S.progress.BucketCapacity);Stat("truck",222,101,"Truck "+S.CargoCount+" / "+S.progress.TruckCapacity);
+                GUI.Label(new Rect(47,131,440,44),NextUnlock()+"\nRecycling earns caps. Spend them at the studio's equipment cabinet.",small);
+                Panel(new Rect(1025,25,387,128));GUI.Label(new Rect(1047,35,345,36),"RESTORE THE STUDIO",heading);
                 for(int p=0;p<3;p++)
                 {
                     int placed=S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p));
                     GUI.color=GameCatalog.Palette[new[]{0,2,5}[p]];GUI.DrawTexture(new Rect(1047+p*118,77,22,22),HudIcons.Get("gem"));GUI.color=Color.white;
                     GUI.Label(new Rect(1075+p*118,76,90,24),placed+" / 10",body);
                 }
+                GUI.Label(new Rect(1047,106,350,40),"Fill all three mosaic windows with polished sea glass.",small);
             }
             if(S.paused){Pause();return;}if(shop){Shop();return;}
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
@@ -83,10 +90,12 @@ namespace SeaGlass
             if(!station&&!driving)
             {
                 bool carrying=S.player.equippedTool==1;string icon=carrying?(S.progress.upgrades.Contains("bucket")?"sack":"bucket"):(S.progress.upgrades.Contains("scoop")?"sieve":"spade");
-                GUI.DrawTexture(new Rect(1040,827,34,34),HudIcons.Get(icon));
-                GUI.Label(new Rect(1082,827,340,48),carrying?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK  /  14 finds":"SMALL BUCKET  /  7 finds"):(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP  /  wide gathering":"TOY SHOVEL  /  gentle beginnings"),small);
+                Panel(new Rect(1025,812,395,68));GUI.DrawTexture(new Rect(1040,827,34,34),HudIcons.Get(icon));
+                GUI.Label(new Rect(1082,822,330,52),(carrying?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK":"SMALL BUCKET")+"  ·  holding "+S.BucketCount+" / "+S.progress.BucketCapacity+" finds":(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP":"TOY SHOVEL")+"  ·  hold LMB on a mound to dig")+"\n1 shovel to dig   ·   2 bucket to see your finds",small);
             }
-            if(Time.unscaledTime<S.messageUntil){Panel(new Rect(375,160,690,68));GUI.Label(new Rect(395,176,650,48),S.message,body);}
+            if(Time.unscaledTime<S.messageUntil){Panel(new Rect(480,200,690,68));GUI.Label(new Rect(500,216,650,48),S.message,body);}
+            if(Time.unscaledTime<S.levelUpUntil&&!station&&!shop){Panel(new Rect(480,278,690,76));GUI.Label(new Rect(500,290,650,56),S.LevelUp,body);}
+            if(!S.progress.tutorialDismissed)Marker(station,scale);
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;Panel(new Rect(540,670,360,60));GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }
         void Stat(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+28,y,190,26),value,body);}
@@ -134,10 +143,54 @@ namespace SeaGlass
         }
         void Shop()
         {
-            Panel(new Rect(285,140,870,610));GUI.Label(new Rect(320,170,780,48),"TOOLS FOR A LITTLE MORE CARE",heading);int i=0;
+            Panel(new Rect(285,140,870,610));GUI.Label(new Rect(320,170,780,34),"EQUIPMENT CABINET",heading);int i=0;
+            // Clarity pass: the cabinet says what you have and what each tool needs, and only offers what you can buy.
+            GUI.Label(new Rect(320,204,800,24),"You have "+S.progress.caps+" bottle caps  ·  Level "+S.progress.Level+".   Recycle rubbish for caps; every find earns XP toward the next level.",small);
             foreach(var u in S.catalog.upgrades)
-            {float y=235+i++*83;bool owned=S.progress.upgrades.Contains(u.id);GUI.Label(new Rect(320,y,505,26),u.title+"   ·   LEVEL "+u.level,body);GUI.Label(new Rect(320,y+28,505,43),u.description,small);if(Button(owned?"Owned":u.cost+" caps",870,y,245)&&!owned)S.Buy(u.id);}
+            {float y=240+i++*82;bool owned=S.progress.upgrades.Contains(u.id);bool levelOk=S.progress.Level>=u.level,capsOk=S.progress.caps>=u.cost;
+             GUI.Label(new Rect(320,y,505,26),u.title+"   ·   "+u.cost+" caps",body);GUI.Label(new Rect(320,y+28,505,43),u.description,small);
+             string state=owned?"Owned":!levelOk?"Needs level "+u.level:!capsOk?"Need "+(u.cost-S.progress.caps)+" more caps":"Buy  ·  "+u.cost+" caps";
+             GUI.enabled=!owned&&levelOk&&capsOk;if(Button(state,870,y,245))S.Buy(u.id);GUI.enabled=true;}
             if(Button("Back to the studio",780,675,340))CloseShop();
+        }
+        string NextUnlock()
+        {
+            int lv=S.progress.Level;if(lv>=4)return "Top level reached. Every cove and tool is open.";
+            var gear=S.catalog.upgrades.Where(u=>u.level==lv+1).Select(u=>u.title).ToArray();
+            return "Next, level "+(lv+1)+": "+(lv+1<=3?"a new cove":"")+(lv+1<=3&&gear.Length>0?" and ":"")+(gear.Length>0?gear.Length+" new tools":"")+".";
+        }
+        // Clarity pass (owner playtest: "needs more of an introduction"; "not enough direction on why I am doing what I am doing").
+        void Intro()
+        {
+            Panel(new Rect(270,115,900,610));
+            GUI.Label(new Rect(315,148,800,22),"A SMALL COASTAL RESTORATION",small);
+            GUI.Label(new Rect(312,172,820,40),"The old glass studio up the coast is yours now.",heading);
+            GUI.Label(new Rect(315,222,810,90),"It has stood empty for years, and the beach below it is littered with rubbish. Buried in the sand is sea glass: bits of old bottles, worn cloudy by the waves. Clean up the shore, polish the glass, and set it into the studio's three empty mosaic windows to bring the place back to life.",body);
+            string[] icons={"spade","truck","gem","gem"};string[] steps={"GATHER","HAUL","CLEAN & SORT","CREATE"};
+            string[] text={"Dig up rubbish and sea glass on the beach with your shovel.","Load your bucket into the truck's crates and drive to the studio.","Recycle the rubbish, then wash and sort the glass by colour.","Set each piece into its mosaic window until all three glow."};
+            for(int k=0;k<4;k++){float x=315+k*205;GUI.color=k==3?GameCatalog.Palette[0]:Color.white;GUI.DrawTexture(new Rect(x,330,34,34),HudIcons.Get(icons[k]));GUI.color=Color.white;
+                GUI.Label(new Rect(x,372,190,26),(k+1)+"  "+steps[k],body);GUI.Label(new Rect(x,400,185,70),text[k],small);}
+            Row("xp",315,490,"XP comes from every find. Each new level opens more of the beach and new tools.");
+            Row("caps",315,524,"Bottle caps come from recycling rubbish. Spend them at the studio's equipment cabinet.");
+            GUI.Label(new Rect(315,566,800,24),"The panel at the bottom left always shows your next step, and a marker points the way. H hides them.",small);
+            if(Button("Start on the shore",315,612,330))CloseIntro();
+        }
+        void Row(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+30,y,780,26),value,body);}
+        // The objective marker: a small tag over where the current step happens, kept on screen at the edge when it is out of view.
+        void Marker(StudioStation station,float scale)
+        {
+            if(!TutorialGuidance.Target(S,station,out var at,out var label))return;
+            var cam=S.player.view?S.player.view:Camera.main;if(!cam)return;
+            float dist=Vector3.Distance(S.player.transform.position,at);if(dist<5f)return;
+            var sp=cam.WorldToScreenPoint(at);float ox=(Screen.width-1440*scale)*.5f;
+            float vx=(sp.x-ox)/scale,vy=(Screen.height-sp.y)/scale;
+            bool off=sp.z<0||vx<60||vx>1380||vy<200||vy>740;
+            if(sp.z<0){vx=720;vy=700;}
+            vx=Mathf.Clamp(vx,90,1350);vy=Mathf.Clamp(vy,200,740);
+            bool behind=sp.z<0;string text=(behind?"Behind you  ·  ":off&&vx<=90?"<  ":"")+label+"  ·  "+Mathf.RoundToInt(dist)+" m"+(!behind&&off&&vx>=1350?"  >":"");
+            var size=marker.CalcSize(new GUIContent(text));
+            GUI.color=new Color(1,1,1,.92f);GUI.DrawTexture(new Rect(vx-11,vy-30,22,22),HudIcons.Get("gem"));GUI.color=Color.white;
+            GUI.Box(new Rect(vx-size.x*.5f,vy-4,size.x,size.y),text,marker);
         }
         void Ending()
         {
