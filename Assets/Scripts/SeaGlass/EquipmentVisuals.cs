@@ -4,6 +4,7 @@ namespace SeaGlass
     public class EquipmentVisuals : MonoBehaviour
     {
         public GameObject bucket,sack,scoop,brush,sprayer;float lastBrushing=-9,nextBrushDrip;public Transform bucketFill,sackFill;public Transform[] dividers;
+        public bool Washing{get;private set;}
         Vector3[] dividerScales; Vector3 brushHome,sprayerHome; StudioStation cleaning;
         void Awake()
         {
@@ -23,22 +24,26 @@ namespace SeaGlass
             if(sack)sack.SetActive(walking&&s.player.equippedTool==1&&s.progress.upgrades.Contains("bucket"));
             if(scoop)scoop.SetActive(walking&&s.player.equippedTool==0&&s.progress.upgrades.Contains("scoop"));
             for(int i=0;i<dividers.Length;i++)if(dividers[i])dividers[i].localScale=Vector3.Scale(dividerScales[i],new Vector3(1,s.progress.upgrades.Contains("truck")?1.8f:1,1));
-            bool washing=cleaning&&cleaning.active&&cleaning.selectedId!=null&&!s.menu;
+            bool washing=cleaning&&cleaning.active&&cleaning.selectedId!=null&&!s.menu;Washing=washing;
             if(brush)brush.SetActive(washing&&!s.progress.upgrades.Contains("washer"));if(sprayer)sprayer.SetActive(washing&&s.progress.upgrades.Contains("washer"));
-            bool brushing=washing&&!s.ControlsBlocked&&(cleaning.BrushingNow||UnityEngine.InputSystem.Mouse.current!=null&&UnityEngine.InputSystem.Mouse.current.leftButton.isPressed);
+            bool pressed=UnityEngine.InputSystem.Mouse.current!=null&&UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;bool brushing=washing&&!s.ControlsBlocked&&(cleaning.BrushingNow||pressed);
             if(washing&&!s.ControlsBlocked)
             {
                 // Keep the brush at the glass, rather than waving an unrelated block at the edge of the camera.
                 // The modelled brush pivots at its bristle tips, so .05 rests it on the domed glass.
-                Vector3 stroke=Stroke(brushing,StudioStation.StrokeClock);
-                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+(brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0),0)*Quaternion.Euler(BristleTilt,0,0);}
+                // Hands-on brushing: the brush sits where the mouse put it, pressed onto the glass while LMB is held and lifted otherwise,
+                // and leans a little into the direction it is moving.
+                bool down=StudioStation.Manual?pressed:brushing;
+                Vector3 stroke=StudioStation.Manual?StudioStation.ManualOffset+(down?Vector3.zero:new Vector3(0,.04f,0)):Stroke(brushing,StudioStation.StrokeClock);
+                float lean=StudioStation.Manual?Mathf.Clamp(StudioStation.ManualVelocity.x*-25,-14,14):brushing?Mathf.Cos(StudioStation.StrokeClock*7)*12:0;
+                if(brush){brush.transform.position=cleaning.workingGlass.position+stroke;brush.transform.rotation=Quaternion.Euler(0,-25+lean,0)*Quaternion.Euler(BristleTilt,0,0);}
                 // Round 114 (review 110: "no drips"; the stills are taken with the brush lifted, after the brushing drops have fallen): a wet
                 // brush lifted off the glass keeps dripping from its bristles for a couple of seconds, each drop ringing the water below.
                 if(brushing)lastBrushing=Time.time;
                 else if(brush&&brush.activeSelf&&Time.time-lastBrushing<2.4f&&Time.time>=nextBrushDrip&&Feedback.Instance)
                 {nextBrushDrip=Time.time+Random.Range(.07f,.16f);var tip=brush.transform.position+brush.transform.right*Random.Range(-.05f,.05f)+brush.transform.forward*Random.Range(-.025f,.025f)-Vector3.up*Random.Range(.02f,.05f);   // just below the bristles, where the eye sees them
                  Feedback.Instance.Drip(tip,cleaning.waterSurface?cleaning.waterSurface.bounds.center.y:tip.y-.06f);}
-                if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
+                if(sprayer){sprayer.transform.position=cleaning.workingGlass.position+new Vector3(.3f,.2f,-.12f)+stroke*.15f;var aim=cleaning.workingGlass.position+(StudioStation.Manual?StudioStation.ManualOffset:Vector3.zero)-sprayer.transform.position;sprayer.transform.rotation=Quaternion.LookRotation(aim,Vector3.up)*Quaternion.Euler(0,-90,0);}
             }
             else if(!washing){if(brush)brush.transform.localPosition=brushHome;if(sprayer)sprayer.transform.localPosition=sprayerHome;}
             float fill=s.BucketCount/(float)s.progress.BucketCapacity;

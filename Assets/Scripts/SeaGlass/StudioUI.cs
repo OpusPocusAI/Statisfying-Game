@@ -96,7 +96,7 @@ namespace SeaGlass
             if(Time.unscaledTime<S.messageUntil){Panel(new Rect(480,200,690,68));GUI.Label(new Rect(500,216,650,48),S.message,body);}
             if(Time.unscaledTime<S.levelUpUntil&&!station&&!shop){Panel(new Rect(480,278,690,76));GUI.Label(new Rect(500,290,650,56),S.LevelUp,body);}
             if(!S.progress.tutorialDismissed)Marker(station,scale);
-            if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;Panel(new Rect(540,670,360,60));GUI.Label(new Rect(555,678,340,25),"HOLD LMB  ·  POLISHING "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
+            if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;Panel(new Rect(540,670,360,60));GUI.Label(new Rect(555,678,340,25),"HOLD LMB + MOVE  ·  CLEAN "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }
         void Stat(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+28,y,190,26),value,body);}
         bool Button(string label,float x,float y,float w=340)=>GUI.Button(new Rect(x,y,w,46),label,button);

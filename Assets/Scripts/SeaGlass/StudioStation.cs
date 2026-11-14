@@ -16,6 +16,12 @@ namespace SeaGlass
         public static Vector3 Reach=new Vector3(.17f,.05f,.11f);
         // Round 65: seconds of brushing on the current piece; drives the stroke path (EquipmentVisuals.Stroke).
         public static float StrokeClock;Color revealColour;
+        // Hands-on brushing (owner playtest, November 14: "brushing should be real mouse wiping"). At the basin the view holds still and
+        // the mouse moves the brush over the glass; holding LMB presses it down, and the salt comes off only where it is wiped.
+        // ManualOffset is where the bristles are, relative to the piece (world axes, as Stroke returns); Manual is false while the
+        // automated scrub (Clean, used by the verification run and tests) is driving the brush instead.
+        public static bool Manual;public static Vector3 ManualOffset,ManualVelocity;const float WipeTarget=.88f;
+        bool[] silhouette;int silhouetteCount,cleanedCount;
         GameSession S=>GameSession.Instance;
         public override string Prompt=> kind==StationKind.Recycle?"E · recycle truck rubbish":kind==StationKind.Clean?"E · wash glass at the basin":kind==StationKind.Sort?"E · sort polished glass":"E · browse equipment catalogue";
         void Awake(){block=new MaterialPropertyBlock();if(workingGlass){glassHome=workingGlass.localPosition;glassRotation=workingGlass.localRotation;workingGlass.gameObject.SetActive(false);}}
@@ -36,7 +42,8 @@ namespace SeaGlass
             // low in the frame and the brushing hand leaves the frame after a short stretch of sleeve.
             S.player.Teleport(transform.position-transform.forward*(cleaning?BasinBack:1.75f)-transform.right*(cleaning?BasinLeft:0)+Vector3.up*(cleaning?BasinUp:.12f),transform.rotation);S.player.interactOverride=Leave;
             S.player.LookAt(cleaning?workingGlass.position+transform.forward*BasinAimAhead-transform.right*BasinLeft:transform.position+Vector3.up*1.15f);
-            S.Notify(kind==StationKind.Clean?"Hold LMB to brush away the salt. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
+            if(cleaning){Manual=true;ManualOffset=new Vector3(Reach.x*.9f,Reach.y,-Reach.z*.6f);ManualVelocity=Vector3.zero;}
+            S.Notify(kind==StationKind.Clean?"Hold LMB and move the mouse to scrub the salt off. E to leave.":"Aim at a matching colour tray and press LMB. E to leave.");
         }
         public bool Recycle()
         {
@@ -58,7 +65,7 @@ namespace SeaGlass
             if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
             r.grime=Mathf.Max(0,r.grime-delta/(S.progress.upgrades.Contains("washer")?3:9));
             // The salt comes off where the brush (or spray) actually touches the glass.
-            StrokeClock+=Time.deltaTime;
+            StrokeClock+=Time.deltaTime;Manual=false;
             var contact=workingGlass.position+EquipmentVisuals.Stroke(true,StrokeClock);
             // Round 13: the brush sweeps a hard-edged path from where it was last frame, so the grime clears in
             // visible strokes (PowerWash), and the water ripples from the contact point.
@@ -68,6 +75,30 @@ namespace SeaGlass
             if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,EquipmentVisuals.StrokeVelocity(StrokeClock));
                 // Round 114 (review 110: "no drips"): water running off the brush falls back into the bowl as drops and rings.
                 if(Random.value<.55f)Feedback.Instance.Drip(contact+new Vector3(Random.Range(-.035f,.035f),Random.Range(.035f,.07f),Random.Range(-.025f,.025f)),waterSurface?waterSurface.bounds.center.y:contact.y-.01f);}
+            Finish(r);
+        }
+        // Hands-on wipe: the mouse moves the brush; pressed, it scrubs the path it travels. Holding it still does nothing.
+        public void Wipe(Vector2 mouseDelta,bool pressed)
+        {
+            if(string.IsNullOrEmpty(selectedId))return;var r=S.progress.Item(selectedId);if(r.stage!=ItemStage.Studio)return;
+            var cam=S.player.view.transform;Vector3 right=Vector3.ProjectOnPlane(cam.right,Vector3.up).normalized,fwd=Vector3.ProjectOnPlane(cam.forward,Vector3.up).normalized;
+            var limit=new Vector2(Reach.x/.78f+.02f,Reach.z/.72f+.02f);   // the whole piece, to its rim
+            var before=ManualOffset;var move=(right*mouseDelta.x+fwd*mouseDelta.y)*.0011f;
+            ManualOffset=new Vector3(Mathf.Clamp(ManualOffset.x+move.x,-limit.x,limit.x),Reach.y,Mathf.Clamp(ManualOffset.z+move.z,-limit.y,limit.y));
+            ManualVelocity=Vector3.Lerp(ManualVelocity,(ManualOffset-before)/Mathf.Max(Time.deltaTime,1e-4f),.35f);
+            if(!pressed){lastBrush=-9;return;}
+            var from=workingGlass.position+before;var contact=workingGlass.position+ManualOffset;
+            bool moving=(ManualOffset-before).sqrMagnitude>1e-8f;if(!moving)return;
+            StampClean(from,contact,Mathf.Min(S.progress.upgrades.Contains("washer")?.075f:.05f,Reach.z*.46f));
+            lastBrush=Time.time;lastContact=contact;StrokeClock+=Time.deltaTime;
+            float wiped=silhouetteCount>0?cleanedCount/(float)silhouetteCount:0;r.grime=Mathf.Min(r.grime,Mathf.Clamp01(1-wiped/WipeTarget));
+            UpdateGlass();Feedback.Instance.LoopAction("water");
+            if(Time.time>=nextFoam){nextFoam=Time.time+.06f;Feedback.Instance.Foam(contact,.05f);Feedback.Instance.Splash(contact,ManualVelocity);
+                if(Random.value<.55f)Feedback.Instance.Drip(contact+new Vector3(Random.Range(-.035f,.035f),Random.Range(.035f,.07f),Random.Range(-.025f,.025f)),waterSurface?waterSurface.bounds.center.y:contact.y-.01f);}
+            Finish(r);
+        }
+        void Finish(ItemRecord r)
+        {
             if(r.grime<=.001f)
             {
                 r.grime=0;UpdateGlass();r.stage=ItemStage.Clean;S.Award(10);S.Tutorial(8);Feedback.Instance.Play("glass");
@@ -100,7 +131,7 @@ namespace SeaGlass
         void EnsureMask()
         {
             if(!cleanMask){cleanMask=new Texture2D(MaskSize,MaskSize,TextureFormat.R8,false){wrapMode=TextureWrapMode.Clamp,name="Clean mask"};maskPixels=new Color32[MaskSize*MaskSize];}
-            if(maskFor!=selectedId){maskFor=selectedId;System.Array.Clear(maskPixels,0,maskPixels.Length);cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);}
+            if(maskFor!=selectedId){maskFor=selectedId;System.Array.Clear(maskPixels,0,maskPixels.Length);cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);BuildSilhouette();}
         }
         // Sweeps the brush head from one contact point to the next (a capsule in mask space), adding a fixed
         // amount once per sweep so overlapping strokes build up pass by pass.
@@ -131,9 +162,33 @@ namespace SeaGlass
                // lane frosted, one pass cut rows of short clear dashes that read as a comb. The bristles now vary the pass only gently,
                // so the middle of a lane clears in one stroke and the bristle streaks show only along its edges, where the head is lighter.
                float bristle=.62f+.38f*(.5f+.5f*Mathf.Sin(s*6.2832f+Mathf.Sin(s*1.37f)*2.1f));
-                int i=y*MaskSize+x;maskPixels[i].r=(byte)Mathf.Min(255,maskPixels[i].r+Mathf.RoundToInt(add*(1-dd*dd)*bristle));   // round 21: a soft round brush head, strongest at its centre
+                int i=y*MaskSize+x;byte was=maskPixels[i].r;maskPixels[i].r=(byte)Mathf.Min(255,was+Mathf.RoundToInt(add*(1-dd*dd)*bristle));
+                if(was<WipedLevel&&maskPixels[i].r>=WipedLevel&&silhouette!=null&&silhouette[i])cleanedCount++;   // round 21: a soft round brush head, strongest at its centre
             }
             cleanMask.SetPixels32(maskPixels);cleanMask.Apply(false);
+        }
+        const byte WipedLevel=170;   // a mask value the shader draws as clear glass
+        // Which mask pixels the piece actually covers (its outline seen from above), so "how much is wiped" counts glass, not the empty
+        // corners of its bounding box.
+        void BuildSilhouette()
+        {
+            silhouette??=new bool[MaskSize*MaskSize];System.Array.Clear(silhouette,0,silhouette.Length);silhouetteCount=cleanedCount=0;
+            if(string.IsNullOrEmpty(selectedId))return;var mesh=S.catalog.glass.First(g=>g.id==selectedId).BasinMesh;if(!mesh)return;
+            var b=mesh.bounds;var v=mesh.vertices;var t=mesh.triangles;
+            Vector2 UV(Vector3 l)=>new Vector2((l.x-b.min.x)/b.size.x*MaskSize,(l.y-b.min.y)/b.size.y*MaskSize);
+            for(int k=0;k<t.Length;k+=3)
+            {
+                Vector2 a=UV(v[t[k]]),c=UV(v[t[k+1]]),d=UV(v[t[k+2]]);float area=(c.x-a.x)*(d.y-a.y)-(c.y-a.y)*(d.x-a.x);if(Mathf.Abs(area)<1e-6f)continue;
+                int x0=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(a.x,Mathf.Min(c.x,d.x)))),x1=Mathf.Min(MaskSize-1,Mathf.CeilToInt(Mathf.Max(a.x,Mathf.Max(c.x,d.x))));
+                int y0=Mathf.Max(0,Mathf.FloorToInt(Mathf.Min(a.y,Mathf.Min(c.y,d.y)))),y1=Mathf.Min(MaskSize-1,Mathf.CeilToInt(Mathf.Max(a.y,Mathf.Max(c.y,d.y))));
+                for(int y=y0;y<=y1;y++)for(int x=x0;x<=x1;x++)
+                {
+                    var p=new Vector2(x+.5f,y+.5f);
+                    float w0=((c.x-p.x)*(d.y-p.y)-(c.y-p.y)*(d.x-p.x))/area,w1=((d.x-p.x)*(a.y-p.y)-(d.y-p.y)*(a.x-p.x))/area,w2=1-w0-w1;
+                    if(w0>=0&&w1>=0&&w2>=0)silhouette[y*MaskSize+x]=true;
+                }
+            }
+            foreach(var s in silhouette)if(s)silhouetteCount++;
         }
         void OnDestroy(){if(cleanMask)Destroy(cleanMask);}
         void UpdateGlass()
@@ -203,7 +258,7 @@ namespace SeaGlass
                 if(reveal<=0)SelectNext();
                 return;
             }
-            if(kind==StationKind.Clean&&Mouse.current!=null&&Mouse.current.leftButton.isPressed)Clean(Time.deltaTime);
+            if(kind==StationKind.Clean&&Mouse.current!=null)Wipe(Mouse.current.delta.ReadValue(),Mouse.current.leftButton.isPressed);
             if(kind==StationKind.Sort&&Mouse.current!=null&&Mouse.current.leftButton.wasPressedThisFrame)
             {
                 var ray=S.player.view.ViewportPointToRay(new Vector3(.5f,.5f));

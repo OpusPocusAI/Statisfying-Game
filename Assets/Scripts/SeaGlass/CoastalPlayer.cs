@@ -9,13 +9,15 @@ namespace SeaGlass
         public Interactable focus; public Transform tool; public System.Action interactOverride;
         CharacterController body; float pitch,fall,driverYaw; public int equippedTool; public Vector3 safePosition=new(0,2,6);
         // Inside the studio the beach tools are holstered: they would cover the stations and mosaics.
+        static bool WashingNow=>FindFirstObjectByType<EquipmentVisuals>() is var e&&e&&e.Washing;
         public static bool Indoors(Vector3 p)=>p.x>-16.6f&&p.x<8.6f&&p.z>154.4f&&p.z<177.6f&&p.y<6;
         public bool IsIndoors=>Indoors(transform.position);
         void Awake() {body=GetComponent<CharacterController>();}
         void Update()
         {
             if(blocked || Keyboard.current==null || Mouse.current==null) {focus=null;return;}
-            var mouse=Mouse.current.delta.ReadValue()*sensitivity;
+            // Hands-on brushing: at the wash basin the mouse moves the brush, not the view.
+            var mouse=mode==PlayerMode.Workstation&&StudioStation.Manual&&WashingNow?Vector2.zero:Mouse.current.delta.ReadValue()*sensitivity;
             pitch=Mathf.Clamp(pitch+mouse.y*(invertY?1:-1),-78,78);
             view.transform.localRotation=Quaternion.Euler(pitch,0,0);
             if(mode!=PlayerMode.Driving) transform.Rotate(0,mouse.x,0);

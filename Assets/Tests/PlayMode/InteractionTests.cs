@@ -46,13 +46,13 @@ namespace SeaGlass.Tests
             session.player.transform.rotation=Quaternion.Euler(0,Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg,0);
             session.player.LookAt(target);Physics.SyncTransforms();
         }
-        IEnumerator HoldMouse(float seconds,bool gameplayTime=false)
+        IEnumerator HoldMouse(float seconds,bool gameplayTime=false,float wipe=0)
         {
             float elapsed=0,deadline=Time.realtimeSinceStartup+seconds+10;
             // Digging advances in game time, which Unity caps during slow Editor frames.
             // Pause checks deliberately use unscaled time; a real-time deadline catches stalls.
             while(elapsed<seconds&&Time.realtimeSinceStartup<deadline)
-            {InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Left));yield return null;elapsed+=gameplayTime?Time.deltaTime:Time.unscaledDeltaTime;}
+            {var state=new MouseState().WithButton(MouseButton.Left);state.delta=new Vector2(Mathf.Sin(elapsed*12)*wipe,0);InputSystem.QueueStateEvent(mouse,state);yield return null;elapsed+=gameplayTime?Time.deltaTime:Time.unscaledDeltaTime;}
             InputSystem.QueueStateEvent(mouse,new MouseState());yield return null;
             Assert.GreaterOrEqual(elapsed,seconds,"The input hold timed out before the requested duration elapsed.");
         }
@@ -99,9 +99,9 @@ namespace SeaGlass.Tests
             var record=session.progress.Item("glass-03");record.stage=ItemStage.Studio;
             yield return Enter(clean);yield return KeyPress(Key.E);
             session.player.SetLookRotation(Quaternion.Euler(-25,0,0));var before=session.player.view.transform.localRotation;
-            clean.Interact();yield return HoldMouse(.3f);Assert.Less(record.grime,1);
+            clean.Interact();yield return HoldMouse(.3f,false,40);Assert.Less(record.grime,1);
             yield return KeyPress(Key.Escape);Assert.IsTrue(session.paused);float pausedGrime=record.grime;
-            yield return HoldMouse(.35f);Assert.AreEqual(pausedGrime,record.grime);
+            yield return HoldMouse(.35f,false,40);Assert.AreEqual(pausedGrime,record.grime);
             yield return KeyPress(Key.Escape);Assert.IsFalse(session.paused);
             yield return KeyPress(Key.E);Assert.IsFalse(clean.active);Assert.AreEqual(PlayerMode.Walking,session.player.mode);
             yield return null;Assert.Less(Quaternion.Angle(before,session.player.view.transform.localRotation),.1f,"Station exit must restore stored look angles, not only the camera transform.");

@@ -13,7 +13,7 @@ namespace SeaGlass
             if(station&&station.active)
             {
                 if(station.kind==StationKind.Clean)
-                    return station.selectedId!=null?"Hold LMB to wash the glass. E returns you to the studio.":
+                    return station.selectedId!=null?"Hold LMB and move the mouse to scrub every cloudy patch. E returns you to the studio.":
                         station.RevealingCleanGlass&&session.Count(ItemStage.Studio,true)>0?"Colour revealed. The next piece is coming up; E to leave.":"This batch is washed. E to leave, then visit the sorting trays.";
                 if(station.kind==StationKind.Sort)
                 {
@@ -33,7 +33,7 @@ namespace SeaGlass
             if(atStudio)
             {
                 if(session.truck.AtStudio&&session.Count(ItemStage.Truck,false)>0)return "E at the recycling press to turn the truck's rubbish into bottle caps.";
-                if(session.Count(ItemStage.Studio,true)>0||(session.truck.AtStudio&&session.Count(ItemStage.Truck,true)>0))return "E at the basin, then hold LMB to wash your cloudy glass.";
+                if(session.Count(ItemStage.Studio,true)>0||(session.truck.AtStudio&&session.Count(ItemStage.Truck,true)>0))return "E at the basin, then hold LMB and wipe to wash your cloudy glass.";
                 if(session.Count(ItemStage.Clean,true)>0)return "E at the sorting table. Match each polished piece to its colour tray.";
                 var sorted=session.catalog.glass.FirstOrDefault(d=>p.items.Any(r=>r.id==d.id&&r.stage==ItemStage.Sorted));
                 if(sorted!=null)return "E at the "+session.catalog.panelNames[sorted.panel]+" sockets to place your sorted glass.";
