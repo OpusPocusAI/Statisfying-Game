@@ -34,7 +34,7 @@ namespace SeaGlass
             foam.GetComponent<ParticleSystemRenderer>().sharedMaterial=suds;var fm=foam.main;fm.startRotation=new ParticleSystem.MinMaxCurve(0,Mathf.PI*2);}
             // Round 114 (review 110, all three: the suds "flat white cut-out shapes", "a flat decal splat, not volumetric"): heaps of foam
             // as real geometry standing up off the water, lit, each turned its own way about the vertical.
-            if(foamMesh&&foamMaterial){var fr=foam.GetComponent<ParticleSystemRenderer>();fr.renderMode=ParticleSystemRenderMode.Mesh;fr.mesh=foamMesh;fr.sharedMaterial=foamMaterial;fr.alignment=ParticleSystemRenderSpace.World;var fm=foam.main;fm.startRotation3D=true;
+            if(foamMesh&&foamMaterial){var fr=foam.GetComponent<ParticleSystemRenderer>();fr.renderMode=ParticleSystemRenderMode.Mesh;fr.mesh=foamMesh;fr.sharedMaterial=foamMaterial;fr.alignment=ParticleSystemRenderSpace.World;var fm=foam.main;fm.startRotation3D=true;fm.startSize3D=true;
              var fs=foam.sizeOverLifetime;fs.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.35f),new Keyframe(.15f,1),new Keyframe(.85f,.95f),new Keyframe(1,0)));}
             dust=Emitter("Sand puff",.7f,.9f,.16f,.32f,1.1f,100,.12f);
             // Round 65 (review 61, all three: "no splash, drips or runoff"): water flicked off the brush. Real gravity and
@@ -120,7 +120,16 @@ namespace SeaGlass
             // neighbours, so the suds build into one soft heap of foam around the brush instead of a scatter of popcorn.
             // Round 104: one smaller mass a call (heaps of large masses read as cotton balls); the raft of lace below carries the foam.
             for(int i=0;i<1;i++){var o=new Vector3(Random.Range(-spread,spread)*1.5f,.01f+Random.Range(0f,.006f),Random.Range(-spread,spread)*.9f);p.position=at+o;p.velocity=new Vector3(o.x,0,o.z)*.35f;p.startSize=Random.Range(.08f,.13f);p.startLifetime=Random.Range(2.4f,3.4f);p.rotation=Random.Range(0f,360f);p.startColor=SudsTint(.82f);
-                if(foamMesh&&foamMaterial){if(Random.value>.75f)continue;p.rotation3D=new Vector3(Random.Range(-8f,8f),Random.Range(0f,360f),Random.Range(-8f,8f));p.startSize=Random.Range(.085f,.15f);p.position=at+new Vector3(o.x,.004f,o.z);p.startColor=Color.white;}   // round 114: a heap sitting in the water
+                if(foamMesh&&foamMaterial){
+                    // Round 126 (review 122, A: "oversized cauliflower lumps… too big next to the piece"; C: "solid white cotton or
+                    // marshmallow lumps, not foam"): at 8.5-15 cm across, each mound stood as big as the piece. Now a scatter of small,
+                    // low dabs (3.5-7 cm across, about half as tall as wide, each stretched its own way so no two share an outline), two or three
+                    // a call, drifting out slowly so they gather in soft patches by the brush rather than float off as separate puffs.
+                    int n=Random.value<.5f?2:3;
+                    for(int k=0;k<n;k++){var d=new Vector3(Random.Range(-spread,spread)*1.4f,0,Random.Range(-spread,spread));
+                        p.rotation3D=new Vector3(Random.Range(-6f,6f),Random.Range(0f,360f),Random.Range(-6f,6f));float s=Random.Range(.035f,.07f);
+                        p.startSize3D=new Vector3(s*Random.Range(.75f,1.25f),s*Random.Range(.45f,.65f),s*Random.Range(.75f,1.25f));p.position=at+new Vector3(d.x,.003f,d.z);p.velocity=new Vector3(d.x,0,d.z)*.15f;p.startColor=Color.white;foam.Emit(p,1);}
+                    continue;}
                 foam.Emit(p,1);}
             // Round 96 (review 92: "no foam or film on the water"): a broad, faint patch of foam spreading on the water around the brush,
             // so the suds sit in a soapy film. Round 97: every call, a little denser (it went unnoticed).

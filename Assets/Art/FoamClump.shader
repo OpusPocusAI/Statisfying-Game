@@ -5,11 +5,14 @@
 // by distinct balls (foam_clump). They are now a low, lobed mound of foam (foam_mound, round125.py), and the many small bubbles of
 // soap suds are drawn on it here: a fine net of bubble cells (in world space, as mesh particles are), each with a faint cool wall and a tiny glint, under a
 // softer light, and the foot, where the foam sits in the water, takes on the water's tint.
+// Round 126 (review 122, A: "oversized cauliflower lumps"; C: "solid white cotton or marshmallow lumps, not foam"): the mounds are
+// small dabs now (Feedback), with finer bubbles, a softer, less bright white, and edges that thin out so the water shows through
+// them (drawn after the basin water, blended), as a thin rim of real suds does.
 Shader "Sea Glass/Foam Clump"
 {
- Properties { _Shade("Shadow colour", Color) = (.6, .69, .83, 1) _Bubbles("Bubble cells per metre", Float) = 160 }
- SubShader { Tags { "RenderPipeline"="UniversalPipeline" "Queue"="Geometry" "RenderType"="Opaque" }
- Pass { Tags { "LightMode"="UniversalForward" }
+ Properties { _Shade("Shadow colour", Color) = (.6, .69, .83, 1) _Bubbles("Bubble cells per metre", Float) = 320 }
+ SubShader { Tags { "RenderPipeline"="UniversalPipeline" "Queue"="Transparent+60" "RenderType"="Transparent" }
+ Pass { Tags { "LightMode"="UniversalForward" } Blend SrcAlpha OneMinusSrcAlpha ZWrite On
  HLSLPROGRAM
  #pragma vertex vert
  #pragma fragment frag
@@ -29,7 +32,7 @@ Shader "Sea Glass/Foam Clump"
   // Wrapped, very soft light: foam scatters light, so its shadow side is a pale cool tone, never dark.
   half lit=smoothstep(-.4,.6,ndl);
   half3 shadeC=_Shade.rgb;
-  half3 litC=lerp(half3(1,1,1),saturate(l.color),.12)*.97;
+  half3 litC=lerp(half3(1,1,1),saturate(l.color),.12)*.9;
   half3 c=lerp(shadeC,litC,lit);
   // Bubble cells: the nearest and second-nearest cell centres (3D Voronoi; mesh particles are drawn in world space, so per metre).
   float3 q=i.w*_Bubbles;float3 cell=floor(q);float f1=9,f2=9;float3 c1=0;
@@ -42,11 +45,13 @@ Shader "Sea Glass/Foam Clump"
   half glint=pow(saturate(dot(toC,normalize(l.direction+v))),18)*smoothstep(.15,.6,lit);
   c+=glint*.22*litC;
   half fres=pow(1-saturate(dot(n,v)),3);
-  c+=fres*.18*litC;   // thin foam at the silhouette glows
+  c+=fres*.06*litC;   // round 126: a faint glow at the thin silhouette (was .18, a bright outline)
   // The foot sits in the water and takes its tint.
   half foot=(1-smoothstep(.0,.012,i.w.y-_SG_Basin.y))*step(.001,_SG_Basin.w);
   c=lerp(c,c*half3(.8,.92,.95),foot*.55);
-  return half4(c*i.color.rgb,1);
+  // Round 126: the foam thins toward its silhouette and its foot, so the water shows through there.
+  half a=lerp(1,.35,smoothstep(.15,.85,fres));a*=lerp(1,.55,foot);a*=lerp(.85,1,1-wall*.6);
+  return half4(c*i.color.rgb,saturate(a*i.color.a));
  }
  ENDHLSL
  } } }
