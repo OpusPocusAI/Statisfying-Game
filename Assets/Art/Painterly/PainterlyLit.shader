@@ -29,6 +29,7 @@ Shader "Sea Glass/Painterly Lit"
         _TopStart("Top colour starts at normal.y", Range(0, 1)) = 0.7
         _SunShadow("Receives sun shadow", Range(0, 1)) = 1
         _Sway("Wind sway (m per m of height, 0 off)", Range(0, 0.3)) = 0
+        _SwayHeight("Sway height (m, 0 = 2)", Range(0, 14)) = 0
     }
 
     SubShader

@@ -28,7 +28,7 @@ namespace SeaGlass.Editor
             ("Assets/Materials/SeaGlass/Blue green plants.mat", new Color(.12f, .44f, .25f)),
             ("Assets/Art/CoastalPolish/Sage canopy.mat", new Color(.2f, .54f, .25f)),
             ("Assets/Art/Vegetation/Pine foliage.mat", new Color(.18f, .5f, .26f)),
-            ("Assets/Art/Round10/Palm frond.mat", new Color(.26f, .6f, .22f)),
+            ("Assets/Art/Round10/Palm frond.mat", new Color(.2f, .52f, .22f)),   // its sunny top tint is set by TropicalLayeredPlantingPass
             ("Assets/Art/Round3/Island trees.mat", new Color(.24f, .6f, .24f)),
             ("Assets/Art/Round3/Island grass.mat", new Color(.48f, .74f, .28f)),
             ("Assets/Art/Round3/Sea stack moss.mat", new Color(.4f, .64f, .26f)),

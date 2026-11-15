@@ -33,6 +33,7 @@ CBUFFER_START(UnityPerMaterial)
     half _TopStart;        // round 27: world normal.y where the top colour begins
     half _SunShadow;       // round 52: how much the sun shadow darkens this surface (1 all, 0 none: the seabed under the water)
     half _Sway;            // Nov 15 foliage pass: wind sway in metres per metre above the object origin (0 off)
+    half _SwayHeight;      // Nov 15 layered plants: height (m) above the origin where the bend stops growing (0 = 2 m: grass and shrubs)
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -51,7 +52,7 @@ float3 SG_Wind(float3 positionOS)
     if (_Sway <= 0.0001) return positionOS;
     float3 originWS = TransformObjectToWorld(float3(0, 0, 0));
     float3 positionWS = TransformObjectToWorld(positionOS);
-    float h = clamp(positionWS.y - originWS.y, 0.0, 2.0);
+    float h = clamp(positionWS.y - originWS.y, 0.0, _SwayHeight > 0.01 ? _SwayHeight : 2.0);   // palms bend along their whole trunk
     float t = _Time.y;
     float phase = dot(originWS.xz, float2(0.13, 0.21)) + dot(positionWS.xz, float2(0.35, 0.27));
     float gust = 0.7 + 0.3 * sin(t * 0.37 + originWS.x * 0.045 + originWS.z * 0.03);
@@ -60,7 +61,7 @@ float3 SG_Wind(float3 positionOS)
     float2 wind = float2(0.6, 0.8);
     float bend = _Sway * h * h / max(h, 0.35);     // stiff at the base, freer toward the tip
     positionWS.xz += (wind * lean + float2(-wind.y, wind.x) * flutter) * bend;
-    positionWS.y -= abs(lean) * bend * 0.25 * saturate(h);   // tips dip a little as they bend
+    positionWS.y -= abs(lean) * bend * 0.25 * saturate(h) * saturate(2.0 / max(h, 0.01));   // tips dip a little as they bend (not whole palm crowns)
     return TransformWorldToObject(positionWS);
 }
 

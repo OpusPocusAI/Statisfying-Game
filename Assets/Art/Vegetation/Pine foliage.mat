@@ -42,7 +42,8 @@ Material:
     - _Smoothness: 0.08
     - _SunShadow: 1
     - _Surface: 0
-    - _Sway: 0
+    - _Sway: 0.01
+    - _SwayHeight: 9
     - _TopStart: 0.7
     - _Variation: 0.1
     - _WetBand: 0

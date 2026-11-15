@@ -42,16 +42,17 @@ Material:
     - _Smoothness: 0.1
     - _SunShadow: 1
     - _Surface: 0
-    - _Sway: 0
-    - _TopStart: 0.7
+    - _Sway: 0.018
+    - _SwayHeight: 11
+    - _TopStart: 0.2
     - _Variation: 0.07
     - _WetBand: 0
     - _WorldMapping: 0
     - _WorldTile: 7
     m_Colors:
-    - _BaseColor: {r: 0.26, g: 0.6, b: 0.22, a: 1}
+    - _BaseColor: {r: 0.2, g: 0.52, b: 0.22, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
-    - _TopTint: {r: 0.41999996, g: 0.54999995, b: 0.29999998, a: 0}
+    - _TopTint: {r: 0.62, g: 0.8, b: 0.3, a: 0.75}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
