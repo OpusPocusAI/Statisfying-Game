@@ -32,6 +32,7 @@ CBUFFER_START(UnityPerMaterial)
     half4 _TopTint;        // round 27: rgb grass/moss colour on upward faces, a = amount (0 off)
     half _TopStart;        // round 27: world normal.y where the top colour begins
     half _SunShadow;       // round 52: how much the sun shadow darkens this surface (1 all, 0 none: the seabed under the water)
+    half _Sway;            // Nov 15 foliage pass: wind sway in metres per metre above the object origin (0 off)
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
@@ -40,6 +41,27 @@ TEXTURE2D(_SpecGlossMap); SAMPLER(sampler_SpecGlossMap);
 half4 SampleSpecularSmoothness(float2 uv, half alpha, half4 specColor, TEXTURE2D_PARAM(specMap, sampler_specMap))
 {
     return half4(0, 0, 0, 1);
+}
+
+// Wind sway (Nov 15, Tchia foliage pass). Every pass, the shadow and depth passes included, bends the vertex the same way, so
+// swaying plants keep their shadows and never fight the depth prepass. Each plant leans by its height above its own origin
+// (its base), so it needs its own transform: swaying renderers are kept out of static batching by TropicalFoliagePass.
+float3 SG_Wind(float3 positionOS)
+{
+    if (_Sway <= 0.0001) return positionOS;
+    float3 originWS = TransformObjectToWorld(float3(0, 0, 0));
+    float3 positionWS = TransformObjectToWorld(positionOS);
+    float h = clamp(positionWS.y - originWS.y, 0.0, 2.0);
+    float t = _Time.y;
+    float phase = dot(originWS.xz, float2(0.13, 0.21)) + dot(positionWS.xz, float2(0.35, 0.27));
+    float gust = 0.7 + 0.3 * sin(t * 0.37 + originWS.x * 0.045 + originWS.z * 0.03);
+    float lean = (sin(t * 1.55 + phase) * 0.6 + sin(t * 2.9 + phase * 1.7) * 0.25 + 0.3) * gust;
+    float flutter = sin(t * 4.3 + phase * 2.3) * 0.18;
+    float2 wind = float2(0.6, 0.8);
+    float bend = _Sway * h * h / max(h, 0.35);     // stiff at the base, freer toward the tip
+    positionWS.xz += (wind * lean + float2(-wind.y, wind.x) * flutter) * bend;
+    positionWS.y -= abs(lean) * bend * 0.25 * saturate(h);   // tips dip a little as they bend
+    return TransformWorldToObject(positionWS);
 }
 
 inline void InitializeSimpleLitSurfaceData(float2 uv, out SurfaceData outSurfaceData)

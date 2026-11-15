@@ -69,7 +69,7 @@ Varyings PainterlyVertex(Attributes input)
     UNITY_TRANSFER_INSTANCE_ID(input, output);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-    VertexPositionInputs positionInputs = GetVertexPositionInputs(input.positionOS.xyz);
+    VertexPositionInputs positionInputs = GetVertexPositionInputs(SG_Wind(input.positionOS.xyz));
     VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS);
     output.positionCS = positionInputs.positionCS;
     output.positionWS = positionInputs.positionWS;

@@ -28,6 +28,7 @@ Shader "Sea Glass/Painterly Lit"
         _TopTint("Top colour (moss on upward faces, a = amount)", Color) = (0.42, 0.55, 0.3, 0)
         _TopStart("Top colour starts at normal.y", Range(0, 1)) = 0.7
         _SunShadow("Receives sun shadow", Range(0, 1)) = 1
+        _Sway("Wind sway (m per m of height, 0 off)", Range(0, 0.3)) = 0
     }
 
     SubShader
@@ -73,12 +74,13 @@ Shader "Sea Glass/Painterly Lit"
 
             HLSLPROGRAM
             #pragma target 3.0
-            #pragma vertex ShadowPassVertex
+            #pragma vertex SG_ShadowVertex
             #pragma fragment ShadowPassFragment
             #pragma multi_compile_instancing
             #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
             #include "PainterlyInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
+            Varyings SG_ShadowVertex(Attributes input) { UNITY_SETUP_INSTANCE_ID(input); input.positionOS.xyz = SG_Wind(input.positionOS.xyz); return ShadowPassVertex(input); }
             ENDHLSL
         }
 
@@ -92,11 +94,12 @@ Shader "Sea Glass/Painterly Lit"
 
             HLSLPROGRAM
             #pragma target 3.0
-            #pragma vertex DepthOnlyVertex
+            #pragma vertex SG_DepthVertex
             #pragma fragment DepthOnlyFragment
             #pragma multi_compile_instancing
             #include "PainterlyInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
+            Varyings SG_DepthVertex(Attributes input) { UNITY_SETUP_INSTANCE_ID(input); input.position.xyz = SG_Wind(input.position.xyz); return DepthOnlyVertex(input); }
             ENDHLSL
         }
 
@@ -109,12 +112,13 @@ Shader "Sea Glass/Painterly Lit"
 
             HLSLPROGRAM
             #pragma target 3.0
-            #pragma vertex DepthNormalsVertex
+            #pragma vertex SG_DepthNormalsVertex
             #pragma fragment DepthNormalsFragment
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
             #pragma multi_compile_instancing
             #include "PainterlyInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/SimpleLitDepthNormalsPass.hlsl"
+            Varyings SG_DepthNormalsVertex(Attributes input) { UNITY_SETUP_INSTANCE_ID(input); input.positionOS.xyz = SG_Wind(input.positionOS.xyz); return DepthNormalsVertex(input); }
             ENDHLSL
         }
     }
