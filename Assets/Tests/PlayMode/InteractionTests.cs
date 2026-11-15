@@ -193,11 +193,13 @@ namespace SeaGlass.Tests
             session.truck.Load(true);session.truck.Load(false);Assert.AreEqual(4,session.CargoCount);
             var speed=typeof(UtilityTruck).GetField("speed",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance);
             var first=hz.hazards.First(h=>h.ripples);var second=hz.hazards.Last(h=>h.ripples);
-            session.truck.transform.SetPositionAndRotation(new Vector3(15,.3f,first.at.z-6),Quaternion.identity);session.truck.Enter();yield return null;
+            var cc=session.truck.GetComponent<CharacterController>();
+            void Place(float z){cc.enabled=false;session.truck.transform.SetPositionAndRotation(new Vector3(15,.3f,z),Quaternion.identity);cc.enabled=true;}
+            Place(first.at.z-6);session.truck.Enter();yield return null;
             float until=Time.time+5;while(session.truck.transform.position.z<first.at.z+first.length&&Time.time<until){speed.SetValue(session.truck,4f);yield return null;}
             Assert.Greater(session.truck.transform.position.z,first.at.z+first.length-.5f);
             Assert.AreEqual(4,session.CargoCount,"Taken slowly, the sand ripples cost nothing.");
-            session.truck.transform.position=new Vector3(15,.3f,second.at.z-6);yield return null;
+            Place(second.at.z-6);yield return null;
             until=Time.time+3;while(session.CargoCount==4&&Time.time<until){speed.SetValue(session.truck,12f);yield return null;}
             Assert.Less(session.CargoCount,4,"Taken fast, the ripples throw cargo out.");
             speed.SetValue(session.truck,0f);session.truck.Exit();yield return new WaitForSeconds(1.2f);
