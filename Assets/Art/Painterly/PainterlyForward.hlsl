@@ -221,7 +221,9 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     {
         // Round 83 (review 79, all three: the band "lilac-grey, not orange-brown", "lilac-pink, not darker sand", "lavender"):
         // damp sand is the dry sand darker and richer, a warm tan-brown, not a cooled grey.
-        albedo *= lerp(half3(1, 1, 1), half3(0.5, 0.385, 0.28), wet);
+        // Tropical pass (Nov 15): under white daylight the old (0.5, 0.385, 0.28) read as a rust-orange strip; wet sand is now
+        // the dry sand a shade darker and only slightly warmer.
+        albedo *= lerp(half3(1, 1, 1), half3(0.7, 0.6, 0.48), wet);
         albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.05;   // a faint darker line where the sand is drying
     }
 
