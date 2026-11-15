@@ -103,7 +103,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudCover: 0.5
+    - _CloudCover: 0.55
     - _CloudScale: 1.5
     - _Cull: 2
     - _Cutoff: 0.5
@@ -131,15 +131,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudLit: {r: 1, g: 0.94, b: 0.84, a: 1}
-    - _CloudShade: {r: 0.6, g: 0.52, b: 0.74, a: 1}
+    - _CloudLit: {r: 1, g: 1, b: 0.98, a: 1}
+    - _CloudShade: {r: 0.66, g: 0.72, b: 0.9, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Horizon: {r: 1, g: 0.84, b: 0.62, a: 1}
-    - _MidSky: {r: 0.98, g: 0.62, b: 0.5, a: 1}
+    - _Horizon: {r: 0.84, g: 0.93, b: 1, a: 1}
+    - _MidSky: {r: 0.5, g: 0.72, b: 0.94, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SunColour: {r: 1, g: 0.93, b: 0.74, a: 1}
-    - _SunGlow: {r: 1, g: 0.62, b: 0.32, a: 1}
-    - _Zenith: {r: 0.54, g: 0.56, b: 0.78, a: 1}
+    - _SunColour: {r: 1, g: 0.98, b: 0.92, a: 1}
+    - _SunGlow: {r: 1, g: 0.93, b: 0.78, a: 1}
+    - _Zenith: {r: 0.25, g: 0.45, b: 0.8, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

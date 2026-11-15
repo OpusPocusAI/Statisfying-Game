@@ -15,14 +15,14 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.94, g: 0.74, b: 0.64, a: 1}
+  m_FogColor: {r: 0.72, g: 0.85, b: 0.97, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.0042
+  m_FogDensity: 0.003
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.5, g: 0.58, b: 0.9, a: 1}
-  m_AmbientEquatorColor: {r: 0.86, g: 0.64, b: 0.58, a: 1}
-  m_AmbientGroundColor: {r: 0.36, g: 0.28, b: 0.4, a: 1}
+  m_AmbientSkyColor: {r: 0.56, g: 0.72, b: 1, a: 1}
+  m_AmbientEquatorColor: {r: 0.78, g: 0.86, b: 0.94, a: 1}
+  m_AmbientGroundColor: {r: 0.56, g: 0.48, b: 0.42, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -329308,8 +329308,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.82, b: 0.6, a: 1}
-  m_Intensity: 1.4
+  m_Color: {r: 1, g: 0.96, b: 0.88, a: 1}
+  m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -329318,7 +329318,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.75
+    m_Strength: 0.8
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -329371,7 +329371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190423759}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.093958855, y: 0.8543648, z: -0.16607171, w: 0.48337638}
+  m_LocalRotation: {x: 0.19216926, y: 0.80783075, z: -0.3940054, w: 0.3940054}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -471274,14 +471274,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef645f6c478fd4bacac47ac75e8d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.PainterlyLook
-  shadowTint: {r: 0.34, g: 0.3, b: 0.62, a: 1}
-  shadowBrightness: 0.44
-  skyFill: 0.26
+  shadowTint: {r: 0.4, g: 0.46, b: 0.8, a: 1}
+  shadowBrightness: 0.5
+  skyFill: 0.34
   terminator: 0.02
   terminatorSoftness: 0.12
-  sunStrength: 1.18
-  rimColour: {r: 1, g: 0.74, b: 0.48, a: 1}
-  rimStrength: 0.35
+  sunStrength: 1.1
+  rimColour: {r: 1, g: 0.96, b: 0.88, a: 1}
+  rimStrength: 0.22
   variationScale: 0.35
   hueDrift: 0.35
   occlusion: 0.85
@@ -524570,6 +524570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.StudioUI
   shop: 0
   ending: 0
+  intro: 0
   uiFont: {fileID: 12800000, guid: 646203244227990408a9c656b67b161a, type: 3}
 --- !u!114 &1901994641
 MonoBehaviour:
@@ -524611,6 +524612,7 @@ MonoBehaviour:
     skipDrive: 0
     returnToStudio: 0
     tutorialDismissed: 0
+    introSeen: 0
     completed: 000000
     upgrades: []
     items: []
@@ -524620,6 +524622,10 @@ MonoBehaviour:
   paused: 0
   testMode: 0
   saveFileName: seaglass-v1.json
+  LevelUp: 
+  levelUpUntil: 0
+  newCoveUntil: 0
+  newCove: 0
 --- !u!4 &1901994643
 Transform:
   m_ObjectHideFlags: 0

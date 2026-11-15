@@ -6,7 +6,9 @@ Read this before any visual work. Every art pass should name the area it targets
 
 ## 1. The look in one paragraph
 
-A warm, late-afternoon coast painted in soft gradients. Simple, deliberately shaped low-poly forms, lit so that every surface has a light side, a warm bounce and a cool purple shadow. Turquoise water against cream and peach sand. Distance dissolves into peach haze. Everything the player touches (tools, glass, trays, the truck) is a designed object with a readable silhouette, not a primitive. Sea glass is the jewel of every frame: soft, rounded, frosted when dirty, luminous when clean.
+**November 15 update:** the owner made Tchia the art target and the top priority. The game now plays in bright tropical daylight rather than golden hour; where this document still describes peach haze or a low sun, the daylight rules below win.
+
+A bright tropical coast painted in soft gradients. Simple, deliberately shaped low-poly forms, lit so that every surface has a light side, a warm sand bounce and a cool blue-violet shadow. Vivid turquoise water against golden cream sand under a deep blue sky with white cumulus. Distance dissolves into airy blue haze. Everything the player touches (tools, glass, trays, the truck) is a designed object with a readable silhouette, not a primitive. Sea glass is the jewel of every frame: soft, rounded, frosted when dirty, luminous when clean.
 
 **The feeling:** a quiet holiday afternoon spent tidying a beach and making something beautiful from what you found.
 
@@ -69,7 +71,7 @@ Based on the development prompt's palette. Hex values are starting targets; adju
 
 | Role | Target | Notes |
 | --- | --- | --- |
-| Sky top | `#F2B48A` peach | Gradient to pale yellow `#FBE3B0` at the horizon |
+| Sky top | `#4073CC` deep blue | Gradient through bright blue `#80B8F0` to near-white `#D6EDFF` at the horizon (Nov 15, was peach) |
 | Sun and highlights | `#FFE9B8` warm cream | Never pure white |
 | Deep water | `#0E6E73` deep teal | |
 | Shallow water | `#3FD2C7` turquoise | Brightest saturated colour outside the glass |
@@ -78,13 +80,13 @@ Based on the development prompt's palette. Hex values are starting targets; adju
 | Wood | `#B4552E` burnt orange | |
 | Shadows | `#4A3558` dark purple | Shadows are tinted purple, never neutral grey |
 | Vegetation | `#2F5D57` deep blue-green | |
-| Distance haze | `#E9B9A0` peach-pink | Colour that far objects fade toward |
+| Distance haze | `#B8D9F7` airy sky blue | Colour that far objects fade toward (Nov 15, was peach-pink) |
 | Glass | aqua, emerald, cobalt, amber, clear white, purple, rare red | The most saturated colours in the game; nothing else should compete |
 
 ### Lighting and post-processing
 
-- One warm directional sun, low angle (about 20–30°), casting long shadows.
-- Shadow colour tinted toward purple through ambient light and colour grading; no neutral grey shadows anywhere.
+- One near-white, slightly warm sun, high (about 50°), late-morning tropical daylight (Nov 15; was a low golden-hour sun).
+- Shadow colour tinted blue-violet through ambient light and colour grading, lighter than before; no neutral grey shadows anywhere.
 - Ambient occlusion visible where objects meet the ground and in corners.
 - Distance fog with a colour gradient (warm near the sun, cooler away from it). Far hills should lose detail and shift toward the haze colour.
 - Colour grading: warm highlights, slightly cool shadows, gentle contrast. The current hazy, low-contrast look is not the target.
