@@ -59,7 +59,7 @@ Shader "Sea Glass/Tidal Water"
   // a deeper teal in broad, slow patches (two octaves, tens of metres across), the way open water varies under a sunset.
   float open=smoothstep(8,60,depth);
   float swell=BrushNoise(p*.019+float2(t*.004,-t*.003))*.6+BrushNoise(p*.047+3.3)*.4;
-  c=lerp(c,half3(.035,.4,.47)*(.86+swell*.3),open*smoothstep(.2,.7,swell)*.8);
+  c=lerp(c,half3(.04,.42,.68)*(.86+swell*.3),open*smoothstep(.2,.7,swell)*.8);   // Nov 15 daylight pass: azure, not deep teal
 
   // Irregular elongated brush marks replace the uniform lattice of bright specks.
   // Round 16: rotated and warped by a second noise, so the strokes curve; axis-aligned stretched noise drew
@@ -70,7 +70,7 @@ Shader "Sea Glass/Tidal Water"
   float brushAA=max(.035,fwidth(brush));
   float detail=1-smoothstep(.25,1.2,length(fwidth(brushUV)));
   float marks=smoothstep(.7-brushAA,.88+brushAA,brush)*detail;
-  c+=half3(.42,.64,.59)*marks*.13;
+  c+=half3(.62,.9,.95)*marks*.15;
 
   // A small directional sheen follows the actual golden-hour sun. No reflection camera.
   float3 view=GetWorldSpaceNormalizeViewDir(i.world);
@@ -87,7 +87,7 @@ Shader "Sea Glass/Tidal Water"
   float foam=smoothstep(.82-foamAA,.97+foamAA,crest);
   foam*=smoothstep(.30,.64,BrushNoise(p*float2(.55,.85)+float2(t*.04,-t*.055)));
   foam*=(1-smoothstep(.2,4.8,depth))*detail;
-  c=lerp(c,half3(.87,.96,.84),foam*.58);
+  c=lerp(c,half3(.95,.99,1.),foam*.68);
 
   // True water depth from the scene depth buffer: bright turquoise shallows over sand,
   // and a soft, lapping foam line wherever the water touches the beach or a rock.
@@ -102,8 +102,8 @@ Shader "Sea Glass/Tidal Water"
   // A first try (.9,.32,.28) left the shallows a pale yellow-green: red goes first, and the bed takes a cool tint.
   // Round 53: the bed now reaches in under the swash (Round51Pass), so the thinnest water showed raw cream sand and the
   // white lace vanished into it; the bed is absorbed as if 18 cm deeper, so even the swash is faintly turquoise.
-  half3 transmit=exp(-(vdepth+.18)*half3(1.5,.38,.3));
-  half3 seen=bed*transmit*half3(.72,.98,1.02)+half3(.1,.7,.72)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
+  half3 transmit=exp(-(vdepth+.18)*half3(1.6,.33,.24));
+  half3 seen=bed*transmit*half3(.72,.98,1.02)+half3(.12,.8,.82)*(1-transmit)*.9;   // round 8: wet sand under the swash stays warm, not milky green
   // Round 52 (review 48, all three: the stack shadows read as "inverted, hard-edged bright wedges"): the seabed no longer
   // takes the sun shadow (its material's _SunShadow is 0), so the bed is evenly lit; the shade is laid on the water
   // surface instead, softly (to 86%), the way a shadow darkens clear water.
