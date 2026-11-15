@@ -8,7 +8,7 @@ Read this before any visual work. Every art pass should name the area it targets
 
 **November 15 update:** the owner made Tchia the art target and the top priority. The game now plays in bright tropical daylight rather than golden hour; where this document still describes peach haze or a low sun, the daylight rules below win.
 
-A bright tropical coast painted in soft gradients. Simple, deliberately shaped low-poly forms, lit so that every surface has a light side, a warm sand bounce and a cool blue-violet shadow. Vivid turquoise water against golden cream sand under a deep blue sky with white cumulus. Distance dissolves into airy blue haze. Everything the player touches (tools, glass, trays, the truck) is a designed object with a readable silhouette, not a primitive. Sea glass is the jewel of every frame: soft, rounded, frosted when dirty, luminous when clean.
+A bright tropical coast painted in soft gradients. Simple, deliberately shaped low-poly forms, lit so that every surface has a light side, a warm sand bounce and a soft, cool blue-grey shadow. Vivid turquoise water against golden cream sand under a deep blue sky with white cumulus. Distance dissolves into airy blue haze. Everything the player touches (tools, glass, trays, the truck) is a designed object with a readable silhouette, not a primitive. Sea glass is the jewel of every frame: soft, rounded, frosted when dirty, luminous when clean.
 
 **The feeling:** a quiet holiday afternoon spent tidying a beach and making something beautiful from what you found.
 
@@ -86,7 +86,7 @@ Based on the development prompt's palette. Hex values are starting targets; adju
 ### Lighting and post-processing
 
 - One near-white, slightly warm sun, high (about 50°), late-morning tropical daylight (Nov 15; was a low golden-hour sun).
-- Shadow colour tinted blue-violet through ambient light and colour grading, lighter than before; no neutral grey shadows anywhere.
+- Shadow colour a soft, cool blue-grey through ambient light and colour grading: cool enough that no shadow reads neutral grey, light enough that shaded blues stay teal and shaded reds stay coral (Nov 15).
 - Ambient occlusion visible where objects meet the ground and in corners.
 - Distance fog with a colour gradient (warm near the sun, cooler away from it). Far hills should lose detail and shift toward the haze colour.
 - Colour grading: warm highlights, slightly cool shadows, gentle contrast. The current hazy, low-contrast look is not the target.

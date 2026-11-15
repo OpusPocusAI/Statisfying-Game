@@ -120,6 +120,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _SunShadow: 1
     - _Surface: 0
+    - _Sway: 0
     - _TopStart: 0.6
     - _Variation: 0.18
     - _WetBand: 1

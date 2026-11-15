@@ -501937,8 +501937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eef645f6c478fd4bacac47ac75e8d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SeaGlass.Runtime::SeaGlass.PainterlyLook
-  shadowTint: {r: 0.4, g: 0.46, b: 0.8, a: 1}
-  shadowBrightness: 0.5
+  shadowTint: {r: 0.56, g: 0.58, b: 0.76, a: 1}
+  shadowBrightness: 0.56
   skyFill: 0.34
   terminator: 0.02
   terminatorSoftness: 0.12

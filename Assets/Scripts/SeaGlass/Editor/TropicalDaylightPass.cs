@@ -58,8 +58,8 @@ namespace SeaGlass.Editor
             // ---- Painterly shading: lighter blue-violet shadows, a cleaner light side, a soft cool-white rim.
             foreach (var look in Object.FindObjectsByType<PainterlyLook>(FindObjectsSortMode.None))
             {
-                look.shadowTint = new Color(.40f, .46f, .80f);
-                look.shadowBrightness = .5f;
+                look.shadowTint = new Color(.56f, .58f, .76f);   // Nov 15 softer pass: was (.40, .46, .80), which turned shaded blues electric and reds maroon
+                look.shadowBrightness = .56f;
                 look.skyFill = .34f;
                 look.sunStrength = 1.1f;
                 look.terminatorSoftness = .12f;
@@ -76,7 +76,7 @@ namespace SeaGlass.Editor
                 if (p.TryGet(out ColorAdjustments ca)) { Set(ca.postExposure, -.08f); Set(ca.contrast, 26f); Set(ca.saturation, 30f); }
                 if (p.TryGet(out ShadowsMidtonesHighlights smh))
                 {
-                    Set(smh.shadows, new Vector4(.92f, .97f, 1.14f, -.04f));
+                    Set(smh.shadows, new Vector4(.97f, .99f, 1.06f, -.03f));
                     Set(smh.midtones, new Vector4(1f, 1f, 1f, 0f));
                     Set(smh.highlights, new Vector4(1.03f, 1.01f, .96f, .03f));
                 }
