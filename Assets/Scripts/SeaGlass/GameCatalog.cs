@@ -29,7 +29,7 @@ namespace SeaGlass
         public string[] panelNames = { "Ocean Wave", "Lighthouse", "Coastal Sunset" };
         public static readonly Color[] Palette = { new Color(.16f,.85f,.79f), new Color(.16f,.66f,.42f), new Color(.17f,.34f,.85f), new Color(1,.58f,.16f), new Color(.92f,.94f,.84f), new Color(.65f,.35f,.83f) };
     }
-    [Serializable] public class ItemRecord { public string id; public ItemStage stage; public float grime = 1; }
+    [Serializable] public class ItemRecord { public string id; public ItemStage stage; public float grime = 1; public bool spilled; public Vector3 spot; }   // spilled: bounced off the truck onto the road at spot
     [Serializable] public class Progress
     {
         public int version=1; public int xp; public int caps; public int tutorial; public bool skipDrive;

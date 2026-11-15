@@ -75,6 +75,16 @@ namespace SeaGlass
             var rubbish=items.First(i=>i.section==0&&i.id.StartsWith("rubbish-"));rubbish.Use(10);Require(rubbish.Collect(),"Rubbish collection");
             Require(session.truck.Load(true)&&session.truck.Load(false),"Separate truck loading");
             View(new Vector3(15,.3f,2),0,new Vector3(15,1.2f,7));yield return Shot("03-loaded-truck");
+            // Drive pass: potholes and sand ripples on the road; a fast bump throws cargo out, and it is picked up again for no second reward.
+            float Yaw(Vector3 a,Vector3 b)=>Mathf.Atan2(b.x-a.x,b.z-a.z)*Mathf.Rad2Deg;
+            Require(RoadHazards.Instance&&RoadHazards.Instance.hazards.Count>=7,"Road hazards on the coast road");
+            Vector3 eye=new Vector3(17.6f,.3f,31),at=new Vector3(13.4f,0,38);View(eye,Yaw(eye,at),at);yield return Shot("03b-pothole");
+            eye=new Vector3(18,.3f,44);at=new Vector3(15,0,51.6f);View(eye,Yaw(eye,at),at);yield return Shot("03c-sand-ripples");
+            Require(RoadHazards.Instance.Spill(session.truck,2)==2,"A hard bump spills cargo");yield return new WaitForSeconds(1.3f);
+            var fallen=items.Where(i=>i.Record.spilled&&i.gameObject.activeSelf).ToArray();Require(fallen.Length==2&&fallen.All(f=>Mathf.Abs(f.transform.position.x-15)<5),"Fallen cargo lies on the road");
+            at=fallen[0].transform.position;eye=new Vector3(at.x+1.6f,.3f,at.z-2.2f);View(eye,Yaw(eye,at),at);yield return Shot("03d-fallen-cargo");
+            int xpBefore=session.progress.xp;Require(fallen.All(f=>f.Collect())&&session.progress.xp==xpBefore&&RoadHazards.Fallen(session)==0,"Fallen cargo picked up again, no second reward");
+            Require(session.truck.Load(true)&&session.truck.Load(false),"Fallen cargo reloaded");
             session.truck.transform.position=new Vector3(15,.3f,150);
             var stations=FindObjectsByType<StudioStation>(FindObjectsSortMode.None);
             var clean=stations.First(s=>s.kind==StationKind.Clean);var sort=stations.First(s=>s.kind==StationKind.Sort);

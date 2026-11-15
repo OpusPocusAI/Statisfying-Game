@@ -1,10 +1,11 @@
+using System.Linq;
 using UnityEngine;
 namespace SeaGlass
 {
     public class ShoreItem : Interactable
     {
         public string id; public int section; public bool glass; public int colorIndex; public Transform visual,mound;
-        public Vector3 home; public float dig; Renderer surface; MaterialPropertyBlock block; float highlightUntil;Vector3 moundSize;
+        public Vector3 home; public float dig; Renderer surface; MaterialPropertyBlock block; float highlightUntil;Vector3 moundSize;bool spilledHere;
         GameSession S=>GameSession.Instance;
         public ItemRecord Record=>S.progress.Item(id);
         public override string Prompt=> !S.progress.SectionOpen(section)?"This cove opens at level "+(section+1):Record.stage==ItemStage.Buried?(S.player.equippedTool==0?"Hold LMB · scoop sand":"1 · equip shovel, then hold LMB to scoop"):"E · collect "+(glass?"cloudy "+((GlassColor)colorIndex)+" glass":"shoreline rubbish");
@@ -15,6 +16,13 @@ namespace SeaGlass
             if(mound)mound.gameObject.SetActive(stage==ItemStage.Buried);
             if(stage==ItemStage.Buried){dig=0;if(mound)mound.localScale=moundSize;}
             if(visual)visual.localPosition=new Vector3(0,stage==ItemStage.Buried?-.06f:.13f,0);
+            spilledHere=stage==ItemStage.Shore&&Record.spilled;
+            if(spilledHere)
+            {   // Drive pass: cargo that bounced off the truck rests where it landed on the road.
+                transform.position=Record.spot;var rs=GetComponentsInChildren<Renderer>();
+                if(rs.Length>0)transform.position+=Vector3.up*(Record.spot.y+.004f-rs.Min(r=>r.bounds.min.y));
+                foreach(var c in GetComponentsInChildren<Collider>())c.isTrigger=true;
+            }
             if(glass&&surface){block??=new MaterialPropertyBlock();surface.GetPropertyBlock(block);block.SetFloat("_Grime",Record.grime);block.SetFloat("_Smoothness",.08f);surface.SetPropertyBlock(block);}
         }
         public override void Use(float delta)
@@ -41,14 +49,14 @@ namespace SeaGlass
             if(S.BucketCount>=S.progress.BucketCapacity){S.Notify("Bucket full. Load the truck's rear compartments.");return false;}
             if(S.CargoCount+S.BucketCount>=S.progress.TruckCapacity){S.Notify("Truck allocation full. Return to the studio to unload.");return false;}
             if(glass&&visual&&surface)Feedback.Instance?.Fly(visual.GetComponent<MeshFilter>().sharedMesh,surface.sharedMaterial,GameCatalog.Palette[colorIndex],visual.position,S.player.view.transform.position+S.player.view.transform.forward*.65f-S.player.view.transform.up*.35f,visual.lossyScale,visual.rotation);
-            bool first=S.progress.tutorial<3;Record.stage=ItemStage.Bucket;S.Award(glass?12:5,id.EndsWith("7")?2:0);S.Tutorial(S.BucketCount>=S.progress.BucketCapacity?4:3);
+            bool first=S.progress.tutorial<3,returned=Record.spilled;Record.stage=ItemStage.Bucket;Record.spilled=false;spilledHere=false;if(!returned)S.Award(glass?12:5,id.EndsWith("7")?2:0);S.Tutorial(S.BucketCount>=S.progress.BucketCapacity?4:3);
             Feedback.Instance?.Play(glass?"glass":id.EndsWith("0")?"metal":"plastic",1+colorIndex*.08f);// Clarity pass (owner playtest: "not initially how much I can carry"): the first find says what the bucket holds.
-            S.Notify(first?"Into your bucket. It holds "+S.progress.BucketCapacity+" finds; when it is full, load it into the truck's rear crates.":glass?"A cloudy treasure. Load it into the truck.":"One less piece on the shore.");Refresh();S.Save();return true;
+            S.Notify(returned?"Back in your bucket. Load it into the truck again.":first?"Into your bucket. It holds "+S.progress.BucketCapacity+" finds; when it is full, load it into the truck's rear crates.":glass?"A cloudy treasure. Load it into the truck.":"One less piece on the shore.");Refresh();S.Save();return true;
         }
         public void Highlight(){if(glass&&gameObject.activeSelf)highlightUntil=Time.time+12;}
         void Update()
         {
-            if(transform.position.y < -2 || Vector3.Distance(transform.position,home)>80)transform.position=home;
+            if(!spilledHere&&(transform.position.y < -2 || Vector3.Distance(transform.position,home)>80))transform.position=home;
             if(!surface)return;block??=new MaterialPropertyBlock();surface.GetPropertyBlock(block);
             block.SetColor("_EmissionColor",Time.time<highlightUntil?GameCatalog.Palette[colorIndex]*(1+Mathf.Sin(Time.time*4)*.5f):Color.black);surface.SetPropertyBlock(block);
         }

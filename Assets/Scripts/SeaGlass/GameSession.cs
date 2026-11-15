@@ -24,7 +24,7 @@ namespace SeaGlass
         public int Count(ItemStage stage,bool glass) => progress.items.Count(r=>r.stage==stage && r.id.StartsWith(glass?"glass-":"rubbish-"));
         public int BucketCount => progress.items.Count(r=>r.stage==ItemStage.Bucket);
         public int CargoCount => progress.items.Count(r=>r.stage==ItemStage.Truck);
-        void Awake(){Instance=this;Application.runInBackground=true;QualitySettings.vSyncCount=1;Application.targetFrameRate=90;}
+        void Awake(){Instance=this;if(!GetComponent<RoadHazards>())gameObject.AddComponent<RoadHazards>();Application.runInBackground=true;QualitySettings.vSyncCount=1;Application.targetFrameRate=90;}
         void Start(){player.blocked=true;player.SetCursor(false);Notify("A little care. A little colour.");}
         void Update()
         {

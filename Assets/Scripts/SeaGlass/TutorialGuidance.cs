@@ -24,7 +24,9 @@ namespace SeaGlass
             bool atStudio=session.player.transform.position.z>140;
             int bucket=session.BucketCount,cargo=session.CargoCount;
             if(session.player.mode==PlayerMode.Driving)
-                return session.truck.AtStudio?"Studio reached. Space to brake, then E to leave the cab.":"W/S to drive, A/D to steer, Space to brake. Follow the coastal road.";
+                return session.truck.AtStudio?"Studio reached. Space to brake, then E to leave the cab.":RoadHazards.Fallen(session)>0?"Part of your load bounced off behind you. Brake, E to get out, and pick it up.":"W/S to drive, A/D to steer, Space to brake. Ease off over potholes and sand ripples, or your load bounces out.";
+            int fallen=RoadHazards.Fallen(session);
+            if(fallen>0)return "Pick up "+(fallen==1?"the piece":"the "+fallen+" pieces")+" that bounced off the truck, then load "+(fallen==1?"it":"them")+" back into its crates.";
             if(atStudio&&session.Count(ItemStage.Bucket,false)>0)return "Carry your rubbish to the recycling press and press E to feed it in.";
             if(bucket>0&&(atStudio||cargo>0||bucket>=p.BucketCapacity))
             {
@@ -62,6 +64,7 @@ namespace SeaGlass
             Vector3 Crates(){var c=Object.FindObjectsByType<TruckCompartment>(FindObjectsSortMode.None).FirstOrDefault(x=>!x.skip);return c?c.transform.position:s.truck.transform.position;}
             Vector3 Truck()=>s.truck.transform.position+Vector3.up*1.5f;
             if(s.player.mode==PlayerMode.Driving){if(s.truck.AtStudio)return false;at=new Vector3(15,1.2f,150);label="Studio";return true;}
+            if(RoadHazards.Fallen(s)>0){var f=RoadHazards.NearestFallen(s,s.player.transform.position);if(f){at=f.transform.position;label="Fallen cargo";return true;}}
             if(atStudio&&s.Count(ItemStage.Bucket,false)>0){at=Station(StationKind.Recycle);label="Recycling press";return true;}
             if(bucket>0&&(atStudio||cargo>0||bucket>=p.BucketCapacity)){at=Crates();label="Truck crates";return true;}
             if(atStudio)
