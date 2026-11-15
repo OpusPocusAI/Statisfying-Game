@@ -29,21 +29,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AOScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _GradientHeight: 1.1
     - _GradientStrength: 0.5
     - _GroundPatches: 0
+    - _LightWrap: 0
     - _Metallic: 0
     - _Rim: 1
+    - _SandDetail: 0
     - _Smoothness: 0.1
+    - _SunShadow: 1
     - _Surface: 0
     - _TopStart: 0.4
     - _Variation: 0.1
+    - _WetBand: 0
     - _WorldMapping: 0
     - _WorldTile: 7
     m_Colors:
-    - _BaseColor: {r: 0.34, g: 0.5, b: 0.32, a: 1}
+    - _BaseColor: {r: 0.15, g: 0.44, b: 0.21, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
     - _TopTint: {r: 0.68, g: 0.78, b: 0.38, a: 0.85}

@@ -161,3 +161,7 @@ Drive pass (same day, commit e1f0b5c): top speed 13 m/s, eased steering, wider v
 ## Water and shoreline: Tchia daylight — November 15
 
 `TidalWater.shader` and `Turquoise ocean.mat` retuned for the daylight scene: the open sea drifts toward azure (was deep teal), the lagoon colour is a brighter cyan, the see-through shallows absorb less blue and green so they stay vivid cyan over the sand, the brush marks are white-cyan, and the offshore crests are white instead of cream. `Wet sand.mat` is slightly warmer. Captures: `Captures/Review/water-r1` and `water-r2` (ignored). Build, standalone verification and all 22 PlayMode tests pass.
+
+## Plants and foliage: Tchia greens — November 15
+
+`TropicalFoliagePass` (Sea Glass/Art Direction menu, repeatable) recolours 15 foliage materials from dusty sage and blue-grey to lush tropical greens: emerald bases and shade, warm yellow-green tips and lit sides (grass, shrubs, stems, canopies, palms, pines, island cover, stack moss). The big inland ridge behind the road gets its own copy of the beach sand, `Grassy inland ridge.mat`, with the painterly top tint turning every gentle upward slope green while steep faces stay sandy, so sand stays on the beach and the land behind it is green. Captures: `Captures/Review/foliage-r1..r3` (ignored). Build, standalone verification and all 22 PlayMode tests pass. Not done: more plant density, and wind sway (the painterly shader's shadow and depth passes would need the same vertex motion).
