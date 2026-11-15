@@ -20,8 +20,7 @@ namespace SeaGlass.Editor
         };
         static readonly (string path, Color colour)[] Pebbles =
         {
-            ("Assets/Art/Beach/Pebble lilac.mat", new Color(.6f, .6f, .6f)),
-            ("Assets/Art/Round3/Scatter pebble cool.mat", new Color(.58f, .6f, .62f)),
+            // (Pebbles are set by TropicalPropPass.)
             ("Assets/Art/Round3/Sea stack moss.mat", new Color(.34f, .58f, .24f)),
         };
 
