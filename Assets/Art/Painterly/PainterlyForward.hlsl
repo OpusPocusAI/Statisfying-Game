@@ -132,7 +132,10 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     {
         float2 wq0 = input.positionWS.xz;
         float edgeN = (SG_ValueNoise(wq0 * 0.45 + 7.0) - 0.5) * 0.26 + (SG_ValueNoise(wq0 * 1.7 + 19.0) - 0.5) * 0.1;
-        wet = smoothstep(0.1, 0.55, input.uv.x + edgeN) * _WetBand;
+        // Palms and wet sand pass (Nov 16; reviews: "no wet-sand band anywhere"): the damp band starts right at the strip's inland edge
+        // and is fully wet on the level sand before the strip bends down (u 0.33), so a 3-4 m darker band shows from eye height
+        // instead of a sliver on the foreshortened slope under the swash.
+        wet = smoothstep(0.05, 0.21, input.uv.x + edgeN) * smoothstep(0.0, 0.05, input.uv.x) * _WetBand;   // never at the edge itself
         normalWS = normalize(lerp(float3(0, 1, 0), normalWS, smoothstep(0.22, 0.75, input.uv.x)));
     }
     float2 uv = input.uv;
@@ -264,7 +267,7 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         // Tropical pass (Nov 15): under white daylight the old (0.5, 0.385, 0.28) read as a rust-orange strip; wet sand is now
         // the dry sand a shade darker and only slightly warmer.
         albedo *= lerp(half3(1, 1, 1), half3(0.7, 0.6, 0.48), wet);
-        albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.05;   // a faint darker line where the sand is drying
+        albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.08;   // a darker line where the sand is drying
     }
 
     // Height gradient: darker, cooler base and a sunlit crown.
@@ -328,9 +331,11 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         // Round 83: the mirror is a sheen over the damp sand, not a coat of sky. It is weaker head-on, and the sand's own warmth
         // tints what it reflects, so the band stays sand-coloured with a glossy top instead of turning lilac.
         half3 filmR = skyR * lerp(half3(1, 1, 1), half3(1.12, 0.96, 0.8), 0.6);
-        colour = lerp(colour, filmR, saturate(0.04 + graze * 0.85) * wet * 0.5);
-        half glint = pow(saturate(dot(filmN, halfDir)), 70.0);
-        colour += mainLight.color * glint * 0.55 * wet * lerp(0.35, 1.0, lightAmount) * _SG_Paint.w;
+        colour = lerp(colour, filmR, saturate(0.04 + graze * 0.85) * wet * 0.28);   // Nov 16: was 0.5, which lifted the damp band back to dry-sand brightness at eye height
+        // Nov 16: under the high tropical sun the tight glint rarely showed; a broader sheen sits under it.
+        half nh = saturate(dot(filmN, halfDir));
+        half glint = pow(nh, 28.0) * 0.6 + pow(nh, 6.0) * 0.14;
+        colour += mainLight.color * glint * wet * lerp(0.35, 1.0, lightAmount) * _SG_Paint.w;
     }
 
     // Warm rim, strongest when looking towards the sun.

@@ -91,6 +91,44 @@ def pinnate(bm, base, yaw, pitch, length, droop, leaflets, leaf_len, leaf_w, see
                 bm.faces.new((row[s][0], row[s][1], row[s + 1][1], row[s + 1][0]))
 
 
+def blade(bm, base, yaw, pitch, length, droop, teeth, leaf_len, seed, gap=.0):
+    """A palm frond as one broad painted blade (palms and wet sand pass, Nov 16; reviews: thin pinnate leaflets aliased and
+    shimmered at every distance). Each side of the midrib is one surface: leaflets fused into a web for the inner half of
+    their length, then splitting into bold, rounded teeth, so the frond reads as a solid comb with a zig-zag edge rather than
+    two dozen sub-pixel slivers. Swept forward and hanging down in a V like the old leaflets."""
+    rnd = random.Random(seed)
+    fwd = Vector((math.cos(yaw), math.sin(yaw), 0)); up = Vector((0, 0, 1))
+    def rib(t):
+        r = length * t; z = length * (math.sin(pitch) * t - droop * t * t)
+        return base + fwd * (r * math.cos(pitch) * .9 + r * .1) + up * z
+    n = teeth * 2
+    ts = [.06 + .94 * i / n for i in range(n + 1)]
+    pts = [rib(t) for t in ts]
+    # midrib, as before (reads from below as a stalk)
+    prev = None
+    for i, t in enumerate(ts):
+        p = pts[i]; side = (pts[min(i + 1, n)] - pts[max(i - 1, 0)]).normalized().cross(up).normalized(); w = .03 * (1 - t) + .008
+        a = bm.verts.new(p - side * w); b = bm.verts.new(p + side * w)
+        if prev: bm.faces.new((prev[0], prev[1], b, a))
+        prev = (a, b)
+    jitter = [rnd.uniform(.88, 1.1) for _ in range(n + 1)]
+    for sgn in (-1, 1):
+        rows = []
+        for i, t in enumerate(ts):
+            p = pts[i]; tang = (pts[min(i + 1, n)] - pts[max(i - 1, 0)]).normalized()
+            n_side = tang.cross(up).normalized()
+            L = leaf_len * (math.sin(math.pi * min(1, t * 1.03)) ** .55) * jitter[i] + .05
+            dirn = (n_side * sgn * .8 + tang * .5 + up * (-.38 - .45 * t)).normalized()
+            tip = i % 2 == 1 and not (gap and rnd.random() < gap)
+            reach = L if tip else L * .5                                   # teeth at odd samples, notches between
+            mid = p + dirn * L * .42 + Vector((0, 0, -.05 * L))
+            out = p + dirn * reach + Vector((0, 0, -.18 * reach * reach / max(L, .01)))
+            rows.append((bm.verts.new(p + dirn * .01), bm.verts.new(mid), bm.verts.new(out)))
+        for i in range(n):
+            a, b = rows[i], rows[i + 1]
+            bm.faces.new((a[0], a[1], b[1], b[0])); bm.faces.new((a[1], a[2], b[2], b[1]))
+
+
 # ---------------------------------------------------------------- palms (8-9.5 m, curved, leaning toward +X)
 for k in range(3):
     reset(); rnd = random.Random(1200 + k)
@@ -134,7 +172,7 @@ for k in range(3):
         pitch = (.75, .5, .2)[tier] + rnd.uniform(-.1, .1)
         droop = (.42, .62, .8)[tier] + rnd.uniform(-.08, .1)
         L = rnd.uniform(2.9, 3.7) * (.9 if tier == 0 else 1)
-        pinnate(bm, top + Vector((0, 0, .2 + .06 * (2 - tier))), yaw, pitch, L, droop, 24, .85, .16, 7000 + k * 50 + f, gap=.05)
+        blade(bm, top + Vector((0, 0, .2 + .06 * (2 - tier))), yaw, pitch, L, droop, 13, .95, 7000 + k * 50 + f, gap=.06)
     for f in range(2):
         pinnate(bm, top + Vector((0, 0, .35)), rnd.uniform(0, math.tau), 1.25, 1.6, .1, 18, .45, .06, 7900 + k * 5 + f, curl=-.2)
     fr = mesh_object(bm, "fronds", "frond")
