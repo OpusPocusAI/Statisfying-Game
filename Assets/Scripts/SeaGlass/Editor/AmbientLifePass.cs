@@ -83,18 +83,53 @@ namespace SeaGlass.Editor
 
             // ---- Crabs: on the wet-to-damp sand band, clear of props, rubbish and the studio.
             var crabs = new GameObject("Beach crabs").transform; crabs.SetParent(root);
+            // Low sand-coloured shapes sunk into the beach (the wind-shaped coastal slabs, dune crests) have no collider, so a crab
+            // that wandered onto one would walk under its surface. They get temporary colliders here, and a crab only lives where
+            // none of them rises above the sand anywhere within its reach (it never wanders or flees further than that).
+            var covers = Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None)
+                .Where(r => !r.GetComponent<AmbientCreature>() && r.bounds.size.x < 40 && r.bounds.size.z < 40
+                            && r.bounds.min.y < -.2f && r.bounds.max.y > .02f && r.bounds.max.x < -18 && r.GetComponent<MeshFilter>() && r.GetComponent<MeshFilter>().sharedMesh)
+                .Select(r => { var mc = r.gameObject.AddComponent<MeshCollider>(); mc.sharedMesh = r.GetComponent<MeshFilter>().sharedMesh; return mc; }).ToList();   // temporary; their own colliders (some are rough spheres) are ignored
+            var coverSet = new HashSet<Collider>(covers); var coverObjects = new HashSet<GameObject>(covers.Select(c => c.gameObject));
             Physics.SyncTransforms();
+            bool Covered(Vector3 at, float reach)
+            {
+                for (int k = 0; k < 90; k++)
+                {
+                    var o = k == 0 ? Vector2.zero : new Vector2(Mathf.Cos(k * 2.4f), Mathf.Sin(k * 2.4f)) * reach * Mathf.Sqrt(k / 89f);
+                    var ray = new Ray(new Vector3(at.x + o.x, at.y + 5, at.z + o.y), Vector3.down);
+                    // any prop, boulder or plant it would otherwise walk into (the low slabs are walked over, via the baked heights)
+                    foreach (var h in Physics.RaycastAll(ray, 10)) if (!h.collider.isTrigger && !IsGround(h.collider) && !coverObjects.Contains(h.collider.gameObject) && !(h.collider is CharacterController) && h.point.y > at.y + .01f) return true;
+                }
+                return false;
+            }
             int placed = 0;
             for (int tries = 0; tries < 400 && placed < 16; tries++)
             {
                 float z = R(-14, 196), x = R(-30.2f, -23.5f);
                 var p = new Vector3(x, 2, z);
                 if (CoastalPlayer.Indoors(p) || !Sand(p, out var hit)) continue;
-                if (Physics.OverlapSphere(hit.point + Vector3.up * .3f, .9f).Any(c => !IsGround(c))) continue;
+                if (Physics.OverlapSphere(hit.point + Vector3.up * .3f, .9f).Any(c => !IsGround(c) && !coverSet.Contains(c))) continue;
+                float wander = R(2f, 3.2f);
+                if (Covered(hit.point, wander + 1.2f)) continue;
                 if (crabs.Cast<Transform>().Any(t => Mathf.Abs(t.position.z - z) < 7)) continue;
                 var c = Spawn(crabs, "Beach crab", crab, crabMats, AmbientCreature.Kind.Crab, hit.point, R(0, 360), R(.9f, 1.2f), true);
-                c.home = hit.point; c.radius = new Vector2(R(2f, 3.2f), 0); c.minX = CoastShape.ShoreX(z) + 2.6f; c.phase = R(0, 6); placed++;
+                c.home = hit.point; c.radius = new Vector2(wander, 0); c.minX = CoastShape.ShoreX(z) + 2.6f; c.phase = R(0, 6); placed++;
+                // Bake the visible sand height over its reach: the walkable sand and the slabs that sit on it.
+                const int N = 21; float half = wander + 1.6f; var heights = new float[N * N];
+                for (int j = 0; j < N; j++) for (int i = 0; i < N; i++)
+                {
+                    var q = hit.point + new Vector3(-half + 2 * half * i / (N - 1), 0, -half + 2 * half * j / (N - 1));
+                    float best = hit.point.y;
+                    foreach (var h in Physics.RaycastAll(new Ray(q + Vector3.up * 3, Vector3.down), 6))
+                        if (!h.collider.isTrigger && (IsGround(h.collider) || coverSet.Contains(h.collider)) && h.point.y < hit.point.y + .6f && h.point.y > hit.point.y - .6f) best = Mathf.Max(best, h.point.y);
+                    heights[j * N + i] = best;
+                }
+                c.groundHeights = heights; c.groundN = N; c.groundHalf = half;
+                c.home.y = heights[(N / 2) * N + N / 2]; c.transform.position = c.home;
             }
+
+            foreach (var mc in covers) Object.DestroyImmediate(mc);
 
             // ---- Butterflies: a few around each of the spread-out flower patches.
             var flies = new GameObject("Butterflies").transform; flies.SetParent(root);

@@ -153,7 +153,7 @@ namespace SeaGlass.Editor
             foreach (var r in rails) Hide(r);
             // Cove sign posts.
             int signs = 0;
-            foreach (var sp in Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None).Where(r => r.name == "Sign post" && r.enabled).Select(r => r.transform).ToList())
+            foreach (var sp in Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None).Where(r => r.name == "Sign post").Select(r => r.transform).ToList())
             {
                 var mf = sp.GetComponent<MeshFilter>(); if (!mf || !mf.sharedMesh || !AssetDatabase.GetAssetPath(mf.sharedMesh).StartsWith("Library")) continue;
                 float h = sp.lossyScale.y;

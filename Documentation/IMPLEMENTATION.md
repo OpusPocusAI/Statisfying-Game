@@ -225,3 +225,34 @@ The truck's body has been one fused shell since round 46, but 40-odd Unity cubes
 The studio was well dressed, but about 250 of its pieces were still Unity's sharp-edged cube: floorboards, ceiling joints and beams, wall battens, rails, sills and lintels, window frames, gallery frames and brass inner frames, shelf brackets and lips, picture-lamp brackets, sign boards, tray labels and folded linen. Hard edges catch no light, so the room read flat and boxy, and no daylight came in through the windows.
 
 `StudioInteriorPass` (Sea Glass/Art Direction menu, repeatable) softens all 264 indoor cubes (the mosaic's grout lines stay crisp). Each becomes a bevelled piece of its own size, with rounded edges of the same real radius whatever the object's scale (up to 2.8 cm). Long timbers get a slight, seeded sag and twist of a few millimetres, so boards and battens stop reading as ruled lines, and the floorboards now show soft grooves between them. Only the mesh changes: transforms, colliders and children are untouched. The meshes live in `Assets/Art/StudioInterior/Softened timber.asset`, rebuilt on each run. The pass also lays warm daylight on the floor under each of the three ocean-wall windows. The new additive shader `Sea Glass/Window Light` draws four soft panes split by the mullion and transom shadows, projected along the daylight direction and fading away from the wall. A first run built every softened box inside out, which washed the whole room out because they stopped casting shadows; the face winding is fixed. Captures: `Captures/Review/studio-before`, `studio-r1..r3` (ignored; `w1-window-floor` shows the light). Build, standalone verification (11.1 ms average frame) and all 22 PlayMode tests pass. Not done: the station tables are unchanged (they were already modelled meshes, not slabs), the window light does not move with the sun or fall across furniture, and there is no neglected-to-restored change to the daylight.
+
+## Independent art review — November 16
+
+Three independent reviewers saw only `ART_DIRECTION.md` sections 1–5 and 60 captures (`Captures/Review/review-nov16`, ignored): the beach, coast and studio views, aerials, truck and boardwalk close-ups, wildlife close-ups and the standalone verification views. Their average scores:
+
+| Area | Score |
+| --- | --- |
+| 5.1 lighting | 4.0 |
+| 5.2 water | 3.8 |
+| 5.3 sand | 3.3 |
+| 5.4 props and vegetation | 3.2 |
+| 5.5 rubbish | 3.0 |
+| 5.6 sea glass | 3.7 |
+| 5.7 cleaning | 4.0 |
+| 5.8 sorting | 4.0 |
+| 5.9 mosaic | 4.2 |
+| 5.10 studio | 3.7 |
+| 5.11 truck and road | 3.0 |
+| 5.12 tools | 3.5 |
+| 5.13 effects | 3.0 |
+| 5.14 UI | 3.0 |
+
+All three judged the glass loop, mosaic reveal and restored studio near V1, and V1 not yet reached overall.
+
+Raised by all three: aliased, dithered palm fronds; no wet-sand band with sheen; the truck still reads as posts, rails and tubs attached to a body; rubbish too small to read at 5 m; fallen cargo glass reads as a rock; the world edge visible from above (aerial captures only); the o6 shoreline notch. Two of three also flagged washed-out dry sand and the pointed hero shard in v-05.
+
+Two reviewer findings were regressions, fixed and verified the same day:
+- **Missing cove sign posts.** A second run of `HeroPropsPass` skipped the posts it had already hidden, so it removed the new ones without rebuilding them. It now finds them regardless of state.
+- **A crab under the sand.** Some 100 low "Wind-shaped coastal stone" slabs form much of the visible beach a few centimetres above the walkable collider. They have no colliders, or rough spheres, so crabs could walk under their surface. `AmbientLifePass` now bakes each crab a 21 × 21 map of the visible sand height over its reach, which it walks on instead of raycasting. It keeps each crab's reach clear of rubbish, benches, boardwalk and plants, and a fleeing crab never leaves its home patch. A 20-second simulation of all 16 crabs found none under a slab.
+
+Build, standalone verification (11.2 ms) and all 22 PlayMode tests pass after the fixes.

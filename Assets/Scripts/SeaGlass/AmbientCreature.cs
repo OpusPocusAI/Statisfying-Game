@@ -17,6 +17,9 @@ namespace SeaGlass
         public float speed = 6, phase, direction = 1;
         [Tooltip("Crabs never wander seaward of this X (the water's edge).")] public float minX = -31;
         [Tooltip("Fish: offset of this fish within its school.")] public Vector3 schoolOffset;
+        // Crabs: the visible sand height around home, baked by AmbientLifePass (N x N samples over home +- groundHalf). Some low
+        // beach shapes have no collider, so a raycast alone would let a crab walk under their surface.
+        [HideInInspector] public float[] groundHeights; [HideInInspector] public int groundN; [HideInInspector] public float groundHalf;
 
         Mesh mesh; Vector3[] baseV, baseN, v, n; MeshRenderer view; System.Random rnd;
         float t, flapTimer, flapAngle, beat, heading;
@@ -106,8 +109,22 @@ namespace SeaGlass
         // ------------------------------------------------------------ crab: scuttle sideways, pause, flee and dig in
         Transform Player => Camera.main ? Camera.main.transform : null;
 
+        float Baked(float x, float z)
+        {
+            float u = Mathf.Clamp01((x - home.x + groundHalf) / (2 * groundHalf)) * (groundN - 1), v = Mathf.Clamp01((z - home.z + groundHalf) / (2 * groundHalf)) * (groundN - 1);
+            int i = Mathf.Min((int)u, groundN - 2), j = Mathf.Min((int)v, groundN - 2); float fu = u - i, fv = v - j;
+            float H(int a, int b) => groundHeights[b * groundN + a];
+            return Mathf.Lerp(Mathf.Lerp(H(i, j), H(i + 1, j), fu), Mathf.Lerp(H(i, j + 1), H(i + 1, j + 1), fu), fv);
+        }
+
         bool Ground(Vector3 p, out Vector3 at, out Vector3 normal)
         {
+            if (groundHeights != null && groundN > 1 && groundHeights.Length == groundN * groundN)
+            {
+                float y = Baked(p.x, p.z), e = .15f;
+                normal = new Vector3(Baked(p.x - e, p.z) - Baked(p.x + e, p.z), 2 * e, Baked(p.x, p.z - e) - Baked(p.x, p.z + e)).normalized;
+                at = new Vector3(p.x, y, p.z); return true;
+            }
             at = p; normal = Vector3.up; float best = float.MinValue; bool found = false;
             int k = Physics.RaycastNonAlloc(p + Vector3.up * 1.5f, Vector3.down, Hits, 4, ~0, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < k; i++)
@@ -123,7 +140,7 @@ namespace SeaGlass
         {
             var player = Player; var pos = transform.position;
             float near = player ? Vector2.Distance(new Vector2(player.position.x, player.position.z), new Vector2(pos.x, pos.z)) : 99;
-            if (state < 2 && near < 3.4f) { state = 2; timer = R(.9f, 1.4f); var away = pos - (player ? player.position : pos); away.y = 0; target = pos + away.normalized * 3; }
+            if (state < 2 && near < 3.4f) { state = 2; timer = R(.9f, 1.4f); var away = pos - (player ? player.position : pos); away.y = 0; target = pos + away.normalized * 3; var off = Vector3.ClampMagnitude(Flat(target - home), radius.x + 1); target = home + off; }   // flee, but never beyond the home patch (placement keeps it clear)
             float move = 0;
             switch (state)
             {
