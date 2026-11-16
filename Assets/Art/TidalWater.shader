@@ -30,7 +30,7 @@ Shader "Sea Glass/Tidal Water"
               lerp(Hash(cell+float2(0,1)),Hash(cell+1),f.x),f.y);
  }
  // Authored coastline (bays and headlands). Keep in sync with Editor/CoastShape.cs.
- static const float2 SHORE[13]={float2(-45,-35.0),float2(-20,-37.6),float2(0,-34.4),float2(18,-33.9),float2(33,-33.6),float2(48,-38.2),float2(63,-33.8),float2(85,-38.4),float2(105,-33.8),float2(127,-37.4),float2(150,-35.0),float2(174,-37.8),float2(205,-35.0)};
+ static const float2 SHORE[13]={float2(-45,-34.5),float2(-20,-46.5),float2(0,-35.0),float2(18,-34.6),float2(33,-34.5),float2(48,-45.5),float2(63,-34.3),float2(85,-50.0),float2(105,-34.2),float2(127,-46.0),float2(150,-35.2),float2(174,-47.0),float2(205,-34.0)};
  float ShoreX(float z)
  {
   if(z<=SHORE[0].x)return SHORE[0].y;if(z>=SHORE[12].x)return SHORE[12].y;

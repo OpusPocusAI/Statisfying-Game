@@ -10,9 +10,10 @@ namespace SeaGlass.Editor
     {
         public static readonly Vector2[] Points =
         {
-            new(-45, -35.0f), new(-20, -37.6f), new(0, -34.4f), new(18, -33.9f), new(33, -33.6f),
-            new(48, -38.2f), new(63, -33.8f), new(85, -38.4f), new(105, -33.8f), new(127, -37.4f),
-            new(150, -35.0f), new(174, -37.8f), new(205, -35.0f),
+            // November 16 (CoastlineShapePass): the headlands run 10-16 m out as sandy points; the bays stay put, so each is a cove.
+            new(-45, -34.5f), new(-20, -46.5f), new(0, -35.0f), new(18, -34.6f), new(33, -34.5f),
+            new(48, -45.5f), new(63, -34.3f), new(85, -50.0f), new(105, -34.2f), new(127, -46.0f),
+            new(150, -35.2f), new(174, -47.0f), new(205, -34.0f),
         };
 
         public static float ShoreX(float z)
