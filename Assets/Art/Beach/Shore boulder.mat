@@ -30,6 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _AOScale: 1
+    - _Brush: 0.6
+    - _BrushScale: 2.2
     - _Cull: 2
     - _Cutoff: 0.5
     - _GradientHeight: 2.4
@@ -43,6 +45,7 @@ Material:
     - _SunShadow: 1
     - _Surface: 0
     - _Sway: 0
+    - _SwayHeight: 0
     - _TopStart: 0.74
     - _Variation: 0.12
     - _WetBand: 0

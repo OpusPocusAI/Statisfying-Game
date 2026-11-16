@@ -34,6 +34,8 @@ CBUFFER_START(UnityPerMaterial)
     half _SunShadow;       // round 52: how much the sun shadow darkens this surface (1 all, 0 none: the seabed under the water)
     half _Sway;            // Nov 15 foliage pass: wind sway in metres per metre above the object origin (0 off)
     half _SwayHeight;      // Nov 15 layered plants: height (m) above the origin where the bend stops growing (0 = 2 m: grass and shrubs)
+    half _Brush;           // Nov 16 painted surface: strength of the painted brush strokes (0 off)
+    half _BrushScale;      // Nov 16 painted surface: strokes per metre (a stroke is about 2/scale long, 0.4/scale wide)
     UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 

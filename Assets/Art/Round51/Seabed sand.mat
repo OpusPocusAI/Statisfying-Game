@@ -83,11 +83,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AOScale: 1
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Brush: 0
+    - _BrushScale: 3
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -104,12 +107,14 @@ Material:
     - _GradientHeight: 2
     - _GradientStrength: 0
     - _GroundPatches: 0.3
+    - _LightWrap: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rim: 0
+    - _SandDetail: 0
     - _Smoothness: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -117,8 +122,11 @@ Material:
     - _SrcBlendAlpha: 1
     - _SunShadow: 0
     - _Surface: 0
+    - _Sway: 0
+    - _SwayHeight: 0
     - _TopStart: 0.6
     - _Variation: 0.18
+    - _WetBand: 0
     - _WorkflowMode: 1
     - _WorldMapping: 1
     - _WorldTile: 7

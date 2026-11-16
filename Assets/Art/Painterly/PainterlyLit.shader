@@ -30,6 +30,8 @@ Shader "Sea Glass/Painterly Lit"
         _SunShadow("Receives sun shadow", Range(0, 1)) = 1
         _Sway("Wind sway (m per m of height, 0 off)", Range(0, 0.3)) = 0
         _SwayHeight("Sway height (m, 0 = 2)", Range(0, 14)) = 0
+        _Brush("Painted brush strokes", Range(0, 1)) = 0
+        _BrushScale("Brush strokes per metre", Range(0.1, 12)) = 3
     }
 
     SubShader

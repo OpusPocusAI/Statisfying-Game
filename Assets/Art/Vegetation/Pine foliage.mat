@@ -30,6 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _AOScale: 1
+    - _Brush: 0.45
+    - _BrushScale: 3
     - _Cull: 2
     - _Cutoff: 0.5
     - _GradientHeight: 7

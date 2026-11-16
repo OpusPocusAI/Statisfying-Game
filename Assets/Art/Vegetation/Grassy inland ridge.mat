@@ -89,6 +89,8 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Brush: 0.4
+    - _BrushScale: 0.9
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -121,6 +123,7 @@ Material:
     - _SunShadow: 1
     - _Surface: 0
     - _Sway: 0
+    - _SwayHeight: 0
     - _TopStart: 0.8
     - _Variation: 0.18
     - _WetBand: 0

@@ -26,6 +26,8 @@ struct Varyings
     float3 positionWS : TEXCOORD1;
     half3  normalWS   : TEXCOORD2;
     half   fogFactor  : TEXCOORD3;
+    float3 brushP     : TEXCOORD4;   // Nov 16: the unswayed vertex in object space, in metres (strokes stick to moving things)
+    half3  brushN     : TEXCOORD5;
     UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
 };
@@ -62,6 +64,33 @@ float SG_PaintNoise(float3 positionWS, float3 normalWS)
     return n * 0.7 + n2 * 0.3;
 }
 
+// Painted surface (Nov 16, Tchia is the art target): stylised hand-painted surfaces carry visible brush work, short strokes
+// of lighter-warmer and darker-cooler paint laid in a few directions. One plane of strokes: stretched noise along two stroke
+// directions, chosen patch by patch, on a gently warped domain so the strokes curve. Returns 0..1 with firm, dab-like edges.
+float SG_Strokes(float2 p)
+{
+    float2 w = float2(SG_ValueNoise(p * 0.35 + 5.1), SG_ValueNoise(p * 0.35 + 9.3)) - 0.5;
+    p += w * 0.8;
+    float2 q1 = float2(dot(p, float2(0.87, 0.5)), dot(p, float2(-0.5, 0.87)));
+    float2 q2 = float2(dot(p, float2(0.34, -0.94)), dot(p, float2(0.94, 0.34)));
+    float s1 = SG_ValueNoise(q1 * float2(0.6, 2.2));
+    float s2 = SG_ValueNoise(q2 * float2(0.6, 2.2) + 23.0);
+    float s = lerp(s1, s2, smoothstep(0.35, 0.65, SG_ValueNoise(p * 0.18 + 41.0)));
+    return smoothstep(0.26, 0.74, s);
+}
+
+// Strokes wrapped onto the surface (blended across the three object planes by the surface normal), centred on 0 and faded out
+// before they would be finer than a few pixels, so distant surfaces settle to their flat colour instead of shimmering.
+float SG_Brush(float3 p, float3 n)
+{
+    p *= _BrushScale;
+    float3 w = pow(abs(n), 4.0);
+    w /= (w.x + w.y + w.z + 1e-4);
+    float s = SG_Strokes(p.zy) * w.x + SG_Strokes(p.xz + 31.0) * w.y + SG_Strokes(p.xy + 67.0) * w.z;
+    float fw = max(max(length(fwidth(p.xy)), length(fwidth(p.yz))), length(fwidth(p.xz)));
+    return (s - 0.5) * (1.0 - smoothstep(0.1, 0.32, fw));
+}
+
 Varyings PainterlyVertex(Attributes input)
 {
     Varyings output = (Varyings)0;
@@ -75,6 +104,9 @@ Varyings PainterlyVertex(Attributes input)
     output.positionWS = positionInputs.positionWS;
     output.normalWS = normalInputs.normalWS;
     output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+    float3 objScale = float3(length(UNITY_MATRIX_M._m00_m10_m20), length(UNITY_MATRIX_M._m01_m11_m21), length(UNITY_MATRIX_M._m02_m12_m22));
+    output.brushP = input.positionOS.xyz * objScale;
+    output.brushN = input.normalOS;
     output.fogFactor = ComputeFogFactor(positionInputs.positionCS.z);
     return output;
 }
@@ -209,13 +241,21 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     // Round 27 (review 25: island grass read as "blocky pixel camo"): grass or moss painted per pixel on faces
     // that point up, with a soft, noisy edge, instead of a per-face material split.
+    // Painted brush strokes (Nov 16): computed here so the moss edge below follows them too.
+    float brush = _Brush > 0.001 ? SG_Brush(input.brushP, normalize(input.brushN)) * _Brush : 0.0;
+
     if (_TopTint.a > 0.001)
     {
         float topN = SG_ValueNoise(input.positionWS.xz * 0.35) * 0.6 + SG_ValueNoise(input.positionWS.xz * 1.4 + 7.0) * 0.4;
-        half top = smoothstep(_TopStart - 0.06, _TopStart + 0.08, normalWS.y + (topN - 0.5) * 0.28);
+        half top = smoothstep(_TopStart - 0.06, _TopStart + 0.08, normalWS.y + (topN - 0.5) * 0.28 + brush * 0.3);   // a brushed, not noisy, moss edge
         half3 grass = _TopTint.rgb * (0.88 + SG_ValueNoise(input.positionWS.xz * 0.9 + 3.0) * 0.24);
         albedo = lerp(albedo, grass, top * _TopTint.a);
     }
+
+    // The strokes: lighter ones lean warm and sunny, darker ones cool, as a painter mixes them.
+    albedo *= 1.0 + brush * 0.6;
+    albedo = lerp(albedo, albedo * half3(1.05, 1.02, 0.88), saturate(brush * 2.2));
+    albedo = lerp(albedo, albedo * half3(0.9, 0.96, 1.07), saturate(-brush * 2.2));
 
     if (_WetBand > 0.001)
     {
@@ -248,7 +288,8 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     half4 shadowMask = half4(1, 1, 1, 1);
     Light mainLight = GetMainLight(shadowCoord, input.positionWS, shadowMask);
 
-    half nDotL = dot(normalWS, mainLight.direction);
+    // The light/shadow edge is brushed too (Nov 16): strokes reach a little into the shade and the light, as painted form does.
+    half nDotL = dot(normalWS, mainLight.direction) + brush * 0.45;
     // Round 90 (review 86, all three, and in most reviews since 77: "a pale band" across the shore boulders, "like a texture seam"):
     // the low sun lit only a narrow strip of a boulder's flat facets, which turned tan against purple with a hard turn between,
     // so the lit strip read as a painted stripe. _LightWrap widens the turn, so light rolls across the facets in steps of shade.
