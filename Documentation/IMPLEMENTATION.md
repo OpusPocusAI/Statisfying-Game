@@ -364,3 +364,21 @@ Not done:
 - The sieve touching the basin rim.
 - Flat star-shaped flowers.
 - The rear bumper's ends still show a small step of teal and ivory.
+
+## Playtest fixes (owner checklist, November 16)
+
+The owner played the build and filled an interactive checklist: 19 of 26 items looked right. These are the fixes for the problems it flagged.
+
+**Finds rest on the sand** ("glass still seems to float when undug"). Every find's origin sat 0.16 above the beach, because the sand shelf was lowered after the finds were placed. A piece lying on the surface was also lifted a fixed 0.13, so it hovered about 0.27 up. `PlaytestFixesPass` puts each of the 102 finds' origin on the sand under it and sets a new `ShoreItem.rest`, which puts the bottom of the piece 1.5 cm (glass) or 2.5 cm (rubbish) into the sand. `GroundingPass` then re-seats the mounds and contact shadows.
+
+**Truck running gear** ("wheel is floating, nothing attached to it"). Hiding the painted chassis removed the flap but also everything that visibly held the wheels. `ArtSource/blender/truck_undercarriage.py` is one voxel-fused, dark piece under the shell floor (which sits at axle height): chassis rails, beam axles running into each hub, differentials, leaf springs, a gearbox and propeller shafts. `TruckFusionPass` places it as "Undercarriage" (not a "Hero" name, so `HeroPropsPass` leaves it alone).
+
+**Butterflies** ("they fly too much through the ground"). Each butterfly gets a baked grid of the visible ground height around its flowers: dunes, rocks and plants, ignoring palm crowns. `AmbientCreature` picks flight targets 0.35–1.3 m above that ground and never flies below 0.18 m over it, except when landing.
+
+**Seabirds** ("odd white flashing around the bird"). The white body caught the full warm rim light, which flickers along the flapping wing edges against the bright sky. Rim is down to 0.15, sheen to 0.04, and brush and variation noise are off.
+
+**Window light rays.** New shader `Sea Glass/Light Shaft`. Each ocean-wall window gets a slanted box swept along the daylight direction. The shader draws the box's inside faces and marches the camera ray through it in the box's own coordinates (jittered, 10 steps), stopping at the scene depth. The result is soft haze with the mullion and transom as darker lanes, fading in from the glass and out toward the floor, a little brighter when you look back up the shaft. Density is 0.28 per metre: 0.07 was invisible and 1.0 washed the wall out.
+
+Not changed: the boardwalk checklist item was unclear wording, not a bug. "Clear what to do next" is still to be checked by the owner.
+
+Captures: `Captures/Review/pfix1`, `pfix2`, `shaftdbg*` (ignored). Build, standalone verification (11.1 ms) and all 22 PlayMode tests pass.

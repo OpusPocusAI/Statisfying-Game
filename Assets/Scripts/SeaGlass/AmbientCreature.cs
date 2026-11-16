@@ -17,7 +17,7 @@ namespace SeaGlass
         public float speed = 6, phase, direction = 1;
         [Tooltip("Crabs never wander seaward of this X (the water's edge).")] public float minX = -31;
         [Tooltip("Fish: offset of this fish within its school.")] public Vector3 schoolOffset;
-        // Crabs: the visible sand height around home, baked by AmbientLifePass (N x N samples over home +- groundHalf). Some low
+        // Crabs and butterflies: the visible ground height around home, baked by AmbientLifePass (N x N samples over home +- groundHalf). Some low
         // beach shapes have no collider, so a raycast alone would let a crab walk under their surface.
         [HideInInspector] public float[] groundHeights; [HideInInspector] public int groundN; [HideInInspector] public float groundHalf;
 
@@ -117,6 +117,8 @@ namespace SeaGlass
             return Mathf.Lerp(Mathf.Lerp(H(i, j), H(i + 1, j), fu), Mathf.Lerp(H(i, j + 1), H(i + 1, j + 1), fu), fv);
         }
 
+        bool HasGrid => groundHeights != null && groundN > 1 && groundHeights.Length == groundN * groundN;
+
         bool Ground(Vector3 p, out Vector3 at, out Vector3 normal)
         {
             if (groundHeights != null && groundN > 1 && groundHeights.Length == groundN * groundN)
@@ -193,12 +195,18 @@ namespace SeaGlass
                 if (timer < 0 || (target - pos).sqrMagnitude < .04f)
                 {
                     if (R(0, 1) < .18f && Ground(home + new Vector3(R(-radius.x, radius.x), 0, R(-radius.x, radius.x)), out var landAt, out _)) { target = landAt + Vector3.up * .02f; state = 1; timer = R(3, 7); }
-                    else { target = home + new Vector3(R(-radius.x, radius.x), R(.35f, 1.3f), R(-radius.x, radius.x)); timer = R(1, 2.5f); }
+                    else
+                    {   // a point in the air over the ground there (owner playtest, Nov 16: they flew through the dunes)
+                        var p = home + new Vector3(R(-radius.x, radius.x), 0, R(-radius.x, radius.x));
+                        target = new Vector3(p.x, (HasGrid ? Baked(p.x, p.z) : home.y) + R(.35f, 1.3f), p.z); timer = R(1, 2.5f);
+                    }
                 }
                 var want = (target - pos).normalized * speed + new Vector3(Mathf.Sin(t * 3.1f + phase), Mathf.Sin(t * 9.3f) * 1.4f, Mathf.Cos(t * 2.7f + phase)) * .6f;
                 vel = Vector3.Lerp(vel, want, dt * 3);
                 if (state == 1 && (target - pos).sqrMagnitude > .0025f) { vel = Vector3.Lerp(vel, (target - pos) * 3, dt * 6); }
                 pos += vel * dt;
+                // Never below the visible ground (baked by PlaytestFixesPass), except when settling onto a landing spot.
+                if (HasGrid && state == 0) { float floor = Baked(pos.x, pos.z) + .18f; if (pos.y < floor) { pos.y = floor; if (vel.y < 0) vel.y = 0; } }
                 if (Flat(vel).sqrMagnitude > .01f) heading = Mathf.MoveTowardsAngle(heading, Mathf.Atan2(vel.x, vel.z) * Mathf.Rad2Deg, dt * 360);
                 transform.SetPositionAndRotation(pos, Quaternion.Euler(-vel.y * 12, heading, 0));
                 beat += dt * 11; if (!Seen) return;

@@ -83,8 +83,24 @@ namespace SeaGlass.Editor
                 Put("wheel well", wellMesh, liner, body, new Vector3(side * .97f, at.y, at.z), new Vector3(side < 0 ? 1 : -1, 1, 1));
             }
 
+            // Undercarriage (owner playtest, Nov 16: "Wheel is floating, nothing attached to it"). With the painted chassis hidden,
+            // nothing held the wheels: one fused dark running gear (truck_undercarriage.py) under the shell floor, rails, beam axles
+            // into each hub, differentials, springs and a gearbox. Not a "Hero ..." name, so HeroPropsPass leaves it alone.
+            var underFile = Path.Combine(ModelLibraryImporter.SourceFolder, "truck_undercarriage.json");
+            foreach (var u in all.Where(t => t && t.name == "Undercarriage").ToList()) Object.DestroyImmediate(u.gameObject);
+            if (File.Exists(underFile))
+            {
+                ModelLibraryImporter.Import(underFile); AssetDatabase.SaveAssets();
+                const string chassisPath = "Assets/Art/TruckPolish/Truck running gear.mat";
+                var chassis = AssetDatabase.LoadAssetAtPath<Material>(chassisPath);
+                if (!chassis) { chassis = new Material(dark); AssetDatabase.CreateAsset(chassis, chassisPath); }
+                chassis.CopyPropertiesFromMaterial(dark); EditorUtility.SetDirty(chassis);
+                var u = Put("x", ModelLibraryImporter.Load("truck_undercarriage"), chassis, body, Vector3.zero, Vector3.one); u.name = "Undercarriage";
+            }
+            else Debug.LogWarning("Truck fusion: run truck_undercarriage.py for the running gear");
+
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
-            Debug.Log($"Truck fusion: canopy frame replaces {posts.Length} posts, mirrors on the posts, {fenders.Length} fender pieces hidden, wheel wells lined");
+            Debug.Log($"Truck fusion:canopy frame replaces {posts.Length} posts, mirrors on the posts, {fenders.Length} fender pieces hidden, wheel wells lined");
         }
     }
 }

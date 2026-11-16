@@ -6,6 +6,9 @@ namespace SeaGlass
     {
         public string id; public int section; public bool glass; public int colorIndex; public Transform visual,mound;
         public Vector3 home; public float dig; Renderer surface; MaterialPropertyBlock block; float highlightUntil;Vector3 moundSize;bool spilledHere;
+        // Lying on the sand (dug up or never buried): the visual's height above the find's origin, set by PlaytestFixesPass so the
+        // piece rests on the sand (the old fixed 0.13 left it floating once the beach and the find origins no longer matched).
+        public float rest=.13f;
         public const float FieldGrime=.5f;   // out in the field a piece shows half its recorded crust (see Refresh)
         GameSession S=>GameSession.Instance;
         public ItemRecord Record=>S.progress.Item(id);
@@ -18,7 +21,7 @@ namespace SeaGlass
             if(mound)mound.gameObject.SetActive(stage==ItemStage.Buried);
             if(contact)contact.SetActive(stage!=ItemStage.Buried);
             if(stage==ItemStage.Buried){dig=0;if(mound)mound.localScale=moundSize;}
-            if(visual)visual.localPosition=new Vector3(0,stage==ItemStage.Buried?-.06f:.13f,0);
+            if(visual)visual.localPosition=new Vector3(0,stage==ItemStage.Buried?-.06f:rest,0);
             spilledHere=stage==ItemStage.Shore&&Record.spilled;
             if(spilledHere)
             {   // Drive pass: cargo that bounced off the truck rests where it landed on the road.

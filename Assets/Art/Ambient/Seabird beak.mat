@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AOScale: 1
-    - _Brush: 0.15
+    - _Brush: 0
     - _BrushScale: 8
     - _Cull: 2
     - _Cutoff: 0.5
@@ -39,15 +39,15 @@ Material:
     - _GroundPatches: 0
     - _LightWrap: 0
     - _Metallic: 0
-    - _Rim: 1
+    - _Rim: 0.15
     - _SandDetail: 0
-    - _Smoothness: 0.15
+    - _Smoothness: 0.04
     - _SunShadow: 1
     - _Surface: 0
     - _Sway: 0
     - _SwayHeight: 0
     - _TopStart: 0.5
-    - _Variation: 0.07
+    - _Variation: 0
     - _WetBand: 0
     - _WorldMapping: 0
     - _WorldTile: 7
