@@ -131,11 +131,11 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     if (_WetBand > 0.001)
     {
         float2 wq0 = input.positionWS.xz;
-        float edgeN = (SG_ValueNoise(wq0 * 0.45 + 7.0) - 0.5) * 0.26 + (SG_ValueNoise(wq0 * 1.7 + 19.0) - 0.5) * 0.1;
+        float edgeN = (SG_ValueNoise(wq0 * 0.45 + 7.0) - 0.5) * 0.18 + (SG_ValueNoise(wq0 * 1.7 + 19.0) - 0.5) * 0.08;   // Nov 16: a steadier band (was 0.26 / 0.1)
         // Palms and wet sand pass (Nov 16; reviews: "no wet-sand band anywhere"): the damp band starts right at the strip's inland edge
         // and is fully wet on the level sand before the strip bends down (u 0.33), so a 3-4 m darker band shows from eye height
         // instead of a sliver on the foreshortened slope under the swash.
-        wet = smoothstep(0.05, 0.21, input.uv.x + edgeN) * smoothstep(0.0, 0.05, input.uv.x) * _WetBand;   // never at the edge itself
+        wet = smoothstep(0.03, 0.17, input.uv.x + edgeN) * smoothstep(0.0, 0.04, input.uv.x) * _WetBand;   // never at the edge itself
         normalWS = normalize(lerp(float3(0, 1, 0), normalWS, smoothstep(0.22, 0.75, input.uv.x)));
     }
     float2 uv = input.uv;
@@ -266,7 +266,7 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
         // damp sand is the dry sand darker and richer, a warm tan-brown, not a cooled grey.
         // Tropical pass (Nov 15): under white daylight the old (0.5, 0.385, 0.28) read as a rust-orange strip; wet sand is now
         // the dry sand a shade darker and only slightly warmer.
-        albedo *= lerp(half3(1, 1, 1), half3(0.7, 0.6, 0.48), wet);
+        albedo *= lerp(half3(1, 1, 1), half3(0.63, 0.53, 0.42), wet);   // Nov 16 (second review: "still faint"): darker damp tan, was (0.7, 0.6, 0.48)
         albedo *= 1.0 - saturate(wet * (1.0 - wet) * 4.0) * 0.08;   // a darker line where the sand is drying
     }
 

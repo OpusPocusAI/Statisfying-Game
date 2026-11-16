@@ -1,9 +1,7 @@
 """Truck fusion pass (owner, November 16, from the independent art review: all three reviewers said the truck still reads as
 "posts, rails and tubs attached to a body"; posts "plunge into the bonnet with no join", the mirrors "float").
 
-- truck_frame: the four canopy posts and the roof frame as ONE fused piece in the truck's local frame. Each post stands on
-  the bodywork on a flared foot (a fillet that spreads into a low pad shaped to the surface under it, found by casting onto
-  truck_shell), tapers as it rises, and bends into a rounded roof rail that runs round under the canvas canopy.
+- (The separate canopy frame first made here was replaced by the frame fused into the body shell, truck_body.py.)
 - truck_wheel_well: a dark arch lining for inside each wheel arch, so the coral cargo tub and the body's underside no
   longer show through the arch above the tyre.
 Axes (Blender): Unity X = X, Unity Z (forward) = Y, Unity Y (up) = Z; origin at the Sprung body origin.
@@ -53,47 +51,6 @@ def fuse(parts, voxel, tris, name, smooth=4):
     for p in o.data.polygons: p.use_smooth = True
     return o
 
-
-# The body, to stand the posts on.
-data = json.load(open(os.path.join(OUT_DIR, "truck_shell.json")))
-P = data["positions"]; verts = [Vector((P[k], P[k + 1], P[k + 2])) for k in range(0, len(P), 3)]
-tris = [tuple(s["indices"][k:k + 3]) for s in data["submeshes"] for k in range(0, len(s["indices"]), 3)]
-body = BVHTree.FromPolygons(verts, tris)
-
-# ---------------------------------------------------------------- canopy frame
-reset()
-TOP = 2.47                     # just under the canvas (canopy underside at about 2.46-2.5)
-posts = [(sx * .94, y) for sx in (-1, 1) for y in (.67, -.06)]   # back posts on the rear end of the cab rim (behind it the body drops to the cargo deck)
-parts = []
-for (x, y) in posts:
-    hit, n, _, _ = body.ray_cast(Vector((x, y, 3)), Vector((0, 0, -1)))
-    foot = hit if hit is not None else Vector((x, y, 1.3))
-    n = n if n is not None else Vector((0, 0, 1))
-    # tapering post, with a gentle inward lean into the roof rail
-    pts = [foot + Vector((0, 0, -.03)), foot + Vector((0, 0, .1)), Vector((x, y, (foot.z + TOP) * .5)), Vector((x * .995, y, TOP - .06)), Vector((x * .99, y, TOP))]
-    parts.append(tube(pts, [.075, .052, .046, .043, .045], 14))
-    # flared foot: a fillet cone into a low pad lying along the surface
-    parts.append(tube([foot + Vector((0, 0, -.02)), foot + Vector((0, 0, .07))], [.1, .055], 16))
-    pad = ellipsoid(foot - n * .01, .12, (1, 1, .3))
-    pad.rotation_euler = n.to_track_quat("Z", "Y").to_euler(); bpy.context.view_layer.objects.active = pad; bpy.ops.object.transform_apply(rotation=True)
-    parts.append(pad)
-    # a knuckle where the post turns into the roof rail
-    parts.append(ellipsoid(Vector((x * .99, y, TOP)), .062, (1, 1, .9)))
-# roof rail: a rounded rectangle through the post tops, a little proud of them front and back
-R = .14; x0, x1, y0, y1 = -.93, .93, -.42, 1.45
-ring = []
-for (cx, cy, a0) in ((x1 - R, y1 - R, 0), (x0 + R, y1 - R, 90), (x0 + R, y0 + R, 180), (x1 - R, y0 + R, 270)):
-    for k in range(7):
-        a = math.radians(a0 + k * 15)
-        ring.append((cx + math.cos(a) * R, cy + math.sin(a) * R, TOP))
-ring.append(ring[0])
-parts.append(tube(ring, [.034] * len(ring), 12))
-# a cross bar between the front posts, and one between the back posts, so the frame reads as one braced cage
-for y in (.67, -.06):
-    parts.append(tube([(-.93, y, TOP), (0, y, TOP + .015), (.93, y, TOP)], [.03, .03, .03], 12))
-o = fuse(parts, .0085, 9000, "frame")
-o.data.materials.append(mat("frame"))
-export(o, "truck_frame", ["frame"])
 
 # ---------------------------------------------------------------- wheel-well lining (axle along X; inner wall on +X)
 # A band over the top of the tyre inside the arch, and a wall on the inner side (toward the truck centre), so nothing of the

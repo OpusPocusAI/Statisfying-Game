@@ -329,3 +329,38 @@ Raised by all three:
 Two of three: the hero shard's pointed corners (v-05), flat star-shaped flowers, uniform lime palms, and the sieve clipping the basin rim.
 
 Tools, effects and UI could not be judged: no capture shows the HUD, tool upgrades or the digging, loading or recycling effects, so all three capped those areas at 3. A future review set should include them.
+
+## Known gaps closed before the playtest — November 16
+
+The owner asked for the gaps from the second review to be closed before playtesting.
+
+**Truck body.** `ArtSource/blender/truck_body.py` rebuilds `truck_shell`, starting from round77.py's recipe (fuse, smoothing, decimation and normal transfer unchanged, so the colour edges stay crisp).
+- The canopy frame is now part of the body: chunky tapered pillars rise from the cab rim out of modest fillets into a roof rail and cross bars, as a fifth colour region painted with the old posts' chalk. The separate `truck_frame` from the previous round is deleted.
+- The rear-wheel "torn flap" is gone. It came from the shell itself, not the hidden fenders or chassis: each arch tube ended at full thickness behind the rear wheel, and the wheel-well cut sliced it into a crescent. The arches now taper into the body side at both ends, the rear bumper is narrower, and the rear body corners are painted teal instead of ivory.
+- Along the way:
+  - A finer fuse (0.012) broke the door and belt-line colour edges into ragged teeth, and broad fillets read as melted candles; both were reverted.
+  - The old painted chassis under the shell is hidden.
+  - The mirrors sit on the pillars' outer faces.
+
+**Grounding.** `GroundingPass` (repeatable):
+- **Dig mounds.** `sand_mound_0..3` are rebuilt as soft heaps that feather into the sand (`ArtSource/blender/soft_mounds.py`). Each of the 171 mounds is seated just below the lowest sand round its rim, so no lip hangs over a dip. A mound over a buried find is made taller where needed so it still covers the piece; a glint of the find shows at its crown.
+- **Contact shadows.** 242 soft contact shadows are laid on the sand under beach props, rocks, posts, palm trunks and every find. A find's shadow is hidden while the find is buried (`ShoreItem`), and when cargo falls on the road it lies flat under the piece. The first version measured the shadow as the piece's lowest point and left the fallen cargo floating.
+- **Field glass.** Glass pieces in the field are half as thick.
+- **Boardwalk.** The boardwalk rests on the sand with its joists buried; the hidden plank colliders moved down with it.
+
+**Wet sand.** The damp band is darker (×0.63/0.53/0.42, was ×0.7/0.6/0.48), starts a little sooner and has a steadier edge.
+
+**Walkable points.** `WalkablePointsPass` (repeatable; run it again after `CoastlineShapePass`, which rebuilds the points):
+- The seaward wall at X -33 is switched off and replaced by 119 wall pieces that follow the authored waterline 0.9 m inland of the water.
+- The wet-sand strip and the sand-point lobes get mesh colliders.
+- 19 reachable rocks and palms become solid.
+
+An edit-mode CharacterController walk stops on the wet sand about 0.9 m from the water in the coves, reaches the points, and never drops below the ground: 1.4–1.5 m from the water at the 48, 127 and -20 points and 1.4 m at 174. At 85 it stops 4.4 m from the water, against a rock that is now solid.
+
+Captures: `Captures/Review/gaps-r1..r5`, `gaps-truck1..5`, `gaps-final` (ignored). Build, standalone verification (11.2 ms) and all 22 PlayMode tests pass.
+
+Not done:
+- The hero shard's pointed corners at the wash bowl.
+- The sieve touching the basin rim.
+- Flat star-shaped flowers.
+- The rear bumper's ends still show a small step of teal and ivory.

@@ -10,18 +10,22 @@ namespace SeaGlass
         GameSession S=>GameSession.Instance;
         public ItemRecord Record=>S.progress.Item(id);
         public override string Prompt=> !S.progress.SectionOpen(section)?"This cove opens at level "+(section+1):Record.stage==ItemStage.Buried?(S.player.equippedTool==0?"Hold LMB · scoop sand":"1 · equip shovel, then hold LMB to scoop"):"E · collect "+(glass?"cloudy "+((GlassColor)colorIndex)+" glass":"shoreline rubbish");
-        void Awake(){home=transform.position;surface=visual?visual.GetComponent<Renderer>():GetComponent<Renderer>();block=new MaterialPropertyBlock();if(mound)moundSize=mound.localScale;}
+        GameObject contact;   // the soft contact shadow on the sand (GroundingPass): only while the find lies on the surface
+        void Awake(){var cs=transform.Find("Find contact shadow");contact=cs?cs.gameObject:null;home=transform.position;surface=visual?visual.GetComponent<Renderer>():GetComponent<Renderer>();block=new MaterialPropertyBlock();if(mound)moundSize=mound.localScale;}
         public void Refresh()
         {
             var stage=Record.stage;gameObject.SetActive(stage==ItemStage.Buried||stage==ItemStage.Shore);
             if(mound)mound.gameObject.SetActive(stage==ItemStage.Buried);
+            if(contact)contact.SetActive(stage!=ItemStage.Buried);
             if(stage==ItemStage.Buried){dig=0;if(mound)mound.localScale=moundSize;}
             if(visual)visual.localPosition=new Vector3(0,stage==ItemStage.Buried?-.06f:.13f,0);
             spilledHere=stage==ItemStage.Shore&&Record.spilled;
             if(spilledHere)
             {   // Drive pass: cargo that bounced off the truck rests where it landed on the road.
-                transform.position=Record.spot;var rs=GetComponentsInChildren<Renderer>();
+                transform.position=Record.spot;var rs=GetComponentsInChildren<Renderer>().Where(r=>!contact||r.gameObject!=contact).ToArray();
                 if(rs.Length>0)transform.position+=Vector3.up*(Record.spot.y+.004f-rs.Min(r=>r.bounds.min.y));
+                // The contact shadow lies flat on the road right under the piece (it was laid on the sand where the find was placed).
+                if(contact&&rs.Length>0){var b=rs[0].bounds;contact.transform.SetPositionAndRotation(new Vector3(b.center.x,Record.spot.y+.008f,b.center.z),Quaternion.Euler(90,0,0));}
                 foreach(var c in GetComponentsInChildren<Collider>())c.isTrigger=true;
             }
             // Rubbish and fallen glass pass (Nov 16, review: fallen cargo glass "reads as a rock"): out in the field, wet from the sand or

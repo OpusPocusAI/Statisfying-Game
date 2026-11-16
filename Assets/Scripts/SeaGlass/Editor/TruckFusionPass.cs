@@ -9,8 +9,9 @@ namespace SeaGlass.Editor
     // Truck fusion pass (owner, November 16, from the independent art review: all three reviewers said the truck still reads as
     // posts, rails and tubs attached to a body; posts "plunge into the bonnet with no join", mirrors "float", a "torn fender
     // flap" behind the rear wheel and the coral underside showing inside the arches).
-    // - The four canopy posts become one fused frame (ArtSource/blender/truck_fusion.py): flared feet on the bodywork, tapered
-    //   posts bending into a rounded roof rail with cross bars under the canvas.
+    // - The canopy frame is part of the body shell (ArtSource/blender/truck_body.py, after the second review: a separate frame
+    //   read as "bone-like tubes" pushed into the body): tapered pillars grow out of the cab rim into a roof rail and cross
+    //   bars, painted with the old posts' chalk as the shell's fifth region. The same rebuild removes the rear-wheel flap.
     // - The mirrors mount on the front posts instead of hanging in the air ahead of them.
     // - The separate ivory fender pieces (an older layer under the fused shell's own arches, whose tails stuck out as flaps)
     //   are hidden; dark linings fill each wheel arch.
@@ -23,13 +24,13 @@ namespace SeaGlass.Editor
         {
             HeroPropsPass.Apply();
             var scene = EditorSceneManager.GetActiveScene();
-            foreach (var n in new[] { "truck_frame", "truck_wheel_well" })
+            foreach (var n in new[] { "truck_wheel_well" })
             {
                 var f = Path.Combine(ModelLibraryImporter.SourceFolder, n + ".json");
                 if (File.Exists(f)) ModelLibraryImporter.Import(f); else { Debug.LogWarning("Truck fusion: run truck_fusion.py first"); return; }
             }
             AssetDatabase.SaveAssets();
-            var frameMesh = ModelLibraryImporter.Load("truck_frame"); var wellMesh = ModelLibraryImporter.Load("truck_wheel_well");
+            var wellMesh = ModelLibraryImporter.Load("truck_wheel_well");
 
             var truck = Object.FindFirstObjectByType<UtilityTruck>();
             var all = truck.GetComponentsInChildren<Transform>(true);
@@ -44,21 +45,29 @@ namespace SeaGlass.Editor
                 return go;
             }
 
-            // Canopy frame in place of the four posts (same chalk paint).
+            // Canopy frame: since the second review it is part of the body shell itself (truck_body.py fuses tapered pillars, roof rail
+            // and cross bars into the bodywork), as a fifth colour region painted with the posts' chalk. The old posts are hidden.
             var posts = all.Where(t => t.name == "Cab pillar" || t.name == "Cab back pillar").ToArray();
-            Put("canopy frame", frameMesh, M(posts.FirstOrDefault()), body, Vector3.zero, Vector3.one);
+            var shellFile = Path.Combine(ModelLibraryImporter.SourceFolder, "truck_shell.json");
+            if (File.Exists(shellFile)) ModelLibraryImporter.Import(shellFile);
+            var shell = all.First(t => t.name == "Fused body shell").GetComponent<MeshRenderer>();
+            var shellMats = shell.sharedMaterials.Take(4).ToList(); shellMats.Add(M(posts.FirstOrDefault()));
+            shell.sharedMaterials = shellMats.ToArray();
             foreach (var p in posts) Hide(p);
 
             // Mirrors on the front posts: the arm starts at the post's outer face, at the same height as before.
             foreach (var m in all.Where(t => t.name == "Hero mirror"))
             {
                 float side = Mathf.Sign(m.localPosition.x);
-                m.localPosition = new Vector3(side * .985f, m.localPosition.y, .67f);
+                m.localPosition = new Vector3(side * .97f, m.localPosition.y, .67f);   // the pillar's outer face
             }
 
             // Fenders: the fused shell has its own arches; the older separate pieces under them stuck out as flaps.
             var fenders = all.Where(t => t.name == "Ivory wheel arch").ToArray();
             foreach (var f in fenders) Hide(f);
+            // The painted chassis (round 10's body, under the fused shell) poked its ivory corner out behind each rear wheel: the "torn
+            // flap" every review flagged. The shell covers the body, so the chassis is hidden.
+            Hide(all.FirstOrDefault(t => t.name == "Painted chassis"));
 
             // Dark linings inside each arch, around the wheel.
             // (Two-sided charcoal: the inner wall is seen from outside the truck through the arch.)
