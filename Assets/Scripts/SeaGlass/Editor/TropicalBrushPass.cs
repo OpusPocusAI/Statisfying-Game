@@ -17,7 +17,9 @@ namespace SeaGlass.Editor
         static readonly (string[] keys, float brush, float scale)[] Rules =
         {
             // Off: surfaces with their own detail, or that must read clean.
-            (new[] { "sand", "Sun-faded road", "glass", "Glass", "lens", "Lens", "bulb", "Painting", "Chalkboard", "label", "plaque", "Under-floor", "Purple shadows", "Jar contents", "headlamp", "paper", "Sketch", "Lining", "Tray band" }, 0f, 3f),
+            (new[] { "Butterfly", "sand", "Sun-faded road", "glass", "Glass", "lens", "Lens", "bulb", "Painting", "Chalkboard", "label", "plaque", "Under-floor", "Purple shadows", "Jar contents", "headlamp", "paper", "Sketch", "Lining", "Tray band" }, 0f, 3f),
+            // Ambient creatures: fine, light strokes (AmbientLifePass).
+            (new[] { "Ambient/" }, .15f, 8f),
             // The truck and other big smooth enamel panels: faint.
             (new[] { "TruckPolish/", "Lagoon paint", "Warm chalk", "Coral paint", "enamel", "Enamel" }, .08f, 5f),
             // Rock and land: broad, bold strokes.
