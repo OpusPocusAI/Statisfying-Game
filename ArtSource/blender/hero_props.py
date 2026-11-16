@@ -94,9 +94,11 @@ def rxz(c): return math.hypot(c.x, c.z)
 # ---------------------------------------------------------------- wheel (0.86 m across, 0.36 wide; axle along +Z, outer face +Z)
 reset()
 parts = [torus(.34, .088, scale=(1, 1, 2.05))]
-for i in range(30):
-    a = i / 30 * math.tau; off = .045 if i % 2 else -.045
-    parts.append(rbox((.04, .05, .15), (math.cos(a) * .41, math.sin(a) * .41, off), .016, rot=(0, 0, a)))
+# Tread (truck fusion pass): broad, low blocks across most of the width, staggered, so it reads as one tread band
+# rather than separate bumps.
+for i in range(24):
+    a = i / 24 * math.tau; off = .03 if i % 2 else -.03
+    parts.append(rbox((.032, .09, .27), (math.cos(a) * .405, math.sin(a) * .405, off), .014, rot=(0, 0, a)))
 parts.append(cyl(.27, .2, (0, 0, -.02)))                                     # rim barrel
 parts.append(cyl(.215, .05, (0, 0, .085)))                                   # dish face
 parts.append(ellipsoid((0, 0, .115), .088, (1, 1, .62)))                     # domed cap

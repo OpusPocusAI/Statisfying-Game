@@ -265,3 +265,20 @@ This round follows up the independent review: all three reviewers flagged aliase
 - **Wet sand.** In `PainterlyForward.hlsl`, the damp band on the wet-sand strip used to begin only where the strip bends down to the water. That slope is foreshortened from eye height and mostly under the swash, so the band barely showed. The band now starts on the level sand and is fully wet before the bend, a 3–4 m darker, warmer band with a wandering tide line, still zero at the strip's inland edge so no seam shows. Its sky reflection is weaker (0.28, was 0.5); the old value lifted the damp sand back to dry-sand brightness. Its sun glint is broader, though under the high sun the sheen still rarely shows.
 
 Captures: `Captures/Review/palms-r1..r2` (ignored; compare b6 and b2 with `review-nov16`). Build, standalone verification and all 22 PlayMode tests pass. Not done: the sand points' wet margin uses the same band, unchanged in width; the broad and fern understory still uses thin pinnate leaflets, now softened by MSAA.
+
+## Fuse the truck — November 16
+
+This round follows up the independent review: all three reviewers said the truck still read as "posts, rails and tubs attached to a body", with posts that "plunge into the bonnet with no join", floating mirrors, red showing inside the arches and tyre lugs like separate bumps.
+- **Canopy frame.** `ArtSource/blender/truck_fusion.py` builds the four canopy posts and the roof frame as one fused piece (`truck_frame`, about 9k triangles), cast onto `truck_shell` so each post stands on the bodywork. Each post has a flared foot that spreads into a low pad on the cab rim. The posts taper and turn at rounded knuckles into a rounded roof rail under the canvas, with cross bars front and back.
+  - The back posts moved forward from z -0.25 to -0.06. At -0.25 the body has already dropped from the cab rim (1.46 m) to the cargo deck (0.88 m), so the old posts ran down the outside of the door.
+- **Mirrors.** They now mount on the front posts instead of hanging 0.56 m ahead of them.
+- **Wheel arches.** `truck_wheel_well` is a dark band over each tyre plus an inner wall, two-sided, so the coral cargo tub no longer shows through the arches.
+- **Fenders.** The old separate ivory fender pieces under the shell's own arches are hidden.
+- **Tread.** The tyre tread (`hero_props.py`) is now a staggered band of 24 broad, low blocks.
+
+`TruckFusionPass` (Sea Glass/Art Direction menu) runs `HeroPropsPass` first, then hides the old posts and fenders and adds the frame and linings, so it is repeatable. Captures: `Captures/Review/truck-r1..r3` (ignored; h1, h3, h4, h5 and h9). Build, standalone verification (11.2 ms) and all 22 PlayMode tests pass.
+
+Not done:
+- The flap behind each rear wheel is the end of the shell's rear bumper. It is still there and needs a shell rebuild.
+- The cargo rails (a picket fence per tub, scaled in height by the truck upgrade) and the tubs themselves are unchanged.
+- The seats are still separate cushions.
