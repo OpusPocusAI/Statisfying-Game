@@ -299,3 +299,33 @@ This round follows up the independent review: all three reviewers said rubbish w
 The standalone verification's fallen-cargo view (03d) shows a frosted aqua piece beside a readable can. Build, standalone verification (11.1 ms) and all 22 PlayMode tests pass.
 
 Not done: a piece shows less crust on the beach than when it reaches the bowl, which a player who looks closely may notice. Rubbish has no wear, sand cover or "buried hint" beyond the existing mounds.
+
+## Second independent art review — November 16
+
+Three new independent reviewers, with the same brief and inputs as the first review (`ART_DIRECTION.md` sections 1–5 only), judged 61 fresh captures (`Captures/Review/review-nov16b`, ignored), taken after the palms and wet sand, truck fusion, and rubbish and fallen glass rounds.
+
+Average scores, with the first review in brackets:
+
+| Area | Score | Area | Score |
+| --- | --- | --- | --- |
+| 5.1 lighting | 4.0 (4.0) | 5.8 sorting | 4.0 (4.0) |
+| 5.2 water | 4.0 (3.8) | 5.9 mosaic | 4.0 (4.2) |
+| 5.3 sand | 3.0 (3.3) | 5.10 studio | 4.0 (3.7) |
+| 5.4 props and vegetation | 3.7 (3.2) | 5.11 truck and road | 3.0 (3.0) |
+| 5.5 rubbish | 3.0 (3.0) | 5.12 tools | 3.3 (3.5) |
+| 5.6 sea glass | 4.0 (3.7) | 5.13 effects | 3.0 (3.0) |
+| 5.7 cleaning | 4.0 (4.0) | 5.14 UI | 3.0 (3.0) |
+
+The mean is 3.57 (was 3.53). Seven areas now reach 4. All three reviewers called the build ready for the owner to playtest, with the truck flagged as a known gap.
+
+Raised by all three:
+- **The truck still reads as assembled.** The fused canopy posts read as "bone-like tubes" pushed into the body, and the rear bumper's end still shows as a torn flap behind each rear wheel.
+- **The wet-sand band is still faint.** The widened band was not enough.
+- **Dig piles read as flat discs.**
+- **Contact occlusion is weak under props.**
+- **The fallen glass is a thick block.** It now reads as glass ("jelly", "soap bar") but not as the thin shard form.
+- **The boardwalk floats like a raft on the sand.**
+
+Two of three: the hero shard's pointed corners (v-05), flat star-shaped flowers, uniform lime palms, and the sieve clipping the basin rim.
+
+Tools, effects and UI could not be judged: no capture shows the HUD, tool upgrades or the digging, loading or recycling effects, so all three capped those areas at 3. A future review set should include them.
