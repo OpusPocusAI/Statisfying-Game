@@ -6,6 +6,7 @@ namespace SeaGlass
     {
         public string id; public int section; public bool glass; public int colorIndex; public Transform visual,mound;
         public Vector3 home; public float dig; Renderer surface; MaterialPropertyBlock block; float highlightUntil;Vector3 moundSize;bool spilledHere;
+        public const float FieldGrime=.5f;   // out in the field a piece shows half its recorded crust (see Refresh)
         GameSession S=>GameSession.Instance;
         public ItemRecord Record=>S.progress.Item(id);
         public override string Prompt=> !S.progress.SectionOpen(section)?"This cove opens at level "+(section+1):Record.stage==ItemStage.Buried?(S.player.equippedTool==0?"Hold LMB · scoop sand":"1 · equip shovel, then hold LMB to scoop"):"E · collect "+(glass?"cloudy "+((GlassColor)colorIndex)+" glass":"shoreline rubbish");
@@ -23,7 +24,10 @@ namespace SeaGlass
                 if(rs.Length>0)transform.position+=Vector3.up*(Record.spot.y+.004f-rs.Min(r=>r.bounds.min.y));
                 foreach(var c in GetComponentsInChildren<Collider>())c.isTrigger=true;
             }
-            if(glass&&surface){block??=new MaterialPropertyBlock();surface.GetPropertyBlock(block);block.SetFloat("_Grime",Record.grime);block.SetFloat("_Smoothness",.08f);surface.SetPropertyBlock(block);}
+            // Rubbish and fallen glass pass (Nov 16, review: fallen cargo glass "reads as a rock"): out in the field, wet from the sand or
+            // the sea, a piece shows its frosted colour with only a light sand crust; the full dried salt-and-sand crust is what the wash
+            // bowl shows. Display only: the record's grime is unchanged.
+            if(glass&&surface){block??=new MaterialPropertyBlock();surface.GetPropertyBlock(block);block.SetFloat("_Grime",Record.grime*FieldGrime);block.SetFloat("_Smoothness",.08f);surface.SetPropertyBlock(block);}
         }
         public override void Use(float delta)
         {

@@ -282,3 +282,20 @@ Not done:
 - The flap behind each rear wheel is the end of the shell's rear bumper. It is still there and needs a shell rebuild.
 - The cargo rails (a picket fence per tub, scaled in height by the truck upgrade) and the tubs themselves are unchanged.
 - The seats are still separate cushions.
+
+## Rubbish and fallen glass — November 16
+
+This round follows up the independent review: all three reviewers said rubbish was "tiny specks at 5 m" and that fallen cargo glass "reads as a rock".
+- **Rubbish size and colour.** `RubbishReadabilityPass` (Sea Glass/Art Direction menu, repeatable) scales the 72 beach rubbish pieces up toy-fashion:
+  - cans from 21 to 34 cm,
+  - crushed scrap from 17 to 29 cm,
+  - caps from 11 to 22 cm,
+  - bottles from 36 to 47 cm,
+  - driftwood unchanged.
+
+  They now wear their own brighter materials (`Assets/Art/Rubbish`) instead of the dulled ones they shared with the cleaning station, tools and props: a cooler, lighter aluminium against the warm sand, a clear coral label, a bluer bottle and a teal cap. The truck's visible rubbish cargo uses the same materials. Item colliders are unchanged.
+- **Field glass.** Glass lying out in the field (buried, on the beach, or fallen from the truck) now shows half its recorded salt-and-sand crust (`ShoreItem.FieldGrime`), so it reads as frosted coloured glass. The wash bowl still shows the full crust, so the dirty-to-clean moment is unchanged (v-04). The record's grime value is untouched.
+
+The standalone verification's fallen-cargo view (03d) shows a frosted aqua piece beside a readable can. Build, standalone verification (11.1 ms) and all 22 PlayMode tests pass.
+
+Not done: a piece shows less crust on the beach than when it reaches the bowl, which a player who looks closely may notice. Rubbish has no wear, sand cover or "buried hint" beyond the existing mounds.
