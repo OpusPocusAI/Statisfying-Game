@@ -5,6 +5,7 @@ namespace SeaGlass
     public class Feedback : MonoBehaviour
     {
         public static Feedback Instance; public float effectsVolume=.65f,musicVolume=.25f; public Material particleMaterial;
+        public static readonly bool PlayMusic=false;   // the placeholder background tune is off (see Awake)
         // Round 114: the brushing suds as lit mesh particles (foam_clump, FoamClump.mat; set by Round114Pass).
         public Mesh foamMesh; public Material foamMaterial;
         AudioSource effects,engine,music; readonly Dictionary<string,AudioClip> clips=new(); ParticleSystem[] pool;int cursor;float nextAction;
@@ -14,7 +15,9 @@ namespace SeaGlass
             string[] names={"sand","plastic","metal","glass","water","sort","engine","recycle","upgrade","complete"};
             for(int j=0;j<names.Length;j++)clips[names[j]]=Tone(names[j],j);
             engine.clip=clips["engine"];engine.loop=true;engine.volume=0;engine.Play();
-            music.clip=MakeMusic();music.loop=true;music.volume=musicVolume;music.Play();
+            // Owner, November 17: the generated placeholder tune was "rather annoying" while testing, so no music plays until real
+            // music exists. MakeMusic and the settings slider stay; set PlayMusic to bring the tune back.
+            if(PlayMusic){music.clip=MakeMusic();music.loop=true;music.volume=musicVolume;music.Play();}
             pool=new ParticleSystem[6];for(int i=0;i<pool.Length;i++)
             {var g=new GameObject("Pooled foam and sparkle");g.transform.SetParent(transform);var ps=g.AddComponent<ParticleSystem>();ps.Stop();var main=ps.main;main.playOnAwake=false;main.startLifetime=.7f;main.startSpeed=1.3f;main.startSize=.07f;main.gravityModifier=.2f;main.maxParticles=60;var emission=ps.emission;emission.enabled=false;var shape=ps.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.12f;
                 ps.GetComponent<ParticleSystemRenderer>().sharedMaterial=particleMaterial;pool[i]=ps;}

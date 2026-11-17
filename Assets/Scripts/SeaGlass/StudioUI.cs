@@ -132,7 +132,7 @@ namespace SeaGlass
         void Settings()
         {
             Panel(new Rect(700,170,620,570));GUI.Label(new Rect(735,198,550,40),"Make yourself comfortable",heading);
-            float y=265;GUI.Label(new Rect(735,y,490,30),"Music",body);Feedback.Instance.musicVolume=GUI.HorizontalSlider(new Rect(735,y+38,520,22),Feedback.Instance.musicVolume,0,1);
+            float y=265;GUI.Label(new Rect(735,y,490,30),Feedback.PlayMusic?"Music":"Music (off for now)",body);Feedback.Instance.musicVolume=GUI.HorizontalSlider(new Rect(735,y+38,520,22),Feedback.Instance.musicVolume,0,1);
             y+=85;GUI.Label(new Rect(735,y,490,30),"Effects",body);Feedback.Instance.effectsVolume=GUI.HorizontalSlider(new Rect(735,y+38,520,22),Feedback.Instance.effectsVolume,0,1);
             y+=85;GUI.Label(new Rect(735,y,490,30),"Mouse sensitivity",body);S.player.sensitivity=GUI.HorizontalSlider(new Rect(735,y+38,520,22),S.player.sensitivity,.025f,.35f);
             S.player.invertY=GUI.Toggle(new Rect(735,525,230,35),S.player.invertY," Invert mouse Y",body);
