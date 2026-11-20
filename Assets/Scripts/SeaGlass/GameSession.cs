@@ -61,7 +61,7 @@ namespace SeaGlass
             if(progress.Level>before)
             {
                 int lv=progress.Level;var gear=catalog.upgrades.Where(u=>u.level==lv).Select(u=>u.title).ToArray();
-                string cove=lv<=3?"A new cove is open further along the beach. ":"";
+                string cove=lv<=3?GameCatalog.CoveNames[lv-1]+" is open further along the beach. ":"";
                 LevelUp="LEVEL "+lv+"!  "+cove+(gear.Length>0?"New equipment at the studio cabinet: "+string.Join(", ",gear)+".":"");
                 levelUpUntil=Time.unscaledTime+9;if(lv<=3){newCoveUntil=Time.time+90;newCove=lv-1;}
                 Feedback.Instance?.Play("upgrade");

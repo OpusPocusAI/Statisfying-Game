@@ -52,6 +52,32 @@ namespace SeaGlass
             if(p.tutorial==2)return "Press E on uncovered rubbish and sea glass.";
             return "Gather glass and rubbish into your bucket ("+bucket+" / "+p.BucketCapacity+"), then load it into the truck's rear crates. F reveals remaining glass.";
         }
+        // Clarity pass (owner playtest round 2, November 17: "Next tasks/overall tasks could be made more clear"): which step of the
+        // loop Dig → Bucket → Truck → Wash → Sort → Place the player is on, for the HUD's loop strip. Follows the same order as Get.
+        // -1 with a side note for the jobs off the main loop (recycling, the cabinet); -1 with no note once the studio is restored.
+        public static readonly string[] LoopSteps={"Dig","Bucket","Truck","Wash","Sort","Place"};
+        public static int Step(GameSession s,StudioStation station,out string side)
+        {
+            side=null;var p=s.progress;
+            if(p.completed.All(x=>x))return -1;
+            if(station&&station.active){if(station.kind==StationKind.Clean)return 3;if(station.kind==StationKind.Sort)return 4;if(station.kind==StationKind.Recycle){side="Side job · recycle rubbish for bottle caps";return -1;}}
+            bool atStudio=s.player.transform.position.z>140;int bucket=s.BucketCount,cargo=s.CargoCount;
+            if(s.player.mode==PlayerMode.Driving)return 2;
+            if(RoadHazards.Fallen(s)>0)return 1;
+            if(atStudio&&s.Count(ItemStage.Bucket,false)>0){side="Side job · recycle rubbish for bottle caps";return -1;}
+            if(bucket>0&&(atStudio||cargo>0||bucket>=p.BucketCapacity))return 2;
+            if(atStudio)
+            {
+                if(s.truck.AtStudio&&s.Count(ItemStage.Truck,false)>0){side="Side job · recycle rubbish for bottle caps";return -1;}
+                if(s.Count(ItemStage.Studio,true)>0||(s.truck.AtStudio&&s.Count(ItemStage.Truck,true)>0))return 3;
+                if(s.Count(ItemStage.Clean,true)>0)return 4;
+                if(s.Count(ItemStage.Sorted,true)>0)return 5;
+                if(Affordable(s)){side="Side job · spend caps at the equipment cabinet";return -1;}
+                return cargo>0?2:0;
+            }
+            if(cargo+bucket>=p.TruckCapacity||cargo>0&&bucket==0)return 2;
+            return bucket>0||p.tutorial==2?1:0;
+        }
         static bool Affordable(GameSession s)=>s.catalog.upgrades.Any(u=>!s.progress.upgrades.Contains(u.id)&&s.progress.Level>=u.level&&s.progress.caps>=u.cost);
         // Clarity pass (owner playtest, November 14: "not enough direction", "don't know where to buy"): where the current step happens,
         // so the HUD can point at it. Follows the same order as Get; false where the step needs no marker (gathering, at a station).

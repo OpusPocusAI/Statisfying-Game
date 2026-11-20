@@ -67,19 +67,12 @@ namespace SeaGlass
             {
                 // Clarity pass (owner playtest, November 14: "I don't understand what I get to unlock", "not initially how much I can carry"):
                 // every number is labelled, and the panel says what the next level opens and what caps are for.
-                Panel(new Rect(28,25,470,160));GUI.Label(new Rect(47,33,380,36),"SEA GLASS / STUDIO",heading);
+                Panel(new Rect(28,25,470,140));GUI.Label(new Rect(47,33,380,36),"SEA GLASS / STUDIO",heading);
                 int next=S.progress.NextLevelXp;
                 Stat("xp",47,71,"Level "+S.progress.Level+"  ·  "+(next>0?S.progress.xp+" / "+next+" XP":S.progress.xp+" XP"));Stat("caps",300,71,S.progress.caps+" caps");
                 Stat("bucket",47,101,"Bucket "+S.BucketCount+" / "+S.progress.BucketCapacity);Stat("truck",222,101,"Truck "+S.CargoCount+" / "+S.progress.TruckCapacity);
-                GUI.Label(new Rect(47,131,440,44),NextUnlock()+"\nRecycling earns caps. Spend them at the studio's equipment cabinet.",small);
-                Panel(new Rect(1025,25,387,128));GUI.Label(new Rect(1047,35,345,36),"RESTORE THE STUDIO",heading);
-                for(int p=0;p<3;p++)
-                {
-                    int placed=S.progress.items.Count(r=>r.stage==ItemStage.Placed&&S.catalog.glass.Any(g=>g.id==r.id&&g.panel==p));
-                    GUI.color=GameCatalog.Palette[new[]{0,2,5}[p]];GUI.DrawTexture(new Rect(1047+p*118,77,22,22),HudIcons.Get("gem"));GUI.color=Color.white;
-                    GUI.Label(new Rect(1075+p*118,76,90,24),placed+" / 10",body);
-                }
-                GUI.Label(new Rect(1047,106,350,40),"Fill all three mosaic windows with polished sea glass.",small);
+                GUI.Label(new Rect(47,131,440,24),"Recycling earns caps. Spend them at the studio's equipment cabinet.",small);
+                Goals();
             }
             if(S.paused){Pause();return;}if(shop){Shop();return;}
             GUI.color=Color.white;GUI.DrawTexture(new Rect(717,447,6,6),cream);
@@ -93,11 +86,83 @@ namespace SeaGlass
                 Panel(new Rect(1025,812,395,68));GUI.DrawTexture(new Rect(1040,827,34,34),HudIcons.Get(icon));
                 GUI.Label(new Rect(1082,822,330,52),(carrying?(S.progress.upgrades.Contains("bucket")?"CANVAS SACK":"SMALL BUCKET")+"  ·  holding "+S.BucketCount+" / "+S.progress.BucketCapacity+" finds":(S.progress.upgrades.Contains("scoop")?"SIEVE SCOOP":"TOY SHOVEL")+"  ·  hold LMB on a mound to dig")+"\n1 shovel to dig   ·   2 bucket to see your finds",small);
             }
-            if(Time.unscaledTime<S.messageUntil){Panel(new Rect(480,200,690,68));GUI.Label(new Rect(500,216,650,48),S.message,body);}
-            if(Time.unscaledTime<S.levelUpUntil&&!station&&!shop){Panel(new Rect(480,278,690,76));GUI.Label(new Rect(500,290,650,56),S.LevelUp,body);}
-            if(!S.progress.tutorialDismissed)Marker(station,scale);
+            // Messages sit centred under the loop strip, clear of the goal tracker on the right.
+            if(Time.unscaledTime<S.messageUntil){Panel(new Rect(395,200,650,68));GUI.Label(new Rect(415,216,610,48),S.message,body);}
+            if(Time.unscaledTime<S.levelUpUntil&&!station&&!shop){Panel(new Rect(395,278,650,76));GUI.Label(new Rect(415,290,610,56),S.LevelUp,body);}
+            if(!S.progress.tutorialDismissed){Loop(station);Marker(station,scale);}
             if(station&&station.kind==StationKind.Clean&&station.selectedId!=null){float clean=1-S.progress.Item(station.selectedId).grime;Panel(new Rect(540,670,360,60));GUI.Label(new Rect(555,678,340,25),"HOLD LMB + MOVE  ·  CLEAN "+Mathf.RoundToInt(clean*100)+"%",body);GUI.DrawTexture(new Rect(555,713,330*clean,5),coral);}
         }
+        // Clarity pass (owner playtest round 2, November 17: "Next tasks/overall tasks could be made more clear"; owner chose a goal
+        // tracker plus a loop strip on November 20). The tracker answers "what am I working toward": each mosaic's progress and where its
+        // glass is, which cove holds it and when that cove opens, and what the next level brings.
+        [System.NonSerialized] GUIStyle bodyRight,stepOn,stepOff,stepCount;
+        void TrackerStyles()
+        {
+            bodyRight=new GUIStyle(body){alignment=TextAnchor.UpperRight};
+            stepOff=new GUIStyle(body){fontSize=15,alignment=TextAnchor.MiddleCenter};stepOff.normal.textColor=new Color(.05f,.25f,.26f,.55f);
+            stepOn=new GUIStyle(stepOff){fontStyle=FontStyle.Bold};stepOn.normal.textColor=Color.white;
+            stepCount=new GUIStyle(small){fontSize=12,alignment=TextAnchor.MiddleCenter};
+        }
+        // Read-only lookup: Progress.Item would add a record for every piece the HUD asks about.
+        ItemStage Stage(string id){var r=S.progress.items.Find(i=>i.id==id);return r!=null?r.stage:ItemStage.Buried;}
+        int PanelGlass(int panel,params ItemStage[] stages)=>S.catalog.glass.Count(g=>g.panel==panel&&stages.Contains(Stage(g.id)));
+        void Goals()
+        {
+            if(bodyRight==null)TrackerStyles();var p=S.progress;
+            Panel(new Rect(1025,25,387,272));GUI.Label(new Rect(1047,35,345,36),"RESTORE THE STUDIO",heading);
+            for(int m=0;m<3;m++)
+            {
+                float y=74+m*50;bool open=p.SectionOpen(m);int placed=PanelGlass(m,ItemStage.Placed);
+                GUI.color=GameCatalog.Palette[new[]{0,2,5}[m]]*(open?1:.6f);GUI.DrawTexture(new Rect(1047,y+2,20,20),HudIcons.Get("gem"));GUI.color=open?Color.white:new Color(1,1,1,.6f);
+                GUI.Label(new Rect(1074,y,220,24),S.catalog.panelNames[m],body);GUI.Label(new Rect(1290,y,100,24),placed+" / 10",bodyRight);
+                string status;
+                if(p.completed[m])status="Complete. The window glows.";
+                else if(!open)status="Its glass is at "+GameCatalog.CoveNames[m]+", which opens at level "+(m+1)+".";
+                else
+                {
+                    var parts=new System.Collections.Generic.List<string>();
+                    void Add(int n,string what){if(n>0)parts.Add(n+" "+what);}
+                    Add(PanelGlass(m,ItemStage.Buried,ItemStage.Shore),"at "+GameCatalog.CoveNames[m]);Add(PanelGlass(m,ItemStage.Bucket,ItemStage.Truck),"carried");
+                    Add(PanelGlass(m,ItemStage.Studio),"to wash");Add(PanelGlass(m,ItemStage.Clean),"to sort");Add(PanelGlass(m,ItemStage.Sorted),"to place");
+                    status=string.Join("  ·  ",parts);
+                }
+                GUI.Label(new Rect(1074,y+25,320,20),status,small);GUI.color=Color.white;
+            }
+            int lv=p.Level,next=p.NextLevelXp;
+            if(next>0)
+            {
+                int from=Progress.LevelXp[lv-1];float frac=Mathf.Clamp01((p.xp-from)/(float)(next-from));
+                GUI.Label(new Rect(1047,228,200,24),"Next: level "+(lv+1),body);GUI.Label(new Rect(1240,228,150,24),p.xp+" / "+next+" XP",bodyRight);
+                GUI.color=new Color(1,1,1,.25f);GUI.DrawTexture(new Rect(1047,255,343,5),teal);GUI.color=Color.white;GUI.DrawTexture(new Rect(1047,255,343*frac,5),coral);
+                GUI.Label(new Rect(1047,263,345,22),NextUnlock(),small);
+            }
+            else{GUI.Label(new Rect(1047,228,345,24),"Level "+lv,body);GUI.Label(new Rect(1047,256,345,22),NextUnlock(),small);}
+        }
+        // The loop strip: Dig → Bucket → Truck → Wash → Sort → Place, with the current step lit and what is waiting at each step.
+        // Side jobs (recycling, the cabinet) light no step and say so underneath. Hidden with the rest of the guidance (H).
+        void Loop(StudioStation station)
+        {
+            if(bodyRight==null)TrackerStyles();
+            int step=TutorialGuidance.Step(S,station,out var side);if(step<0&&side==null)return;
+            var p=S.progress;bool truckHere=S.truck.AtStudio;
+            string[] counts={
+                CountOrBlank(S.catalog.glass.Count(g=>p.SectionOpen(g.section)&&Stage(g.id)<=ItemStage.Shore),"left"),
+                S.BucketCount+" / "+p.BucketCapacity,S.CargoCount+" / "+p.TruckCapacity,
+                CountOrBlank(S.Count(ItemStage.Studio,true)+(truckHere?S.Count(ItemStage.Truck,true):0),"waiting"),
+                CountOrBlank(S.Count(ItemStage.Clean,true),"waiting"),CountOrBlank(S.Count(ItemStage.Sorted,true),"ready")};
+            Panel(new Rect(490,25,460,76));
+            for(int i=0;i<6;i++)
+            {
+                float x=507+i*72;
+                if(i==step)GUI.DrawTexture(new Rect(x-5,33,68,60),coral);
+                GUI.Label(new Rect(x-4,35,66,26),TutorialGuidance.LoopSteps[i],i==step?stepOn:stepOff);
+                if(i==step)stepCount.normal.textColor=Color.white;else stepCount.normal.textColor=new Color(.05f,.25f,.26f,.75f);
+                GUI.Label(new Rect(x-4,61,66,22),counts[i],stepCount);
+                if(i<5)GUI.Label(new Rect(x+62,35,10,26),"›",stepOff);
+            }
+            if(side!=null){var size=marker.CalcSize(new GUIContent(side));GUI.Box(new Rect(720-size.x*.5f,106,size.x,size.y),side,marker);}
+        }
+        static string CountOrBlank(int n,string what)=>n>0?n+" "+what:"";
         void Stat(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+28,y,190,26),value,body);}
         bool Button(string label,float x,float y,float w=340)=>GUI.Button(new Rect(x,y,w,46),label,button);
         void Menu()
@@ -155,9 +220,9 @@ namespace SeaGlass
         }
         string NextUnlock()
         {
-            int lv=S.progress.Level;if(lv>=4)return "Top level reached. Every cove and tool is open.";
-            var gear=S.catalog.upgrades.Where(u=>u.level==lv+1).Select(u=>u.title).ToArray();
-            return "Next, level "+(lv+1)+": "+(lv+1<=3?"a new cove":"")+(lv+1<=3&&gear.Length>0?" and ":"")+(gear.Length>0?gear.Length+" new tools":"")+".";
+            int lv=S.progress.Level;if(lv>=4)return "Top level. Every cove and tool is open.";
+            int gear=S.catalog.upgrades.Count(u=>u.level==lv+1);
+            return "Opens "+(lv+1<=3?GameCatalog.CoveNames[lv]:"")+(lv+1<=3&&gear>0?" and ":"")+(gear>0?gear+" new tool"+(gear>1?"s":""):"")+".";
         }
         // Clarity pass (owner playtest: "needs more of an introduction"; "not enough direction on why I am doing what I am doing").
         void Intro()
@@ -172,7 +237,7 @@ namespace SeaGlass
                 GUI.Label(new Rect(x,372,190,26),(k+1)+"  "+steps[k],body);GUI.Label(new Rect(x,400,185,70),text[k],small);}
             Row("xp",315,490,"XP comes from every find. Each new level opens more of the beach and new tools.");
             Row("caps",315,524,"Bottle caps come from recycling rubbish. Spend them at the studio's equipment cabinet.");
-            GUI.Label(new Rect(315,566,800,24),"The panel at the bottom left always shows your next step, and a marker points the way. H hides them.",small);
+            GUI.Label(new Rect(315,566,800,24),"The strip at the top lights the step you are on, the panel at the bottom left says what to do, and a marker points the way. H hides them.",small);
             if(Button("Start on the shore",315,612,330))CloseIntro();
         }
         void Row(string icon,float x,float y,string value){GUI.DrawTexture(new Rect(x,y+1,22,22),HudIcons.Get(icon));GUI.Label(new Rect(x+30,y,780,26),value,body);}

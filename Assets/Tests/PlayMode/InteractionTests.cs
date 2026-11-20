@@ -186,6 +186,25 @@ namespace SeaGlass.Tests
             yield return KeyPress(Key.H);Assert.IsTrue(session.progress.tutorialDismissed);
             yield return KeyPress(Key.H);Assert.IsFalse(session.progress.tutorialDismissed);
         }
+        [UnityTest] public IEnumerator LoopStripFollowsTheHaul()
+        {
+            Assert.AreEqual(0,TutorialGuidance.Step(session,null,out var side),"A fresh visit starts on Dig.");Assert.IsNull(side);
+            var glass=Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None).First(x=>x.id=="glass-03");
+            glass.Use(2);Assert.IsTrue(glass.Collect());
+            Assert.AreEqual(1,TutorialGuidance.Step(session,null,out _),"A find in the bucket lights Bucket.");
+            Assert.IsTrue(session.truck.Load(true));
+            Assert.AreEqual(2,TutorialGuidance.Step(session,null,out _),"A loaded truck lights Truck.");
+            session.truck.transform.position=new Vector3(15,.3f,150);session.player.Teleport(new Vector3(0,.2f,153),Quaternion.identity);
+            Assert.AreEqual(3,TutorialGuidance.Step(session,null,out _),"Glass in the truck at the studio lights Wash.");
+            session.progress.Item("glass-03").stage=ItemStage.Clean;session.truck.RefreshCargo();
+            Assert.AreEqual(4,TutorialGuidance.Step(session,null,out _));
+            session.progress.Item("glass-03").stage=ItemStage.Sorted;
+            Assert.AreEqual(5,TutorialGuidance.Step(session,null,out _));
+            var rubbish=Object.FindObjectsByType<ShoreItem>(FindObjectsSortMode.None).First(x=>x.section==0&&!x.glass);
+            session.progress.Item(rubbish.id).stage=ItemStage.Bucket;
+            Assert.AreEqual(-1,TutorialGuidance.Step(session,null,out side));StringAssert.Contains("recycle",side);
+            yield return null;
+        }
         [UnityTest] public IEnumerator BumpyRoadSpillsCargoThatCanBePickedUpAgain()
         {
             var hz=RoadHazards.Instance;Assert.NotNull(hz);Assert.GreaterOrEqual(hz.hazards.Count,7);
