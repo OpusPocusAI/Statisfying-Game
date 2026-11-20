@@ -382,3 +382,11 @@ The owner played the build and filled an interactive checklist: 19 of 26 items l
 Not changed: the boardwalk checklist item was unclear wording, not a bug. "Clear what to do next" is still to be checked by the owner.
 
 Captures: `Captures/Review/pfix1`, `pfix2`, `shaftdbg*` (ignored). Build, standalone verification (11.1 ms) and all 22 PlayMode tests pass.
+
+### Round 2 (owner checklist, November 17)
+
+12 of 15 items OK. Two fixes; the third item ("next tasks/overall tasks could be made more clear") is being discussed with the owner before anything is built.
+
+**Seabirds still flashed white**, so the rim light was not the cause. With MSAA, `Sea Glass/Tidal Water` still shades the edge samples of anything standing in front of the sea (a bird, grass blades, a palm trunk). The depth texture there holds that object, so the water read zero depth and drew its shoreline foam as a flickering white rim. The same specks showed around grass and trunks over the sea. Now, when the scene depth is nearer than the water surface, the shader treats it as a metre of water (no foam). Frame sequences from the beach (`Captures/Review/props-fix-birds`, compared with `birdseq`) show clean edges; the real shoreline foam and the foam around rocks at the waterline are unchanged (b3, b6).
+
+**Stool in the sun light.** The sunny floor patches and the shafts above them are painted light, not cast by the sun, so a prop standing in one threw no shadow into it and the beam ran through it. `PlaytestFixesPass.ClearWindowLight` (menu "Keep studio props out of the window light", also run by `Apply`) moves each floor prop standing in a patch the shortest way off it, together with its cluster (stacked props and anything within 15 cm), to a spot clear of other furniture, and moves its contact shadows with it. Moved: stool +0.46 x, crate stack and its basket +0.40 x as one group, easel +1.37 z, two baskets toward the wall (−0.15 and −1.45 x). Captures: `Captures/Review/props-fix` (ignored).

@@ -93,6 +93,11 @@ Shader "Sea Glass/Tidal Water"
   // and a soft, lapping foam line wherever the water touches the beach or a rock.
   float2 suv=GetNormalizedScreenSpaceUV(i.p);
   float sceneEye=LinearEyeDepth(SampleSceneDepth(suv),_ZBufferParams);
+  // Owner playtest, Nov 16/17 ("white flashing around the seabirds"): with MSAA the water still shades the edge samples of
+  // anything standing in front of it (a bird, grass blades, a palm trunk), but the depth texture there holds that object, so
+  // the water read itself as zero depth and drew its shoreline foam as a flickering white rim. Something in front of the
+  // surface is not the bed: treat it as a metre of water (no foam, a softly absorbed bed).
+  if(sceneEye<i.eye-.05)sceneEye=i.eye+1./max(abs(view.y),.05);
   float vdepth=max(0,(sceneEye-i.eye)*abs(view.y));
   // See-through shallows (Tchia): the sand bed shows through, tinted turquoise, fading with depth.
   float2 refractUV=suv+float2(cos(phase),cos(crossing))*.004*saturate(vdepth);
