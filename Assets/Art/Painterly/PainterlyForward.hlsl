@@ -121,7 +121,11 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
     // (texture v runs up the wall, so boards and courses stay horizontal).
     // Two-sided surfaces (grass blades, leaves, fabric) light their back faces with the flipped normal,
     // so they are not rendered near-black from behind (round 7).
-    float3 normalWS = normalize(input.normalWS) * IS_FRONT_VFACE(face, 1.0, -1.0);
+    // Nov 20 (owner: white flashing "in the sky direction"): on thin fused meshes (the seabirds' wing edges) the normals of the
+    // top and bottom faces can average to almost zero across a triangle. normalize() of that is NaN, and bloom spread a single
+    // NaN pixel into a large white disc for a frame. Fall back to facing the camera instead.
+    float nLen2 = dot(input.normalWS, input.normalWS);
+    float3 normalWS = (nLen2 > 1e-10 ? input.normalWS * rsqrt(nLen2) : GetWorldSpaceNormalizeViewDir(input.positionWS)) * IS_FRONT_VFACE(face, 1.0, -1.0);
     // Round 81 (review 77, all three: the wet/dry sand boundary "a hard, angular polygon edge" in b3, b4 and b6). The wet-sand strip
     // along the coast (_WetBand, uv.x 0 on its inland edge, 1 under the water) now wears exactly the dry beach's surface and gets
     // its wetness here: darker, cooler and glossier from about a tenth of the way across (fully wet by halfway, where the strip bends down), with the tide line roughened by world
@@ -365,6 +369,8 @@ half4 PainterlyFragment(Varyings input, FRONT_FACE_TYPE face : FRONT_FACE_SEMANT
 
     colour += _EmissionColor.rgb;
     colour = MixFog(colour, input.fogFactor);
+    // Never hand bloom a NaN or a runaway value: one such pixel becomes a screen-sized flash.
+    colour = any(isnan(colour)) ? half3(0, 0, 0) : min(colour, 32.0);
     return half4(colour, 1.0);
 }
 
